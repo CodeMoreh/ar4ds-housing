@@ -1,0 +1,7 @@
+---
+title: "The housing-audit case"
+---
+
+This site will hold the materials of Applied Replication for Data Skills (AR4DS) that are taught on the housing-audit case: the case study, the browser lab, the formats in which the case is taught and their slides, and the methods that the case carries. It is being assembled and is not yet ready for use.
+
+The site of the whole course, with the other three cases, is at [codemoreh.github.io/ar4ds](https://codemoreh.github.io/ar4ds/).

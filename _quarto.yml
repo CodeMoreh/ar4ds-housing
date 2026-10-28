@@ -1,0 +1,23 @@
+project:
+  type: website
+  output-dir: _site
+
+website:
+  title: "AR4DS – housing audit"
+  site-url: "https://codemoreh.github.io/ar4ds-housing/"
+  repo-url: "https://github.com/CodeMoreh/ar4ds-housing"
+  # Shown at the top of every page while the site is being built; delete the
+  # block once the materials are stable.
+  announcement:
+    icon: exclamation-triangle
+    dismissable: false
+    type: warning
+    position: above-navbar
+    content: "**Under active development.** These course materials are being revised and may change at any time, so please do not rely on them as they currently stand."
+  page-footer:
+    left: "Content licensed [CC BY 4.0](https://creativecommons.org/licenses/by/4.0/)."
+    right: "Built with [Quarto](https://quarto.org/)"
+
+format:
+  html:
+    theme: cosmo

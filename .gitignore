@@ -1,0 +1,10 @@
+/_site/
+/.quarto/
+/*.md
+!/README.md
+/_planning/
+**/*.quarto_ipynb
+
+# Copies that pCloud makes when it renames a page during a render
+/*[conflicted*
+**/*[conflicted*
