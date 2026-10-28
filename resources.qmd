@@ -1,0 +1,162 @@
+---
+title: "Resources"
+subtitle: "Readings, records and tools"
+bibliography: [references.bib, references-new.bib]
+---
+
+## Glossary {#glossary}
+
+The four terms below follow the definitions in @NosekEtAl2025BriefGlossaryTerms. They are not interchangeable, and the course depends on the difference: a finding can survive every robustness check on its own data and still fail on new data, or survive the checks and still be one that nobody can recompute from the original materials. The column 'In this course' notes where each idea appears in the housing-audit case.
+
+| Term | Definition | In this course |
+|------------------------|------------------------|------------------------|
+| **Reproducibility** | Same question, same data, same analysis → same result | Tested across the SCORE sample by @MiskeEtAl2026InvestigatingReproducibilitySocial. In the housing-audit case SCORE never attempted a reproduction; the class reproduces in Task 3 a value that Multi100 recorded for one of the five analysts |
+| **Robustness** | Same question, same data, justifiable alternative analysis → stable result | The Multi100 design [@AczelEtAl2026InvestigatingAnalyticalRobustness]; the five analysts of the claim; the specification menu and the curve of the claim in Tasks 4 and 5, with 64 specifications |
+| **Replicability** | Same question, independent new data → same result | Tested across the SCORE sample by @TynerEtAl2026InvestigatingReplicabilitySocial. For the housing-audit claim, a preregistered audit of 3,050 housing authorities found no significant gap |
+| **Repeatability** | Umbrella term covering all three above | Used in the glossary of Nosek and colleagues as the overarching category |
+
+------------------------------------------------------------------------
+
+## The records of the case {#the-case}
+
+The [case study](cases/housing/index.qmd) tells the story of the case in full, and the records below are the public deposits on which it is built.
+
+**The paper.** The paper of the original authors (OAs) [@EinsteinGlick2017DoesRaceAffect], published in the *American Journal of Political Science*: <https://doi.org/10.1111/ajps.12252>. The accepted manuscript is open at OpenBU, <https://hdl.handle.net/2144/37826>, and the page numbers quoted on the course site refer to it.
+
+**The data.** The replication package of the OAs on the Harvard Dataverse, released under CC0: <https://doi.org/10.7910/DVN/1HOVTU>. It holds the blinded data file, two Stata do-files (one that runs the analyses on the public file, and one written for the identifiable data, which are not public), two codebooks and a ReadMe that explains why the community variables are given in thirds. The course data in `cases/housing/data/` are built from it, and the codebooks beside them describe every column.
+
+**SCORE and Multi100 on the OSF.** The SCORE project of the paper on the Open Science Framework holds every activity that SCORE carried out on it, and the Multi100 component holds one sub-component for each of the five analysts. Four of the five published their scripts there; the course links to them and does not copy them.
+
+| Component | What it holds | Address |
+|---|---|---|
+| SCORE project of the paper | The parent of the components below | <https://osf.io/3a8bg/> |
+| Original materials | The materials of the original study collected by SCORE | <https://osf.io/nrt4s/> |
+| Reproduction | A reproduction with the data and code of the OAs, which holds only an unfilled template | <https://osf.io/9wp8d/> |
+| Power analysis | The power analysis for the replication | <https://osf.io/kcsby/> |
+| Replication | The replication with new data, with its preregistration and final report | <https://osf.io/2ug8x/> |
+| Replication data | The de-identified data of the replication, its analysis do-file and a dictionary, in the folder "Public Data"; the licence is unstated, so the course links to them and does not copy them | <https://osf.io/xseqg/> |
+| Multi100 | The five reanalyses of the claim | <https://osf.io/38rsh/> |
+| 8PTRZ | Chi-square test of a two-by-two table, Hispanic against all other names | <https://osf.io/j8wvh/> |
+| UYV3F | Logit without covariates, Hispanic against white names (a review document only) | <https://osf.io/3672s/> |
+| EWFMI | Logit of three groups with covariates, in Stata | <https://osf.io/jhvca/> |
+| 25N5D | Two-proportion test on every delivered email to Hispanic and white names | <https://osf.io/v8zah/> |
+| P9W8Y | Three-group logit with an omnibus test | <https://osf.io/pzwbm/> |
+| The Multi100 project | The project as a whole, with the claims of all hundred studies | <https://osf.io/q5h2c/> |
+
+The three activities of SCORE ended in three different places on the same paper. The reproduction was never attempted. The five reanalyses agreed on the direction of the gap and split three to two on whether the data supported the claim, and the replication with new names and a wider set of authorities found no significant gap. The [case study](cases/housing/index.qmd) tells the story in full.
+
+------------------------------------------------------------------------
+
+## Core readings
+
+### The three *Nature* 2026 papers (SCORE)
+
+- **Reproducibility:** @MiskeEtAl2026InvestigatingReproducibilitySocial – how often the central result of a paper can be recomputed from its own data. <https://doi.org/10.1038/s41586-026-10203-5>
+- **Robustness:** @AczelEtAl2026InvestigatingAnalyticalRobustness – Multi100, in which at least five analysts reanalysed each of a hundred claims. <https://doi.org/10.1038/s41586-025-09844-9>
+- **Replicability:** @TynerEtAl2026InvestigatingReplicabilitySocial – how often claims hold on new data, under preregistered protocols. <https://doi.org/10.1038/s41586-025-10078-y>
+- @AlipourfardEtAl2021SystematizingConfidenceOpen – the SCORE programme, of which all three studies are part. <https://doi.org/10.31235/osf.io/46mnb>
+
+### Vocabulary
+
+- @NosekEtAl2025BriefGlossaryTerms – a four-page glossary of the terms of repeatability; read it before the day. <https://doi.org/10.31222/osf.io/mqfp4_v1>
+- @NosekErrington2020WhatReplication – what counts as a replication. <https://doi.org/10.1371/journal.pbio.3000691>
+
+### Estimands and analytical choices
+
+- @LundbergEtAl2021WhatYourEstimand – the steps from a theoretical estimand to an empirical one, and why a result means little until the estimand is stated. <https://doi.org/10.1177/00031224211004187>
+- @SilberzahnEtAl2018ManyAnalystsOne – the red-card study, in which twenty-nine teams analysed one dataset. <https://doi.org/10.1177/2515245917747646>
+- @AuspurgBruderl2021HasCredibilitySocial – the reanalysis of the red-card study that traced the spread of its results to teams answering different questions. <https://doi.org/10.1177/23780231211024421>
+
+### Audit studies and the housing-audit case
+
+- @Lipsky1980StreetLevelBureaucracy – the discretion of the officials who deliver public services in direct contact with citizens.
+- @Pager2003MarkCriminalRecord and @BertrandMullainathan2004AreEmilyGreg – two field experiments on hiring that made the audit design familiar, the first with matched pairs of testers and the second with résumés that differed only in a name.
+- @QuillianEtAl2017MetaanalysisFieldExperiments – a meta-analysis of field experiments on racial discrimination in hiring.
+- @ButlerBroockman2011PoliticiansRaciallyDiscriminate and @WhiteEtAl2015WhatNeedVote – the audits of state legislators and local election officials on which the design of the OAs builds.
+- @Gaddis2017HowBlackAre – how often the names used in audits are read as indicating the group that they are meant to indicate.
+- @MontgomeryEtAl2018HowConditioningPosttreatment – what conditioning on a variable that the treatment can change does to an experiment.
+- @Coppock2019AvoidingPosttreatmentBias – the same problem in audit experiments that compare the content of replies, and the remedies, one of which analyst 25N5D chose.
+
+### The multiverse and its critics
+
+- @SimmonsEtAl2011FalsePositivePsychology and @GelmanLoken2014StatisticalCrisisScience – how undisclosed flexibility in analysis produces false positives, and the garden of forking paths.
+- @SteegenEtAl2016IncreasingTransparencyMultiverse and @SimonsohnEtAl2020SpecificationCurveAnalysis – the multiverse analysis and the specification curve, the two proposals on which the curve of the claim draws.
+- @DelGiudiceGangestad2021TravelersGuideMultiverse – a systematic framework for judging which analytic decisions are equivalent, and so which analyses belong in one multiverse.
+- @BreznauEtAl2022ObservingManyResearchers – a many-analysts study in which teams tested one hypothesis about immigration and social policy on the same data.
+- @Auspurg2025RobustnessBetterAssessed – the case for a few thoughtful models over billions of regressions.
+- @RohrerEtAl2026WhatsMultiverseGood and @LakensEtAl2026ThereOnlyOne – what a multiverse is good for, and the argument that a fully specified question has only one correct analysis.
+- @HeymanVanpaemel2022MultiverseAnalysesClassroom – the multiverse as a teaching device.
+
+The [companion module on the multiverse](companion/multiverse.qmd) reads these against the curve of the claim.
+
+### Preregistration
+
+None of these is required, because everything is taught in the course, but they let you arrive with the ideas already in hand. All three are open access.
+
+- Nosek, Ebersole, DeHaven & Mellor (2018). The preregistration revolution. *PNAS*, 115(11), 2600–2606. <https://doi.org/10.1073/pnas.1708274114> – a short primer on the idea on which preregistration depends: predicting a result against explaining one after the fact, and the case, like ours, where the data already exist.
+- The AsPredicted eight-question form – the short template on which the preregistration block of your report is modelled, listed on the OSF as the "Preregistration Template from AsPredicted.org". Live form: <https://aspredicted.org>; OSF listing: <https://help.osf.io/article/158-create-a-preregistration>.
+- van den Akker, Weston, Campbell, et al. (2021). Preregistration of secondary data analysis: A template and tutorial. *Meta-Psychology*, 5, 2625. <https://doi.org/10.15626/MP.2020.2625> – the fuller template, built for our situation of reanalysing data that already exist, and the tool that a full version of the exercise would use.
+
+------------------------------------------------------------------------
+
+## Companion
+
+The modules of the [companion](companion/index.qmd) hold the teaching that a session or a day can only mention, each on a page of its own that stands without the others, and each written on the data of this case.
+
+**Tools**
+
+- [Getting started with R](companion/intro-r.qmd) – for participants arriving with no R at all, on the housing-audit data, with further sections on reading other formats, the grammar of graphics and the estimand habit; best read before the day.
+- [Positron, RStudio and VS Code](companion/ide.qmd) – what an IDE does and what the course needs from one, with Positron pane by pane and RStudio and VS Code set beside it.
+- [Quarto and reproducible documents](companion/quarto.qmd) – the format in which your report and every page of this site are written.
+
+**Data and sharing**
+
+- [Social science data sources](companion/data-sources.qmd) – where data of the kind that this case uses come from, and the access rule for each kind of source.
+- [Reproducibility repositories](companion/repositories.qmd) – research-data archives, the public records behind the case, and preregistration templates in more depth.
+
+**Methods**
+
+- [Audit experiments](companion/experiments.qmd) – field experiments on discrimination: random assignment, names as treatments, comparisons among replies, randomisation inference, power and the ethics of deception.
+- [Binary outcomes](companion/binary-outcomes.qmd) – proportions, linear probability models and logistic regression.
+- [Causal graphs and adjustment sets](companion/dags.qmd) – confounders, mediators and colliders, and what conditioning on a reply does to the experiment.
+- [Simulation as a method](companion/simulation.qmd) – simulated audits as a way of checking a method.
+- [The multiverse and its critics](companion/multiverse.qmd) – where specification curves came from, the purposes that they serve, the current debate about them, and the curve of the claim.
+
+Installing R and an IDE, the setup help, and Git and GitHub are on the [AR4DS site](https://codemoreh.github.io/ar4ds/), which every case shares.
+
+------------------------------------------------------------------------
+
+## If you are at Newcastle University
+
+The course is open to anyone, and support of the kind listed below exists wherever you are: the library at your own institution and its research-software or research-data team are the places to ask. As an example, participants based at Newcastle University can draw on the following.
+
+| Resource | URL |
+|------------------------------------|------------------------------------|
+| RSE training (Research Software Engineering) | <https://rse.ncldata.dev/events> |
+| NCL Library – open research pages | <https://www.ncl.ac.uk/library/academic-support/research/open-research/> |
+| Research Data Newcastle | <https://data.ncl.ac.uk> |
+| UKRN Primers (open research primers) | <https://www.ukrn.org/primers/> |
+| ReproducibiliTea Newcastle | Search 'ReproducibiliTea Newcastle' – a journal club for open and reproducible science |
+
+------------------------------------------------------------------------
+
+## Tool documentation
+
+| Tool | URL |
+|------------------------------|-----------------------------------------|
+| R | <https://www.r-project.org> |
+| Positron (IDE) | <https://positron.posit.co> |
+| Quarto | <https://quarto.org> |
+| webR (R in the browser) | <https://docs.r-wasm.org/webr/latest/> |
+| quarto-live (webR in Quarto pages) | <https://r-wasm.github.io/quarto-live/> |
+| datawizard package (data work, easystats) | <https://easystats.github.io/datawizard/> |
+| tinyplot package (the figures of the workspaces and labs) | <https://grantmcdermott.com/tinyplot/> |
+| dagitty (causal graphs) | <https://www.dagitty.net> |
+| ggdag (drawing causal graphs) | <https://r-causal.github.io/ggdag/> |
+
+------------------------------------------------------------------------
+
+## References
+
+::: {#refs}
+:::

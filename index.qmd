@@ -1,7 +1,83 @@
 ---
-title: "The housing-audit case"
+title: "Applied Replication for Data Skills"
+subtitle: "The housing-audit case"
+toc: false
+execute:
+  freeze: false
 ---
 
-This site will hold the materials of Applied Replication for Data Skills (AR4DS) that are taught on the housing-audit case: the case study, the browser lab, the formats in which the case is taught and their slides, and the methods that the case carries. It is being assembled and is not yet ready for use.
+<!-- Not frozen: the next-delivery include reads _variables.yml at render time,
+and under freeze Quarto would key the cache on the source of this page alone,
+so flipping delivery.active would have no effect. The page therefore runs R in
+CI, which installs knitr, rmarkdown and yaml for the render and readr and
+datawizard for the chunk below (.github/workflows/publish.yml); a package that
+the chunk starts to use has to be added there too. -->
 
-The site of the whole course, with the other three cases, is at [codemoreh.github.io/ar4ds](https://codemoreh.github.io/ar4ds/).
+```{r}
+#| label: numbers
+#| include: false
+# Numbers quoted on the page, read from the committed data files of the case;
+# the ends of the curve carry a true minus sign.
+h_curve <- readr::read_csv("cases/housing/data/spec_curve.csv", show_col_types = FALSE)
+h_analysts <- readr::read_csv("cases/housing/data/analysts5.csv", show_col_types = FALSE)
+h_emails <- nrow(readr::read_csv("cases/housing/data/housing_audit.csv", show_col_types = FALSE))
+
+h_spec <- nrow(h_curve)
+h_sig <- sum(h_curve$b_pp < 0 & h_curve$p < 0.05)
+h_sig_txt <- if (h_sig == h_spec) "every one of them" else paste(h_sig, "of them")
+h_for <- sum(h_analysts$task1 == "evidence for the claim")
+h_for_txt <- c("None", "One", "Two", "Three", "Four", "Five")[h_for + 1]
+h_ends <- sub("^-", "−", formatC(range(h_curve$b_pp), format = "f", digits = 1))
+```
+
+{{< include _includes/next-delivery.qmd >}}
+
+This site teaches reproduction, robustness and replication in R on one published claim, together with the reanalyses that the claim received in a many-analyst study and the replication that tested it with new data. It is part of Applied Replication for Data Skills (AR4DS), which teaches the same exercise on four cases; the [AR4DS site](https://codemoreh.github.io/ar4ds/) describes the other three.
+
+## The case
+
+A field experiment published in 2017 sent the same short email to about a thousand public housing authorities in the United States, each signed with one of six names meant to indicate a white, a Black or a Hispanic sender. The claim is that "Hispanic housing applicants were ... less likely to be greeted by name than were ... white counterparts".
+
+- **Reproduction.** SCORE never attempted one, although the data and code are public. The four statistics that Multi100 recorded for the analysts reproduce exactly from the public file.
+- **Robustness.** `r h_for_txt` of the five Multi100 analysts found evidence for the claim. The `r h_spec` specifications of the curve of the claim put the gap between `r h_ends[1]` and `r h_ends[2]` percentage points, `r h_sig_txt` significant at 5%.
+- **Replication.** A preregistered audit of 3,050 housing authorities, with new names, found no significant gap (z = 0.66, p = 0.51).
+
+The case teaches proportions and the chi-square test, the linear probability model set against the logit, what conditioning on a reply does to an experiment, randomisation inference and statistical power. Its data are one file of `r format(h_emails, big.mark = ",")` emails, released into the public domain (CC0) and shipped with the workspace.
+
+[Read the case study](cases/housing/index.qmd){.btn .btn-primary}
+
+## Formats
+
+The facilitator of a course chooses its format, and the link that you receive for a course leads to it. Each format has a sidebar that lists its parts in order, a slides page, and links at the foot of every page to the part before and the part after.
+
+**[Short session](tracks/housing-short/index.qmd).** About two and a half hours, in the browser lab, with nothing to install and nothing to submit: the claim and the five reanalyses, the estimand statement, the reproduction of one reanalysis of your choice, a look at the menu of analyses and the curve of the claim, and the replication with new data.
+
+**One day.** Four parts of ninety minutes, taught mainly in the browser lab, with the downloadable workspace as an option for anyone who has installed R. Each day has one of three focuses.
+
+- [Open science](tracks/housing-one-day-open-science/index.qmd) – the reproduction of a reanalysis and the replication of the claim, ending on what a preregistration fixes.
+- [Data tools](tracks/housing-one-day-data-tools/index.qmd) – the case as the material for practising R, the IDE, data management and a Quarto report.
+- [Methods](tracks/housing-one-day-methods/index.qmd) – the menu of defensible analyses and the class chart at the centre of the day.
+
+**[Self-study](tracks/self-study/index.qmd).** The case in stages at your own pace, in R on your own machine, with the modules of the [companion](companion/index.qmd) between them.
+
+## The exercise
+
+Every format works through the same five tasks, or a selection of them.
+
+1. **The setup check.** Check that your tools work before the rest of the work depends on them: the setup check of the browser lab, or the check script of the workspace.
+2. **The data, the estimand and the graph.** Meet the data of the case, write the estimand statement behind the claim, and finish the causal graph that goes with it. The graph shows why a comparison of greetings among the replies alone is no longer protected by the random assignment.
+3. **The reproduction.** Choose one of the five analysts and reproduce the value that Multi100 recorded for that analyst, from the public file of the original authors (OAs).
+4. **The menu.** Work through the decisions that lie between the data and a result, try alternatives one change at a time, and send one exploration to the class chart. The [decision map](cases/housing/map.qmd) lays every decision out.
+5. **Declaration and report.** Declare one specification in a short preregistration, run it, report it, and find where it sits among the `r h_spec` specifications of the [curve of the claim](cases/housing/multiverse.qmd).
+
+The [exercise overview](cases/housing/exercise.qmd) sets out the five tasks in full.
+
+## Getting started
+
+The short session and the one-day courses need only a browser, with the workspace as an option. The self-study route needs R, an IDE and the workspace, installed before you start.
+
+[Open the browser lab](cases/housing/lab.qmd){.btn .btn-primary} [Install R and the workspace](https://codemoreh.github.io/ar4ds/setup.html){.btn .btn-outline-primary}
+
+The browser lab holds the whole exercise on a version of R that runs inside a browser tab, with the data in the page and nothing installed. The workspace is a single zip file that holds the analysis code, the data and a report to fill in; you open the folder in your IDE (Positron, RStudio, VS Code, etc.) and start working, and it is yours to keep afterwards.
+
+Facilitator: [Chris Moreh](https://chrismoreh.com).

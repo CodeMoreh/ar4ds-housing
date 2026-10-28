@@ -1,0 +1,93 @@
+/* Applied Replication workshop – minimal custom styles */
+
+/* Heading colour: NCL blue */
+h1, h2, h3, h4, h5, h6 {
+  color: #0e3b6a;
+}
+
+/* Link colour */
+a {
+  color: #a10000;
+}
+
+a:hover {
+  color: #7a0000;
+}
+
+/* Visited links stay in the same family */
+a:visited {
+  color: #a10000;
+}
+
+/* Exercise task callout box */
+.task-box {
+  border-left: 4px solid #0e3b6a;
+  background-color: #f0f4f8;
+  padding: 1rem 1.25rem;
+  margin: 1.25rem 0;
+  border-radius: 0 0.25rem 0.25rem 0;
+}
+
+.task-box .task-label {
+  font-weight: 700;
+  color: #0e3b6a;
+  text-transform: uppercase;
+  font-size: 0.85rem;
+  letter-spacing: 0.05em;
+  margin-bottom: 0.4rem;
+}
+
+/* Schedule table: compact */
+table.schedule {
+  font-size: 0.9rem;
+}
+
+/* Navbar brand colour override */
+.navbar {
+  background-color: #0e3b6a !important;
+}
+
+.navbar-brand, .navbar-nav .nav-link {
+  color: #ffffff !important;
+}
+
+.navbar-nav .nav-link:hover {
+  color: #e0c080 !important;
+}
+
+/* Embedded slide decks on the track slides pages */
+iframe.slide-deck {
+  width: 100%;
+  aspect-ratio: 16 / 9;
+  border: 1px solid #d0d7de;
+  border-radius: 4px;
+  background: #16202C;
+}
+
+/* On a narrow screen a long word, code name or address breaks where it must,
+   inside a table cell or a link, so that the page itself never scrolls
+   sideways (the help and resources tables, and the DOIs of the reference
+   lists, on a phone). */
+@media (max-width: 767.98px) {
+  main td, main th, main a {
+    overflow-wrap: anywhere;
+  }
+}
+
+/* The line that names the case at the top of every page of a case, placed
+   in the title block above the title by style/case-label.lua. */
+.case-label {
+  font-size: 0.8rem;
+  font-weight: 600;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: #5b6673;
+  margin: 0 0 0.35rem;
+}
+.case-label a {
+  color: #2a5d8f;
+  text-decoration: none;
+}
+.case-label a:hover {
+  text-decoration: underline;
+}

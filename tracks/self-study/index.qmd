@@ -1,0 +1,39 @@
+---
+title: "Self-study"
+subtitle: "Five stages on the housing-audit case"
+bibliography: [../../references.bib, ../../references-new.bib]
+---
+This route takes the course on the housing-audit case for a reader who works alone, without a facilitator and without a class, in five stages and at your own pace. The case is a field experiment, in which emails that differed only in the name that signed them were sent to public housing authorities in the United States, and its claim is one of the original authors (OAs) [@EinsteinGlick2017DoesRaceAffect] that five analysts reanalysed for Multi100. The modules of the [companion curriculum](../../companion/index.qmd) sit between the tasks of the exercise, each at the point where the case first needs its method, from a comparison of proportions among a thousand emails to randomisation inference, power and the multiverse. The route ends on a project of your own. A semester course can take the same route in class.
+
+You leave with a case report and a project of your own. The report contains the estimand statement and the causal graph of the claim, the reproduction of a recorded result, your exploration of the menu, a preregistration completed before its specification ran, and the result of that specification with its place on the curve of the claim. The project asks a question beyond the claim, preregistered before it ran. Both sit in a version-controlled repository that another person can clone and re-render.
+
+## How you work
+
+No programming is assumed. Stage 1 installs R, Quarto, an IDE (Positron, RStudio, VS Code, etc.) and the downloadable workspace of the case, which holds the data, the code of the tasks and the report that you fill in, and stage 2 teaches enough R to start the case. You work in the workspace on your own machine. The browser lab, a page of the course site on which R runs inside your browser, holds every task as well, with hints and worked solutions, and it carries the work if your installation fails.
+
+[Install R and the workspace](https://codemoreh.github.io/ar4ds/setup.html){.btn .btn-primary target="_blank"} [Open the browser lab](../../cases/housing/lab.qmd){.btn .btn-outline-primary target="_blank"}
+
+The exercise runs through five tasks. Task 1 is the setup check, Task 2 meets the data, writes the estimand statement and finishes the causal graph, and Task 3 reproduces a result that Multi100 recorded for one of the five analysts. Task 4 explores the specification menu one decision at a time, and Task 5 declares one specification in a short preregistration, runs it and reports it. Stage 1 takes Task 1, stage 3 Tasks 2 and 3, and stage 4 Tasks 4 and 5.
+
+Each stage has a page that lists its steps in order, and each step has a button that opens the page or the section where the work is done. A stage takes between five and six and a half hours of work, and the route as a whole about twenty-eight hours. Nothing in it depends on a pace, so a stage can be taken in one sitting or spread over a week. Where a stage can be shortened for a reader who already knows part of its material, its page says how, in a paragraph headed **Shortcuts**.
+
+Without a facilitator, the checks are built into the pages. Each stage names the numbers that your code should reach, the browser lab holds hints and worked solutions for the tasks, and the [help page](https://codemoreh.github.io/ar4ds/help.html) lists the problems that other participants have met. The stages use the deck of the [one-day course on methods](../housing-one-day-methods/slides.qmd), whose slides were written to be presented. Open the deck in its own tab and press `s` for the speaker view, whose notes give what is said over each slide, and where a slide asks the class to write something and send it together, write it into your report instead.
+
+Sending your results to the class chart of the case is optional. A result sent alone joins the chart on the [Multiverse page](../../cases/housing/multiverse.qmd#class-results), beside the results that earlier cohorts sent, and the helpers of Tasks 4 and 5 work exactly as they do in a one-day course: `submit_exploration()` and `report_result()` fill in the results form for you. To find your own marks again, give the same nickname every time, as `nickname = "..."`.
+
+## The stages
+
+- **[Stage 1 – Credibility and the three Rs](stage-1.qmd)** (about five and a quarter hours). You meet the arguments on why the field talks of a crisis, the three kinds of repetition, SCORE and Multi100, and you install R, Quarto, an IDE and the workspace.
+- **[Stage 2 – R and Quarto](stage-2.qmd)** (about five hours). You have a first session in R on the data of the case, learn the document format of the report, and read the paper of the OAs.
+- **[Stage 3 – The claim and its reproduction](stage-3.qmd)** (nearly six hours). In Tasks 2 and 3 you write the estimand statement, finish the graph of the experiment, and reproduce one of the five reanalyses, chosen by you.
+- **[Stage 4 – The menu and the declaration](stage-4.qmd)** (about six hours). You work through Tasks 4 and 5, read about randomisation inference, power and the replication with new data, and finish the case report.
+- **[Stage 5 – Your own project](stage-5.qmd)** (about six and a quarter hours). You learn version control, ask a question beyond the claim, preregister it before it runs, and prepare a repository for an archive.
+
+[Start with Stage 1](stage-1.qmd){.btn .btn-primary}
+
+The same case is also taught with a facilitator, as a [short session](../housing-short/index.qmd) and as one-day courses on [open science](../housing-one-day-open-science/index.qmd), [data tools](../housing-one-day-data-tools/index.qmd) and [methods](../housing-one-day-methods/index.qmd).
+
+## References {.unnumbered}
+
+::: {#refs}
+:::

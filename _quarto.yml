@@ -1,23 +1,140 @@
 project:
   type: website
   output-dir: _site
+  # Anchored to the project root: an unanchored pattern such as `data/` matches
+  # every folder of that name at any depth.
+  resources:
+    - /cases/*/data/
+    - /data/
+    - /assets/
+  render:
+    - "*.qmd"
+    - "cases/**/*.qmd"
+    - "cases/*/data/*.md"
+    - "tracks/**/*.qmd"
+    - "companion/*.qmd"
+    - "slides/*.qmd"
+    - "!_planning/**"
+    # Rendered but left out of the navbar: the run sheet of the facilitator and
+    # the notes on the formats
+    - "facilitator/housing-guide.qmd"
+    - "facilitator/tracks.qmd"
+
+# The docked sidebars of the formats live in their own file.
+metadata-files:
+  - _sidebar.yml
 
 website:
   title: "AR4DS – housing audit"
   site-url: "https://codemoreh.github.io/ar4ds-housing/"
   repo-url: "https://github.com/CodeMoreh/ar4ds-housing"
-  # Shown at the top of every page while the site is being built; delete the
-  # block once the materials are stable.
+  repo-actions: [issue]
+  favicon: assets/logo.png
+  # The previous and next links at the foot of each page of a format, in the
+  # order of its sidebar
+  page-navigation: true
+  # Shown at the top of every page while the materials are being revised;
+  # delete the block once they are stable. It does not reach the reveal.js
+  # decks, which have no site navigation.
   announcement:
     icon: exclamation-triangle
     dismissable: false
     type: warning
     position: above-navbar
     content: "**Under active development.** These course materials are being revised and may change at any time, so please do not rely on them as they currently stand."
+
+  navbar:
+    left:
+      - href: index.qmd
+        text: Home
+      - text: The case
+        menu:
+          - href: cases/housing/index.qmd
+            text: "Case study"
+          - href: cases/housing/exercise.qmd
+            text: "Exercise"
+          - href: cases/housing/lab.qmd
+            text: "Browser lab"
+          - href: cases/housing/menu.qmd
+            text: "Specification menu"
+          - href: cases/housing/map.qmd
+            text: "Decision map"
+          - href: cases/housing/multiverse.qmd
+            text: "Multiverse"
+          - href: cases/housing/cheatsheet.qmd
+            text: "Cheatsheet"
+      # Each format has a docked sidebar (_sidebar.yml) and a slides page that
+      # embeds its deck; the decks themselves are not in the navbar.
+      - text: Formats
+        menu:
+          - href: tracks/housing-short/index.qmd
+            text: "Short session"
+          - text: "---"
+          - href: tracks/housing-one-day-open-science/index.qmd
+            text: "One day – open science"
+          - href: tracks/housing-one-day-data-tools/index.qmd
+            text: "One day – data tools"
+          - href: tracks/housing-one-day-methods/index.qmd
+            text: "One day – methods"
+          - text: "---"
+          - href: tracks/self-study/index.qmd
+            text: "Self-study"
+      - text: Companion
+        menu:
+          - href: companion/index.qmd
+            text: "Overview"
+          - text: "---"
+          - text: "Tools"
+          - href: companion/intro-r.qmd
+            text: "Getting started with R"
+          - href: companion/ide.qmd
+            text: "Positron, RStudio and VS Code"
+          - href: companion/quarto.qmd
+            text: "Quarto and reproducible documents"
+          - text: "---"
+          - text: "Data and sharing"
+          - href: companion/data-sources.qmd
+            text: "Social science data sources"
+          - href: companion/repositories.qmd
+            text: "Reproducibility repositories"
+          - text: "---"
+          - text: "Methods"
+          - href: companion/experiments.qmd
+            text: "Audit experiments"
+          - href: companion/binary-outcomes.qmd
+            text: "Binary outcomes"
+          - href: companion/dags.qmd
+            text: "Causal graphs and adjustment sets"
+          - href: companion/simulation.qmd
+            text: "Simulation as a method"
+          - href: companion/multiverse.qmd
+            text: "The multiverse and its critics"
+      - href: resources.qmd
+        text: Resources
+    right:
+      # The pages that every case shares live on the umbrella site
+      - href: "https://codemoreh.github.io/ar4ds/setup.html"
+        text: Setup
+      - href: "https://codemoreh.github.io/ar4ds/"
+        text: AR4DS
+
   page-footer:
-    left: "Content licensed [CC BY 4.0](https://creativecommons.org/licenses/by/4.0/)."
-    right: "Built with [Quarto](https://quarto.org/)"
+    left: |
+      Content licensed [CC BY 4.0](https://creativecommons.org/licenses/by/4.0/).
+      Data: [CC0](https://doi.org/10.7910/DVN/1HOVTU).
+      [GitHub repository](https://github.com/CodeMoreh/ar4ds-housing)
+    right: |
+      Part of [AR4DS](https://codemoreh.github.io/ar4ds/). Built with [Quarto](https://quarto.org/)
+
+filters:
+  - highlight-text
+  - more-fragments
 
 format:
   html:
     theme: cosmo
+    css: styles.css
+    toc: true
+
+execute:
+  freeze: auto

@@ -1,0 +1,265 @@
+---
+title: "Binary outcomes"
+subtitle: "Proportions, linear probability models and logistic regression"
+bibliography: [../references.bib, ../references-new.bib]
+---
+
+```{r}
+#| label: setup
+#| include: false
+source("../R/housing/_tools.R")
+
+audit <- readr::read_csv("../cases/housing/data/housing_audit.csv", show_col_types = FALSE)
+curve <- readr::read_csv("../cases/housing/data/spec_curve.csv", show_col_types = FALSE)
+analysts <- readr::read_csv("../cases/housing/data/analysts5.csv", show_col_types = FALSE)
+
+# Fixed decimals and a true minus sign, for every number on the page
+fmt <- \(x, d = 1) formatC(x, format = "f", digits = d) |> sub(pattern = "^-", replacement = "−")
+pct <- \(x, d = 1) paste0(fmt(x, d), "%")
+pe <- \(p) dplyr::case_when(p < 0.0001 ~ "p < 0.0001", p < 0.001 ~ paste("p =", fmt(p, 4)),
+                     .default = paste("p =", fmt(p, 3)))
+an <- \(id, col) analysts[[col]][analysts$id == id]
+logit_or <- curve |> datawizard::data_filter(model == "logit") |> datawizard::data_modify(or = exp(coef))
+```
+
+This module of the [companion curriculum](index.qmd) fits the models that the course uses for a yes-or-no outcome, on the outcome of the housing-audit claim: whether a reply from a housing authority opened with the name of the person who wrote to it. The housing-audit case comes from a field experiment by the original authors (OAs), who emailed public housing authorities from six names meant to indicate a white, a Black or a Hispanic applicant [@EinsteinGlick2017DoesRaceAffect], and the [case study](../cases/housing/index.qmd) describes it. The module starts from a table of counts and builds up to the logistic regression of the paper, so that each step can be checked against the one before it. Every number is computed when the page is built, from the files of the course in `cases/housing/data/`, and the code is shown. The estimator of the course, `fit_spec()` in `R/housing/_tools.R`, does the same arithmetic for every specification of the curve.
+
+## 1. A yes-or-no outcome {#sec-outcome}
+
+A reply either opened with the name of the sender or it did not, so the outcome takes the values 1 and 0, and its mean in a group of replies is the share that opened with the name. Every model on this page describes that share, the probability of a 1, and how it differs between emails with Hispanic and with white names. The rows are the replies to those two groups of names that carry a greeting code, and `spec_frame()` from the estimator of the course selects them, with the outcome as `y` and the Hispanic names coded 1 in `hisp`.
+
+```{r}
+#| label: table
+frame <- spec_frame(audit, comparison = "white", population = "replies", uncoded = "drop")
+counts <- table(hispanic = frame$hisp, named = frame$y)  # r-style: keep – chisq.test() and prop.test() take a table
+counts
+shares <- frame |> dplyr::summarise(n = dplyr::n(), named = sum(y), share = mean(y), .by = hisp) |> dplyr::arrange(hisp)
+shares
+```
+
+Of the `r shares$n[1]` coded replies to white names, `r shares$named[1]` opened with the name, `r pct(100 * shares$share[1])`, against `r shares$named[2]` of the `r shares$n[2]` replies to Hispanic names, `r pct(100 * shares$share[2])`. Everything that follows is a way of describing the difference between those two shares, and of saying how far it could have arisen by chance.
+
+## 2. The difference in proportions {#sec-difference}
+
+The plainest summary is the difference between the two shares, `r fmt(100 * diff(shares$share), 2)` percentage points, which is also the scale on which the abstract of the paper states the claim. Its standard error follows from the variance of a 0/1 variable, which is $p(1 - p)$ for a share $p$, so that each group contributes its own variance divided by its size.
+
+```{r}
+#| label: difference
+p1 <- shares$share[2]
+p0 <- shares$share[1]
+n1 <- shares$n[2]
+n0 <- shares$n[1]
+gap <- p1 - p0
+se_gap <- sqrt(p1 * (1 - p1) / n1 + p0 * (1 - p0) / n0)
+round(100 * c(gap = gap, se = se_gap, lower = gap - 1.96 * se_gap, upper = gap + 1.96 * se_gap), 2)
+```
+
+The gap of `r fmt(100 * gap, 2)` points has a standard error of `r fmt(100 * se_gap, 2)` points and a 95% confidence interval from `r fmt(100 * (gap - 1.96 * se_gap))` to `r fmt(100 * (gap + 1.96 * se_gap))`.
+
+The classical test of the same difference is the $\chi^2$ test of the two-by-two table, which R offers as `chisq.test()` and, in the form of a test of two proportions, as `prop.test()`. Both compare the observed counts with the counts expected if the two groups shared one share of named greetings. Without a correction the $\chi^2$ statistic is exactly the square of the z of the two proportions, computed with that shared share in its standard error.
+
+```{r}
+#| label: chisq
+pooled <- mean(frame$y)
+z_pooled <- gap / sqrt(pooled * (1 - pooled) * (1 / n1 + 1 / n0))
+c(z_squared = z_pooled^2,
+  chisq_uncorrected = unname(chisq.test(counts, correct = FALSE)$statistic),
+  chisq_corrected = unname(chisq.test(counts)$statistic),
+  prop_test = unname(prop.test(counts[, 2:1])$statistic)) |>
+  round(3)
+```
+
+The last two numbers differ from the first two because `chisq.test()` and `prop.test()` apply the continuity correction to a two-by-two table unless they are told otherwise. The correction, due to Yates, shrinks each difference between an observed and an expected count by half a unit before it is squared, which makes the test a little more conservative. It matters for the reproduction in Task 3. Analyst 8PTRZ compared the Hispanic names with all other names among the replies and recorded $\chi^2$ = `r fmt(an("8PTRZ", "statistic_recorded"), 3)`, the corrected value, and analyst 25N5D recorded the corrected `prop.test()` statistic of `r fmt(an("25N5D", "statistic_recorded"), 3)` for the comparison among all delivered emails.
+
+```{r}
+#| label: analysts-chisq
+frame_8ptrz <- spec_frame(audit, comparison = "nonhispanic", population = "replies", uncoded = "drop")
+frame_25n5d <- spec_frame(audit, comparison = "white", population = "all", uncoded = "not_named")
+tab_8ptrz <- table(frame_8ptrz$hisp, frame_8ptrz$y)  # r-style: keep – chisq.test() takes a table
+c(`8PTRZ` = unname(chisq.test(tab_8ptrz)$statistic),
+  `8PTRZ, uncorrected` = unname(chisq.test(tab_8ptrz, correct = FALSE)$statistic),
+  `25N5D` = unname(prop.test(table(frame_25n5d$hisp, frame_25n5d$y)[, 2:1])$statistic)) |>  # r-style: keep – prop.test() takes a table
+  round(3)
+```
+
+Both recorded values come out exactly, and without the correction the statistic of 8PTRZ would have been `r fmt(chisq.test(tab_8ptrz, correct = FALSE)$statistic, 2)`. A reproduction depends on the defaults of the software as well as on the data and the model. The test of a table is a check on the curve of the claim, which tests every specification by its model instead, because a model can carry covariates and a table cannot.
+
+## 3. The linear probability model {#sec-lpm}
+
+A linear regression of the 0/1 outcome on the 0/1 indicator of the Hispanic names is called a linear probability model. With a single binary predictor it reproduces the table exactly: the intercept is the share among the white names and the coefficient is the difference in proportions.
+
+```{r}
+#| label: lpm
+lpm <- lm(y ~ hisp, data = frame)
+round(coef(lpm), 4)
+# classical errors; HC2 errors (MacKinnon and White 1985) from the sandwich
+# package (Zeileis 2004, Journal of Statistical Software); and the standard
+# error of the difference between two means computed group by group, from the
+# Welch t-test
+se <- c(classical = sqrt(vcov(lpm)["hisp", "hisp"]),
+        hc2 = sqrt(sandwich::vcovHC(lpm, type = "HC2")["hisp", "hisp"]),
+        two_sample = t.test(y ~ hisp, data = frame)$stderr)
+round(100 * se, 4)
+```
+
+The classical formula for the standard error of a linear regression assumes that the outcome varies equally in both groups, which a 0/1 outcome cannot do unless the two shares are equal or add up to one, since its variance is $p(1 - p)$. The HC2 standard error, one of the heteroskedasticity-consistent errors that allow the variance to differ between observations, drops that assumption, and with one binary predictor it equals the standard error of a difference between two means computed group by group, the formula that is used for comparing two randomised groups. The course computes it with `vcovHC()` from the sandwich package, which the estimator of the course reaches through `parameters::model_parameters(lpm, vcov = "HC2")`, and the `estimatr` package gives the same number with `lm_robust(y ~ hisp, se_type = "HC2")`. Here the classical and the HC2 errors differ by only `r fmt(100 * abs(se[["classical"]] - se[["hc2"]]), 3)` points, because the two groups are of similar size and the two shares not far apart, but the HC2 error is the one that stays right when they are not.
+
+The linear probability model has a well-known fault, which shows once covariates enter: a straight line has no floor or ceiling, so it can predict a share below 0 or above 1. With the covariates of the curve, which are a handful of categories, the predictions stay well inside that range on these data.
+
+```{r}
+#| label: lpm-range
+lpm_adjusted <- lm(y ~ hisp + hard_email + pop_third + poverty_third + black_third + hispanic_third,
+                   data = frame)
+round(range(fitted(lpm_adjusted)), 3)
+```
+
+In an experiment with a binary treatment the linear probability model has a second virtue. Its coefficient is the difference in proportions, the quantity that the claim names, whether or not covariates are added, and on this curve the covariates move it by less than the width of its standard error. That is why the reference specification of the curve is a linear probability model without covariates.
+
+## 4. Logistic regression {#sec-logit}
+
+The model of the paper is a logistic regression, which models the log of the odds of a greeting, $\log(p / (1 - p))$, a transformation of the share that runs over the whole real line and so keeps every prediction between 0 and 1. Its coefficients are differences in log odds.
+
+```{r}
+#| label: logit
+logit <- glm(y ~ hisp, family = binomial(), data = frame)
+round(coef(logit), 4)
+round(exp(coef(logit)[["hisp"]]), 3)
+predicted <- predict(logit, newdata = tibble::tibble(hisp = c(0, 1)), type = "response")
+round(100 * predicted, 2)
+```
+
+The coefficient of the Hispanic names is `r fmt(coef(logit)[["hisp"]], 3)`, close to the −0.82 of the paper, whose model also carried the community covariates and the hard-to-find address and fitted all three groups of names at once. Exponentiated, it is an odds ratio of `r fmt(exp(coef(logit)[["hisp"]]), 3)`: the odds that a reply to a Hispanic name opened with the name were `r fmt(exp(coef(logit)[["hisp"]]), 2)` times the odds for a white name. Without covariates the model reproduces the two observed shares exactly, `r pct(100 * predicted[1])` and `r pct(100 * predicted[2])`, so their difference is again the gap of `r fmt(100 * gap, 2)` points.
+
+The OAs, EWFMI and P9W8Y fitted the three groups in one model. The OAs took the white names as the base category and EWFMI the Hispanic names, which is why the z of that analyst is positive; P9W8Y reported an omnibus test, which does not depend on the base. Without covariates the three-group model gives exactly the same coefficient for the Hispanic names as the two-group model, since each coefficient compares one group with the base and the third group adds nothing to that comparison.
+
+```{r}
+#| label: three-group
+three <- audit |>
+  datawizard::data_filter(reply == 1, !is.na(named)) |>
+  datawizard::data_modify(group = relevel(factor(group), ref = "white"))
+round(coef(glm(named ~ group, family = binomial(), data = three)), 4)
+```
+
+With covariates the two differ a little, because the emails with Black names then help to estimate the covariates, and the specification menu keeps the three-group model as a check of the two-group fit.
+
+## 5. Odds ratios and percentage points {#sec-scales}
+
+Odds ratios are the conventional way of reporting a logistic regression, and they are exact and portable, but they are hard to picture, because the same odds ratio means very different changes in probability at different starting points. The chunk below applies the odds ratio of the data to four shares of named greetings for the white names.
+
+```{r}
+#| label: or-scale
+odds_ratio <- exp(coef(logit)[["hisp"]])
+base <- c(0.20, 0.50, 0.61, 0.90)
+odds_hisp <- odds_ratio * base / (1 - base)
+or_gaps <- 100 * (odds_hisp / (1 + odds_hisp) - base)
+round(or_gaps, 1)
+```
+
+The odds ratio of `r fmt(odds_ratio, 3)` turns a share of 61% into a gap of `r fmt(or_gaps[3])` points, but a share of 20% into a gap of `r fmt(or_gaps[1])` points and a share of 90% into one of `r fmt(or_gaps[4])`.
+
+The claim, in the abstract, states the gap in percentage points, and so does every point of the curve. A logistic regression reports its result on that scale through an average marginal effect, the difference in the predicted probability of a greeting between a Hispanic and a white name, computed for every analysed email as it is and averaged. The estimator of the course computes it with `avg_comparisons()` from the marginaleffects package, which sets the indicator of the Hispanic names to 1 and then to 0 in every row, predicts the probability of a greeting each time, and averages the difference; `avg_predictions()` shows the two averages from which the difference is taken. One detail of that package catches people out: it refuses a data column called `group`, so the model is fitted on the model columns alone.
+
+```{r}
+#| label: ame
+model_cols <- frame |>
+  datawizard::data_select(select = c("y", "hisp", "hard_email", "pop_third", "poverty_third", "black_third", "hispanic_third")) |>
+  dplyr::filter(dplyr::if_all(dplyr::everything(), \(x) !is.na(x)))
+logit_adjusted <- glm(y ~ hisp + hard_email + pop_third + poverty_third + black_third + hispanic_third,
+                      family = binomial(), data = model_cols)
+# the average predicted probability with every email signed by a white name and
+# by a Hispanic one, and their difference with its delta-method standard error
+marginaleffects::avg_predictions(logit_adjusted, variables = list(hisp = 0:1))
+ame <- marginaleffects::avg_comparisons(logit_adjusted, variables = "hisp")
+round(100 * c(ame = ame$estimate, se = ame$std.error), 3)
+```
+
+The difference between the two average predictions is the average marginal effect. Across the `r nrow(logit_or)` logistic specifications of the curve the odds ratio runs from `r fmt(min(logit_or$or), 3)` to `r fmt(max(logit_or$or), 3)`, and the average marginal effect from `r fmt(min(logit_or$b_pp))` to `r fmt(max(logit_or$b_pp))` points. A related rule bounds the size of a logistic coefficient on the probability scale. The slope of the logistic curve is steepest, at one quarter, where the probability is one half, so a coefficient $b$ moves a probability by at most $b/4$. The SCORE replication found a coefficient of 0.098 for its Hispanic names, which is therefore a gap of at most `r fmt(100 * 0.098 / 4, 2)` points, in their favour.
+
+## 6. Odds ratios and covariates {#sec-collapsibility}
+
+In a randomised experiment, adding a covariate that predicts the outcome does not change what a difference in proportions estimates, because the covariate is unrelated to the treatment. It does change what an odds ratio estimates, even with no confounding at all. The odds ratio is said to be non-collapsible: an odds ratio that holds within each group of a covariate does not hold for the groups taken together. The arithmetic shows why. Suppose the authorities were of two kinds, equally many of each, and that white names were greeted by name 85% of the time by one kind and 35% of the time by the other, about the 61% of the data on average. Let the Hispanic names multiply the odds of a greeting by the odds ratio of the data in both kinds of authority.
+
+```{r}
+#| label: non-collapsible
+white_by_kind <- c(0.85, 0.35)
+hisp_odds <- odds_ratio * white_by_kind / (1 - white_by_kind)
+hisp_by_kind <- hisp_odds / (1 + hisp_odds)
+white_all <- mean(white_by_kind)
+hisp_all <- mean(hisp_by_kind)
+round(c(or_within = odds_ratio,
+        or_all = (hisp_all / (1 - hisp_all)) / (white_all / (1 - white_all)),
+        gap_kind_1 = 100 * (hisp_by_kind[1] - white_by_kind[1]),
+        gap_kind_2 = 100 * (hisp_by_kind[2] - white_by_kind[2]),
+        gap_all = 100 * (hisp_all - white_all)), 3)
+```
+
+Within each kind of authority the odds ratio is `r fmt(odds_ratio, 3)`, but for all authorities together it is `r fmt((hisp_all / (1 - hisp_all)) / (white_all / (1 - white_all)), 3)`, closer to 1, although nothing is confounded and the names were assigned at random. The gaps in percentage points behave as one would hope: the gap for all authorities, `r fmt(100 * (hisp_all - white_all))` points, is the average of the gaps within the two kinds. A logistic regression that adjusts for the kind of authority would report an odds ratio of `r fmt(odds_ratio, 3)` and one that does not would report `r fmt((hisp_all / (1 - hisp_all)) / (white_all / (1 - white_all)), 3)`, and both would be right about different quantities, the odds ratio within a kind of authority and the odds ratio over all of them.
+
+On the housing-audit data the covariates predict the greeting only weakly, so the effect is small and mixes with the chance differences between the groups. On the `r nrow(model_cols)` replies that carry every covariate, the adjusted model gives an odds ratio of `r fmt(exp(coef(logit_adjusted)[["hisp"]]), 3)` against `r fmt(exp(coef(glm(y ~ hisp, family = binomial(), data = model_cols))[["hisp"]]), 3)` without covariates, and an average marginal effect of `r fmt(100 * ame$estimate)` against `r fmt(100 * marginaleffects::avg_comparisons(glm(y ~ hisp, family = binomial(), data = model_cols), variables = "hisp")$estimate)` points. Both shifts come mainly from small imbalances in the covariates between the groups, which adjustment corrects, and not from non-collapsibility. The principle matters for comparing results. An odds ratio from a model with covariates and one from a model without them are not estimates of the same quantity, so two analysts who report odds ratios from different models can differ for that reason alone, which is one reason why the course reports every logistic specification as an average marginal effect in points.
+
+## 7. The methods side by side {#sec-side-by-side}
+
+Every method on this page can be applied to the one comparison of the reference specification, Hispanic against white names among the `r nrow(frame)` coded replies, and @tbl-side-by-side sets them in one table.
+
+```{r}
+#| label: tbl-side-by-side
+#| tbl-cap: "One comparison, Hispanic against white names among the coded replies, reported by each method of the page: the estimate on its own scale, its standard error, the test statistic and the two-sided p-value. The randomisation p-value is stored in the curve file. Sources: `cases/housing/data/housing_audit.csv`, `cases/housing/data/spec_curve.csv`."
+#| code-fold: true
+# each model reported by parameters (classical, HC2 and Wald z), the average
+# marginal effect by marginaleffects
+lpm_classical <- parameters::model_parameters(lpm) |> datawizard::data_filter(Parameter == "hisp")
+lpm_hc2 <- parameters::model_parameters(lpm, vcov = "HC2") |> datawizard::data_filter(Parameter == "hisp")
+logit_row <- parameters::model_parameters(logit) |> datawizard::data_filter(Parameter == "hisp")
+logit_z <- logit_row$z
+# marginaleffects refuses a data column called group, so the logit is refitted
+# on the model columns alone for it
+logit_ame <- glm(y ~ hisp, family = binomial(),
+                 data = datawizard::data_select(frame, select = c("y", "hisp"))) |>
+  marginaleffects::avg_comparisons(variables = "hisp")
+chi_plain <- chisq.test(counts, correct = FALSE)
+chi_yates <- chisq.test(counts)
+ref_spec <- curve |> datawizard::data_filter(is_reference)
+all_p <- c(2 * pnorm(-abs(gap / se_gap)), chi_plain$p.value, chi_yates$p.value,
+           lpm_hc2$p, logit_row$p, ref_spec$p_ri)
+tibble::tribble(
+  ~Method, ~Estimate, ~SE, ~Statistic, ~p,
+  "Difference in proportions", fmt(100 * gap, 2), fmt(100 * se_gap, 2),
+    paste("z =", fmt(gap / se_gap, 2)), pe(2 * pnorm(-abs(gap / se_gap))),
+  "χ<sup>2</sup> test, uncorrected", "", "", paste("χ<sup>2</sup> =", fmt(chi_plain$statistic, 2)),
+    pe(chi_plain$p.value),
+  "χ<sup>2</sup> test, with the continuity correction", "", "",
+    paste("χ<sup>2</sup> =", fmt(chi_yates$statistic, 2)), pe(chi_yates$p.value),
+  "Linear probability model, classical errors", fmt(100 * lpm_classical$Coefficient, 2),
+    fmt(100 * lpm_classical$SE, 2), paste("t =", fmt(lpm_classical$t, 2)), pe(lpm_classical$p),
+  "Linear probability model, HC2 errors", fmt(100 * lpm_hc2$Coefficient, 2),
+    fmt(100 * lpm_hc2$SE, 2), paste("t =", fmt(lpm_hc2$t, 2)), pe(lpm_hc2$p),
+  "Logistic regression, coefficient", fmt(logit_row$Coefficient, 3), fmt(logit_row$SE, 3),
+    paste("z =", fmt(logit_z, 3)), pe(logit_row$p),
+  "Logistic regression, average marginal effect", fmt(100 * logit_ame$estimate, 2),
+    fmt(100 * logit_ame$std.error, 2), "", "",
+  "Randomisation test", "", "", "", paste("p =", fmt(ref_spec$p_ri, 4))
+) |>
+  tinytable::tt() |>
+  tinytable::style_tt(j = 2:5, align = "r")
+```
+
+Every method finds the same gap, or a statistic that tests it, and the largest p-value in the table is `r fmt(max(all_p), 4)`, that of the randomisation test, which cannot go lower with 1,999 reshuffles. The z of the logistic coefficient, `r fmt(logit_z, 3)`, is the value that analyst UYV3F recorded. The methods differ in what they can carry and in the scale on which they report. A table test carries no covariates, a linear probability model reports in points and a logistic regression in log odds unless it is converted. They also differ in the statistic that they hand on to anyone who converts results to a common scale, which is why the same gap became different correlations in Multi100, as the [case study](../cases/housing/index.qmd#sec-scale) shows.
+
+::: {.callout-tip}
+## Try it
+
+Change the two shares of the arithmetic in section 6 to 0.65 and 0.55, which predict the greeting much more weakly, and rerun the chunk. How far does the odds ratio for all authorities now move from the odds ratio within them? Then go back to 0.85 and 0.35 and replace the odds ratio of the data with 1, the case where the names make no difference: does the odds ratio for all authorities still move?
+:::
+
+## 8. Where this leads {#sec-next}
+
+The curve of the claim takes the models of sections 1 to 7 as they are, and the [specification menu](../cases/housing/menu.qmd) sets out which of them it keeps. The [simulation module](simulation.qmd) uses the difference in proportions with HC2 errors as the estimator of a simulated audit, to show what it recovers when the name changes only the greeting and what it misses when the name also changes who replies, and the [multiverse module](multiverse.qmd) reads the curve of the claim as a whole.
+
+## Sources {#sec-sources}
+
+The models on this page are fitted with `lm()` and `glm()` from base R, with the HC2 standard error and the average marginal effect of the estimator of the course in `R/housing/_tools.R`, which `R/housing/check_parity.R` checks against `estimatr` and `marginaleffects`. The data are `cases/housing/data/housing_audit.csv` and the curve `cases/housing/data/spec_curve.csv`, both with codebooks; the analyses of the five Multi100 analysts are in `analysts5.csv`. @GelmanEtAl2020RegressionOtherStories treat logistic regression and its interpretation on the probability scale at length, and the [specification menu](../cases/housing/menu.qmd#level-estimation) sets out which models, tests and scales the curve of the claim keeps.
+
+## References {.unnumbered}
+
+::: {#refs}
+:::

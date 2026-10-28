@@ -1,0 +1,18 @@
+---
+title: "Before the session"
+---
+Before the session you read the case study and check that the browser lab loads on the machine that you will bring. The two steps take about an hour, and there is nothing to install and nothing to register for.
+
+## 1. The case study
+
+[Read the case study](../../cases/housing/index.qmd){.btn .btn-primary target="_blank"}
+
+The case study presents the original study and its design, SCORE and the Multi100 project, the five reanalyses and the question that each of them answered, how their results were put on one scale, and the replication with new data. Read it before you come, because the session works on this case throughout and can give it only a few slides.
+
+## 2. The browser lab
+
+[Open the browser lab at Task 1](../../cases/housing/lab.qmd#task-1-setup){.btn .btn-primary target="_blank"}
+
+The browser lab is a page of the course site on which R runs inside your browser, with the data already in place. Open it once on the machine and in the browser that you will use, wait until the first cell shows a "Run Code" button, and run the setup cell of Task 1. If it does not load, try another browser, and tell the facilitator before the session.
+
+**By the start of the session** you have the browser lab loading on the machine that you will use, and you know what the claim is and how the five Multi100 analysts came to different conclusions about it.

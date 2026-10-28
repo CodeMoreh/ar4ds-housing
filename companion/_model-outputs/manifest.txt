@@ -1,0 +1,4 @@
+Fitted: 2026-10-27 (companion module: simulation)
+R 4.6.0
+simulate_audit.R -> sim_audit_diagnosis.csv, sim_audit_draws.csv: housing-audit case, set.seed 20261027
+DeclareDesign 2.0.0 | fabricatr 2.0.0 | randomizr 2.0.1 | estimatr 2.0.1

@@ -1,0 +1,63 @@
+# AR4DS, the housing-audit case – site variables.
+#
+# The one file to edit for site-wide facts and for scheduling a delivery. Pages
+# read it through the Quarto shortcode {{< var name.subname >}}. Three parts:
+#   1. Site-wide variables.
+#   2. The case – the addresses of the workspace and of the class chart.
+#   3. The delivery block – set delivery.active to 'true' to switch the
+#      next-delivery callout on the home page on; set it back to 'false' for
+#      the evergreen (no-date) site.
+
+# --- Site-wide variables ----------------------------------------------------
+# `workshop` is the historical key; pages read it through
+# {{< var workshop.name >}} and {{< var workshop.format >}}.
+workshop:
+  name: "Applied Replication for Data Skills"
+  format: "a short session, one day or self-study"
+  organiser: "Chris Moreh"
+  # Add a public contact address here if you want one shown on the site.
+  contact: ""
+
+site-url: "https://codemoreh.github.io/ar4ds-housing/"
+org: "https://github.com/CodeMoreh"
+# The umbrella site, which holds the pages that every case shares: setup, the
+# setup help, Git and GitHub, and the background on SCORE and Multi100.
+umbrella: "https://codemoreh.github.io/ar4ds/"
+
+# The Google Form that every case submits to (frozen; the setup of the whole
+# pipeline is documented on the EU-frames site, facilitator/live-results-setup.md).
+results-form-url: "https://forms.gle/MWhimagFDmGtprAPA"
+
+# --- The case -----------------------------------------------------------------
+#   template-repo     the GitHub repository of the downloadable workspace
+#   workspace-zip     the zip of that repository that participants download
+#   live-results-url  the multiverse page that draws the class submissions
+#   results-word      the word that follows the tag in every class-results
+#                     label of the case, so that the chart of the case reads
+#                     only its own rows of the shared Form (frozen)
+cases:
+  housing:
+    label: "housing audit"
+    name: "the housing-audit case"
+    # PLACEHOLDER until CM creates the repository on GitHub
+    template-repo: "https://github.com/CodeMoreh/replication-lab-housing"
+    workspace-zip: "https://github.com/CodeMoreh/replication-lab-housing/archive/refs/heads/main.zip"
+    live-results-url: "https://codemoreh.github.io/ar4ds-housing/cases/housing/multiverse.html"
+    results-word: "housing"
+
+# --- Next-delivery block --------------------------------------------------
+# Set active to 'true' to schedule a delivery; fill in the fields below.
+# Set active back to 'false' to return the site to its evergreen state.
+delivery:
+  active: 'false'
+  # Which format this delivery follows, named by its folder under tracks/:
+  # housing-short, housing-one-day-open-science, housing-one-day-data-tools,
+  # housing-one-day-methods or self-study. An empty value prints no format
+  # line in the callout, and so does a value that matches no folder.
+  track: ""
+  date: ""
+  venue: ""
+  event: ""
+  mode: ""
+  registration_url: ""
+  note: ""

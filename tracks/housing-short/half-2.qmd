@@ -1,0 +1,52 @@
+---
+title: "Second half – Exploration and replication"
+---
+::: {.callout-note appearance="simple" icon=false}
+**Slides.** [Open the deck at this half](../../slides/housing-short.html#/half-2-exploration-and-replication){target="_blank"} in its own tab, or follow it on the [slides page](slides.qmd).
+:::
+
+In the first half everyone who chose the same analyst reproduced the same number, because everyone ran the same code. In the second you become the sixth analyst and make choices of your own: you try a few analyses from the menu in the browser lab, read where the one that you would defend sits among every justifiable specification on these data, and end on the new audit that tested the claim again. Nothing is sent anywhere. The half takes about seventy-five minutes.
+
+## 1. The specification menu
+
+**On the slides**, with the specification menu open in another tab.
+
+[Open the specification menu](../../cases/housing/menu.qmd){.btn .btn-primary target="_blank"}
+
+The slides take you through the eleven decisions at three levels, the five on which the curve keeps more than one option, the 64 specifications that they make, and the ground rules for the menu. They then present a difference in proportions, and set the linear probability model against the logit.
+
+## 2. Task 4 – The menu
+
+[Open the browser lab at Task 4](../../cases/housing/lab.qmd#task-4-menu){.btn .btn-primary target="_blank"}
+
+Call `try_spec()` with no arguments for the reference specification, then two or three times more, changing one argument at a time, and print the tries side by side with `my_experiments()`. Ask once for an option off the curve, such as `model = "three_group"`, to read why it is refused. Then rerun the one that you would defend, so that it is your last try. Skip `submit_exploration()`, because the session sends nothing to the class chart.
+
+## 3. The multiverse
+
+**On the slides**, with the Multiverse page open in another tab.
+
+[Open the Multiverse page](../../cases/housing/multiverse.qmd){.btn .btn-primary target="_blank"}
+
+The slides name what you did in Task 4, your own small multiverse, and then show the curve of the claim, with the published result of the original authors (OAs) and the five analysts placed on it. An optional pair of slides tells where the idea of a multiverse came from.
+
+## 4. Your placement
+
+[Open the browser lab at Task 4](../../cases/housing/lab.qmd#task-4-menu){.btn .btn-primary target="_blank"}
+
+Rerun `try_spec()` with the specification that you would defend and read your placement, which is the number of the 64 specifications whose gap lies further below zero than yours. Send it in the chat when the facilitator says go.
+
+## 5. What moved the estimate
+
+**On the slides.** Each option of the curve is set beside its twins, the specifications that agree with it on every other decision. The slides then show the step in the curve that comes from the choice of which emails to count.
+
+## 6. The replication
+
+**On the slides.** The SCORE replication was a preregistered audit of 3,050 housing authorities with new names. The slides show what it found, compare the original study and the replication row by row, and set out the power of the two designs. They end on the three Rs on this paper and on what separates robustness from replicability.
+
+To go further: [the replication](../../cases/housing/index.qmd#sec-replication) in the case study.
+
+## 7. The close
+
+**On the slides.** The session closes on two points from the literature, the single analytical path, what you take with you, and the feedback form.
+
+**By the end of the half** you have tried two or three alternatives one argument at a time, read the place of the one that you would defend among the 64 specifications of the curve, and met a claim that holds under every analysis of one sample and still failed on new data.

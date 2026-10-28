@@ -1,0 +1,73 @@
+---
+title: "Stage 4 – The menu and the declaration"
+case: housing
+---
+::: {.callout-note appearance="simple" icon=false}
+**Slides.** [Open the deck at the menu](../../slides/housing-one-day-methods.html#/the-specification-menu){target="_blank"}, in Part 3, in its own tab, or follow it on the [slides page](../housing-one-day-methods/slides.qmd).
+:::
+
+This stage works the menu of defensible analyses, one decision at a time, and ends on the one analysis that you would defend, declared in the preregistration block of your report before it runs. The rest of the stage reads the curve of the claim and the replication with new data at a slower pace, and finishes the case report, in about six hours of work all told.
+
+## 1. The specification menu
+
+[Open the specification menu](../../cases/housing/menu.qmd){.btn .btn-primary target="_blank"}
+
+The menu sets out the estimand statement and the eleven decisions at three levels. It then gives the five on which the curve keeps more than one option, the 64 specifications that they make, the worked example, and the rules for declaring and reporting a result.
+
+## 2. The menu and the methods
+
+**On the slides**, in Part 3, from the menu onwards. The slides set out the ground rules of the menu, which are to change one decision at a time and to read the reason when an option is refused. They then present a difference in proportions and set the linear probability model against the logit. An optional run, which the `d` key shows and hides, covers odds ratios, standard errors for a 0/1 outcome, the choice of test, the randomisation test, covariates in an experiment and the subgroups beside the curve.
+
+## 3. Task 4 – The menu
+
+**In your report** or your working script, or in the browser lab.
+
+[Open the browser lab at Task 4](../../cases/housing/lab.qmd#task-4-menu){.btn .btn-outline-primary target="_blank"}
+
+Call `try_spec()` with no arguments for the reference specification, then three or four times more, changing one argument at a time, and compare the tries with `my_experiments()`. Ask once for an option off the curve, such as `model = "three_group"`, to read why it is refused. If you want your exploration on the [class chart](../../cases/housing/multiverse.qmd#class-results), send the try that you would defend with `submit_exploration()`, and it appears there as an open circle.
+
+## 4. Multiverse, replication and preregistration
+
+**On the slides**, at [Part 4](../../slides/housing-one-day-methods.html#/part-4-multiverse-replication-and-preregistration){target="_blank"}. The slides name your own small multiverse and show the curve of 64, with the published result and the five analysts on it, and the class chart, which holds the results of earlier cohorts. They go on to what moved the estimate, the SCORE replication with new names and the power of the two designs. They end on the critics of the multiverse, and on what a preregistration settles and what it leaves open.
+
+## 5. Task 5 – The preregistration
+
+**In the preregistration block of your report**, or in the browser lab.
+
+[Open the browser lab at Task 5](../../cases/housing/lab.qmd#task-5-preregistration){.btn .btn-outline-primary target="_blank"}
+
+Complete the block before you run anything. It asks for the claim, the data-in-hand statement, one option for each decision, a sentence from your causal graph on why the specification answers the claim, and your rule for what supports or undermines it. Render the report and keep the rendered copy, which carries the date on which it was rendered. Then fit the specification with `run_spec()`, and send it with `report_result()` if you want it on the chart, where it appears as a filled circle.
+
+## 6. The curve of the claim
+
+[Open the Multiverse page](../../cases/housing/multiverse.qmd){.btn .btn-primary target="_blank"}
+
+The Multiverse page shows how to read the curve, the reference marks, and what moved the estimate. Beside the curve it sets the other outcomes and the Black names, the subgroups, and the randomisation distribution.
+
+## 7. Randomisation, power and the replication
+
+[Open Audit experiments at section 5](../../companion/experiments.qmd#sec-ri){.btn .btn-primary target="_blank"} [Open the replication](../../cases/housing/index.qmd#sec-replication){.btn .btn-outline-primary target="_blank"}
+
+Work through the module on audit experiments from [Randomisation inference](../../companion/experiments.qmd#sec-ri) to [The ethics of deception](../../companion/experiments.qmd#sec-ethics). The sections cover randomisation inference, power and why significant estimates from small studies tend to be too large, and the ethics of deceiving officials and of publishing data on people who never consented to be studied. Then read [the replication](../../cases/housing/index.qmd#sec-replication) in the case study, which gives the design and the result of the preregistered audit of 3,050 housing authorities that SCORE ran, and how to read it beside the curve.
+
+## 8. The adjustment sets of the curve
+
+[Open the adjustment sets of the curve](../../companion/dags.qmd#sec-adjustment){.btn .btn-primary target="_blank"}
+
+The section reads the covariates that the curve offers off the graph of the case. It shows why none of them confounds the comparison of the names, and what they do among the replies.
+
+## 9. The multiverse and its critics
+
+[Open The multiverse and its critics](../../companion/multiverse.qmd#sec-origins){.btn .btn-primary target="_blank"}
+
+Work from [Origins](../../companion/multiverse.qmd#sec-origins) to [The multiverse in the classroom](../../companion/multiverse.qmd#sec-teaching). The sections cover where multiverse analysis came from and the three purposes that a multiverse can serve. They read the debate of 2025–26 against this small curve, on which every specification agrees while the replication failed, and end on robustness against replicability and on the multiverse in teaching.
+
+## 10. The case report
+
+**In your workspace.** Render the report of the workspace with all five tasks complete, the preregistration block as it stood before the run and the result beneath it. This is your case report. The section "Going further" at its end holds optional exercises that run in the workspace.
+
+**Sending results.** Both submissions are optional. A result sent alone joins the class chart of the case beside the results that earlier cohorts sent, and the helpers work exactly as they do in a one-day course, filling in the results form for you. The workspace draws a tag of its own for the chart, and the browser lab draws one that lasts only for the browser session, so to find your marks again, give the same nickname every time, as in `submit_exploration(nickname = "blue-heron")`.
+
+**Shortcuts.** If time is short, read only the section on [robustness and replicability](../../companion/multiverse.qmd#sec-replicability) of the multiverse module now, and come back to the rest of it when your project in stage 5 needs it.
+
+**By the end of the stage** you have explored the menu one decision at a time, placed your declared result among the 64 specifications of the curve, completed a preregistration before its specification ran, and rendered the case report.

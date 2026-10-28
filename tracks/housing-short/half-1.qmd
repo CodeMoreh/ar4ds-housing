@@ -1,0 +1,48 @@
+---
+title: "First half – The claim and its reproduction"
+---
+::: {.callout-note appearance="simple" icon=false}
+**Slides.** [Open the deck at this half](../../slides/housing-short.html#/half-1-the-claim-and-its-reproduction){target="_blank"} in its own tab, or follow it on the [slides page](slides.qmd).
+:::
+
+The first half gives you the vocabulary of three kinds of repetition and the case, an experiment run by email, and works out what question its claim answers. Before the break you reproduce the result that one of the five independent analysts of the claim reported, whichever of them you choose, and find out why your number is exactly that number. The half takes about seventy-five minutes.
+
+## 1. The plan of the session
+
+**On the slides.** The facilitator sets out the plan of the session and what you do not need: nothing to install, no git, and no GitHub or OSF account. Open the browser lab in a tab while the facilitator talks.
+
+[Open the browser lab](../../cases/housing/lab.qmd){.btn .btn-outline-primary target="_blank"}
+
+## 2. The three Rs and Multi100
+
+**On the slides.** A matrix of data against analysis separates reproducibility, robustness and replicability. The slides then present the SCORE programme in brief and Multi100 from the inside: what an analyst received, the two tasks, and how the results were put on a common scale.
+
+## 3. Task 1 – The setup check
+
+[Open the browser lab at Task 1](../../cases/housing/lab.qmd#task-1-setup){.btn .btn-primary target="_blank"}
+
+Wait for the R engine, run the setup cell, and check that `audit` has 1,014 rows and that the last line reports −19.97 percentage points. The warm-up on the three Rs gives you something to do while the engine downloads.
+
+## 4. The paper and the five analysts
+
+**On the slides.** The slides present the paper of the original authors (OAs): the question that it asks, the design, the email word for word, what came back for each of the six names, the four outcomes that were coded, and the claim as SCORE selected it. They then introduce the five Multi100 analysts, who had five different questions behind two different verdicts.
+
+## 5. The estimand and the graph
+
+**On the slides.** You write the estimand statement in the chat, hold it, and send it with the rest of the class when the facilitator says go. The slides then draw the causal graph of the experiment and show why comparing greetings among the replies conditions on a consequence of the name. They end on what changes when every delivered email is counted.
+
+## 6. The instruction of Multi100
+
+**On the slides.** The slides read the instruction of Task 2 of Multi100 word for word and show what it left open. They then set the aim of the reproduction, which is one of the five reanalyses, whichever you choose, from the public file of the OAs.
+
+## 7. Task 3 – The reproduction
+
+[Open the browser lab at Task 3](../../cases/housing/lab.qmd#task-3-reproduction){.btn .btn-primary target="_blank"}
+
+Choose one of the five analysts and complete their cell on the public file `audit_original.csv`. Four of them have a value that Multi100 recorded: $\chi^2$ = 14.265 for 8PTRZ, z = −3.771 for UYV3F, z = 3.645 for EWFMI and $\chi^2$ = 13.683 for 25N5D. P9W8Y has none, so its test of three groups, $\chi^2$ = 15.951 on 2 degrees of freedom, can be run again but not matched. Type the analyst and the value in the chat without sending them, and send them when the facilitator says go.
+
+## 8. The defaults of the software
+
+**On the slides.** `chisq.test()` and `prop.test()` apply the continuity correction to a two-by-two table unless they are told otherwise, so that `correct = FALSE` gives 14.95 for 8PTRZ and 14.33 for 25N5D. The slides also show the base group that sets the sign of the z of EWFMI. They end on why everyone who chose the same analyst got the same value while the five analysts, each writing their own code, did not.
+
+**By the end of the half** you have written the estimand statement behind the claim, you know why comparing among the replies and counting every delivered email answer two different questions, and you have reproduced one of the five reanalyses yourself and know on which defaults of the software its value depends.

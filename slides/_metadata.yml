@@ -1,0 +1,111 @@
+# Shared metadata for the revealjs decks of every case (slides/<slug>-<format>.qmd):
+# theme and title-slide partial in ../style/ (relative to slides/), embed-resources
+# false (site build), echo off for clean slides. Course-specific keys of the
+# template that it was adapted from (pdf-link-main, recap, course-logo,
+# self-contained, output-location) are left out.
+#
+# The event line names the course and no case, because every deck shares it;
+# the subtitle of a deck names its format, and the case where the deck says so.
+
+author: "Chris Moreh"
+event: "Applied replication for data skills, a CodeMoreh course"
+
+# Citations resolve against the project bibliography; rendered citations link
+# to the scrollable References slide at the end of the deck. references-new.bib
+# is the staging file for entries not yet in the facilitator's Zotero library –
+# once they are imported and moved into references.bib, this second entry can go.
+bibliography:
+  - ../references.bib
+  - ../references-new.bib
+link-citations: true
+
+format:
+  revealjs:
+    # Pinned source footers name the author outside the brackets, so they open
+    # with a bare `@Key`. Pandoc's example-list syntax claims exactly that
+    # shape – a citation at the start of a block is read as a list marker and
+    # silently replaced by a number – and the deck has no example lists to
+    # lose. Turning the extension off is what makes `@Key.` a citation.
+    from: markdown-example_lists
+    fig-align: center
+    logo: ../assets/logo.png
+    template-partials:
+      - ../style/title-slide.html
+    theme: ../style/cgm-slides.scss
+    # The hex backdrop is painted once on reveal's .backgrounds base layer
+    # (always viewport-sized), instead of per-slide background-image attributes
+    # that proved unreliable for full coverage. Dark slides (.darkslide and the
+    # title) have transparent canvases so the layer shows through; all other
+    # slides keep an explicit white canvas (see cgm-slides.scss).
+    include-in-header:
+      text: |
+        <style>
+          .reveal .backgrounds {
+            background: #16202C url("../style/hex-bkg.svg") center / cover no-repeat !important;
+          }
+        </style>
+    title-slide-attributes:
+      # Transparent canvas so the hex layer on .backgrounds shows through
+      # (reveal applies this inline, overriding the white canvas default).
+      data-background-color: "rgba(0,0,0,0)"
+      data-transition: "fade" #"slide-out"
+      data-background-transition: "none" # "slide-out"
+      data-transition-speed: "default"
+    history: false
+    controls: true
+    # Off: its hamburger button sits bottom-left, on top of the brand mark.
+    # `g` (slides/nav-tools.html) does the same job without a button. To bring
+    # the menu back WITHOUT the button, replace `menu: false` with:
+    #   menu: {side: left, numbers: true, openButton: false}
+    menu: false
+    incremental: true
+    controls-back-arrows: faded
+    slide-number: false          # nav-tools.html prints a named readout instead
+    preview-links: true
+    embed-resources: false
+    # The deck's four parts ARE four horizontal reveal stacks, so 'vertical'
+    # here (reveal's default mode) would put part-to-part jumps on the left and
+    # right arrows. It is kept LINEAR instead, because a presentation clicker
+    # sends the right arrow and a clicker that skips a whole part mid-sentence
+    # is not a feature. Part jumps live on [ and ] instead
+    # (slides/nav-tools.html), which nothing fires by accident.
+    navigation-mode: linear
+    include-after-body: nav-tools.html
+    controls-layout: bottom-right
+    controls-tutorial: true
+    toc: false
+    transition: fade
+    background-transition: none
+    transition-speed: slow
+    html-q-tags: true
+    reference-location: document
+    smaller: false
+    scrollable: false
+    # The verticator dot column is off: with up to 36 slides in a part it was a
+    # dense stripe rather than a position cue, and the named readout in
+    # slides/nav-tools.html replaces it. Uncomment this block AND the plugin
+    # entry below to bring it back.
+    # verticator:
+    #   themetag: 'h1'
+    #   color: ''
+    #   inversecolor: ''
+    #   skipuncounted: false
+    #   clickable: true
+    #   position: 'auto'
+    #   offset: '3vmin'
+    #   autogenerate: true
+    #   tooltip: false
+    #   scale: 1
+
+revealjs-plugins:
+  # - verticator      # see the commented config block above
+
+filters:
+  - highlight-text
+  - more-fragments
+  - core-runs.lua
+  
+execute:
+  echo: false
+  warning: false
+  freeze: auto

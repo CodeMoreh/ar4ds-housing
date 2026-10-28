@@ -1,0 +1,46 @@
+---
+title: "Stage 1 – Credibility and the three Rs"
+---
+::: {.callout-note appearance="simple" icon=false}
+**Slides.** [Open the deck at Part 1](../../slides/housing-one-day-methods.html#/part-1-credibility-and-tools){target="_blank"} in its own tab, where the `s` key opens the speaker view with the notes of each slide, or follow it on the [slides page](../housing-one-day-methods/slides.qmd).
+:::
+
+The route opens on the question that gives the course its name. Reproduction, robustness and replication are three different ways of repeating a study, and the three can return different verdicts on the same paper, as the housing-audit case shows. This stage takes the talk from Part 1 of the deck of the one-day course on methods and installs the tools, so that a machine that will not cooperate is found now rather than in the middle of a task. It takes about five and a quarter hours.
+
+## 1. The talk of Part 1
+
+**On the slides.** Read each slide with its speaker notes. The talk covers what social science is for, false positives and forking paths, the evidence from replications and many-analysts studies, and incentives and questionable research practices. It goes on to the red-card study, in which twenty-nine teams analysed one dataset, to why 'replication' names three different operations, and to the practices of open research. It ends on the SCORE programme and its three studies, with the finding that their results do not travel together, on Multi100 from the position of an analyst inside it, and on the computational toolchain.
+
+## 2. Task 1 – The setup check
+
+[Install R and the workspace](https://codemoreh.github.io/ar4ds/setup.html){.btn .btn-primary target="_blank"}
+
+Install R, Quarto and an IDE (Positron, RStudio, VS Code, etc.), download the workspace of the housing-audit case, and run `source("R/check_setup.R")` until every line prints OK. The last check fits the reference specification and prints −19.97 percentage points. This is Task 1 of the exercise. Open the [browser lab](../../cases/housing/lab.qmd#task-1-setup) of the case once as well, which runs every task in a browser tab if your installation fails, and keep the [help page](https://codemoreh.github.io/ar4ds/help.html) at hand for the problems that others have met.
+
+## 3. The case and the exercise
+
+[Open the home page of the site](../../index.qmd){.btn .btn-primary target="_blank"}
+
+Read the section on the case, which says what reproduction, robustness and replication found on it. Then read the section on the exercise, which sets out the five tasks that the route works through.
+
+## 4. The glossary
+
+[Open the glossary](../../resources.qmd#glossary){.btn .btn-primary target="_blank"}
+
+The glossary defines reproducibility, robustness and replicability side by side, with the other terms that the slides used.
+
+## 5. Your IDE
+
+[Open the module on the IDEs](../../companion/ide.qmd){.btn .btn-primary target="_blank"}
+
+Read [What an IDE does](../../companion/ide.qmd#sec-what) and the section on the IDE that you chose. Then work through [the six steps](../../companion/ide.qmd#sec-try) at the end of the module, in the workspace that you have just installed, because they use every pane that the tasks need.
+
+## 6. R from the beginning
+
+[Open Getting started with R](../../companion/intro-r.qmd#sec-what){.btn .btn-primary target="_blank"}
+
+Work from [R and the IDE](../../companion/intro-r.qmd#sec-what) to [Packages](../../companion/intro-r.qmd#sec-packages). The sections cover the console, the script and the report, objects and vectors, and why the mean of a column of 0s and 1s is a share. They end on data frames, and on installing and loading packages.
+
+**Shortcuts.** If R, Quarto and an IDE are already on your machine, download the workspace, run the check and install what it reports as missing, which takes about a quarter of an hour. If you already work in one of the three IDEs, take only the six steps of the IDE module. If you write R, leave the R module until stage 2, which says what to read in it.
+
+**By the end of the stage** you have R, Quarto and an IDE installed, the workspace of the housing-audit case passing its setup check, and a paragraph in your own words that tells reproduction, robustness and replication apart and says what each of them found on the housing-audit case.

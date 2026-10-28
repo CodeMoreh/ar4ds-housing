@@ -1,0 +1,67 @@
+---
+title: "Stage 3 – The claim and its reproduction"
+case: housing
+---
+::: {.callout-note appearance="simple" icon=false}
+**Slides.** [Open the deck at Part 2](../../slides/housing-one-day-methods.html#/part-2-the-claim-and-its-estimand){target="_blank"} in its own tab, or follow it on the [slides page](../housing-one-day-methods/slides.qmd).
+:::
+
+The case begins in earnest, in a stage of nearly six hours of work. You write the estimand statement behind the claim, finish the causal graph of the experiment, and reproduce the value that Multi100 recorded for one of the five analysts, whichever you choose. The modules of the stage are the methods with which the claim is argued: what random assignment buys in an audit experiment, the models for a yes-or-no outcome, and the causal graph that shows why a comparison among the replies alone is no longer protected by the random assignment.
+
+## 1. The exercise
+
+[Read the exercise overview](../../cases/housing/exercise.qmd){.btn .btn-primary target="_blank"}
+
+The overview sets out the claim, the table of what the five Multi100 analysts found, and the five tasks that this stage and the next work through.
+
+## 2. The claim and its estimand
+
+**On the slides**, from the start of Part 2. The slides present the paper of the original authors (OAs), its design and the claim as SCORE selected it, with its two ellipses. They go on to the five analysts placed by their gaps, the run on estimands with the red-card study as the example, and the short course on causal graphs, and they end on the estimand statement. The run of slides on R, from "R, in one slide" to "Common error messages", repeats stage 2 and can be skipped.
+
+## 3. Task 2 – The data, the estimand and the graph
+
+**In your report** or your working script, or in the browser lab.
+
+[Open the browser lab at Task 2](../../cases/housing/lab.qmd#task-2-data){.btn .btn-outline-primary target="_blank"}
+
+Count the emails that bounced, the replies, the replies with a greeting code and the greetings by name for each name. Write the [estimand statement](../../cases/housing/lab.qmd#task-2-estimand-and-graph) with every bracket filled, saying which emails you count. Open `R/dag_starter.R`, keep the arrows that you are willing to defend, and run `adjustmentSets(dag)` and `paths(dag, Z = "reply")`.
+
+## 4. Task 3 – The reproduction
+
+**On the slides, then in your report** or in the browser lab.
+
+[Open the deck at Part 3](../../slides/housing-one-day-methods.html#/part-3-reproduction-and-exploration){.btn .btn-primary target="_blank"} [Open the browser lab at Task 3](../../cases/housing/lab.qmd#task-3-reproduction){.btn .btn-outline-primary target="_blank"}
+
+The slides read the instruction of Task 2 of Multi100 word for word. Then reproduce the analysis from the public file `audit_original.csv`. Choose one of the five analysts. Four have a value that Multi100 recorded, and all four come out exactly: $\chi^2$ = 14.265 for 8PTRZ, z = −3.771 for UYV3F, z = 3.645 for EWFMI and $\chi^2$ = 13.683 for 25N5D. Multi100 recorded no statistic for P9W8Y, so its test of three groups, $\chi^2$ = 15.951 on 2 degrees of freedom, can be run again but not matched against the record. The report and `prep/reproduce_reanalyses.R` in the workspace hold all five, and the lab has a cell for each with a hint and a solution, which are worth opening only after a try of your own. Working alone, you can take a second analyst whose test differs from the first.
+
+## 5. The continuity correction
+
+**On the slides**, at [the continuity correction](../../slides/housing-one-day-methods.html#/the-continuity-correction){target="_blank"} and the slide after it. The slides explain why your number is exactly that number. For a two-by-two table `chisq.test()` and `prop.test()` apply a continuity correction unless they are told otherwise, so `correct = FALSE` gives 14.95 for 8PTRZ and 14.33 for 25N5D, and the base group of a factor sets the sign of the z of EWFMI. They end on why everyone who reproduces the same analyst gets the same value, while the five analysts, each writing their own code, did not.
+
+## 6. Audit experiments
+
+[Open Audit experiments](../../companion/experiments.qmd#sec-audits){.btn .btn-primary target="_blank"}
+
+Work from [Audit and correspondence studies](../../companion/experiments.qmd#sec-audits) to [Comparing among replies](../../companion/experiments.qmd#sec-posttreatment). The sections cover audit and correspondence studies of discrimination, what random assignment buys, with a check of balance, and names as treatments. They end on why a comparison among replies needs care, with a bound on how far a change in who replied could go.
+
+## 7. Binary outcomes
+
+[Open Binary outcomes](../../companion/binary-outcomes.qmd#sec-outcome){.btn .btn-primary target="_blank"}
+
+Work from [A yes-or-no outcome](../../companion/binary-outcomes.qmd#sec-outcome) to [The methods side by side](../../companion/binary-outcomes.qmd#sec-side-by-side). The sections take a 0/1 outcome and its share, the difference in proportions and its standard error, the linear probability model with HC2 standard errors, and logistic regression. They go on to odds ratios against percentage points and average marginal effects, and to why a covariate changes an odds ratio even in an experiment, and they end with the methods side by side.
+
+## 8. Causal graphs
+
+[Open Causal graphs and adjustment sets](../../companion/dags.qmd#sec-arrows){.btn .btn-primary target="_blank"}
+
+Work from [Arrows as claims](../../companion/dags.qmd#sec-arrows) to [Counting all delivered emails](../../companion/dags.qmd#sec-all-emails). The sections cover what an arrow commits you to, confounders, mediators and colliders, and why comparing greetings among replies conditions on a consequence of the name. They end on the graph of the case and on what counting every delivered email changes.
+
+## 9. The decision map
+
+[Open the decision map](../../cases/housing/map.qmd){.btn .btn-primary target="_blank"}
+
+The map lays out every decision between the data and a result, in the order in which an analyst meets it, with what each option does to the estimand statement and to the estimate. It prepares Task 4 in the next stage.
+
+**Shortcuts.** If you know logistic regression and odds ratios, take from the binary-outcomes module only the sections on [odds ratios and covariates](../../companion/binary-outcomes.qmd#sec-collapsibility) and [the methods side by side](../../companion/binary-outcomes.qmd#sec-side-by-side). If you have drawn causal graphs before, take from the graph module only [Conditioning on a reply](../../companion/dags.qmd#sec-collider) and [The graph of the case](../../companion/dags.qmd#sec-case).
+
+**By the end of the stage** you have the estimand behind the claim written in one sentence, a graph that holds only the arrows that you are willing to defend, two sentences on what a comparison among the replies conditions on, and the value of at least one analyst reproduced yourself, with the defaults of the software on which it depends.

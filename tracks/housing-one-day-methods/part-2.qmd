@@ -1,0 +1,42 @@
+---
+title: "Part 2 – The claim and its estimand"
+---
+::: {.callout-note appearance="simple" icon=false}
+**Slides.** [Open the deck at this part](../../slides/housing-one-day-methods.html#/part-2-the-claim-and-its-estimand){target="_blank"} in its own tab, or follow it on the [slides page](slides.qmd).
+:::
+
+Part 2 is the conceptual middle of the day. It reads the paper, sets out what the five Multi100 analysts did with its claim, and argues that analysts who look as though they disagree are often answering different questions. It then gives you two tools for saying which question you are answering, the estimand statement and the causal graph, and uses both on the claim, where the graph shows something that is easy to miss. The part takes ninety minutes.
+
+## 1. The paper
+
+**On the slides.** The slides present the paper of the original authors (OAs): the question that it asks, the design, the email word for word, what came back for each of the six names, and the four outcomes that were coded. They end on the claim as SCORE selected it, with its two ellipses.
+
+## 2. The five analysts
+
+**On the slides.** The five Multi100 analysts are placed by their gaps in percentage points. A table then sets out what each of them did, with five different questions behind two different verdicts.
+
+## 3. Estimands
+
+**On the slides.** Two studies are set beside our five. The red-card estimates return as a single row, with the four estimands that the twenty-nine teams were in fact pursuing and the spread that collapses once the estimand is fixed. The slides then ask what under-specified research questions mean for the reading of many-analysts studies, and present the steps from a theoretical to an empirical estimand that Lundberg and colleagues set out.
+
+## 4. Causal graphs
+
+**On the slides.** A short course on causal graphs covers confounders, mediators and colliders, and the causal stories that can lie behind one correlation. It goes on to open and closed paths, total against direct effects, and selection and feedback.
+
+## 5. The estimand statement and the graph
+
+**On the slides.** You write the estimand statement in the chat, hold it, and send it with the rest of the class when the facilitator says go. The slides then draw the causal graph of the experiment, show why comparing greetings among the replies conditions on a consequence of the name, and end on what changes when every delivered email is counted.
+
+## 6. The R tutorial (optional)
+
+**On the slides**, if the class wants it. The tutorial puts R in one slide, then covers reading and inspecting the data, the verbs that work on rows and columns, tables and tests, model formulas, a plot, causal graphs in R, and the error messages that you are most likely to meet.
+
+## 7. Task 2 – The data, the estimand and the graph
+
+[Open the browser lab at Task 2](../../cases/housing/lab.qmd#task-2-data){.btn .btn-primary target="_blank"}
+
+If you work in the workspace, use your report or working script instead. Count the emails that bounced, the replies, the replies with a greeting code and the greetings by name, for each name. Write the estimand statement with every bracket filled, saying which emails you count. Then go to the [graph cell of the lab](../../cases/housing/lab.qmd#task-2-estimand-and-graph), or open `R/dag_starter.R` in the workspace. Take the `#` off the arrow from the name to the greeting if you believe it, ask for the adjustment sets and for the paths with `Z = "reply"`, and read which paths open among the replies. Finish with two sentences, one on what a comparison among the replies conditions on and one on what counting every delivered email changes.
+
+To go further: [Causal graphs and adjustment sets](../../companion/dags.qmd), the slower companion of this task.
+
+**By the end of the part** you have the estimand behind the claim written in one sentence, a graph that includes only the arrows that you are willing to defend, and two sentences on why the choice of which emails to count changes the question.

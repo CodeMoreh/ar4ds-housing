@@ -1,0 +1,15 @@
+---
+title: "After the day"
+---
+A day on open research stops before the robustness exercise of the course, in which you would vary the analysis yourself, one decision at a time, send your results to a class chart, and run the specification that you preregistered. The [one-day course on methods](../housing-one-day-methods/index.qmd) does that on the same case, and the [exercise overview](../../cases/housing/exercise.qmd) sets out Tasks 4 and 5 in full. Both tasks run in the [browser lab](../../cases/housing/lab.qmd#task-4-menu) and in the downloadable workspace, which you can install by following the [setup page](https://codemoreh.github.io/ar4ds/setup.html). The [companion curriculum](../../companion/index.qmd) covers the material that the day can only mention in passing, in modules that each stand on their own.
+
+- [Reproducibility repositories](../../companion/repositories.qmd) shows where data, code and registrations are deposited, and how a record keeps its versions.
+- [Git and GitHub](https://codemoreh.github.io/ar4ds/git-github.html) shows how to version a project of your own and publish its report.
+- The replication with new data is available in its own words and on its own data: the final report at [osf.io/2ug8x](https://osf.io/2ug8x/), and the de-identified data, the do-file and a dictionary at [osf.io/xseqg](https://osf.io/xseqg/).
+- [Audit experiments](../../companion/experiments.qmd) covers the design of the experiment: random assignment, names as treatments, comparisons among replies, randomisation inference, power and the ethics of deception.
+- [Causal graphs and adjustment sets](../../companion/dags.qmd) works through the causal graph of the experiment at a slower pace.
+- [The multiverse and its critics](../../companion/multiverse.qmd) sets out the ideas behind a curve of every justifiable analysis, and the arguments now being made against them.
+- [Getting started with R](../../companion/intro-r.qmd) teaches R from the beginning, on the same data.
+- [The case study](../../cases/housing/index.qmd) and the [resources page](../../resources.qmd) tell the whole story of the case, with the sources.
+
+The [short session](../housing-short/index.qmd) covers the same case in two to three hours, and the [one-day course on data tools](../housing-one-day-data-tools/index.qmd) takes it through R, data management and reports.

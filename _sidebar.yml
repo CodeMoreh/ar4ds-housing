@@ -1,0 +1,98 @@
+# The docked sidebars of the formats of the housing-audit case. Each lists only
+# the pages of its own format, in teaching order, and the previous and next
+# links at the foot of each page follow that order. The pages under tracks/ and
+# this file are edited by hand.
+website:
+  sidebar:
+    - title: "Short session"
+      style: docked
+      collapse-level: 1
+      contents:
+        - text: "Overview"
+          href: tracks/housing-short/index.qmd
+        - text: "Before the session"
+          href: tracks/housing-short/before.qmd
+        - text: "First half – The claim and its reproduction"
+          href: tracks/housing-short/half-1.qmd
+        - text: "Second half – Exploration and replication"
+          href: tracks/housing-short/half-2.qmd
+        - text: "Slides"
+          href: tracks/housing-short/slides.qmd
+        - text: "After the session"
+          href: tracks/housing-short/after.qmd
+    - title: "One day, open science"
+      style: docked
+      collapse-level: 1
+      contents:
+        - text: "Overview"
+          href: tracks/housing-one-day-open-science/index.qmd
+        - text: "Before the day"
+          href: tracks/housing-one-day-open-science/before.qmd
+        - text: "Part 1 – Credibility and open research"
+          href: tracks/housing-one-day-open-science/part-1.qmd
+        - text: "Part 2 – The claim and its estimand"
+          href: tracks/housing-one-day-open-science/part-2.qmd
+        - text: "Part 3 – Reproduction"
+          href: tracks/housing-one-day-open-science/part-3.qmd
+        - text: "Part 4 – Replication and preregistration"
+          href: tracks/housing-one-day-open-science/part-4.qmd
+        - text: "Slides"
+          href: tracks/housing-one-day-open-science/slides.qmd
+        - text: "After the day"
+          href: tracks/housing-one-day-open-science/after.qmd
+    - title: "One day, data tools"
+      style: docked
+      collapse-level: 1
+      contents:
+        - text: "Overview"
+          href: tracks/housing-one-day-data-tools/index.qmd
+        - text: "Before the day"
+          href: tracks/housing-one-day-data-tools/before.qmd
+        - text: "Part 1 – Credibility and the toolchain"
+          href: tracks/housing-one-day-data-tools/part-1.qmd
+        - text: "Part 2 – R and the IDE"
+          href: tracks/housing-one-day-data-tools/part-2.qmd
+        - text: "Part 3 – Data management and the reproduction"
+          href: tracks/housing-one-day-data-tools/part-3.qmd
+        - text: "Part 4 – The report and its record"
+          href: tracks/housing-one-day-data-tools/part-4.qmd
+        - text: "Slides"
+          href: tracks/housing-one-day-data-tools/slides.qmd
+        - text: "After the day"
+          href: tracks/housing-one-day-data-tools/after.qmd
+    - title: "One day, methods"
+      style: docked
+      collapse-level: 1
+      contents:
+        - text: "Overview"
+          href: tracks/housing-one-day-methods/index.qmd
+        - text: "Before the day"
+          href: tracks/housing-one-day-methods/before.qmd
+        - text: "Part 1 – Credibility and tools"
+          href: tracks/housing-one-day-methods/part-1.qmd
+        - text: "Part 2 – The claim and its estimand"
+          href: tracks/housing-one-day-methods/part-2.qmd
+        - text: "Part 3 – Reproduction and exploration"
+          href: tracks/housing-one-day-methods/part-3.qmd
+        - text: "Part 4 – Multiverse, replication and preregistration"
+          href: tracks/housing-one-day-methods/part-4.qmd
+        - text: "Slides"
+          href: tracks/housing-one-day-methods/slides.qmd
+        - text: "After the day"
+          href: tracks/housing-one-day-methods/after.qmd
+    - title: "Self-study"
+      style: docked
+      collapse-level: 1
+      contents:
+        - text: "Overview"
+          href: tracks/self-study/index.qmd
+        - text: "Stage 1 – Credibility and the three Rs"
+          href: tracks/self-study/stage-1.qmd
+        - text: "Stage 2 – R and Quarto"
+          href: tracks/self-study/stage-2.qmd
+        - text: "Stage 3 – The claim and its reproduction"
+          href: tracks/self-study/stage-3.qmd
+        - text: "Stage 4 – The menu and the declaration"
+          href: tracks/self-study/stage-4.qmd
+        - text: "Stage 5 – Your own project"
+          href: tracks/self-study/stage-5.qmd

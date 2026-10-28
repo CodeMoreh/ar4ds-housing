@@ -1,0 +1,42 @@
+---
+title: "Part 3 – Reproduction and exploration"
+---
+::: {.callout-note appearance="simple" icon=false}
+**Slides.** [Open the deck at this part](../../slides/housing-one-day-methods.html#/part-3-reproduction-and-exploration){target="_blank"} in its own tab, or follow it on the [slides page](slides.qmd).
+:::
+
+Part 3 has two hands-on tasks, the reproduction and a first exploration of the menu of alternatives, with the talk that connects them in between. The part takes ninety minutes.
+
+## 1. The instruction of Multi100
+
+**On the slides.** The slides read the instruction of Task 2 of Multi100 word for word and show what it left open. They then set the aim of the reproduction, which is one of the five reanalyses, whichever you choose, from the public file of the original authors (OAs).
+
+## 2. Task 3 – The reproduction
+
+[Open the browser lab at Task 3](../../cases/housing/lab.qmd#task-3-reproduction){.btn .btn-primary target="_blank"}
+
+If you work in the workspace, use your report or working script instead. Choose one of the five analysts and complete their cell on the public file `audit_original.csv`. Four of them have a value that Multi100 recorded: $\chi^2$ = 14.265 for 8PTRZ, z = −3.771 for UYV3F, z = 3.645 for EWFMI and $\chi^2$ = 13.683 for 25N5D. P9W8Y has none, so its test of three groups, $\chi^2$ = 15.951 on 2 degrees of freedom, can be run again but not matched. Type the analyst and the value in the chat without sending them, and send them when the facilitator says go, so that the matching values appear at the same moment.
+
+## 3. The continuity correction
+
+**On the slides.** The slides explain why your number is exactly that number. For a two-by-two table `chisq.test()` and `prop.test()` apply the continuity correction unless they are told otherwise, so that `correct = FALSE` gives 14.95 for 8PTRZ and 14.33 for 25N5D, and the base group of a factor sets the sign of the z of EWFMI. They end on why everyone who chose the same analyst got the same value while the five analysts, each writing their own code, did not. If you finish early, reproduce a second analyst.
+
+## 4. The specification menu
+
+**On the slides**, with the specification menu open in another tab.
+
+[Open the specification menu](../../cases/housing/menu.qmd){.btn .btn-primary target="_blank"}
+
+The slides take you through the eleven decisions at three levels, the five on which the curve keeps more than one option, and the 64 specifications that they make. They end on the ground rules for the menu, which are to change one decision at a time and to read the reason when an option is refused.
+
+## 5. The methods
+
+**On the slides.** The slides present a difference in proportions, and set the linear probability model against the logit. An optional run of six slides takes the statistics further, to odds ratios against percentage points, standard errors for a 0/1 outcome, four tests of one gap, the randomisation test, covariates in an experiment, and the subgroups that sit beside the curve.
+
+## 6. Task 4 – The menu
+
+[Open the browser lab at Task 4](../../cases/housing/lab.qmd#task-4-menu){.btn .btn-primary target="_blank"}
+
+If you work in the workspace, use your report or working script instead. Call `try_spec()` with no arguments for the reference specification, then three or four times more, changing one argument at a time, and print the tries side by side with `my_experiments()`. Ask once for an option off the curve, such as `model = "three_group"`, to read why it is refused. Then rerun the one that you would defend and send it with `submit_exploration()`. Your mark is drawn on the class chart of the [Multiverse page](../../cases/housing/multiverse.qmd#class-results) as an open circle.
+
+**By the end of the part** you have reproduced one of the five reanalyses yourself and know on which defaults of the software its value depends, you have tried three or four alternatives one argument at a time, and you have put an exploratory mark on the class chart.

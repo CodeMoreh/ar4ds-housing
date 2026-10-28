@@ -1,10 +1,42 @@
 /_site/
 /.quarto/
+/_planning/
+.Rproj.user/
+*.Rproj
+/slides/*_files/
+/companion/*_files/
+.DS_Store
+*_cache/
+**/*.quarto_ipynb
 /*.md
 !/README.md
-/_planning/
-**/*.quarto_ipynb
+/.luarc.json
+
+# Backstop against person-level files that must never be committed
+*.dta
+*.sav
+*.por
+*.rds
+*.RData
+.Rhistory
+.Rdata
+# Note: /_freeze/ is intentionally NOT ignored – it must be committed so CI can deploy without running R
+
+# Single-page renders write their output beside the source before moving it
+# into _site/; none of it belongs in git.
+/tracks/**/*.html
+/tracks/**/*_files/
+/cases/**/*.html
+/cases/**/*_files/
+
+# The de-identified data of the SCORE replication, fetched from osf.io/xseqg
+# at run time by R/housing/06_replication.R; only aggregates derived from them
+# are committed
+/data-raw/housing/score_replication/
 
 # Copies that pCloud makes when it renames a page during a render
 /*[conflicted*
 **/*[conflicted*
+
+# The downloadable workspace is a nested repository of its own
+/_workspaces/

@@ -1,0 +1,34 @@
+---
+title: "Part 1 – Credibility and the toolchain"
+---
+::: {.callout-note appearance="simple" icon=false}
+**Slides.** [Open the deck at this part](../../slides/housing-one-day-data-tools.html#/part-1-credibility-and-the-toolchain){target="_blank"} in its own tab, or follow it on the [slides page](slides.qmd).
+:::
+
+Part 1 says briefly why reproducible tools matter, with the evidence on how often published findings survive being checked, and then takes the toolchain apart layer by layer. The part takes ninety minutes. The hands-on work comes at the end and runs into the first break, so that if your machine gives trouble you miss none of the talk.
+
+## 1. The plan of the day
+
+**On the slides.** The facilitator sets out the plan of the day and its two kinds of aim, what you will understand and what you will be able to do. The slides also say what you do not need: no installation, no git, and no GitHub or OSF account. Open the browser lab in a tab while the facilitator talks.
+
+[Open the browser lab](../../cases/housing/lab.qmd){.btn .btn-outline-primary target="_blank"}
+
+## 2. The three Rs and the evidence
+
+**On the slides.** The word 'replication' names three different operations, which the slides set out as a matrix of data against analysis. They then present the SCORE programme in brief, with the results of its three studies, and Multi100 from the position of an analyst inside it: what an analyst received, the two tasks, and how the results were put on a common scale.
+
+## 3. The toolchain
+
+**On the slides.** The slides take the toolchain apart, starting from open-source software and the toolchain sorted by job. They go on to programming languages, editors and IDEs, plain-text file formats and what happens when you render, and the package layer, and they end on version control, where data and code are archived, and licences. Note anything that you might switch to.
+
+## 4. The browser lab and the workspace
+
+**On the slides.** The slides compare the browser lab with the workspace and say what the tools cannot do.
+
+## 5. Task 1 – The setup check
+
+[Open the browser lab at Task 1](../../cases/housing/lab.qmd#task-1-setup){.btn .btn-primary target="_blank"}
+
+In the browser lab, wait for the R engine, run the setup cell and check that `audit` has 1,014 rows. If you have installed the workspace, open its folder in your IDE instead and run `source("R/check_setup.R")` until every line prints OK. The last check fits the reference specification and prints −19.97 percentage points. If you need more time, carry on into the break.
+
+**By the end of the part** you can tell apart the three operations that go under the single word 'replication', you can say what each layer of the toolchain does, and you have R running with the 1,014 emails of the housing-audit data loaded.

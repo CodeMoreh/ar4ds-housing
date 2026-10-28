@@ -1,0 +1,14 @@
+---
+title: "After the session"
+---
+The session stops before two parts of the exercise that need more time than it has. The first is the class chart, on which every participant puts the specification that they explored in Task 4 and the one that they declared in Task 5, so that the class can read its own results against the curve. The second is Task 5 itself, in which you choose one specification and fix it in a preregistration block before you run it. Both are set out in the [exercise overview](../../cases/housing/exercise.qmd), both run in the [browser lab](../../cases/housing/lab.qmd#task-5-preregistration), and both run in the downloadable workspace, which you can install by following the [setup page](https://codemoreh.github.io/ar4ds/setup.html) and keep afterwards. The [one-day course on methods](../housing-one-day-methods/index.qmd) works through them in class, the [one-day course on open science](../housing-one-day-open-science/index.qmd) takes reproduction, replication and preregistration further, and the [one-day course on data tools](../housing-one-day-data-tools/index.qmd) puts the reproduction into a report of your own.
+
+The [companion curriculum](../../companion/index.qmd) covers what the session could only mention in passing, in modules that each stand on their own.
+
+- [Audit experiments](../../companion/experiments.qmd) covers the design of the experiment: random assignment, names as treatments, comparisons among replies, randomisation inference, power and the ethics of deception.
+- [Binary outcomes](../../companion/binary-outcomes.qmd) takes every model on the menu, from a difference in proportions to the logit, and shows how to read odds ratios against percentage points.
+- [Causal graphs and adjustment sets](../../companion/dags.qmd) works through the causal graph of the session at a slower pace, and the [graph cell of the browser lab](../../cases/housing/lab.qmd#task-2-estimand-and-graph) lets you try it.
+- [The multiverse and its critics](../../companion/multiverse.qmd) sets out the ideas behind the curve and the arguments now being made against them.
+- The replication with new data is available in its own words and on its own data: the final report at [osf.io/2ug8x](https://osf.io/2ug8x/), and the de-identified data, the do-file and a dictionary at [osf.io/xseqg](https://osf.io/xseqg/).
+- [Getting started with R](../../companion/intro-r.qmd) teaches R from the beginning, on the same data.
+- [Reproducibility repositories](../../companion/repositories.qmd), then [Git and GitHub](https://codemoreh.github.io/ar4ds/git-github.html), show how to archive and version a report of your own.

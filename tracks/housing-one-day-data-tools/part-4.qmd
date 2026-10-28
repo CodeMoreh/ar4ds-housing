@@ -1,0 +1,46 @@
+---
+title: "Part 4 – The report and its record"
+---
+::: {.callout-note appearance="simple" icon=false}
+**Slides.** [Open the deck at this part](../../slides/housing-one-day-data-tools.html#/part-4-the-report-and-its-record){target="_blank"} in its own tab, or follow it on the [slides page](slides.qmd).
+:::
+
+Part 4 turns the code that reproduces a published result into a document. You look at a Quarto report from the inside, put your reproduction into the report with its value computed in the sentence, run the report clean, and watch how a project keeps its versions and reaches an archive. The part takes ninety minutes.
+
+## 1. The Quarto report
+
+**On the slides.** The slides take a Quarto report apart and show numbers in the text that come from the code. They end on the four steps from a folder to a public record: rendering, version control, publishing and archiving.
+
+To go further: [Quarto and reproducible documents](../../companion/quarto.qmd).
+
+## 2. Your reproduction in the report
+
+**In your workspace**, in the report `index.qmd`.
+
+Go to Task 3, find the tab of the analyst whom you reproduced, and write one sentence under its chunk that gives your value as inline code. Then render the report and find the sentence. If you work in the browser lab, follow on the shared screen and write the same sentence in your notes, with the value that your cell printed.
+
+## 3. A clean run
+
+**In your workspace**, or in the browser lab.
+
+[Open the browser lab at Task 3](../../cases/housing/lab.qmd#task-3-reproduction){.btn .btn-outline-primary target="_blank"}
+
+Restart R and render the report again from nothing, and check that every number is the one that you had before. In the browser lab, reload the page and run the cells of Task 3 again, in order.
+
+## 4. Version control
+
+**On the shared screen.** The facilitator turns the workspace folder into a git repository, commits the report and shows its history. Nobody needs git today.
+
+To go further: [Git and GitHub](https://codemoreh.github.io/ar4ds/git-github.html).
+
+## 5. The curve of the claim
+
+**On the slides.** The curve shows what the code makes possible once it exists: 64 specifications fitted with the same code, with the published result and the five analysts placed on it.
+
+To go further: [Multiverse](../../cases/housing/multiverse.qmd).
+
+## 6. The close
+
+**On the slides.** The day closes on what you take with you, and the feedback form.
+
+**By the end of the part** you have a report whose numbers come from the code that produced them, you have checked that it survives a clean run, and you know the steps that would take it into version control and an archive.
