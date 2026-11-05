@@ -1,0 +1,264 @@
+---
+title: "Building the analysis file"
+subtitle: "From the deposited file to the course file"
+bibliography: [../references.bib, ../references-new.bib]
+---
+
+```{r}
+#| label: setup
+#| include: false
+# Every chunk on this page runs from the folder of the case, so that the paths
+# read exactly as they do in the workspace: data/audit_original.csv.
+knitr::opts_knit$set(root.dir = "../cases/housing")
+```
+
+This module of the [companion curriculum](index.qmd) follows the data of the housing-audit case from the file deposited by the original authors (OAs) to the file on which the exercises of the course run. The OAs emailed public housing authorities across the United States from six names meant to indicate a white, a Black or a Hispanic applicant and coded the replies that came back [@EinsteinGlick2017DoesRaceAffect], and the [case study](../cases/housing/index.qmd) tells the story of the experiment. The [module on data sources](data-sources.qmd#sec-dataverse) ends with the deposited file on your disk, checked against the checksum published by the Harvard Dataverse. This module starts there and works through `R/housing/01_audit_data.R`, the first script of the pipeline of the case, step by step: what each column of the course file is, how the names, the replies, the greeting codes, the bounced emails and the community thirds are derived, and which checks a rebuilt file has to pass before anything is estimated from it.
+
+The code on the page runs on `audit_original.csv`, the deposited file saved as plain text with its original column names, which the course ships in its workspace and in `cases/housing/data/`. Every chunk runs from the folder of the case, so each line can be copied into the workspace as it stands, and every number on the page was computed from the file when the page was built.
+
+## 1. Two files {#sec-two-files}
+
+The deposit holds the data as a Stata file, `HousingAuditAJPSFinalPublic_Unidentified.dta`, in which each coded column carries value labels (the text attached to each code, such as "white male" for 5) and each column a variable label describing it. The pipeline reads that file with haven and writes it out again with no change to any value or row, so that it can be opened by anyone without Stata. The step is shown here without being run, because the Stata file is not part of the repository of the course, and it is all that separates the two versions of the deposited data.
+
+```{r}
+#| label: from-stata
+#| eval: false
+raw <- haven::read_dta("data-raw/housing/dataverse_1HOVTU/HousingAuditAJPSFinalPublic_Unidentified.dta")
+
+original <- raw |>
+  dplyr::mutate(dplyr::across(dplyr::where(haven::is.labelled), \(x) as.numeric(x))) |>
+  haven::zap_label() |>
+  haven::zap_formats()
+readr::write_csv(original, "cases/housing/data/audit_original.csv", na = "")  # r-style: keep – datawizard::data_write() writes other bytes
+```
+
+`as.numeric()` on a labelled column keeps the codes and drops the labels, and `zap_label()` and `zap_formats()` remove the variable labels and the display formats of Stata. The labels are not lost, since the [codebook of the deposited file](../cases/housing/data/audit_original_codebook.md) records what every code means. One of the labels is worth knowing before the data are read: the Stata file labels `HispanicEmailer` "Hard to find email address", a copy error in the source, while the codebook of the OAs describes the column as recording whether the official who replied had a Hispanic name.
+
+The course keeps two files of the same 1,014 emails, in the same order. `audit_original.csv` keeps the names and codes of the OAs, because the reproduction of Task 3 starts from the data as they were published, and `housing_audit.csv`, the course file, gives every column a readable name and adds the columns that the exercises use, and the rest of this page rebuilds the course file from the deposited one.
+
+## 2. Reading the deposited file {#sec-reading}
+
+readr reads the file. Its choice matters for this file in particular, because the replies carry text in `WaitListFinal`, and readr reads an empty cell as a missing value (`NA`), whereas `datawizard::data_read()` returns some of the empty cells of this column as empty strings rather than as missing values.
+
+```{r}
+#| label: read-original
+original <- readr::read_csv("data/audit_original.csv", show_col_types = FALSE)
+
+dplyr::glimpse(original)
+```
+
+The file holds `r format(nrow(original), big.mark = ",")` rows, one for each email, and `r ncol(original)` columns. Three of the columns describe the email before it was sent: `NumberAssignment`, the email account from which it was sent, `TreatmentGroup`, the same assignment as text, and `HardEmail`, whether the address had to be taken from the list of housing authorities kept by the Department of Housing and Urban Development (HUD) because the authority offered no contact that could be found quickly. Five record what came back: `Response_Dichotomous`, `Respond24`, `ProperName`, `HispanicEmailer` and `WaitListFinal`. The remaining six give the five community thirds and the third of the authority on the HUD assessment score, to which section 6 returns.
+
+## 3. The names {#sec-names}
+
+The file records the name that signed each email only through the number of the account, so the first step of the build is a key that translates the six numbers into the name, the group that the name was meant to indicate and the sex of the name. The key comes from the codebook of the OAs, and the paper names the six senders: Brett Smith and Emily Smith, Tyrone Johnson and Shanice Johnson, Santiago Martinez and Gabriela Martinez.
+
+```{r}
+#| label: names-key
+names_key <- tibble::tibble(
+  NumberAssignment = 1:6,
+  name = c("Tyrone", "Shanice", "Santiago", "Gabriela", "Brett", "Emily"),
+  group = c("black", "black", "hispanic", "hispanic", "white", "white"),
+  name_sex = c("male", "female", "male", "female", "male", "female")
+)
+```
+
+A key typed by hand is the most likely place for an error in the whole build, and the deposited file offers a way to check it. `TreatmentGroup` records the same assignment as `NumberAssignment` in words, and the codebook of the OAs calls the column redundant, which is exactly what makes it useful here. Joining the key to the file and cross-tabulating the two should put every email of each name in a single cell of the text column:
+
+```{r}
+#| label: names-check
+original |>
+  datawizard::data_join(names_key, join = "left", by = "NumberAssignment") |>
+  datawizard::data_tabulate(select = "TreatmentGroup", by = "name") |>
+  insight::print_md()
+```
+
+Each name falls in the cell of its own group and sex, and nowhere else, so the key agrees with the text that the OAs wrote. The six names were sent between `r min(table(original$NumberAssignment))` and `r max(table(original$NumberAssignment))` times. A swap of two names within one group, Santiago for Gabriela, say, would leave every count by group intact, and the cross-tabulation against the text column is the only check on the page that would catch it.
+
+## 4. The columns of the course file {#sec-columns}
+
+The rest of the build is one pipe, taken almost line for line from `01_audit_data.R`. It numbers the emails, turns empty text into missing values, joins the key, selects the columns in the order of the course file under their new names, and turns the codes of the community thirds into labelled categories.
+
+```{r}
+#| label: build
+audit <- original |>
+  datawizard::data_modify(email_id = 1:n(), WaitListFinal = datawizard::convert_to_na(WaitListFinal, na = "")) |>
+  datawizard::data_join(names_key, join = "left", by = "NumberAssignment") |>
+  datawizard::data_select(c(
+    "email_id", "name", "group", "name_sex",
+    hard_email = "HardEmail",
+    reply = "Response_Dichotomous",          # missing = the email bounced
+    reply24 = "Respond24",                   # replies only
+    named = "ProperName",                    # replies only; 5 replies uncoded
+    hispanic_official = "HispanicEmailer",   # replies only
+    waitlist = "WaitListFinal",
+    white_third = "white_pop_third",
+    black_third = "black_pop_third",
+    hispanic_third = "hispanic_pop_third",
+    pop_third = "total_pop_third",
+    poverty_third = "poverty_pop_third",
+    assessment_third = "assesment_third"
+  )) |>
+  datawizard::data_modify(
+    .at = c("white_third", "black_third", "hispanic_third", "pop_third", "poverty_third", "assessment_third"),
+    .modify = \(x) factor(x, levels = 1:3, labels = c("lower", "middle", "top"))
+  )
+```
+
+`data_select()` renames as it selects, with the new name on the left of each pair and the old one on the right, so the order of the vector is the order of the columns in the result. `convert_to_na()` matters when the source is the Stata file, in which an empty text cell arrives as an empty string; read from the CSV by readr, the column holds no empty strings, and the line changes nothing. The pipeline keeps the line so that the build gives the same file from either source. The sixteen columns of the result, with the source of each, are set out in the table below.
+
+| Column | What it holds | From |
+|:--|:--|:--|
+| `email_id` | The row number of the email, 1 to 1,014, which orders the rows and identifies nothing outside the file | the row order |
+| `name`, `group`, `name_sex` | The name that signed the email, the group that it was meant to indicate (`white`, `black`, `hispanic`) and its sex | `NumberAssignment` and the key |
+| `hard_email` | 1 if the address came from the list kept by HUD, 0 if the authority gave an address or a contact form | `HardEmail` |
+| `reply` | 1 if the authority replied, 0 if not, missing if the email bounced | `Response_Dichotomous` |
+| `reply24` | Replies only: 1 if the reply came within 24 hours | `Respond24` |
+| `named` | Replies only: 1 if the reply opened with the name of the sender, in any form | `ProperName` |
+| `hispanic_official` | Replies only: 1 if the official who replied had a distinctively Hispanic name | `HispanicEmailer` |
+| `waitlist` | Replies only, as text: the wait in months, `Closed` or `No Housing` | `WaitListFinal` |
+| `white_third` … `poverty_third` | The third of the community, among the communities of the study, on percent white, percent Black, percent Hispanic, population and the poverty rate | the five `_pop_third` columns |
+| `assessment_third` | The third of the housing authority on the HUD assessment score | `assesment_third` |
+
+The [codebook of the course file](../cases/housing/data/housing_audit_codebook.md) gives the counts of every column and the notes on its coding.
+
+## 5. Replies, greetings and bounced emails {#sec-outcomes}
+
+The columns that describe a reply are missing by design wherever there was no reply, and the pattern of their missing values is itself part of the data. `reply` is missing for an email that bounced, which never reached an official. The four columns that describe a reply exist only for the emails that drew one, and `named` is missing as well for the replies whose greeting the OAs did not code. A rebuilt file should show exactly this pattern, and the counts of the [case study](../cases/housing/index.qmd) are the test.
+
+```{r}
+#| label: tbl-counts
+#| tbl-cap: "The emails of the housing-audit case by the group of the name: sent, bounced (no reply status), delivered, replied, replied with a greeting code, and opened with the name of the sender. Source: `cases/housing/data/audit_original.csv`, rebuilt on this page."
+counts <- audit |>
+  datawizard::data_summary(
+    Sent = n(), Bounced = sum(is.na(reply)), Delivered = sum(!is.na(reply)),
+    Replied = sum(reply %in% 1), Coded = sum(!is.na(named)), Named = sum(named %in% 1),
+    by = "group"
+  )
+counts |>
+  datawizard::data_rename(select = c(Group = "group")) |>
+  tinytable::tt() |>
+  tinytable::style_tt(j = 2:7, align = "r")
+```
+
+```{r}
+#| label: count-totals
+#| include: false
+totals <- audit |>
+  datawizard::data_summary(sent = n(), bounced = sum(is.na(reply)), delivered = sum(!is.na(reply)),
+                           replied = sum(reply %in% 1), coded = sum(!is.na(named)))
+```
+
+Of the `r format(totals$sent, big.mark = ",")` emails, `r totals$bounced` bounced and `r totals$delivered` were delivered; `r totals$replied` drew a reply, and `r totals$replied - totals$coded` of the replies carry no greeting code, which leaves `r totals$coded` coded replies. These are the counts of the case study and of the [codebook](../cases/housing/data/housing_audit_codebook.md#rows-and-missing-values). The pattern behind these counts can be checked directly: no email without a reply, bounced or not, should carry any value in the columns that describe a reply.
+
+```{r}
+#| label: reply-columns
+audit |>
+  datawizard::data_filter(!(reply %in% 1)) |>
+  datawizard::data_select(c("reply24", "named", "hispanic_official", "waitlist")) |>
+  is.na() |>
+  all()
+```
+
+The analyses of the course run on the rows chosen from the file for each question, and three decisions of the [specification menu](../cases/housing/menu.qmd#level-measurement) make the choice. Bounced emails are left out under every option, because no official read a bounced email. The emails counted are either the coded replies, the rows of the claim, or all delivered emails, in which case an email without a reply counts as one without a named greeting. And the five uncoded replies are either left out or counted as replies that did not open with the name. The chunk below computes the share of named greetings for white and Hispanic names in the first two ways, with the uncoded replies left out.
+
+```{r}
+#| label: two-populations
+audit |>
+  datawizard::data_filter(!is.na(reply), group %in% c("white", "hispanic")) |>
+  datawizard::data_modify(named_any = dplyr::if_else(reply == 0, 0, named)) |>
+  datawizard::data_summary(among_replies = 100 * mean(named, na.rm = TRUE),
+                           among_delivered = 100 * mean(named_any, na.rm = TRUE),
+                           by = "group")
+```
+
+```{r}
+#| label: population-gaps
+#| include: false
+pop_shares <- audit |>
+  datawizard::data_filter(!is.na(reply), group %in% c("white", "hispanic")) |>
+  datawizard::data_modify(named_any = dplyr::if_else(reply == 0, 0, named)) |>
+  datawizard::data_summary(among_replies = 100 * mean(named, na.rm = TRUE),
+                           among_delivered = 100 * mean(named_any, na.rm = TRUE),
+                           by = "group")
+gap_replies <- diff(pop_shares$among_replies[match(c("white", "hispanic"), pop_shares$group)])
+gap_delivered <- diff(pop_shares$among_delivered[match(c("white", "hispanic"), pop_shares$group)])
+```
+
+`named` is missing for every email without a reply, so `mean(named, na.rm = TRUE)` over the delivered emails is the share among the coded replies, and the gap between the two groups is `r insight::format_value(gap_replies, digits = 1, style_negative = "minus")` points, the reference specification of the course. `named_any` sets a missing reply to 0 and keeps the code of every reply, so its mean is the share of all delivered emails, uncoded replies aside, that drew a reply opening with the name, and the gap there is `r insight::format_value(gap_delivered, digits = 1, style_negative = "minus")` points. Both numbers are in `display_outcomes.csv`, and the [module on audit experiments](experiments.qmd#sec-posttreatment) explains why the two comparisons answer different questions. The helper `spec_frame()` in the estimator of the course builds the rows of each specification in exactly this way, and the [missing-values module](missingness.qmd) takes up what each of the three decisions does to the estimate.
+
+## 6. The community thirds {#sec-thirds}
+
+The public file gives the size, the composition and the poverty of each community, and the assessment score of each authority, only as thirds of the distribution of each measure among the communities of the study, coded 1 for the lower, 2 for the middle and 3 for the top third. The ReadMe of the deposit explains why: the census codes and the continuous values would identify the housing authorities, and whether an authority replied to an applicant from a minority is sensitive information. The build turns the codes into a factor with the labels `lower`, `middle` and `top`, in that order, so that a model or a table treats the thirds as categories in their natural order and prints the labels.
+
+```{r}
+#| label: thirds
+audit |>
+  datawizard::data_tabulate(select = c("hispanic_third", "poverty_third", "assessment_third")) |>
+  insight::print_md()
+```
+
+Each community third holds 333 or 334 emails in each band, except the poverty third, as a division into thirds should, and the assessment third holds fewer emails in its bands because `r sum(is.na(audit$assessment_third))` emails lack it. The community thirds are missing for `r sum(is.na(audit$pop_third))` emails, and the next check shows that these are the same emails for all five thirds, since each email lacks either none of the five thirds or every one of them.
+
+```{r}
+#| label: thirds-missing
+audit |>
+  datawizard::data_select(c("white_third", "black_third", "hispanic_third", "pop_third", "poverty_third")) |>
+  datawizard::row_count(count = NA) |>
+  datawizard::data_tabulate() |>
+  insight::print_md()
+```
+
+The OAs do not say why these authorities lack their thirds, and the course does not guess. What the missing values do to the adjusted specifications, which need the thirds, is one of the questions of the [missing-values module](missingness.qmd#sec-covariates).
+
+`waitlist` keeps the text of the source. Most entries are numbers of months, some converted by the OAs from phrases such as "two years", and the rest are the words `Closed` and `No Housing`. Turning the column into numbers would lose the words, so the course file keeps the text, and the [R module](intro-r.qmd#sec-tinyplot) shows how the numeric entries are taken out of it for a figure.
+
+## 7. Checking the rebuilt file {#sec-checks}
+
+A rebuilt file is ready for analysis only when it passes checks written down in advance, and the pipeline stops if any of them fails. `stopifnot()` does nothing when every condition holds and stops with the first condition that does not, so a file that differs from the counts of the case study cannot slip through unnoticed.
+
+```{r}
+#| label: stopifnot
+stopifnot(
+  nrow(audit) == 1014,
+  sum(is.na(audit$reply)) == 23,
+  sum(audit$reply == 1, na.rm = TRUE) == 563,
+  sum(audit$reply == 1 & is.na(audit$named), na.rm = TRUE) == 5,
+  all(is.na(audit$named[audit$reply %in% 0])),
+  sum(is.na(audit$pop_third)) == 14,
+  sum(is.na(audit$assessment_third)) == 344
+)
+```
+
+The first five conditions are those of `01_audit_data.R`, and the last two add the missing thirds. The final check compares the rebuilt file with the course file line by line, as text, which is how the pipeline writes it:
+
+```{r}
+#| label: compare
+rebuilt_lines <- readr::format_csv(audit, na = "") |> strsplit("\n") |> unlist()
+shipped_lines <- readLines("data/housing_audit.csv")
+c(rebuilt = length(rebuilt_lines), shipped = length(shipped_lines),
+  differing = sum(rebuilt_lines != shipped_lines))
+```
+
+Every one of the `r format(length(shipped_lines), big.mark = ",")` lines, the header included, is the same in both. The comparison runs on lines rather than on a checksum of the two files because Git on Windows can be set to rewrite line endings when it puts a file on your disk (the setting `core.autocrlf`), so a checkout of the course may differ byte for byte from the repository while holding exactly the same lines. The pipeline ends by writing the file, with an empty cell for every missing value, as the deposited file has:
+
+```{r}
+#| label: write
+#| eval: false
+readr::write_csv(audit, "data/housing_audit.csv", na = "")  # r-style: keep – datawizard::data_write() writes other bytes
+```
+
+::: {.callout-tip}
+## Try it
+
+Change the key so that code 3 reads `Gabriela` and code 4 `Santiago`, rerun the build, and note which of the checks on the page fail and which still pass. Then add `named_any` to the course file as a column of its own, with a comment that names its source columns, and compute the share for each of the six names; compare the result with `named_all_pct` in `display_names.csv`, which counts the uncoded replies differently, and work out from its [codebook](../cases/housing/data/displays_codebook.md) why the two can differ for some names. Finally, write one more condition for `stopifnot()` that would catch a reply recorded for a bounced email.
+:::
+
+## Sources {#sec-sources}
+
+The data are the replication package of the OAs [@EinsteinGlick2017DoesRaceAffect] on the Harvard Dataverse ([doi:10.7910/DVN/1HOVTU](https://doi.org/10.7910/DVN/1HOVTU)), dedicated to the public domain under CC0; its ReadMe explains the blinding of the community values, and its codebook the coding of every column. The script that this page follows is `R/housing/01_audit_data.R`, and the order of the pipeline is set out in `R/housing/README.md`. The two files are documented in the codebooks of the [deposited file](../cases/housing/data/audit_original_codebook.md) and of the [course file](../cases/housing/data/housing_audit_codebook.md). The route of the deposited file from the Dataverse to your disk is in the [module on data sources](data-sources.qmd#sec-dataverse).
+
+## References {.unnumbered}
+
+::: {#refs}
+:::
