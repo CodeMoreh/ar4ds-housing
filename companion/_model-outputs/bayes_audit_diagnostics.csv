@@ -1,0 +1,9 @@
+model,draws,max_rhat,min_ess_bulk,min_ess_tail,divergences,max_treedepth
+prior_weak,4000,1.00133,3795.3,2787.92,0,3
+prior_sceptical,4000,1.00215,3375.18,2287.18,0,3
+original_weak,4000,1.00463,1080.93,1439.07,0,4
+original_sceptical,4000,1.00318,1439.34,1905.86,0,3
+replication_alone,4000,1.00274,1400.52,1845.78,0,4
+replication_updated,4000,1.00382,1181.09,1564.14,0,4
+joint_common,4000,1.00102,2249.47,2233.39,0,4
+joint_separate,4000,1.00147,2329.37,2131.95,0,6

@@ -1,0 +1,9 @@
+hisp,k,n,study,model,observed,rep_median,rep_q05,rep_q95
+0,107,175,original,joint_common,61.1429,52.5714,45.1429,60.5714
+1,77,187,original,joint_common,41.1765,49.1979,41.7112,56.6845
+0,400,763,replication,joint_common,52.4246,54.2595,50.3277,58.3224
+1,378,721,replication,joint_common,52.4272,50.4854,46.4632,54.6463
+0,107,175,original,joint_separate,61.1429,60.5714,52,68.5714
+1,77,187,original,joint_separate,41.1765,41.7112,33.6898,50.2674
+0,400,763,replication,joint_separate,52.4246,52.4246,48.2307,56.4875
+1,378,721,replication,joint_separate,52.4272,52.4272,48.1276,56.7268

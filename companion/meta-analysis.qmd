@@ -1,0 +1,297 @@
+---
+title: "Meta-analysis"
+subtitle: "Results of several analyses on a common scale"
+bibliography: [../references.bib, ../references-new.bib]
+---
+
+```{r}
+#| label: setup
+#| include: false
+# The estimator of the case, for spec_frame() and the conversion rule of Multi100
+source("../R/housing/_tools.R")
+
+audit <- readr::read_csv("../cases/housing/data/housing_audit.csv", show_col_types = FALSE)
+analysts <- readr::read_csv("../cases/housing/data/analysts5.csv", show_col_types = FALSE)
+marks <- readr::read_csv("../cases/housing/data/reference_marks.csv", show_col_types = FALSE)
+curve <- readr::read_csv("../cases/housing/data/spec_curve.csv", show_col_types = FALSE)
+# The counts of the four groups of replies, recovered from display_replication.csv
+# by companion/_model-outputs/bayes_audit.R
+counts <- readr::read_csv("_model-outputs/bayes_audit_counts.csv", show_col_types = FALSE)
+ref <- datawizard::data_filter(curve, is_reference)
+oa <- datawizard::data_filter(marks, id == "OA")
+replication <- readr::read_csv("../cases/housing/data/display_replication.csv", show_col_types = FALSE)
+subcounty <- datawizard::data_filter(replication, population == "replies", authorities == "sub-county")
+```
+
+This module of the [companion curriculum](index.qmd) is about putting results on one scale and combining them, and it works through the two kinds of comparison that the housing-audit case raises. The case comes from a field experiment by the original authors (OAs), who emailed public housing authorities in the United States from names meant to indicate a white, a Black or a Hispanic applicant and found that replies to the Hispanic names opened with the name of the sender less often [@EinsteinGlick2017DoesRaceAffect]; the [case study](../cases/housing/index.qmd) tells it in full. Five analysts reanalysed the claim in the Multi100 project, each on the public file of the OAs, and a new experiment run for the SCORE programme tried to replicate it on new data. The first comparison sets five analyses of one file side by side, and the second sets two studies of the same question side by side. Meta-analysis has tools for the second, and the module argues that the first needs a different kind of summary. Every number on the page is computed when it is built, from the files of the case in `cases/housing/data/`.
+
+## 1. What a meta-analysis combines {#sec-what}
+
+A meta-analysis combines the estimates of one quantity from several studies into a summary, weighting each estimate by its precision, so that a study with a small standard error counts for more than a noisy one. The weights are the inverse of the sampling variance of each estimate, and the pooled estimate has a smaller standard error than any of the studies on which it rests, because the studies are taken to be independent draws of evidence about the quantity. Two models are in common use. An equal-effects model assumes that every study estimates the same true effect and that the estimates differ only by sampling error. A random-effects model lets the true effects differ from study to study around an average, and estimates the variance of that distribution, usually written $\tau^2$, beside its mean. The metafor package fits both, together with Cochran's Q-test of whether the studies differ more than sampling error would lead one to expect [@Viechtbauer2010ConductingMetaanalysesMetafor]. Its author also points to a third reading, the fixed-effects model, which computes the same weighted average as the equal-effects model but claims less for it: it "provides an answer to the question: How large is the average true effect in the set of k studies included in the meta-analysis?", so that, "contrary to what is often stated in the literature", it does not assume that the true effects are the same [@Viechtbauer2010ConductingMetaanalysesMetafor, p. 4].
+
+*Bayesian Data Analysis* sets out what the choice between the models commits one to. Meta-analysis rests on "the overarching assumption that the studies are comparable in some broad sense", and within it there are three possibilities: the studies may be "identical replications of each other", they may be "so different that the results of any one study provide no information about the results of any of the others", or they may be exchangeable, different from each other but in ways that are "not expected a priori to have predictable effects favoring one study over another" [@GelmanEtAl2014BayesianDataAnalysis, pp. 125–126]. The first possibility is the equal-effects model and the third the random-effects model. Each answers a different question, and the question matters more than the arithmetic once the studies are few.
+
+## 2. The common scale of Multi100 {#sec-scale}
+
+Multi100 faced the problem from the other side. Its analysts reported a test statistic of their choosing for Task 2, from the families of "r, z-test, t-test, F-test or χ2 test", together with their sample sizes and degrees of freedom, so that "most results could be translated into standardized coefficients by the coordinators" [@AczelEtAl2026InvestigatingAnalyticalRobustness, Methods]. The article describes the conversion as "a practical solution", adding that "these transformations have limitations and their calculation relies on assumptions that may not hold in all considered analysis settings" [@AczelEtAl2026InvestigatingAnalyticalRobustness, p. 136]. The rules are in the script `standard_correlation_coefficient.R` of the Multi100 team (github.com/marton-balazs-kovacs/multi100), quoted here as they are written there:
+
+```r
+# z: the sample size stands in for the degrees of freedom
+tanh(abs(test_statistic)*sqrt(1/(sample_size-3)))*sign(test_statistic)
+# chi2: read as the square of a z
+tanh(sqrt(abs(test_statistic))*sqrt(1/(sample_size-3)))*sign(test_statistic)
+# t: with its degrees of freedom
+sqrt(abs(test_statistic)^2/(test_statistic^2+df1))*sign(test_statistic)
+```
+
+Each correlation then became a Cohen's d by the rule of the script `cohens_d.R` of the same team, `sign(r)*sqrt(4/((1/r^2)-1))`, which is $d = 2r/\sqrt{1 - r^2}$. The estimator of the course carries the first three rules in `r_multi100()` in `R/housing/_tools.R`, and applied to the four statistics that Multi100 recorded for this claim it returns the four recorded correlations.
+
+```{r}
+#| label: conversion
+# The d rule is quoted from cohens_d.R of the Multi100 team; the d that
+# Multi100 recorded is positive for all four, because the project took the
+# direction from the box that each analyst ticked
+recorded <- analysts |>
+  datawizard::data_filter(!is.na(statistic_recorded)) |>
+  datawizard::data_modify(
+    r_rule = r_multi100(statistic_recorded, statistic_type, NA, n_recorded),
+    d_rule = sign(r_rule) * sqrt(4 / ((1 / r_rule^2) - 1))
+  ) |>
+  datawizard::data_select(c("id", "statistic_type", "statistic_recorded", "n_recorded",
+                            "r_recorded", "r_rule", "d_recorded", "d_rule"))
+recorded |> dplyr::mutate(dplyr::across(dplyr::where(is.double), \(x) round(x, 3)))
+```
+
+The rule reproduces every recorded correlation, sign included, and every d up to its sign, which Multi100 set separately: the effect sizes of the reanalyses "are negative only when they indicate an opposite effect compared with the original study" [@AczelEtAl2026InvestigatingAnalyticalRobustness, Methods]. The project then asked how often a reanalysis lay "within the tolerance region of ±0.05 Cohen's d" of the original result, and with that region 34% of the 396 available effect sizes did [@AczelEtAl2026InvestigatingAnalyticalRobustness, p. 136].
+
+## 3. The five housing analysts on that scale {#sec-five}
+
+@tbl-five sets the five analyses of the claim on the scale of Multi100 and on the scale of the claim itself, the gap in the share of replies that opened with the name of the sender, in percentage points.
+
+```{r}
+#| label: tbl-five
+#| tbl-cap: "The five Multi100 analyses of the housing-audit claim: the statistic recorded by Multi100, the emails on which it was converted, the recorded correlation and Cohen's d, and the gap between Hispanic and comparison names in the course refit of each analysis. Source: `cases/housing/data/analysts5.csv`."
+#| echo: false
+# dplyr, because datawizard reads the column name `d` on the left as a reference
+analysts |>
+  dplyr::mutate(
+    Statistic = dplyr::case_when(is.na(statistic_recorded) ~ "none recorded",
+                                 statistic_type == "chi2" ~ paste0("χ<sup>2</sup> = ", sprintf("%.3f", statistic_recorded)),
+                                 .default = paste("z =", sub("^-", "−", sprintf("%.3f", statistic_recorded)))),
+    Emails = dplyr::if_else(is.na(n_recorded), "–", as.character(n_recorded)),
+    r = dplyr::if_else(is.na(r_recorded), "–", sub("^-", "−", sprintf("%.3f", r_recorded))),
+    d = dplyr::if_else(is.na(d_recorded), "–", sprintf("%.3f", d_recorded)),
+    `Gap (points)` = sub("^-", "−", sprintf("%.1f", b_pp_refit))
+  ) |>
+  datawizard::data_select(c(Analyst = "id", Comparison = "comparison", "Statistic", "Emails", "r", "d",
+                            "Gap (points)")) |>
+  tinytable::tt() |>
+  tinytable::style_tt(j = 4:7, align = "r")
+```
+
+All five analysts found Hispanic names greeted by name less often, by `r insight::format_value(abs(max(analysts$b_pp_refit)), digits = 1)` to `r insight::format_value(abs(min(analysts$b_pp_refit)), digits = 1)` points, yet the column of correlations runs from `r insight::format_value(min(analysts$r_recorded, na.rm = TRUE), digits = 3, style_negative = "minus")` to `r insight::format_value(max(analysts$r_recorded, na.rm = TRUE), digits = 3)`, and one row is empty. Five features of this case produce that column, and each can be checked on the data.
+
+**An analyst without a recorded statistic.** P9W8Y has no row in the conversion above, because Multi100 recorded no statistic for the analysis, although the report of the analyst gives $\chi^2$(2, N = 558) = 15.951 for the omnibus test of the three groups, the value of the course refit. The analysis is therefore absent from every summary of the project that works on d, and it is the analysis whose Task 1 verdict was "no evidence either way".
+
+**A test of three groups.** The statistic of P9W8Y tests whether the three groups of names differ at all, on two degrees of freedom, and the rule for a $\chi^2$ reads a statistic as the square of a single z, which holds only on one degree of freedom. Applied regardless, the rule would give a correlation, but the number would describe how far the three groups differ from one another, not the gap between Hispanic and white names that the claim states.
+
+```{r}
+#| label: three-groups
+p9w8y <- datawizard::data_filter(analysts, id == "P9W8Y")
+round(r_multi100(p9w8y$statistic_refit, "chi2", NA, p9w8y$n_refit), 3)
+```
+
+**A $\chi^2$ carries no sign.** A $\chi^2$ is a sum of squares and is positive whichever group was greeted by name more often, so the correlations of 8PTRZ and 25N5D are positive although both gaps are negative. The correlations of UYV3F and EWFMI carry the sign of a z, which depends on the next feature.
+
+**The base group sets the sign of a z.** UYV3F fitted a logistic regression of the greeting on an indicator of the Hispanic names, with white names as the base, and EWFMI made the same comparison in a model with the Hispanic names as the base. The two models describe one gap in opposite directions, so their z statistics, and the correlations computed from them, carry opposite signs. Refitting the model of UYV3F with the base reversed shows it.
+
+```{r}
+#| label: base-group
+frame_white <- spec_frame(audit, comparison = "white", population = "replies", uncoded = "drop") |>
+  datawizard::data_modify(white = 1 - hisp)
+z_white_base <- glm(y ~ hisp, family = binomial(), data = frame_white) |>
+  parameters::model_parameters() |>
+  datawizard::data_filter(Parameter == "hisp")
+z_hisp_base <- glm(y ~ white, family = binomial(), data = frame_white) |>
+  parameters::model_parameters() |>
+  datawizard::data_filter(Parameter == "white")
+round(c(white_base = z_white_base$z, hispanic_base = z_hisp_base$z), 3)
+round(r_multi100(c(z_white_base$z, z_hisp_base$z), "z", NA, nrow(frame_white)), 3)
+```
+
+**The continuity correction moves a recorded value.** `chisq.test()` and `prop.test()` in R apply the continuity correction of Yates to a two-by-two table unless they are told otherwise, and the two analysts who recorded a $\chi^2$ kept the default, as the [binary-outcomes module](binary-outcomes.qmd#sec-difference) shows.
+
+```{r}
+#| label: continuity
+frame_8ptrz <- spec_frame(audit, comparison = "nonhispanic", population = "replies", uncoded = "drop")
+frame_25n5d <- spec_frame(audit, comparison = "white", population = "all", uncoded = "not_named")
+tab_8ptrz <- table(frame_8ptrz$hisp, frame_8ptrz$y)  # r-style: keep – chisq.test() takes a table
+tab_25n5d <- table(frame_25n5d$hisp, frame_25n5d$y)[, 2:1]  # r-style: keep – prop.test() takes a table
+chi <- c(`8PTRZ corrected` = unname(chisq.test(tab_8ptrz)$statistic),
+         `8PTRZ uncorrected` = unname(chisq.test(tab_8ptrz, correct = FALSE)$statistic),
+         `25N5D corrected` = unname(prop.test(tab_25n5d)$statistic),
+         `25N5D uncorrected` = unname(prop.test(tab_25n5d, correct = FALSE)$statistic))
+round(chi, 3)
+round(r_multi100(chi, "chi2", NA, c(nrow(frame_8ptrz), nrow(frame_8ptrz), nrow(frame_25n5d), nrow(frame_25n5d))), 4)
+```
+
+Without the correction 8PTRZ would have recorded $\chi^2$ = `r insight::format_value(chi[["8PTRZ uncorrected"]], digits = 3)` rather than `r insight::format_value(chi[["8PTRZ corrected"]], digits = 3)`, and 25N5D `r insight::format_value(chi[["25N5D uncorrected"]], digits = 3)` rather than `r insight::format_value(chi[["25N5D corrected"]], digits = 3)`. The correlations move only in the third decimal, but the move comes from a default of the software, not from the data or the question.
+
+The tolerance region of Multi100 shows how these features combine. The OAs reported z = `r insight::format_value(abs(oa$statistic), digits = 2)` on `r oa$n` replies, from a logistic regression with covariates and all three groups, which converts to r = `r insight::format_value(r_multi100(abs(oa$statistic), "z", NA, oa$n), digits = 3)` and d = `r insight::format_value(2 * r_multi100(abs(oa$statistic), "z", NA, oa$n) / sqrt(1 - r_multi100(abs(oa$statistic), "z", NA, oa$n)^2), digits = 3)`.
+
+```{r}
+#| label: tolerance
+r_oa <- r_multi100(abs(oa$statistic), "z", NA, oa$n)
+d_oa <- 2 * r_oa / sqrt(1 - r_oa^2)
+recorded |>
+  datawizard::data_modify(gap_pp = analysts$b_pp_refit[match(id, analysts$id)],
+                          distance_d = d_recorded - d_oa,
+                          within_tolerance = abs(distance_d) <= 0.05) |>
+  datawizard::data_select(c("id", "gap_pp", "d_recorded", "distance_d", "within_tolerance")) |>
+  dplyr::mutate(dplyr::across(dplyr::where(is.double), \(x) round(x, 3)))
+```
+
+Three of the four recorded analyses fall within ±0.05 of the original d, and the one outside is UYV3F, whose gap of `r insight::format_value(analysts$b_pp_refit[analysts$id == "UYV3F"], digits = 1, style_negative = "minus")` points is exactly the raw gap of the paper. Its z comes from a model without covariates on `r analysts$n_refit[analysts$id == "UYV3F"]` replies, against a model with covariates on `r oa$n`, and the conversion turns that difference in model and sample into a difference in d of `r insight::format_value(analysts$d_recorded[analysts$id == "UYV3F"] - d_oa, digits = 3)`. Meanwhile 25N5D, whose gap among all delivered emails is about seven points smaller than the published one, lands within the region. On this claim the common scale ranks the analyses partly by their test statistics and sample sizes, which is the limitation that the article itself flags. The course places every analysis on the scale of the claim instead, in percentage points, as the [case study](../cases/housing/index.qmd#sec-scale) explains.
+
+## 4. Five analyses of one file {#sec-one-file}
+
+The five analyses are not five studies. The analyses share every email, every reply and every greeting code, so whatever sampling error the file carries is carried by all five at once, and if the authorities had answered a little differently in 2014, all five estimates would have moved together. What separates the five is what each analyst decided: which names to compare, which emails to count, which model to fit and which statistic to report. Their spread therefore measures the effect of analytical choices on one sample, which is what Multi100 set out to measure, and it says nothing about sampling error. The same holds for the curve of the case, whose `r nrow(curve)` specifications are all fitted to the same file.
+
+A pooled estimate of such results answers no clear question. The inverse-variance weights treat each result as an independent piece of evidence, and the standard error of the pool shrinks with their number. metafor will fit the model without complaint, as the chunk below shows for the curve.
+
+```{r}
+#| label: pool-curve
+pooled_curve <- metafor::rma(yi = b_pp, sei = se_pp, method = "EE", data = curve)
+round(c(estimate = pooled_curve$beta[[1]], se = pooled_curve$se, se_one_spec = stats::median(curve$se_pp)), 2)
+```
+
+The pooled gap has a standard error of `r insight::format_value(pooled_curve$se, digits = 2)` points, as if `r nrow(curve)` independent audits of `r min(curve$n)` to `r max(curve$n)` emails had been run, when there was one audit, whose reference comparison has a standard error of `r insight::format_value(ref$se_pp, digits = 2)` points. The estimate is an average over a menu of specifications whose make-up the course chose, so even its centre depends on how many options each decision was given, and its standard error belongs to no sampling process.
+
+Analyses of one file can be summarised by their spread and by what drives it. On this claim, all five analyses and all `r nrow(curve)` specifications give a gap in the direction of the claim, and each of the five tests that the analysts reported for Task 2 is significant at the 5% level. The gaps of the five run from `r insight::format_value(min(analysts$b_pp_refit), digits = 1, style_negative = "minus")` to `r insight::format_value(max(analysts$b_pp_refit), digits = 1, style_negative = "minus")` points and those of the curve from `r insight::format_value(min(curve$b_pp), digits = 1, style_negative = "minus")` to `r insight::format_value(max(curve$b_pp), digits = 1, style_negative = "minus")`, with a standard deviation of `r insight::format_value(stats::sd(curve$b_pp), digits = 1)` points across the specifications, smaller than the standard error of any one of them. The range, the share of results in each direction and the share that are significant describe the robustness of the claim to analytical choices, and the decomposition of the curve by its decisions, set out in the [multiverse module](multiverse.qmd), says which choices produce the spread. Two verdicts of "no evidence either way" sit beside these numbers, and the [case study](../cases/housing/index.qmd#sec-verdicts) traces both to the questions that the two analysts asked, not to their estimates. A spread of this kind is the counterpart of what @GelmanLoken2014StatisticalCrisisScience call the 'garden of forking paths', the many analyses that the same data allow, each of which a researcher could have chosen in the light of the data, and on this claim the analyses chosen by the five analysts and by the course all give a gap in the same direction.
+
+## 5. Two studies of one question {#sec-two-studies}
+
+The original audit and the SCORE replication are a different matter. The replication emailed other authorities, in 2020 rather than 2014, from new names, and its sampling error is independent of that of the original, so the two estimates are two pieces of evidence about the gap, and meta-analysis applies. The comparison below uses the reference specification of the course, Hispanic against white names among the coded replies with no covariates, and the same comparison among all replies of the replication, which is the mark of the replication on the curve. The replication published no file that the course may copy, so its counts come from the shares and the total of `display_replication.csv`, recovered by the script `companion/_model-outputs/bayes_audit.R`.
+
+```{r}
+#| label: escalc
+two <- tibble::tibble(
+  study = c("Original audit, 2014", "SCORE replication, 2020"),
+  k_hisp = counts$k[counts$hisp == 1], n_hisp = counts$n[counts$hisp == 1],
+  k_white = counts$k[counts$hisp == 0], n_white = counts$n[counts$hisp == 0]
+)
+# The risk difference, the scale of the claim, in percentage points
+gaps <- metafor::escalc(measure = "RD", ai = k_hisp, n1i = n_hisp, ci = k_white, n2i = n_white,
+                        data = two) |>
+  datawizard::data_modify(yi = 100 * yi, vi = 100^2 * vi)
+equal <- metafor::rma(yi, vi, method = "EE", data = gaps)
+random <- metafor::rma(yi, vi, method = "REML", data = gaps)
+summary(gaps) |> datawizard::data_select(c("study", "yi", "sei", "ci.lb", "ci.ub"))
+equal
+```
+
+```{r}
+#| label: tau
+random
+stats::confint(random)
+```
+
+The equal-effects model pools the two gaps to `r insight::format_value(equal$beta[[1]], digits = 1, style_negative = "minus")` points (95% CI `r insight::format_value(equal$ci.lb, digits = 1, style_negative = "minus")` to `r insight::format_value(equal$ci.ub, digits = 1, style_negative = "minus")`), much closer to the replication than to the original, because the replication has about four times as many replies and so about four times the weight. The test of heterogeneity rejects the equal-effects assumption, Q = `r insight::format_value(equal$QE, digits = 2)` on 1 degree of freedom (`r insight::format_p(equal$QEp, stars = FALSE)`), so the two gaps differ by more than sampling error leads one to expect. The random-effects model estimates the standard deviation of the true gaps at $\tau$ = `r insight::format_value(sqrt(random$tau2), digits = 1)` points, with a confidence interval from `r insight::format_value(stats::confint(random)$random["tau", "ci.lb"], digits = 1)` to `r insight::format_value(stats::confint(random)$random["tau", "ci.ub"], digits = 1)` points, and its pooled gap, `r insight::format_value(random$beta[[1]], digits = 1, style_negative = "minus")` points, comes with an interval from `r insight::format_value(random$ci.lb, digits = 1, style_negative = "minus")` to +`r insight::format_value(random$ci.ub, digits = 1)`, wide enough to hold the estimates of both studies and gaps in either direction. @fig-forest draws the four results.
+
+```{r}
+#| label: fig-forest
+#| echo: false
+#| fig-width: 7
+#| fig-height: 2.8
+#| fig-cap: "The gap in greetings by name between Hispanic and white names among the coded replies, in the original audit and in the SCORE replication, with 95% confidence intervals, and the two pooled estimates. The size of each square is proportional to the weight of the study in the equal-effects model. Sources: `cases/housing/data/housing_audit.csv`, `cases/housing/data/display_replication.csv`."
+#| fig-alt: "Forest plot. The original audit lies at about −20 points with an interval from about −30 to −10; the replication lies at about 0 with an interval from about −5 to +5; the equal-effects pool lies near −4 with a narrow interval, and the random-effects pool near −10 with an interval from about −29 to +9."
+forest <- dplyr::bind_rows(
+  summary(gaps) |>
+    tibble::as_tibble() |>
+    dplyr::transmute(label = study, estimate = yi, low = ci.lb, high = ci.ub,
+                     weight = stats::weights(equal), kind = "study"),
+  tibble::tibble(label = c("Pooled, equal effects", "Pooled, random effects"),
+                 estimate = c(equal$beta[[1]], random$beta[[1]]),
+                 low = c(equal$ci.lb, random$ci.lb), high = c(equal$ci.ub, random$ci.ub),
+                 weight = NA_real_, kind = "pooled")
+) |>
+  datawizard::data_modify(label = factor(label, levels = rev(label)))
+ggplot2::ggplot(forest, ggplot2::aes(x = estimate, y = label)) +
+  ggplot2::geom_vline(xintercept = 0, colour = "#9aa8b3") +
+  ggplot2::geom_errorbar(ggplot2::aes(xmin = low, xmax = high), width = 0.15, colour = "#1d2733") +
+  ggplot2::geom_point(data = \(d) datawizard::data_filter(d, kind == "study"),
+                      ggplot2::aes(size = weight), shape = 15, colour = "#0e3b6a") +
+  ggplot2::geom_point(data = \(d) datawizard::data_filter(d, kind == "pooled"),
+                      shape = 18, size = 4.5, colour = "#8b1538") +
+  ggplot2::scale_size_area(max_size = 6, guide = "none") +
+  ggplot2::scale_x_continuous(labels = \(x) sub("^-", "−", x)) +
+  ggplot2::labs(x = "gap in greetings by name, Hispanic minus white names (points)", y = NULL) +
+  ggplot2::theme_minimal(base_size = 11) +
+  ggplot2::theme(panel.grid.minor = ggplot2::element_blank())
+```
+
+Neither pooled estimate carries much. The equal-effects pool assumes the first of the three possibilities of *Bayesian Data Analysis*, that the two audits are identical replications, and the data reject it. Read as a fixed-effects model, the same number is the weighted average of the true gaps of these two audits, a valid summary of the two studies and of nothing beyond them. The random-effects pool assumes the third, that the two audits are exchangeable draws from a population of possible audits, and it estimates the spread of that population from two members, which is why the interval for $\tau$ runs from a few points to more than forty. With two studies the average of the population of audits is barely estimable, and the spread not at all. A reader who wants to know how often public housing officials greet a Hispanic applicant by name less often than a white one learns more from the two estimates and the differences between the designs than from either pool. The studies used different names, emailed a different set of authorities and ran six years apart, and the pooled number averages over all of these differences without naming any of them.
+
+## 6. Equivalence and difference {#sec-equivalence}
+
+The replication found no significant gap, and a non-significant result does not show that the gap is zero or small. An equivalence test asks that question directly. @LakensEtAl2020ImprovingInferencesNull describe the logic: "To perform an equivalence test, researchers first have to determine a 'smallest effect size of interest,' the smallest effect they deem meaningful", then test against a lower and an upper bound set at that size, and if both one-sided tests reject, "we can reject the hypothesis that the true effect is as extreme as or more extreme than our smallest effect size of interest" (p. 47). The procedure is known as the two one-sided tests, or TOST, and it amounts to asking whether the 90% confidence interval of the estimate lies inside the bounds.
+
+The smallest effect size of interest has to be argued, and the case offers one argument that does not depend on taste. Where the original study states no such size, "one way to decide upon a smallest effect size of interest is to assume that the authors were only interested in effects that could have yielded a significant result, and then look at the effect sizes that could have been statistically significant given the sample size they collected" [@LakensEtAl2020ImprovingInferencesNull, p. 50]. The reference comparison of the original audit has a standard error of `r insight::format_value(ref$se_pp, digits = 2)` points on `r ref$df` degrees of freedom, so a gap had to exceed about `r insight::format_value(ref$se_pp * stats::qt(0.975, ref$df), digits = 1)` points before the original study could report it as significant. A gap smaller than that could not have produced the published finding, so a replication that rules out gaps of that size has shown that the effect, if there is one, is too small for the original design to have detected. A stricter bound of 5 points, a difference of one reply in twenty, and one of 3 points show how the conclusion depends on the bound.
+
+```{r}
+#| label: tost
+critical_gap <- ref$se_pp * stats::qt(0.975, ref$df)
+bounds <- c(critical_gap, 5, 3)
+repl <- datawizard::data_filter(two, study == "SCORE replication, 2020")
+orig <- datawizard::data_filter(two, study == "Original audit, 2014")
+tost <- purrr::map(list(replication = repl, original = orig), \(s) {
+  purrr::map(bounds, \(b) {
+    test <- TOSTER::twoprop_test(p1 = s$k_hisp / s$n_hisp, p2 = s$k_white / s$n_white,
+                                 n1 = s$n_hisp, n2 = s$n_white, null = b / 100,
+                                 alternative = "equivalence")
+    tibble::tibble(bound = b, low_90 = 100 * test$conf.int[1], high_90 = 100 * test$conf.int[2],
+                   p_tost = test$p.value)
+  }) |>
+    purrr::list_rbind()
+}) |>
+  purrr::list_rbind(names_to = "study")
+tost |> dplyr::mutate(dplyr::across(c("bound", "low_90", "high_90"), \(x) round(x, 1)),
+                                p_tost = signif(p_tost, 3))
+```
+
+```{r}
+#| label: tost-values
+#| include: false
+tost_repl <- datawizard::data_filter(tost, study == "replication")
+```
+
+The 90% interval of the replication runs from `r insight::format_value(tost_repl$low_90[1], digits = 1, style_negative = "minus")` to `r insight::format_value(tost_repl$high_90[1], digits = 1)` points, so the two one-sided tests reject gaps as large as the critical gap of the original study (`r insight::format_p(tost_repl$p_tost[1], stars = FALSE)`) and as large as 5 points (`r insight::format_p(tost_repl$p_tost[2], stars = FALSE)`), but not as large as 3 points (`r insight::format_p(tost_repl$p_tost[3], stars = FALSE)`). The replication is therefore statistically equivalent to no gap within the resolution of the original study, and within 5 points, while a gap of a few points either way remains compatible with it. The original audit is equivalent to no gap under none of the bounds, since its interval lies far below all three.
+
+Equivalence of the replication to zero and a significant gap in the original do not, by themselves, show that the two studies disagree. @GelmanStern2006DifferenceSignificantNot made the point in their title, "The Difference Between 'Significant' and 'Not Significant' is not Itself Statistically Significant", and the comparison of two studies needs a test of the difference between them. A meta-regression with the study as its moderator gives that test.
+
+```{r}
+#| label: moderator
+difference <- metafor::rma(yi, vi, mods = ~ study, method = "EE", data = gaps)
+difference
+```
+
+The replication gap exceeds the original gap by `r insight::format_value(difference$beta[[2]], digits = 1)` points (95% CI `r insight::format_value(difference$ci.lb[2], digits = 1)` to `r insight::format_value(difference$ci.ub[2], digits = 1)`), and the test of the moderator, `r insight::format_p(difference$QMp, stars = FALSE)`, is the test of heterogeneity of section 5 under another name, as it must be with two studies. Here the two studies do differ, beyond what sampling error explains. What the test cannot say is why. The names, the authorities, the year and the selection of a striking original result by its significance are all candidates, and the [Bayesian estimation module](bayesian.qmd#sec-design) asks how much of the original gap the last of them could explain. On the log-odds scale, which `escalc(measure = "OR")` computes from the same counts, the conclusions are the same.
+
+::: {.callout-tip}
+## Try it
+
+Rerun the chunk `escalc` with `measure = "OR"` and compare the test of heterogeneity with the one on the scale of percentage points. Then replace the replication counts with those among the sub-county authorities, which the replication kept to match the paper: `display_replication.csv` gives their shares and their total of `r format(subcounty$n, big.mark = ",")` replies, and the split of those replies into groups has to be recovered as the script `bayes_audit.R` does for all replies. Finally, choose a smallest effect size of interest of your own for the TOST, write two sentences that justify it from the case, and check whether the conclusion changes.
+:::
+
+## 7. Multi100 as a whole {#sec-multi100}
+
+The problems of this page belong to one claim and its five analysts. The [discussion of the Multi100 article](https://codemoreh.github.io/ar4ds/multi100-article.html) on the AR4DS site takes up the project as a whole: its design across 100 studies and 504 reanalyses, the conversion to a common scale and its tolerance regions, and what the project concluded about the robustness of the social and behavioural sciences to analytical choices.
+
+## Sources and further reading {#sec-sources}
+
+The models on this page are fitted with metafor [@Viechtbauer2010ConductingMetaanalysesMetafor], whose article is a full introduction to the package, from the computation of effect sizes with `escalc()` to meta-regression. The three possibilities of a meta-analysis, and the estimands that each implies, are set out in *Bayesian Data Analysis* [@GelmanEtAl2014BayesianDataAnalysis, section 5.6], and equivalence tests and their bounds in @LakensEtAl2020ImprovingInferencesNull, beside Bayes factors for the same question. The conversion rules and the tolerance region are those of the Multi100 article and its code [@AczelEtAl2026InvestigatingAnalyticalRobustness]. The files behind the numbers are `analysts5.csv`, `reference_marks.csv`, `spec_curve.csv`, `housing_audit.csv` and `display_replication.csv` in `cases/housing/data/`, each with a codebook, and the counts of the replication in `companion/_model-outputs/bayes_audit_counts.csv`.
+
+## References {.unnumbered}
+
+::: {#refs}
+:::

@@ -103,12 +103,16 @@ website:
             text: "Audit experiments"
           - href: companion/binary-outcomes.qmd
             text: "Binary outcomes"
+          - href: companion/bayesian.qmd
+            text: "Bayesian estimation"
           - href: companion/dags.qmd
             text: "Causal graphs and adjustment sets"
           - href: companion/simulation.qmd
             text: "Simulation as a method"
           - href: companion/multiverse.qmd
             text: "The multiverse and its critics"
+          - href: companion/meta-analysis.qmd
+            text: "Meta-analysis"
       - href: resources.qmd
         text: Resources
     right:

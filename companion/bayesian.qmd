@@ -1,0 +1,290 @@
+---
+title: "Bayesian estimation"
+subtitle: "Priors, posteriors and a replication"
+bibliography: [../references.bib, ../references-new.bib]
+---
+
+```{r}
+#| label: setup
+#| include: false
+# The fits run once, in companion/_model-outputs/bayes_audit.R; the page reads
+# their summaries and a thinned set of draws
+counts <- readr::read_csv("_model-outputs/bayes_audit_counts.csv", show_col_types = FALSE)
+draws <- readr::read_csv("_model-outputs/bayes_audit_draws.csv", show_col_types = FALSE)
+summ <- readr::read_csv("_model-outputs/bayes_audit_summary.csv", show_col_types = FALSE)
+dx <- readr::read_csv("_model-outputs/bayes_audit_diagnostics.csv", show_col_types = FALSE)
+sens <- readr::read_csv("_model-outputs/bayes_audit_sensitivity.csv", show_col_types = FALSE)
+ppc <- readr::read_csv("_model-outputs/bayes_audit_ppc.csv", show_col_types = FALSE)
+curve <- readr::read_csv("../cases/housing/data/spec_curve.csv", show_col_types = FALSE)
+replication <- readr::read_csv("../cases/housing/data/display_replication.csv", show_col_types = FALSE)
+ref <- datawizard::data_filter(curve, is_reference)
+ref_low <- ref$b_pp - stats::qt(0.975, ref$df) * ref$se_pp
+ref_high <- ref$b_pp + stats::qt(0.975, ref$df) * ref$se_pp
+repl_row <- datawizard::data_filter(replication, population == "replies", authorities == "all")
+
+# One row of the summaries for each result quoted on the page
+prior_weak <- datawizard::data_filter(summ, model == "prior_weak", quantity == "gap")
+prior_scep <- datawizard::data_filter(summ, model == "prior_sceptical", quantity == "gap")
+prior_white <- datawizard::data_filter(summ, model == "prior_weak", quantity == "white_share")
+orig_weak <- datawizard::data_filter(summ, model == "original_weak", quantity == "gap")
+orig_scep <- datawizard::data_filter(summ, model == "original_sceptical", quantity == "gap")
+coef_weak <- datawizard::data_filter(summ, model == "original_weak", quantity == "coef")
+repl_alone <- datawizard::data_filter(summ, model == "replication_alone", quantity == "gap")
+repl_upd <- datawizard::data_filter(summ, model == "replication_updated", quantity == "gap")
+joint_orig <- datawizard::data_filter(summ, model == "joint_common", quantity == "gap_original")
+joint_diff <- datawizard::data_filter(summ, model == "joint_separate", quantity == "difference")
+sens_weak <- datawizard::data_filter(sens, model == "original_weak")
+sens_scep <- datawizard::data_filter(sens, model == "original_sceptical")
+sens_upd <- datawizard::data_filter(sens, model == "replication_updated")
+ppc_common <- datawizard::data_filter(ppc, model == "joint_common", study == "original")
+```
+
+This module of the [companion curriculum](index.qmd) estimates the gap of the housing-audit claim by Bayesian methods, and it asks what they add in a case of this kind. The case comes from a field experiment by the original authors (OAs), who emailed public housing authorities in the United States from names meant to indicate a white, a Black or a Hispanic applicant and found that replies to the Hispanic names opened with the name of the sender less often, a gap of about 20 percentage points among the replies [@EinsteinGlick2017DoesRaceAffect]. A preregistered replication run for the SCORE programme, with new names and more authorities, found no significant gap, and the [case study](../cases/housing/index.qmd) tells both stories. A significant result from a study of moderate size, followed by a larger replication that finds nothing, is the situation in which the habits of Bayesian estimation earn their keep. The estimate becomes a distribution about which direct probability statements can be made, what was believed before the data has to be written down and checked, the replication enters as new data that revises the earlier estimate, and the plausibility of the original result can be judged against what a study of its size could find. The module follows the work of Andrew Gelman and of Richard McElreath, and it uses brms, which fits Bayesian regression models in R through the Stan language [@Burkner2017BrmsPackageBayesian].
+
+The models were fitted once, in the script `companion/_model-outputs/bayes_audit.R`, because a Bayesian fit takes longer than a page should take to build. The page shows the code of each model and reads the summaries and the draws that the script wrote. Participants meet the questions behind the module in Part 4 of the [one-day course with a methods focus](../tracks/housing-one-day-methods/part-4.qmd), where the power of the original study and of the replication is compared.
+
+## 1. A model of the greetings {#sec-model}
+
+The comparison is the reference specification of the course: Hispanic against white names, among the replies that carry a greeting code, with no covariates. The outcome of each reply is 0 or 1, and with a single binary predictor everything that the data say about it is in four counts, the replies to each group and the number of them that opened with the name. The replication published no file that the course may copy, so its counts are recovered in the script from the shares and the total of its replies in `display_replication.csv`, and they agree with the 721 replies to Hispanic and 763 to white aliases in the de-identified file of the replication.
+
+```{r}
+#| label: tbl-counts
+#| tbl-cap: "The replies to Hispanic and white names that carry a greeting code, and those that opened with the name of the sender, in the original audit and in the SCORE replication. Source: `companion/_model-outputs/bayes_audit_counts.csv`."
+#| echo: false
+counts |>
+  datawizard::data_modify(
+    Study = dplyr::if_else(study == "original", "Original audit, 2014", "SCORE replication, 2020"),
+    Names = dplyr::if_else(hisp == 1, "Hispanic", "white"),
+    Share = insight::format_value(k / n, as_percent = TRUE, digits = 1)
+  ) |>
+  datawizard::data_select(c("Study", "Names", Replies = "n", `Greeted by name` = "k", "Share")) |>
+  tinytable::tt() |>
+  tinytable::style_tt(j = 3:5, align = "r")
+```
+
+A binomial model treats the greetings in each group as a count out of the replies, with a probability of a greeting that a logistic regression links to the names. It is the same model as the logistic regression of the [binary-outcomes module](binary-outcomes.qmd#sec-logit), fitted to the four counts instead of to the `r sum(counts$n[counts$study == "original"])` replies one by one, and it gives the same answer. In brms the number of trials goes beside the count, and `0 + Intercept` keeps the intercept as the log-odds of a greeting for the white names, so that its prior can be stated on that scale.
+
+```{r}
+#| label: brms-model
+#| eval: false
+original <- datawizard::data_filter(counts, study == "original")
+fit_original <- brms::brm(
+  k | trials(n) ~ 0 + Intercept + hisp, family = stats::binomial(), data = original,
+  prior = c(brms::prior(normal(0, 1.5), class = "b", coef = "Intercept"),
+            brms::prior(normal(0, 1), class = "b", coef = "hisp")),
+  chains = 4, iter = 2000, seed = 20261105, backend = "cmdstanr"
+)
+```
+
+## 2. Priors and what they imply {#sec-priors}
+
+A Bayesian model needs a prior distribution for each parameter, and here both parameters live on the log-odds scale, which few people can read directly. McElreath shows why the scale matters with a logistic regression of his own: a prior of normal(0, 10) on the intercept, which looks vague, puts "most of the probability mass ... near zero and one", because "[a] flat prior in the logit space is not a flat prior in the outcome probability space" [@McElreath2020StatisticalRethinkingBayesian, p. 328]. The intercept here takes his normal(0, 1.5), which is nearly flat on the probability scale. *Bayesian Data Analysis* calls a prior weakly informative "if it is proper but is set up so that the information it does provide is intentionally weaker than whatever actual prior knowledge is available" [@GelmanEtAl2014BayesianDataAnalysis, p. 55], and both priors on the intercept and the first prior on the gap are of that kind.
+
+The gap needs more thought, and the module compares two priors for it, both centred on no gap. The weakly informative prior is normal(0, 1). On the log-odds scale it allows coefficients of about ±2, and near a share of one half a coefficient of 2 moves a probability by up to half its range, so it rules out almost nothing that a field experiment could produce. The sceptical prior is normal(0, 0.25). It describes a reader who expects a name to change the tone of a reply by about as much as it changed whether a reply came at all, and in the same experiment the reply gap between white and Hispanic names was 4.8 points, so this reader gives gaps of more than ten points little credence. Neither prior is meant as the right one. They bracket a reader who has no view and a reader who doubts large effects of a name, and section 3 asks how far each reader would be moved by the data.
+
+What a prior implies on the scale of the claim is seldom obvious, and the way to find out is to simulate from it before the data enter. The workflow literature calls this a prior predictive check, "a way to assess the pre-data implications of a generative model", useful "because parameter distributions interact with the data model to produce implied predictions" and "it can be difficult to intuit the consequences of prior choices" [@GelmanEtAl2026BayesianWorkflow, p. 89]. brms fits the model with the likelihood switched off when `sample_prior = "only"` is set, and marginaleffects turns the draws into the gap in percentage points, the predicted share of greetings for a Hispanic name minus that for a white name. Setting the number of trials to 1 in `newdata` makes each prediction a probability rather than a count.
+
+```{r}
+#| label: brms-prior
+#| eval: false
+fit_prior <- brms::brm(
+  k | trials(n) ~ 0 + Intercept + hisp, family = stats::binomial(), data = original,
+  prior = c(brms::prior(normal(0, 1.5), class = "b", coef = "Intercept"),
+            brms::prior(normal(0, 1), class = "b", coef = "hisp")),
+  sample_prior = "only", chains = 4, iter = 2000, seed = 20261105, backend = "cmdstanr"
+)
+marginaleffects::avg_comparisons(fit_prior, variables = "hisp", newdata = tibble::tibble(hisp = 0L, n = 1L))
+```
+
+```{r}
+#| label: fig-prior
+#| echo: false
+#| fig-width: 7.5
+#| fig-height: 3
+#| fig-cap: "The prior predictive distributions of the model: the share of replies to white names that open with the name of the sender (left) and the gap between Hispanic and white names (right), under the weakly informative prior normal(0, 1) and the sceptical prior normal(0, 0.25) for the gap. Source: `companion/_model-outputs/bayes_audit_draws.csv`."
+#| fig-alt: "Left: two nearly flat densities of the white share across 0 to 100%, falling only near the ends. Right: the weakly informative prior gives a broad hump from about −40 to +40 points, and the sceptical prior a narrow peak within about ±10 points."
+draws |>
+  datawizard::data_filter(model %in% c("prior_weak", "prior_sceptical")) |>
+  datawizard::data_modify(
+    prior = dplyr::if_else(model == "prior_weak", "weakly informative", "sceptical"),
+    panel = dplyr::if_else(quantity == "white_share", "share greeted by name, white names (%)",
+                           "gap, Hispanic minus white names (points)")
+  ) |>
+  ggplot2::ggplot(ggplot2::aes(value, colour = prior)) +
+  ggplot2::geom_density(linewidth = 0.8, bounds = c(-100, 100)) +
+  ggplot2::facet_wrap(ggplot2::vars(panel), scales = "free") +
+  ggplot2::scale_colour_manual(values = c(`weakly informative` = "#0e3b6a", sceptical = "#8c5a10"), name = NULL) +
+  ggplot2::scale_x_continuous(labels = \(x) sub("^-", "−", x)) +
+  ggplot2::labs(x = NULL, y = "prior density") +
+  ggplot2::theme_minimal(base_size = 11) +
+  ggplot2::theme(legend.position = "bottom", panel.grid.minor = ggplot2::element_blank())
+```
+
+Before the data, both models expect a share of greetings for the white names anywhere between `r insight::format_value(prior_white$q025, digits = 0)`% and `r insight::format_value(prior_white$q975, digits = 0)`% (the central 95% of the prior), which says only that a share is a share. The weakly informative prior puts 95% of its gaps between `r insight::format_value(prior_weak$q025, digits = 0, style_negative = "minus")` and +`r insight::format_value(prior_weak$q975, digits = 0)` points, a range that contains every gap on the curve of the case and the results of both studies, and the sceptical prior puts them between `r insight::format_value(prior_scep$q025, digits = 1, style_negative = "minus")` and +`r insight::format_value(prior_scep$q975, digits = 1)` points, giving a gap of more than 10 points to the disadvantage of the Hispanic names a probability of only `r insight::format_value(prior_scep$p_beyond_10, digits = 3)`. These are the two readers in numbers, and the check shows that neither prior puts its mass on outcomes that no experiment could produce.
+
+## 3. The posterior of the gap {#sec-posterior}
+
+With the likelihood switched on, the same call of `avg_comparisons()` on the fitted model returns the posterior distribution of the gap, and `marginaleffects::get_draws()` returns its 4,000 draws. Each draw is one value of the gap that is compatible with the data and the prior, and every summary of the posterior is a summary of those draws.
+
+```{r}
+#| label: brms-posterior
+#| eval: false
+gap <- marginaleffects::avg_comparisons(fit_original, variables = "hisp",
+                                        newdata = tibble::tibble(hisp = 0L, n = 1L))
+gap_draws <- marginaleffects::get_draws(gap, shape = "long")
+bayestestR::describe_posterior(100 * gap_draws$draw, ci = 0.95, ci_method = "ETI")
+```
+
+Under the weakly informative prior the posterior median of the gap is `r insight::format_value(orig_weak$median, digits = 1, style_negative = "minus")` points, with a 95% credible interval from `r insight::format_value(orig_weak$q025, digits = 1, style_negative = "minus")` to `r insight::format_value(orig_weak$q975, digits = 1, style_negative = "minus")`, and the coefficient on the log-odds scale has a median of `r insight::format_value(coef_weak$median, digits = 3, style_negative = "minus")`. The reference specification of the course, the difference in proportions with HC2 errors, gives `r insight::format_value(ref$b_pp, digits = 1, style_negative = "minus")` points with a 95% confidence interval from `r insight::format_value(ref_low, digits = 1, style_negative = "minus")` to `r insight::format_value(ref_high, digits = 1, style_negative = "minus")`. The two agree closely, because a prior this weak is outweighed by `r sum(counts$n[counts$study == "original"])` replies, and the posterior sits about a point nearer zero because the prior is centred on no gap. The two intervals differ in what they allow one to say. The confidence interval is a statement about the procedure, which covers the true gap in 95% of repeated studies. The credible interval is a statement about the gap itself, given the model, the prior and the data, and the posterior answers questions that a confidence interval cannot: the probability that Hispanic names were greeted by name less often is `r insight::format_value(orig_weak$pd, digits = 4)`, and the probability that the gap exceeds 10 points in that direction is `r insight::format_value(orig_weak$p_beyond_10, digits = 3)`.
+
+Every number of this kind assumes that the computation worked. Stan draws from the posterior by Markov chain Monte Carlo, and the standard checks ask whether the four chains agree (the R-hat statistic, which should be below 1.01), whether the chains carry enough independent information (the effective sample sizes, which should exceed about 400) and whether the sampler ran into regions that it could not explore (divergent transitions, which should be zero). @tbl-diagnostics gives the checks for every model of the page.
+
+```{r}
+#| label: tbl-diagnostics
+#| tbl-cap: "Computational checks of the eight models: the largest R-hat and the smallest bulk and tail effective sample sizes of the coefficients, the divergent transitions and the deepest tree of the sampler, from 4 chains of 1,000 draws after warm-up. Source: `companion/_model-outputs/bayes_audit_diagnostics.csv`."
+#| echo: false
+dx |>
+  datawizard::data_modify(
+    Model = unname(c(prior_weak = "Prior only, weakly informative",
+                     prior_sceptical = "Prior only, sceptical",
+                     original_weak = "Original, weakly informative prior",
+                     original_sceptical = "Original, sceptical prior",
+                     replication_alone = "Replication, weakly informative prior",
+                     replication_updated = "Replication, original posterior as prior",
+                     joint_common = "Both studies, one gap",
+                     joint_separate = "Both studies, a gap for each")[model]),
+    `R-hat` = sprintf("%.3f", max_rhat),
+    `Bulk ESS` = format(round(min_ess_bulk), big.mark = ","),
+    `Tail ESS` = format(round(min_ess_tail), big.mark = ",")
+  ) |>
+  datawizard::data_select(c("Model", "R-hat", "Bulk ESS", "Tail ESS", Divergences = "divergences",
+                            `Tree depth` = "max_treedepth")) |>
+  tinytable::tt() |>
+  tinytable::style_tt(j = 2:6, align = "r")
+```
+
+## 4. What changes with the prior {#sec-sensitivity}
+
+Under the sceptical prior the posterior median is `r insight::format_value(orig_scep$median, digits = 1, style_negative = "minus")` points, with a 95% credible interval from `r insight::format_value(orig_scep$q025, digits = 1, style_negative = "minus")` to `r insight::format_value(orig_scep$q975, digits = 1, style_negative = "minus")`. The doubtful reader ends up nearly certain of the direction of the gap, with a probability of `r insight::format_value(orig_scep$pd, digits = 3)` that it is negative, and much less certain of its size, giving a gap beyond 10 points a probability of `r insight::format_value(orig_scep$p_beyond_10, digits = 2)`. @fig-sensitivity sets the two priors and the two posteriors side by side.
+
+```{r}
+#| label: fig-sensitivity
+#| echo: false
+#| fig-width: 7
+#| fig-height: 3.2
+#| fig-cap: "The gap between Hispanic and white names in the original audit under the two priors: the prior (dashed) and the posterior (solid) for each. The vertical line marks the reference specification of the course. Source: `companion/_model-outputs/bayes_audit_draws.csv`."
+#| fig-alt: "Under the weakly informative prior the posterior is a hump centred near −19 points, far from its flat prior. Under the sceptical prior the posterior lies between the narrow prior at zero and the data, centred near −12 points."
+draws |>
+  datawizard::data_filter(quantity == "gap",
+                          model %in% c("prior_weak", "prior_sceptical", "original_weak", "original_sceptical")) |>
+  datawizard::data_modify(
+    prior = dplyr::if_else(grepl("weak", model), "weakly informative prior", "sceptical prior"),
+    stage = dplyr::if_else(startsWith(model, "prior"), "prior", "posterior")
+  ) |>
+  ggplot2::ggplot(ggplot2::aes(value, colour = prior, linetype = stage)) +
+  ggplot2::geom_vline(xintercept = ref$b_pp, colour = "grey45") +
+  ggplot2::geom_density(linewidth = 0.8) +
+  ggplot2::scale_colour_manual(values = c(`weakly informative prior` = "#0e3b6a", `sceptical prior` = "#8c5a10"),
+                               name = NULL) +
+  ggplot2::scale_linetype_manual(values = c(prior = "dashed", posterior = "solid"), name = NULL) +
+  ggplot2::scale_x_continuous(labels = \(x) sub("^-", "−", x)) +
+  ggplot2::coord_cartesian(xlim = c(-40, 20)) +
+  ggplot2::labs(x = "gap in greetings by name, Hispanic minus white names (points)", y = "density") +
+  ggplot2::theme_minimal(base_size = 11) +
+  ggplot2::theme(legend.position = "bottom", panel.grid.minor = ggplot2::element_blank())
+```
+
+Comparing two fits answers the question for two priors. The priorsense package asks it for every prior near the one that was chosen, without refitting: it reweights the draws as if the prior, or the likelihood, had been raised to a power slightly above or below 1, and measures how far the posterior moves [@KallioinenEtAl2026PriorsenseEfficientPrior]. A posterior that moves with the prior but not with the likelihood is driven by the prior, and one that moves with both shows that the prior and the data pull in different directions.
+
+```{r}
+#| label: priorsense
+#| eval: false
+priorsense::powerscale_sensitivity(fit_original, variable = "b_hisp")
+```
+
+For the weakly informative fit the sensitivity to the prior is `r insight::format_value(sens_weak$prior, digits = 3)` and to the likelihood `r insight::format_value(sens_weak$likelihood, digits = 3)`, against a threshold of 0.05 that the package uses by default, so the data and not the prior determine the posterior of the gap. For the sceptical fit both are above the threshold, `r insight::format_value(sens_scep$prior, digits = 3)` and `r insight::format_value(sens_scep$likelihood, digits = 3)`, and the package reports a "`r sens_scep$diagnosis`". The diagnosis is accurate. The sceptical prior expects small gaps and the data hold a large one, so the posterior is a compromise that depends on both, and someone who reports it has to defend the prior as well as the data. McElreath puts the general point plainly: "the prior is considered to be just part of the model. As such it should be chosen, evaluated, and revised just like all of the other components of the model" [@McElreath2020StatisticalRethinkingBayesian, p. 35].
+
+## 5. The replication as new data {#sec-replication}
+
+The replication is the external information that the sceptical prior lacked, and Bayesian estimation has two ways of using it. The first is sequential: the posterior of the original audit becomes the prior for the replication. "When you have a previous estimate to provide to the machine, that can become the prior", as McElreath describes the updating of a model, so that "each estimate becomes the prior for the next step" [@McElreath2020StatisticalRethinkingBayesian, p. 34]. The script carries the posterior of the coefficient, with its mean and standard deviation, into a normal prior for the gap of the replication, an approximation that is close for a log-odds coefficient estimated from several hundred replies. The intercept keeps the weakly informative prior, because the replication used new names in another year and the share of greetings for its white names need not match that of the original.
+
+```{r}
+#| label: brms-update
+#| eval: false
+carried <- posterior::summarise_draws(brms::as_draws_df(fit_original, variable = "b_hisp"), "mean", "sd")
+fit_updated <- brms::brm(
+  k | trials(n) ~ 0 + Intercept + hisp, family = stats::binomial(),
+  data = datawizard::data_filter(counts, study == "replication"),
+  prior = c(brms::prior(normal(0, 1.5), class = "b", coef = "Intercept"),
+            brms::set_prior(sprintf("normal(%.4f, %.4f)", carried$mean, carried$sd), class = "b", coef = "hisp")),
+  chains = 4, iter = 2000, seed = 20261105, backend = "cmdstanr"
+)
+```
+
+The second puts both studies in one model, with a share of greetings for the white names of each study and a single gap on the log-odds scale (`k | trials(n) ~ 0 + study + hisp`). The two routes rest on the same assumption, that the two audits measure one gap, and they give nearly the same answer. On its own the replication gives a gap of `r insight::format_value(round(repl_alone$median, 1), digits = 1, style_negative = "minus")` points (95% credible interval `r insight::format_value(repl_alone$q025, digits = 1, style_negative = "minus")` to +`r insight::format_value(repl_alone$q975, digits = 1)`). With the original posterior as its prior the gap is `r insight::format_value(repl_upd$median, digits = 1, style_negative = "minus")` points (`r insight::format_value(repl_upd$q025, digits = 1, style_negative = "minus")` to +`r insight::format_value(repl_upd$q975, digits = 1)`), and in the joint model, expressed at the share of the original white names, `r insight::format_value(joint_orig$median, digits = 1, style_negative = "minus")` points (`r insight::format_value(joint_orig$q025, digits = 1, style_negative = "minus")` to +`r insight::format_value(joint_orig$q975, digits = 1)`). *Regression and Other Stories* gives the arithmetic behind this agreement: in the simplest case the Bayesian estimate is "a weighted average of prior and data estimates, where each estimate gets a weight proportional to the inverse square of its standard error", which rests on "the key assumption ... that the prior and data represent two different sources of information" [@GelmanEtAl2020RegressionOtherStories, pp. 119–120]. The replication has about four times as many replies as the original, so it carries most of the weight.
+
+```{r}
+#| label: fig-update
+#| echo: false
+#| fig-width: 7
+#| fig-height: 3.2
+#| fig-cap: "The posterior distributions of the gap from the original audit alone, from the replication alone (both with the weakly informative prior), and from the replication with the posterior of the original as its prior. Source: `companion/_model-outputs/bayes_audit_draws.csv`."
+#| fig-alt: "Three densities. The original audit lies around −19 points and is wide; the replication alone is a narrow peak around zero; the combined posterior lies between them, around −4 points, and is the narrowest."
+draws |>
+  datawizard::data_filter(quantity == "gap", model %in% c("original_weak", "replication_alone", "replication_updated")) |>
+  datawizard::data_modify(result = factor(model, levels = c("original_weak", "replication_alone", "replication_updated"),
+                                          labels = c("original audit", "replication alone", "replication, original as prior"))) |>
+  ggplot2::ggplot(ggplot2::aes(value, colour = result)) +
+  ggplot2::geom_vline(xintercept = 0, colour = "#9aa8b3") +
+  ggplot2::geom_density(linewidth = 0.8) +
+  ggplot2::scale_colour_manual(values = c(`original audit` = "#0e3b6a", `replication alone` = "#8c5a10",
+                                          `replication, original as prior` = "#8b1538"), name = NULL) +
+  ggplot2::scale_x_continuous(labels = \(x) sub("^-", "−", x)) +
+  ggplot2::coord_cartesian(xlim = c(-40, 15)) +
+  ggplot2::labs(x = "gap in greetings by name, Hispanic minus white names (points)", y = "posterior density") +
+  ggplot2::theme_minimal(base_size = 11) +
+  ggplot2::theme(legend.position = "bottom", panel.grid.minor = ggplot2::element_blank())
+```
+
+The combined posterior is narrower than either of the others, and it lies where neither study put its estimate, which is a reason to check the assumption before reading it. priorsense reports a "`r sens_upd$diagnosis`" for the updated model (sensitivity to the prior `r insight::format_value(sens_upd$prior, digits = 3)`, to the likelihood `r insight::format_value(sens_upd$likelihood, digits = 3)`), so the posterior of the original and the data of the replication pull in different directions. A posterior predictive check of the joint model says the same in terms of the data: replicated from the fitted model, the share of greetings for the white names of the original audit has a 90% interval from `r insight::format_value(ppc_common$rep_q05[ppc_common$hisp == 0], digits = 1)`% to `r insight::format_value(ppc_common$rep_q95[ppc_common$hisp == 0], digits = 1)`%, and the observed share, `r insight::format_value(ppc_common$observed[ppc_common$hisp == 0], digits = 1)`%, lies outside it, while the observed `r insight::format_value(ppc_common$observed[ppc_common$hisp == 1], digits = 1)`% for the Hispanic names lies just below its interval, which starts at `r insight::format_value(ppc_common$rep_q05[ppc_common$hisp == 1], digits = 1)`%. A model with one gap cannot reproduce the original audit. The failed check names the next model, one with a gap for each study (`k | trials(n) ~ 0 + study + study:hisp`), and in that model the replication gap exceeds the original gap by `r insight::format_value(joint_diff$median, digits = 1)` points, with a 95% credible interval from `r insight::format_value(joint_diff$q025, digits = 1)` to `r insight::format_value(joint_diff$q975, digits = 1)`. The two studies disagree, and the combined estimate of about four points describes neither of them. The [meta-analysis module](meta-analysis.qmd#sec-two-studies) reaches the same conclusion with the tools of meta-analysis and asks what a pooled estimate of two studies can carry.
+
+## 6. Type S and type M errors {#sec-design}
+
+The disagreement between the studies can have many sources, among them the names, the authorities and the six years between the audits, and one of them can be assessed with the numbers of the case alone: how a study of the size of the original behaves when the true gap is small. @GelmanCarlin2014PowerCalculationsAssessing propose a design analysis that reports, beside the power, two errors of a significant result. The type S error rate is "the probability that the replicated estimate has the incorrect sign, if it is statistically significantly different from zero", and the exaggeration ratio, or expected type M error, is "the expectation of the absolute value of the estimate divided by the effect size, if statistically significantly different from zero" (p. 643). The calculation needs the standard error of the study and a true effect, and they insist that the true effect come from outside the study: "Design calculations, whether prospective or retrospective, should be based on realistic external estimates of effect sizes" (p. 642). For the housing audit the replication supplies such an estimate, and section 5 put the gap at about four points once both studies are counted. The retrodesign package, written from the function of their article, computes the three quantities for several true gaps at the standard error of the reference comparison of the original study and at that of the replication.
+
+```{r}
+#| label: retrodesign
+# The closed form of Lu et al. (2018), cited on the help page of retrodesign,
+# for a normal sampling distribution; retrodesign::retrodesign() simulates a t
+design <- tidyr::expand_grid(study = c("original", "replication"), true_gap = c(2, 4, 10, 20)) |>
+  dplyr::mutate(se = dplyr::if_else(study == "original", ref$se_pp, repl_row$se_pp),
+                result = purrr::map2(true_gap, se, \(a, s) retrodesign::retro_design_closed_form(a, s))) |>
+  tidyr::unnest_wider(result)
+design |> dplyr::mutate(dplyr::across(dplyr::where(is.double), \(x) signif(x, 3)))
+```
+
+```{r}
+#| label: design-values
+#| include: false
+d_orig <- design |> datawizard::data_filter(study == "original")
+d_repl <- design |> datawizard::data_filter(study == "replication")
+```
+
+With a standard error of `r insight::format_value(ref$se_pp, digits = 2)` points, the original comparison has a power of `r insight::format_value(d_orig$power[2], digits = 2)` if the true gap is 4 points. A significant estimate would then carry the wrong sign with a probability of `r insight::format_value(d_orig$type_s[2], digits = 3)`, and in the right direction it would exaggerate the true gap by a factor of `r insight::format_value(d_orig$type_m[2], digits = 1)` on average, so a significant estimate of about `r insight::format_value(4 * d_orig$type_m[2], digits = 0)` points is what a study of this size produces when the gap is about 4. At a true gap of 2 points the exaggeration ratio is `r insight::format_value(d_orig$type_m[1], digits = 1)`, and only at 20 points does it approach 1 (`r insight::format_value(d_orig$type_m[4], digits = 2)`). The replication, with a standard error of `r insight::format_value(repl_row$se_pp, digits = 2)` points, exaggerates a true gap of 10 points by a factor of `r insight::format_value(d_repl$type_m[3], digits = 2)` and of 4 points by `r insight::format_value(d_repl$type_m[2], digits = 1)`. Gelman and Carlin note that "[p]roblems with the exaggeration ratio start to arise when power is less than 0.5, and problems with the Type S error rate start to arise when power is less than 0.1" (pp. 643–644), and the original comparison crosses the first line for any true gap below about 10 points. The [experiments module](experiments.qmd#sec-power) draws the power curves of the two studies and computes the exaggeration at a true gap of 10 points, and the [simulation module](simulation.qmd#sec-power) counts the same exaggeration in simulated audits.
+
+None of this shows that the original estimate is exaggerated. If the true gap were about 4 points, the original design would reach significance about one time in eight, its significant estimates would average about `r insight::format_value(4 * d_orig$type_m[2], digits = 0)` points, and an estimate as large as 20 points would be rare even among them, so the filter of significance alone does not explain the published gap. What the design analysis shows is that a significant result from a study of this size says little about the size of the gap, since any gap below about 10 points that reached significance would have been reported as one of 10 points or more. The replication puts the gap of 2020 close to zero, and between the two studies the names, the authorities and the year all changed, so that the data of the case cannot say how much of the difference between them belongs to chance and how much to these changes.
+
+::: {.callout-tip}
+## Try it
+
+Change the sceptical prior to normal(0, 0.5), the prior that McElreath uses for treatment effects in a logistic regression (p. 329), and work out what it implies for the gap in points: simulate 4,000 draws with `stats::rnorm()` for the intercept and the gap, convert them with `stats::plogis()`, and take the difference. Then run `retrodesign::retro_design_closed_form()` at the standard error of the original comparison for the posterior median of the joint model, `r insight::format_value(abs(joint_orig$median), digits = 1)` points, and write two sentences on what the result says about the published gap.
+:::
+
+## Further reading {#sec-further}
+
+For learning Bayesian estimation from the start, *Statistical Rethinking* builds it from counting and simulation, with priors chosen by prior predictive simulation throughout [@McElreath2020StatisticalRethinkingBayesian], and *Regression and Other Stories* treats regression with the same habits and with weakly informative priors as the default [@GelmanEtAl2020RegressionOtherStories]. *Bayesian Data Analysis* is the reference text, including the hierarchical models that combine several studies [@GelmanEtAl2014BayesianDataAnalysis], and the *Bayesian Workflow* book sets out the cycle of building, checking and revising a model that this page follows in miniature, from the prior predictive check to the posterior predictive check that names the next model [@GelmanEtAl2026BayesianWorkflow]. The design analysis of section 6 comes from @GelmanCarlin2014PowerCalculationsAssessing. The models are fitted with brms [@Burkner2017BrmsPackageBayesian], the gaps in points come from marginaleffects [@Arel-BundockEtAl2024HowInterpretStatistical], and the sensitivity checks from priorsense [@KallioinenEtAl2026PriorsenseEfficientPrior]. The script `companion/_model-outputs/bayes_audit.R` fits every model on the page, and its outputs are listed in `companion/_model-outputs/manifest.txt`.
+
+## References {.unnumbered}
+
+::: {#refs}
+:::

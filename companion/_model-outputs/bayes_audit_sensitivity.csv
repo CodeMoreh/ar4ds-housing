@@ -1,0 +1,8 @@
+model,variable,prior,likelihood,diagnosis
+original_weak,b_hisp,0.02686,0.09688,-
+original_sceptical,b_hisp,0.2149,0.2115,potential prior-data conflict
+replication_alone,b_hisp,0.001232,0.08489,-
+replication_updated,b_hisp,0.2148,0.261,potential prior-data conflict
+joint_common,b_hisp,0.00355,0.08902,-
+joint_separate,b_studyoriginal:hisp,0.02778,0.08984,-
+joint_separate,b_studyreplication:hisp,0.001672,0.08219,-
