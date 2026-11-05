@@ -470,6 +470,23 @@ tinyplot::tinyplot(share ~ group, facet = ~name_sex, data = by_sex, type = "barp
 
 Both Hispanic names drew fewer greetings than the names of the other two groups, and the gap is larger for the male name, Santiago, than for the female one, Gabriela. A tinyplot is drawn straight onto the plotting device and is not stored as an object, so a figure is written to a file by opening the file first, with `png("names.png", width = 7, height = 4, units = "in", res = 300)`, drawing, and closing the file with `dev.off()`.
 
+Every figure so far reduces a yes-or-no outcome to a share, one number for each name or group. A measure that can take many values, such as a length of time, is better drawn whole, so that the reader can judge its spread and its shape as well as its centre, and the usual figure for a single measure of this kind is a histogram, which divides the range of the measure into intervals, called bins, and draws a bar for the number of cases in each. The housing-audit data hold one such measure, the length of the wait list that a reply gave, in months. It is stored as text in `waitlist`, because some replies gave words rather than numbers, `Closed` or `No Housing`, so the first step keeps the entries that are numbers and converts them. `grepl("^[0-9.]+$", waitlist)` is `TRUE` for an entry made only of digits and decimal points, and `FALSE` for a word or a missing value.
+
+```{r}
+#| label: fig-tinyplot-waits
+#| fig-cap: "The length of the wait list given in the replies that stated one in months, in bins of three months. Source: `cases/housing/data/housing_audit.csv`."
+#| fig-alt: "Histogram of wait lists from 0 to 120 months. Most lie below two years, with tall bars at 6 and 12 months, smaller peaks at 24 and 36 months, and a few long waits beyond five years."
+#| fig-height: 3.2
+waits <- audit |>
+  datawizard::data_filter(grepl("^[0-9.]+$", waitlist)) |>
+  datawizard::data_modify(months = as.numeric(waitlist))
+
+tinyplot::tinyplot(~ months, data = waits, type = tinyplot::type_histogram(breaks = seq(0, 120, by = 3)),
+                   xlab = "Wait list given in the reply (months)", ylab = "Replies")
+```
+
+A formula with nothing before the tilde, `~ months`, asks for a single variable, and `type_histogram()` sets the edges of the bins with `breaks`, here every three months from 0 to 120. Of the `r nrow(waits)` replies that gave a number, half quoted a wait of between `r stats::quantile(waits$months, 0.25)` and `r stats::quantile(waits$months, 0.75)` months, around a median of `r stats::median(waits$months)` months, while a few quoted far longer waits, up to `r max(waits$months)` months, which is why the distribution has a long tail to the right and its mean, `r fmt(mean(waits$months))` months, lies above the median. The tall bars at 6 and 12 months and the smaller ones at 24 and 36 months come from the round numbers in which officials speak of waits, and from the OAs, who converted phrases such as "two years" into months, so the measure is heaped at half-years and whole years. Adding `| group` to the formula colours the bars by the group of the name, and `facet = ~group` draws one histogram for each group, which is how the waits quoted to the three groups would be compared.
+
 ### ggplot2 {#sec-first-ggplot}
 
 The ggplot2 package draws the figures of the pages and slides of this site. Its name abbreviates 'the grammar of graphics', the idea that any chart can be described as a combination of a few standard parts: the data, a mapping from columns to visual properties such as position and colour, and the shapes that are drawn, called geoms. Scales, labels and a theme finish the figure. A bar chart and a scatterplot are two fillings of the same parts, so once you know the parts you can read the code of any figure on this site.
