@@ -39,7 +39,8 @@ cases:
   housing:
     label: "housing audit"
     name: "the housing-audit case"
-    # PLACEHOLDER until CM creates the repository on GitHub
+    # A public template repository with Pages built by Actions, like the
+    # workspace of the EU-frames case; the zip unzips into replication-lab-housing-main
     template-repo: "https://github.com/CodeMoreh/replication-lab-housing"
     workspace-zip: "https://github.com/CodeMoreh/replication-lab-housing/archive/refs/heads/main.zip"
     live-results-url: "https://codemoreh.github.io/ar4ds-housing/cases/housing/multiverse.html"
