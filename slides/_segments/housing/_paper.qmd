@@ -169,7 +169,7 @@ The published result behind it: Table 1, model 3, a logistic regression on the t
 :::
 
 ::: {.src}
-@EinsteinGlick2017DoesRaceAffect, abstract and Table 1; the Multi100 record of the claim.
+@EinsteinGlick2017DoesRaceAffect, abstract, Table 1 and p. 18 of the accepted manuscript; the Multi100 record of the claim.
 :::
 
 ::: notes

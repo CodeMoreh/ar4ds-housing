@@ -340,7 +340,7 @@ shares |>
   datawizard::data_summary(gap_points = 100 * (share[group == "hispanic"] - share[group == "white"]))
 ```
 
-A gap of `r fmt(gap_replies, 2)` points is the raw difference that the paper reports, and it is the **reference specification** of the course, the analysis against which every alternative on the [specification menu](../cases/housing/menu.qmd) is compared. The published estimate of `r fmt(published$b_pp)` points comes from a different calculation, a logistic regression with covariates, which the [binary-outcomes module](binary-outcomes.qmd) fits step by step, and the two agree closely.
+A gap of `r fmt(gap_replies, 2)` points is the raw difference behind the shares that the paper reports, 61% against 41% (p. 18), and it is the **reference specification** of the course, the analysis against which every alternative on the [specification menu](../cases/housing/menu.qmd) is compared. The published estimate of `r fmt(published$b_pp)` points comes from a different calculation, a logistic regression with covariates, which the [binary-outcomes module](binary-outcomes.qmd) fits step by step, and the two agree closely.
 
 That gap is counted among the replies only. An email that drew no reply has no greeting, so it plays no part in the calculation. The other way to count is to keep every delivered email and treat a missing reply as a reply without a greeting by name. `if_else()` from dplyr makes that column inside `data_modify()`: where `reply` is 1 it keeps the greeting code, and elsewhere it puts 0. The five uncoded replies are still missing afterwards and are filtered out.
 
@@ -475,7 +475,7 @@ Every figure so far reduces a yes-or-no outcome to a share, one number for each 
 ```{r}
 #| label: fig-tinyplot-waits
 #| fig-cap: "The length of the wait list given in the replies that stated one in months, in bins of three months. Source: `cases/housing/data/housing_audit.csv`."
-#| fig-alt: "Histogram of wait lists from 0 to 120 months. Most lie below two years, with tall bars at 6 and 12 months, smaller peaks at 24 and 36 months, and a few long waits beyond five years."
+#| fig-alt: "Histogram of wait lists from 0 to 120 months. Most lie below two years, with tall bars at 6 and 12 months, smaller peaks at 24 and 36 months, and two long waits beyond five years."
 #| fig-height: 3.2
 waits <- audit |>
   datawizard::data_filter(grepl("^[0-9.]+$", waitlist)) |>
@@ -485,7 +485,7 @@ tinyplot::tinyplot(~ months, data = waits, type = tinyplot::type_histogram(break
                    xlab = "Wait list given in the reply (months)", ylab = "Replies")
 ```
 
-A formula with nothing before the tilde, `~ months`, asks for a single variable, and `type_histogram()` sets the edges of the bins with `breaks`, here every three months from 0 to 120. Of the `r nrow(waits)` replies that gave a number, half quoted a wait of between `r stats::quantile(waits$months, 0.25)` and `r stats::quantile(waits$months, 0.75)` months, around a median of `r stats::median(waits$months)` months, while a few quoted far longer waits, up to `r max(waits$months)` months, which is why the distribution has a long tail to the right and its mean, `r fmt(mean(waits$months))` months, lies above the median. The tall bars at 6 and 12 months and the smaller ones at 24 and 36 months come from the round numbers in which officials speak of waits, and from the OAs, who converted phrases such as "two years" into months, so the measure is heaped at half-years and whole years. Adding `| group` to the formula colours the bars by the group of the name, and `facet = ~group` draws one histogram for each group, which is how the waits quoted to the three groups would be compared.
+A formula with nothing before the tilde, `~ months`, asks for a single variable, and `type_histogram()` sets the edges of the bins with `breaks`, here every three months from 0 to 120. Of the `r nrow(waits)` replies that gave a number, half quoted a wait of between `r stats::quantile(waits$months, 0.25)` and `r stats::quantile(waits$months, 0.75)` months, around a median of `r stats::median(waits$months)` months, while a few quoted far longer waits, up to `r max(waits$months)` months, which is why the distribution has a long tail to the right and its mean, `r fmt(mean(waits$months))` months, lies above the median. The tall bars at 6 and 12 months and the smaller ones at 24 and 36 months most likely come from the round numbers in which officials speak of waits, and from the OAs, who converted phrases such as "two years" into months, so the measure is heaped at half-years and whole years. Adding `| group` to the formula colours the bars by the group of the name, and `facet = ~group` draws one histogram for each group, which is how the waits quoted to the three groups would be compared.
 
 ### ggplot2 {#sec-first-ggplot}
 

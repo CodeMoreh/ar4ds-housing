@@ -137,7 +137,7 @@ round(r_multi100(chi, "chi2", NA, c(nrow(frame_8ptrz), nrow(frame_8ptrz), nrow(f
 
 Without the correction 8PTRZ would have recorded $\chi^2$ = `r insight::format_value(chi[["8PTRZ uncorrected"]], digits = 3)` rather than `r insight::format_value(chi[["8PTRZ corrected"]], digits = 3)`, and 25N5D `r insight::format_value(chi[["25N5D uncorrected"]], digits = 3)` rather than `r insight::format_value(chi[["25N5D corrected"]], digits = 3)`. The correlations move only in the third decimal, but the move comes from a default of the software, not from the data or the question.
 
-The tolerance region of Multi100 shows how these features combine. The OAs reported z = `r insight::format_value(abs(oa$statistic), digits = 2)` on `r oa$n` replies, from a logistic regression with covariates and all three groups, which converts to r = `r insight::format_value(r_multi100(abs(oa$statistic), "z", NA, oa$n), digits = 3)` and d = `r insight::format_value(2 * r_multi100(abs(oa$statistic), "z", NA, oa$n) / sqrt(1 - r_multi100(abs(oa$statistic), "z", NA, oa$n)^2), digits = 3)`.
+The tolerance region of Multi100 shows how these features combine. Multi100 recorded the original result as z = `r insight::format_value(abs(oa$statistic), digits = 2)` on `r oa$n` replies, the coefficient of the Hispanic names divided by its standard error (−0.82 and 0.22) in the logistic regression of the OAs with covariates and all three groups (Table 1, p. 37). That z converts to r = `r insight::format_value(r_multi100(abs(oa$statistic), "z", NA, oa$n), digits = 3)` and d = `r insight::format_value(2 * r_multi100(abs(oa$statistic), "z", NA, oa$n) / sqrt(1 - r_multi100(abs(oa$statistic), "z", NA, oa$n)^2), digits = 3)`.
 
 ```{r}
 #| label: tolerance
@@ -171,7 +171,7 @@ Analyses of one file can be summarised by their spread and by what drives it. On
 
 ## 5. Two studies of one question {#sec-two-studies}
 
-The original audit and the SCORE replication are a different matter. The replication emailed other authorities, in 2020 rather than 2014, from new names, and its sampling error is independent of that of the original, so the two estimates are two pieces of evidence about the gap, and meta-analysis applies. The comparison below uses the reference specification of the course, Hispanic against white names among the coded replies with no covariates, and the same comparison among all replies of the replication, which is the mark of the replication on the curve. The replication published no file that the course may copy, so its counts come from the shares and the total of `display_replication.csv`, recovered by the script `companion/_model-outputs/bayes_audit.R`.
+The original audit and the SCORE replication are a different matter. The replication emailed a wider set of authorities, 3,050 against 1,017, in 2020 rather than 2014, from new names, and its sampling error is independent of that of the original, so the two estimates are two pieces of evidence about the gap, and meta-analysis applies. The comparison below uses the reference specification of the course, Hispanic against white names among the coded replies with no covariates, and the same comparison among all replies of the replication, which is the mark of the replication on the curve. The replication published no file that the course may copy, so its counts come from the shares and the total of `display_replication.csv`, recovered by the script `companion/_model-outputs/bayes_audit.R`.
 
 ```{r}
 #| label: escalc
