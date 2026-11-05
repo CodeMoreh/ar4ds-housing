@@ -95,18 +95,24 @@ website:
           - text: "Data and sharing"
           - href: companion/data-sources.qmd
             text: "Social science data sources"
+          - href: companion/data-management.qmd
+            text: "Building the analysis file"
           - href: companion/repositories.qmd
             text: "Reproducibility repositories"
           - text: "---"
           - text: "Methods"
           - href: companion/experiments.qmd
             text: "Audit experiments"
+          - href: companion/subgroups.qmd
+            text: "Subgroups and multiple comparisons"
           - href: companion/binary-outcomes.qmd
             text: "Binary outcomes"
           - href: companion/bayesian.qmd
             text: "Bayesian estimation"
           - href: companion/dags.qmd
             text: "Causal graphs and adjustment sets"
+          - href: companion/missingness.qmd
+            text: "Missing values"
           - href: companion/simulation.qmd
             text: "Simulation as a method"
           - href: companion/multiverse.qmd
