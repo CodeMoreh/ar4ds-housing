@@ -1,0 +1,17 @@
+<!-- Behaviour of the opening page: the reveal on scroll of every element with
+     the class home-reveal. The text, the case cards and the formats are
+     Markdown in index.qmd; the track that a visitor last opened is shown in
+     the navbar by _includes/track-choice.html. -->
+<script>
+(function () {
+  var items = document.querySelectorAll(".home-reveal");
+  if ("IntersectionObserver" in window) {
+    var io = new IntersectionObserver(function (es) {
+      es.forEach(function (e) { if (e.isIntersecting) { e.target.classList.add("in"); io.unobserve(e.target); } });
+    }, { threshold: 0.12 });
+    items.forEach(function (el) { io.observe(el); });
+  } else {
+    items.forEach(function (el) { el.classList.add("in"); });
+  }
+})();
+</script>
