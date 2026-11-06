@@ -1,0 +1,16 @@
+---
+title: "Slides"
+subtitle: "One-day workshop – the housing-audit case"
+page-layout: full
+toc: false
+aliases:
+  - ../housing-one-day-methods/slides.html
+  - ../housing-one-day-open-science/slides.html
+  - ../housing-one-day-data-tools/slides.html
+---
+
+```{=html}
+<iframe class="slide-deck" src="../../slides/housing-one-day.html" title="Slides of the one-day workshop, the housing-audit case"></iframe>
+```
+
+Open the deck [in its own tab](../../slides/housing-one-day.html){target="_blank"} for the full screen, the speaker view and the keyboard controls: the `d` key switches the optional runs of slides on and off, `[` and `]` jump between parts, and `g` opens a jump bar that finds a slide by its title.

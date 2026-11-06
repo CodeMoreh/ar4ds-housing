@@ -34,7 +34,7 @@
 :::
 
 ::: notes
-Two places to work, with the same tasks and the same numbers. The browser lab is one web page with R compiled to run inside the browser itself: nothing to install, nothing to break, and the data are already there. It is what I drive on the shared screen, and it is where most of you will work today. The workspace is the folder that you can download and open in your IDE, which is Positron on my screen and may be RStudio or VS Code on yours. Quarto renders the report, R fits every model live, and there is no git and no cloning, because it is just a folder of files. If you installed it, use it; if not, the lab does everything that the day needs.[ Today the IDE has a part of its own after the break, so if you have the workspace, keep it open, and if not, follow that part on my screen and do the R in the lab.]{.content-visible when-meta="deck.data-tools"} The address of the zip is at the bottom.
+Two places to work, with the same tasks and the same numbers. The browser lab is one web page with R compiled to run inside the browser itself: nothing to install, nothing to break, and the data are already there. It is what I drive on the shared screen, and it is where most of you will work today. The workspace is the folder that you can download and open in your IDE, which is Positron on my screen and may be RStudio or VS Code on yours. Quarto renders the report, R fits every model live, and there is no git and no cloning, because it is just a folder of files. If you installed it, use it; if not, the lab does everything that the day needs. The address of the zip is at the bottom.
 :::
 
 ## What the tools cannot do {.smaller}

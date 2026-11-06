@@ -1,7 +1,8 @@
 # The docked sidebars of the formats of the housing-audit case. Each lists only
 # the pages of its own format, in teaching order, and the previous and next
 # links at the foot of each page follow that order. The pages under tracks/ and
-# this file are edited by hand.
+# this file are edited by hand. Day 2 of the Extended course is the one-day
+# workshop, whose pages stay in the sidebar of the workshop.
 website:
   sidebar:
     - title: "Short session"
@@ -20,66 +21,42 @@ website:
           href: tracks/housing-short/slides.qmd
         - text: "After the session"
           href: tracks/housing-short/after.qmd
-    - title: "One day, open science"
+    - title: "One-day workshop"
       style: docked
       collapse-level: 1
       contents:
         - text: "Overview"
-          href: tracks/housing-one-day-open-science/index.qmd
+          href: tracks/housing-one-day/index.qmd
         - text: "Before the day"
-          href: tracks/housing-one-day-open-science/before.qmd
-        - text: "Part 1 – Credibility and open research"
-          href: tracks/housing-one-day-open-science/part-1.qmd
-        - text: "Part 2 – The claim and its estimand"
-          href: tracks/housing-one-day-open-science/part-2.qmd
-        - text: "Part 3 – Reproduction"
-          href: tracks/housing-one-day-open-science/part-3.qmd
-        - text: "Part 4 – Replication and preregistration"
-          href: tracks/housing-one-day-open-science/part-4.qmd
+          href: tracks/housing-one-day/before.qmd
+        - text: "Part 1 – The claim and credibility"
+          href: tracks/housing-one-day/part-1.qmd
+        - text: "Part 2 – The estimand and the causal graph"
+          href: tracks/housing-one-day/part-2.qmd
+        - text: "Part 3 – The reproduction"
+          href: tracks/housing-one-day/part-3.qmd
+        - text: "Part 4 – Robustness"
+          href: tracks/housing-one-day/part-4.qmd
         - text: "Slides"
-          href: tracks/housing-one-day-open-science/slides.qmd
+          href: tracks/housing-one-day/slides.qmd
         - text: "After the day"
-          href: tracks/housing-one-day-open-science/after.qmd
-    - title: "One day, data tools"
+          href: tracks/housing-one-day/after.qmd
+    - title: "Extended course"
       style: docked
       collapse-level: 1
       contents:
         - text: "Overview"
-          href: tracks/housing-one-day-data-tools/index.qmd
-        - text: "Before the day"
-          href: tracks/housing-one-day-data-tools/before.qmd
-        - text: "Part 1 – Credibility and the toolchain"
-          href: tracks/housing-one-day-data-tools/part-1.qmd
-        - text: "Part 2 – R and the IDE"
-          href: tracks/housing-one-day-data-tools/part-2.qmd
-        - text: "Part 3 – Data management and the reproduction"
-          href: tracks/housing-one-day-data-tools/part-3.qmd
-        - text: "Part 4 – The report and its record"
-          href: tracks/housing-one-day-data-tools/part-4.qmd
-        - text: "Slides"
-          href: tracks/housing-one-day-data-tools/slides.qmd
-        - text: "After the day"
-          href: tracks/housing-one-day-data-tools/after.qmd
-    - title: "One day, methods"
-      style: docked
-      collapse-level: 1
-      contents:
-        - text: "Overview"
-          href: tracks/housing-one-day-methods/index.qmd
-        - text: "Before the day"
-          href: tracks/housing-one-day-methods/before.qmd
-        - text: "Part 1 – Credibility and tools"
-          href: tracks/housing-one-day-methods/part-1.qmd
-        - text: "Part 2 – The claim and its estimand"
-          href: tracks/housing-one-day-methods/part-2.qmd
-        - text: "Part 3 – Reproduction and exploration"
-          href: tracks/housing-one-day-methods/part-3.qmd
-        - text: "Part 4 – Multiverse, replication and preregistration"
-          href: tracks/housing-one-day-methods/part-4.qmd
-        - text: "Slides"
-          href: tracks/housing-one-day-methods/slides.qmd
-        - text: "After the day"
-          href: tracks/housing-one-day-methods/after.qmd
+          href: tracks/housing-extended/index.qmd
+        - text: "Before the course"
+          href: tracks/housing-extended/before.qmd
+        - text: "Day 1 – Open research and the tools"
+          href: tracks/housing-extended/day-1.qmd
+        - text: "Day 2 – The workshop"
+          href: tracks/housing-extended/day-2.qmd
+        - text: "Day 3 – The methods and your report"
+          href: tracks/housing-extended/day-3.qmd
+        - text: "After the course"
+          href: tracks/housing-extended/after.qmd
     - title: "Self-study"
       style: docked
       collapse-level: 1

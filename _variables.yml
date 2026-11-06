@@ -52,9 +52,9 @@ cases:
 delivery:
   active: 'false'
   # Which format this delivery follows, named by its folder under tracks/:
-  # housing-short, housing-one-day-open-science, housing-one-day-data-tools,
-  # housing-one-day-methods or self-study. An empty value prints no format
-  # line in the callout, and so does a value that matches no folder.
+  # housing-short, housing-one-day, housing-extended or self-study. An empty
+  # value prints no format line in the callout, and so does a value that
+  # matches no folder.
   track: ""
   date: ""
   venue: ""

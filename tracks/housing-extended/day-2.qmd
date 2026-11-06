@@ -1,0 +1,14 @@
+---
+title: "Day 2 – The workshop"
+---
+
+The second day is the [one-day workshop](../housing-one-day/index.qmd) on the housing-audit case, unchanged, and its pages carry the steps of each part. After the first day the morning of the workshop goes faster, since credibility, the three Rs and Multi100 are familiar, and the time that it saves goes to the tasks.
+
+[Start the workshop at Part 1](../housing-one-day/part-1.qmd){.btn .btn-primary}
+
+- **[Part 1 – The claim and credibility](../housing-one-day/part-1.qmd).** The case of the day and its claim, with the setup check of Task 1.
+- **[Part 2 – The estimand and the causal graph](../housing-one-day/part-2.qmd).** The five analysts, estimands and causal graphs, and the estimand statement and the graph of Task 2.
+- **[Part 3 – The reproduction](../housing-one-day/part-3.qmd).** One of the five reanalyses reproduced in Task 3, and what a reproduction needs.
+- **[Part 4 – Robustness](../housing-one-day/part-4.qmd).** The menu of Task 4 and the class chart, the curve, the replication, and the analysis that you declare in Task 5.
+
+**By the end of the day** you have one analysis declared in the preregistration block of your report, run and sent to the class chart, which the third day writes up.

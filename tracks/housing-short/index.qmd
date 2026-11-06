@@ -1,6 +1,6 @@
 ---
 title: "Short session – the housing-audit case"
-subtitle: "Two halves of about seventy-five minutes, with a facilitator"
+subtitle: "Two halves, with a facilitator"
 ---
 This is the short session on the housing-audit case, for a slot of two to three hours, with nothing to install, nothing sent to a class chart and nothing preregistered. The session works on a field experiment, in which emails that differed only in the name that signed them were sent to public housing authorities in the United States, and on a claim of the original authors (OAs) that five analysts reanalysed for Multi100. You meet the claim and the five analysts, write the estimand statement behind the claim, and reproduce one of the five reanalyses, whichever you choose. Then you try a few alternative analyses from the menu of the case, read the place of the one that you would defend among the 64 specifications on the curve of the claim, and end on the replication that tested the claim with new data.
 
@@ -17,10 +17,10 @@ The class writes its estimand statements and its reproduced values in the chat a
 ## The parts of the session
 
 - **[Before the session](before.qmd)** (about an hour). You read the case study and open the browser lab once on the machine that you will bring.
-- **[First half – The claim and its reproduction](half-1.qmd)** (about seventy-five minutes). The half sets out the three Rs and the SCORE programme, the paper and the five analysts, the estimand statement and the causal graph, and it ends with your reproduction of one of the five reanalyses.
-- **[Second half – Exploration and replication](half-2.qmd)** (about seventy-five minutes, after a break of fifteen minutes). You work through the specification menu, try a few analyses of your own, place one of them on the curve of 64, and meet the replication with new data.
+- **[First half – The claim and its reproduction](half-1.qmd).** The half sets out the three Rs and the SCORE programme, the paper and the five analysts, the estimand statement and the causal graph, and it ends with your reproduction of one of the five reanalyses.
+- **[Second half – Exploration and replication](half-2.qmd).** After a short break, you work through the specification menu, try a few analyses of your own, place one of them on the curve of 64, and meet the replication with new data.
 - **[After the session](after.qmd)** (as long as you like). The page sets out the rest of the exercise and where to go next.
 
 [Start with Before the session](before.qmd){.btn .btn-primary}
 
-The same case is also taught over a whole day, as one-day courses on [open science](../housing-one-day-open-science/index.qmd), [data tools](../housing-one-day-data-tools/index.qmd) and [methods](../housing-one-day-methods/index.qmd), each with its own focus.
+The same case is also taught as a [one-day workshop](../housing-one-day/index.qmd), as the [Extended course](../housing-extended/index.qmd), whose second day is the workshop, and as a [self-study route](../self-study/index.qmd).

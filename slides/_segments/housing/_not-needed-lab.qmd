@@ -8,7 +8,7 @@
 - No installation: the browser lab runs R inside a tab of your browser, with the data in place[, and the workspace is there for anyone who has installed R and an IDE]{.content-visible unless-meta="deck.short"}
 - No git, and no GitHub account
 - No OSF account – we read OSF as readers, without logging in
-- Nothing to sign up for, and nothing leaves your machine[ except the results that you choose to send to the class chart]{.content-visible when-meta="deck.methods"}
+- Nothing to sign up for, and nothing leaves your machine[ except the results that you choose to send to the class chart]{.content-visible when-meta="deck.one-day"}
 :::
 
 ::: {.fragment}
@@ -16,5 +16,5 @@
 :::
 
 ::: notes
-Before anything else, a word on what you do not need. You do not need to install anything, because the browser lab on the course site runs R inside a tab of your browser, with the data already loaded.[ If you have installed R and the workspace, you can work in your IDE instead, since the two give the same numbers.]{.content-visible unless-meta="deck.short"} You do not need git or a GitHub account, and you do not need an OSF account either, because we will look at the OSF from the outside, as readers do.[ The only thing that leaves your machine today is a result that you choose to send to the class chart.]{.content-visible when-meta="deck.methods"}[ Nothing that you do today leaves your machine.]{.content-visible unless-meta="deck.methods"} One thing to do right now, while I talk. Open the browser lab in a tab and leave it alone. R loads there in the background, so it will be ready long before you need it.
+Before anything else, a word on what you do not need. You do not need to install anything, because the browser lab on the course site runs R inside a tab of your browser, with the data already loaded.[ If you have installed R and the workspace, you can work in your IDE instead, since the two give the same numbers.]{.content-visible unless-meta="deck.short"} You do not need git or a GitHub account, and you do not need an OSF account either, because we will look at the OSF from the outside, as readers do.[ The only thing that leaves your machine today is a result that you choose to send to the class chart.]{.content-visible when-meta="deck.one-day"}[ Nothing that you do today leaves your machine.]{.content-visible unless-meta="deck.one-day"} One thing to do right now, while I talk. Open the browser lab in a tab and leave it alone. R loads there in the background, so it will be ready long before you need it.
 :::

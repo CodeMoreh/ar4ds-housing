@@ -35,7 +35,7 @@ The instruction fixed one detail of the model, and left open the two decisions t
 :::
 
 ::: notes
-So what did the instruction leave open? Almost everything that matters. The comparison: the ellipsis in the claim points to white names, but the abstract compares Hispanic names with Black and white names together, and an analyst could defend either. The emails counted: the replies, as the paper counts them, or every email that arrived, which is the remedy for the problem [that the causal graph showed us]{.content-visible unless-meta="deck.data-tools"}[of comparing only the officials who chose to reply]{.content-visible when-meta="deck.data-tools"}. The test, the covariates other than ethnic composition, and even five replies whose greeting nobody coded. [advance] The instruction pinned down one detail of the model, and left open the two decisions that define the question itself. That is exactly where the five analysts parted company, as their table showed earlier.
+So what did the instruction leave open? Almost everything that matters. The comparison: the ellipsis in the claim points to white names, but the abstract compares Hispanic names with Black and white names together, and an analyst could defend either. The emails counted: the replies, as the paper counts them, or every email that arrived, which is the remedy for the problem that the causal graph showed us. The test, the covariates other than ethnic composition, and even five replies whose greeting nobody coded. [advance] The instruction pinned down one detail of the model, and left open the two decisions that define the question itself. That is exactly where the five analysts parted company, as their table showed earlier.
 :::
 
 ## Analyst no. 6 {#you-are-analyst-no.-6}

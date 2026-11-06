@@ -8,10 +8,9 @@ The case is a field experiment in which emails that differed only in the name th
 
 | Format | Folder | Taught in |
 |---|---|---|
-| Short session, two halves of about 75 minutes | `tracks/housing-short/` | the browser lab |
-| One day with open science in focus | `tracks/housing-one-day-open-science/` | the browser lab, the workspace as an option |
-| One day with data tools in focus | `tracks/housing-one-day-data-tools/` | the browser lab, the workspace as an option |
-| One day with methods in focus | `tracks/housing-one-day-methods/` | the browser lab, the workspace as an option |
+| Short session, in two halves | `tracks/housing-short/` | the browser lab |
+| One-day workshop, in four parts | `tracks/housing-one-day/` | the browser lab, the workspace as an option |
+| Extended course, three days built around the workshop | `tracks/housing-extended/` | the workspace, with the browser lab on the day of the workshop |
 | Self-study | `tracks/self-study/` | the workspace |
 
 Each format has a docked sidebar (`_sidebar.yml`), part pages that lead into the content, and a slides page that embeds its deck (`slides/housing-*.qmd`, assembled from `slides/_segments/`). The run sheet of the facilitator, with the timings, is `facilitator/housing-guide.qmd`.

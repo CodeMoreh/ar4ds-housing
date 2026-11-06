@@ -5,7 +5,7 @@ title: "First half – The claim and its reproduction"
 **Slides.** [Open the deck at this half](../../slides/housing-short.html#/half-1-the-claim-and-its-reproduction){target="_blank"} in its own tab, or follow it on the [slides page](slides.qmd).
 :::
 
-The first half gives you the vocabulary of three kinds of repetition and the case, an experiment run by email, and works out what question its claim answers. Before the break you reproduce the result that one of the five independent analysts of the claim reported, whichever of them you choose, and find out why your number is exactly that number. The half takes about seventy-five minutes.
+The first half gives you the vocabulary of three kinds of repetition and the case, an experiment run by email, and works out what question its claim answers. Before the break you reproduce the result that one of the five independent analysts of the claim reported, whichever of them you choose, and find out why your number is exactly that number.
 
 ## 1. The plan of the session
 

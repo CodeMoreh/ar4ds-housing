@@ -1,0 +1,39 @@
+---
+title: "Part 3 – The reproduction"
+aliases:
+  - ../housing-one-day-methods/part-3.html
+  - ../housing-one-day-open-science/part-3.html
+  - ../housing-one-day-data-tools/part-3.html
+---
+
+::: {.callout-note appearance="simple" icon=false}
+**Slides.** [Open the deck at this part](../../slides/housing-one-day.html#/part-3-the-reproduction){target="_blank"} in its own tab, or follow it on the [slides page](slides.qmd).
+:::
+
+Part 3 is about the first of the three Rs. You choose one of the five analysts and reproduce the value that Multi100 recorded for them, from the public file of the original study. You then find out why your number is exactly that number, what a reproduction needs besides the data and the code, and where the reproduction of this paper reaches its limit.
+
+## 1. The instruction of Multi100
+
+**On the slides.** The slides read the instruction of Task 2 of Multi100 word for word and show what it left open. They then set the aim of the reproduction, which is one of the five reanalyses, whichever you choose, from the public file of the original authors (OAs).
+
+## 2. Task 3 – The reproduction
+
+[Open the browser lab at Task 3](../../cases/housing/lab.qmd#task-3-reproduction){.btn .btn-primary target="_blank"}
+
+If you work in the workspace, use your report or working script instead. Choose one of the five analysts and work through their cells on the public file `audit_original.csv`. Four of them have a value that Multi100 recorded: $\chi^2$ = 14.265 for 8PTRZ, z = −3.771 for UYV3F, z = 3.645 for EWFMI and $\chi^2$ = 13.683 for 25N5D. P9W8Y has none, so its test of three groups, $\chi^2$ = 15.951 on 2 degrees of freedom, can be run again but not matched. Type the analyst and the value in the chat without sending them, and send them when the facilitator says go, so that the matching values appear at the same moment.
+
+## 3. Reproducibility and analytical choice
+
+**On the slides.** The slides explain why your number is exactly that number. For a two-by-two table `chisq.test()` and `prop.test()` apply the continuity correction unless they are told otherwise, so that `correct = FALSE` gives 14.95 for 8PTRZ and 14.33 for 25N5D, and the base group of a factor sets the sign of the z of EWFMI. They end on why everyone who chose the same analyst got the same value while the five analysts, each writing their own code, did not.
+
+## 4. What a reproduction needs
+
+**On the slides.** A reproduction needs the data under a licence that allows reuse, the code, the defaults of the software, and someone who tries. The slides then show the limit of this one. The public file holds the communities in thirds, so the model of the paper with community covariates can only be approximated.
+
+## 5. A second reproduction
+
+[Open the browser lab at Task 3](../../cases/housing/lab.qmd#task-3-reproduction){.btn .btn-primary target="_blank"}
+
+Reproduce a second analyst whose analysis differs from your first in one decision: the comparison (8PTRZ and UYV3F), the emails counted (UYV3F and 25N5D) or the test (UYV3F and P9W8Y). Compare the two as gaps in percentage points, and write one sentence on which of them answers the claim as SCORE selected it.
+
+**By the end of the part** you have reproduced one or two of the five reanalyses yourself, you know on which defaults of the software their values depend, and you can say what open data and open code make possible and where a reproduction of this paper reaches its limit.

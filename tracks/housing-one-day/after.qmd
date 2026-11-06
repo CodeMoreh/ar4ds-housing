@@ -1,0 +1,25 @@
+---
+title: "After the day"
+aliases:
+  - ../housing-one-day-methods/after.html
+  - ../housing-one-day-open-science/after.html
+  - ../housing-one-day-data-tools/after.html
+---
+
+A single day has room for the exercise and very little else. The [companion curriculum](../../companion/index.qmd) covers the material that the day can only mention in passing, in modules that each stand on their own, so take the one you need and leave the rest. The section "Going further" at the end of the report in the workspace holds four more exercises: a sweep of a whole decision, the five analysts placed on the curve, the randomisation test beside the test of the model, and the replication with new data.
+
+- [The multiverse and its critics](../../companion/multiverse.qmd) sets out the ideas behind what you did during the day, and the arguments now being made against them.
+- [Audit experiments](../../companion/experiments.qmd) covers the design of the experiment: random assignment, names as treatments, comparisons among replies, randomisation inference, power, blocked randomisation and the ethics of deception.
+- [Binary outcomes](../../companion/binary-outcomes.qmd) takes every model on the menu, from a difference in proportions to the logit, and shows how to read odds ratios against percentage points.
+- [Bayesian estimation](../../companion/bayesian.qmd) estimates the gap of the day as a posterior distribution, sets a weakly informative prior against a sceptical one, and lets the replication revise the original estimate.
+- [Meta-analysis](../../companion/meta-analysis.qmd) puts the five Multi100 analyses and the two audits on one scale, and asks what a pooled estimate and a test of equivalence can say about each.
+- [Subgroups and multiple comparisons](../../companion/subgroups.qmd) reads the gap of the day in seven subgroups of the replies, and asks what corrections for many tests and partial pooling make of them.
+- [Missing values](../../companion/missingness.qmd) shows what the bounced emails, the uncoded replies and the missing community thirds do to the estimate, and how each can be handled in a randomised experiment.
+- [Causal graphs and adjustment sets](../../companion/dags.qmd) works through the graph of the day at a slower pace, and ends on a graph for a question of your own.
+- [Building the analysis file](../../companion/data-management.qmd) rebuilds the course file step by step from the file deposited with the published study.
+- [Quarto documents](https://codemoreh.github.io/ar4ds/tools/quarto.html) explains the document format in which your report is written.
+- [Reproducibility repositories](../../companion/repositories.qmd), then [Git and GitHub](https://codemoreh.github.io/ar4ds/git-github.html), show how to archive and version the report that you wrote.
+- The replication with new data is available in its own words and on its own data: the final report at [osf.io/2ug8x](https://osf.io/2ug8x/), and the de-identified data, the do-file and a dictionary at [osf.io/xseqg](https://osf.io/xseqg/).
+- [The case study](../../cases/housing/index.qmd) and the [resources page](../../resources.qmd) tell the whole story of the case, with the sources.
+
+The [short session](../housing-short/index.qmd) covers the same case in two halves, and is the format to suggest to a colleague who cannot give it a whole day. The [Extended course](../housing-extended/index.qmd) builds two more days around this workshop: a first day on open research and the tools, and a last day on the methods of the case and a report of your own, written in Quarto and kept under Git.

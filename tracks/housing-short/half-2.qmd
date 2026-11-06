@@ -5,7 +5,7 @@ title: "Second half – Exploration and replication"
 **Slides.** [Open the deck at this half](../../slides/housing-short.html#/half-2-exploration-and-replication){target="_blank"} in its own tab, or follow it on the [slides page](slides.qmd).
 :::
 
-In the first half everyone who chose the same analyst reproduced the same number, because everyone ran the same code. In the second you become the sixth analyst and make choices of your own: you try a few analyses from the menu in the browser lab, read where the one that you would defend sits among every justifiable specification on these data, and end on the new audit that tested the claim again. Nothing is sent anywhere. The half takes about seventy-five minutes.
+In the first half everyone who chose the same analyst reproduced the same number, because everyone ran the same code. In the second you become the sixth analyst and make choices of your own: you try a few analyses from the menu in the browser lab, read where the one that you would defend sits among every justifiable specification on these data, and end on the new audit that tested the claim again. Nothing is sent anywhere.
 
 ## 1. The specification menu
 

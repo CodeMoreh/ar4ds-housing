@@ -130,33 +130,25 @@ The facilitator of a course chooses its format, and the link that you receive fo
 ::: {.home-track .home-reveal}
 ### [Short session](tracks/housing-short/index.qmd) {.unnumbered .unlisted}
 
-[About two and a half hours, in the browser lab]{.home-meta}
+[Two halves, in the browser lab]{.home-meta}
 
-Two halves of about seventy-five minutes, with nothing to install and nothing to submit: the claim and the five reanalyses, the estimand statement, the reproduction of one reanalysis of your choice, a look at the menu of analyses and the curve of the claim, and the replication with new data.
+Two halves, with nothing to install and nothing to submit: the claim and the five reanalyses, the estimand statement, the reproduction of one reanalysis of your choice, a look at the menu of analyses and the curve of the claim, and the replication with new data.
 :::
 
 ::: {.home-track .home-reveal}
-### [One day – open science](tracks/housing-one-day-open-science/index.qmd) {.unnumbered .unlisted}
+### [One-day workshop](tracks/housing-one-day/index.qmd) {.unnumbered .unlisted}
 
-[Four parts of ninety minutes, mainly in the browser lab]{.home-meta}
+[Four parts, mainly in the browser lab]{.home-meta}
 
-Credibility, the three Rs and the infrastructures of open research, the paper with its claim, its five analysts and the estimand statement, the reproduction of one reanalysis, chosen by each participant, and the replication of the claim with new data, ending on what a preregistration fixes.
+The claim and the credibility of social science, the estimand and the causal graph, the reproduction of one reanalysis chosen by each participant, and the robustness exercise at the centre of the day: the specification menu, the class chart and its submissions, the curve of the claim, the replication with new data, and one analysis declared before it runs.
 :::
 
 ::: {.home-track .home-reveal}
-### [One day – data tools](tracks/housing-one-day-data-tools/index.qmd) {.unnumbered .unlisted}
+### [Extended course](tracks/housing-extended/index.qmd) {.unnumbered .unlisted}
 
-[Four parts of ninety minutes, mainly in the browser lab]{.home-meta}
+[Three days, built around the workshop]{.home-meta}
 
-R, the IDE, a Quarto report, data management and version control, practised on the data of the case, with the reproduction of a reanalysis as the target that the code works towards.
-:::
-
-::: {.home-track .home-reveal}
-### [One day – methods](tracks/housing-one-day-methods/index.qmd) {.unnumbered .unlisted}
-
-[Four parts of ninety minutes, mainly in the browser lab]{.home-meta}
-
-The estimand and the causal graph, the reproduction, and then the robustness exercise at the centre of the day: the specification menu, the class chart and its submissions, the curve of the claim, and one analysis declared before it runs.
+A first day on open research and the tools, the same for every case, the workshop as the second day, and a third day on the methods of the case, which ends with a report of your own, written in Quarto and kept under Git.
 :::
 
 ::: {.home-track .home-reveal}
@@ -164,7 +156,7 @@ The estimand and the causal graph, the reproduction, and then the robustness exe
 
 [Five stages at your own pace, in R]{.home-meta}
 
-The case for a reader who works alone, in R on your own machine, with the modules of the [companion](companion/index.qmd) between the tasks of the exercise and a project of your own at the end; the route as a whole asks for about twenty-eight hours.
+The case for a reader who works alone, in R on your own machine, with the modules of the [companion](companion/index.qmd) between the tasks of the exercise and a project of your own at the end.
 :::
 
 ::::
@@ -178,7 +170,7 @@ The case for a reader who works alone, in R on your own machine, with the module
 ## The exercise {.unnumbered .home-reveal}
 
 ::: {.home-intro .home-reveal}
-Every format works through the same five tasks, or a selection of them. The short session and the one-day courses on open science and on data tools centre on the first three and send nothing to the class chart, while the methods day and the self-study route take all five. The decisions that the tasks ask for fall into three groups: the question that the analysis answers; measurement, how the variables are built; and the model, how it is fitted and its uncertainty judged.
+Every format works through the same five tasks, or a selection of them. The short session centres on the first three and sends nothing to the class chart, while the one-day workshop, the Extended course and the self-study route take all five. The decisions that the tasks ask for fall into three groups: the question that the analysis answers; measurement, how the variables are built; and the model, how it is fitted and its uncertainty judged.
 :::
 
 :::: {.home-reveal}
@@ -251,31 +243,27 @@ The exercise follows the design of Multi100 on a smaller scale, with many analys
 </details>
 
 <details id="the-one-day-course">
-<summary>The one-day course</summary>
+<summary>The one-day workshop</summary>
 
-A one-day course runs as four parts of ninety minutes, with two breaks and a lunch between them, and when a delivery is scheduled, the callout near the top of this page gives its date. The facilitator chooses one of three focuses for it.
+The one-day workshop runs in four parts, with breaks and a lunch between them, and when a delivery is scheduled, the callout near the top of this page gives its date. Part 1 sets out the claim and the credibility of social science, with the three Rs (reproducibility, robustness and replicability), and SCORE and Multi100 in brief. Part 2 takes the estimand and the causal graph, and Part 3 the reproduction of one reanalysis, chosen by each participant. Part 4 is the robustness exercise: the specification menu, the class chart and its submissions, the curve of the claim, the replication with new data, and one analysis declared before it runs.
 
-- **Open science.** Credibility, the three Rs (reproducibility, robustness and replicability) and the infrastructures of open research; the paper, its claim, the five analysts and the estimand statement; the reproduction of one reanalysis, chosen by each participant; and the replication of the claim with new data, ending on what a preregistration fixes.
-- **Data tools.** R, the IDE, a Quarto report, data management and version control, practised on the data of the case, with the reproduction of a reanalysis as the target that the code works towards.
-- **Methods.** The estimand and the causal graph, the reproduction, and then the robustness exercise at the centre of the day: the specification menu, the class chart and its submissions, the curve of the claim, and one analysis declared before it runs.
-
-The short session runs as two halves of about seventy-five minutes in the browser lab and sends nothing to the class chart.
+The Extended course builds two more days around the workshop, a first day on open research and the tools and a third on the methods of the case and a report of your own. The short session runs as two halves in the browser lab and sends nothing to the class chart.
 
 </details>
 
 <details id="running-the-analyses">
 <summary>Running the analyses</summary>
 
-The exercise is done in R, either in the browser or on your own machine. The short session needs only a browser, and the one-day courses are taught mainly in the browser lab, with the workspace as an option. The self-study route is taught in R on your own machine: install R and an IDE (Positron, RStudio, VS Code, etc.) once, then download the ready-made workspace, a single zip file holding the analysis code, the data and a report to fill in. There is nothing to configure, so you open the folder and start working, and the workspace is yours to keep afterwards. The data of the case are in the public domain and ship inside the workspace. The [setup page](https://codemoreh.github.io/ar4ds/setup.html) on the AR4DS site walks you through the installation in plain steps.
+The exercise is done in R, either in the browser or on your own machine. The short session needs only a browser, and the one-day workshop is taught mainly in the browser lab, with the workspace as an option. The Extended course and the self-study route are taught in R on your own machine: install R and an IDE (Positron, RStudio, VS Code, etc.) once, then download the ready-made workspace, a single zip file holding the analysis code, the data and a report to fill in. There is nothing to configure, so you open the folder and start working, and the workspace is yours to keep afterwards. The data of the case are in the public domain and ship inside the workspace. The [setup page](https://codemoreh.github.io/ar4ds/setup.html) on the AR4DS site walks you through the installation in plain steps.
 
-The [browser lab](cases/housing/lab.qmd) holds the same exercise on a version of R that runs inside a browser tab, with the data in the page and nothing installed. It is the place where the short session and the one-day courses are taught, the place to try R and the data before you have installed anything, and the fallback if a machine fails on the day. Anyone can use it, whether or not they are taking the course.
+The [browser lab](cases/housing/lab.qmd) holds the same exercise on a version of R that runs inside a browser tab, with the data in the page and nothing installed. It is the place where the short session and the one-day workshop are taught, the place to try R and the data before you have installed anything, and the fallback if a machine fails on the day. Anyone can use it, whether or not they are taking the course.
 
 </details>
 
 <details>
 <summary>The companion</summary>
 
-The [companion](companion/index.qmd) holds the teaching material of the course on this case, in three groups: tools, data and sharing, and methods. Every module keeps its own page and stands on its own, so you can read one for the skill that it covers or take it in the place that a format gives it. A single day has room for the exercise and very little else, which is why a one-day course points to the modules rather than working through them, while the self-study route sets each module beside the task that first needs it.
+The [companion](companion/index.qmd) holds the teaching material of the course on this case, in three groups: tools, data and sharing, and methods. Every module keeps its own page and stands on its own, so you can read one for the skill that it covers or take it in the place that a format gives it. A single day has room for the exercise and very little else, which is why the workshop points to the modules rather than working through them, while the Extended course teaches some of them as sessions and the self-study route sets each module beside the task that first needs it.
 
 </details>
 
@@ -297,7 +285,7 @@ The claim comes from the work of SCORE, a programme that put claims from publish
 ## Getting started {.unnumbered .home-reveal}
 
 ::: {.home-intro .home-reveal}
-The short session and the one-day courses need only a browser, with the workspace as an option. The self-study route needs R, an IDE and the workspace, installed before you start.
+The short session needs only a browser. The one-day workshop is taught in the browser lab, with the installation of R, an IDE and the workspace as part of its preparation, and the Extended course and the self-study route work in the workspace from the start.
 :::
 
 :::: {.home-steps .home-reveal}

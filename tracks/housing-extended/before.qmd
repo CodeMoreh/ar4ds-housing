@@ -1,0 +1,25 @@
+---
+title: "Before the course"
+---
+
+Three things are needed before the course, and each ends in something that you can check: R and the workspace installed, with the setup check printing OK; the first module on R worked through; and the case study read. The first day teaches the IDE and Quarto live, with the modules on the AR4DS site as its reading, so working through them beforehand gives you a head start but is not needed.
+
+## 1. R and the workspace
+
+[Install R and the workspace](https://codemoreh.github.io/ar4ds/setup.html){.btn .btn-primary target="_blank"}
+
+Install R and an IDE (Positron, RStudio, VS Code, etc.), download the workspace zip, and run `R/check_setup.R` until it prints OK. You do this once, and the workspace is yours to keep after the course. The [help page](https://codemoreh.github.io/ar4ds/help.html) lists the problems that other participants have met. If the installation will not cooperate, tell the facilitator before the course: the first day leaves time to finish it, and the browser lab of the case runs every task of the second day without it.
+
+## 2. Getting started with R
+
+[Open Getting started with R](https://codemoreh.github.io/ar4ds/tools/r.html){.btn .btn-primary target="_blank"}
+
+The module teaches the R that the course asks of you, from a first line of code to a share of replies, a difference between two shares, a table and a figure, all on the data of this case. Its blocks of code run in your browser, so it can be worked before the installation, alongside it, or on a machine on which you cannot install anything.
+
+## 3. The case study
+
+[Read the case study](../../cases/housing/index.qmd){.btn .btn-primary target="_blank"}
+
+The case study presents the original study and its design, SCORE and the Multi100 project, the five reanalyses and the question that each of them answered, how their results were put on one scale, and the replication with new data. Every day of the course works on this case.
+
+**By the start of the course** you have the setup check printing OK, you have worked through the first module on R, and you know what the claim is and how the five Multi100 analysts came to different conclusions about it.

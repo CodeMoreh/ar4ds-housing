@@ -97,7 +97,7 @@ The [specification menu](menu.qmd) explains every option, and the [decision map]
 
 ## Submitting to the chart {#submitting}
 
-Only the one-day course with the methods focus sends results to the class chart. The short session and the one-day courses on open science and on data tools send nothing, and their participants can skip this section. On the methods day you submit twice, and the two submissions are different in kind.
+The one-day workshop and the Extended course send results to the class chart. The short session sends nothing, and its participants can skip this section. In the workshop you submit twice, and the two submissions are different in kind.
 
 **Task 4 – the exploratory mark (open circle).** Nothing in this task is preregistered.
 

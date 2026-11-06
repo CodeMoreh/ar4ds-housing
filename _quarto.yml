@@ -71,13 +71,10 @@ website:
         menu:
           - href: tracks/housing-short/index.qmd
             text: "Short session"
-          - text: "---"
-          - href: tracks/housing-one-day-open-science/index.qmd
-            text: "One day – open science"
-          - href: tracks/housing-one-day-data-tools/index.qmd
-            text: "One day – data tools"
-          - href: tracks/housing-one-day-methods/index.qmd
-            text: "One day – methods"
+          - href: tracks/housing-one-day/index.qmd
+            text: "One-day workshop"
+          - href: tracks/housing-extended/index.qmd
+            text: "Extended course"
           - text: "---"
           - href: tracks/self-study/index.qmd
             text: "Self-study"

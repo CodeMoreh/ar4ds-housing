@@ -1,0 +1,14 @@
+---
+title: "After the course"
+---
+
+The course leaves you with a report of your own under version control, and the companion curriculum holds the material that three days can only touch. Each module stands on its own, so take the one that your own work needs.
+
+- [Meta-analysis](../../companion/meta-analysis.qmd) puts the five Multi100 analyses and the two audits on one scale, and asks what a pooled estimate and a test of equivalence can say about each.
+- [Subgroups and multiple comparisons](../../companion/subgroups.qmd) reads the gap of the claim in seven subgroups of the replies, and asks what corrections for many tests and partial pooling make of them.
+- [Missing values](../../companion/missingness.qmd) shows what the bounced emails, the uncoded replies and the missing community thirds do to the estimate, and how each can be handled in a randomised experiment.
+- [Causal graphs and adjustment sets](../../companion/dags.qmd) works through the graph of the experiment at a slower pace, and ends on a graph for a question of your own.
+- [Simulation as a method](../../companion/simulation.qmd) builds synthetic data with a known recipe and counts how often a study of this size finds the gap.
+- [Building the analysis file](../../companion/data-management.qmd) rebuilds the course file step by step from the file deposited with the published study.
+- [The multiverse and its critics](../../companion/multiverse.qmd) sets out the ideas behind the curve and the arguments now being made against them.
+- The replication with new data is available in its own words and on its own data: the final report at [osf.io/2ug8x](https://osf.io/2ug8x/), and the de-identified data, the do-file and a dictionary at [osf.io/xseqg](https://osf.io/xseqg/).

@@ -1,0 +1,79 @@
+---
+title: "Part 4 – Robustness"
+aliases:
+  - ../housing-one-day-methods/part-4.html
+  - ../housing-one-day-open-science/part-4.html
+  - ../housing-one-day-data-tools/part-4.html
+---
+
+::: {.callout-note appearance="simple" icon=false}
+**Slides.** [Open the deck at this part](../../slides/housing-one-day.html#/part-4-robustness){target="_blank"} in its own tab, or follow it on the [slides page](slides.qmd).
+:::
+
+Part 4 turns from the reproduction of one analysis to robustness, the second of the three Rs. You work through a menu of defensible analyses of the claim, send the one that you would defend to the class chart, and read the chart against every justifiable analysis on these data. The part then leaves the original data behind for the replication that SCORE ran with new emails, and it closes on the single analysis that you would defend, declared before it runs.
+
+## 1. The specification menu
+
+**On the slides**, with the specification menu open in another tab.
+
+[Open the specification menu](../../cases/housing/menu.qmd){.btn .btn-primary target="_blank"}
+
+The slides take you through the eleven decisions in three groups, the five on which the curve keeps more than one option, and the 64 specifications that they make. They end on the ground rules for the menu, which are to change one decision at a time and to read the reason when an option is refused.
+
+## 2. The methods
+
+**On the slides.** The slides present a difference in proportions, and set the linear probability model against the logit. An optional run of six slides takes the statistics further, to odds ratios against percentage points, standard errors for a 0/1 outcome, four tests of one gap, the randomisation test, covariates in an experiment, and the subgroups that sit beside the curve.
+
+## 3. Task 4 – The menu
+
+[Open the browser lab at Task 4](../../cases/housing/lab.qmd#task-4-menu){.btn .btn-primary target="_blank"}
+
+If you work in the workspace, use your report or working script instead. Call `try_spec()` with no arguments for the reference specification, then three or four times more, changing one argument at a time, and print the tries side by side with `my_experiments()`. Ask once for an option off the curve, such as `model = "three_group"`, to read why it is refused. Then rerun the one that you would defend and send it with `submit_exploration()`. Your mark is drawn on the class chart of the [Multiverse page](../../cases/housing/multiverse.qmd#class-results) as an open circle.
+
+## 4. The multiverse
+
+**On the slides**, with the Multiverse page open in another tab.
+
+[Open the Multiverse page](../../cases/housing/multiverse.qmd){.btn .btn-primary target="_blank"}
+
+The slides name what you did in Task 4, your own small multiverse, and then show the curve of the claim: the 64 specifications ranked from the largest gap to the smallest, with the published result of the original authors (OAs) and the five analysts placed on it. An optional pair of slides tells where the idea of a multiverse came from and draws the garden of forking paths.
+
+## 5. The class results and your placement
+
+[Open the class results](../../cases/housing/multiverse.qmd#class-results){.btn .btn-primary target="_blank"}
+
+Find your own mark among the exploratory results of the class. Then rerun `try_spec()` in the [browser lab](../../cases/housing/lab.qmd#task-4-menu) with the choices that you submitted, and read your placement, which is the number of the 64 specifications whose gap lies further below zero than yours. Send it in the chat when the facilitator says go.
+
+## 6. What moved the estimate
+
+**On the slides.** Each option of the curve is set beside its twins, the specifications that agree with it on every other decision. The slides then show the step in the curve that comes from the choice of which emails to count.
+
+## 7. The replication
+
+**On the slides.** The SCORE replication was a preregistered audit of 3,050 housing authorities with new names. The slides show what it found, compare the original study and the replication row by row, and set out the power of the two designs. They end on the three Rs on this paper and on what separates robustness from replicability.
+
+To go further: [the replication](../../cases/housing/index.qmd#sec-replication) in the case study.
+
+## 8. The critics of the multiverse
+
+**On the slides.** The slides present the critics of the multiverse, and the argument that a fully specified question has one correct analysis, with the question of how anyone would identify it. They then ask what preregistration settles and what it leaves open, and set the exploration of Task 4 against the declaration of Task 5.
+
+To go further: [The multiverse and its critics](../../companion/multiverse.qmd).
+
+## 9. Archives and registrations
+
+**On the slides.** The slides show where a reanalysis is archived and registered, the preregistration of Multi100 itself, and the two preregistration templates. You then search the public record of the case for the replication report, briefly, and the slides map the eight AsPredicted questions onto the decisions that you have already met.
+
+To go further: [Reproducibility repositories](../../companion/repositories.qmd).
+
+## 10. Task 5 – The preregistration
+
+[Open the browser lab at Task 5](../../cases/housing/lab.qmd#task-5-preregistration){.btn .btn-primary target="_blank"}
+
+If you work in the workspace, use the preregistration block in your report instead. Complete the block before you run anything. It asks for the claim, the data-in-hand statement, one option for each decision, a sentence from your causal graph on why the specification answers the claim, and your rule for what supports or undermines it. In the browser lab, copy the completed cell into your notes, or in the workspace render the report, and type "declared" in the chat. When the class has declared, fit the specification with `run_spec()` and send it with `report_result()`. Your declared result is drawn on the chart as a filled circle beside the open circles of Task 4.
+
+## 11. The close
+
+**On the slides**, with the [class chart](../../cases/housing/multiverse.qmd#class-results) on screen. The day closes on two points from the literature, the single analytical path, what you take with you, and the feedback form.
+
+**By the end of the part** you have tried three or four alternatives one argument at a time and put an exploratory mark on the class chart, and you have your own placement among the 64 specifications of the curve. You also have one specification fixed in the preregistration block of your report before it was run, a report of your own that contains the result of that specification, and a view of what a result that holds under every analysis of one sample does and does not say about new data.

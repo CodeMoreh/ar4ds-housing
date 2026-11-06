@@ -1,7 +1,7 @@
 # HALF 1 – The claim and its reproduction {.darkslide background-color="rgba(0,0,0,0)"}
 
 ::: {.partlabel}
-First half – about 75 minutes
+First half
 :::
 
 ::: notes

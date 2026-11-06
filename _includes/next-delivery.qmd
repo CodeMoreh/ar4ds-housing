@@ -52,11 +52,10 @@ if (!is.na(vars_path) && requireNamespace("yaml", quietly = TRUE)) {
     # written to a page that does not exist. The link is relative to the
     # including page, and index.qmd at the site root is the only one.
     track_labels <- c(
-      "housing-short"                = "short session",
-      "housing-one-day-open-science" = "one-day course with open science in focus",
-      "housing-one-day-data-tools"   = "one-day course with data tools in focus",
-      "housing-one-day-methods"      = "one-day course with methods in focus",
-      "self-study"                   = "self-study route"
+      "housing-short"    = "short session",
+      "housing-one-day"  = "one-day workshop",
+      "housing-extended" = "Extended course",
+      "self-study"       = "self-study route"
     )
 
     date <- field(delivery[["date"]])

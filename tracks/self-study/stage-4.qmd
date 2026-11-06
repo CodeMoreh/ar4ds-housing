@@ -3,7 +3,7 @@ title: "Stage 4 – The menu and the declaration"
 case: housing
 ---
 ::: {.callout-note appearance="simple" icon=false}
-**Slides.** [Open the deck at the menu](../../slides/housing-one-day-methods.html#/the-specification-menu){target="_blank"}, in Part 3, in its own tab, or follow it on the [slides page](../housing-one-day-methods/slides.qmd).
+**Slides.** [Open the deck at the menu](../../slides/housing-one-day.html#/the-specification-menu){target="_blank"}, in Part 4, in its own tab, or follow it on the [slides page](../housing-one-day/slides.qmd).
 :::
 
 This stage works the menu of defensible analyses, one decision at a time, and ends on the one analysis that you would defend, declared in the preregistration block of your report before it runs. The rest of the stage reads the curve of the claim and the replication with new data at a slower pace, and finishes the case report, in about six hours of work all told.
@@ -28,7 +28,7 @@ Call `try_spec()` with no arguments for the reference specification, then three 
 
 ## 4. Multiverse, replication and preregistration
 
-**On the slides**, at [Part 4](../../slides/housing-one-day-methods.html#/part-4-multiverse-replication-and-preregistration){target="_blank"}. The slides name your own small multiverse and show the curve of 64, with the published result and the five analysts on it, and the class chart, which holds the results of earlier cohorts. They go on to what moved the estimate, the SCORE replication with new names and the power of the two designs. They end on the critics of the multiverse, and on what a preregistration settles and what it leaves open.
+**On the slides**, from [your own small multiverse](../../slides/housing-one-day.html#/you-just-built-a-small-multiverse){target="_blank"} onwards. The slides name your own small multiverse and show the curve of 64, with the published result and the five analysts on it, and the class chart, which holds the results of earlier cohorts. They go on to what moved the estimate, the SCORE replication with new names and the power of the two designs. They end on the critics of the multiverse, and on what a preregistration settles and what it leaves open.
 
 ## 5. Task 5 – The preregistration
 
@@ -66,7 +66,7 @@ Work from [Origins](../../companion/multiverse.qmd#sec-origins) to [The multiver
 
 **In your workspace.** Render the report of the workspace with all five tasks complete, the preregistration block as it stood before the run and the result beneath it. This is your case report. The section "Going further" at its end holds optional exercises that run in the workspace.
 
-**Sending results.** Both submissions are optional. A result sent alone joins the class chart of the case beside the results that earlier cohorts sent, and the helpers work exactly as they do in a one-day course, filling in the results form for you. The workspace draws a tag of its own for the chart, and the browser lab draws one that lasts only for the browser session, so to find your marks again, give the same nickname every time, as in `submit_exploration(nickname = "blue-heron")`.
+**Sending results.** Both submissions are optional. A result sent alone joins the class chart of the case beside the results that earlier cohorts sent, and the helpers work exactly as they do in the one-day workshop, filling in the results form for you. The workspace draws a tag of its own for the chart, and the browser lab draws one that lasts only for the browser session, so to find your marks again, give the same nickname every time, as in `submit_exploration(nickname = "blue-heron")`.
 
 **Shortcuts.** If time is short, read only the section on [robustness and replicability](../../companion/multiverse.qmd#sec-replicability) of the multiverse module now, and come back to the rest of it when your project in stage 5 needs it.
 
