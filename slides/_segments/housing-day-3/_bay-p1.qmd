@@ -1,0 +1,160 @@
+# PART 1 – The posterior {#part-1-the-posterior .darkslide background-color="rgba(0,0,0,0)"}
+
+::: {.partlabel}
+Part 1
+:::
+
+::: notes
+Part one builds the model and reads its result. The model is the logistic regression of the last session, so the new part is the prior: a distribution for each parameter, written down before the data enter. We look at what the priors imply on the scale of the claim, which is not obvious, then at the posterior distribution of the gap, and at how it differs from the confidence interval that you know. The part ends with the checks that tell us whether the computation can be trusted.
+:::
+
+## A model of the greetings {#a-model-of-the-greetings .smaller}
+
+:::: {.columns}
+::: {.column width="50%"}
+```{r}
+#| label: d3-bayes-counts
+# The four counts of each study, the only information that a model with one
+# binary predictor uses (companion/_model-outputs/bayes_audit_counts.csv)
+bayes_counts |>
+  datawizard::data_modify(
+    Study = dplyr::if_else(study == "original", "Original, 2014", "Replication, 2020"),
+    Names = dplyr::if_else(hisp == 1, "Hispanic", "white"),
+    Share = paste0(fmt_num(100 * k / n, 1), "%")
+  ) |>
+  datawizard::data_select(c("Study", "Names", Replies = "n", Greeted = "k", "Share")) |>
+  tinytable::tt() |>
+  tinytable::style_tt(j = 3:5, align = "r") |>
+  tinytable::style_tt(fontsize = 0.75)
+```
+:::
+::: {.column width="50%"}
+::: {.small}
+- With one binary predictor, everything that the data say is in **four counts** for each study, the original audit [@EinsteinGlick2017DoesRaceAffect] and the replication run for SCORE
+- A **binomial model** treats the greetings of each group as a count out of its replies, with a logistic regression of their probability on the names: the logit of the last session, fitted to counts [@Burkner2017BrmsPackageBayesian]
+:::
+:::
+::::
+
+```{.r}
+brms::brm(k | trials(n) ~ 0 + Intercept + hisp, family = stats::binomial(), data = original,
+          prior = c(brms::prior(normal(0, 1.5), class = "b", coef = "Intercept"),
+                    brms::prior(normal(0, 1), class = "b", coef = "hisp")),
+          chains = 4, iter = 2000, seed = 20261105, backend = "cmdstanr")
+```
+
+::: {.src}
+companion/_model-outputs/bayes_audit.R and bayes_audit_counts.csv; the counts of the replication are recovered from the shares and the total of its replies in cases/housing/data/display_replication.csv.
+:::
+
+::: notes
+With a single binary predictor, everything that the data say is in four numbers for each study: the replies to each group of names and how many of them opened with the name. The original gives us the counts of this morning. The replication gives about four times as many replies, and the same share greeted by name for both groups. A binomial model treats the greetings of each group as a count out of its replies, with a logistic regression of the probability of a greeting on the names. It is the logit of the last session, fitted to four counts instead of three hundred and sixty-two rows, and it gives the same answer. In brms the number of trials goes beside the count, and zero plus Intercept keeps the intercept as the log odds of a greeting for the white names, so that its prior can be stated on that scale.
+:::
+
+## Priors and what they imply {#priors-and-what-they-imply .smaller}
+
+```{r}
+#| label: d3-prior-predictive
+#| fig-width: 9.5
+#| fig-height: 2.6
+# The prior predictive distributions under the weakly informative prior: the
+# share greeted by name for the white names and the gap, from 500 of the draws
+# of the prior-only fit (companion/_model-outputs/bayes_audit_draws.csv)
+# A share is bounded by 0 and 100 and a gap by -100 and 100, so each panel
+# has a density layer with its own bounds
+panels <- c(white_share = "share greeted by name, white names (%)",
+            gap = "gap, Hispanic minus white names (points)")
+prior_pred <- bayes_draws |>
+  datawizard::data_filter(model == "prior_weak") |>
+  datawizard::data_modify(panel = factor(panels[quantity], levels = panels))
+ggplot2::ggplot(prior_pred, ggplot2::aes(value)) +
+  ggplot2::geom_density(data = datawizard::data_filter(prior_pred, quantity == "white_share"),
+                        fill = "#d6dde5", colour = ncl_blue, linewidth = 0.9, bounds = c(0, 100)) +
+  ggplot2::geom_density(data = datawizard::data_filter(prior_pred, quantity == "gap"),
+                        fill = "#d6dde5", colour = ncl_blue, linewidth = 0.9, bounds = c(-100, 100)) +
+  ggplot2::facet_wrap(ggplot2::vars(panel), scales = "free") +
+  ggplot2::scale_x_continuous(labels = \(x) fmt_num(x, 0)) +
+  ggplot2::labs(x = NULL, y = "prior density") +
+  theme_slide(14) +
+  ggplot2::theme(strip.text = ggplot2::element_text(face = "bold", colour = ncl_blue, size = 13),
+                 axis.text.y = ggplot2::element_blank())
+```
+
+::: {.small}
+- Both parameters live on the **log-odds scale**. The intercept takes normal(0, 1.5), nearly flat on the scale of probabilities, because "[a] flat prior in the logit space is not a flat prior in the outcome probability space" [@McElreath2020StatisticalRethinkingBayesian, p. 328]
+- The gap takes normal(0, 1), a **weakly informative** prior that rules out almost nothing that a field experiment could produce
+- A **prior predictive check** simulates from the priors before the data enter [@GelmanEtAl2026BayesianWorkflow]: white shares from `r fmt_num(prior_white$q025, 0)`% to `r fmt_num(prior_white$q975, 0)`%, and 95% of the gaps between `r fmt_num(prior_weak$q025, 0)` and +`r fmt_num(prior_weak$q975, 0)` points
+:::
+
+::: notes
+A Bayesian model needs a prior for each parameter, and here both live on the log-odds scale, which few people can read directly. McElreath shows why the scale matters: a prior that looks vague on the log-odds scale, normal with a standard deviation of ten, piles almost all its probability near zero and one, because a flat prior on log odds is not flat on probabilities. So the intercept takes his normal of nought and one and a half, which is nearly flat once it is turned into a share. The gap takes normal of nought and one. The way to find out what priors imply is to simulate from them before the data enter, which the workflow literature calls a prior predictive check. The left panel says only that a share is a share. The right panel says that this prior allows gaps of up to about thirty-six points either way, which contains every result of both studies.
+:::
+
+## The posterior of the gap {#the-posterior-of-the-gap .smaller}
+
+```{r}
+#| label: d3-posterior
+#| fig-width: 9.5
+#| fig-height: 2.7
+# The posterior of the gap under the weakly informative prior, from 500 of its
+# draws, with its 95% credible interval shaded; below it, the reference
+# specification of the course with its 95% confidence interval
+post <- datawizard::data_filter(bayes_draws, model == "original_weak", quantity == "gap")
+dens <- stats::density(post$value)
+shade <- tibble::tibble(x = dens$x, y = dens$y) |>
+  datawizard::data_filter(x >= orig_weak$q025 & x <= orig_weak$q975)
+ggplot2::ggplot(post, ggplot2::aes(value)) +
+  ggplot2::geom_area(data = shade, ggplot2::aes(x, y), fill = "#d6dde5") +
+  ggplot2::geom_density(colour = ncl_blue, linewidth = 1.1) +
+  ggplot2::annotate("segment", x = 0, xend = 0, y = 0, yend = Inf, colour = grey_mid) +
+  ggplot2::annotate("segment", x = ref_low, xend = ref_high, y = -0.006, yend = -0.006,
+                    colour = burgundy, linewidth = 1.1) +
+  ggplot2::annotate("point", x = curve_ref$b_pp, y = -0.006, colour = burgundy, size = 3.4) +
+  ggplot2::annotate("text", x = ref_high + 1, y = -0.006, hjust = 0, size = 4.2, colour = burgundy,
+                    label = "the reference specification, 95% confidence interval") +
+  ggplot2::scale_x_continuous(limits = c(-40, 15), labels = \(x) fmt_num(x, 0)) +
+  ggplot2::labs(x = "gap in greetings by name, Hispanic minus white names (points)", y = "posterior density") +
+  theme_slide(14) +
+  ggplot2::theme(axis.text.y = ggplot2::element_blank())
+```
+
+::: {.small}
+- Median **`r fmt_num(orig_weak$median, 1)`** points, 95% credible interval `r fmt_num(orig_weak$q025, 1)` to `r fmt_num(orig_weak$q975, 1)`, against `r fmt_num(curve_ref$b_pp, 1)` (`r fmt_num(ref_low, 1)` to `r fmt_num(ref_high, 1)`) for the reference specification: a prior this weak is outweighed by `r sum(bayes_counts$n[bayes_counts$study == "original"])` replies
+- The confidence interval is a statement about the procedure; the **credible interval is a statement about the gap**, given the model, the prior and the data
+- The probability that Hispanic names were greeted by name less often: **`r fmt_num(orig_weak$pd, 4)`**; that the gap exceeds 10 points in that direction: **`r fmt_num(orig_weak$p_beyond_10, 2)`**
+:::
+
+::: notes
+With the data switched on, here is the posterior distribution of the gap, drawn from four thousand draws of the model, of which the file keeps five hundred. Each draw is one value of the gap that is compatible with the data and the prior. The median is minus nineteen points, with a ninety-five per cent credible interval from minus twenty-eight to minus nine. In burgundy, the reference specification with its confidence interval. The two agree closely, because a prior this weak is outweighed by three hundred and sixty-two replies; the posterior sits about a point nearer zero because the prior is centred on no gap. The two intervals allow different statements. The confidence interval describes a procedure that covers the true gap in ninety-five per cent of repeated studies. The posterior answers direct questions: the probability that the gap is negative is practically one, and the probability that it exceeds ten points is ninety-six per cent.
+:::
+
+## Computational checks {#computational-checks .smaller .deepdive run="checks"}
+
+```{r}
+#| label: d3-diagnostics
+# The checks of the eight models (companion/_model-outputs/bayes_audit_diagnostics.csv)
+model_labels <- c(prior_weak = "Prior only, weakly informative", prior_sceptical = "Prior only, sceptical",
+                  original_weak = "Original, weakly informative prior", original_sceptical = "Original, sceptical prior",
+                  replication_alone = "Replication, weakly informative prior",
+                  replication_updated = "Replication, original posterior as prior",
+                  joint_common = "Both studies, one gap", joint_separate = "Both studies, a gap for each")
+bayes_dx |>
+  datawizard::data_modify(
+    Model = unname(model_labels[model]),
+    `R-hat` = fmt_num(max_rhat, 3),
+    `Bulk ESS` = fmt_n(round(min_ess_bulk)),
+    `Tail ESS` = fmt_n(round(min_ess_tail))
+  ) |>
+  datawizard::data_select(c("Model", "R-hat", "Bulk ESS", "Tail ESS", Divergences = "divergences")) |>
+  tinytable::tt() |>
+  tinytable::style_tt(j = 2:5, align = "r") |>
+  tinytable::style_tt(fontsize = 0.7)
+```
+
+::: {.small}
+Four chains of 1,000 draws after warm-up. The chains agree when R-hat is below 1.01, they carry enough independent information when the effective sample sizes exceed about 400, and the sampler explored the whole posterior when no transition diverged.
+:::
+
+::: notes
+Every number on the last slide assumes that the computation worked, so here are the checks for all eight models of the module. Stan draws from the posterior by Markov chain Monte Carlo, with four chains that start in different places. R-hat asks whether the four chains agree; below one point nought one is the usual standard, and every model is well inside it. The effective sample sizes ask how much independent information the correlated draws carry; above about four hundred is enough for the summaries that we use, and the smallest here is over a thousand. And divergent transitions flag regions of the posterior that the sampler could not explore; there are none. With models this simple the checks are a formality, but they are the habit to keep for models that are not simple.
+:::

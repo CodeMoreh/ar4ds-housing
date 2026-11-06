@@ -1,0 +1,144 @@
+# PART 3 – Logistic regression {#part-3-logistic-regression .darkslide background-color="rgba(0,0,0,0)"}
+
+::: {.partlabel}
+Part 3
+:::
+
+::: notes
+Part three turns to the model of the paper. The original authors, the OAs, fitted a logistic regression, and so did three of the five analysts, so this is the model behind the published result and behind two of the four statistics that Multi100 recorded for the analysts. A logistic regression does not report in percentage points. It reports differences in log odds, and their exponents, odds ratios. We look at what that scale is, how to get back to the scale of the claim, and why the course does so for every logit on the curve.
+:::
+
+## Logistic regression {#logistic-regression .smaller}
+
+```{r}
+#| label: d3-logistic-curve
+#| fig-width: 9.5
+#| fig-height: 3.1
+# The logistic curve, with the white and the Hispanic names of the reference
+# comparison at their log odds (the logit of the setup chunk): the coefficient
+# is the horizontal step between the two points, the gap in points the vertical
+pair <- tibble::tibble(names = c("white names", "Hispanic names"),
+                       log_odds = c(logit_odds_white, logit_odds_white + logit_b)) |>
+  datawizard::data_modify(share = stats::plogis(log_odds),
+                          label = paste0(names, ": ", fmt_num(100 * share, 1), "%"))
+logistic <- tibble::tibble(log_odds = seq(-3.5, 3.5, by = 0.05)) |>
+  datawizard::data_modify(share = stats::plogis(log_odds))
+ggplot2::ggplot(logistic, ggplot2::aes(log_odds, share)) +
+  ggplot2::geom_line(colour = grey_mid, linewidth = 1.1) +
+  ggplot2::geom_segment(data = pair, ggplot2::aes(x = log_odds, xend = 2.2, y = share, yend = share),
+                        colour = "grey70", linetype = "22") +
+  ggplot2::annotate("segment", x = pair$log_odds[2], xend = pair$log_odds[1], y = 0.2, yend = 0.2,
+                    colour = ink, linewidth = 0.7,
+                    arrow = grid::arrow(ends = "both", length = grid::unit(6, "pt"))) +
+  ggplot2::annotate("text", x = mean(pair$log_odds), y = 0.12, size = 4.6, colour = ink,
+                    label = paste("coefficient", fmt_num(logit_b, 2))) +
+  ggplot2::annotate("segment", x = 2.2, xend = 2.2, y = pair$share[2], yend = pair$share[1],
+                    colour = burgundy, linewidth = 0.7,
+                    arrow = grid::arrow(ends = "both", length = grid::unit(6, "pt"))) +
+  ggplot2::annotate("text", x = 2.3, y = mean(pair$share), hjust = 0, size = 4.6, colour = burgundy,
+                    label = paste("gap", fmt_num(100 * (pair$share[2] - pair$share[1]), 1), "points")) +
+  ggplot2::geom_point(data = pair, ggplot2::aes(colour = names), size = 4) +
+  ggplot2::geom_text(data = pair, ggplot2::aes(label = label, colour = names), hjust = 1.08, size = 4.4) +
+  ggplot2::scale_colour_manual(values = c(`white names` = ncl_blue, `Hispanic names` = burgundy)) +
+  ggplot2::scale_x_continuous(limits = c(-3.5, 4.2), labels = \(x) fmt_num(x, 0)) +
+  ggplot2::scale_y_continuous(limits = c(0, 1), labels = \(x) paste0(100 * x, "%")) +
+  ggplot2::labs(x = "log odds of a greeting by name", y = "probability") +
+  theme_slide(15)
+```
+
+::: {.small}
+- The model describes the **log odds** of a greeting, $\log(p / (1 - p))$, which run over the whole real line, so every prediction stays between 0 and 1
+- The coefficient of the Hispanic names is **`r fmt_num(logit_b, 3)`**, with *z* = `r fmt_num(logit_ref$z, 3)`, the value recorded for UYV3F. Its exponent is the **odds ratio**, `r fmt_num(odds_ratio, 3)`
+- Without covariates the model reproduces the two shares exactly, so its gap in points is the same `r fmt_num(curve_ref$b_pp, 2)`. The paper reports `r fmt_num(-0.82, 2)` from three groups with covariates
+:::
+
+::: {.src}
+The coefficient of the paper: @EinsteinGlick2017DoesRaceAffect, Table 1, model 3. Logistic regression read on the scale of probabilities: @GelmanEtAl2020RegressionOtherStories.
+:::
+
+::: notes
+The logistic regression works on the log odds of a greeting, the log of the share divided by one minus the share. Log odds run from minus infinity to plus infinity, so a straight line on that scale never predicts an impossible share, and the curve on the slide takes it back to probabilities. The two points are our two groups of names. The coefficient of the Hispanic names, minus point eight one, is the horizontal step between them, a difference in log odds, and its z is exactly the value that Multi100 recorded for UYV3F. Exponentiated, it is an odds ratio of about point four four. The vertical step is the gap in points, minus twenty. Without covariates the logit reproduces the two observed shares exactly, so here the two scales tell the same story. The minus point eight two of the paper comes from a model with all three groups and with covariates.
+:::
+
+## From odds ratios to percentage points {#from-odds-ratios-to-percentage-points .smaller}
+
+```{r}
+#| label: d3-or-gaps
+#| fig-width: 9.5
+#| fig-height: 2.9
+# The gap in points that the odds ratio of the reference logit implies at every
+# share of greetings for the white names, with the four shares of the setup
+# chunk marked; the share of the data is the third
+gap_curve <- tibble::tibble(white = seq(0.01, 0.99, by = 0.01)) |>
+  datawizard::data_modify(gap = 100 * (stats::plogis(stats::qlogis(white) + logit_b) - white))
+ggplot2::ggplot(gap_curve, ggplot2::aes(100 * white, gap)) +
+  ggplot2::geom_hline(yintercept = 0, colour = grey_mid) +
+  ggplot2::geom_line(colour = plain, linewidth = 1.2) +
+  ggplot2::geom_point(data = or_bases, colour = burgundy, size = 3.8) +
+  ggplot2::geom_text(data = or_bases, ggplot2::aes(label = fmt_num(gap, 1)), vjust = 1.9, size = 4.6,
+                     colour = burgundy) +
+  ggplot2::scale_x_continuous(breaks = seq(0, 100, 20), labels = \(x) paste0(x, "%")) +
+  ggplot2::scale_y_continuous(limits = c(-26, 1), labels = \(x) fmt_num(x, 0)) +
+  ggplot2::labs(x = "share of the replies to white names that greet by name",
+                y = paste0("gap at an odds ratio\nof ", fmt_num(odds_ratio, 3), " (points)")) +
+  theme_slide(15)
+```
+
+::: {.small}
+- One odds ratio means very different gaps at different shares: `r fmt_num(or_bases$gap[1], 1)` points at a share of 20% for the white names, `r fmt_num(or_bases$gap[3], 1)` at the 61% of the data, `r fmt_num(or_bases$gap[4], 1)` at 90%
+- The **average marginal effect** predicts every email as if it carried a Hispanic name and as if it carried a white one, and averages the difference: `r fmt_num(100 * ame_ref$estimate, 2)` points here (SE `r fmt_num(100 * ame_ref$std.error, 2)`), from `marginaleffects::avg_comparisons()` [@Arel-BundockEtAl2024HowInterpretStatistical]
+- Across the `r nrow(curve_logits)` logits of the curve, the odds ratio runs from `r fmt_num(min(exp(curve_logits$coef)), 3)` to `r fmt_num(max(exp(curve_logits$coef)), 3)` and the average marginal effect from `r fmt_num(min(curve_logits$b_pp), 1)` to `r fmt_num(max(curve_logits$b_pp), 1)` points
+:::
+
+::: notes
+Odds ratios are exact and portable, but they are hard to picture, because one odds ratio means very different changes in probability at different starting points. The curve applies the odds ratio of our data to every possible share of greetings for the white names. At the sixty-one per cent of the data it gives the gap of twenty points. At twenty per cent, or at ninety, the same odds ratio gives a gap of only ten. So an odds ratio on its own does not say how large the gap is in points. The average marginal effect does: predict every email as if it carried a Hispanic name, then as if it carried a white one, and average the difference. That puts any logit back on the scale of the claim. A rule of thumb follows from the same curve: a logistic coefficient moves a probability by at most a quarter of its value, so the coefficient of nought point nought nine eight found by the replication is at most two and a half points.
+:::
+
+## Odds ratios and covariates {#odds-ratios-and-covariates .smaller}
+
+::: {.small}
+In an experiment, a covariate that predicts the outcome leaves the target of a difference in proportions unchanged, but it changes the target of an odds ratio, with no confounding at all. The odds ratio is **non-collapsible**: two kinds of authority, equally many of each, and the odds ratio of the data within each kind:
+:::
+
+::: {.fs-80}
+| | Kind A | Kind B | All authorities |
+|:--|--:|--:|--:|
+| White names greeted by name | `r fmt_num(100 * two_kinds$white[1], 1)`% | `r fmt_num(100 * two_kinds$white[2], 1)`% | `r fmt_num(100 * all_white, 1)`% |
+| Hispanic names greeted by name | `r fmt_num(100 * two_kinds$hispanic[1], 1)`% | `r fmt_num(100 * two_kinds$hispanic[2], 1)`% | `r fmt_num(100 * all_hispanic, 1)`% |
+| Gap (points) | `r fmt_num(two_kinds$gap[1], 1)` | `r fmt_num(two_kinds$gap[2], 1)` | `r fmt_num(100 * (all_hispanic - all_white), 1)` |
+| Odds ratio | `r fmt_num(odds_ratio, 3)` | `r fmt_num(odds_ratio, 3)` | `r fmt_num(odds_ratio_all, 3)` |
+:::
+
+::: {.fragment .small}
+On the data, the hard-to-find address predicts the greeting, which opened `r fmt_num(white_named$named_share[1], 1)`% of the replies to white names from easy addresses and `r fmt_num(white_named$named_share[2], 1)`% of those from hard ones, and chance spread it almost evenly across the two groups of names. Adding it moves the logit coefficient from `r fmt_num(twin_logit_none$coef, 3)` to `r fmt_num(twin_logit_email$coef, 3)`, away from zero, and leaves the gap at `r fmt_num(twin_logit_email$b_pp, 2)` points.
+:::
+
+::: notes
+Here is the least familiar property of the odds ratio. In an experiment, adding a covariate that predicts the outcome does not change what a difference in proportions estimates, because the covariate is unrelated to the name. It does change what an odds ratio estimates, even though nothing is confounded. Imagine two kinds of authority, equally many of each, where white names are greeted by name eighty-five and thirty-five per cent of the time, and let the Hispanic names have the odds ratio of our data in both. Within each kind, the odds ratio is point four four. For all authorities together it is point five six, closer to one, while the gap in points for all is the average of the two gaps. [advance] On our data the effect is small: the address predicts the greeting moderately and fell evenly on the names, so the coefficient moves a little away from zero and the gap does not move. Two odds ratios from different models answer different questions, which is why the course reports every logit in points.
+:::
+
+## Hands-on 2 – The logit and its two scales {#hands-on-2-the-logit-and-its-two-scales .smaller}
+
+::: {.small}
+**In the workspace**, with `frame` from Hands-on 1 back at the reference, `spec_frame(audit)`:
+
+1. `cols <- datawizard::data_select(frame, c("y", "hisp", "hard_email"))`, because marginaleffects refuses a data column called `group`
+2. `logit <- glm(y ~ hisp, family = binomial(), data = cols)`, then `parameters::model_parameters(logit, exponentiate = TRUE)` for the odds ratio
+3. `marginaleffects::avg_predictions(logit, variables = list(hisp = 0:1))` for the two average predictions, and `marginaleffects::avg_comparisons(logit, variables = "hisp")` for their difference
+4. Add the address, `glm(y ~ hisp + hard_email, ...)`, and run steps 2 and 3 again. **Which of the two scales moves?**
+:::
+
+::: notes
+Your turn again, with the reference rows from the first hands-on. One detail of marginaleffects catches people out: it refuses a data column called group, and the rows from spec underscore frame carry one, so keep only the columns of the model before you fit. Fit the logit, and print its parameters with exponentiate set to true, which turns the coefficient into an odds ratio. Then ask marginaleffects for the two average predictions, every email as a white name and every email as a Hispanic name, and for their difference, the average marginal effect. Then add the hard-to-find address and repeat. Write down which of the two scales moved and which stayed put, and in one sentence why. [state the time] STUCK in chat if you need me.
+:::
+
+## The reading and the next session {#the-reading-and-the-next-session .smaller}
+
+::: {.small .nonincremental}
+- **The reading**: [Binary outcomes](../companion/binary-outcomes.html), the module of the companion curriculum behind this session, which builds every model from the table of counts with its code, and sets the methods side by side in one table
+- **Next**: Bayesian estimation. The same logistic model fitted to the four counts with priors, the gap of the claim as a posterior distribution, the replication as new data that revise the original estimate, and the errors of sign and of magnitude that a small study risks
+:::
+
+::: notes
+That is the outcome and its models. The module Binary outcomes is the reading for this session. It builds each model from the table of counts, with the code beside every step, and it ends with a table that sets all the methods side by side on the one comparison of the reference specification, which is worth keeping for your own work. The next session fits the same logistic model again, to the same four counts, but by Bayesian methods. The gap then becomes a distribution about which we can make direct probability statements, and the replication can enter as new data that revise what the original audit told us.
+:::

@@ -1,0 +1,96 @@
+# PART 4 – Errors of sign and magnitude {#part-4-errors-of-sign-and-magnitude .darkslide background-color="rgba(0,0,0,0)"}
+
+::: {.partlabel}
+Part 4
+:::
+
+::: notes
+The last part asks what a significant result from a study of the size of the original can say about the size of a gap. The two studies disagree, and their disagreement could have many sources: the names, the authorities, the six years between them. One of those sources can be assessed with the numbers of the case alone, and it is the subject of a short paper by Gelman and Carlin, which adds two kinds of error to the familiar idea of power.
+:::
+
+## Type S and type M errors {#type-s-and-type-m-errors .smaller}
+
+```{r}
+#| label: d3-design
+#| fig-width: 9.5
+#| fig-height: 2.7
+# Power and the exaggeration ratio of a significant estimate against the true
+# gap, at the standard error of the reference comparison and at that of the
+# replication (the design analysis of the setup chunk); the dashed line marks a
+# true gap of 4 points
+design |>
+  datawizard::data_filter(true_gap >= 2) |>
+  datawizard::data_to_long(select = c("power", "type_m"), names_to = "metric", values_to = "value") |>
+  datawizard::data_modify(
+    metric = factor(metric, levels = c("power", "type_m"), labels = c("power", "exaggeration ratio (type M)")),
+    study = dplyr::if_else(study == "original",
+                           paste0("original, standard error ", fmt_num(curve_ref$se_pp, 2)),
+                           paste0("replication, standard error ", fmt_num(repl_row$se_pp, 2)))
+  ) |>
+  ggplot2::ggplot(ggplot2::aes(true_gap, value, colour = study)) +
+  ggplot2::geom_vline(xintercept = 4, colour = grey_mid, linetype = "22") +
+  ggplot2::geom_line(linewidth = 1.2) +
+  ggplot2::facet_wrap(ggplot2::vars(metric), scales = "free_y") +
+  ggplot2::scale_colour_manual(values = c(ncl_blue, green), name = NULL) +
+  ggplot2::labs(x = "true gap (points)", y = NULL) +
+  theme_slide(14) +
+  ggplot2::theme(legend.position = "top", legend.justification = "left",
+                 strip.text = ggplot2::element_text(face = "bold", colour = ncl_blue, size = 13))
+```
+
+::: {.small}
+- **Type S error rate**: "the probability that the replicated estimate has the incorrect sign, if it is statistically significantly different from zero"
+- **Exaggeration ratio**, or expected type M error: "the expectation of the absolute value of the estimate divided by the effect size, if statistically significantly different from zero"
+- The true effect has to come from outside the study: "realistic external estimates of effect sizes" [@GelmanCarlin2014PowerCalculationsAssessing, pp. 642–643]
+:::
+
+::: notes
+Gelman and Carlin propose reporting two errors beside the power of a design. The type S error rate is the probability that a significant estimate has the wrong sign. The exaggeration ratio is how much larger than the truth a significant estimate is on average. Both depend on the standard error of the study and on the true effect, and they insist that the true effect come from outside the study, not from the estimate that is being judged. The chart computes the three quantities for any true gap, at the standard error of the original comparison and at that of the replication, with the retrodesign package. Read the dashed line at four points, about where the combined estimate of part three sat. The original would detect a gap of that size about one time in eight, and when it did, the estimate would be about three times too large.
+:::
+
+## What a significant result says {#what-a-significant-result-says .smaller}
+
+::: {.small}
+- If the true gap were **4 points**, the original comparison would reach significance with a probability of `r fmt_num(d_orig$power[2], 2)`. A significant estimate would carry the wrong sign with a probability of `r fmt_num(d_orig$type_s[2], 3)`, and exaggerate the gap by a factor of `r fmt_num(d_orig$type_m[2], 1)` on average: a significant estimate of about `r fmt_num(4 * d_orig$type_m[2], 0)` points
+- The exaggeration ratio of the original is `r fmt_num(d_orig$type_m[1], 1)` at a true gap of 2 points and `r fmt_num(d_orig$type_m[4], 2)` at 20; that of the replication `r fmt_num(d_repl$type_m[2], 1)` at 4 points and `r fmt_num(d_repl$type_m[3], 2)` at 10
+- "[P]roblems with the exaggeration ratio start to arise when power is less than 0.5, and problems with the Type S error rate start to arise when power is less than 0.1" (pp. 643–644): the original crosses the first line for any true gap below about 10 points
+:::
+
+::: {.fragment .small}
+None of this shows that the original estimate is exaggerated: at a true gap of 4 points an estimate of 20 would be rare even among the significant ones. It shows that a significant result from a study of this size says little about the size of a gap, and between the two studies the names, the authorities and the year all changed.
+:::
+
+::: {.src}
+@GelmanCarlin2014PowerCalculationsAssessing; the closed form of `retrodesign::retro_design_closed_form()`; companion/bayesian.qmd, section 6.
+:::
+
+::: notes
+In numbers: if the true gap were four points, the original comparison would reach significance about one time in eight. A significant estimate would almost never have the wrong sign, but it would overstate the gap by a factor of three on average, so a significant estimate of about thirteen points is what this design produces when the truth is four. At two points the factor is six; only near twenty points does it approach one. The replication, with half the standard error, exaggerates little above ten points. Gelman and Carlin give a rule of thumb: problems with exaggeration begin when power falls below one half, and the original design is below one half for any true gap under about ten points. [advance] And a caution, before anyone overreads this: it does not show that the published gap is exaggerated. It shows that a significant result from a study of this size says little about how large a gap is.
+:::
+
+## Hands-on 2 – A design analysis {#hands-on-2-a-design-analysis .smaller}
+
+::: {.small}
+**In the workspace**, in the console:
+
+1. Once: `pak::pak("retrodesign")`
+2. The original comparison, whose standard error is 5.16 points: `retrodesign::retro_design_closed_form(c(2, 4, 10, 20), 5.16)`
+3. The replication, standard error 2.60 points: the same call with `2.60`
+4. Multiply each true gap by its exaggeration ratio. **What would a significant estimate of the original look like at each true gap?**
+5. Run it once more at the median of the joint model of part 3, `r fmt_num(abs(joint_orig$median), 1)` points, and write two sentences on what the result says about the published gap of 20 points
+:::
+
+::: notes
+Your turn, and this one is short. Install retrodesign, the package written from the function in the article of Gelman and Carlin. Run its closed form at the standard error of the original comparison, five point one six points, for four true gaps, and again at the standard error of the replication. It returns the power, the type S error rate and the exaggeration ratio for each gap. Multiply each true gap by its exaggeration ratio, and you have the size of a typical significant estimate at that truth. Then run it at the median of the joint model, about four points, and write two sentences for your notes: what does the result say about the published gap, and what does it not say? [state the time]
+:::
+
+## The reading and the next session {#the-reading-and-the-next-session .smaller}
+
+::: {.small .nonincremental}
+- **The reading**: [Bayesian estimation](../companion/bayesian.html), the module of the companion curriculum behind this session, with the brms code of every model and a task on a third prior. To learn the methods from the start: *Statistical Rethinking* [@McElreath2020StatisticalRethinkingBayesian] and *Regression and Other Stories* [@GelmanEtAl2020RegressionOtherStories]
+- **Next**: Your report. The analysis that you declared in Task 5 written up as a short report in Quarto, with the declaration as the first commit of a repository and every step after it committed with a message that says what changed
+:::
+
+::: notes
+That ends the methods of the day. The module Bayesian estimation is the reading for this session: it shows the brms code of every model that we read today, and its task asks you to try a third prior, between the two of this session. If you want to learn Bayesian estimation from the start, Statistical Rethinking builds it from counting and simulation, and Regression and Other Stories treats regression with the same habits. The rest of the day is yours: the analysis that you declared yesterday becomes a short report of your own, written in Quarto and kept under Git, and the methods of the three sessions give you the words for its result.
+:::

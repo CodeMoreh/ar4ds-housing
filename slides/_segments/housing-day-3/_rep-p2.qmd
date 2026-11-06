@@ -1,0 +1,73 @@
+# PART 2 – The report {#part-2-the-report .darkslide background-color="rgba(0,0,0,0)"}
+
+::: {.partlabel}
+Part 2
+:::
+
+::: notes
+Part two is the report itself. It is short: one section, in four parts, written around the analysis that you declared. What makes it a report rather than a page of notes is that every number in it is computed when it renders, from the same run as the figure beside it, so that the text cannot fall out of step with the analysis. I show you what the four parts are and how to compute the numbers, and then you write.
+:::
+
+## What the report contains {#what-the-report-contains .smaller}
+
+::: {.small}
+A section of its own under the figure of the curve in Task 5, in this order:
+
+1. **The result with its uncertainty**: the estimate in percentage points, its 95% interval and the test of its model, as `run_spec()` gives them
+2. **Its place on the curve of the claim**: how many of the `r nrow(curve)` specifications lie further below zero, with a reference to the figure of the curve
+3. **Any departure from the declaration**, and the reason for it, or a sentence saying that there was none
+4. **What the replication with new data adds**: a gap of `r fmt_signed(mark_score$b_pp, 1)` points among its `r fmt_n(mark_score$n)` replies (the row `SCORE` of `data/reference_marks.csv`), and *z* = 0.66, p = 0.511 for the model of its report, on 738 replies
+:::
+
+::: {.fragment .small}
+The claim comes from the paper [@EinsteinGlick2017DoesRaceAffect] as SCORE selected it for Multi100 [@AczelEtAl2026InvestigatingAnalyticalRobustness], and the reference list at the end of the report already holds both.
+:::
+
+::: {.src}
+cases/housing/data/reference_marks.csv, the copy of which sits in the data folder of the workspace; the final report of the replication, osf.io/2ug8x.
+:::
+
+::: notes
+Here is what goes into the report, and in this order. First the result with its uncertainty: the estimate in points, its interval and the test of its model, exactly as run underscore spec prints them. Second, its place on the curve of the claim, the count of specifications further below zero, with a reference to the figure. Third, any departure from your declaration, with the reason, or a plain sentence that there was none, because a departure reported with its reason is part of a good report and a hidden one is not. Fourth, what the replication adds. The new audit found a gap of zero among its replies on the scale of the course, and its own model was nowhere near significant. Your result says what the original data support under your choices, the replication what happened when the question was put to new officials with new names, and the report needs both.
+:::
+
+## Numbers in the report {#numbers-in-the-report .smaller}
+
+::: {.small}
+- In the chunk `run-spec`, keep what the helper returns: `result <- run_spec(my_spec)` prints the same lines and stores every number of the printout
+- In the text, inline code computes each number when the report renders, and `@fig-curve` refers to the figure of the curve, which the report numbers Figure 3
+:::
+
+```{.markdown}
+## The declared analysis
+
+The declared specification gives a gap of `r knitr::inline_expr("round(result$b_pp, 1)")` percentage points,
+with a 95% interval from `r knitr::inline_expr("round(result$ci_low, 1)")` to `r knitr::inline_expr("round(result$ci_high, 1)")`.
+`r knitr::inline_expr("result$further")` of the `r knitr::inline_expr("result$n_curve")` specifications on the curve
+of the claim have an estimate further below zero (@fig-curve).
+```
+
+::: {.fragment .small}
+`result` also holds the test of the model (`stat`, `df`, `p`), the shares of the two groups (`rate_hisp`, `rate_comp`) and the emails analysed (`n`). The header sets `date: today`, so the rendered report carries the date of its render.
+:::
+
+::: notes
+The numbers come from your run of the declared specification. In the chunk labelled run-spec, write result, arrow, in front of the call. The helper prints exactly what it printed yesterday, and it also hands back every number of its printout, so you can keep them. In the text, inline code does the rest: a backtick, the letter r, and an expression, and when the report renders, the expression is replaced by its value. The example on the slide writes the first two parts of the section that way. At-fig-curve becomes a link that reads Figure 3, because the curve is the third labelled figure of the report. [advance] Result holds more than the slide uses, the test and the two shares among it. And the header already sets date today, so every render carries its own date.
+:::
+
+## Hands-on 2 – Writing the report {#hands-on-2-writing-the-report .smaller}
+
+::: {.small}
+1. Line 3 of `index.qmd`, `author: "Pair: [names]"`: put your own name, save, and commit with a message such as `Name the author of the report`
+2. In the chunk `run-spec`, write `result <- run_spec(my_spec)`
+3. Under the paragraph that follows the figure of the curve, add `## The declared analysis` and write the first part, with its numbers as inline code. Render, read it, and commit
+4. Write the other three parts, and render and commit after each of them, with a message that says what the commit adds
+:::
+
+::: {.fragment .small}
+Your IDE previews the report with Ctrl+Shift+K. A reference that does not resolve prints as `?@fig-curve`, and an inline expression that fails stops the render, with a message to read from the top.
+:::
+
+::: notes
+Your turn, and this is the longest stretch of the afternoon. Start with the smallest change, your own name in the header, and commit it, so that the loop of part one becomes a habit. Then keep the result of run underscore spec. Then the section: a heading under the paragraph that follows the figure of the curve, and the first part, the result with its interval and its test, with every number as inline code. Render it, read it as a reader would, and commit. Then the other three parts, each followed by a render and a commit with a message that says what it adds. [advance] If a render fails, read the message from the top, where the first lines say where it stopped, and I will come round. [state the time]
+:::

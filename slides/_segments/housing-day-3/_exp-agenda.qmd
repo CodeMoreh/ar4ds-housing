@@ -1,0 +1,26 @@
+## {#today .darkslide background-color="rgba(0,0,0,0)"}
+
+::: {.todaymeta}
+Session 1 of day 3, on the design of the housing audit
+:::
+
+:::: {.todaybox}
+::: {.nonincremental .fs-85}
+1. Random assignment – what it guarantees, balance, and names as treatments
+2. Analysis – the comparison among replies, and randomisation inference
+3. Precision – power, and blocked randomisation
+4. Ethics – the deception of the people whom an audit studies
+:::
+::::
+
+::: {.todaytake .fs-85}
+You leave able to say what random assignment guarantees in this audit, what it leaves open, and what a sharper design would have changed
+:::
+
+::: {.todaymeta}
+Work along in the workspace, in your IDE (Positron, RStudio, VS Code, etc.)
+:::
+
+::: notes
+Welcome to the third day. Yesterday you worked on the claim as analyst number six: you reproduced a recorded result, declared one analysis and placed it on the curve. Today we go underneath that work, and this first session is about the design of the experiment itself. We start with what random assignment buys and how a reader can check it, and with the names, which carry the treatment and tell their readers more than one thing. Then two questions of analysis: what the comparison among replies can mean, and the test that the design itself supplies. Then precision, where power and blocking lead us to the failed replication. We end on ethics, because an audit deceives the officials whom it studies, and twice along the way you run something in the workspace yourselves.
+:::

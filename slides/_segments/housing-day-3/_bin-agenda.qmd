@@ -1,0 +1,25 @@
+## {#today .darkslide background-color="rgba(0,0,0,0)"}
+
+::: {.todaymeta}
+Session 2 of day 3, on the models of a yes-or-no outcome
+:::
+
+:::: {.todaybox}
+::: {.nonincremental .fs-85}
+1. Proportions – a 0/1 outcome, its share, and the difference between two shares
+2. The linear probability model – the difference as a regression, with HC2 standard errors
+3. Logistic regression – log odds, odds ratios against average marginal effects, and what a covariate does to an odds ratio
+:::
+::::
+
+::: {.todaytake .fs-85}
+You leave able to say what each model of the menu estimates, on which scale it reports, and why the course reports every model in percentage points
+:::
+
+::: {.todaymeta}
+Work along in the workspace, in your IDE (Positron, RStudio, VS Code, etc.)
+:::
+
+::: notes
+The second session takes the outcome of the claim as its subject: whether a reply opened with the name of the sender, a yes or a no. Yesterday the menu offered two models for it, a difference in proportions and a logistic regression, and you chose between them in Task 4 and again in your declaration. This session explains what each model does. We start from a table of four counts and the difference between two shares, then write the same difference as a linear regression and give it the standard errors that the course uses throughout. Then the logistic regression of the paper, which reports odds ratios, and the reason why the course turns every logit into percentage points, which has to do with what a covariate does to an odds ratio, even in an experiment.
+:::

@@ -8,23 +8,23 @@ The third day teaches the methods behind the analyses of the second day, as taug
 
 Random assignment and balance, names as treatments, the comparison among replies, randomisation inference, power, blocked randomisation, and the ethics of deceiving the people whom an audit studies.
 
-[Read Audit experiments](../../companion/experiments.qmd){.btn .btn-outline-primary target="_blank"}
+[Open the slides](../../slides/housing-experiments.qmd){.btn .btn-primary target="_blank"} [Read Audit experiments](../../companion/experiments.qmd){.btn .btn-outline-primary target="_blank"}
 
 ## 2. Binary outcomes
 
 A 0/1 outcome and its share, the difference in proportions, the linear probability model with HC2 standard errors, logistic regression, odds ratios against average marginal effects, and why a covariate changes an odds ratio even in an experiment.
 
-[Read Binary outcomes](../../companion/binary-outcomes.qmd){.btn .btn-outline-primary target="_blank"}
+[Open the slides](../../slides/housing-binary-outcomes.qmd){.btn .btn-primary target="_blank"} [Read Binary outcomes](../../companion/binary-outcomes.qmd){.btn .btn-outline-primary target="_blank"}
 
 ## 3. Bayesian estimation
 
 The gap of the claim as a posterior distribution, a weakly informative prior against a sceptical one, the replication as new data that revise the original estimate, and the errors of sign and of magnitude that a small study risks.
 
-[Read Bayesian estimation](../../companion/bayesian.qmd){.btn .btn-outline-primary target="_blank"}
+[Open the slides](../../slides/housing-bayesian.qmd){.btn .btn-primary target="_blank"} [Read Bayesian estimation](../../companion/bayesian.qmd){.btn .btn-outline-primary target="_blank"}
 
 ## 4. Your report
 
-[Open Git and GitHub](https://codemoreh.github.io/ar4ds/git-github.html){.btn .btn-primary target="_blank"} [Open Quarto documents](https://codemoreh.github.io/ar4ds/tools/quarto.html){.btn .btn-outline-primary target="_blank"}
+[Open the slides](../../slides/housing-report.qmd){.btn .btn-primary target="_blank"} [Open Git and GitHub](https://codemoreh.github.io/ar4ds/git-github.html){.btn .btn-outline-primary target="_blank"} [Open Quarto documents](https://codemoreh.github.io/ar4ds/tools/quarto.html){.btn .btn-outline-primary target="_blank"}
 
 Open the workspace in your IDE and turn its folder into a repository, with the preregistration block that you completed in Task 5 as the first commit. Then write the report around the declared analysis: the result with its uncertainty, its place on the curve of the claim, any departure from the declaration and the reason for it, and what the replication with new data adds. Render the report from a clean session, and commit each step with a message that says what changed. The modules on Git and GitHub and on Quarto documents hold the steps, and publishing the rendered report is an option for the end of the day.
 

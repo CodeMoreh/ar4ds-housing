@@ -12,7 +12,7 @@ And two things that no analyst was told: **who the other analysts were**, and **
 :::
 
 ::: {.src}
-@AczelEtAl2026InvestigatingAnalyticalRobustness. Registered protocol: osf.io/dy68c
+@AczelEtAl2026InvestigatingAnalyticalRobustness; Multi100 preregistration, osf.io/4ev9t, pp. 4–5.
 :::
 
 ::: notes

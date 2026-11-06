@@ -13,7 +13,7 @@
 :::
 
 ::: {.fragment .small}
-**Three minutes:** open the replication, find the preregistered analysis, and paste in chat how often it found a significant gap.
+**Your turn:** open the replication, find the preregistered analysis, and paste in chat how often it found a significant gap.
 :::
 
 ::: notes

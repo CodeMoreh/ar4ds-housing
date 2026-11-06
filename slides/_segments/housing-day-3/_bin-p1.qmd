@@ -1,0 +1,56 @@
+# PART 1 – Proportions {#part-1-proportions .darkslide background-color="rgba(0,0,0,0)"}
+
+::: {.partlabel}
+Part 1
+:::
+
+::: notes
+Part one starts where every analysis of this claim starts, with four counts: the replies to each group of names, and how many of them opened with the name of the sender. The reference specification of the curve uses nothing else, and three of the five analysts worked from a table of four counts of the same kind. Everything else in this session is a way of describing the difference between two shares, and of saying how far it could have arisen by chance, so it pays to be clear about the share itself first.
+:::
+
+## A 0/1 outcome {#a-binary-outcome .smaller}
+
+::: {.fs-80}
+| Names | Coded replies | Greeted by name | Share | Variance $p(1 - p)$ |
+|:--|--:|--:|--:|--:|
+| White | `r curve_ref$n_comp` | `r tab_ref["0", "1"]` | `r fmt_num(curve_ref$rate_comp, 1)`% | `r fmt_num(curve_ref$rate_comp / 100 * (1 - curve_ref$rate_comp / 100), 3)` |
+| Hispanic | `r curve_ref$n_hisp` | `r tab_ref["1", "1"]` | `r fmt_num(curve_ref$rate_hisp, 1)`% | `r fmt_num(curve_ref$rate_hisp / 100 * (1 - curve_ref$rate_hisp / 100), 3)` |
+:::
+
+::: {.small}
+- A reply either opened with the name of the sender or it did not: the outcome takes the values 1 and 0, and **its mean in a group is the share** greeted by name
+- **Its variance follows from the share**, $p(1 - p)$, largest at one half, so two groups whose shares differ also differ in their variance
+- Every model of this session describes the probability of a 1, and how it differs between the two groups of names
+:::
+
+::: {.src}
+The rows of the reference specification: the coded replies to Hispanic and white names in cases/housing/data/housing_audit.csv.
+:::
+
+::: notes
+Here are the four counts: of the hundred and seventy-five coded replies to white names, a hundred and seven opened with the name of the sender, and of the hundred and eighty-seven to Hispanic names, seventy-seven did. Code a greeting by name as one and anything else as zero, and the mean of that variable in a group is simply the share. That is why everything in this session can be read as a statement about a share, or a probability. The last column matters for what follows. The variance of a zero-or-one variable is fixed by its share, p times one minus p, which is largest at one half. Here the two shares sit on either side of one half, so their variances are almost the same, but in general two groups whose shares differ also differ in how variable their outcome is.
+:::
+
+## The difference in proportions {#the-difference-in-proportions .smaller}
+
+::: {.small}
+- The difference: **`r fmt_num(curve_ref$b_pp, 2)` percentage points**, the scale on which the abstract states the claim
+- Its standard error combines the two group variances: **`r fmt_num(curve_ref$se_pp, 2)`** points, and a 95% confidence interval from `r fmt_num(out_of("named", "hispanic", "ci_low"), 1)` to `r fmt_num(out_of("named", "hispanic", "ci_high"), 1)`
+:::
+
+::: {.fragment .small}
+- The classical test of the same table: $\chi^2$ = **`r fmt_num(chi_ref_plain, 2)`**, the square of the *z* of a test of two proportions with a pooled share
+- With the continuity correction of Yates, which shrinks each gap between an observed and an expected count by half a unit before squaring: $\chi^2$ = **`r fmt_num(chi_ref_yates, 2)`**. `chisq.test()` and `prop.test()` apply it to every two by two table unless told otherwise
+:::
+
+::: {.fragment .small}
+In Task 3 the value recorded for 8PTRZ, $\chi^2$ = `r fmt_num(chi_yates, 3)`, was the corrected one: uncorrected, `r fmt_num(chi_plain, 3)`. A table carries no covariates, so the curve tests every specification by its model instead.
+:::
+
+::: {.src}
+cases/housing/data/spec_curve.csv (the reference specification) and display_outcomes.csv; the table of 8PTRZ from audit_original.csv.
+:::
+
+::: notes
+The plainest summary is the difference between the two shares, minus twenty points, which is also the scale of the claim in the abstract. Its standard error follows from the two variances of the last slide, each divided by the size of its group, and gives an interval from minus thirty to minus ten. [advance] The classical test of a table is the chi-square, and without a correction it is exactly the square of the z of a test of two proportions. Chisq dot test and prop dot test apply the continuity correction of Yates to any two-by-two table unless you tell them not to: each difference between an observed and an expected count shrinks by half a unit before it is squared, which makes the test a little more conservative. [advance] You met this in Task 3. The value on record for 8PTRZ is the corrected one: nobody asked for the correction, and the default of the function supplied it.
+:::

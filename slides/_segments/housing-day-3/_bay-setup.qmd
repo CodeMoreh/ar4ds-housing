@@ -1,0 +1,51 @@
+```{r}
+#| label: setup-bayesian
+#| include: false
+# The outputs of the Bayesian models of the case, which
+# companion/_model-outputs/bayes_audit.R fitted once with brms and wrote as
+# small CSV files; the deck reads them and fits nothing. Comes after the two
+# setup chunks and uses their data and formats.
+bayes_counts <- readr::read_csv("../companion/_model-outputs/bayes_audit_counts.csv", show_col_types = FALSE)
+bayes_draws <- readr::read_csv("../companion/_model-outputs/bayes_audit_draws.csv", show_col_types = FALSE)
+bayes_summ <- readr::read_csv("../companion/_model-outputs/bayes_audit_summary.csv", show_col_types = FALSE)
+bayes_dx <- readr::read_csv("../companion/_model-outputs/bayes_audit_diagnostics.csv", show_col_types = FALSE)
+bayes_sens <- readr::read_csv("../companion/_model-outputs/bayes_audit_sensitivity.csv", show_col_types = FALSE)
+bayes_ppc <- readr::read_csv("../companion/_model-outputs/bayes_audit_ppc.csv", show_col_types = FALSE)
+replication <- readr::read_csv("../cases/housing/data/display_replication.csv", show_col_types = FALSE)
+
+# One row of the summaries for each result quoted on the slides; the gaps are
+# in percentage points, Hispanic minus white names
+prior_weak <- datawizard::data_filter(bayes_summ, model == "prior_weak", quantity == "gap")
+prior_scep <- datawizard::data_filter(bayes_summ, model == "prior_sceptical", quantity == "gap")
+prior_white <- datawizard::data_filter(bayes_summ, model == "prior_weak", quantity == "white_share")
+orig_weak <- datawizard::data_filter(bayes_summ, model == "original_weak", quantity == "gap")
+orig_scep <- datawizard::data_filter(bayes_summ, model == "original_sceptical", quantity == "gap")
+repl_alone <- datawizard::data_filter(bayes_summ, model == "replication_alone", quantity == "gap")
+repl_upd <- datawizard::data_filter(bayes_summ, model == "replication_updated", quantity == "gap")
+joint_orig <- datawizard::data_filter(bayes_summ, model == "joint_common", quantity == "gap_original")
+joint_diff <- datawizard::data_filter(bayes_summ, model == "joint_separate", quantity == "difference")
+sens_weak <- datawizard::data_filter(bayes_sens, model == "original_weak")
+sens_scep <- datawizard::data_filter(bayes_sens, model == "original_sceptical")
+sens_upd <- datawizard::data_filter(bayes_sens, model == "replication_updated")
+ppc_orig <- datawizard::data_filter(bayes_ppc, model == "joint_common", study == "original")
+
+# The reference specification of the course, with its 95% confidence interval
+# from display_outcomes.csv
+ref_low <- out_of("named", "hispanic", "ci_low")
+ref_high <- out_of("named", "hispanic", "ci_high")
+
+# The design analysis of Gelman and Carlin (2014) in the closed form of the
+# retrodesign package (for a normal sampling distribution), for true gaps of 1
+# to 25 points, at the standard error of the reference comparison and at that
+# of the replication among all its replies
+repl_row <- datawizard::data_filter(replication, population == "replies", authorities == "all")
+true_gaps <- seq(1, 25, by = 0.5)
+design <- dplyr::bind_rows(
+  tibble::as_tibble(retrodesign::retro_design_closed_form(true_gaps, curve_ref$se_pp)) |>
+    datawizard::data_modify(study = "original", true_gap = true_gaps),
+  tibble::as_tibble(retrodesign::retro_design_closed_form(true_gaps, repl_row$se_pp)) |>
+    datawizard::data_modify(study = "replication", true_gap = true_gaps)
+)
+d_orig <- datawizard::data_filter(design, study == "original" & true_gap %in% c(2, 4, 10, 20))
+d_repl <- datawizard::data_filter(design, study == "replication" & true_gap %in% c(2, 4, 10, 20))
+```

@@ -1,0 +1,88 @@
+# PART 3 – The replication {#part-3-the-replication .darkslide background-color="rgba(0,0,0,0)"}
+
+::: {.partlabel}
+Part 3
+:::
+
+::: notes
+Part three brings in the replication. The sceptical prior was an argument from inside the experiment; the replication is evidence from outside it, four times as many replies to new names in another year. Bayesian estimation has a natural way of using it, by letting the posterior of the original audit become the prior for the new data. We do that, then put both studies in one model, and then check whether that model can reproduce the data that it was fitted to.
+:::
+
+## The replication as new data {#the-replication-as-new-data .smaller}
+
+```{r}
+#| label: d3-update
+#| fig-width: 9.5
+#| fig-height: 2.7
+# The posterior of the gap from the original audit alone and from the
+# replication alone (both with the weakly informative prior), and from the
+# replication with the posterior of the original as its prior, from 500 draws
+# each (companion/_model-outputs/bayes_audit_draws.csv)
+bayes_draws |>
+  datawizard::data_filter(quantity == "gap" & model %in% c("original_weak", "replication_alone", "replication_updated")) |>
+  datawizard::data_modify(result = factor(model, levels = c("original_weak", "replication_alone", "replication_updated"),
+                                          labels = c("original audit", "replication alone",
+                                                     "replication, original as prior"))) |>
+  ggplot2::ggplot(ggplot2::aes(value, colour = result)) +
+  ggplot2::geom_vline(xintercept = 0, colour = grey_mid) +
+  ggplot2::geom_density(linewidth = 1.1) +
+  ggplot2::scale_colour_manual(values = c(`original audit` = ncl_blue, `replication alone` = green,
+                                          `replication, original as prior` = burgundy), name = NULL) +
+  ggplot2::coord_cartesian(xlim = c(-40, 15)) +
+  ggplot2::scale_x_continuous(labels = \(x) fmt_num(x, 0)) +
+  ggplot2::labs(x = "gap in greetings by name, Hispanic minus white names (points)", y = "posterior density") +
+  theme_slide(14) +
+  ggplot2::theme(legend.position = "top", legend.justification = "left",
+                 axis.text.y = ggplot2::element_blank())
+```
+
+::: {.small}
+- **Sequential**: the posterior of the original becomes the prior of the replication, so that "each estimate becomes the prior for the next step" [@McElreath2020StatisticalRethinkingBayesian, p. 34]. Alone, the replication gives `r fmt_num(repl_alone$median, 1)` points (`r fmt_num(repl_alone$q025, 1)` to +`r fmt_num(repl_alone$q975, 1)`); with the original as its prior, **`r fmt_num(repl_upd$median, 1)`** (`r fmt_num(repl_upd$q025, 1)` to +`r fmt_num(repl_upd$q975, 1)`)
+- **Joint**: one model of both studies with a single gap gives `r fmt_num(joint_orig$median, 1)` points (`r fmt_num(joint_orig$q025, 1)` to +`r fmt_num(joint_orig$q975, 1)`)
+- Each estimate gets "a weight proportional to the inverse square of its standard error" [@GelmanEtAl2020RegressionOtherStories, p. 119], and the replication has about four times as many replies
+:::
+
+::: notes
+The first route is sequential, and McElreath describes it as the way in which a Bayesian model learns: each estimate becomes the prior for the next step. The script carried the posterior of the original into a normal prior for the gap of the replication. On its own, the replication puts the gap at zero, give or take five points, the green curve. With the original as its prior, the gap is minus four, the burgundy curve. The second route puts both studies in one model with a single gap, and lands in the same place. Regression and Other Stories gives the arithmetic behind the agreement: in the simplest case the combined estimate is a weighted average, each estimate weighted by the inverse square of its standard error. The replication has about four times as many replies as the original, so it carries most of the weight. The burgundy curve, though, sits where neither study put its estimate, and the next slide asks why.
+:::
+
+## A gap for each study {#a-gap-for-each-study .smaller}
+
+```{r}
+#| label: d3-ppc
+#| fig-width: 9.5
+#| fig-height: 2.8
+# The posterior predictive check of the two joint models: for each study and
+# group of names, the 90% interval of the share greeted by name replicated from
+# the fitted model, and the observed share as a point
+# (companion/_model-outputs/bayes_audit_ppc.csv)
+bayes_ppc |>
+  datawizard::data_modify(
+    group = paste(dplyr::if_else(study == "original", "original,", "replication,"),
+                  dplyr::if_else(hisp == 1, "Hispanic", "white")),
+    group = factor(group, levels = rev(c("original, white", "original, Hispanic",
+                                         "replication, white", "replication, Hispanic"))),
+    panel = dplyr::if_else(model == "joint_common", "one gap for both studies", "a gap for each study"),
+    panel = factor(panel, levels = c("one gap for both studies", "a gap for each study")),
+    outside = observed < rep_q05 | observed > rep_q95
+  ) |>
+  ggplot2::ggplot(ggplot2::aes(y = group)) +
+  ggplot2::geom_linerange(ggplot2::aes(xmin = rep_q05, xmax = rep_q95), colour = "#9fb3c8", linewidth = 4) +
+  ggplot2::geom_point(ggplot2::aes(x = observed, colour = outside), size = 3.6) +
+  ggplot2::facet_wrap(ggplot2::vars(panel)) +
+  ggplot2::scale_colour_manual(values = c(`FALSE` = ncl_blue, `TRUE` = burgundy), guide = "none") +
+  ggplot2::scale_x_continuous(labels = \(x) paste0(x, "%")) +
+  ggplot2::labs(x = "share greeted by name: replicated 90% interval (bar) and observed (point)", y = NULL) +
+  theme_slide(14) +
+  ggplot2::theme(strip.text = ggplot2::element_text(face = "bold", colour = ncl_blue, size = 13),
+                 axis.text.y = ggplot2::element_text(hjust = 0, colour = "grey20"))
+```
+
+::: {.small}
+- Replicated from the model with one gap, the white share of the original has a 90% interval from `r fmt_num(ppc_orig$rep_q05[ppc_orig$hisp == 0], 1)`% to `r fmt_num(ppc_orig$rep_q95[ppc_orig$hisp == 0], 1)`%, and the observed `r fmt_num(ppc_orig$observed[ppc_orig$hisp == 0], 1)`% lies outside it: **one gap cannot reproduce the original audit**. priorsense flags the updated model as well, with a "`r sens_upd$diagnosis`"
+- With a gap for each study, the replication gap exceeds the original gap by **`r fmt_num(joint_diff$median, 1)`** points (95% credible interval `r fmt_num(joint_diff$q025, 1)` to `r fmt_num(joint_diff$q975, 1)`): the two studies disagree, and a combined estimate of about four points describes neither of them
+:::
+
+::: notes
+So check the assumption behind both routes, that the two audits measure one gap. A posterior predictive check asks whether the fitted model can reproduce the data that it was fitted to. On the left, the model with one gap: for each study and group of names, the bar is the ninety per cent interval of the share that the model replicates, and the point is the share that was observed. The white names of the original audit lie well outside their bar, and the Hispanic names just below theirs. A model with one gap cannot reproduce the original audit, and priorsense says the same in its own terms. The failed check names the next model, on the right, with a gap for each study, which reproduces all four shares. In that model the replication gap exceeds the original by nineteen points, so the studies disagree, and the combined estimate of four points describes neither of them.
+:::

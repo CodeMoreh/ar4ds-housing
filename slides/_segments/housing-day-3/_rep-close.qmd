@@ -1,0 +1,16 @@
+## After the course {#after-the-course .smaller}
+
+::: {.small}
+- **Yours now**: a reproduced result, an estimand statement and a causal graph for a published claim, a declared analysis placed among the `r nrow(curve)` specifications of its curve, and a report whose history shows the declaration before the result
+- **Where to go next**: the page [After the course](../tracks/housing-extended/after.html) leads into the companion curriculum, from meta-analysis, subgroups and missing values to causal graphs, simulation, building the analysis file, and the multiverse and its critics
+- **The replication in its own words**: the final report at osf.io/2ug8x, and the de-identified data, the do-file and a dictionary at osf.io/xseqg
+- **Keep going locally**: the research-software and open-research teams at your university, or a ReproducibiliTea journal club near you
+:::
+
+::: {.fragment .none}
+Everything on the course site is open, and you can fork any of it.
+:::
+
+::: notes
+That is the end of the course. Three days ago we started from what a claim in social science is for and why its credibility became a question. Since then you have reproduced a published number from its public file, said precisely what question the claim answers, declared an analysis before running it, placed it among every justifiable alternative, learned the methods behind those alternatives, and written it up in a report whose history anyone can check. The page After the course, on the site, leads into the modules that three days could only touch, and the replication can be read in its own words and on its own data on the OSF. If you want company in keeping these habits, most universities have research-software and open-research teams, and ReproducibiliTea journal clubs meet in many places. [advance] And everything on the course site is open: take any of it and make it your own.
+:::

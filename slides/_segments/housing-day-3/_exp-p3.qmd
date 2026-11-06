@@ -1,0 +1,108 @@
+# PART 3 – Precision {#part-3-precision .darkslide background-color="rgba(0,0,0,0)"}
+
+::: {.partlabel}
+Part 3
+:::
+
+::: notes
+Part three is about precision: how large a gap a design of this size can find, and what a different way of assigning the names would have bought. Both questions lead to the replication, which emailed three times as many authorities and assigned its names within each state. You met the power of the two designs briefly yesterday. Here we read the same curves more closely, and then look at blocking, which the replication used and the original did not.
+:::
+
+## Power {#power .smaller}
+
+```{r}
+#| label: d3-power
+#| fig-width: 9.5
+#| fig-height: 3.4
+# The power of a two-sided test at 5% to detect a gap below a white share of
+# 61% (data/display_power.csv), with the gap at which each design reaches a
+# power of 0.8, read off its curve in the setup chunk
+design_labels <- c(original = "original: about 181 replies a group",
+                   replication = "replication: 369 replies a group")
+power_plot <- power |>
+  datawizard::data_modify(design = design_labels[dplyr::if_else(startsWith(design, "original"), "original", "replication")])
+cross_80 <- gap_80 |>
+  datawizard::data_modify(design = design_labels[design])
+ggplot2::ggplot(power_plot, ggplot2::aes(gap_pp, power, colour = design)) +
+  ggplot2::geom_hline(yintercept = 0.8, colour = grey_mid, linetype = "22") +
+  ggplot2::geom_segment(data = cross_80, ggplot2::aes(x = gap, xend = gap, y = 0, yend = 0.8),
+                        linetype = "22", linewidth = 0.6) +
+  ggplot2::geom_line(linewidth = 1.3) +
+  ggplot2::geom_point(data = cross_80, ggplot2::aes(x = gap, y = 0.8), size = 3.6) +
+  ggplot2::geom_label(data = cross_80, ggplot2::aes(x = gap, y = 0.08, label = fmt_num(gap, 1)),
+                      fill = "white", linewidth = 0, size = 4.6, show.legend = FALSE) +
+  ggplot2::scale_colour_manual(values = c(ncl_blue, green), name = NULL) +
+  ggplot2::scale_y_continuous(limits = c(0, 1), breaks = seq(0, 1, 0.2)) +
+  ggplot2::labs(x = "gap in greetings by name (percentage points)", y = "power") +
+  theme_slide(15) +
+  ggplot2::theme(legend.position = "top", legend.justification = "left")
+```
+
+::: {.small}
+- Power depends on the size of the gap, on the number of replies and, for a 0/1 outcome, on the share itself, whose variance is $p(1 - p)$
+- The original comparison reaches a power of 0.8 only for a gap of `r fmt_num(gap_80$gap[gap_80$design == "original"], 1)` points, and an estimate has to exceed about `r fmt_num(sig_gap, 1)` points to be significant at 5%
+- The replication planned its first round to achieve "90% power to detect 75% of the original effect size"
+:::
+
+::: {.src}
+cases/housing/data/display_power.csv, from `power.prop.test()`; the preregistration of the replication, osf.io/2ug8x.
+:::
+
+::: notes
+Power is the probability that a study of a given size detects a gap of a given size. It depends on three things: the gap, the number of observations, and how variable the outcome is, which for a zero-or-one outcome follows from the share itself. The dashed line marks a power of zero point eight, the usual target when a study is planned. With about a hundred and eighty replies a group, the original comparison reaches it only for a gap of nearly fifteen points; the replication reaches it at ten. And in the original comparison an estimate has to exceed about ten points before it is significant at all. The replication planned its first round to detect three quarters of the original effect with a power of ninety per cent. What a significant estimate from a design of the original size says about the size of the gap is the subject of the third session today.
+:::
+
+## Blocked randomisation {#blocked-randomisation .smaller}
+
+:::: {.columns}
+::: {.column width="54%"}
+::: {.small}
+- **The original audit** drew a name for each authority, without blocks
+- **The replication**: "We will block randomize within each U.S. state to ensure that there is an equivalent number of Hispanic and white names contacting the housing agencies within each state"
+- Blocking assigns the names at random **within groups formed before the experiment**, in fixed numbers, so the groups of names are balanced on the blocking variable by design, not only in expectation
+- It buys **precision**, as far as the blocking variable predicts the outcome, and it **removes no bias**, since random assignment has already removed it [@ImaiEtAl2008MisunderstandingsExperimentalistsObservationalists; @AtheyImbens2017EconometricsRandomizedExperiments]
+:::
+:::
+::: {.column width="46%"}
+::: {.small}
+**The original, analysed within the two kinds of address**
+:::
+
+::: {.fs-75}
+| Analysis | Gap | SE |
+|:--|--:|--:|
+| Ignoring the address | `r fmt_num(100 * block_fits$estimate[1], 2)` | `r fmt_num(100 * block_fits$std.error[1], 3)` |
+| Within the two kinds | `r fmt_num(100 * block_fits$estimate[2], 2)` | `r fmt_num(100 * block_fits$std.error[2], 3)` |
+:::
+
+::: {.fragment .small .fs-85}
+Chance had already balanced the two kinds: `r fmt_num(block_shares$hispanic_share[1], 1)`% and `r fmt_num(block_shares$hispanic_share[2], 1)`% of the replies from each kind came to Hispanic names. A blocked design would have guaranteed that balance, and narrowed the spread of the reshuffled gaps only from `r fmt_num(ri_spread[["complete"]], 2)` to `r fmt_num(ri_spread[["blocked"]], 2)` points.
+:::
+:::
+::::
+
+::: {.src}
+The preregistration of the replication, osf.io/2ug8x; the reference comparison with estimatr and ri2 (cases/housing/data/housing_audit.csv); companion/experiments.qmd, section 7.
+:::
+
+::: notes
+The original audit drew one name for each authority, with nothing grouped beforehand. The replication blocked: within each state it assigned equal numbers of Hispanic and white names. Blocking means forming groups on something recorded before the experiment and randomising within each group in fixed numbers, so that the groups of names are balanced on it by design rather than only in expectation. What it buys is precision, and only as much as the blocking variable predicts the outcome. It removes no bias, because random assignment has already removed it. [advance] The original can show what blocking on the address would have changed. The address does predict the greeting: white names were greeted by name in two thirds of the replies to easy addresses and just over half of the others. Yet the gap and its standard error barely move, because chance had already given the two kinds of address the same share of Hispanic names, so the guarantee of a blocked design would have been worth little here.
+:::
+
+## Hands-on 2 – Power and blocks {#hands-on-2-power-and-blocks .smaller}
+
+::: {.small}
+**In the workspace**, with `frame` from Hands-on 1:
+
+1. **Power.** `power.prop.test(n = 181, p1 = 0.61, p2 = 0.51)` gives the power of the original comparison for a gap of 10 points below a white share of 61%. Then set `n = 369`, the replies of a group in the replication
+2. Change `p2` until the power of the original comparison reaches 0.8. **Which gap is that, and how does it compare with the published 20 points?**
+3. **Blocks.** `estimatr::difference_in_means(y ~ hisp, data = frame)`, then the same with `blocks = hard_email`. **What changes, and why so little?**
+:::
+
+::: {.fragment .small}
+For your notes: one sentence on what a replication with 369 replies a group could find that the original could not.
+:::
+
+::: notes
+Your turn again. Power dot prop dot test is base R, and it gives the power of a test of two proportions: with a hundred and eighty-one replies a group, a white share of sixty-one per cent and a Hispanic share of fifty-one, a gap of ten points, you should find a power just under one half. Then set n to three hundred and sixty-nine, the replies of a group in the replication. Next, change p2 until the power of the original comparison reaches zero point eight, and compare that gap with the published twenty points. Then the blocks. Difference in means from estimatr, first without blocks and then with the hard-to-find address as the blocks, and look at the standard error. [state the time] [advance] Before we move on, one sentence for your notes: what could a replication with three hundred and sixty-nine replies a group find that the original could not?
+:::

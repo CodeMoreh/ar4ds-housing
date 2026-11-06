@@ -1,0 +1,72 @@
+# PART 2 – The linear probability model {#part-2-the-linear-probability-model .darkslide background-color="rgba(0,0,0,0)"}
+
+::: {.partlabel}
+Part 2
+:::
+
+::: notes
+Part two writes the same difference as a regression. That sounds like a detour, but it is what lets the analysis carry covariates, and it is the model of the reference specification of the curve, the one that most of you met first in Task 4. We look at what its two coefficients are, at its one well-known fault, and then at its standard errors, because the classical formula makes an assumption that a zero-or-one outcome breaks.
+:::
+
+## The linear probability model {#the-linear-probability-model .smaller}
+
+```{.r}
+lpm <- lm(y ~ hisp, data = frame)                     # frame <- spec_frame(audit)
+parameters::model_parameters(lpm, vcov = "HC2")
+```
+
+::: {.small}
+- A linear regression of the 0/1 outcome on the 0/1 indicator of the Hispanic names: the intercept, **`r fmt_num(lpm_coefs[["(Intercept)"]], 3)`**, is the share for the white names, and the coefficient, **`r fmt_num(lpm_coefs[["hispanic"]], 3)`**, is the difference in proportions
+- A straight line has no floor or ceiling, so with covariates it **can predict shares below 0 or above 1**. With the covariates of the curve, its predictions here run from `r fmt_num(lpm_range[1], 2)` to `r fmt_num(lpm_range[2], 2)`
+- In an experiment its coefficient estimates the difference in proportions, the quantity that the claim names, with or without covariates. That is why the reference specification of the curve is this model, without covariates
+:::
+
+::: notes
+A linear regression of the greeting, zero or one, on an indicator that is one for the Hispanic names is called a linear probability model. With a single binary predictor it reproduces the table exactly. Its intercept is the share for the white names, sixty-one per cent, and its coefficient is the difference, minus twenty points, so the model reports in the units of the claim from the start. Its well-known fault appears once covariates enter. A straight line has no floor or ceiling, so it can predict a share below zero or above one. With the handful of categories that the curve uses as covariates, its predictions here stay well inside that range. And in an experiment its coefficient keeps estimating the quantity that the claim names, with covariates or without, which is why the reference specification is this model.
+:::
+
+## HC2 standard errors {#hc2-standard-errors .smaller}
+
+::: {.small}
+- **Classical** errors assume that the outcome varies equally in every group, which a 0/1 outcome cannot do when the shares differ
+- **HC2** errors, one of the heteroskedasticity-consistent or 'robust' errors, let each observation keep its own variance. With one binary predictor they equal the standard error computed group by group, the formula for two randomised groups
+:::
+
+::: {.fs-80}
+| Standard error of the gap | Points |
+|:--|--:|
+| Classical, from `lm()` | `r fmt_num(se_conventional, 3)` |
+| HC2, from `parameters::model_parameters(lpm, vcov = "HC2")` | `r fmt_num(curve_ref$se_pp, 3)` |
+| Group by group, from `t.test()` | `r fmt_num(se_two_sample, 3)` |
+:::
+
+::: {.fragment .small}
+The groups are similar in size and in share, so the classical error is close. When groups differ both in size and in variance, or covariates enter, the two part, and HC2 is the one that stays right, which is why the curve uses it throughout.
+:::
+
+::: {.src}
+The reference specification on cases/housing/data/housing_audit.csv; HC2 errors from sandwich through parameters, as in the estimator of the course (R/housing/_tools.R).
+:::
+
+::: notes
+Now the standard errors, because the menu fixes them and the estimator of the course uses one kind throughout. The classical formula of a linear regression assumes one common variance for every observation. A zero-or-one outcome breaks that whenever the shares differ, because its variance is fixed by its share. HC2 errors, one member of the family that people call robust errors, let each observation keep its own variance, and with one binary predictor they come out exactly as the standard error that you would compute group by group, the textbook formula for two randomised groups. [advance] On our data the classical error is close, because the two groups are similar in size and in share. When groups differ both in size and in variance, or when covariates enter, the two can part, and the HC2 error is the one that stays right.
+:::
+
+## Hands-on 1 – The table and the linear model {#hands-on-1-the-table-and-the-linear-model .smaller}
+
+::: {.small}
+**In the workspace**, with the setup chunk of `index.qmd` run:
+
+1. `frame <- spec_frame(audit)` gives the rows of the reference specification, with the outcome `y` and the indicator `hisp`
+2. The table and its tests: `counts <- table(frame$hisp, frame$y)`, then `chisq.test(counts)` and `chisq.test(counts, correct = FALSE)`. **Which one is the square of a z?**
+3. The model: `lpm <- lm(y ~ hisp, data = frame)`, then `parameters::model_parameters(lpm)` and `parameters::model_parameters(lpm, vcov = "HC2")`
+4. Check two equalities: the coefficient against the difference of the two shares, and the HC2 error against `t.test(y ~ hisp, data = frame)$stderr`
+:::
+
+::: {.fragment .small}
+Then change one thing: `frame <- spec_frame(audit, comparison = "nonhispanic")`, Hispanic names against white and Black names together, and run steps 3 and 4 again.
+:::
+
+::: notes
+Your turn. Spec underscore frame, one of the helpers of the workspace, gives you the rows of any specification of the curve, and with no arguments the reference: the coded replies to Hispanic and white names, with the outcome as y and the Hispanic names coded one in hisp. Make the table, then run the chi-square test with the correction and without it, and decide which of the two is the square of a z. Then fit the linear probability model and print its parameters twice, once with the classical errors and once with HC2. Check that the coefficient is the difference between the two shares, and that the HC2 error equals the standard error that t dot test computes group by group. [state the time] [advance] Then compare with white and Black names together, where the groups are of unequal size, and see whether the two errors part. They barely do, because the two shares give almost the same variance, and that is worth a sentence in your notes.
+:::

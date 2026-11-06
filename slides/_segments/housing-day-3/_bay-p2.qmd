@@ -1,0 +1,115 @@
+# PART 2 – The prior {#part-2-the-prior .darkslide background-color="rgba(0,0,0,0)"}
+
+::: {.partlabel}
+Part 2
+:::
+
+::: notes
+Part two asks the question that every Bayesian analysis has to answer about itself: how much does the result depend on the prior? The weakly informative prior of part one barely mattered. So we add a second reader, one who doubts that a name could change the tone of a reply by much, and ask how far the data move that reader. Then a tool that asks the same question for every prior near the one that was chosen, and your first run of the session, a prior simulated by hand.
+:::
+
+## A sceptical prior {#a-sceptical-prior .smaller}
+
+::: {.small}
+- The sceptical prior on the gap is **normal(0, 0.25)** on the log-odds scale. It describes a reader who expects a name to change the tone of a reply by about as much as it changed whether a reply came at all, and in the same experiment that reply gap was `r fmt_num(abs(out_of("reply", "hispanic", "b_pp")), 1)` points
+- This reader puts 95% of the possible gaps between `r fmt_num(prior_scep$q025, 1)` and +`r fmt_num(prior_scep$q975, 1)` points, and gives a gap of more than 10 points against the Hispanic names a probability of `r fmt_num(prior_scep$p_beyond_10, 3)`
+- The weakly informative prior, normal(0, 1), puts 95% of the gaps between `r fmt_num(prior_weak$q025, 0)` and +`r fmt_num(prior_weak$q975, 0)` points
+:::
+
+::: {.fragment .small}
+Neither prior is meant as the right one. They bracket a reader who has no view and a reader who doubts large effects of a name, and the question is how far the data move each reader.
+:::
+
+::: {.src}
+companion/bayesian.qmd, section 2; companion/_model-outputs/bayes_audit_summary.csv (the prior-only fits).
+:::
+
+::: notes
+The second prior is centred on no gap as well, but it is narrow: normal of nought and a quarter on the log-odds scale. The module argues for it from inside the experiment. The names changed whether a reply came by about five points, so a reader might expect them to change the tone of a reply by about as much, and give gaps of more than ten points little credence. In numbers, this reader puts ninety-five per cent of the possible gaps within about ten points of zero, and gives a gap of more than ten points against the Hispanic names a probability of about two in a hundred. [advance] Neither prior is meant as the right one, and choosing a prior is itself a decision that a report has to defend. The two bracket a reader with no view and a reader who doubts large effects of a name, and the question is how far the data move each reader.
+:::
+
+## What changes with the prior {#what-changes-with-the-prior .smaller}
+
+```{r}
+#| label: d3-prior-posterior
+#| fig-width: 9.5
+#| fig-height: 2.9
+# The gap under the two priors: each prior dashed and its posterior solid, from
+# 500 draws each (companion/_model-outputs/bayes_audit_draws.csv); the vertical
+# line is the reference specification
+bayes_draws |>
+  datawizard::data_filter(quantity == "gap" &
+                            model %in% c("prior_weak", "prior_sceptical", "original_weak", "original_sceptical")) |>
+  datawizard::data_modify(
+    prior = dplyr::if_else(grepl("weak", model), "weakly informative prior", "sceptical prior"),
+    stage = dplyr::if_else(startsWith(model, "prior"), "prior", "posterior")
+  ) |>
+  ggplot2::ggplot(ggplot2::aes(value, colour = prior, linetype = stage)) +
+  ggplot2::geom_vline(xintercept = curve_ref$b_pp, colour = grey_mid) +
+  ggplot2::geom_density(linewidth = 1) +
+  ggplot2::scale_colour_manual(values = c(`weakly informative prior` = ncl_blue, `sceptical prior` = orange),
+                               name = NULL) +
+  ggplot2::scale_linetype_manual(values = c(prior = "22", posterior = "solid"), name = NULL) +
+  ggplot2::coord_cartesian(xlim = c(-40, 20)) +
+  ggplot2::scale_x_continuous(labels = \(x) fmt_num(x, 0)) +
+  ggplot2::labs(x = "gap in greetings by name, Hispanic minus white names (points)", y = "density") +
+  theme_slide(14) +
+  ggplot2::theme(legend.position = "top", legend.justification = "left",
+                 axis.text.y = ggplot2::element_blank())
+```
+
+::: {.small}
+- Under the sceptical prior the median is **`r fmt_num(orig_scep$median, 1)`** points, with a 95% credible interval from `r fmt_num(orig_scep$q025, 1)` to `r fmt_num(orig_scep$q975, 1)`
+- The doubtful reader ends nearly certain of the direction, with a probability of `r fmt_num(orig_scep$pd, 3)` that the gap is negative, and much less certain of its size: a gap beyond 10 points has a probability of `r fmt_num(orig_scep$p_beyond_10, 2)`, against `r fmt_num(orig_weak$p_beyond_10, 2)` under the weakly informative prior
+:::
+
+::: notes
+Here are the two readers before and after the data, each prior dashed and each posterior solid. The weakly informative prior is a flat smear across the chart, and its posterior is the hump of part one, close to the reference specification, the vertical line. The sceptical prior is the narrow peak at zero, and its posterior has moved a long way from it towards the data, but not all the way: its median is minus twelve points, with an interval from minus twenty to minus four. So the doubtful reader ends almost certain of the direction of the gap, and much less certain of its size. A gap beyond ten points, which this reader once gave two chances in a hundred, now has two chances in three. The direction of the gap therefore holds for a sceptical reader, while a size of twenty points depends on what was believed before the data.
+:::
+
+## Prior sensitivity {#prior-sensitivity .smaller}
+
+::: {.small}
+- **priorsense** asks the question for every prior near the chosen one, without refitting: it reweights the draws as if the prior, or the likelihood, were raised to a power slightly above or below 1, and measures how far the posterior moves [@KallioinenEtAl2026PriorsenseEfficientPrior]
+:::
+
+::: {.fs-80}
+| The gap in log odds | Sensitivity to the prior | to the likelihood | Diagnosis |
+|:--|--:|--:|:--|
+| Weakly informative prior | `r fmt_num(sens_weak$prior, 3)` | `r fmt_num(sens_weak$likelihood, 3)` | none |
+| Sceptical prior | `r fmt_num(sens_scep$prior, 3)` | `r fmt_num(sens_scep$likelihood, 3)` | "`r sens_scep$diagnosis`" |
+:::
+
+::: {.fragment .small}
+Above the threshold of 0.05 for both, the sceptical posterior is a compromise between a prior that expects small gaps and data that hold a large one, so a report of it has to defend the prior as well as the data: "the prior is considered to be just part of the model. As such it should be chosen, evaluated, and revised just like all of the other components of the model" [@McElreath2020StatisticalRethinkingBayesian, p. 35].
+:::
+
+```{.r}
+priorsense::powerscale_sensitivity(fit_original, variable = "b_hisp")
+```
+
+::: notes
+Comparing two fits answers the question for two priors. The priorsense package asks it for every prior near the one that was chosen, without fitting the model again. It reweights the draws as if the prior, or the likelihood, had been raised to a power a little above or below one, and measures how far the posterior moves. A posterior that moves with the likelihood but not with the prior is driven by the data, and that is the weakly informative fit: its sensitivity to the prior is well under the threshold of nought point nought five. [advance] The sceptical fit moves with both, and the package reports a potential conflict between the prior and the data. The diagnosis is accurate. The prior expects small gaps, the data hold a large one, and the posterior is a compromise that a reader can accept only by accepting the prior, which is McElreath's point: the prior is part of the model.
+:::
+
+## Hands-on 1 – Simulating a prior {#hands-on-1-simulating-a-prior .smaller}
+
+::: {.small}
+**In the workspace**, in the console or in a chunk of your own:
+
+1. Draw from the two priors and turn them into a gap in points:
+
+   ```{.r}
+   set.seed(20261106)
+   prior_draws <- tibble::tibble(intercept = rnorm(4000, 0, 1.5), gap = rnorm(4000, 0, 0.25)) |>
+     datawizard::data_modify(gap_pp = 100 * (plogis(intercept + gap) - plogis(intercept)))
+   bayestestR::eti(prior_draws$gap_pp, ci = 0.95)
+   tinyplot::tinyplot(~ gap_pp, data = prior_draws, type = "histogram")
+   ```
+2. Compare the interval with the one on the slide of the sceptical prior, then set the standard deviation of the gap to 1, and to 0.5
+3. **Which standard deviation describes what you believed about the gap before you read the paper?** One sentence for your notes
+:::
+
+::: notes
+This is a prior predictive check done by hand, with nothing but base R and two packages that you already have. Draw four thousand values of the intercept from normal of nought and one and a half, and four thousand values of the gap in log odds from normal of nought and a quarter. Plogis turns log odds into probabilities, so the difference between the two plogis calls is the gap in probability for each draw, and a hundred times it is the gap in points. The equal-tailed interval from bayestestR should come close to the one on the slide of the sceptical prior, about ten points either way. Then widen the gap to one, the weakly informative prior, and to a half, in between. The last question has no right answer, but answering it is what choosing a prior means. [state the time]
+:::

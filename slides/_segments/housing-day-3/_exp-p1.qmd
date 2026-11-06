@@ -1,0 +1,92 @@
+# PART 1 – Random assignment {#part-1-random-assignment .darkslide background-color="rgba(0,0,0,0)"}
+
+::: {.partlabel}
+Part 1
+:::
+
+::: notes
+Part one. Everything that the course has said about this claim rests on one sentence of the paper, the sentence that says how the names were assigned. So we start there, with what random assignment guarantees and what it leaves to chance, and with the check of balance that any reader can run on the public file. Then the treatment itself. The officials received a name rather than a group, and a name says more than one thing about the person who signs it.
+:::
+
+## Random assignment {#random-assignment .smaller}
+
+::: {.claimcard}
+"Each housing authority was randomly assigned (via random number generator) to receive an email from one of six different accounts with putatively white, Hispanic, and black names" <span class="src">the original authors (OAs), p. 8</span>
+:::
+
+::: {.small}
+- The authorities that received Santiago Martinez and those that received Brett Smith differ **only by chance** in everything else: size, community, staffing, how busy the office was that week
+- A difference in how the two groups of emails were answered is then an **effect of the name**, with chance as the only rival explanation, and a test puts a number on chance
+- In the causal graph of Task 2 nothing points into the name, which is why `adjustmentSets()` returned the empty set
+:::
+
+::: {.src}
+@EinsteinGlick2017DoesRaceAffect, accepted manuscript, p. 8.
+:::
+
+::: notes
+This is the sentence on which the whole case rests, and from here on I call its two authors the original authors, or OAs. A random number generator decided which of the six accounts wrote to each authority. So the authorities that received each name are alike in everything except the name, apart from chance: their size, their communities, their staff, how busy they were that week. That is what lets us read a difference in the replies as an effect of the name. It is also why the graph that you finished yesterday has nothing pointing into the name, and why adjustmentSets came back empty. When a machine chose the name, no common cause of the name and the greeting can exist. Chance remains, and chance is what the tests measure. Notice one thing that the sentence does not say: how likely each of the six accounts was to be drawn.
+:::
+
+## Balance {#balance .smaller}
+
+```{r}
+#| label: d3-balance-table
+# The balance table of the setup chunk, formatted for the slide
+tibble::tibble(
+  `Share of the emails` = balance$characteristic,
+  `White names` = paste0(fmt_num(balance$white, 1), "%"),
+  `Black names` = paste0(fmt_num(balance$black, 1), "%"),
+  `Hispanic names` = paste0(fmt_num(balance$hispanic, 1), "%"),
+  `p, chi-square` = fmt_num(balance$p, 3)
+) |>
+  tinytable::tt() |>
+  tinytable::style_tt(j = 2:5, align = "r")
+```
+
+::: {.fragment .small}
+No characteristic comes near a significant difference, as random assignment leads one to expect. The six accounts were not used equally, though: each sent between `r min(sent)` and `r max(sent)` emails, a spread that equal chances would rarely produce ($\chi^2$ = `r fmt_num(sent_test$statistic, 1)` on `r sent_test$parameter` df, `r fmt_p(sent_test$p.value)`). Unequal groups cost a little precision, and they bring no bias.
+:::
+
+::: {.src}
+cases/housing/data/housing_audit.csv and display_names.csv. The paper reports its own check, without a test, in Table SI1 of the supplemental information (p. 8).
+:::
+
+::: notes
+Random assignment can be checked on anything that the emails could not have changed. The public file holds six such characteristics: whether the address was hard to find, and five characteristics of the community or of the authority, given in thirds. For each I show the share of each group of emails in the top third, and a chi-square test of whether the whole distribution is the same in the three groups. None comes near significance. Read that test for what it is: a check that the assignment was carried out as described. It does not say that a covariate is needed to remove bias, because chance imbalance is exactly what randomisation allows for. [advance] One thing is odd. The six accounts sent between a hundred and forty-five and two hundred and seven emails each, which equal chances would rarely produce. The paper does not say what the chances were. The unequal groups cost some precision and bring no bias, because every authority was still assigned at random.
+:::
+
+## Names as treatments {#names-as-treatments .smaller}
+
+```{r}
+#| label: d3-name-pairs
+#| fig-width: 9.5
+#| fig-height: 2.4
+# The gap among the coded replies for all names and for the pair of names of
+# each sex (data/display_subgroups.csv), each with its 95% interval and the
+# replies that it counts
+pairs <- subgroups |>
+  datawizard::data_filter(subgroup %in% c("all names", "male names (Santiago against Brett)",
+                                          "female names (Gabriela against Emily)")) |>
+  datawizard::data_modify(subgroup = factor(subgroup, levels = rev(subgroup)),
+                          n_lab = paste0(n, " replies"))
+ggplot2::ggplot(pairs, ggplot2::aes(b_pp, subgroup)) +
+  ggplot2::geom_vline(xintercept = 0, colour = grey_mid) +
+  ggplot2::geom_linerange(ggplot2::aes(xmin = ci_low, xmax = ci_high), colour = burgundy, linewidth = 1.1) +
+  ggplot2::geom_point(colour = burgundy, size = 3.8) +
+  ggplot2::geom_text(ggplot2::aes(x = 14, label = n_lab), hjust = 1, size = 4.4, colour = grey_mid) +
+  ggplot2::scale_x_continuous(limits = c(-40, 14), breaks = seq(-40, 0, 10), labels = \(x) fmt_num(x, 0)) +
+  ggplot2::labs(x = "Hispanic minus white names (points), with 95% intervals", y = NULL) +
+  theme_slide(15) +
+  ggplot2::theme(axis.text.y = ggplot2::element_text(hjust = 0, colour = "grey20"))
+```
+
+::: {.small}
+- A name says more than the group. The OAs matched the ages that the white and Black names suggest, but "virtually all distinctively Hispanic names ... peak in the 1990s and 2000s" (p. 10), so Santiago and Gabriela may also have read as younger
+- Names meant to indicate one group differ in how often readers perceive them as members of it [@Gaddis2017HowBlackAre]
+- With two names in each group, the direction agrees and the size differs. Strictly, the experiment estimates the effect of an email signed Santiago or Gabriela Martinez rather than Brett or Emily Smith
+:::
+
+::: notes
+The treatment in a correspondence study is a name, and a name tells its reader more than one thing. The OAs chose their names with care. They matched the ages that the white and the Black names suggest, but they could not match the Hispanic ones, which all peak in popularity in the 1990s and 2000s. So Santiago and Gabriela may have suggested a younger sender as well as a Hispanic one. Gaddis showed the wider problem for names meant to indicate Black applicants: readers do not perceive them all the same way. Two names in each group help. The chart sets the male pair against the female pair. The direction agrees, the size differs, and the intervals overlap widely. Strictly, then, the experiment estimates the effect of an email signed Santiago or Gabriela Martinez, and the step from those names to Hispanic applicants is a question of measurement. The replication kept male names only, chosen from pre-tested ones.
+:::

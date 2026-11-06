@@ -1,0 +1,26 @@
+## {#today .darkslide background-color="rgba(0,0,0,0)"}
+
+::: {.todaymeta}
+Session 3 of day 3, on the gap of the claim as a posterior distribution
+:::
+
+:::: {.todaybox}
+::: {.nonincremental .fs-85}
+1. The posterior – a binomial model of the greetings, weakly informative priors, and the gap as a distribution
+2. The prior – a sceptical prior beside the weakly informative one, and how far the data move each
+3. The replication – new data that revise the original estimate
+4. Errors of sign and magnitude – what a significant result from a study of this size says about the size of the gap
+:::
+::::
+
+::: {.todaytake .fs-85}
+You leave able to read a posterior distribution, to say what a prior adds to it, and to judge what a significant result from a small study can say about the size of a gap
+:::
+
+::: {.todaymeta}
+The models were fitted once, with brms; you work in the workspace, in your IDE (Positron, RStudio, VS Code, etc.)
+:::
+
+::: notes
+The third session takes the same comparison again, Hispanic against white names among the coded replies, and estimates it by Bayesian methods. Nothing about the data changes. What changes is what we can say. The gap becomes a distribution, so we can state the probability that it is negative, or larger than ten points. The prior, what was believed before the data, has to be written down, and we compare two readers who believe different things. The replication can enter as new data that revise the original estimate, which turns out to raise a question about whether the two studies measure one gap at all. And we end with what a significant result from a study of the size of the original can say about the size of a gap. The models take a while to fit, so they were fitted once, and the slides read their results.
+:::

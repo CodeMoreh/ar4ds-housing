@@ -1,0 +1,94 @@
+```{r}
+#| label: setup-experiments
+#| include: false
+# The numbers of the session on audit experiments that the setup of the case
+# does not hold, computed from the files of cases/housing/data/ with the
+# packages that companion/experiments.qmd uses, so that the deck and the module
+# agree. Comes after the two setup chunks and uses their data and formats.
+
+# The emails sent from each of the six accounts, against equal chances of each
+sent <- names_disp |>
+  datawizard::data_filter(level == "name") |>
+  datawizard::data_extract("sent")
+sent_test <- stats::chisq.test(sent)
+
+# Balance: the share of each group of emails with a hard-to-find address and in
+# the top third of each community characteristic, all recorded before the
+# emails went out, with the p-value of a chi-square test that the whole
+# distribution is the same in the three groups. dplyr inside the lambda,
+# because datawizard does not find the variable of each pass.
+balance_vars <- c(hard_email = "With a hard-to-find address",
+                  hispanic_third = "Top third of percent Hispanic",
+                  black_third = "Top third of percent Black",
+                  pop_third = "Top third of population",
+                  poverty_third = "Top third of the poverty rate",
+                  assessment_third = "Top third of the HUD assessment")
+balance <- purrr::imap(balance_vars, \(label, v) {
+  shares <- audit |>
+    dplyr::mutate(top = if (v == "hard_email") .data[[v]] == 1 else .data[[v]] == "top") |>
+    dplyr::summarise(share = 100 * mean(top, na.rm = TRUE), .by = group)
+  tibble::tibble(characteristic = label,
+                 white = shares$share[shares$group == "white"],
+                 black = shares$share[shares$group == "black"],
+                 hispanic = shares$share[shares$group == "hispanic"],
+                 p = stats::chisq.test(table(audit$group, audit[[v]]))$p.value)  # r-style: keep – the table that chisq.test() takes
+}) |>
+  purrr::list_rbind()
+
+# The trimming bounds of the gap among replies (attrition): every delivered
+# email to a Hispanic or a white name, a reply with a greeting code counting as
+# a response, and a Hispanic name assumed only ever to discourage a reply, so
+# that the replies to white names are the ones trimmed
+delivered <- audit |>
+  datawizard::data_filter(!is.na(reply) & group %in% c("white", "hispanic")) |>
+  datawizard::data_modify(
+    hisp = as.integer(group == "hispanic"),
+    responded = as.integer(reply == 1 & !is.na(named)),
+    greeted = dplyr::if_else(responded == 1, named, NA_real_)
+  )
+trim <- attrition::estimator_trim(Y = greeted, Z = hisp, R = responded,
+                                  monotonicity = "treatment_decreases_response", se = "none",
+                                  data = delivered)
+
+# The randomisation p-values that the curve stores for the reference
+# specification and for its twin that counts every delivered email
+p_ri_all <- curve_ref_all$p_ri
+
+# The gap below a white share of 61% that each design of display_power.csv
+# detects with a power of 0.8. power.prop.test() solves for a second share
+# above the first, and the variance p(1 - p) is the same at p and at 1 - p, so
+# the gap below 61% equals the gap above 39%. Then the smallest gap that the
+# reference comparison reports as significant at 5%, the half-width of its 95%
+# interval.
+gap_80 <- power |>
+  datawizard::data_modify(design = dplyr::if_else(startsWith(design, "original"), "original", "replication")) |>
+  datawizard::data_summary(n = max(n_per_group), by = "design") |>
+  datawizard::data_modify(gap = purrr::map_dbl(n, \(k) 100 * (stats::power.prop.test(n = k, p1 = 0.39, power = 0.8)$p2 - 0.39)))
+sig_gap <- (out_of("named", "hispanic", "ci_high") - out_of("named", "hispanic", "ci_low")) / 2
+
+# The reference comparison analysed within the two kinds of address, as if the
+# names had been blocked on it (estimatr), and the spread of the gaps that
+# chance alone produces under complete random assignment and under assignment
+# within the two kinds of address (ri2, 1,999 reshuffles each, the seed of the
+# module)
+block_fits <- dplyr::bind_rows(
+  estimatr::difference_in_means(named ~ hispanic, data = ref_rows) |> estimatr::tidy(),
+  estimatr::difference_in_means(named ~ hispanic, blocks = hard_email, data = ref_rows) |> estimatr::tidy()
+)
+block_shares <- ref_rows |>
+  datawizard::data_summary(hispanic_share = 100 * mean(hispanic), by = "hard_email")
+white_named <- ref_rows |>
+  datawizard::data_filter(group == "white") |>
+  datawizard::data_summary(named_share = 100 * mean(named), by = "hard_email")
+block_m <- ref_rows |> datawizard::data_summary(m = sum(hispanic), by = "hard_email")
+set.seed(20261105)
+ri_complete <- ri2::conduct_ri(named ~ hispanic, assignment = "hispanic",
+                               declaration = randomizr::declare_ra(N = nrow(ref_rows), m = sum(ref_rows$hispanic)),
+                               sharp_hypothesis = 0, IPW = FALSE, data = ref_rows, sims = 1999)
+set.seed(20261105)
+ri_blocked <- ri2::conduct_ri(named ~ hispanic, assignment = "hispanic",
+                              declaration = randomizr::declare_ra(blocks = ref_rows$hard_email, block_m = block_m$m),
+                              sharp_hypothesis = 0, data = ref_rows, sims = 1999)
+ri_spread <- 100 * c(complete = stats::sd(ri_complete$sims_df$est_sim),
+                     blocked = stats::sd(ri_blocked$sims_df$est_sim))
+```

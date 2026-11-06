@@ -1,0 +1,127 @@
+# PART 2 – Analysis {#part-2-analysis .darkslide background-color="rgba(0,0,0,0)"}
+
+::: {.partlabel}
+Part 2
+:::
+
+::: notes
+Part two takes two questions of analysis that the design raises. The first is the one that the causal graph raised yesterday: the greeting exists only for the emails that drew a reply, and the replies were not assigned at random. We look at what the OAs did about it and at how far the problem could reach. The second is the test that random assignment supplies by itself, without any model of the errors, and the part ends with your first run in the workspace.
+:::
+
+## The comparison among replies {#the-comparison-among-replies .smaller}
+
+::: {.small}
+- A greeting exists only where a reply exists. The names were assigned to the authorities, but **the replies were not assigned at all**
+- Comparing greetings among replies conditions on a consequence of the name, the collider of yesterday, and mixes an effect on **how** officials write with a difference in **which** officials wrote [@MontgomeryEtAl2018HowConditioningPosttreatment; @Coppock2019AvoidingPosttreatmentBias]
+:::
+
+::: {.fs-75}
+| Hispanic against white names | Gap (points) | p | Emails |
+|:--|--:|--:|--:|
+| Any reply, among delivered emails | `r fmt_num(out_of("reply", "hispanic", "b_pp"), 1)` | `r fmt_num(out_of("reply", "hispanic", "p"), 3)` | `r fmt_n(out_of("reply", "hispanic", "n"))` |
+| Greeted by name, among coded replies | `r fmt_num(out_of("named", "hispanic", "b_pp"), 1)` | `r fmt_num(out_of("named", "hispanic", "p"), 4)` | `r fmt_n(out_of("named", "hispanic", "n"))` |
+| Greeted by name, among delivered emails | `r fmt_num(out_of("named_any", "hispanic", "b_pp"), 1)` | `r fmt_num(out_of("named_any", "hispanic", "p"), 4)` | `r fmt_n(out_of("named_any", "hispanic", "n"))` |
+:::
+
+::: {.fragment .claimcard .fs-75}
+"As above, we also did this analysis coding all non-responses as unfriendly responses to address the truncation problem. This does not affect the results." <span class="src">the OAs, p. 18, note 11</span>
+:::
+
+::: {.src}
+cases/housing/data/display_outcomes.csv: differences in proportions with HC2 tests. @EinsteinGlick2017DoesRaceAffect, accepted manuscript, p. 18.
+:::
+
+::: notes
+You met this problem yesterday as a graph. A greeting exists only where a reply exists. The names were assigned to the authorities at random, but nobody assigned the replies. If a Hispanic name discourages some officials from answering, the officials who answered Santiago need not resemble those who answered Brett, and the gap among replies mixes how officials write with which officials wrote. The table gives the three numbers that matter. Hispanic names drew replies about five points less often, not significantly. Among the coded replies the gap in greetings is twenty points; among every delivered email, thirteen. [advance] The OAs knew all this. Their footnote calls it the truncation problem, and their supporting information truncation by death, a term borrowed from medical statistics. The footnote says that counting every non-response as unfriendly does not affect the results. The footnote is right about the conclusion, although the two numbers answer two different questions, and the next slide asks how far apart they could be.
+:::
+
+## A bound on the comparison among replies {#a-bound-on-the-comparison-among-replies .smaller}
+
+::: {.small}
+- **Assume** that a Hispanic name can only discourage a reply: no official would answer Santiago and ignore the same email from Brett
+- Then the replies to white names include some from officials who would not have answered a Hispanic name: the extra **`r fmt_num(100 * trim[["Q"]], 1)`%** of the white replies, given by the gap in the rates of coded replies
+- Take that share out of the white replies in the two most extreme ways: once only replies that greeted by name, once only replies that did not
+:::
+
+::: {.fragment .small}
+Among the officials who would have replied to either name, the gap lies between **`r fmt_num(100 * trim[["estimate_lower"]], 1)`** and **`r fmt_num(100 * trim[["estimate_upper"]], 1)`** points, before any allowance for chance. Even the end nearest zero is a large gap, if the assumption holds, and no data can check the assumption.
+
+```{.r}
+attrition::estimator_trim(Y = greeted, Z = hisp, R = responded,
+                          monotonicity = "treatment_decreases_response", data = delivered)
+```
+:::
+
+::: {.src}
+Trimming bounds from the attrition package, on the `r fmt_n(nrow(delivered))` delivered emails to Hispanic and white names (cases/housing/data/housing_audit.csv); companion/experiments.qmd, section 4.
+:::
+
+::: notes
+How far could a change in who replied go towards explaining the gap among replies? A bound answers that under one assumption, which I want you to hear clearly: a Hispanic name can only discourage a reply, never encourage one. No official answers Santiago and ignores the same email from Brett. Then the replies to white names hold an extra slice, about eight per cent of those replies, from officials who would not have answered a Hispanic name. We do not know which replies make up the slice, so we take the slice out in the two most extreme ways: first assuming that every reply in it greeted by name, then that none did. [advance] Whatever that slice looked like, the gap among the officials who would have replied to either name lies between minus twenty-five and minus seventeen points, so even the near end is a large gap. That conclusion holds only as far as the assumption does, and the data cannot test it.
+:::
+
+## Randomisation inference {#randomisation-inference .smaller}
+
+```{r}
+#| label: d3-ri-hist
+#| fig-width: 9.5
+#| fig-height: 2.6
+# The gap among the 362 coded replies after each of 4,999 reshuffles of the
+# names (data/display_ri.csv), with the central 95% shaded and the observed gap
+# in burgundy. A reshuffle keeps the number of greetings fixed, so the gap
+# takes values one step apart; one bar per step, centred on the observed gap.
+ri_step <- 100 * (1 / curve_ref$n_hisp + 1 / curve_ref$n_comp)
+ggplot2::ggplot(ri, ggplot2::aes(b_pp)) +
+  ggplot2::annotate("rect", xmin = ri_band[[1]], xmax = ri_band[[2]], ymin = -Inf, ymax = Inf,
+                    fill = "#d6dde5", alpha = 0.6) +
+  ggplot2::geom_histogram(binwidth = ri_step, center = curve_ref$b_pp, fill = plain, colour = "white",
+                          alpha = 0.85) +
+  ggplot2::geom_vline(xintercept = curve_ref$b_pp, colour = burgundy, linewidth = 1.3) +
+  ggplot2::annotate("label", x = curve_ref$b_pp, y = Inf, vjust = 1.3, label = "observed",
+                    colour = burgundy, fill = "white", linewidth = 0, fontface = "bold", size = 5) +
+  ggplot2::scale_x_continuous(limits = c(-25, 25), labels = \(x) fmt_num(x, 0)) +
+  ggplot2::labs(x = "Hispanic minus white names after a reshuffle (points)", y = "reshuffles") +
+  theme_slide(15)
+```
+
+::: {.small}
+- **The sharp null**: the name made no difference to any official, so only the labels could have fallen differently [@Fisher1935DesignExperiments]
+- The p-value is the share of reshuffles at least as extreme as the observed gap, the observed assignment counted as one of the reshuffles [@PhipsonSmyth2010PermutationPValues]
+:::
+
+::: {.fragment .small}
+Among all delivered emails, a reshuffle repeats the assignment of the design; among the replies, it holds fixed a set that the design never fixed. With 1,999 reshuffles, p = `r fmt_num(curve_ref$p_ri, 4)` among the replies and `r fmt_num(p_ri_all, 4)` among all delivered emails, the smallest possible value.
+:::
+
+::: {.src}
+cases/housing/data/display_ri.csv (4,999 reshuffles among the coded replies) and the column `p_ri` of spec_curve.csv (1,999 reshuffles for each specification).
+:::
+
+::: notes
+Random assignment also supplies a test that needs no model of the errors, and the idea goes back to Fisher. Suppose the name made no difference at all to any official, so that every authority would have answered exactly as it did whichever name arrived. Under that hypothesis, the sharp null, the outcomes are fixed and only the labels could have fallen differently. So we reshuffle the labels, again and again, and recompute the gap each time. The histogram shows what chance alone produces among these replies: ninety-five per cent of the reshuffled gaps lie between minus ten and plus ten, and the observed gap sits far out at minus twenty. [advance] Reshuffling among all delivered emails repeats the design exactly, whereas reshuffling among the replies treats the replies as a fixed set. The sharp null allows that, since a name that changes nothing changes no reply either, but the design never fixed that set, which is the problem of the last two slides again.
+:::
+
+## Hands-on 1 – Balance and the reshuffles {#hands-on-1-balance-and-the-reshuffles .smaller}
+
+::: {.small}
+**In the workspace**, with `index.qmd` open and its setup chunk run:
+
+1. Once, in the console: `pak::pak("ri2")`, which installs randomizr and estimatr with it
+2. **Balance.** Tabulate one characteristic by group, then test it, and try another:
+   `datawizard::data_tabulate(audit, select = "poverty_third", by = "group", proportions = "column")` and `chisq.test(table(audit$group, audit$poverty_third))`
+3. **Reshuffles among the replies**, on the rows of the reference specification:
+
+   ```{.r}
+   frame <- spec_frame(audit)   # the 362 coded replies to Hispanic and white names
+   set.seed(20261106)
+   reshuffled <- ri2::conduct_ri(y ~ hisp, assignment = "hisp", sharp_hypothesis = 0,
+                                 declaration = randomizr::declare_ra(N = nrow(frame), m = sum(frame$hisp)),
+                                 data = frame, sims = 1999)
+   summary(reshuffled)
+   ```
+4. Run the same on `spec_frame(audit, population = "all")`. **Which of the two reshuffles repeats the assignment of the design?**
+:::
+
+::: notes
+Your turn. Open the report in your IDE and run its setup chunk, which reads the data and loads the helpers. Install ri2 once; it brings the two packages that it needs, randomizr and estimatr. First, balance: tabulate one characteristic by group with data underscore tabulate, then run the chi-square test, and try a second characteristic of your choice. Then the reshuffles. Spec underscore frame, one of the helpers, returns the rows of any specification of the curve, and with no arguments it gives the reference: the coded replies to Hispanic and white names. Conduct underscore ri reshuffles the names among those rows nineteen hundred and ninety-nine times, as the experiment assigned the names, and summary gives the share of reshuffles at least as extreme. Then do the same among every delivered email, and write one sentence on which of the two repeats the design. [state the time] STUCK in chat if you need me.
+:::

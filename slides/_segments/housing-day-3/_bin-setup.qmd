@@ -1,0 +1,62 @@
+```{r}
+#| label: setup-binary
+#| include: false
+# The numbers of the session on binary outcomes that the setup of the case does
+# not hold, computed from the rows of the reference specification (ref_rows:
+# the coded replies to Hispanic and white names) with the functions that
+# companion/binary-outcomes.qmd uses. Comes after the two setup chunks and uses
+# their data and formats.
+
+# The two by two table of the reference comparison, with and without the
+# continuity correction
+chi_ref_yates <- unname(stats::chisq.test(tab_ref)$statistic)
+
+# The linear probability model of the reference comparison, whose intercept is
+# the share for the white names and whose coefficient is the difference, and
+# the standard error of the difference computed group by group (the Welch
+# t-test), beside the classical and the HC2 errors of the setup
+lpm_coefs <- stats::coef(stats::lm(named ~ hispanic, data = ref_rows))
+se_two_sample <- 100 * stats::t.test(named ~ hispanic, data = ref_rows)$stderr
+
+# The predictions of a linear probability model with the covariates of the
+# curve, which a straight line could carry outside 0 and 1
+lpm_covariates <- stats::lm(named ~ hispanic + hard_email + pop_third + poverty_third + black_third + hispanic_third,
+                            data = ref_rows)
+lpm_range <- range(stats::fitted(lpm_covariates))
+
+# The logit of the reference comparison on the model columns alone, because
+# marginaleffects refuses a data column called group; its intercept is the log
+# odds of a greeting for the white names
+logit_cols <- datawizard::data_select(ref_rows, c("named", "hispanic", "hard_email"))
+logit_fit <- stats::glm(named ~ hispanic, family = stats::binomial(), data = logit_cols)
+logit_odds_white <- stats::coef(logit_fit)[["(Intercept)"]]
+logit_b <- stats::coef(logit_fit)[["hispanic"]]
+odds_ratio <- exp(logit_b)
+ame_ref <- marginaleffects::avg_comparisons(logit_fit, variables = "hispanic")
+preds_ref <- marginaleffects::avg_predictions(logit_fit, variables = list(hispanic = 0:1))
+
+# The gap in points that the odds ratio of the data implies at four shares of
+# greetings for the white names, and across the logits of the curve
+or_bases <- tibble::tibble(white = c(0.20, 0.50, 0.611, 0.90)) |>
+  datawizard::data_modify(gap = 100 * (stats::plogis(stats::qlogis(white) + logit_b) - white))
+curve_logits <- datawizard::data_filter(curve, model == "logit")
+
+# Non-collapsibility in numbers: two kinds of authority, equally many of each,
+# whose white names are greeted by name 85% and 35% of the time, and a
+# Hispanic name that multiplies the odds of a greeting by the odds ratio of the
+# data in both kinds; the odds ratio for all authorities together
+two_kinds <- tibble::tibble(white = c(0.85, 0.35)) |>
+  datawizard::data_modify(hispanic = stats::plogis(stats::qlogis(white) + logit_b),
+                          gap = 100 * (hispanic - white))
+all_white <- mean(two_kinds$white)
+all_hispanic <- mean(two_kinds$hispanic)
+odds_ratio_all <- exp(stats::qlogis(all_hispanic) - stats::qlogis(all_white))
+
+# How well the hard-to-find address predicts the greeting, and how evenly
+# chance spread the Hispanic names across the two kinds of address
+white_named <- ref_rows |>
+  datawizard::data_filter(group == "white") |>
+  datawizard::data_summary(named_share = 100 * mean(named), by = "hard_email")
+block_shares <- ref_rows |>
+  datawizard::data_summary(hispanic_share = 100 * mean(hispanic), by = "hard_email")
+```

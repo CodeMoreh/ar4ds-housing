@@ -1,0 +1,71 @@
+# PART 4 – Ethics {#part-4-ethics .darkslide background-color="rgba(0,0,0,0)"}
+
+::: {.partlabel}
+Part 4
+:::
+
+::: notes
+The last part is short, and it is not a technical one. An audit study deceives the people whom it studies, and its data describe officials who never agreed to take part. The OAs devote a section of their paper to these costs, and the replication had to weigh them again. We read what the OAs wrote, then what the public file does to protect the officials, and we end with a question for you about replication itself.
+:::
+
+## Deception {#deception .smaller}
+
+::: {.small}
+The officials who answered Santiago Martinez spent working time on a request from someone who did not exist, and never learned that their reply was data. The OAs set out their reasons in the paper:
+:::
+
+::: {.small}
+- They "contacted government employees in their professional capacity"
+- The emails were "not designed to alter their behavior but rather to measure it"
+- They were "attentive to minimizing the amount of time workers devoted to requests for information from fictitious constituents", and did not write again, even when a reply asked a question
+- "This deception is necessary to experimentally test whether bureaucrats exhibit racial biases in their responses to constituents"
+:::
+
+::: {.src}
+@EinsteinGlick2017DoesRaceAffect, accepted manuscript, pp. 11–12.
+:::
+
+::: notes
+Every official who answered Santiago Martinez spent working time on someone who did not exist, and never learned that the reply had become data. The OAs take this seriously, in a section of its own. They wrote to public employees in their professional capacity. The emails were meant to measure behaviour, not to change it. They kept the request short, so that a link or a pasted paragraph would answer it, and they never wrote back, even when an official asked a question in return. And they argue that the deception is necessary: without random assignment of the names there is no way to measure whether officials answer people differently by race or ethnicity. Whether you find that argument sufficient is a judgement that research ethics committees make for every audit, and one that you may one day have to make yourselves.
+:::
+
+## The officials in the data {#the-officials-in-the-data .smaller}
+
+::: {.small}
+- The public file gives the size, poverty and ethnic composition of each community only in thirds, because "Whether or not a housing official responded, particularly to an ostensible minority applicant, is very sensitive and potentially harmful information" (the ReadMe of the OAs)
+- The replication kept the rule: "Due to Institutional Review Board restrictions, the publicly available dataset will include only the tercile version of the demographic covariates to minimize likelihood of identifying subjects" (its final report)
+- The course works only with the blinded file and never tries to recover an authority
+:::
+
+::: {.fragment .small}
+Replication has a cost of its own in this kind of research: the SCORE replication sent **3,050** further requests from people who did not exist to offices of the same kind.
+:::
+
+::: {.src}
+The ReadMe of the replication package, doi.org/10.7910/DVN/1HOVTU; the final report of the replication, osf.io/2ug8x.
+:::
+
+::: notes
+The second cost concerns the data. Whether an official replied to an ostensibly minority applicant is sensitive information about a real person in a real office, and the OAs say so in the ReadMe of their package. That is why the public file gives the communities only in thirds: the exact census values would identify the authorities, and with them the officials. The replication followed the same rule under its own review board. It is also why the course never tries to recover an authority from the file, and why nothing that we do needs to. [advance] And replication has a cost of its own here. To test the claim again, SCORE sent three thousand and fifty further fictitious requests to offices of the same kind, so a decision to replicate an audit weighs that burden on the officials against what a second answer is worth.
+:::
+
+## Replicating an audit {#replicating-an-audit .questionslide}
+
+::: {.none}
+The replication found no gap in greetings by name. Would a third audit of housing authorities be worth its cost to the officials, and what would its design have to change to justify that cost?
+:::
+
+::: notes
+So here is a question for the class, and there is no answer on the next slide. The replication found no gap. Would a third audit of housing authorities be worth its cost to the officials who would answer it, and what would its design have to change to justify that cost? Draw on what this session has covered: the names, the comparison among replies, the power of each design, the blocks. Talk to your neighbour first, then I will take a few answers. [state the time; take three or four answers, and ask each speaker which part of the design their answer would change]
+:::
+
+## The reading and the next session {#the-reading-and-the-next-session .smaller}
+
+::: {.small .nonincremental}
+- **The reading**: [Audit experiments](../companion/experiments.html), the module of the companion curriculum behind this session, with the code of each analysis and a task that reverses the assumption of the bound
+- **Next**: Binary outcomes. The greeting as a 0/1 outcome, the difference in proportions as a regression with HC2 standard errors, logistic regression, odds ratios against average marginal effects, and why a covariate changes an odds ratio even in an experiment
+:::
+
+::: notes
+That is the design. The module Audit experiments, in the companion curriculum on the site, is the reading for this session: it has the code behind the analyses of this session, and a task that turns the assumption of the bound around, which is a good test of whether the idea has stuck. The next session stays with the same comparison but changes the question. Instead of asking how the names were assigned, it asks how a zero-or-one outcome is modelled: as a difference in proportions, as a linear regression with the standard errors that the course uses, and as the logistic regression of the paper, with its odds ratios.
+:::
