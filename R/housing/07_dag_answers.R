@@ -3,8 +3,8 @@
 # Purpose:      The answers that the causal-graph task of the browser lab
 #               prints (Task 2), computed with dagitty (Textor et al. 2016,
 #               International Journal of Epidemiology) for every graph to
-#               which the graph cell of the lab leads: the graph as the cell
-#               draws it, and the same graph with the arrow of the claim,
+#               which the cell of the lab that builds the graph leads: the
+#               graph as that cell writes it, and the same graph with the arrow of the claim,
 #               name -> greeting, switched on. For each graph, the minimal
 #               adjustment sets for the total effect of the name on the
 #               greeting, and every path between the two with whether it is
@@ -13,16 +13,18 @@
 #               its graph algorithms need a JavaScript engine that a browser
 #               grants only to a page served with cross-origin isolation
 #               headers, which the course site does not send.
-# Reads:        nothing; the arrows are those of the graph cell of
-#               cases/housing/lab.qmd and of R/dag_starter.R in the workspace
+# Reads:        nothing; the arrows are those of the cell that builds the
+#               graph in cases/housing/lab.qmd and of R/dag_starter.R in the
+#               workspace
 # Writes:       cases/housing/data/dag_answers.csv
 # Author:       Claude for CM
-# Last updated: 2026-10-26
+# Last updated: 2026-11-06
 ################################################################################
 
-# The arrows of the graph cell, written "cause -> effect" as the cell writes
-# them: the six that the cell draws, and the one that it leaves switched off
-# for the participant. A change to the cell needs the same change here.
+# The arrows of the cell that builds the graph in the lab, written
+# "cause -> effect" as that cell writes them: the six that it switches on, and
+# the one that it leaves switched off for the participant. A change to that
+# cell needs the same change here.
 drawn <- c("name -> reply", "reply -> greeting", "official -> reply", "official -> greeting",
            "community -> reply", "community -> greeting")
 switched_off <- "name -> greeting"
