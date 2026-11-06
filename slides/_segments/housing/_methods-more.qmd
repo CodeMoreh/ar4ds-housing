@@ -1,5 +1,5 @@
 <!-- DEEP DIVE START: methods tutorial (6 slides). Optional depth, on the
-     .deepdive class – see the note at the start of _rtutorial.qmd. -->
+     .deepdive class, which the d key of slides/nav-tools.html switches. -->
 
 ## Odds ratios and percentage points {#odds-ratios-and-percentage-points .smaller .deepdive run="methods"}
 
