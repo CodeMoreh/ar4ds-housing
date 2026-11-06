@@ -23,7 +23,7 @@ Part 3 is where the R work reaches its target. It starts with the data managemen
 
 [Open the browser lab at Task 3](../../cases/housing/lab.qmd#task-3-reproduction){.btn .btn-primary target="_blank"}
 
-If you work in the workspace, use your report or `prep/reproduce_reanalyses.R` instead. Choose one of the five analysts and complete their cell on the public file `audit_original.csv`. Four of them have a value that Multi100 recorded: $\chi^2$ = 14.265 for 8PTRZ, z = −3.771 for UYV3F, z = 3.645 for EWFMI and $\chi^2$ = 13.683 for 25N5D. P9W8Y has none, so its test of three groups, $\chi^2$ = 15.951 on 2 degrees of freedom, can be run again but not matched. Every one of them filters, recodes or splits a column of the public file first. Type the analyst and the value in the chat without sending them, and send them when the facilitator says go.
+If you work in the workspace, use your report or `prep/reproduce_reanalyses.R` instead. Choose one of the five analysts and work through their cells on the public file `audit_original.csv`. Four of them have a value that Multi100 recorded: $\chi^2$ = 14.265 for 8PTRZ, z = −3.771 for UYV3F, z = 3.645 for EWFMI and $\chi^2$ = 13.683 for 25N5D. P9W8Y has none, so its test of three groups, $\chi^2$ = 15.951 on 2 degrees of freedom, can be run again but not matched. Every one of them filters, recodes or splits a column of the public file first. Type the analyst and the value in the chat without sending them, and send them when the facilitator says go.
 
 ## 5. The defaults of the software
 

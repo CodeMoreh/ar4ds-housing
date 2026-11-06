@@ -33,7 +33,7 @@ To go further: [Reproducibility repositories](../../companion/repositories.qmd).
 
 [Open the browser lab at Task 5](../../cases/housing/lab.qmd#task-5-preregistration){.btn .btn-primary target="_blank"}
 
-Fill in the preregistration cell, without running the analysis. It asks for the claim, the data and what you already know about them, one option for each decision on the `my_` lines, a sentence from your estimand statement on why your choices answer the claim, and your rule for what supports or undermines it. Copy the block into your notes. Nothing is fitted and nothing is sent, and if you run the cell, it only checks your choices and prints the block. Then swap with a neighbour and ask whether they could run your analysis from your block alone.
+Fill in the preregistration cell, without running the analysis. It asks for the claim, the data and what you already know about them, one option for each decision on the `my_` lines, a sentence from your estimand statement on why your choices answer the claim, and your rule for what supports or undermines it. Copy the block into your notes. Nothing is fitted and nothing is sent, and if you run the cell and then the `prereg()` cell below it, the second only checks your choices and prints the block. Then swap with a neighbour and ask whether they could run your analysis from your block alone.
 
 ## 6. The close
 

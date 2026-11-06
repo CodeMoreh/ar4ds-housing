@@ -107,7 +107,7 @@ Only the one-day course with the methods focus sends results to the class chart.
 
 **Task 5 – the declared mark (filled circle).** Here you preregister one specification before you run it.
 
-4. **Preregister.** Make one choice for every `my_` line of the preregistration block, complete the dotted lines, and run the block, which ends in `my_spec <- prereg()`. The completed block is your preregistration. In the workspace, keep it in the report as set out under [Rendering the report](#rendering-the-report); on the browser lab page, copy the whole cell into your notes.
+4. **Preregister.** Make one choice for every `my_` line of the preregistration block, complete the dotted lines, and run the block, which ends in `my_spec <- prereg()`. In the browser lab that line is a cell of its own below the block, to be run after it. The completed block is your preregistration. In the workspace, keep it in the report as set out under [Rendering the report](#rendering-the-report); on the browser lab page, copy the whole cell into your notes.
 5. **`run_spec(my_spec)`** – fits your specification and prints its result and its place on the curve.
 6. **`report_result()`** – builds your submission from the preregistration and prints a pre-filled form link; open it and press **Send**. It reuses your tag from Task 4. In the browser lab, if you have reloaded the page since then, pass the tag back with `report_result(nickname = "your-tag")`.
 

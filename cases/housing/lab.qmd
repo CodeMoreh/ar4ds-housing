@@ -685,12 +685,10 @@ audit |>
 
 You should find **1,014 emails** (the paper reports 1,017, three more than the public file holds), of which **23 bounced** and never reached an official, **991 delivered**, **563 replies**, and **558 replies with a greeting code**. The column `reply` is 1 for a reply, 0 for none and missing for a bounced email. `named` is 1 when a reply greeted the sender by name, 0 when it did not, and missing for every email without a reply and for the five replies that carry no greeting code. The [codebook](data/housing_audit_codebook.md) describes every column.
 
-Now the replies and the greetings by the group of the name, and the share of greetings by name for each of the six names:
+Now the replies and the greetings by the group of the name:
 
 ```{webr}
 #| autorun: false
-#| fig-width: 8
-#| fig-height: 3.6
 audit |>
   datawizard::data_filter(!is.na(reply)) |>
   datawizard::data_summary(delivered   = n(),
@@ -699,17 +697,29 @@ audit |>
                            greeted     = sum(named %in% 1),
                            greeted_pct = round(100 * sum(named %in% 1) / sum(!is.na(named)), 1),
                            by = "group")
+```
 
-# The share greeted by name for each of the six names, from the lowest, drawn
-# with tinyplot (McDermott, Arel-Bundock and Zeileis; CRAN,
-# doi:10.32614/CRAN.package.tinyplot)
+Then the share greeted by name for each of the six names. This cell works out the shares and prints nothing.
+
+```{webr}
+#| autorun: false
+# The share greeted by name for each of the six names, from the lowest
 greeted <- audit |>
   datawizard::data_filter(!is.na(named)) |>
   datawizard::data_summary(greeted_pct = 100 * mean(named), by = c("group", "name")) |>
   datawizard::data_arrange("greeted_pct") |>
   datawizard::data_modify(group = factor(group, levels = c("white", "black", "hispanic"),
                                          labels = c("white", "Black", "Hispanic")))
+```
 
+The next cell draws them, a bar for each name with its share at the end.
+
+```{webr}
+#| autorun: false
+#| fig-width: 8
+#| fig-height: 3.6
+# The shares drawn with tinyplot (McDermott, Arel-Bundock and Zeileis; CRAN,
+# doi:10.32614/CRAN.package.tinyplot)
 tinyplot::tinyplot(greeted_pct ~ name | group, data = greeted,
                    type = tinyplot::type_barplot(xlevels = greeted$name, width = 0.7, drop.zeros = TRUE), flip = TRUE,
                    palette = c("grey60", "#4a78ab", "#8b1538"), fill = "by",
@@ -887,12 +897,10 @@ plot_dag <- function(d) {
 
 `make_dag()`, `adjustmentSets()`, `paths()` and `plot_dag()` are already available on this page, so you can go straight to the graph. In the downloadable workspace the two questions go to `dagitty`, the R package for causal graphs, which cannot run on this page. Here `adjustmentSets()` and `paths()` print the answers that dagitty gives, read from a table that the course computed with dagitty for the graph of the cell below, with and without the arrow of the claim ([codebook](data/dag_answers_codebook.md)). Any other graph gets a pointer to the workspace.
 
-Now build the graph and put two questions to it. The first is what has to be adjusted for when the comparison counts every delivered email. The second is which paths from the name to the greeting are open once the comparison is made among replies only, which is what `Z = "reply"` asks: it conditions on the reply.
+Now build the graph and put two questions to it. The cell below builds the graph from its arrows and prints nothing.
 
 ```{webr}
 #| autorun: false
-#| fig-width: 8
-#| fig-height: 4.5
 my_dag <- make_dag(
   # The name can affect whether the official replies at all.
   "name -> reply",
@@ -910,15 +918,34 @@ my_dag <- make_dag(
 
   exposure = "name", outcome = "greeting", latent = "official"
 )
+```
 
-adjustmentSets(my_dag)       # r-style: keep – the function of this page, which reads the answers of dagitty
-paths(my_dag, Z = "reply")   # r-style: keep – the function of this page, which reads the answers of dagitty
+The first question is what has to be adjusted for when the comparison counts every delivered email:
+
+```{webr}
+#| autorun: false
+adjustmentSets(my_dag)  # r-style: keep – the function of this page, which reads the answers of dagitty
+```
+
+The second is which paths from the name to the greeting are open once the comparison is made among replies only, which is what `Z = "reply"` asks: it conditions on the reply.
+
+```{webr}
+#| autorun: false
+paths(my_dag, Z = "reply")  # r-style: keep – the function of this page, which reads the answers of dagitty
+```
+
+The last cell draws the graph.
+
+```{webr}
+#| autorun: false
+#| fig-width: 8
+#| fig-height: 4.5
 plot_dag(my_dag)
 ```
 
 `adjustmentSets()` returns `{}`, the empty set: nothing has to be adjusted for, because nothing points into the name. The names were assigned at random, so no common cause of the name and the greeting can exist. Conditioning on the reply changes the picture. The path through the reply closes, but two paths open, one through the community and one through the official, because the reply is a common effect of the name and of each of them (a collider), and comparing replies only conditions on it. This is the problem of conditioning on a consequence of the treatment, which @Coppock2019AvoidingPosttreatmentBias sets out for audit experiments.
 
-Now take the `#` off the arrow `"name -> greeting"`, run the cell again, then run the cell below, which also adjusts for the community. Answer three questions for your own notes: why the adjustment set stays empty; which paths stay open among replies once the community is adjusted for, and what that means for a gap among replies; and which emails keep the comparison randomised.
+Now take the `#` off the arrow `"name -> greeting"` in the cell that builds the graph, and run that cell and the three after it again. Then run the cell below, which also adjusts for the community. Answer three questions for your own notes: why the adjustment set stays empty; which paths stay open among replies once the community is adjusted for, and what that means for a gap among replies; and which emails keep the comparison randomised.
 
 ```{webr}
 #| autorun: false
@@ -947,7 +974,14 @@ This is the **reproducibility** check. Five analysts reanalysed the claim for Mu
 | [25N5D](#task-3-25n5d) | Hispanic against white names | the 665 delivered emails to those names, a missing reply counted as no greeting | two-proportion test | $\chi^2$ = 13.683 |
 | [P9W8Y](#task-3-p9w8y) | the three groups | the 558 replies with a greeting code | likelihood-ratio test of a logistic regression | none |
 
-Each analyst has a cell of their own below, and each cell is an exercise: replace the blank (`______`) with the missing code, then press "Run Code". A hint and the full solution sit under every cell. When you have your value, type the analyst and the value into the chat, for example `UYV3F z = -3.771`, hold it, and send it on the facilitator's word. The course computes the same five refits in its own pipeline, with the same functions, and the four recorded statistics all come out exactly ([`analysts5.csv`](data/analysts5_codebook.md)). For P9W8Y Multi100 recorded no statistic, so its analysis can be run again but there is nothing on record to match it against.
+Each analyst has a few cells of their own below, one step each, to be run in order. One of the cells of each analyst is an exercise: replace the blank (`______`) with the missing code, then press "Run Code". A hint and the solution sit under that cell. When you have your value, type the analyst and the value into the chat, for example `UYV3F z = -3.771`, hold it, and send it on the facilitator's word. The course computes the same five refits in its own pipeline, with the same functions, and the four recorded statistics all come out exactly ([`analysts5.csv`](data/analysts5_codebook.md)). For P9W8Y Multi100 recorded no statistic, so its analysis can be run again but there is nothing on record to match it against.
+
+Whichever analyst you choose, run the cell below first. It reads the public file of the OAs as `original`, the object from which every later cell of this task works, and prints nothing.
+
+```{webr}
+#| autorun: false
+original <- utils::read.csv("data/audit_original.csv", na.strings = c("", "NA"))  # r-style: keep – the base reader adds nothing to the download
+```
 
 ### 8PTRZ – the test of a table {#task-3-8ptrz}
 
@@ -955,19 +989,11 @@ Analyst 8PTRZ compared Hispanic names with all other names, white and Black toge
 
 ```{webr}
 #| exercise: repro-8ptrz
-original <- utils::read.csv("data/audit_original.csv", na.strings = c("", "NA"))  # r-style: keep – the base reader adds nothing to the download
-
-# 1. keep the replies that carry a greeting code, and mark the Hispanic names
+#| envir: global
+# keep the replies that carry a greeting code, and mark the Hispanic names
 coded_replies <- original |>
   datawizard::data_filter(!is.na(______)) |>
   datawizard::data_modify(hispanic_name = grepl("^Hispanic", TreatmentGroup))
-
-# 2. the 2 x 2 table: Hispanic or other name, by greeting
-tab_8ptrz <- xtabs(~ hispanic_name + ProperName, data = coded_replies)  # r-style: keep – the table that chisq.test() takes
-tab_8ptrz
-
-# 3. the chi-square test of the table
-chisq.test(tab_8ptrz)
 ```
 
 :::: {.hint exercise="repro-8ptrz"}
@@ -983,38 +1009,50 @@ chisq.test(tab_8ptrz)
 ## Solution
 
 ``` r
-original <- utils::read.csv("data/audit_original.csv", na.strings = c("", "NA"))  # r-style: keep – the base reader adds nothing to the download
 coded_replies <- original |>
   datawizard::data_filter(!is.na(ProperName)) |>
   datawizard::data_modify(hispanic_name = grepl("^Hispanic", TreatmentGroup))
+```
+:::
+::::
+
+Then run the next two cells in order. The first makes the table and prints it, and the second tests it.
+
+```{webr}
+#| autorun: false
+# the 2 x 2 table: Hispanic or other name, by greeting
 tab_8ptrz <- xtabs(~ hispanic_name + ProperName, data = coded_replies)  # r-style: keep – the table that chisq.test() takes
 tab_8ptrz
+```
+
+```{webr}
+#| autorun: false
+# the chi-square test of the table
 chisq.test(tab_8ptrz)
 ```
 
 You should get `X-squared = 14.265, df = 1`, the value on record for 8PTRZ.
-:::
-::::
 
 ### UYV3F – a logistic regression {#task-3-uyv3f}
 
 Analyst UYV3F compared Hispanic with white names only, among the 362 coded replies to those names, with a logistic regression of the greeting on the name and no covariates. Multi100 recorded z = −3.771, the z of the coefficient of the Hispanic names.
 
-```{webr}
-#| exercise: repro-uyv3f
-original <- utils::read.csv("data/audit_original.csv", na.strings = c("", "NA"))  # r-style: keep – the base reader adds nothing to the download
+The first cell keeps the rows of the analysis and prints nothing. The second, the exercise, fits the model.
 
-# 1. the coded replies to Hispanic and white names, with the Hispanic names marked
+```{webr}
+#| autorun: false
+# the coded replies to Hispanic and white names, with the Hispanic names marked
 replies_uyv3f <- original |>
   datawizard::data_filter(!is.na(ProperName) & !grepl("^black", TreatmentGroup)) |>
   datawizard::data_modify(hispanic_name = grepl("^Hispanic", TreatmentGroup))
+```
 
-# 2. the logistic regression of the greeting on the name
+```{webr}
+#| exercise: repro-uyv3f
+#| envir: global
+# the logistic regression of the greeting on the name
 m_uyv3f <- glm(ProperName ~ hispanic_name, family = ______(), data = replies_uyv3f)
 nobs(m_uyv3f)
-
-# 3. the coefficients, with the z of each
-print(parameters::model_parameters(m_uyv3f, ci_method = "wald"), digits = 3)
 ```
 
 :::: {.hint exercise="repro-uyv3f"}
@@ -1030,18 +1068,21 @@ A logistic regression is a generalised linear model of a 0/1 outcome with the fa
 ## Solution
 
 ``` r
-original <- utils::read.csv("data/audit_original.csv", na.strings = c("", "NA"))  # r-style: keep – the base reader adds nothing to the download
-replies_uyv3f <- original |>
-  datawizard::data_filter(!is.na(ProperName) & !grepl("^black", TreatmentGroup)) |>
-  datawizard::data_modify(hispanic_name = grepl("^Hispanic", TreatmentGroup))
 m_uyv3f <- glm(ProperName ~ hispanic_name, family = binomial(), data = replies_uyv3f)
 nobs(m_uyv3f)
+```
+:::
+::::
+
+The last cell prints the coefficients.
+
+```{webr}
+#| autorun: false
+# the coefficients, with the z of each
 print(parameters::model_parameters(m_uyv3f, ci_method = "wald"), digits = 3)
 ```
 
 The row of the Hispanic names gives z = −3.771 on 362 replies, the value on record for UYV3F.
-:::
-::::
 
 ### EWFMI – a model of three groups {#task-3-ewfmi}
 
@@ -1049,21 +1090,14 @@ Analyst EWFMI fitted a logistic regression of the greeting on all three groups o
 
 ```{webr}
 #| exercise: repro-ewfmi
-original <- utils::read.csv("data/audit_original.csv", na.strings = c("", "NA"))  # r-style: keep – the base reader adds nothing to the download
-
-# 1. the coded replies, with TreatmentGroup split into the group and the sex of the name
+#| envir: global
+# the coded replies, with TreatmentGroup split into the group and the sex of the name
 replies_ewfmi <- original |>
   datawizard::data_filter(!is.na(ProperName)) |>
   datawizard::data_separate(select = "TreatmentGroup", new_columns = c("ethnicity", "name_sex"),
                             separator = " ", append = TRUE) |>
-  # 2. the first level of a factor is the base group of the model
+  # the first level of a factor is the base group of the model
   datawizard::data_modify(ethnicity = factor(ethnicity, levels = c("______", "black", "white")))
-
-# 3. the model of EWFMI; a reply without a poverty third drops out
-m_ewfmi <- glm(ProperName ~ ethnicity + name_sex + poverty_pop_third + HardEmail,
-               family = binomial(), data = replies_ewfmi)
-nobs(m_ewfmi)
-print(parameters::model_parameters(m_ewfmi, ci_method = "wald"), digits = 3)
 ```
 
 :::: {.hint exercise="repro-ewfmi"}
@@ -1079,21 +1113,31 @@ The analyst compared the other groups with the Hispanic names, so `"Hispanic"` c
 ## Solution
 
 ``` r
-original <- utils::read.csv("data/audit_original.csv", na.strings = c("", "NA"))  # r-style: keep – the base reader adds nothing to the download
 replies_ewfmi <- original |>
   datawizard::data_filter(!is.na(ProperName)) |>
   datawizard::data_separate(select = "TreatmentGroup", new_columns = c("ethnicity", "name_sex"),
                             separator = " ", append = TRUE) |>
   datawizard::data_modify(ethnicity = factor(ethnicity, levels = c("Hispanic", "black", "white")))
+```
+:::
+::::
+
+Then fit the model of EWFMI in the next cell, and print its coefficients in the one after it.
+
+```{webr}
+#| autorun: false
+# the model of EWFMI; a reply without a poverty third drops out
 m_ewfmi <- glm(ProperName ~ ethnicity + name_sex + poverty_pop_third + HardEmail,
                family = binomial(), data = replies_ewfmi)
 nobs(m_ewfmi)
+```
+
+```{webr}
+#| autorun: false
 print(parameters::model_parameters(m_ewfmi, ci_method = "wald"), digits = 3)
 ```
 
 The row `ethnicity [white]` gives z = 3.645 on 549 replies, the value on record for EWFMI.
-:::
-::::
 
 ### 25N5D – every delivered email {#task-3-25n5d}
 
@@ -1101,21 +1145,12 @@ Analyst 25N5D compared Hispanic with white names among every email that was deli
 
 ```{webr}
 #| exercise: repro-25n5d
-original <- utils::read.csv("data/audit_original.csv", na.strings = c("", "NA"))  # r-style: keep – the base reader adds nothing to the download
-
-# 1. the delivered emails to Hispanic and white names; a bounced email has no reply status
+#| envir: global
+# the delivered emails to Hispanic and white names; a bounced email has no reply status
 emails_25n5d <- original |>
   datawizard::data_filter(!is.na(______) & !grepl("^black", TreatmentGroup)) |>
   datawizard::data_modify(hispanic_name = grepl("^Hispanic", TreatmentGroup),
                           greeted = Response_Dichotomous == 1 & ProperName %in% 1)
-
-# 2. the greetings by name and the emails, for each group of names
-counts_25n5d <- datawizard::data_summary(emails_25n5d, greetings = sum(greeted), emails = n(),
-                                         by = "hispanic_name")
-counts_25n5d
-
-# 3. the test of the two proportions
-prop.test(counts_25n5d$greetings, counts_25n5d$emails)
 ```
 
 :::: {.hint exercise="repro-25n5d"}
@@ -1131,41 +1166,59 @@ prop.test(counts_25n5d$greetings, counts_25n5d$emails)
 ## Solution
 
 ``` r
-original <- utils::read.csv("data/audit_original.csv", na.strings = c("", "NA"))  # r-style: keep – the base reader adds nothing to the download
 emails_25n5d <- original |>
   datawizard::data_filter(!is.na(Response_Dichotomous) & !grepl("^black", TreatmentGroup)) |>
   datawizard::data_modify(hispanic_name = grepl("^Hispanic", TreatmentGroup),
                           greeted = Response_Dichotomous == 1 & ProperName %in% 1)
+```
+:::
+::::
+
+Then run the next two cells in order. The first counts the greetings and the emails for each group of names, and the second tests the two proportions.
+
+```{webr}
+#| autorun: false
+# the greetings by name and the emails, for each group of names
 counts_25n5d <- datawizard::data_summary(emails_25n5d, greetings = sum(greeted), emails = n(),
                                          by = "hispanic_name")
 counts_25n5d
+```
+
+```{webr}
+#| autorun: false
+# the test of the two proportions
 prop.test(counts_25n5d$greetings, counts_25n5d$emails)
 ```
 
 You should get `X-squared = 13.683, df = 1` on 308 + 357 = 665 emails, the value on record for 25N5D.
-:::
-::::
 
 ### P9W8Y – a test of three groups {#task-3-p9w8y}
 
 Analyst P9W8Y fitted a logistic regression of the greeting on the three groups of names among the 558 coded replies and tested whether the three differ at all, with a likelihood-ratio test of the model against a model without the groups. Multi100 recorded no statistic for this analysis, so the rerun cannot be matched against the record. The report that the analyst filed for Task 2 gives $\chi^2$ = 15.951 on 2 degrees of freedom in its text, and the rerun gives the same value. The verdict of "no evidence" in Task 1 came from another model, with an interaction between the group and the sex of the name, whose test of the groups compared the three female names only under the default coding of R.
 
-```{webr}
-#| exercise: repro-p9w8y
-original <- utils::read.csv("data/audit_original.csv", na.strings = c("", "NA"))  # r-style: keep – the base reader adds nothing to the download
+The first cell keeps the coded replies and prints nothing, the second fits the model, and the third, the exercise, tests it.
 
-# 1. the coded replies, with the group of the name as a factor
+```{webr}
+#| autorun: false
+# the coded replies, with the group of the name as a factor
 replies_p9w8y <- original |>
   datawizard::data_filter(!is.na(ProperName)) |>
   datawizard::data_separate(select = "TreatmentGroup", new_columns = c("ethnicity", "name_sex"),
                             separator = " ", append = TRUE) |>
   datawizard::data_modify(ethnicity = factor(ethnicity, levels = c("white", "black", "Hispanic")))
+```
 
-# 2. the model of the three groups
+```{webr}
+#| autorun: false
+# the model of the three groups
 m_p9w8y <- glm(ProperName ~ ethnicity, family = binomial(), data = replies_p9w8y)
 nobs(m_p9w8y)
+```
 
-# 3. the likelihood-ratio test against the same model without the groups
+```{webr}
+#| exercise: repro-p9w8y
+#| envir: global
+# the likelihood-ratio test against the same model without the groups
 anova(update(m_p9w8y, . ~ 1), m_p9w8y, test = "______")
 ```
 
@@ -1182,14 +1235,6 @@ anova(update(m_p9w8y, . ~ 1), m_p9w8y, test = "______")
 ## Solution
 
 ``` r
-original <- utils::read.csv("data/audit_original.csv", na.strings = c("", "NA"))  # r-style: keep – the base reader adds nothing to the download
-replies_p9w8y <- original |>
-  datawizard::data_filter(!is.na(ProperName)) |>
-  datawizard::data_separate(select = "TreatmentGroup", new_columns = c("ethnicity", "name_sex"),
-                            separator = " ", append = TRUE) |>
-  datawizard::data_modify(ethnicity = factor(ethnicity, levels = c("white", "black", "Hispanic")))
-m_p9w8y <- glm(ProperName ~ ethnicity, family = binomial(), data = replies_p9w8y)
-nobs(m_p9w8y)
 anova(update(m_p9w8y, . ~ 1), m_p9w8y, test = "LRT")
 ```
 
@@ -1199,25 +1244,40 @@ The column `Deviance` gives 15.951 on 2 degrees of freedom for 558 replies. Mult
 
 ### Defaults and codings {#task-3-defaults}
 
-Now find out why your number is exactly that number. For a 2 × 2 table, `chisq.test()` and `prop.test()` both apply the continuity correction of Yates unless they are told otherwise: it shrinks each gap between an observed and an expected count by 0.5 before squaring, a remedy designed for small tables. Neither 8PTRZ nor 25N5D asked for the correction. The defaults of the two functions applied it, and the recorded values are the corrected ones. The cell below runs both tests without the correction.
+Now find out why your number is exactly that number. For a 2 × 2 table, `chisq.test()` and `prop.test()` both apply the continuity correction of Yates unless they are told otherwise: it shrinks each gap between an observed and an expected count by 0.5 before squaring, a remedy designed for small tables. Neither 8PTRZ nor 25N5D asked for the correction. The defaults of the two functions applied it, and the recorded values are the corrected ones. The cells below run both tests without the correction, on the file read at the start of this task. The first three redo the comparison of 8PTRZ, and only the third, the test, prints anything.
 
 ```{webr}
 #| autorun: false
-original <- utils::read.csv("data/audit_original.csv", na.strings = c("", "NA"))  # r-style: keep – the base reader adds nothing to the download
-
 # 8PTRZ: the replies with a greeting code, Hispanic against all other names
 coded_replies <- original |>
   datawizard::data_filter(!is.na(ProperName)) |>
   datawizard::data_modify(hispanic_name = grepl("^Hispanic", TreatmentGroup))
-tab_8ptrz <- xtabs(~ hispanic_name + ProperName, data = coded_replies)  # r-style: keep – the table that chisq.test() takes
-chisq.test(tab_8ptrz, correct = FALSE)
+```
 
+```{webr}
+#| autorun: false
+tab_8ptrz <- xtabs(~ hispanic_name + ProperName, data = coded_replies)  # r-style: keep – the table that chisq.test() takes
+```
+
+```{webr}
+#| autorun: false
+chisq.test(tab_8ptrz, correct = FALSE)
+```
+
+The last two count the delivered emails of 25N5D and test the two proportions.
+
+```{webr}
+#| autorun: false
 # 25N5D: the delivered emails, Hispanic against white names
 counts_25n5d <- original |>
   datawizard::data_filter(!is.na(Response_Dichotomous) & !grepl("^black", TreatmentGroup)) |>
   datawizard::data_modify(hispanic_name = grepl("^Hispanic", TreatmentGroup),
                           greeted = Response_Dichotomous == 1 & ProperName %in% 1) |>
   datawizard::data_summary(greetings = sum(greeted), emails = n(), by = "hispanic_name")
+```
+
+```{webr}
+#| autorun: false
 prop.test(counts_25n5d$greetings, counts_25n5d$emails, correct = FALSE)
 ```
 
@@ -1247,15 +1307,41 @@ try_spec()
 
 The printout gives the shares greeted by name in the two groups, the difference in percentage points with its 95% interval, the test of the model (a *t* with HC2 standard errors for the linear model, the *z* of the logit coefficient for the logit), the number of emails analysed, the partial *r* by the conversion rule of Multi100, the class of the result, and its place among the 64 specifications on the curve of the claim.
 
-Each of the five calls below changes a single decision. The first two change the question that is being asked of the data, the third changes how the outcome is measured, and the last two change only how the same question is estimated. Run them and compare the results.
+Each of the five cells below changes a single decision. The first two change the question that is being asked of the data, the third changes how the outcome is measured, and the last two change only how the same question is estimated. Run the five in order and compare the results.
+
+The first changes the comparison group.
 
 ```{webr}
 #| autorun: false
-try_spec(comparison = "nonhispanic")     # Hispanic names against white and Black names together
-try_spec(population = "all")             # every delivered email, no reply counted as no greeting
-try_spec(uncoded    = "not_named")       # the five uncoded replies counted as no greeting
-try_spec(model      = "logit")           # the model of the paper, as an average marginal effect
-try_spec(adjust     = "place_ethnic")    # the covariates of the original model, in thirds
+try_spec(comparison = "nonhispanic")  # Hispanic names against white and Black names together
+```
+
+The second changes which emails are counted.
+
+```{webr}
+#| autorun: false
+try_spec(population = "all")  # every delivered email, no reply counted as no greeting
+```
+
+The third changes how the replies without a greeting code are counted.
+
+```{webr}
+#| autorun: false
+try_spec(uncoded = "not_named")  # the five uncoded replies counted as no greeting
+```
+
+The fourth changes the model.
+
+```{webr}
+#| autorun: false
+try_spec(model = "logit")  # the model of the paper, as an average marginal effect
+```
+
+The fifth changes the adjustment.
+
+```{webr}
+#| autorun: false
+try_spec(adjust = "place_ethnic")  # the covariates of the original model, in thirds
 ```
 
 The menu holds more options than the curve, which keeps only the options that answer this claim in a justifiable way. Every other option is still an argument of `try_spec()`, so trying one is part of the exercise. The helper refuses it, gives the reason why it is not on the curve and names the page of the course that teaches it, and the [decision map](map.qmd) sets out every decision and its options on one page. Run the cell, then edit it to try others, such as `outcome = "reply"`, `names = "male"`, `comparison = "black"`, `adjust = "acs_continuous"` or `inference = "one_tailed"`.
@@ -1318,7 +1404,7 @@ Preregistration means setting out your choice in a plan **before** you know what
 *Each numbered comment maps to a question in the OSF "Preregistration Template from AsPredicted.org" (the eight-question short form). Because you are reanalysing data that already exist, field 2 also stands in for the prior-knowledge section of the secondary-data template (van den Akker et al. 2021) – the part that AsPredicted leaves out.*
 :::
 
-Make one choice on each decision of the [specification menu](menu.qmd), complete the dotted lines, then run the cell. The five decisions at Level 1 fix the question that you are asking, the two at Level 2 fix how the outcome is measured, and the four at Level 3 fix how it is estimated. The curve of 64 specifications keeps two or more options on five of these decisions and a single option on the other six. An option that is not on the curve stops `prereg()` with the reason why, as it stops `try_spec()`.
+Make one choice on each decision of the [specification menu](menu.qmd), complete the dotted lines, then run the cell. The five decisions at Level 1 fix the question that you are asking, the two at Level 2 fix how the outcome is measured, and the four at Level 3 fix how it is estimated. The curve of 64 specifications keeps two or more options on five of these decisions and a single option on the other six.
 
 ```{webr}
 #| autorun: false
@@ -1354,11 +1440,16 @@ my_scale      <- "pp"        # pp   (percentage points)
 # 5. Supported if the estimate is below zero with p < .05 under the test of
 #    the model; undermined if it is not significant or above zero. I will
 #    report what I get.
+```
 
+Then run the cell below, which reads your choices. An option that is not on the curve stops `prereg()` with the reason why, as it stops `try_spec()`.
+
+```{webr}
+#| autorun: false
 my_spec <- prereg()   # checks every choice, prints your preregistration and keeps it
 ```
 
-The cell above, copied into your notes, is your preregistration record.
+The preregistration cell, copied into your notes, is your preregistration record.
 
 ## Task 5, continued – Fit, report and place {#task-5-fit-report}
 
@@ -1380,23 +1471,34 @@ report_result()
 
 If the form will not open on your machine, read the printed numbers to the facilitator, who adds your mark to the chart.
 
-Finally, place your result on the curve of the claim: the 64 specifications that the menu keeps, ranked from the most negative estimate, with yours ringed.
+Finally, place your result on the curve of the claim: the 64 specifications that the menu keeps, ranked from the most negative estimate, with yours ringed. The first cell reads and ranks the curve, and prints nothing.
 
 ```{webr}
 #| autorun: false
-#| fig-width: 8
-#| fig-height: 4.5
 spec_curve <- utils::read.csv("data/spec_curve.csv") |>  # r-style: keep – the base reader adds nothing to the download
   datawizard::data_arrange("b_pp") |>
   datawizard::data_modify(rank = 1:n(),
                           emails = factor(population, levels = c("replies", "all"),
                                           labels = c("replies only", "all delivered emails")))
+```
+
+The second picks out your specification by the choices of the preregistration cell, again without printing anything.
+
+```{webr}
+#| autorun: false
 # Yours, chosen with dplyr, because datawizard cannot see the my_ choices of
 # the preregistration cell
 mine <- spec_curve |>
   dplyr::filter(comparison == my_comparison, population == my_population, uncoded == my_uncoded,
                 model == my_model, adjust == my_adjust)
+```
 
+The third draws the curve and rings yours.
+
+```{webr}
+#| autorun: false
+#| fig-width: 8
+#| fig-height: 4.5
 tinyplot::tinytheme("minimal")
 tinyplot::tinyplot(b_pp ~ rank | emails, data = spec_curve, pch = 16,
                    palette = c("#0e3b6a", "#2b8585"), legend = list("right!", title = "Emails counted"),
@@ -1412,7 +1514,7 @@ tinyplot::tinytheme()
 
 All 64 estimates lie below zero, from −20.0 to −12.1 points, and every one of them is significant at 5% under the test of its model. The two clusters are the two answers to the decision on which emails are counted: counting every delivered email moves the estimate about 5 points towards zero, and no other decision moves it by more than about 2.7 points. Within these data the claim holds under every choice on the menu, and only its size moves. The [Multiverse]({{< var cases.housing.live-results-url >}}) page sets the class submissions beside this curve.
 
-If you want a second declared specification, edit the preregistration cell, rerun it, then rerun `run_spec(my_spec)`. The chart will still label it declared, so be clear with yourself about what the second one is. Your first declaration was made without knowing its result. Anything after it was not, which puts it back in the same category as Task 4, and you should say so wherever you write about the result.
+If you want a second declared specification, edit the preregistration cell, run it and the `prereg()` cell again, then rerun `run_spec(my_spec)`. The chart will still label it declared, so be clear with yourself about what the second one is. Your first declaration was made without knowing its result. Anything after it was not, which puts it back in the same category as Task 4, and you should say so wherever you write about the result.
 
 ## Taking it home
 

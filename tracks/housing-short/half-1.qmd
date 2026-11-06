@@ -39,7 +39,7 @@ Wait for the R engine, run the setup cell, and check that `audit` has 1,014 rows
 
 [Open the browser lab at Task 3](../../cases/housing/lab.qmd#task-3-reproduction){.btn .btn-primary target="_blank"}
 
-Choose one of the five analysts and complete their cell on the public file `audit_original.csv`. Four of them have a value that Multi100 recorded: $\chi^2$ = 14.265 for 8PTRZ, z = −3.771 for UYV3F, z = 3.645 for EWFMI and $\chi^2$ = 13.683 for 25N5D. P9W8Y has none, so its test of three groups, $\chi^2$ = 15.951 on 2 degrees of freedom, can be run again but not matched. Type the analyst and the value in the chat without sending them, and send them when the facilitator says go.
+Choose one of the five analysts and work through their cells on the public file `audit_original.csv`. Four of them have a value that Multi100 recorded: $\chi^2$ = 14.265 for 8PTRZ, z = −3.771 for UYV3F, z = 3.645 for EWFMI and $\chi^2$ = 13.683 for 25N5D. P9W8Y has none, so its test of three groups, $\chi^2$ = 15.951 on 2 degrees of freedom, can be run again but not matched. Type the analyst and the value in the chat without sending them, and send them when the facilitator says go.
 
 ## 8. The defaults of the software
 
