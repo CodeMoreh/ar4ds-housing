@@ -1,6 +1,6 @@
 ---
 title: "Specification menu"
-subtitle: "The decisions of the analysis, by level"
+subtitle: "The decisions of the analysis, in three groups"
 bibliography: [../../references.bib, ../../references-new.bib]
 ---
 
@@ -94,7 +94,7 @@ Write the statement that your analysis will complete:
 >
 > Estimated with *which model*, *which adjustment*, tested by *which test* and reported *on which scale*.
 
-Move one decision and reread the statement. If a bold slot changes, you have made an estimand decision, and you are answering a different question. If only a slot in the brackets changes, you have made a measurement decision, which leaves the question in place and changes how its outcome is counted. If only the second sentence changes, you have made an estimation decision, which changes how the answer is reached. The completed statement is your estimand [@LundbergEtAl2021WhatYourEstimand], the quantity that your number estimates, and a reader needs it before the number means anything.
+The `r xfun::numbers_to_words(n_dec)` decisions fall into three groups, and one question sorts them: would two analysts who chose differently accept each other's number as an answer to the same question? If they would not, the decision belongs to the question, and moving it rewrites a bold slot of the statement. If they would, a decision about how the outcome is counted is a measurement decision and changes only a slot in the brackets, and any other decision belongs to the model and changes only the second sentence. The completed statement is your estimand [@LundbergEtAl2021WhatYourEstimand], the quantity that your number estimates, and a reader needs it before the number means anything.
 
 ## The curve of `r nrow(curve)` {#the-curve}
 
@@ -129,13 +129,13 @@ deviations |>
 
 Counting all delivered emails moves the estimate by `r sgn(dv("population", "all", "shift_mean"))` points on average, towards zero, and every other option by at most `r fmt(max(abs(deviations$shift_max[deviations$axis != "population"])))` points. Within the original data, the claim holds under every defensible choice, and only its size moves.
 
-## Level 1 – Estimands {#level-estimand}
+## The question {#level-estimand}
 
-Each decision at this level rewrites a bold slot of the statement, so two analysts who decide differently are answering different questions, and their results are not rival estimates of one quantity.
+Each decision in this group rewrites a bold slot of the statement, so two analysts who decide differently are answering different questions, and their results are not rival estimates of one quantity.
 
 ```{r}
 #| label: tbl-level1
-#| tbl-cap: "The estimand decisions. Options off the curve carry the judgement of the course in brackets. Source: `data/menu_options.csv`."
+#| tbl-cap: "The decisions about the question. Options off the curve carry the judgement of the course in brackets. Source: `data/menu_options.csv`."
 #| echo: false
 judgement_txt <- c(kept = "on the curve", other_question = "another question",
                    weaker_answer = "a weaker answer", check = "a check",
@@ -181,7 +181,7 @@ The paper pools the male and the female name of each group, and the claim speaks
 
 The OAs coded whether the official who replied had a distinctively Hispanic name, to test whether Hispanic officials treat Hispanic applicants better. That is a separate hypothesis, and the subgroup is selected after the email arrived, which is the post-treatment problem again. It is also small: among the `r sub_("replies from officials", "n")` replies to Hispanic and white names that came from officials with Hispanic names, the gap is `r fmt(sub_("replies from officials", "b_pp"))` points (`r pe(sub_("replies from officials", "p"))`), against `r fmt(sub_("replies from other", "b_pp"))` points among the `r sub_("replies from other", "n")` replies from other officials. The curve keeps every reply.
 
-## Level 2 – Measurement {#level-measurement}
+## Measurement {#level-measurement}
 
 The question stays the same, and these decisions change how the outcome is counted.
 
@@ -200,13 +200,13 @@ The file holds `r sum(audit$reply %in% 1 & is.na(audit$named))` replies without 
 
 Of the emails sent, `r sum(is.na(audit$reply))` bounced, `r bounced_by("white")` with white names, `r bounced_by("black")` with Black names and `r bounced_by("hispanic")` with Hispanic names, and they carry no reply status. They never reached an official, so the name on them cannot have changed anything, and every specification on the curve leaves them out. Counting them as unanswered adds rows whose outcome was settled by a broken address. It matters only when all emails are counted, since a bounced email is never a reply: there it moves the gap from `r fmt(bounced_twin$b_pp)` to `r fmt(bounced_b)` points, a small change, but one that was produced by broken addresses rather than by officials.
 
-## Level 3 – Estimation {#level-estimation}
+## The model {#level-estimation}
 
 With the question and the outcome fixed, these decisions change the model that is fitted, the test and the scale on which the answer is reported.
 
 ```{r}
 #| label: tbl-level3
-#| tbl-cap: "The estimation decisions. Source: `data/menu_options.csv`."
+#| tbl-cap: "The decisions about the model. Source: `data/menu_options.csv`."
 #| echo: false
 level_table("estimation")
 ```
@@ -235,9 +235,9 @@ The claim, in the abstract, states the gap in percentage points, which a reader 
 
 **Choice:** comparison `white`, emails counted `all`, replies without a code `not_named`, model `lpm`, adjustment `none`; male and female names, any official, bounced emails left out, the test of the model, percentage points.
 
-**Justification, by level.** The claim as selected compares Hispanic with white names, so the white names are the comparison. Counting every delivered email keeps the groups as randomisation made them, so the difference is an effect of the name and does not depend on which officials chose to reply, at the cost of an outcome that combines replying with greeting. A reply without a greeting code most probably did not open with a name. The names were randomised, so the raw difference in proportions needs no covariates, and its HC2 test is the test that a single analyst would report.
+**Justification, by group of decisions.** The claim as selected compares Hispanic with white names, so the white names are the comparison. Counting every delivered email keeps the groups as randomisation made them, so the difference is an effect of the name and does not depend on which officials chose to reply, at the cost of an outcome that combines replying with greeting. A reply without a greeting code most probably did not open with a name. The names were randomised, so the raw difference in proportions needs no covariates, and its HC2 test is the test that a single analyst would report.
 
-The specification gives `r fmt(bounced_twin$b_pp)` points (`r pct(bounced_twin$rate_hisp)` against `r pct(bounced_twin$rate_comp)`), t = `r fmt(bounced_twin$stat, 2)` on `r bounced_twin$df` df. A justification of this kind connects each choice to the wording of the claim or to the design, at the level to which the choice belongs, and it is what the preregistration of Task 5 asks you to write before you run the model.
+The specification gives `r fmt(bounced_twin$b_pp)` points (`r pct(bounced_twin$rate_hisp)` against `r pct(bounced_twin$rate_comp)`), t = `r fmt(bounced_twin$stat, 2)` on `r bounced_twin$df` df. A justification of this kind connects each choice to the wording of the claim or to the design, according to the group to which the choice belongs, and it is what the preregistration of Task 5 asks you to write before you run the model.
 
 ## Declaring and reporting
 

@@ -12,7 +12,7 @@ This stage works the menu of defensible analyses, one decision at a time, and en
 
 [Open the specification menu](../../cases/housing/menu.qmd){.btn .btn-primary target="_blank"}
 
-The menu sets out the estimand statement and the eleven decisions at three levels. It then gives the five on which the curve keeps more than one option, the 64 specifications that they make, the worked example, and the rules for declaring and reporting a result.
+The menu sets out the estimand statement and the eleven decisions in three groups. It then gives the five on which the curve keeps more than one option, the 64 specifications that they make, the worked example, and the rules for declaring and reporting a result.
 
 ## 2. The menu and the methods
 

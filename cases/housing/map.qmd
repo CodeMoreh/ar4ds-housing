@@ -170,8 +170,8 @@ DM = {
     ],
     colour: {outcome: "#0e3b6a", comparison: "#2a5d8f", names: "#4a78ab", population: "#0f6b6b", officials: "#2b8585",
              uncoded: "#4a7a3f", bounced: "#4a7a3f", model: "#8c5a10", adjust: "#7b6a8f", inference: "#7b6a8f", scale: "#7b6a8f"},
-    levelName: {estimand: "Level 1 – Estimands", measurement: "Level 2 – Measurement", estimation: "Level 3 – Estimation"},
-    levelShort: {estimand: "Level 1", measurement: "Level 2", estimation: "Level 3"},
+    levelName: {estimand: "The question", measurement: "Measurement", estimation: "The model"},
+    levelShort: {estimand: "Question", measurement: "Measurement", estimation: "Model"},
     judgement: {kept: "On the curve", other_question: "Another question", weaker_answer: "A weaker answer", check: "A check", unavailable: "Not in the public file"},
     domainB: [-32, 2]
   };
@@ -520,7 +520,7 @@ decisionMap = {
     for (const p of [...st.question, ...st.method]) if (typeof p !== "string") nowText[p.key] = p.text;
     const anyChanged = prevText !== null && Object.keys(nowText).some(k => prevText[k] !== nowText[k]);
     changedNote.textContent = (anyChanged ? "The marked phrases are the ones that the latest choice changed. " : "")
-      + "Bold phrases state the question (Level 1), green phrases say how its outcome is counted (Level 2), and the second sentence says how the answer is reached (Level 3).";
+      + "Bold phrases state the question, green phrases give the measurement of its outcome, and the second sentence gives the model by which the answer is reached.";
     prevText = nowText;
     verdictBox.textContent = shortVerdict(verdictOf(sel));
     place(stageId);
@@ -541,4 +541,4 @@ decisionMap = {
 }
 ```
 
-The three levels of the map are those of the [specification menu](menu.qmd#level-estimand): a Level 1 choice changes the question, a Level 2 choice changes how its outcome is counted, and a Level 3 choice changes how the answer is reached. The emails counted are chosen first on the map, among the data, but the choice is a Level 1 decision, because counting only the replies and counting every delivered email answer two related questions, the tone of the replies that came and the effect of the name on receiving a named greeting at all. The [case study](index.qmd#sec-posttreatment) sets out why the two differ.
+The three groups of decisions on the map are those of the [specification menu](menu.qmd#level-estimand): a decision about the question changes what is asked, a measurement decision changes how the outcome is counted, and a decision about the model changes how the answer is reached. The emails counted are chosen first on the map, among the data, but the choice is a decision about the question, because counting only the replies and counting every delivered email answer two related questions, the tone of the replies that came and the effect of the name on receiving a named greeting at all. The [case study](index.qmd#sec-posttreatment) sets out why the two differ.

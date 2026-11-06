@@ -138,7 +138,7 @@ The male names: `r fmt_num(sub_of("male", "b_pp"), 1)` points (p = `r fmt_num(su
 :::
 
 ::: notes
-Two decisions at Level 1 narrow the claim to a subgroup: only the male or only the female names, and only the replies from officials with Hispanic names. The curve leaves them out because each answers a narrower question, but they are worth a look. The gap is larger between Santiago and Brett, twenty-three points, than between Gabriela and Emily, sixteen, and the second interval is much wider. Among the twenty-eight replies from officials with Hispanic names the gap is twenty-six points with an interval that crosses zero, which is what twenty-eight replies can tell you. Note too that the officials who replied are a group selected after the email arrived, which brings back the problem of the causal graph. The three thirds of the Hispanic share of the community show no clear pattern.
+Two decisions about the question narrow the claim to a subgroup: only the male or only the female names, and only the replies from officials with Hispanic names. The curve leaves them out because each answers a narrower question, but they are worth a look. The gap is larger between Santiago and Brett, twenty-three points, than between Gabriela and Emily, sixteen, and the second interval is much wider. Among the twenty-eight replies from officials with Hispanic names the gap is twenty-six points with an interval that crosses zero, which is what twenty-eight replies can tell you. Note too that the officials who replied are a group selected after the email arrived, which brings back the problem of the causal graph. The three thirds of the Hispanic share of the community show no clear pattern.
 :::
 
 <!-- DEEP DIVE END -->

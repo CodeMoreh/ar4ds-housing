@@ -7,8 +7,7 @@
 # that the curve keeps and the others grouped by the judgement of the course.
 judgement_txt <- c(other_question = "another question", weaker_answer = "a weaker answer",
                    check = "a check", unavailable = "not in the public file")
-level_txt <- c(estimand = "1 – Estimands", measurement = "2 – Measurement",
-               estimation = "3 – Estimation")
+level_txt <- c(estimand = "Question", measurement = "Measurement", estimation = "Model")
 off_txt <- menu_opts |>
   dplyr::filter(!on_curve) |>
   dplyr::summarise(txt = paste0(paste(label, collapse = ", "), " *(", judgement_txt[dplyr::first(judgement)], ")*"),
@@ -23,7 +22,7 @@ menu_rows <- menu_opts |>
          level = dplyr::if_else(level == dplyr::lag(level, default = ""), "", level_txt[level]),
          line = paste0("| ", level, " | **", decision, "** | ", on, " | ", off, " |"))
 cat(c("::: {.fs-55}", # r-style: keep – writes the Markdown of the table
-      "| Level | Decision | On the curve | Off the curve |",
+      "| Group | Decision | On the curve | Off the curve |",
       "|:--|:--|:--|:--|",
       menu_rows$line, ":::"), sep = "\n")
 ```
@@ -33,7 +32,7 @@ Five decisions keep more than one option, and they cross into the **`r nrow(curv
 :::
 
 ::: notes
-Here is the menu, and everything that follows is built on it. It is the full list of decisions that any analyst of this claim has to take, eleven of them, at three levels. Level 1 decides which question is asked: the outcome, the comparison group, which emails are counted, which names, and whose replies. Level 2 decides how the outcome is measured: what to do with the five replies whose greeting nobody coded, and with the emails that bounced. Level 3 decides how the answer is reached: the model, the covariates, the test and the scale of the result. Every option on the right was considered and left off the curve for a stated reason: it answers another question, it answers this one less well, it is a check, or it is simply not in the public file. The decision map on the site gives the reason for each.
+Here is the menu, and everything that follows is built on it. It is the full list of decisions that any analyst of this claim has to take, eleven of them, in three groups. The decisions about the question settle what is asked: the outcome, the comparison group, which emails are counted, which names, and whose replies. The measurement decisions settle how the outcome is counted, for the five replies whose greeting nobody coded and for the emails that bounced. And the decisions about the model settle how the answer is reached, through the model, the covariates, the test and the scale of the result. Every option on the right was considered and left off the curve for a stated reason: it answers another question, it answers this one less well, it is a check, or it is simply not in the public file. The decision map on the site gives the reason for each.
 :::
 
 ## The curve of 64 {#the-curve-of-64 .smaller}

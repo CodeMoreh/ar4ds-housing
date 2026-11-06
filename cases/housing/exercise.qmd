@@ -124,7 +124,7 @@ A result counts for the class chart if it is one of the `r nrow(curve)` specific
 
 - [Browser lab](lab.qmd) – the whole exercise and its data in a browser tab.
 - [Setup](https://codemoreh.github.io/ar4ds/setup.html) – installing R and an IDE, and downloading the workspace.
-- [Specification menu](menu.qmd) – the decisions of the analysis, grouped by level, with the options that the curve keeps and the reasons for the ones that it does not.
+- [Specification menu](menu.qmd) – the decisions of the analysis in three groups, with the options that the curve keeps and the reasons for the ones that it does not.
 - [Decision map](map.qmd) – every decision in the order in which an analyst meets it; selecting an option rewrites the estimand statement and shows the result.
 - [Multiverse](multiverse.qmd) – the curve of `r nrow(curve)` specifications and the live class chart.
 - [Case study](index.qmd) – the original study, Multi100, the five reanalyses and the replication.

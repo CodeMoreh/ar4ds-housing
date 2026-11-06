@@ -27,7 +27,7 @@ If you work in the workspace, use your report or working script instead. Choose 
 
 [Open the specification menu](../../cases/housing/menu.qmd){.btn .btn-primary target="_blank"}
 
-The slides take you through the eleven decisions at three levels, the five on which the curve keeps more than one option, and the 64 specifications that they make. They end on the ground rules for the menu, which are to change one decision at a time and to read the reason when an option is refused.
+The slides take you through the eleven decisions in three groups, the five on which the curve keeps more than one option, and the 64 specifications that they make. They end on the ground rules for the menu, which are to change one decision at a time and to read the reason when an option is refused.
 
 ## 5. The methods
 

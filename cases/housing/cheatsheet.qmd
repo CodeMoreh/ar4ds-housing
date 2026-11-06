@@ -69,16 +69,16 @@ When the facilitator says so, type the analyst and the value into the chat, for 
 
 Every argument of `try_spec()` is one decision of the menu, and the preregistration block of Task 5 names the same decision with `my_` in front (`comparison` becomes `my_comparison`). The first option of each row is the reference specification, which `try_spec()` fits when it is called with no arguments: the raw gap of the paper, −19.97 percentage points. An option off the curve is refused with the reason why and the page of the course site that teaches it.
 
-| Level | Argument | On the curve | Off the curve |
+| Group | Argument | On the curve | Off the curve |
 |---|---|---|---|
-| 1 – Estimands | `outcome` | `"named"` | `"reply"`, `"reply24"` |
+| Question | `outcome` | `"named"` | `"reply"`, `"reply24"` |
 | | `comparison` | `"white"`, `"nonhispanic"` | `"black"` |
 | | `population` | `"replies"`, `"all"` | – |
 | | `names` | `"both"` | `"male"`, `"female"` |
 | | `officials` | `"any"` | `"hispanic"` |
-| 2 – Measurement | `uncoded` | `"drop"`, `"not_named"` | – |
+| Measurement | `uncoded` | `"drop"`, `"not_named"` | – |
 | | `bounced` | `"exclude"` | `"no_reply"` |
-| 3 – Estimation | `model` | `"lpm"`, `"logit"` | `"three_group"` |
+| Model | `model` | `"lpm"`, `"logit"` | `"three_group"` |
 | | `adjust` | `"none"`, `"email"`, `"place"`, `"place_ethnic"` | `"name_sex"`, `"acs_continuous"` |
 | | `inference` | `"model"` | `"randomisation"`, `"chisq"`, `"one_tailed"` |
 | | `scale` | `"pp"` | `"odds_ratio"`, `"r"` |
