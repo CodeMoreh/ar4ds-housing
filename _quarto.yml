@@ -96,6 +96,8 @@ website:
             text: "Quarto"
           - href: "https://codemoreh.github.io/ar4ds/git-github.html"
             text: "Git and GitHub"
+          - href: "https://codemoreh.github.io/ar4ds/tools/ai.html"
+            text: "AI assistants"
           - text: "---"
           - text: "Data and sharing"
           - href: companion/data-sources.qmd
