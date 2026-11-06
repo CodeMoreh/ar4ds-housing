@@ -7,15 +7,15 @@ The second stage is a first working session in R, on the data of the case: one p
 
 ## 1. R on the data of the case
 
-[Open Getting started with R at section 6](../../companion/intro-r.qmd#sec-reading){.btn .btn-primary target="_blank"}
+[Open Getting started with R at section 6](https://codemoreh.github.io/ar4ds/tools/r.html#sec-reading){.btn .btn-primary target="_blank"}
 
-Work from [Reading the data](../../companion/intro-r.qmd#sec-reading) to [A first look at `try_spec()`](../../companion/intro-r.qmd#sec-try-spec). The sections cover reading the housing-audit data and looking at them, the pipe and the datawizard verbs, and a share and a difference in shares, which is the quantity on which the claim of the case rests. They go on to a first table, a first figure with tinyplot and with ggplot2, and a first call to `try_spec()`, the helper with which Task 4 explores the menu. Type each block into the workspace rather than pasting it.
+Work from [Reading the data](https://codemoreh.github.io/ar4ds/tools/r.html#sec-reading) to [A first figure](https://codemoreh.github.io/ar4ds/tools/r.html#sec-figure) in the module on the umbrella site, then read [The helpers of the workspace](../../companion/helpers.qmd) on this site. The sections cover reading the housing-audit data and looking at them, the pipe and the datawizard verbs, and a share and a difference in shares, which is the quantity on which the claim of the case rests. They go on to a first table and a first figure with tinyplot and with ggplot2, and the page on the helpers makes a first call to `try_spec()`, the helper with which Task 4 explores the menu. Type each block into the workspace rather than pasting it.
 
 ## 2. Quarto
 
-[Open Quarto and reproducible documents](../../companion/quarto.qmd#sec-what){.btn .btn-primary target="_blank"}
+[Open Quarto documents](https://codemoreh.github.io/ar4ds/tools/quarto.html#sec-what){.btn .btn-primary target="_blank"}
 
-Work from [Source and output](../../companion/quarto.qmd#sec-what) to [Citations](../../companion/quarto.qmd#sec-citations). The sections cover the `.qmd` file and the render step, the YAML header, code chunks and their options, and inline code. They go on to captions and cross-references, Markdown, and citations drawn from a `.bib` file. Then render the report of the workspace, `index.qmd`, once, and read through the five tasks that you will fill in.
+Work from [Source and output](https://codemoreh.github.io/ar4ds/tools/quarto.html#sec-what) to [Citations](https://codemoreh.github.io/ar4ds/tools/quarto.html#sec-citations) in the module on the umbrella site. The sections cover the `.qmd` file and the render step, a small document knitted in the browser, Quarto in Positron, the YAML header, code chunks and their options, and inline code. They go on to captions and cross-references, Markdown, and citations drawn from a `.bib` file. Then render the report of the workspace, `index.qmd`, once, and read through the five tasks that you will fill in.
 
 ## 3. The paper
 

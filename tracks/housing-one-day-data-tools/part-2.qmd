@@ -15,7 +15,7 @@ Part 2 introduces the case, because every line of R that you write today works o
 
 **On the slides.** The slides show the four places of an IDE that are worth knowing, why you open the folder of the workspace rather than a single file, and the different jobs of the console and the script. With the workspace, follow along in your IDE.
 
-To go further: [Positron, RStudio and VS Code](../../companion/ide.qmd).
+To go further: [Positron and other IDEs](https://codemoreh.github.io/ar4ds/tools/ide.html).
 
 ## 3. The R tutorial
 
@@ -23,7 +23,7 @@ To go further: [Positron, RStudio and VS Code](../../companion/ide.qmd).
 
 [Open the browser lab](../../cases/housing/lab.qmd){.btn .btn-outline-primary target="_blank"}
 
-To go further: [Getting started with R](../../companion/intro-r.qmd).
+To go further: [Getting started with R](https://codemoreh.github.io/ar4ds/tools/r.html), and [the helpers of the workspace](../../companion/helpers.qmd) for `try_spec()`.
 
 ## 4. Task 2 – The data
 

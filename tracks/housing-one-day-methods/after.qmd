@@ -11,8 +11,8 @@ A single day has room for the exercise and very little else. The [companion curr
 - [Subgroups and multiple comparisons](../../companion/subgroups.qmd) reads the gap of the day in seven subgroups of the replies, and asks what corrections for many tests and partial pooling make of them.
 - [Missing values](../../companion/missingness.qmd) shows what the bounced emails, the uncoded replies and the missing community thirds do to the estimate, and how each can be handled in a randomised experiment.
 - [Causal graphs and adjustment sets](../../companion/dags.qmd) works through the graph of the day at a slower pace, and ends on a graph for a question of your own.
-- [Getting started with R](../../companion/intro-r.qmd) teaches R from the beginning, on the same data.
-- [Quarto and reproducible documents](../../companion/quarto.qmd) explains the document format in which your report is written.
+- [Getting started with R](https://codemoreh.github.io/ar4ds/tools/r.html) teaches R from the beginning, on the same data.
+- [Quarto documents](https://codemoreh.github.io/ar4ds/tools/quarto.html) explains the document format in which your report is written.
 - [Reproducibility repositories](../../companion/repositories.qmd), then [Git and GitHub](https://codemoreh.github.io/ar4ds/git-github.html), show how to archive and version the report that you wrote.
 - The replication with new data is available in its own words and on its own data: the final report at [osf.io/2ug8x](https://osf.io/2ug8x/), and the de-identified data, the do-file and a dictionary at [osf.io/xseqg](https://osf.io/xseqg/).
 - [The case study](../../cases/housing/index.qmd) and the [resources page](../../resources.qmd) tell the whole story of the case, with the sources.

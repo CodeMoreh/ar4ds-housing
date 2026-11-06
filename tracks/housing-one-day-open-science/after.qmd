@@ -9,7 +9,7 @@ A day on open research stops before the robustness exercise of the course, in wh
 - [Audit experiments](../../companion/experiments.qmd) covers the design of the experiment: random assignment, names as treatments, comparisons among replies, randomisation inference, power and the ethics of deception.
 - [Causal graphs and adjustment sets](../../companion/dags.qmd) works through the causal graph of the experiment at a slower pace.
 - [The multiverse and its critics](../../companion/multiverse.qmd) sets out the ideas behind a curve of every justifiable analysis, and the arguments now being made against them.
-- [Getting started with R](../../companion/intro-r.qmd) teaches R from the beginning, on the same data.
+- [Getting started with R](https://codemoreh.github.io/ar4ds/tools/r.html) teaches R from the beginning, on the same data.
 - [The case study](../../cases/housing/index.qmd) and the [resources page](../../resources.qmd) tell the whole story of the case, with the sources.
 
 The [short session](../housing-short/index.qmd) covers the same case in two to three hours, and the [one-day course on data tools](../housing-one-day-data-tools/index.qmd) takes it through R, data management and reports.

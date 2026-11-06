@@ -105,9 +105,13 @@ The modules of the [companion](companion/index.qmd) hold the teaching that a ses
 
 **Tools**
 
-- [Getting started with R](companion/intro-r.qmd) – for participants arriving with no R at all, on the housing-audit data, with further sections on reading other formats, the grammar of graphics and the estimand habit; best read before the day.
-- [Positron, RStudio and VS Code](companion/ide.qmd) – what an IDE does and what the course needs from one, with Positron pane by pane and RStudio and VS Code set beside it.
-- [Quarto and reproducible documents](companion/quarto.qmd) – the format in which your report and every page of this site are written.
+The modules on the tools are on the [AR4DS site](https://codemoreh.github.io/ar4ds/), which every case shares, written on the data of this case.
+
+- [Getting started with R](https://codemoreh.github.io/ar4ds/tools/r.html) – for participants arriving with no R at all, on the housing-audit data, with a [second part](https://codemoreh.github.io/ar4ds/tools/r-further.html) on reading other formats, the three dialects of R and the estimand habit.
+- [The helpers of the workspace](companion/helpers.qmd) – `try_spec()` and `my_experiments()`, with which the exercise fits its specifications and keeps a record of them.
+- [Positron and other IDEs](https://codemoreh.github.io/ar4ds/tools/ide.html) – what an IDE does and what the course needs from one, with Positron in detail and RStudio and VS Code beside it.
+- [Quarto documents](https://codemoreh.github.io/ar4ds/tools/quarto.html) – the format in which your report and every page of this site are written.
+- [Git and GitHub](https://codemoreh.github.io/ar4ds/git-github.html) – version control for the folder of the workspace, and the publishing of its report.
 
 **Data and sharing**
 

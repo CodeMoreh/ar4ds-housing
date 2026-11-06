@@ -22,7 +22,7 @@
 ::::
 
 ::: {.src}
-The companion module on IDEs compares the three: companion/ide.qmd on the course site.
+The module on the IDE treats Positron pane by pane, with RStudio and VS Code beside it: tools/ide.html on the AR4DS site.
 :::
 
 ::: notes

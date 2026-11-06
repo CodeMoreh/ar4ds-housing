@@ -11,7 +11,6 @@ format:
         - tinyplot
         - datawizard
         - purrr
-        - gt
 resources:
   - data/spec_curve.csv
   - data/class_results.csv

@@ -10,5 +10,5 @@ The [companion curriculum](../../companion/index.qmd) covers what the session co
 - [Causal graphs and adjustment sets](../../companion/dags.qmd) works through the causal graph of the session at a slower pace, and the [graph cell of the browser lab](../../cases/housing/lab.qmd#task-2-estimand-and-graph) lets you try it.
 - [The multiverse and its critics](../../companion/multiverse.qmd) sets out the ideas behind the curve and the arguments now being made against them.
 - The replication with new data is available in its own words and on its own data: the final report at [osf.io/2ug8x](https://osf.io/2ug8x/), and the de-identified data, the do-file and a dictionary at [osf.io/xseqg](https://osf.io/xseqg/).
-- [Getting started with R](../../companion/intro-r.qmd) teaches R from the beginning, on the same data.
+- [Getting started with R](https://codemoreh.github.io/ar4ds/tools/r.html) teaches R from the beginning, on the same data.
 - [Reproducibility repositories](../../companion/repositories.qmd), then [Git and GitHub](https://codemoreh.github.io/ar4ds/git-github.html), show how to archive and version a report of your own.

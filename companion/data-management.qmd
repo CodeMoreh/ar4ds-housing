@@ -211,7 +211,7 @@ audit |>
 
 The OAs do not say why these authorities lack their thirds, and the course does not guess. What the missing values do to the adjusted specifications, which need the thirds, is one of the questions of the [missing-values module](missingness.qmd#sec-covariates).
 
-`waitlist` keeps the text of the source. Fewer than half of the entries are numbers of months, often converted by the OAs from phrases such as "two years", and the rest are the words `Closed` and `No Housing`. Turning the column into numbers would lose the words, so the course file keeps the text, and the [R module](intro-r.qmd#sec-tinyplot) shows how the numeric entries are taken out of it for a figure.
+`waitlist` keeps the text of the source. Fewer than half of the entries are numbers of months, often converted by the OAs from phrases such as "two years", and the rest are the words `Closed` and `No Housing`. Turning the column into numbers would lose the words, so the course file keeps the text, and the [R module](https://codemoreh.github.io/ar4ds/tools/r.html#sec-figure) on the AR4DS site shows how the numeric entries are taken out of it for a figure.
 
 ## 7. Checking the rebuilt file {#sec-checks}
 

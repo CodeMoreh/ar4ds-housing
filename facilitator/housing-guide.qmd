@@ -120,9 +120,9 @@ The page "Before the session" or "Before the day" of each format lists these ste
 | The case study | 45′ | 45′ | 45′ | 45′ |
 | The browser lab, opened once, with the setup cell of Task 1 run | 10′ | 10′ | 10′ | 10′ |
 | R, an IDE and the workspace, until `R/check_setup.R` prints OK | – | optional, 30–60′, once | optional and recommended, 30–60′, once | optional, 30–60′, once |
-| The module on the IDEs (`companion/ide.qmd`) | – | – | optional, 30′ | – |
+| The module on the IDE (`tools/ide.qmd` on the AR4DS site) | – | – | optional, 30′ | – |
 | The exercise overview | – | – | – | optional, 10′ |
-| Getting started with R (`companion/intro-r.qmd`) | – | – | – | optional, an evening |
+| Getting started with R (`tools/r.qmd` on the AR4DS site) | – | – | – | optional, an evening |
 | Total on the page | about an hour | about an hour, more with the installation | about an hour, more with the installation | about an hour, more with the installation |
 
 ### The week before
@@ -158,13 +158,13 @@ The page "Before the session" or "Before the day" of each format lists these ste
 | Key | What it does |
 |---|---|
 | space, right arrow or clicker | next slide, always exactly one: the deck is linear, so that no clicker press can skip a part |
-| **`d`** | switch between the **extended** and the **lean** deck, live; in lean mode the optional slides are taken out of the deck and every key skips them |
+| **`d`** | switch between the **full** and the **lean** deck, live; in lean mode the optional slides are taken out of the deck and every key skips them |
 | **`]`** and **`[`** | jump to the next or the previous part |
 | **`g`** | jump bar: type a few letters of any slide title and press Enter |
 | **`s`** | speaker view, with the notes, a timer and the next slide |
 | **`f`**, **`esc`** | full screen, and the slide overview |
 
-The readout at the top right names the part and the position, and its badge shows the state of the deck: green **extended**, burgundy **optional** on a slide of an optional run, amber **lean** when the runs are off, with a burgundy dot where a run has been lifted out. Adding `?depth=0` to the address opens the deck lean. The first slide of each optional run carries a small grey link that jumps to where the main flow resumes.
+The readout at the top right names the part and the position, and its badge shows the state of the deck: green **full**, burgundy **optional** on a slide of an optional run, amber **lean** when the runs are off, with a burgundy dot where a run has been lifted out. Adding `?depth=0` to the address opens the deck lean. The first slide of each optional run carries a small grey link that jumps to where the main flow resumes.
 
 ---
 
@@ -469,10 +469,10 @@ The self-study track runs without a facilitator, and each stage page gives only 
 | | 2. Task 1 – The setup check: R, Quarto, an IDE and the workspace | 60′, once |
 | | 3. The case and the exercise, on the opening page of the site | 20′ |
 | | 4. The glossary on the resources page | 25′ |
-| | 5. Your IDE: sections 1 and 6 of the IDE module, with the section on the IDE chosen | 60′ |
-| | 6. R from the beginning: sections 1 to 5 of the R module | 60′ |
-| 2 – R and Quarto (5 h) | 1. R on the data of the case: sections 6 to 13 of the R module | 120′ |
-| | 2. Quarto: sections 1 to 6 of the Quarto module, and the report rendered once | 75′ |
+| | 5. Your IDE: sections 1 and 11 of the IDE module of the AR4DS site, with the sections on the IDE chosen | 60′ |
+| | 6. R from the beginning: sections 1 to 5 of the R module of the AR4DS site | 60′ |
+| 2 – R and Quarto (5 h) | 1. R on the data of the case: sections 6 to 12 of the R module of the AR4DS site, and the helpers of the workspace | 120′ |
+| | 2. Quarto: sections 1 to 8 of the Quarto module of the AR4DS site, and the report rendered once | 75′ |
 | | 3. The paper of the OAs | 60′ |
 | | 4. The case study, sections 1 to 3 | 45′ |
 | 3 – The claim and its reproduction (5 h 50) | 1. The exercise overview | 15′ |
@@ -499,7 +499,7 @@ The self-study track runs without a facilitator, and each stage page gives only 
 | | 3. What to track, and your own reanalysis under version control | 50′ |
 | | 4. Your project: the declared analysis, run and reported | 130′ |
 | | 5. Depositing the project: section 12 of Reproducibility repositories | 30′ |
-| | 6. Publishing, optional: sections 7 and 8 of the Quarto module | as you like |
+| | 6. Publishing, optional: sections 9 and 10 of the Quarto module of the AR4DS site | as you like |
 
 ---
 

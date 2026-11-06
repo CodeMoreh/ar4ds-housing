@@ -11,7 +11,7 @@ Part 4 turns the code that reproduces a published result into a document. You lo
 
 **On the slides.** The slides take a Quarto report apart and show numbers in the text that come from the code. They end on the four steps from a folder to a public record: rendering, version control, publishing and archiving.
 
-To go further: [Quarto and reproducible documents](../../companion/quarto.qmd).
+To go further: [Quarto documents](https://codemoreh.github.io/ar4ds/tools/quarto.html).
 
 ## 2. Your reproduction in the report
 

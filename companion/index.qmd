@@ -3,7 +3,7 @@ title: "Companion curriculum"
 subtitle: "The teaching modules of the housing-audit case"
 ---
 
-The course is built around one exercise: you reproduce a recorded result, vary the analysis behind it, declare one analysis before you run it, and read your result against those of the class. On this site the exercise is taught on the housing-audit case, a field experiment in which emails signed with names meant to indicate a white, a Black or a Hispanic applicant were sent to public housing authorities in the United States, and the [case study](../cases/housing/index.qmd) tells it in full. A short session or a single day has room for that exercise and little else, so the skills around it are taught in these fifteen modules, which run from a first line of R to a reanalysis that you can deposit and register. Each module stands on its own, so you can take the one you need and leave the rest.
+The course is built around one exercise: you reproduce a recorded result, vary the analysis behind it, declare one analysis before you run it, and read your result against those of the class. On this site the exercise is taught on the housing-audit case, a field experiment in which emails signed with names meant to indicate a white, a Black or a Hispanic applicant were sent to public housing authorities in the United States, and the [case study](../cases/housing/index.qmd) tells it in full. A short session or a single day has room for that exercise and little else, so the skills around it are taught in the thirteen modules of this companion and in the four modules on the tools on the umbrella site of the course, which together run from a first line of R to a reanalysis that you can deposit and register. Each module stands on its own, so you can take the one you need and leave the rest.
 
 Every module is written for this case. The modules that run code compute their numbers from the files of the case in `cases/housing/data/` when the page is built, so that a module can be read as a worked analysis as well as an explanation, and you can check each number against your own output.
 
@@ -13,9 +13,13 @@ The modules fall into the three groups of the Companion menu. The first holds th
 
 ## Tools {#sec-tools}
 
-- [Getting started with R](intro-r.qmd) – R from the first line, on the emails of the case: objects and data frames, packages, the pipe and the datawizard verbs, a share and a difference in shares, a first table and a first figure, and a first call to `try_spec()`, then the deposited Stata file, the three dialects of R and naming the estimand.
-- [Positron, RStudio and VS Code](ide.qmd) – the IDE from which R is driven, Positron pane by pane with RStudio and VS Code beside it, the browser lab, and six steps through the workspace of the case.
-- [Quarto and reproducible documents](quarto.qmd) – what a `.qmd` file holds and what rendering does to it, the header and the chunk options of the exercise report, inline code, cross-references, citations, projects and publishing.
+The modules on the tools are on the umbrella site of the course. They are written once for the four cases, on the data of this case, and one page of this site adds the helpers of the exercise.
+
+- [Getting started with R](https://codemoreh.github.io/ar4ds/tools/r.html) – R from the first line, on the emails of the case, in blocks that run in the browser: objects and data frames, packages, the pipe and the datawizard verbs, a share and a difference in shares, a first table and a first figure. A [second part](https://codemoreh.github.io/ar4ds/tools/r-further.html) reads the deposited Stata file, sets out the three dialects of R and fits a first model while naming the estimand.
+- [The helpers of the workspace](helpers.qmd) – `R/spec_tools.R`, a first call to `try_spec()`, one decision changed at a time, an option refused with its reason, and the log kept by `my_experiments()`.
+- [Positron and other IDEs](https://codemoreh.github.io/ar4ds/tools/ide.html) – the IDE from which R is driven, Positron in detail with tasks in the workspace of the case, then RStudio, VS Code, other editors and the browser lab.
+- [Quarto documents](https://codemoreh.github.io/ar4ds/tools/quarto.html) – what a `.qmd` file holds and what rendering does to it, a small document knitted in the browser, Quarto in Positron, the header and the chunk options of the exercise report, inline code, cross-references, citations, projects and publishing, and six tasks in the report of the workspace.
+- [Git and GitHub](https://codemoreh.github.io/ar4ds/git-github.html) – version control for the folder of the workspace, from a first commit to a repository on GitHub, with the steps of Positron beside the commands.
 
 ## Data and sharing {#sec-sharing}
 
@@ -37,4 +41,4 @@ The modules fall into the three groups of the Companion menu. The first holds th
 
 ## Pages on the AR4DS site {#sec-umbrella}
 
-Two topics that do not change with the case live on the [AR4DS site](https://codemoreh.github.io/ar4ds/), the umbrella site of the course, and the modules link to them where they are needed. The [setup page](https://codemoreh.github.io/ar4ds/setup.html) installs R, an IDE and the workspace, with the [setup help](https://codemoreh.github.io/ar4ds/help.html) beside it, and [Git and GitHub for reproducible research](https://codemoreh.github.io/ar4ds/git-github.html) puts a reanalysis of your own under version control and shares it on GitHub.
+The material that does not change with the case lives on the [AR4DS site](https://codemoreh.github.io/ar4ds/), the umbrella site of the course, and the modules link to it where it is needed. The [setup page](https://codemoreh.github.io/ar4ds/setup.html) installs R, an IDE and the workspace, with the [setup help](https://codemoreh.github.io/ar4ds/help.html) beside it. The modules on the tools listed [above](#sec-tools) teach R, the IDE and Quarto on the data of this case, and [Git and GitHub for reproducible research](https://codemoreh.github.io/ar4ds/git-github.html) puts a reanalysis of your own under version control and shares it on GitHub.

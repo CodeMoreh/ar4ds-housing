@@ -29,7 +29,7 @@ The exercise overview sets out the claim that you will be working on, the five t
 
 ## 5. R from the beginning (optional)
 
-[Read Getting started with R](../../companion/intro-r.qmd){.btn .btn-outline-primary target="_blank"}
+[Read Getting started with R](https://codemoreh.github.io/ar4ds/tools/r.html){.btn .btn-outline-primary target="_blank"}
 
 The module is worth the time if you have never written R. It covers objects, data frames, reading a CSV file, the pipe and a first table, all on the housing-audit data.
 

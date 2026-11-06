@@ -87,12 +87,18 @@ website:
             text: "Overview"
           - text: "---"
           - text: "Tools"
-          - href: companion/intro-r.qmd
+          # The modules on the tools live on the umbrella site; the helpers of
+          # the workspace belong to this case
+          - href: "https://codemoreh.github.io/ar4ds/tools/r.html"
             text: "Getting started with R"
-          - href: companion/ide.qmd
-            text: "Positron, RStudio and VS Code"
-          - href: companion/quarto.qmd
-            text: "Quarto and reproducible documents"
+          - href: companion/helpers.qmd
+            text: "The helpers of the workspace"
+          - href: "https://codemoreh.github.io/ar4ds/tools/ide.html"
+            text: "Positron and other IDEs"
+          - href: "https://codemoreh.github.io/ar4ds/tools/quarto.html"
+            text: "Quarto"
+          - href: "https://codemoreh.github.io/ar4ds/git-github.html"
+            text: "Git and GitHub"
           - text: "---"
           - text: "Data and sharing"
           - href: companion/data-sources.qmd
