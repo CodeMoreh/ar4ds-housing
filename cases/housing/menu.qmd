@@ -211,7 +211,7 @@ With the question and the outcome fixed, these decisions change the model that i
 level_table("estimation")
 ```
 
-### Model
+### Model form {#model}
 
 A linear probability model, a linear regression of the 0/1 outcome, gives the difference in proportions as its coefficient, and without covariates it is exactly the difference between the two observed shares. Its standard errors are taken with the HC2 correction, which allows the variance of a 0/1 outcome to differ between the groups. A logistic regression models the log odds of a greeting, and the course reports it as an average marginal effect, the difference in the predicted probability of a greeting between Hispanic and white names, averaged over the analysed emails. Without covariates the two give the same estimate, and with covariates they differ by at most `r fmt(max(abs(c(dv("model", "logit", "shift_min"), dv("model", "logit", "shift_max")))), 2)` points across the curve.
 

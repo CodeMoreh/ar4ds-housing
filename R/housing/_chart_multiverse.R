@@ -24,7 +24,7 @@ mv_axes <- tibble::tribble(
   "cp", "comparison", "Comparison",
   "po", "population", "Emails counted",
   "un", "uncoded",    "Uncoded replies",
-  "mo", "model",      "Model",
+  "mo", "model",      "Model form",
   "ad", "adjust",     "Adjustment"
 )
 
@@ -172,7 +172,7 @@ mv_payload <- function(curve, options, marks, analysts, file = "spec-curve-housi
     c("Comparison", lab_of("cp", i)),
     c("Emails counted", lab_of("po", i)),
     c("Uncoded replies", lab_of("un", i)),
-    c("Model", lab_of("mo", i)),
+    c("Model form", lab_of("mo", i)),
     c("", paste0(mv_upper_first(phrase_of("mo", i)), "."), "n"),
     c("Adjustment", lab_of("ad", i)),
     c("Emails analysed", sprintf("%s, %s with Hispanic names", format(curve$n[i], big.mark = ","),

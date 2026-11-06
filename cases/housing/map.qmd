@@ -165,7 +165,7 @@ DM = {
       {id: "data", title: "The emails", note: "Which emails enter the comparison, with which names and from which officials, and what happens to the emails that bounced."},
       {id: "outcome", title: "The outcome", note: "What is compared between the groups of emails, and how the replies without a greeting code count."},
       {id: "comparison", title: "The comparison", note: "Which names the Hispanic names are set against."},
-      {id: "model", title: "The model", note: "How the difference is estimated, and which covariates the model holds."},
+      {id: "model", title: "Model and adjustment", note: "How the difference is estimated, and which covariates the model holds."},
       {id: "inference", title: "The test and the scale", note: "How uncertain the estimate is said to be, and on which scale it is reported."}
     ],
     colour: {outcome: "#0e3b6a", comparison: "#2a5d8f", names: "#4a78ab", population: "#0f6b6b", officials: "#2b8585",

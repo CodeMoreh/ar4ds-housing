@@ -16,6 +16,7 @@ format:
         - marginaleffects
         - effectsize
         - htmltools
+        - gt
 resources:
   - data/housing_audit.csv
   - data/audit_original.csv
@@ -35,7 +36,7 @@ This page holds the exercise of the course, Tasks 1 to 5, on a copy of R that ru
 ::: {.callout-important icon="false"}
 ## While the R engine loads
 
-The R engine downloads into your browser the first time you open this page (10–30 seconds on a slow connection). Read Task 1 while it loads. You will know that it is ready when the first code cell switches from a loading spinner to a "Run Code" button.
+The R engine downloads into your browser the first time you open this page (a minute or so, longer on a slow connection). Read Task 1 while it loads. You will know that it is ready when the first code cell switches from a loading spinner to a "Run Code" button.
 
 Keep this tab open. Your work stays in this page until you refresh it – there is nothing to install, nothing to save to disk, and no account needed.
 :::
@@ -698,6 +699,8 @@ audit |>
                            greeted_pct = round(100 * sum(named %in% 1) / sum(!is.na(named)), 1),
                            by = "group")
 ```
+
+Tables print in this lab as plain text, as they would in the console of your IDE. To read one as a formatted table, add `|> gt::gt()` to the end of the cell and run it again, or, for the output of `datawizard::data_summary()`, `datawizard::data_tabulate()` and `parameters::model_parameters()`, add `|> datawizard::print_html()` or `|> parameters::print_html()`, which also round the numbers. In your own IDE and in the report of the workspace, `tinytable::tt()` does this job, but it cannot display its tables on this page.
 
 Then the share greeted by name for each of the six names. This cell works out the shares and prints nothing.
 

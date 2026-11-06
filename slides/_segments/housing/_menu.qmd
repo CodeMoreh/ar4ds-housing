@@ -41,7 +41,7 @@ Here is the menu, and everything that follows is built on it. It is the full lis
 - **Comparison group** – white names, or white and Black names
 - **Emails counted** – replies only, or all delivered emails
 - **Replies without a greeting code** – left out, or counted as no greeting
-- **Model** – a difference in proportions, or logistic regression
+- **Model form** – a difference in proportions, or logistic regression
 - **Adjustment** – none; hard-to-find address; place, without ethnic composition; or place, with ethnic composition
 :::
 
