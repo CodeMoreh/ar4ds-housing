@@ -198,7 +198,7 @@ The file holds `r sum(audit$reply %in% 1 & is.na(audit$named))` replies without 
 
 ### Bounced emails
 
-Of the emails sent, `r sum(is.na(audit$reply))` bounced, `r bounced_by("white")` with white names, `r bounced_by("black")` with Black names and `r bounced_by("hispanic")` with Hispanic names, and they carry no reply status. They never reached an official, so the name on them cannot have changed anything, and every specification on the curve leaves them out. Counting them as unanswered adds rows whose outcome was settled by a broken address. It matters only when all emails are counted, since a bounced email is never a reply: there it moves the gap from `r fmt(bounced_twin$b_pp)` to `r fmt(bounced_b)` points, a small change, but one that was produced by broken addresses rather than by officials.
+Of the emails sent, `r sum(is.na(audit$reply))` bounced, `r bounced_by("white")` with white names, `r bounced_by("black")` with Black names and `r bounced_by("hispanic")` with Hispanic names, and they carry no reply status. They never reached an official, so none of them holds the response of an official to a name, but the bounces are uneven across the six sending accounts, one for each name, as the [missing-values module](../../companion/missingness.qmd#sec-bounced) shows. Every specification on the curve leaves the bounced emails out. Counting them as unanswered adds rows whose outcome was settled by a broken address. It matters only when all emails are counted, since a bounced email is never a reply: there it moves the gap from `r fmt(bounced_twin$b_pp)` to `r fmt(bounced_b)` points, a small change, but one that was produced by broken addresses rather than by officials.
 
 ## The model {#level-estimation}
 
