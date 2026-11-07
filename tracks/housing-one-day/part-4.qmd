@@ -52,7 +52,7 @@ Find your own mark among the exploratory results of the class. Then rerun `try_s
 
 **On the slides.** The SCORE replication was a preregistered audit of 3,050 housing authorities with new names. The slides show what it found, compare the original study and the replication row by row, and set out the power of the two designs. They end on the three Rs on this paper and on what separates robustness from replicability.
 
-To go further: [the replication](../../cases/housing/index.qmd#sec-replication) in the case study.
+To go further: [the replication](../../cases/housing/index.qmd#sec-replication) in the case study, the replication as new data in [Bayesian estimation](../../companion/bayesian.qmd#sec-replication), and the two audits pooled in [Meta-analysis](../../companion/meta-analysis.qmd#sec-two-studies).
 
 ## 8. The critics of the multiverse
 

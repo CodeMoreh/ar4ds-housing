@@ -249,7 +249,20 @@ power |>
   ggplot2::theme(panel.grid.minor = ggplot2::element_blank(), legend.position = "top")
 ```
 
-The original comparison has a power of `r fmt(pw("original", 20), 2)` for a gap of 20 points, but only `r fmt(pw("original", 10), 2)` for a gap of 10 points, the near end of the published confidence interval, against `r fmt(pw("replication", 10), 2)` for the replication. The preregistration of the replication states that its first round "achieves 90% power to detect 75% of the original effect size", following the guidelines of the Social Sciences Replication Project.
+```{r}
+#| label: power-80
+#| include: false
+# The gap below a white share of 61% at which each design reaches a power of
+# 0.8. power.prop.test() solves for a second share above the first, and the
+# variance p(1 - p) is the same at p and at 1 - p, so the gap below 61% equals
+# the gap above 39%.
+gap_80 <- purrr::map_dbl(c(original = "original", replication = "replication"), \(d) {
+  n <- max(power$n_per_group[startsWith(power$design, d)])
+  100 * (stats::power.prop.test(n = n, p1 = 0.39, power = 0.8)$p2 - 0.39)
+})
+```
+
+The original comparison has a power of `r fmt(pw("original", 20), 2)` for a gap of 20 points, but only `r fmt(pw("original", 10), 2)` for a gap of 10 points, the near end of the published confidence interval, against `r fmt(pw("replication", 10), 2)` for the replication. Put the other way round, the original comparison reaches a power of 0.8, the usual target when a study is planned, only for a gap of `r fmt(gap_80[["original"]])` points, and the replication for a gap of `r fmt(gap_80[["replication"]])` points. The preregistration of the replication states that its first round "achieves 90% power to detect 75% of the original effect size", following the guidelines of the Social Sciences Replication Project.
 
 Modest power has a second consequence, which bears on the size of a published effect. In the original comparison the standard error of the gap is `r fmt(ref$se_pp, 2)` points, so an estimate has to exceed about `r fmt(sig_threshold)` points before it is significant at 5%. If the true gap were 10 points, a study of this size would reach significance about half the time, and the significant estimates would be larger than the truth on average.
 
