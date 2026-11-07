@@ -4,7 +4,7 @@ title: "Day 3 – The methods and your report"
 
 The third day teaches the methods behind the analyses of the second day, as taught sessions on the data of the case, and ends with a report of your own. Each session has a module of the companion curriculum as its reading, before or after the session. The afternoon turns the analysis that you declared in Task 5 into a short report, written in Quarto and kept under Git.
 
-The exercises of this day use two packages beyond those of the setup check: ri2 in the first session, which brings randomizr and estimatr with it, and retrodesign in the third. Install them before the day, from the console of your IDE: `pak::pak(c("ri2", "retrodesign"))`.
+The exercises of this day use two packages beyond those of the setup check: ri2 in the first session, which brings randomizr and estimatr with it, and retrodesign in the third. Install the two packages before the day, from the console of your IDE: `pak::pak(c("ri2", "retrodesign"))`.
 
 ## 1. Audit experiments
 
