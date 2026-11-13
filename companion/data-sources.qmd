@@ -1,22 +1,22 @@
 ---
 title: "Social science data sources"
-subtitle: "Foundation to intermediate – where data are held, and the route to the housing-audit file"
+subtitle: "Foundation to intermediate – where data are held, and the route to the Housing data"
 ---
 
 ```{r}
 #| label: setup
 #| include: false
-# The record of the housing-audit case as the Dataverse API lists it, written by
+# The record of the Housing case study as the Dataverse API lists it, written by
 # _model-outputs/build_dataverse_files.R, and the archived copy of its data file
 dv_files <- readr::read_csv("_model-outputs/dataverse_1HOVTU_files.csv", show_col_types = FALSE)
 dv_data <- datawizard::data_filter(dv_files, label == "HousingAuditAJPSFinalPublic_Unidentified.tab")
 md5_archived <- unname(tools::md5sum("../data-raw/housing/dataverse_1HOVTU/HousingAuditAJPSFinalPublic_Unidentified.dta"))
-audit_original <- readr::read_csv("../cases/housing/data/audit_original.csv", show_col_types = FALSE)
+housing_original <- readr::read_csv("../cases/housing/data/housing_original.csv", show_col_types = FALSE)
 ```
 
-This module of the [companion curriculum](index.qmd) is about where the data that social scientists analyse are held, and how a researcher gets hold of them. The data of the housing-audit case reach a researcher as one public download from the Harvard Dataverse, and the files of SCORE and Multi100, the two projects that checked the claim, sit on the Open Science Framework (OSF). Section 1 sets out the three kinds of route by which data are reached, section 2 maps the sources that hold most of the quantitative data of sociology, political science and demography, section 3 follows the housing-audit file from its source to a file on your disk, by hand and programmatically, and section 4 is about citing what you downloaded.
+This module of the [companion curriculum](index.qmd) is about where the data that social scientists analyse are held, and how a researcher gets hold of them. The data of the Housing and racial bias case study reach a researcher as one public download from the Harvard Dataverse, and the files of SCORE and of its robustness study (Multi100; Aczel et al. 2026), which checked the claim, sit on the Open Science Framework (OSF). Section 1 sets out the three kinds of route by which data are reached, section 2 maps the sources that hold most of the quantitative data of sociology, political science and demography, section 3 follows the file of the Housing case study from its source to a file on your disk, by hand and programmatically, and section 4 is about citing what you downloaded.
 
-The short session and the one-day workshop download nothing, because the workspace and the browser lab hold the data of the case, and there section 3 explains where those files came from. The rest of the module is for when you have a question of your own to find data for. The [repositories module](repositories.qmd) covers the other side of the exchange, where a finished piece of work is deposited so that others can find it, and it reads the records of SCORE and Multi100 on the OSF.
+The short session and the one-day workshop download nothing, because the workspace and the browser lab hold the data of the case study, and there section 3 explains where those files came from. The rest of the module is for when you have a question of your own to find data for. The [repositories module](repositories.qmd) covers the other side of the exchange, where a finished piece of work is deposited so that others can find it, and it reads the records of SCORE and its robustness study on the OSF.
 
 Two things are outside the scope of this page. Qualitative data archives are not discussed, although the UK Data Service, which appears in the tables below, and the Qualitative Data Repository both hold qualitative collections. And nothing here replaces the terms of use of a particular dataset, which change, and which you read before you download.
 
@@ -32,7 +32,7 @@ Almost every dataset on this page is reached by one of three routes, and the voc
 
 Two distinctions run across all three. **Microdata against aggregates:** a respondent-level file needs the second or third route, while the country-year or region-year tables computed from it are usually open. And **catalogue against archive:** a catalogue such as the CESSDA Data Catalogue or re3data tells you that a dataset exists and where it is held, and the archive that holds it is where you register and download.
 
-The housing-audit case takes the first route. Its data, the 1,014 emails of the field experiment, are held by the Harvard Dataverse under [doi:10.7910/DVN/1HOVTU](https://doi.org/10.7910/DVN/1HOVTU) and can be downloaded by hand or through the API of the Dataverse. They carry CC0, a dedication to the public domain, so the course ships the file itself, as CSV.
+The Housing case study takes the first route. Its data, the 1,014 emails of the field experiment, are held by the Harvard Dataverse under [doi:10.7910/DVN/1HOVTU](https://doi.org/10.7910/DVN/1HOVTU) and can be downloaded by hand or through the API of the Dataverse. They carry CC0, a dedication to the public domain, so the course ships the file itself, as CSV.
 
 ## 2. The map {#sec-map}
 
@@ -60,7 +60,7 @@ The tables name the source, what it holds, how it is reached and where to start.
 | **GESIS Data Archive** | Germany's central social-science archive and the distributor of the Eurobarometer, EVS, ISSP, ALLBUS and the European Election Studies; each study is assigned an access category from free download to depositor permission, and the archive runs a Secure Data Center for the sensitive files | Registration, free; category by study | [search.gesis.org](https://search.gesis.org/) |
 | **CESSDA Data Catalogue** | The joint catalogue of the European social-science archives (the UK Data Service, GESIS, DANS, Sikt, the Finnish Social Science Data Archive and their peers), searchable in one place; downloads happen at the archive that holds the study | Catalogue open; access by archive | [datacatalogue.cessda.eu](https://datacatalogue.cessda.eu/) |
 | **ICPSR** | The Inter-university Consortium for Political and Social Research at Michigan, the largest social-science archive in the United States; a part of the collection is public, most of it is for members, and restricted files are applied for | Institutional membership for most files; check whether your university is a member | [icpsr.umich.edu](https://www.icpsr.umich.edu/) |
-| **Harvard Dataverse** | An open repository run on the Dataverse software, holding tens of thousands of datasets deposited by researchers and journals, including much replication material from political science and the package of the housing-audit case | Open, with terms set per dataset; a public API, and the `dataverse` R package | [dataverse.harvard.edu](https://dataverse.harvard.edu/); [section 3](#sec-dataverse) |
+| **Harvard Dataverse** | An open repository run on the Dataverse software, holding tens of thousands of datasets deposited by researchers and journals, including much replication material from political science and the package of the Housing case study | Open, with terms set per dataset; a public API, and the `dataverse` R package | [dataverse.harvard.edu](https://dataverse.harvard.edu/); [section 3](#sec-dataverse) |
 | **re3data** | The registry of research data repositories, for finding out which repository holds a kind of data at all | Open | [re3data.org](https://www.re3data.org/) |
 
 ### 2.3 Household panels and cohorts {#sec-panels}
@@ -108,9 +108,9 @@ The tables name the source, what it holds, how it is reached and where to start.
 Pick a question you have worked on, or would like to. Find a dataset that could answer it in two of the catalogues above, the CESSDA Data Catalogue and re3data, and write down for each: the archive that holds it, the access route, and the first step you would have to take on Monday morning. If the two catalogues disagree about where the data are, note the disagreement as well.
 :::
 
-## 3. The housing-audit file on the Dataverse {#sec-dataverse}
+## 3. The Housing data on the Dataverse {#sec-dataverse}
 
-The original authors (OAs) of the housing-audit study [@EinsteinGlick2017DoesRaceAffect] deposited their replication package in the collection of the *American Journal of Political Science* on the Harvard Dataverse, under the persistent identifier [doi:10.7910/DVN/1HOVTU](https://doi.org/10.7910/DVN/1HOVTU) and a CC0 dedication, which places the files in the public domain. The [repositories module](repositories.qmd#sec-dataverse) reads the record itself: its files, its blinding of the community variables and its two versions. Here the task is only to get the data file, in steps that you can follow from a fresh R session. Code that downloads is shown and not run on this page, which is built without a connection, and the results printed beside it come from the copies that the course keeps. None of it has to be done for the one-day workshop, where the data are already in place.
+The original authors (OAs) of the field experiment [@EinsteinGlick2017DoesRaceAffect] deposited their replication package in the collection of the *American Journal of Political Science* on the Harvard Dataverse, under the persistent identifier [doi:10.7910/DVN/1HOVTU](https://doi.org/10.7910/DVN/1HOVTU) and a CC0 dedication, which places the files in the public domain. The [repositories module](repositories.qmd#sec-dataverse) reads the record itself: its files, its blinding of the community variables and its two versions. Here the task is only to get the data file, in steps that you can follow from a fresh R session. Code that downloads is shown and not run on this page, which is built without a connection, and the results printed beside it come from the copies that the course keeps. None of it has to be done for the one-day workshop, where the data are already in place.
 
 The download ends with a check that the file is the one that the course used. The simplest check is a checksum: the MD5 sum is a short code computed from the contents of a file, which changes if a single byte of the file changes, so two files with the same MD5 sum are the same file. `tools::md5sum()` computes it in R, and the Dataverse publishes it beside the file.
 
@@ -122,7 +122,7 @@ The download ends with a check that the file is the one that the course used. Th
 #| eval: false
 files <- dataverse::dataset_files("doi:10.7910/DVN/1HOVTU", server = "dataverse.harvard.edu")
 
-audit <- dataverse::get_dataframe_by_name(
+housing <- dataverse::get_dataframe_by_name(
   "HousingAuditAJPSFinalPublic_Unidentified.tab",
   dataset = "doi:10.7910/DVN/1HOVTU",
   server = "dataverse.harvard.edu",
@@ -131,7 +131,7 @@ audit <- dataverse::get_dataframe_by_name(
 )
 ```
 
-`audit` then holds `r format(nrow(audit_original), big.mark = ",")` rows and `r ncol(audit_original)` columns, one row per email. The same record answers without the package, because every file has a DOI of its own, and the access address of the API returns a file by that DOI. The snapshot of the record that the course keeps lists them:
+`housing` then holds `r format(nrow(housing_original), big.mark = ",")` rows and `r ncol(housing_original)` columns, one row per email. The same record answers without the package, because every file has a DOI of its own, and the access address of the API returns a file by that DOI. The snapshot of the record that the course keeps lists them:
 
 ```{r}
 #| label: tbl-dataverse
@@ -152,7 +152,7 @@ utils::download.file(url, "HousingAuditAJPSFinalPublic_Unidentified.dta", mode =
 tools::md5sum("HousingAuditAJPSFinalPublic_Unidentified.dta")
 ```
 
-The last line should print `r dv_data$md5`, the MD5 sum that the record publishes for the data file. The copy that the course keeps in `data-raw/housing/` has the sum `r md5_archived`, so it is, byte for byte, the file that the OAs deposited. The first script of the pipeline of the case, `R/housing/01_audit_data.R`, reads that copy and writes the two CSV files of the course, `audit_original.csv` with the column names of the OAs and `housing_audit.csv` with readable names; the CC0 dedication is what allows the course to ship both in its workspace and to serve them in the browser lab.
+The last line should print `r dv_data$md5`, the MD5 sum that the record publishes for the data file. The copy that the course keeps in `data-raw/housing/` has the sum `r md5_archived`, so it is, byte for byte, the file that the OAs deposited. The first script of the pipeline of the case study, `R/housing/01_email_data.R`, reads that copy and writes the two CSV files of the course, `housing_original.csv` with the column names of the OAs and `housing_emails.csv` with readable names; the CC0 dedication is what allows the course to ship both in its workspace and to serve them in the browser lab.
 
 ::: {.callout-tip}
 ## Try it
@@ -164,7 +164,7 @@ Run the download above in any R session and compare the MD5 sum that it prints w
 
 A dataset is cited like a publication, with the producer, the title, the version or wave, the distributor and the persistent identifier, and most archives print the citation that they want on the study page. The archives of the map ask for it in different forms:
 
-- **The Harvard Dataverse** prints a citation for every dataset, with its version and a **UNF**, a checksum that Dataverse computes from the values in the data rather than from the bytes of the file, so that the same data saved in another format give the same UNF. The citation of the housing-audit package names the version that it used.
+- **The Harvard Dataverse** prints a citation for every dataset, with its version and a **UNF**, a checksum that Dataverse computes from the values in the data rather than from the bytes of the file, so that the same data saved in another format give the same UNF. The citation of the replication package of the OAs names the version that it used.
 - **The ESS** gives a citation for each data file, with its edition and DOI, and asks that a modified file be cited as "Adapted from ESS Round X, version number X".
 - **NCHS** gives no DOI to the NSFG files, so a citation names the agency, the survey, the cycle and the file, with the date of download.
 - **GESIS** asks for the study number, the DOI and the version of each wave.
@@ -176,4 +176,4 @@ Two further habits help a reader who wants to repeat your analysis. Record the d
 
 The access rules of the map were read from the pages of the archives themselves on 8 September 2026: the [types of data access](https://ukdataservice.ac.uk/help/access-policy/types-of-data-access/) page of the UK Data Service, which names the Open, Safeguarded and Controlled tiers, the End User Licence, the Special Licence and SecureLab; the [microdata pages of Eurostat](https://ec.europa.eu/eurostat/web/microdata), which describe research-entity recognition, the proposal step, scientific-use and secure-use files; the [SHARE data access page](https://share-eric.eu/data/data-access); the [IPUMS International](https://international.ipums.org/) front page, from which the coverage figures are quoted; and the [ESS Data Portal](https://ess.sikt.no/en/). The GESIS pages (the terms of use with their access categories, the Eurobarometer Data Service page, the registration form and the study pages) were read in a browser on the same day. The ICPSR pages could not be read by the tools used to prepare this module, so the description of ICPSR in the table above rests on the long-standing arrangements of the archive and should be checked against its current pages before you rely on it.
 
-The route of the housing-audit file was checked on 27 October 2026. The Dataverse record was queried through its native API and through the `dataverse` package, and the data file downloaded both ways matched the MD5 sum that the record publishes. The version and date of the `dataverse` package were read from its page on CRAN on the same day. The citation rule of the ESS was read from the [disclaimer page](https://www.europeansocialsurvey.org/contact/disclaimer) of the ESS on 26 October 2026. The provenance of the data of the case is recorded in the codebook of the [housing-audit file](../cases/housing/data/housing_audit_codebook.md).
+The route of the file of the Housing case study was checked on 27 October 2026. The Dataverse record was queried through its native API and through the `dataverse` package, and the data file downloaded both ways matched the MD5 sum that the record publishes. The version and date of the `dataverse` package were read from its page on CRAN on the same day. The citation rule of the ESS was read from the [disclaimer page](https://www.europeansocialsurvey.org/contact/disclaimer) of the ESS on 26 October 2026. The provenance of the data of the case study is recorded in the codebook of the [course file](../cases/housing/data/housing_emails_codebook.md).

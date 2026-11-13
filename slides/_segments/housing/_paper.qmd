@@ -11,7 +11,7 @@ The paper is an experiment published in 2017 [@EinsteinGlick2017DoesRaceAffect].
 :::
 
 ::: notes
-The case of the day is a paper in the American Journal of Political Science, and I will call its two authors the original authors, or OAs, from here on, because the course is about the claim and its analyses rather than about the people who made it. The question is old and important: do the officials who stand between citizens and a public programme answer people differently by race or ethnicity? Sociologists call those officials street-level bureaucrats, after Lipsky, because they deal with the public directly and have discretion over how much help to give. The method is the audit study, which sends matched requests that differ in one characteristic and compares the responses. Earlier audits had found discrimination by politicians and election officials. The OAs asked whether the same holds in a bureaucracy that hands out something valuable, access to public housing, and is further from politics.
+The case study of the day is a paper in the American Journal of Political Science, and I will call its two authors the original authors, or OAs, from here on, because the course is about the claim and its analyses rather than about the people who made it. The question is old and important: do the officials who stand between citizens and a public programme answer people differently by race or ethnicity? Sociologists call those officials street-level bureaucrats, after Lipsky, because they deal with the public directly and have discretion over how much help to give. The method is the audit study, which sends matched requests that differ in one characteristic and compares the responses. Earlier audits had found discrimination by politicians and election officials. The OAs asked whether the same holds in a bureaucracy that hands out something valuable, access to public housing, and is further from politics.
 :::
 
 ## The design {#the-design .smaller}
@@ -19,7 +19,7 @@ The case of the day is a paper in the American Journal of Political Science, and
 :::: {.columns}
 ::: {.column width="52%"}
 ::: {.small}
-- Every public housing authority that could be matched with a core city of a metropolitan or micropolitan area: **1,017** in the paper, **`r fmt_n(nrow(audit))`** in the public file
+- Every public housing authority that could be matched with a core city of a metropolitan or micropolitan area: **1,017** in the paper, **`r fmt_n(nrow(housing))`** in the public file
 - **One email each**, sent on one of two days in the same week of 2014
 - Each authority assigned **at random**, "via random number generator", to one of six senders
 :::
@@ -161,7 +161,7 @@ The same data as differences from the white names, for four outcomes, with the B
 :::
 
 ::: {.fragment .claimcard}
-"Hispanic housing applicants were ... less likely to be greeted by name than were ... white counterparts" <span class="src">the claim as SCORE selected it for Multi100</span>
+"Hispanic housing applicants were ... less likely to be greeted by name than were ... white counterparts" <span class="src">the claim as SCORE selected it for the robustness study</span>
 :::
 
 ::: {.fragment .small}
@@ -169,9 +169,9 @@ The published result behind it: Table 1, model 3, a logistic regression on the t
 :::
 
 ::: {.src}
-@EinsteinGlick2017DoesRaceAffect, abstract, Table 1 and p. 18 of the accepted manuscript; the Multi100 record of the claim.
+@EinsteinGlick2017DoesRaceAffect, abstract, Table 1 and p. 18 of the accepted manuscript; the record of the claim in the robustness study.
 :::
 
 ::: notes
-This is the sentence of the abstract from which the claim was taken: Hispanic applicants were twenty percentage points less likely to be greeted by name than their Black and white counterparts. [advance] And this is the claim as SCORE selected it and handed it to the Multi100 analysts. Look at the two ellipses. The first removes "twenty percentage points", so the claim states a direction without a size. The second removes "their black and", so the claim compares Hispanic names with white names only, where the abstract compares them with Black and white names together. [advance] The published number is a logistic regression on the replies, with controls for the community: a coefficient of minus point eight two, which the OAs translate into twenty points. Two versions of one claim, then, and the five analysts tested both.
+This is the sentence of the abstract from which the claim was taken: Hispanic applicants were twenty percentage points less likely to be greeted by name than their Black and white counterparts. [advance] And this is the claim as SCORE selected it and handed it to the analysts of the robustness study. Look at the two ellipses. The first removes "twenty percentage points", so the claim states a direction without a size. The second removes "their black and", so the claim compares Hispanic names with white names only, where the abstract compares them with Black and white names together. [advance] The published number is a logistic regression on the replies, with controls for the community: a coefficient of minus point eight two, which the OAs translate into twenty points. Two versions of one claim, then, and the five analysts tested both.
 :::

@@ -25,7 +25,7 @@ subgroups <- readr::read_csv("data/display_subgroups.csv", show_col_types = FALS
 stopifnot(nrow(curve) == 64, sum(curve$is_reference) == 1)
 
 fallback_titles <- c(
-  "cases/housing/index.qmd" = "The housing-audit case",
+  "cases/housing/index.qmd" = "Housing and racial bias",
   "cases/housing/menu.qmd" = "Specification menu",
   "cases/housing/multiverse.qmd" = "Multiverse",
   "companion/experiments.qmd" = "Audit experiments",
@@ -267,7 +267,7 @@ decisionMap = {
     if (a === "scale" && code === "odds_ratio") return d.model === "logit"
       ? `As an odds ratio, the logit coefficient is ${Math.exp(d.coef).toFixed(2)}.`
       : "A linear probability model has no odds ratio; select the logistic regression to read one.";
-    if (a === "scale" && code === "r") return `By the Multi100 rule, the test converts to a partial correlation of ${fmtR(d.r)}.`;
+    if (a === "scale" && code === "r") return `By the rule of the robustness study, the test converts to a partial correlation of ${fmtR(d.r)}.`;
     return "";
   }
   function shortVerdict(v) {
@@ -541,4 +541,4 @@ decisionMap = {
 }
 ```
 
-The three groups of decisions on the map are those of the [specification menu](menu.qmd#level-estimand): a decision about the question changes what is asked, a measurement decision changes how the outcome is counted, and a decision about the model changes how the answer is reached. The emails counted are chosen first on the map, among the data, but the choice is a decision about the question, because counting only the replies and counting every delivered email answer two related questions, the tone of the replies that came and the effect of the name on receiving a named greeting at all. The [case study](index.qmd#sec-posttreatment) sets out why the two differ.
+The three groups of decisions on the map are those of the [specification menu](menu.qmd#level-estimand): a decision about the question changes what is asked, a measurement decision changes how the outcome is counted, and a decision about the model changes how the answer is reached. The emails counted are chosen first on the map, among the data, but the choice is a decision about the question, because counting only the replies and counting every delivered email answer two related questions, the tone of the replies that came and the effect of the name on receiving a named greeting at all. The [background page](index.qmd#sec-posttreatment) sets out why the two differ.

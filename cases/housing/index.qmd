@@ -1,5 +1,5 @@
 ---
-title: "The housing-audit case"
+title: "Housing and racial bias"
 subtitle: "Names and greetings in emails to public housing authorities, 2014"
 bibliography: [../../references.bib, ../../references-new.bib]
 ---
@@ -7,11 +7,11 @@ bibliography: [../../references.bib, ../../references-new.bib]
 ```{r}
 #| label: setup
 #| include: false
-# The estimator of the case, for the conversion rule of Multi100
+# The estimator of the case study, for the conversion rule of the robustness study
 source("../../R/housing/_tools.R")
 
 # readr rather than datawizard::data_read(), which reads empty cells as "" rather than NA
-audit <- readr::read_csv("data/housing_audit.csv", show_col_types = FALSE)
+housing <- readr::read_csv("data/housing_emails.csv", show_col_types = FALSE)
 names_tab <- readr::read_csv("data/display_names.csv", show_col_types = FALSE)
 outcomes <- readr::read_csv("data/display_outcomes.csv", show_col_types = FALSE)
 analysts <- readr::read_csv("data/analysts5.csv", show_col_types = FALSE)
@@ -33,7 +33,7 @@ out <- \(o, cn, col) outcomes[[col]][outcomes$outcome == o & outcomes$contrast =
 pw <- \(design, gap) power$power[startsWith(power$design, design) & power$gap_pp == gap]
 ref <- datawizard::data_filter(curve, is_reference)
 
-counts <- audit |>
+counts <- housing |>
   datawizard::data_modify(
     no_thirds = !stats::complete.cases(white_third, black_third, hispanic_third, pop_third, poverty_third)
   ) |>
@@ -52,7 +52,7 @@ counts <- audit |>
 # P9W8Y, Task 1: in a model with the interaction of ethnicity and sex and the
 # default treatment coding of R, the Type III test of ethnicity is the test
 # among the female names, the reference level of sex
-female <- datawizard::data_filter(audit, reply == 1 & !is.na(named) & name_sex == "female")
+female <- datawizard::data_filter(housing, reply == 1 & !is.na(named) & name_sex == "female")
 lr_female <- stats::anova(stats::glm(named ~ 1, family = stats::binomial(), data = female),
                           stats::glm(named ~ group, family = stats::binomial(), data = female), test = "LRT")
 p_female <- lr_female$`Pr(>Chi)`[2]
@@ -63,7 +63,7 @@ gap_pooled <- grp("hispanic", "named_pct") -
   100 * (grp("white", "named") + grp("black", "named")) / (grp("white", "coded") + grp("black", "coded"))
 oa_z <- abs(mark("OA", "statistic"))
 oa_n <- mark("OA", "n")
-oa_r <- r_multi100(oa_z, "z", NA, oa_n)
+oa_r <- r_robustness(oa_z, "z", NA, oa_n)
 
 stat_txt <- \(type, x) dplyr::case_when(
   is.na(x) ~ "none recorded",
@@ -72,7 +72,7 @@ stat_txt <- \(type, x) dplyr::case_when(
 )
 ```
 
-This page presents the case on which the course is built, and every track starts here. The case is one claim from a field experiment on how officials of public housing authorities in the United States answer emails from people who want to apply for housing, published in the *American Journal of Political Science* by the original authors (OAs) [@EinsteinGlick2017DoesRaceAffect]. Five independent analysts reanalysed the claim in the Multi100 project, and a new experiment run for the SCORE programme tried to replicate it. The exercises begin where this page ends. Page numbers in quotations from the paper refer to the accepted manuscript, which is open at [OpenBU](https://hdl.handle.net/2144/37826).
+This page presents the Housing and racial bias case study, on which the course is built, and every track starts here. The case study is one claim from a field experiment on how officials of public housing authorities in the United States answer emails from people who want to apply for housing, published in the *American Journal of Political Science* by the original authors (OAs) [@EinsteinGlick2017DoesRaceAffect]. Five independent analysts reanalysed the claim in the robustness study of SCORE [Multi100; @AczelEtAl2026InvestigatingAnalyticalRobustness], and a new experiment run for the SCORE programme tried to replicate it. The exercises begin where this page ends. Page numbers in quotations from the paper refer to the accepted manuscript, which is open at [OpenBU](https://hdl.handle.net/2144/37826).
 
 ## 1. The original study {#sec-study}
 
@@ -149,11 +149,11 @@ names_tab |>
 
 The abstract states the finding in the sentence from which the claim was taken: "Hispanic housing applicants were twenty percentage points less likely to be greeted by name than were their black and white counterparts" (abstract). The twenty points come from the comparison with white names. Against the white and Black names together, the raw gap among replies is `r fmt(gap_pooled)` points.
 
-## 2. SCORE and Multi100 {#sec-score}
+## 2. SCORE {#sec-score}
 
 ### 2.1 Reproduction, robustness and replication {#sec-repetition}
 
-SCORE, short for Systematizing Confidence in Open Research and Evidence, put claims from published social and behavioural research through three kinds of repetition [@AlipourfardEtAl2021SystematizingConfidenceOpen]. A reproduction repeats the original analysis on the original data, a robustness check applies different but defensible analyses to the same data, and a replication asks the same question of new data. The three studies were reported in *Nature* in 2026 [@MiskeEtAl2026InvestigatingReproducibilitySocial; @AczelEtAl2026InvestigatingAnalyticalRobustness; @TynerEtAl2026InvestigatingReplicabilitySocial]. This paper went through two of them. Its data and code are public, but its reproduction component on the Open Science Framework (OSF) holds only an unfilled template, and the Multi100 record marks the reproduction as never attempted. The robustness study was Multi100, the subject of section 3, and section 5 takes up the replication.
+SCORE, short for Systematizing Confidence in Open Research and Evidence, put claims from published social and behavioural research through three kinds of repetition [@AlipourfardEtAl2021SystematizingConfidenceOpen]. A reproduction repeats the original analysis on the original data, a robustness check applies different but defensible analyses to the same data, and a replication asks the same question of new data. The three studies were reported in *Nature* in 2026 [@MiskeEtAl2026InvestigatingReproducibilitySocial; @AczelEtAl2026InvestigatingAnalyticalRobustness; @TynerEtAl2026InvestigatingReplicabilitySocial]. This paper went through two of them. Its data and code are public, but its reproduction component on the Open Science Framework (OSF) holds only an unfilled template, and the record of the robustness study marks the reproduction as never attempted. The robustness study is the subject of section 3, and section 5 takes up the replication.
 
 ::: {.callout-note collapse="true"}
 ## The dossier on the OSF
@@ -163,20 +163,20 @@ SCORE, short for Systematizing Confidence in Open Research and Evidence, put cla
 - Reproduction with the data and code of the OAs, an unfilled template: [osf.io/9wp8d](https://osf.io/9wp8d/)
 - Power analysis for the replication: [osf.io/kcsby](https://osf.io/kcsby/)
 - Replication with new data, with its preregistration and final report: [osf.io/2ug8x](https://osf.io/2ug8x/)
-- Multi100: [osf.io/38rsh](https://osf.io/38rsh/), with one component for each analyst – 8PTRZ [osf.io/j8wvh](https://osf.io/j8wvh/), UYV3F [osf.io/3672s](https://osf.io/3672s/) (a review document), EWFMI [osf.io/jhvca](https://osf.io/jhvca/), 25N5D [osf.io/v8zah](https://osf.io/v8zah/) and P9W8Y [osf.io/pzwbm](https://osf.io/pzwbm/)
+- The robustness study: [osf.io/38rsh](https://osf.io/38rsh/), with one component for each analyst – 8PTRZ [osf.io/j8wvh](https://osf.io/j8wvh/), UYV3F [osf.io/3672s](https://osf.io/3672s/) (a review document), EWFMI [osf.io/jhvca](https://osf.io/jhvca/), 25N5D [osf.io/v8zah](https://osf.io/v8zah/) and P9W8Y [osf.io/pzwbm](https://osf.io/pzwbm/)
 
 The scripts of the analysts are read on the OSF, and the course does not copy them.
 :::
 
-### 2.2 The claim and the Task 2 instruction {#sec-multi100}
+### 2.2 The claim and the Task 2 instruction {#sec-robustness}
 
-Multi100 gave claims from 100 studies in the SCORE sample to independent analysts, 457 people who carried out 504 reanalyses in all [@AczelEtAl2026InvestigatingAnalyticalRobustness, p. 136]. Each claim is a sentence, taken from the abstract where possible, that corresponds to one statistically significant test, and where the lead team judged an expression "to be ambiguous or rhetorical, they replaced the expression with an ellipsis mark" [@AczelEtAl2026InvestigatingAnalyticalRobustness, Methods]. This claim reached the analysts as follows.
+The robustness study gave claims from 100 studies in the SCORE sample to independent analysts, 457 people who carried out 504 reanalyses in all [@AczelEtAl2026InvestigatingAnalyticalRobustness, p. 136]. Each claim is a sentence, taken from the abstract where possible, that corresponds to one statistically significant test, and where the lead team judged an expression "to be ambiguous or rhetorical, they replaced the expression with an ellipsis mark" [@AczelEtAl2026InvestigatingAnalyticalRobustness, Methods]. This claim reached the analysts as follows.
 
 > "Hispanic housing applicants were ... less likely to be greeted by name than were ... white counterparts" (p. 100 of the published article)
 
 The ellipses remove "20 percentage points" ("twenty" in the accepted manuscript) and "their black and". The claim as selected therefore compares Hispanic names with white names only and states a direction without a size, while the abstract compares them with Black and white names together and puts the gap at twenty points, and the five analysts tested both versions.
 
-In Task 1 of Multi100 the analysts analysed the data as they judged best and drew one conclusion: evidence for the claim, evidence for the opposite, no evidence either way, or evidence for the null hypothesis. In Task 2 each produced a single statistical result under instructions that "always remained circumstantial (for example, data selection, exclusions and choice of measurement)" [@AczelEtAl2026InvestigatingAnalyticalRobustness, Methods]. The instruction for this claim read as follows.
+In Task 1 of the robustness study the analysts analysed the data as they judged best and drew one conclusion: evidence for the claim, evidence for the opposite, no evidence either way, or evidence for the null hypothesis. In Task 2 each produced a single statistical result under instructions that "always remained circumstantial (for example, data selection, exclusions and choice of measurement)" [@AczelEtAl2026InvestigatingAnalyticalRobustness, Methods]. The instruction for this claim read as follows.
 
 > "You should disregard the moving locations' ethnical composition from which/to which applications were sent."
 
@@ -184,12 +184,12 @@ Nobody in the experiment was moving, so the instruction can only mean that the e
 
 ## 3. The five reanalyses {#sec-reanalysts}
 
-All five analysts worked from the public file of the OAs. The course refits each analysis from its script, or for UYV3F from its report, on the same file, and the four recorded statistics come out exactly. @tbl-analysts sets out what each did in Task 2, under the identifiers that Multi100 gave them.
+All five analysts worked from the public file of the OAs. The course refits each analysis from its script, or for UYV3F from its report, on the same file, and the four recorded statistics come out exactly. @tbl-analysts sets out what each did in Task 2, under the identifiers given to them by the robustness study.
 
 ::: column-body-outset
 ```{r}
 #| label: tbl-analysts
-#| tbl-cap: "The five reanalyses in Task 2, with the statistic as Multi100 recorded it and the conclusion of Task 1. Source: `data/analysts5.csv`."
+#| tbl-cap: "The five reanalyses in Task 2, with the statistic as recorded in the robustness study and the conclusion of Task 1. Source: `data/analysts5.csv`."
 #| echo: false
 analysts |>
   datawizard::data_modify(
@@ -214,7 +214,7 @@ analysts |>
 
 **8PTRZ** compared Hispanic names with the white and Black names together, the comparison of the abstract, with the test of a two-by-two table. `chisq.test()` in R applies a continuity correction to such a table by default, which makes the test slightly more conservative, and the recorded value is the corrected one. The gap is `r fmt(an("8PTRZ", "b_pp_refit"))` points, smaller than against white names alone because Black names were greeted by name less often than white ones.
 
-**P9W8Y** fitted a logistic regression on all three groups and reported the test that the three differ at all, followed by pairwise comparisons. That omnibus test answers a broader question than the claim, since it would reject equality just as readily if the Black names were the ones greeted less often. The report gives a $\chi^2$ on 2 degrees of freedom, but Multi100 recorded no statistic, and the course places the analysis by its gap between Hispanic and white names, `r fmt(an("P9W8Y", "b_pp_refit"))` points.
+**P9W8Y** fitted a logistic regression on all three groups and reported the test that the three differ at all, followed by pairwise comparisons. That omnibus test answers a broader question than the claim, since it would reject equality just as readily if the Black names were the ones greeted less often. The report gives a $\chi^2$ on 2 degrees of freedom, but the robustness study recorded no statistic, and the course places the analysis by its gap between Hispanic and white names, `r fmt(an("P9W8Y", "b_pp_refit"))` points.
 
 **25N5D**, the one sociologist among the five, began from the comparison of the paper and then questioned it: "this naive estimate suffers from post-treatment bias. Signaled Hispanic names (the treatment) affect whether the bureaucrat responds; then, we condition only on bureaucrats who respond to investigate whether they use the applicant's proper name." Following @Coppock2019AvoidingPosttreatmentBias, the analyst counted every delivered email, an email without a reply counting as one without a named greeting. The gap shrinks to `r fmt(an("25N5D", "b_pp_refit"))` points and stays significant.
 
@@ -232,11 +232,11 @@ P9W8Y concluded that "The results do not provide evidence of a relationship betw
 
 ## 4. Effect sizes {#sec-scale}
 
-The five results are a $\chi^2$ test of a table, a two-proportion test, two z statistics from logistic regressions and an omnibus test, on 362 to 665 emails. Multi100 chose to "transform the reported point estimates into a standard effect-size measure", noting that "these transformations have limitations and their calculation relies on assumptions that may not hold in all considered analysis settings" [@AczelEtAl2026InvestigatingAnalyticalRobustness, p. 136]. Each statistic became a correlation and then a Cohen's d. For a z statistic the code of Multi100 uses the number of emails N in place of degrees of freedom, $r = \tanh(|z| / \sqrt{N - 3})$ with the sign of z, and a $\chi^2$ on one degree of freedom is read as the square of a z, which has no sign. @tbl-scale sets the correlations beside the gaps in percentage points.
+The five results are a $\chi^2$ test of a table, a two-proportion test, two z statistics from logistic regressions and an omnibus test, on 362 to 665 emails. The robustness study chose to "transform the reported point estimates into a standard effect-size measure", noting that "these transformations have limitations and their calculation relies on assumptions that may not hold in all considered analysis settings" [@AczelEtAl2026InvestigatingAnalyticalRobustness, p. 136]. Each statistic became a correlation and then a Cohen's d. For a z statistic the code of the robustness study uses the number of emails N in place of degrees of freedom, $r = \tanh(|z| / \sqrt{N - 3})$ with the sign of z, and a $\chi^2$ on one degree of freedom is read as the square of a z, which has no sign. @tbl-scale sets the correlations beside the gaps in percentage points.
 
 ```{r}
 #| label: tbl-scale
-#| tbl-cap: "The published result and the five reanalyses, with the gap in percentage points (the published change in predicted probability for the OAs, the course refit for the analysts) and the correlation by the Multi100 rule, signs as recorded. Sources: `data/reference_marks.csv`, `data/analysts5.csv`."
+#| tbl-cap: "The published result and the five reanalyses, with the gap in percentage points (the published change in predicted probability for the OAs, the course refit for the analysts) and the correlation by the rule of the robustness study, signs as recorded. Sources: `data/reference_marks.csv`, `data/analysts5.csv`."
 #| echo: false
 dplyr::bind_rows(
   tibble::tibble(Result = "OAs 2017", gap = mark("OA", "b_pp"), stat = paste("z =", fmt(oa_z, 2)),
@@ -255,7 +255,7 @@ dplyr::bind_rows(
   tinytable::style_tt(j = c(2, 4, 5), align = "r")
 ```
 
-The same gap gives different correlations. UYV3F and the OAs both report a gap of twenty points, yet their correlations are `r fmt(abs(an("UYV3F", "r_recorded")), 3)` and `r fmt(oa_r, 3)`, because one z comes from a model without covariates on `r an("UYV3F", "n_refit")` replies and the other from a model with covariates and all three groups on `r oa_n`. The `r fmt(abs(an("25N5D", "b_pp_refit")))`-point gap of 25N5D converts to almost as large a correlation as the `r fmt(abs(an("8PTRZ", "b_pp_refit")))`-point gap of 8PTRZ, because a correlation depends on the shares in each group and on the sizes of the groups as well as on the gap. The signs follow the statistics as the analysts typed them, so UYV3F carries a negative correlation, although all five found the gap in the direction of the claim. For the effect sizes Multi100 took the direction from the box that each analyst ticked, so that they "are negative only when they indicate an opposite effect compared with the original study" [@AczelEtAl2026InvestigatingAnalyticalRobustness, Methods].
+The same gap gives different correlations. UYV3F and the OAs both report a gap of twenty points, yet their correlations are `r fmt(abs(an("UYV3F", "r_recorded")), 3)` and `r fmt(oa_r, 3)`, because one z comes from a model without covariates on `r an("UYV3F", "n_refit")` replies and the other from a model with covariates and all three groups on `r oa_n`. The `r fmt(abs(an("25N5D", "b_pp_refit")))`-point gap of 25N5D converts to almost as large a correlation as the `r fmt(abs(an("8PTRZ", "b_pp_refit")))`-point gap of 8PTRZ, because a correlation depends on the shares in each group and on the sizes of the groups as well as on the gap. The signs follow the statistics as the analysts typed them, so UYV3F carries a negative correlation, although all five found the gap in the direction of the claim. For the effect sizes the robustness study took the direction from the box that each analyst ticked, so that they "are negative only when they indicate an opposite effect compared with the original study" [@AczelEtAl2026InvestigatingAnalyticalRobustness, Methods].
 
 The course puts every result on the scale of the claim, the difference in the share of greetings in percentage points. A linear model of the 0/1 outcome gives it as its coefficient, and a logistic regression as an average marginal effect, the change in the predicted probability of a greeting from a white to a Hispanic name, averaged over the analysed emails. @fig-marks places the six results on that scale, beside the range of the `r nrow(curve)` specifications that the course fits.
 
@@ -306,7 +306,7 @@ The OAs published their data and code on the Harvard Dataverse ([doi:10.7910/DVN
 
 ```{r}
 #| label: tbl-counts
-#| tbl-cap: "The emails in the public file. Source: `data/housing_audit.csv`."
+#| tbl-cap: "The emails in the public file. Source: `data/housing_emails.csv`."
 #| echo: false
 tibble::tibble(
   Emails = c("In the public file (the paper reports 1,017)", "Bounced, with no reply status",
@@ -323,7 +323,7 @@ tibble::tibble(
   tinytable::style_tt(j = 2, align = "r")
 ```
 
-The `r counts$bounced` bounced emails never reached an official, and the `r counts$uncoded` uncoded replies are replies whose greeting nobody coded. Both are decisions on the [specification menu](menu.qmd). `audit_original.csv` is the public file with the column names of the OAs, on which the reproduction of Task 3 runs ([codebook](data/audit_original_codebook.md)). `housing_audit.csv` is the course file, with readable names and derived columns, on which every other exercise runs ([codebook](data/housing_audit_codebook.md)). The [exercise overview](exercise.qmd) sets out what to do with them.
+The `r counts$bounced` bounced emails never reached an official, and the `r counts$uncoded` uncoded replies are replies whose greeting nobody coded. Both are decisions on the [specification menu](menu.qmd). `housing_original.csv` is the public file with the column names of the OAs, on which the reproduction of Task 3 runs ([codebook](data/housing_original_codebook.md)). `housing_emails.csv` is the course file, with readable names and derived columns, on which every other exercise runs ([codebook](data/housing_emails_codebook.md)). The [exercise overview](exercise.qmd) sets out what to do with them.
 
 ## References {.unnumbered}
 

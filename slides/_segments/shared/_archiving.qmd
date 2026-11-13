@@ -15,13 +15,13 @@ You need no account today. We read OSF the way that reviewers do.
 ::::
 
 ::: notes
-Outside a classroom, an analysis plan is preregistered by filing it in a public registry, and the Open Science Framework is the registry that most social scientists meet first. OSF does two jobs. It archives materials: the SCORE programme and Multi100 keep their records there, which is the only reason you can stand in the place of a real analyst at all. And it registers plans. A registration is a frozen, timestamped snapshot of what you intend to do, filed before you do it, which nobody, including you, can quietly edit afterwards. You do not need an account for any of this today. We read OSF the way a reviewer or a sceptical reader would, starting from the public record of the paper we have been working on.
+Outside a classroom, an analysis plan is preregistered by filing it in a public registry, and the Open Science Framework is the registry that most social scientists meet first. OSF does two jobs. It archives materials: the SCORE programme and its robustness study keep their records there, which is the only reason you can stand in the place of a real analyst at all. And it registers plans. A registration is a frozen, timestamped snapshot of what you intend to do, filed before you do it, which nobody, including you, can quietly edit afterwards. You do not need an account for any of this today. We read OSF the way a reviewer or a sceptical reader would, starting from the public record of the paper we have been working on.
 :::
 
-## The Multi100 preregistration {#the-study-you-are-inside-was-preregistered}
+## The preregistration of the robustness study {#the-study-you-are-inside-was-preregistered}
 
 ::: {.small}
-- Multi100: **100 claims × at least 5 independent analysts**, no instructions on how to analyse
+- The robustness study: **100 claims × at least 5 independent analysts**, no instructions on how to analyse
 - The scoring rules – same conclusion? effect size close? – were **registered on the OSF after the analysts had been recruited and before any analysis began**
 - Outcome: 74% same conclusion; 34% within ±0.05 *d*
 :::
@@ -31,7 +31,7 @@ Preregistrations osf.io/4ev9t (pp. 2 and 9) and osf.io/y4evp; @AczelEtAl2026Inve
 :::
 
 ::: notes
-Multi100, the study in which you have been working as the sixth analyst, was itself preregistered. One hundred claims, five or more analysts each, and complete analytical freedom in the first task. The part that had to be pinned down in advance was the judging: what counts as the same conclusion, and how close is close for an effect size. Those rules were registered on the OSF after the analysts had been recruited and before any of them had started, among them the rule that two results count as the same when their effect sizes lie within five hundredths of a Cohen's d of each other. That is why the seventy-four per cent and the thirty-four per cent that we met earlier mean something: nobody could move the goalposts once the results were in.
+The robustness study, in which you have been working as the sixth analyst, was itself preregistered. One hundred claims, five or more analysts each, and complete analytical freedom in the first task. The part that had to be pinned down in advance was the judging: what counts as the same conclusion, and how close is close for an effect size. Those rules were registered on the OSF after the analysts had been recruited and before any of them had started, among them the rule that two results count as the same when their effect sizes lie within five hundredths of a Cohen's d of each other. That is why the seventy-four per cent and the thirty-four per cent that we met earlier mean something: nobody could move the goalposts once the results were in.
 :::
 
 ## Preregistration templates {#two-templates-one-choice}

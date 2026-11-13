@@ -1,10 +1,10 @@
 ################################################################################
-# Title:        Simulated audits of the housing-audit case
+# Title:        Simulated experiments of the Housing case study
 # Purpose:      The simulations of the simulation module, declared and diagnosed
 #               with DeclareDesign (Blair, Cooper, Coppock and Humphreys 2019,
-#               American Political Science Review): an audit whose recipe plants
+#               American Political Science Review): an experiment whose recipe plants
 #               the gap in named greetings that the original study found, and
-#               the comparisons of the case diagnosed against it over many
+#               the comparisons of the case study diagnosed against it over many
 #               draws. Three sets of designs: the recovery of the planted gap
 #               when the name changes only the greeting; the comparison among
 #               replies when the name also changes who replies, under three
@@ -14,10 +14,10 @@
 #               points, beside the analytic power of display_power.csv.
 #               The simulation module declares the first design on the page with
 #               the same code and reads the diagnoses from the files below.
-# Reads:        cases/housing/data/housing_audit.csv (the rates that the recipe
+# Reads:        cases/housing/data/housing_emails.csv (the rates that the recipe
 #               plants)
-# Writes:       companion/_model-outputs/sim_audit_diagnosis.csv
-#               companion/_model-outputs/sim_audit_draws.csv
+# Writes:       companion/_model-outputs/sim_housing_diagnosis.csv
+#               companion/_model-outputs/sim_housing_draws.csv
 # Author:       Claude for CM
 # Last updated: 2026-10-27
 ################################################################################
@@ -27,14 +27,14 @@ set.seed(20261027)
 # The recipe takes its numbers from the delivered emails to white and Hispanic
 # names: how many there were, how often each group drew a reply, and how often
 # a coded reply opened with the name of the sender
-audit <- readr::read_csv("cases/housing/data/housing_audit.csv", show_col_types = FALSE) |>
+housing <- readr::read_csv("cases/housing/data/housing_emails.csv", show_col_types = FALSE) |>
   datawizard::data_filter(group %in% c("white", "hispanic"), !is.na(reply))
-n_delivered <- nrow(audit)
-n_hispanic <- sum(audit$group == "hispanic")
-reply_white <- mean(audit$reply[audit$group == "white"])
-reply_hisp <- mean(audit$reply[audit$group == "hispanic"])
-reply_all <- mean(audit$reply)
-coded <- datawizard::data_filter(audit, reply == 1, !is.na(named))
+n_delivered <- nrow(housing)
+n_hispanic <- sum(housing$group == "hispanic")
+reply_white <- mean(housing$reply[housing$group == "white"])
+reply_hisp <- mean(housing$reply[housing$group == "hispanic"])
+reply_all <- mean(housing$reply)
+coded <- datawizard::data_filter(housing, reply == 1, !is.na(named))
 greet_white <- mean(coded$named[coded$group == "white"])
 greet_hisp <- mean(coded$named[coded$group == "hispanic"])
 
@@ -43,7 +43,7 @@ greet_hisp <- mean(coded$named[coded$group == "hispanic"])
 # greet_white to greet_hisp (u: the same official greets by name under the
 # Hispanic name only if it would under the white name). Z = 1 is a Hispanic
 # name, assigned to n_hispanic emails by complete random assignment as in the
-# experiment; HC2 errors, as the curve of the case uses for the linear model.
+# experiment; HC2 errors, as the curve of the case study uses for the linear model.
 recovery <-
   DeclareDesign::declare_model(
     N = n_delivered,
@@ -149,5 +149,5 @@ draws <- recovery_dx$simulations_df |>
                    conf.high = signif(conf.high, 6))
 
 # readr writes the bytes of the committed files; datawizard::data_write() does not
-readr::write_csv(diagnosis, "companion/_model-outputs/sim_audit_diagnosis.csv", na = "")
-readr::write_csv(draws, "companion/_model-outputs/sim_audit_draws.csv", na = "")
+readr::write_csv(diagnosis, "companion/_model-outputs/sim_housing_diagnosis.csv", na = "")
+readr::write_csv(draws, "companion/_model-outputs/sim_housing_draws.csv", na = "")

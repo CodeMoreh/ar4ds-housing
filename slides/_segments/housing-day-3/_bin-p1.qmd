@@ -24,7 +24,7 @@ Part one starts where every analysis of this claim starts, with four counts: the
 :::
 
 ::: {.src}
-The rows of the reference specification: the coded replies to Hispanic and white names in cases/housing/data/housing_audit.csv.
+The rows of the reference specification: the coded replies to Hispanic and white names in cases/housing/data/housing_emails.csv.
 :::
 
 ::: notes
@@ -48,7 +48,7 @@ In Task 3 the value recorded for 8PTRZ, $\chi^2$ = `r fmt_num(chi_yates, 3)`, wa
 :::
 
 ::: {.src}
-cases/housing/data/spec_curve.csv (the reference specification) and display_outcomes.csv; the table of 8PTRZ from audit_original.csv.
+cases/housing/data/spec_curve.csv (the reference specification) and display_outcomes.csv; the table of 8PTRZ from housing_original.csv.
 :::
 
 ::: notes

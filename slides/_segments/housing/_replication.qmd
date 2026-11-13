@@ -45,7 +45,7 @@ And here is what came back. The main analysis matched the model of the paper as 
 ## Original and replication compared {#what-the-replication-changed .smaller}
 
 ::: {.small}
-| | The original audit | The replication |
+| | The original experiment | The replication |
 |:--|:--|:--|
 | Authorities | those matched with a core city: 1,017 | the authorities on the HUD list: 3,050 |
 | Assignment | at random, by random number generator | at random, within each state |
@@ -100,14 +100,14 @@ One more lens: power, the probability that a study of a given size detects a gap
 #| label: scoreboard
 #| fig-width: 10.5
 #| fig-height: 4.6
-# The SCORE dossier on the housing-audit case as a three-row scoreboard,
+# The SCORE dossier on the Housing case study as a three-row scoreboard,
 # one row per R; the details come from _planning/housing/housing-facts.md and from
 # the curve and record files.
 sb <- tibble::tribble(
   ~ord, ~R,              ~verdict,                ~detail,                                                                                                   ~fill,
   3,    "Reproducible?", "NOT TESTED BY SCORE",   "data and code public; the reproduction component\nholds an empty template – and the class reproduced the analysts", grey_mid,
-  2,    "Robust?",       "ANALYSTS SPLIT 3–2",    sprintf("%d specifications, all negative and significant,\n%s to %s points; but two of the five analysts\nfound no evidence, and Multi100 asks all five", nrow(curve), fmt_num(min(curve$b_pp), 0), fmt_num(max(curve$b_pp), 0)), orange,
-  1,    "Replicable?",   "NOT REPLICATED",        "new audit, 3,050 authorities, four new names:\nz = 0.66, p = 0.511",                         d_red
+  2,    "Robust?",       "ANALYSTS SPLIT 3–2",    sprintf("%d specifications, all negative and significant,\n%s to %s points; but two of the five analysts\nfound no evidence, and the robustness study asks all five", nrow(curve), fmt_num(min(curve$b_pp), 0), fmt_num(max(curve$b_pp), 0)), orange,
+  1,    "Replicable?",   "NOT REPLICATED",        "new experiment, 3,050 authorities, four new names:\nz = 0.66, p = 0.511",                         d_red
 )
 
 ggplot2::ggplot(sb, ggplot2::aes(x = 1, y = ord)) +
@@ -133,7 +133,7 @@ The SCORE project of the paper: [osf.io/3a8bg](https://osf.io/3a8bg/)
 :::
 
 ::: notes
-Put the whole dossier together. Reproducibility was never tested by SCORE: the data and code are public on the Dataverse, but the reproduction component on the OSF holds only an empty template. You have done part of that job yourselves today, since the class reproduced the recorded numbers of the analysts exactly, and the course refits reproduce all four of them. Robustness, on the original data, holds in the strongest sense that a curve can offer: every analysis that the course judged justifiable, and every one of the five analysts, finds the gap in the same direction and significant, and only its size moves. By the rule of Multi100, though, which counts a claim as robust only when every reanalyst finds evidence for it, this claim would not count, because two of the five did not. Replication with new data found nothing. So the one paper has a different answer for each R, and they do not line up.
+Put the whole dossier together. Reproducibility was never tested by SCORE: the data and code are public on the Dataverse, but the reproduction component on the OSF holds only an empty template. You have done part of that job yourselves today, since the class reproduced the recorded numbers of the analysts exactly, and the course refits reproduce all four of them. Robustness, on the original data, holds in the strongest sense that a curve can offer: every analysis that the course judged justifiable, and every one of the five analysts, finds the gap in the same direction and significant, and only its size moves. By the rule of the robustness study, though, which counts a claim as robust only when every reanalyst finds evidence for it, this claim would not count, because two of the five did not. Replication with new data found nothing. So the one paper has a different answer for each R, and they do not line up.
 :::
 
 ## Robustness and replicability {#robustness-and-replicability}
@@ -144,7 +144,7 @@ On the original data, every justifiable analysis finds the gap. Only its size mo
 :::
 
 ::: {.fragment}
-Every one of those analyses uses the same `r fmt_n(nrow(audit))` emails, the same six names, the same officials in the same year. **The curve varies the analysis and never the sample.**
+Every one of those analyses uses the same `r fmt_n(nrow(housing))` emails, the same six names, the same officials in the same year. **The curve varies the analysis and never the sample.**
 :::
 
 ::: {.fragment}
@@ -157,5 +157,5 @@ Candidates for the difference: the **names** [@Gaddis2017HowBlackAre], **chance*
 ::::
 
 ::: notes
-This is the lesson of the case, and of the course. On the original data the claim is hard to dislodge: every justifiable analysis finds the gap, and only its size moves. [advance] But every one of those analyses works on the same thousand emails, the same six names, the same officials in the same week of 2014. A specification curve varies the analysis and holds the sample fixed, so it cannot tell you what a new sample would show. [advance] Robustness to analytic choices on one sample is a different property from replicability. [advance] Why might the two studies differ? The names are one candidate: names that are meant to indicate one group are not all read the same way, and Santiago and Gabriela may also have read as younger. Chance is another, given the power of the original design. And time and place are a third. The replication does not tell us which.
+This is the lesson of the case study, and of the course. On the original data the claim is hard to dislodge: every justifiable analysis finds the gap, and only its size moves. [advance] But every one of those analyses works on the same thousand emails, the same six names, the same officials in the same week of 2014. A specification curve varies the analysis and holds the sample fixed, so it cannot tell you what a new sample would show. [advance] Robustness to analytic choices on one sample is a different property from replicability. [advance] Why might the two studies differ? The names are one candidate: names that are meant to indicate one group are not all read the same way, and Santiago and Gabriela may also have read as younger. Chance is another, given the power of the original design. And time and place are a third. The replication does not tell us which.
 :::

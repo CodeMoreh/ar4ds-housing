@@ -50,9 +50,9 @@ Find your own mark among the exploratory results of the class. Then rerun `try_s
 
 ## 7. The replication
 
-**On the slides.** The SCORE replication was a preregistered audit of 3,050 housing authorities with new names. The slides show what it found, compare the original study and the replication row by row, and set out the power of the two designs. They end on the three Rs on this paper and on what separates robustness from replicability.
+**On the slides.** The SCORE replication was a preregistered experiment on 3,050 housing authorities with new names. The slides show what it found, compare the original study and the replication row by row, and set out the power of the two designs. They end on the three Rs on this paper and on what separates robustness from replicability.
 
-To go further: [the replication](../../cases/housing/index.qmd#sec-replication) in the case study, the replication as new data in [Bayesian estimation](../../companion/bayesian.qmd#sec-replication), and the two audits pooled in [Meta-analysis](../../companion/meta-analysis.qmd#sec-two-studies).
+To go further: [the replication](../../cases/housing/index.qmd#sec-replication) on the background page, the replication as new data in [Bayesian estimation](../../companion/bayesian.qmd#sec-replication), and the two experiments pooled in [Meta-analysis](../../companion/meta-analysis.qmd#sec-two-studies).
 
 ## 8. The critics of the multiverse
 
@@ -62,7 +62,7 @@ To go further: [The multiverse and its critics](../../companion/multiverse.qmd).
 
 ## 9. Archives and registrations
 
-**On the slides.** The slides show where a reanalysis is archived and registered, the preregistration of Multi100 itself, and the two preregistration templates. You then search the public record of the case for the replication report, briefly, and the slides map the eight AsPredicted questions onto the decisions that you have already met.
+**On the slides.** The slides show where a reanalysis is archived and registered, the preregistration of the robustness study of SCORE itself (Multi100; Aczel et al. 2026), and the two preregistration templates. You then search the public record of the case study for the replication report, briefly, and the slides map the eight AsPredicted questions onto the decisions that you have already met.
 
 To go further: [Reproducibility repositories](../../companion/repositories.qmd).
 

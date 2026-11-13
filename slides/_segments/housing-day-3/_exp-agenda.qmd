@@ -1,7 +1,7 @@
 ## {#today .darkslide background-color="rgba(0,0,0,0)"}
 
 ::: {.todaymeta}
-Session 1 of day 3, on the design of the housing audit
+Session 1 of day 3, on the design of the original experiment
 :::
 
 :::: {.todaybox}
@@ -14,7 +14,7 @@ Session 1 of day 3, on the design of the housing audit
 ::::
 
 ::: {.todaytake .fs-85}
-You leave able to say what random assignment guarantees in this audit, what it leaves open, and what a sharper design would have changed
+You leave able to say what random assignment guarantees in this experiment, what it leaves open, and what a sharper design would have changed
 :::
 
 ::: {.todaymeta}

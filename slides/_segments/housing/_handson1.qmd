@@ -6,7 +6,7 @@
 ::: {.small}
 **Task 1 – the setup check.** Get to the point where a line of R runs and the data are in front of you.
 
-- **Browser lab:** the page has finished loading, the setup cell runs, and `audit` has `r fmt_n(nrow(audit))` rows, one per email. The warm-up on the three Rs gives you something to do while the engine downloads
+- **Browser lab:** the page has finished loading, the setup cell runs, and `housing` has `r fmt_n(nrow(housing))` rows, one per email. The warm-up on the three Rs gives you something to do while the engine downloads
 :::
 
 ::: {.small .content-visible unless-meta="deck.short"}

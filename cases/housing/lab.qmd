@@ -18,8 +18,8 @@ format:
         - htmltools
         - gt
 resources:
-  - data/housing_audit.csv
-  - data/audit_original.csv
+  - data/housing_emails.csv
+  - data/housing_original.csv
   - data/spec_curve.csv
   - data/menu_options.csv
   - data/dag_answers.csv
@@ -31,7 +31,7 @@ bibliography: [../../references.bib, ../../references-new.bib]
 
 {{< include ../../_extensions/r-wasm/live/_knitr.qmd >}}
 
-This page holds the exercise of the course, Tasks 1 to 5, on a copy of R that runs inside the browser, with the data already in place and the same helper functions as the downloadable workspace. The short session and the one-day formats of the housing-audit case are worked on this page, and the facilitator drives it on the shared screen. The downloadable workspace described on the [Setup](https://codemoreh.github.io/ar4ds/setup.html) page holds the same tasks for anyone who has installed R and an IDE (Positron, RStudio, VS Code, etc.), and nothing done in either is wasted, since both fit the same models to the same data and give the same numbers.
+This page holds the exercise of the course, Tasks 1 to 5, on a copy of R that runs inside the browser, with the data already in place and the same helper functions as the downloadable workspace. The short session and the one-day formats of the Housing and racial bias case study are worked on this page, and the facilitator drives it on the shared screen. The downloadable workspace described on the [Setup](https://codemoreh.github.io/ar4ds/setup.html) page holds the same tasks for anyone who has installed R and an IDE (Positron, RStudio, VS Code, etc.), and nothing done in either is wasted, since both fit the same models to the same data and give the same numbers.
 
 ::: {.callout-important icon="false"}
 ## While the R engine loads
@@ -46,10 +46,10 @@ Keep this tab open. Your work stays in this page until you refresh it – there 
 #| autorun: true
 #| output: false
 # Shared setup – this runs automatically once the engine is ready. It loads
-# the housing-audit data into your browser session as `audit`, one row per
+# the Housing data into your browser session as `housing`, one row per
 # email, the object from which the cells below work. The file arrives at
 # data/... in the browser through the `resources:` list at the top of this page.
-audit <- utils::read.csv("data/housing_audit.csv", na.strings = c("", "NA"))  # r-style: keep – the base reader adds nothing to the download
+housing <- utils::read.csv("data/housing_emails.csv", na.strings = c("", "NA"))  # r-style: keep – the base reader adds nothing to the download
 ```
 
 ```{webr}
@@ -69,9 +69,9 @@ audit <- utils::read.csv("data/housing_audit.csv", na.strings = c("", "NA"))  # 
 # ============================================================================
 # The results Form that submit_exploration() and report_result() pre-fill: its
 # ID and the entry codes of its seven fields. They belong to the Form that the
-# cases of the course share, set up for the EU-frames case; a Form of its own
+# case studies of the course share, set up for the Europeanisation case study; a Form of its own
 # replaces them here and nowhere else. The word in .case_word follows the tag
-# in every label, so that the chart of this case reads only its own rows.
+# in every label, so that the chart of this case study reads only its own rows.
 .form_id <- "1FAIpQLSezoAEOnZUfP4pkfN28_XtEBwSyc2RLsXB-h8RPSegF7_t76A"
 .form_entry <- c(spec = "entry.832496914", b = "entry.1656311800", se = "entry.1337458262",
                  t = "entry.1940779437", df = "entry.1682711955", n = "entry.1586392724",
@@ -114,8 +114,8 @@ ADJUST_TERMS <- list(
 
 # The analysed rows and the outcome of one specification. Bounced emails never
 # reached an official and are outside the experiment under every option.
-spec_frame <- function(audit, comparison = "white", population = "replies", uncoded = "drop") {
-  audit |>
+spec_frame <- function(housing, comparison = "white", population = "replies", uncoded = "drop") {
+  housing |>
     dplyr::filter(!is.na(reply),
                   .env$comparison == "nonhispanic" | group %in% c("white", "hispanic"),
                   .env$population == "all" | reply == 1) |>
@@ -128,11 +128,11 @@ spec_frame <- function(audit, comparison = "white", population = "replies", unco
     dplyr::filter(!is.na(y))
 }
 
-# The conversion rules of Multi100 (standard_correlation_coefficient.R in
+# The conversion rules of the robustness study (standard_correlation_coefficient.R in
 # github.com/marton-balazs-kovacs/multi100): t with its df, which is the rule of
 # effectsize::t_to_r(); z with the sample size standing in for the missing df;
 # a chi-square read as the square of a z, so it carries no sign.
-r_multi100 <- function(stat, stat_type, df, n) {
+r_robustness <- function(stat, stat_type, df, n) {
   dplyr::case_when(
     stat_type == "t" ~ effectsize::t_to_r(stat, df, ci = NULL)$r,
     stat_type == "z" ~ tanh(abs(stat) * sqrt(1 / (n - 3))) * sign(stat),
@@ -154,14 +154,14 @@ check_spec <- function(comparison, population, uncoded, model, adjust) {
 # One specification: estimate in percentage points (negative = Hispanic names
 # greeted by name less often, the direction of the claim), its SE and 95%
 # interval, the test of the model that the specification fits, and the partial
-# correlation by the Multi100 rule.
-fit_spec <- function(audit, comparison = "white", population = "replies", uncoded = "drop",
+# correlation by the rule of the robustness study.
+fit_spec <- function(housing, comparison = "white", population = "replies", uncoded = "drop",
                      model = "lpm", adjust = "none") {
   check_spec(comparison, population, uncoded, model, adjust)
   terms <- ADJUST_TERMS[[adjust]]
   # only the model columns, and only the emails with every covariate;
   # marginaleffects refuses a data column called `group`
-  frame <- spec_frame(audit, comparison, population, uncoded) |>
+  frame <- spec_frame(housing, comparison, population, uncoded) |>
     dplyr::select("y", "hisp", dplyr::all_of(terms)) |>
     stats::na.omit()
   form <- stats::reformulate(c("hisp", terms), response = "y")
@@ -195,7 +195,7 @@ fit_spec <- function(audit, comparison = "white", population = "replies", uncode
     b_pp = 100 * est$b, se_pp = 100 * est$se,
     coef = test$coef, coef_se = test$coef_se,
     stat_type = test$stat_type, stat = test$stat, df = test$df, p = test$p,
-    r = r_multi100(test$stat, test$stat_type, test$df, nrow(frame)),
+    r = r_robustness(test$stat, test$stat_type, test$df, nrow(frame)),
     n = nrow(frame), n_hisp = sum(frame$hisp == 1), n_comp = sum(frame$hisp == 0),
     rate_hisp = 100 * mean(frame$y[frame$hisp == 1]),
     rate_comp = 100 * mean(frame$y[frame$hisp == 0]),
@@ -254,14 +254,14 @@ spec_line <- function(comparison, population, uncoded, model, adjust) {
   }
   .cache[[name]]
 }
-.audit   <- function() .read_once("audit", "data/housing_audit.csv")
+.housing   <- function() .read_once("housing", "data/housing_emails.csv")
 .curve   <- function() .read_once("curve", "data/spec_curve.csv")
 .options <- function() .read_once("options", "data/menu_options.csv")
 
 
 # ---- Pages of the course site ----------------------------------------------------
 .pages <- c(
-  "cases/housing/index.qmd"       = "Case study",
+  "cases/housing/index.qmd"       = "Background",
   "cases/housing/menu.qmd"        = "Specification menu",
   "cases/housing/map.qmd"         = "Decision map",
   "cases/housing/multiverse.qmd"  = "Multiverse",
@@ -341,7 +341,7 @@ spec_line <- function(comparison, population, uncoded, model, adjust) {
 # fit is checked against its row of data/spec_curve.csv; a difference means
 # that the page loaded an incomplete file.
 .result <- function(ch) {
-  fit <- fit_spec(.audit(), ch$comparison, ch$population, ch$uncoded, ch$model, ch$adjust) |>
+  fit <- fit_spec(.housing(), ch$comparison, ch$population, ch$uncoded, ch$model, ch$adjust) |>
     as.list()
   curve <- .curve()
   stored <- dplyr::filter(curve, .data$comparison == ch$comparison, .data$population == ch$population,
@@ -393,7 +393,7 @@ spec_line <- function(comparison, population, uncoded, model, adjust) {
     sprintf("  Difference: %.2f percentage points, 95%% interval %.2f to %.2f",
             res$b_pp, res$ci_low, res$ci_high),
     test,
-    sprintf("  n = %d %s, partial r = %.3f (the conversion rule of Multi100)", res$n, unit, res$r),
+    sprintf("  n = %d %s, partial r = %.3f (the conversion rule of the robustness study)", res$n, unit, res$r),
     paste0("  Verdict: ", .class_line(res)),
     sprintf("  On the curve: %d of the %d specifications have an estimate further below zero",
             res$further, res$n_curve)))
@@ -566,10 +566,10 @@ assign("tag", NULL, envir = .tag_env)
 }
 
 # One submission, used by both phases. The phase, the tag and the word of the
-# case are prefixed to the free-text spec label, which carries the five
+# case study are prefixed to the free-text spec label, which carries the five
 # decisions that vary on the curve. The estimate and its standard error are
 # sent in percentage points, the statistic of the model in the t field (a z
-# for a logit, whose df field stays empty), and r by the rule of Multi100.
+# for a logit, whose df field stays empty), and r by the rule of the robustness study.
 .submit <- function(ch, res, phase, lead, nickname = NULL) {
   tg <- .class_tag(nickname)
   spec_label <- paste0(phase, ": [", tg$tag, "] ", .case_word, " ",
@@ -612,7 +612,7 @@ assign("tag", NULL, envir = .tag_env)
 }
 ```
 
-Five analysts reanalysed a claim of the housing-audit case [@EinsteinGlick2017DoesRaceAffect] for the Multi100 project [@AczelEtAl2026InvestigatingAnalyticalRobustness]; you are analyst no. 6. The claim is that "Hispanic housing applicants were ... less likely to be greeted by name than were ... white counterparts", in the words of the original authors (OAs) as the SCORE programme selected them. The [exercise overview](exercise.qmd) sets out the five tasks, and the [case study](index.qmd) the original study, Multi100 and the five reanalyses.
+Five analysts reanalysed a claim of the Housing case study [@EinsteinGlick2017DoesRaceAffect] for the robustness study of SCORE [Multi100; @AczelEtAl2026InvestigatingAnalyticalRobustness]; you are analyst no. 6. The claim is that "Hispanic housing applicants were ... less likely to be greeted by name than were ... white counterparts", in the words of the original authors (OAs) as the SCORE programme selected them. The [exercise overview](exercise.qmd) sets out the five tasks, and the [background page](index.qmd) the original study, the robustness study and the five reanalyses.
 
 The five tasks take you from a setup check to two marks on the live class chart, one submitted while you explore the menu in Task 4 and one that you declare in your preregistration in Task 5 before running it. The page of your track says which tasks your session covers, and whether it sends anything to the class chart. Every fit on this page is live: the estimator of the course runs in your browser, on the same file and with the same code as in the workspace.
 
@@ -626,9 +626,9 @@ The aim of this task is only to reach the point where a line of R runs and the d
 # rest of the lab runs.
 writeLines(c(
   paste("R is running in your browser:", R.version.string),
-  sprintf("The emails are loaded: %d rows", nrow(audit)),
+  sprintf("The emails are loaded: %d rows", nrow(housing)),
   sprintf("The estimator reproduces the reference specification: %.2f percentage points",
-          fit_spec(audit)$b_pp)))
+          fit_spec(housing)$b_pp)))
 ```
 
 You should see **1,014 rows** and **−19.97 percentage points** on the last line. If any of that is missing, reload the page and wait for the engine to finish downloading before pressing Run Code again. If it still fails, say **STUCK** in the chat.
@@ -671,12 +671,12 @@ writeLines(c(
 
 ## Task 2 – The data {#task-2-data}
 
-The **housing-audit data** (`housing_audit.csv`) are already loaded for you as `audit`, one row per email. The file is built from the public file of the OAs on Harvard Dataverse (doi:10.7910/DVN/1HOVTU, released under CC0), with plainer column names; the downloadable workspace contains the same file. Run the cell below to count what came back. Edit it freely – this is your environment.
+The **Housing data** (`housing_emails.csv`) are already loaded for you as `housing`, one row per email. The file is built from the public file of the OAs on Harvard Dataverse (doi:10.7910/DVN/1HOVTU, released under CC0), with plainer column names; the downloadable workspace contains the same file. Run the cell below to count what came back. Edit it freely – this is your environment.
 
 ```{webr}
 #| autorun: false
 # How many emails, and what came back?
-audit |>
+housing |>
   datawizard::data_summary(emails    = n(),
                            bounced   = sum(is.na(reply)),
                            delivered = sum(!is.na(reply)),
@@ -684,13 +684,13 @@ audit |>
                            coded     = sum(!is.na(named)))
 ```
 
-You should find **1,014 emails** (the paper reports 1,017, three more than the public file holds), of which **23 bounced** and never reached an official, **991 delivered**, **563 replies**, and **558 replies with a greeting code**. The column `reply` is 1 for a reply, 0 for none and missing for a bounced email. `named` is 1 when a reply greeted the sender by name, 0 when it did not, and missing for every email without a reply and for the five replies that carry no greeting code. The [codebook](data/housing_audit_codebook.md) describes every column.
+You should find **1,014 emails** (the paper reports 1,017, three more than the public file holds), of which **23 bounced** and never reached an official, **991 delivered**, **563 replies**, and **558 replies with a greeting code**. The column `reply` is 1 for a reply, 0 for none and missing for a bounced email. `named` is 1 when a reply greeted the sender by name, 0 when it did not, and missing for every email without a reply and for the five replies that carry no greeting code. The [codebook](data/housing_emails_codebook.md) describes every column.
 
 Now the replies and the greetings by the group of the name:
 
 ```{webr}
 #| autorun: false
-audit |>
+housing |>
   datawizard::data_filter(!is.na(reply)) |>
   datawizard::data_summary(delivered   = n(),
                            replies     = sum(reply == 1),
@@ -707,7 +707,7 @@ Then the share greeted by name for each of the six names. This cell works out th
 ```{webr}
 #| autorun: false
 # The share greeted by name for each of the six names, from the lowest
-greeted <- audit |>
+greeted <- housing |>
   datawizard::data_filter(!is.na(named)) |>
   datawizard::data_summary(greeted_pct = 100 * mean(named), by = c("group", "name")) |>
   datawizard::data_arrange("greeted_pct") |>
@@ -967,9 +967,9 @@ The difference between the two comparisons is the decision on which emails are c
 
 ## Task 3 – The reproduction {#task-3-reproduction}
 
-This is the **reproducibility** check. Five analysts reanalysed the claim for Multi100, each with code of their own, and Multi100 recorded a test statistic for four of them. Choose one of the five and reproduce the analysis from the public file of the OAs, `audit_original.csv`, which keeps their column names. `Response_Dichotomous` is 1 for a reply, 0 for none and empty for a bounced email. `ProperName` is the greeting by name, empty for every email that has no reply with a greeting code. `TreatmentGroup` holds the group and the sex of the name (`"Hispanic male"`, `"white female"` and so on).
+This is the **reproducibility** check. Five analysts reanalysed the claim for the robustness study, each with code of their own, and the robustness study recorded a test statistic for four of them. Choose one of the five and reproduce the analysis from the public file of the OAs, `housing_original.csv`, which keeps their column names. `Response_Dichotomous` is 1 for a reply, 0 for none and empty for a bounced email. `ProperName` is the greeting by name, empty for every email that has no reply with a greeting code. `TreatmentGroup` holds the group and the sex of the name (`"Hispanic male"`, `"white female"` and so on).
 
-| Analyst | What the analysis compared | Emails counted | Test | Recorded by Multi100 |
+| Analyst | What the analysis compared | Emails counted | Test | Recorded in the robustness study |
 |:--|:--|:--|:--|:--|
 | [8PTRZ](#task-3-8ptrz) | Hispanic names against all other names | the 558 replies with a greeting code | chi-square test of a 2 × 2 table | $\chi^2$ = 14.265 |
 | [UYV3F](#task-3-uyv3f) | Hispanic against white names | the 362 coded replies to those names | logistic regression without covariates | z = −3.771 |
@@ -977,18 +977,18 @@ This is the **reproducibility** check. Five analysts reanalysed the claim for Mu
 | [25N5D](#task-3-25n5d) | Hispanic against white names | the 665 delivered emails to those names, a missing reply counted as no greeting | two-proportion test | $\chi^2$ = 13.683 |
 | [P9W8Y](#task-3-p9w8y) | the three groups | the 558 replies with a greeting code | likelihood-ratio test of a logistic regression | none |
 
-Each analyst has a few cells of their own below, one step each, to be run in order. One of the cells of each analyst is an exercise: replace the blank (`______`) with the missing code, then press "Run Code". A hint and the solution sit under that cell. When you have your value, type the analyst and the value into the chat, for example `UYV3F z = -3.771`, hold it, and send it on the facilitator's word. The course computes the same five refits in its own pipeline, with the same functions, and the four recorded statistics all come out exactly ([`analysts5.csv`](data/analysts5_codebook.md)). For P9W8Y Multi100 recorded no statistic, so its analysis can be run again but there is nothing on record to match it against.
+Each analyst has a few cells of their own below, one step each, to be run in order. One of the cells of each analyst is an exercise: replace the blank (`______`) with the missing code, then press "Run Code". A hint and the solution sit under that cell. When you have your value, type the analyst and the value into the chat, for example `UYV3F z = -3.771`, hold it, and send it on the facilitator's word. The course computes the same five refits in its own pipeline, with the same functions, and the four recorded statistics all come out exactly ([`analysts5.csv`](data/analysts5_codebook.md)). For P9W8Y the robustness study recorded no statistic, so its analysis can be run again but there is nothing on record to match it against.
 
 Whichever analyst you choose, run the cell below first. It reads the public file of the OAs as `original`, the object from which every later cell of this task works, and prints nothing.
 
 ```{webr}
 #| autorun: false
-original <- utils::read.csv("data/audit_original.csv", na.strings = c("", "NA"))  # r-style: keep – the base reader adds nothing to the download
+original <- utils::read.csv("data/housing_original.csv", na.strings = c("", "NA"))  # r-style: keep – the base reader adds nothing to the download
 ```
 
 ### 8PTRZ – the test of a table {#task-3-8ptrz}
 
-Analyst 8PTRZ compared Hispanic names with all other names, white and Black together, among the 558 replies that carry a greeting code, with a chi-square test of the 2 × 2 table. Multi100 recorded $\chi^2$ = 14.265.
+Analyst 8PTRZ compared Hispanic names with all other names, white and Black together, among the 558 replies that carry a greeting code, with a chi-square test of the 2 × 2 table. The robustness study recorded $\chi^2$ = 14.265.
 
 ```{webr}
 #| exercise: repro-8ptrz
@@ -1038,7 +1038,7 @@ You should get `X-squared = 14.265, df = 1`, the value on record for 8PTRZ.
 
 ### UYV3F – a logistic regression {#task-3-uyv3f}
 
-Analyst UYV3F compared Hispanic with white names only, among the 362 coded replies to those names, with a logistic regression of the greeting on the name and no covariates. Multi100 recorded z = −3.771, the z of the coefficient of the Hispanic names.
+Analyst UYV3F compared Hispanic with white names only, among the 362 coded replies to those names, with a logistic regression of the greeting on the name and no covariates. The robustness study recorded z = −3.771, the z of the coefficient of the Hispanic names.
 
 The first cell keeps the rows of the analysis and prints nothing. The second, the exercise, fits the model.
 
@@ -1089,7 +1089,7 @@ The row of the Hispanic names gives z = −3.771 on 362 replies, the value on re
 
 ### EWFMI – a model of three groups {#task-3-ewfmi}
 
-Analyst EWFMI fitted a logistic regression of the greeting on all three groups of names, with the Hispanic names as the base group, the sex of the name, the poverty third of the community entered as a number, and the hard-to-find address, in Stata. The 9 coded replies from communities without a poverty third drop out, which leaves 549. Multi100 recorded z = 3.645, the z of the white names against the Hispanic names.
+Analyst EWFMI fitted a logistic regression of the greeting on all three groups of names, with the Hispanic names as the base group, the sex of the name, the poverty third of the community entered as a number, and the hard-to-find address, in Stata. The 9 coded replies from communities without a poverty third drop out, which leaves 549. The robustness study recorded z = 3.645, the z of the white names against the Hispanic names.
 
 ```{webr}
 #| exercise: repro-ewfmi
@@ -1144,7 +1144,7 @@ The row `ethnicity [white]` gives z = 3.645 on 549 replies, the value on record 
 
 ### 25N5D – every delivered email {#task-3-25n5d}
 
-Analyst 25N5D compared Hispanic with white names among every email that was delivered, counting an email without a reply as one without a greeting, with the two-proportion test of R, `prop.test()`. The five replies without a greeting code stay in the denominators and count as no greeting. Multi100 recorded $\chi^2$ = 13.683 on 665 emails.
+Analyst 25N5D compared Hispanic with white names among every email that was delivered, counting an email without a reply as one without a greeting, with the two-proportion test of R, `prop.test()`. The five replies without a greeting code stay in the denominators and count as no greeting. The robustness study recorded $\chi^2$ = 13.683 on 665 emails.
 
 ```{webr}
 #| exercise: repro-25n5d
@@ -1197,7 +1197,7 @@ You should get `X-squared = 13.683, df = 1` on 308 + 357 = 665 emails, the value
 
 ### P9W8Y – a test of three groups {#task-3-p9w8y}
 
-Analyst P9W8Y fitted a logistic regression of the greeting on the three groups of names among the 558 coded replies and tested whether the three differ at all, with a likelihood-ratio test of the model against a model without the groups. Multi100 recorded no statistic for this analysis, so the rerun cannot be matched against the record. The report that the analyst filed for Task 2 gives $\chi^2$ = 15.951 on 2 degrees of freedom in its text, and the rerun gives the same value. The verdict of "no evidence" in Task 1 came from another model, with an interaction between the group and the sex of the name, whose test of the groups compared the three female names only under the default coding of R.
+Analyst P9W8Y fitted a logistic regression of the greeting on the three groups of names among the 558 coded replies and tested whether the three differ at all, with a likelihood-ratio test of the model against a model without the groups. The robustness study recorded no statistic for this analysis, so the rerun cannot be matched against the record. The report that the analyst filed for Task 2 gives $\chi^2$ = 15.951 on 2 degrees of freedom in its text, and the rerun gives the same value. The verdict of "no evidence" in Task 1 came from another model, with an interaction between the group and the sex of the name, whose test of the groups compared the three female names only under the default coding of R.
 
 The first cell keeps the coded replies and prints nothing, the second fits the model, and the third, the exercise, tests it.
 
@@ -1241,7 +1241,7 @@ anova(update(m_p9w8y, . ~ 1), m_p9w8y, test = "______")
 anova(update(m_p9w8y, . ~ 1), m_p9w8y, test = "LRT")
 ```
 
-The column `Deviance` gives 15.951 on 2 degrees of freedom for 558 replies. Multi100 holds no value to compare it with.
+The column `Deviance` gives 15.951 on 2 degrees of freedom for 558 replies. The record of the robustness study holds no value to compare it with.
 :::
 ::::
 
@@ -1286,14 +1286,14 @@ prop.test(counts_25n5d$greetings, counts_25n5d$emails, correct = FALSE)
 
 Without the correction the two statistics are 14.95 and 14.33. Neither changes the conclusion, but only the corrected values match the record, and the description "a chi-square test" fits both. The coding of the data matters in the same way. The z of EWFMI is positive and the z of UYV3F negative, although both describe Hispanic names greeted by name less often, because EWFMI took the Hispanic names as the base group, so that the coefficient compares white names with Hispanic names. A reproduction needs the code, or at least every default and every coding on which the code relied.
 
-The scripts that the analysts submitted are on the OSF, in the Multi100 component of the paper ([osf.io/38rsh](https://osf.io/38rsh/)), one sub-component for each analyst: 8PTRZ [osf.io/j8wvh](https://osf.io/j8wvh/), UYV3F [osf.io/3672s](https://osf.io/3672s/) (a review document only), EWFMI [osf.io/jhvca](https://osf.io/jhvca/), 25N5D [osf.io/v8zah](https://osf.io/v8zah/) and P9W8Y [osf.io/pzwbm](https://osf.io/pzwbm/).
+The scripts that the analysts submitted are on the OSF, in the component of the robustness study for the paper ([osf.io/38rsh](https://osf.io/38rsh/)), one sub-component for each analyst: 8PTRZ [osf.io/j8wvh](https://osf.io/j8wvh/), UYV3F [osf.io/3672s](https://osf.io/3672s/) (a review document only), EWFMI [osf.io/jhvca](https://osf.io/jhvca/), 25N5D [osf.io/v8zah](https://osf.io/v8zah/) and P9W8Y [osf.io/pzwbm](https://osf.io/pzwbm/).
 
 ::: {.callout-note collapse="true"}
 ## Reproduction and the five analysts
 
 You reproduced the value of the analyst whom you chose, and so did everyone else who chose the same analyst, because everyone ran the same code on the same file. This is why reproducibility is the cheapest of the three Rs to establish.
 
-The five Multi100 analysts each wrote their own code for this claim. Three concluded that the results were evidence for the claim and two that they were evidence neither for nor against it, although the four statistics that Multi100 recorded all come from gaps in the same direction. Part of the difference lies in the questions that each analyst chose to answer (which names to compare, which emails to count), and part in what each analyst took to count as evidence: one of the two who answered 'neither' found the gap but judged it substantially smaller than the published one. The [case study](index.qmd) sets out what each analyst chose.
+The five analysts of the robustness study each wrote their own code for this claim. Three concluded that the results were evidence for the claim and two that they were evidence neither for nor against it, although the four statistics recorded in the robustness study all come from gaps in the same direction. Part of the difference lies in the questions that each analyst chose to answer (which names to compare, which emails to count), and part in what each analyst took to count as evidence: one of the two who answered 'neither' found the gap but judged it substantially smaller than the published one. The [background page](index.qmd) sets out what each analyst chose.
 :::
 
 ## Task 4 – The menu {#task-4-menu}
@@ -1308,7 +1308,7 @@ This task is **exploratory**. You try several specifications, look at what each 
 try_spec()
 ```
 
-The printout gives the shares greeted by name in the two groups, the difference in percentage points with its 95% interval, the test of the model (a *t* with HC2 standard errors for the linear model, the *z* of the logit coefficient for the logit), the number of emails analysed, the partial *r* by the conversion rule of Multi100, the class of the result, and its place among the 64 specifications on the curve of the claim.
+The printout gives the shares greeted by name in the two groups, the difference in percentage points with its 95% interval, the test of the model (a *t* with HC2 standard errors for the linear model, the *z* of the logit coefficient for the logit), the number of emails analysed, the partial *r* by the conversion rule of the robustness study, the class of the result, and its place among the 64 specifications on the curve of the claim.
 
 Each of the five cells below changes a single decision. The first two change the question that is being asked of the data, the third changes how the outcome is measured, and the last two change only how the same question is estimated. Run the five in order and compare the results.
 
@@ -1415,7 +1415,7 @@ Make one choice on each decision of the [specification menu](menu.qmd), complete
 # MY PREREGISTRATION – one specification, declared before seeing its result
 # ============================================================================
 # 1. The claim I am testing: .................................................
-# 2. The data + what I already know: housing_audit.csv (1,014 emails, public,
+# 2. The data + what I already know: housing_emails.csv (1,014 emails, public,
 #    CC0); I know that the reference specification gives -19.97 points, and
 #    what my exploration in Task 4 showed.
 # 3. My one specification – one choice on each decision. An option that is

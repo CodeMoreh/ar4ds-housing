@@ -17,8 +17,8 @@ outcomes <- readr::read_csv("data/display_outcomes.csv", show_col_types = FALSE)
 subgroups <- readr::read_csv("data/display_subgroups.csv", show_col_types = FALSE)
 names_tab <- readr::read_csv("data/display_names.csv", show_col_types = FALSE)
 marks <- readr::read_csv("data/reference_marks.csv", show_col_types = FALSE)
-audit <- readr::read_csv("data/housing_audit.csv", show_col_types = FALSE)
-original <- readr::read_csv("data/audit_original.csv", show_col_types = FALSE)
+housing <- readr::read_csv("data/housing_emails.csv", show_col_types = FALSE)
+original <- readr::read_csv("data/housing_original.csv", show_col_types = FALSE)
 
 # Fixed decimals and a true minus sign; signed shifts carry a plus sign
 fmt <- \(x, d = 1) formatC(x, format = "f", digits = d) |> sub(pattern = "^-", replacement = "−")
@@ -42,16 +42,16 @@ fixed_axes <- setdiff(unique(menu$axis), varying)
 # the curve, which counts only the delivered emails
 bounced_twin <- datawizard::data_match(curve, tibble::tibble(comparison = "white", population = "all",
                                                              uncoded = "not_named", model = "lpm", adjust = "none"))
-bounced_sent <- audit |>
+bounced_sent <- housing |>
   datawizard::data_filter(group %in% c("white", "hispanic")) |>
   datawizard::data_modify(hisp = as.integer(group == "hispanic"), y = as.integer(reply %in% 1 & named %in% 1))
 bounced_fit <- stats::lm(y ~ hisp, data = bounced_sent)
 bounced_b <- 100 * unname(stats::coef(bounced_fit)["hisp"])
-bounced_n <- audit |>
+bounced_n <- housing |>
   datawizard::data_filter(is.na(reply)) |>
   datawizard::data_summary(n = n(), by = "group")
 bounced_by <- \(g) bounced_n$n[bounced_n$group == g]
-no_thirds <- audit |>
+no_thirds <- housing |>
   datawizard::data_filter(!stats::complete.cases(pop_third, poverty_third, black_third, hispanic_third)) |>
   nrow()
 # The twin of the reference specification that counts every delivered email
@@ -60,7 +60,7 @@ all_twin <- datawizard::data_match(curve, tibble::tibble(comparison = "white", p
 
 # The sex of the name added to the reference specification, with HC2 errors
 # from parameters and sandwich
-sex_frame <- spec_frame(audit, "white", "replies", "drop")
+sex_frame <- spec_frame(housing, "white", "replies", "drop")
 sex_fit <- stats::lm(y ~ hisp + name_sex, data = sex_frame)
 sex_b <- 100 * unname(stats::coef(sex_fit)["hisp"])
 sex_p <- parameters::model_parameters(sex_fit, vcov = "HC2") |>
@@ -82,7 +82,7 @@ three_twin <- datawizard::data_match(curve, tibble::tibble(comparison = "white",
                                                            uncoded = "drop", model = "logit", adjust = "place_ethnic"))
 ```
 
-This page sets out every decision that an analysis of the claim has to make, the options that each decision offers, and whether each option answers the claim. The claim, in the wording that SCORE took from the paper of the original authors (OAs) [@EinsteinGlick2017DoesRaceAffect], is that "Hispanic housing applicants were ... less likely to be greeted by name than were ... white counterparts". The [case study](index.qmd) sets out the experiment, the five reanalyses and the data. The [decision map](map.qmd) draws the same menu as a path from the data to a verdict, with every option selectable.
+This page sets out every decision that an analysis of the claim has to make, the options that each decision offers, and whether each option answers the claim. The claim, in the wording that SCORE took from the paper of the original authors (OAs) [@EinsteinGlick2017DoesRaceAffect], is that "Hispanic housing applicants were ... less likely to be greeted by name than were ... white counterparts". The [background page](index.qmd) sets out the experiment, the five reanalyses and the data. The [decision map](map.qmd) draws the same menu as a path from the data to a verdict, with every option selectable.
 
 `r stringr::str_to_sentence(xfun::numbers_to_words(n_dec))` decisions stand between the data and a verdict. For each option the course has asked whether it is a defensible way of answering this claim, and the options that are defensible have been combined into the `r nrow(curve)` specifications of the curve of the claim. The options that are not stay on this page, because each of them answers a different question, answers this one less well, checks an answer that the curve already holds, or cannot be fitted on the public file, and working out which applies is a large part of understanding what the claim asks. `data/menu_options.csv` holds the options with the reason for each ([codebook](data/menu_options_codebook.md)), and the helpers of the browser lab and the workspace read it to explain why an option off the curve is refused.
 
@@ -171,7 +171,7 @@ The claim as SCORE selected it compares Hispanic names with white names, and the
 
 ### Emails counted
 
-This is the decision that moves the estimate most. Counting only the emails that drew a reply is the comparison of the paper, and it answers the question about tone directly, how often the replies that came opened with the name. Counting every delivered email, with a missing reply as no greeting, keeps the groups exactly as randomisation made them, so the difference is an effect of the name on receiving a named greeting, but that outcome mixes whether a reply came with how it began. The first comparison is a pure effect of the name only if the name did not change which officials replied, the post-treatment problem that analyst 25N5D raised and that the [case study](index.qmd#sec-posttreatment) sets out. Both stay on the curve. Counting all emails moves the estimate by `r sgn(dv("population", "all", "shift_mean"))` points on average (from `r sgn(dv("population", "all", "shift_min"))` to `r sgn(dv("population", "all", "shift_max"))`), mostly because fewer than six in ten emails drew any reply: at the reference settings the shares become `r pct(all_twin$rate_hisp)` against `r pct(all_twin$rate_comp)`.
+This is the decision that moves the estimate most. Counting only the emails that drew a reply is the comparison of the paper, and it answers the question about tone directly, how often the replies that came opened with the name. Counting every delivered email, with a missing reply as no greeting, keeps the groups exactly as randomisation made them, so the difference is an effect of the name on receiving a named greeting, but that outcome mixes whether a reply came with how it began. The first comparison is a pure effect of the name only if the name did not change which officials replied, the post-treatment problem that analyst 25N5D raised and that the [background page](index.qmd#sec-posttreatment) sets out. Both stay on the curve. Counting all emails moves the estimate by `r sgn(dv("population", "all", "shift_mean"))` points on average (from `r sgn(dv("population", "all", "shift_min"))` to `r sgn(dv("population", "all", "shift_max"))`), mostly because fewer than six in ten emails drew any reply: at the reference settings the shares become `r pct(all_twin$rate_hisp)` against `r pct(all_twin$rate_comp)`.
 
 ### Names
 
@@ -194,11 +194,11 @@ level_table("measurement")
 
 ### Replies without a greeting code
 
-The file holds `r sum(audit$reply %in% 1 & is.na(audit$named))` replies without a greeting code. Leaving them out is what a model does by default and what four of the five analysts did. Counting them as replies without a greeting is a defensible reading, since a reply in which the coders found no greeting probably did not open with a name, and analyst 25N5D made that choice without stating it, by keeping the three of them that went to white and Hispanic names in the counts of emails. Both stay on the curve, and the choice moves the estimate by `r sgn(dv("uncoded", "not_named", "shift_mean"), 2)` points on average.
+The file holds `r sum(housing$reply %in% 1 & is.na(housing$named))` replies without a greeting code. Leaving them out is what a model does by default and what four of the five analysts did. Counting them as replies without a greeting is a defensible reading, since a reply in which the coders found no greeting probably did not open with a name, and analyst 25N5D made that choice without stating it, by keeping the three of them that went to white and Hispanic names in the counts of emails. Both stay on the curve, and the choice moves the estimate by `r sgn(dv("uncoded", "not_named", "shift_mean"), 2)` points on average.
 
 ### Bounced emails
 
-Of the emails sent, `r sum(is.na(audit$reply))` bounced, `r bounced_by("white")` with white names, `r bounced_by("black")` with Black names and `r bounced_by("hispanic")` with Hispanic names, and they carry no reply status. They never reached an official, so none of them holds the response of an official to a name, but the bounces are uneven across the six sending accounts, one for each name, as the [missing-values module](../../companion/missingness.qmd#sec-bounced) shows. Every specification on the curve leaves the bounced emails out. Counting them as unanswered adds rows whose outcome was settled by a broken address. It matters only when all emails are counted, since a bounced email is never a reply: there it moves the gap from `r fmt(bounced_twin$b_pp)` to `r fmt(bounced_b)` points, a small change, but one that was produced by broken addresses rather than by officials.
+Of the emails sent, `r sum(is.na(housing$reply))` bounced, `r bounced_by("white")` with white names, `r bounced_by("black")` with Black names and `r bounced_by("hispanic")` with Hispanic names, and they carry no reply status. They never reached an official, so none of them holds the response of an official to a name, but the bounces are uneven across the six sending accounts, one for each name, as the [missing-values module](../../companion/missingness.qmd#sec-bounced) shows. Every specification on the curve leaves the bounced emails out. Counting them as unanswered adds rows whose outcome was settled by a broken address. It matters only when all emails are counted, since a bounced email is never a reply: there it moves the gap from `r fmt(bounced_twin$b_pp)` to `r fmt(bounced_b)` points, a small change, but one that was produced by broken addresses rather than by officials.
 
 ## The model {#level-estimation}
 
@@ -219,7 +219,7 @@ The OAs, EWFMI and P9W8Y fitted all three groups of names in one model and read 
 
 ### Adjustment
 
-Because the names were assigned at random, the groups of authorities differ only by chance, and the raw difference answers the claim without covariates. Covariates in an experiment buy precision rather than freedom from bias, so every adjustment that uses information recorded before the emails went out is defensible, and all four sets stay on the curve: none; the hard-to-find address; that with the thirds of population and poverty, the set that the Multi100 instruction leaves; and that with the thirds of percent Black and percent Hispanic as well, the covariates of Table 1 in the form that the public file allows. The adjustments move the estimate by `r sgn(dv("adjust", "email", "shift_mean"), 2)`, `r sgn(dv("adjust", "place", "shift_mean"), 2)` and `r sgn(dv("adjust", "place_ethnic", "shift_mean"), 2)` points on average. Part of the shift under the two community sets comes from the emails that they lose, since `r no_thirds` authorities have no community thirds.
+Because the names were assigned at random, the groups of authorities differ only by chance, and the raw difference answers the claim without covariates. Covariates in an experiment buy precision rather than freedom from bias, so every adjustment that uses information recorded before the emails went out is defensible, and all four sets stay on the curve: none; the hard-to-find address; that with the thirds of population and poverty, the set left by the instruction of the robustness study of SCORE [Multi100; @AczelEtAl2026InvestigatingAnalyticalRobustness]; and that with the thirds of percent Black and percent Hispanic as well, the covariates of Table 1 in the form that the public file allows. The adjustments move the estimate by `r sgn(dv("adjust", "email", "shift_mean"), 2)`, `r sgn(dv("adjust", "place", "shift_mean"), 2)` and `r sgn(dv("adjust", "place_ethnic", "shift_mean"), 2)` points on average. Part of the shift under the two community sets comes from the emails that they lose, since `r no_thirds` authorities have no community thirds.
 
 The sex of the name is balanced by design, one male and one female name in each group, and adjusting for it changes almost nothing: at the reference settings the gap becomes `r fmt(sex_b)` points (`r pe(sex_p)`). It is a check. The continuous census values of the paper cannot be used at all, because the public file replaces them with thirds to protect the authorities, which is why no one outside the original team can fit the published model exactly.
 
@@ -229,7 +229,7 @@ Each specification is tested by its own model, HC2 errors for the linear model a
 
 ### Effect scale
 
-The claim, in the abstract, states the gap in percentage points, which a reader can picture without a formula, and every point of the curve is placed on that scale. The odds ratio is the scale of the logistic regression itself, and across the `r nrow(logit_or)` logit specifications it runs from `r fmt(min(logit_or$or), 2)` to `r fmt(max(logit_or$or), 2)`. Odds ratios change when covariates are added even in a randomised experiment, because they compare odds within groups of similar emails rather than averaging over all of them, so the course reports the logit in points instead. The partial correlation is the scale of Multi100, which runs from `r fmt(min(curve$r), 3)` to `r fmt(max(curve$r), 3)` on the curve, and which depends on the number of emails and the shares in each group as well as on the gap, as the [case study](index.qmd#sec-scale) shows.
+The claim, in the abstract, states the gap in percentage points, which a reader can picture without a formula, and every point of the curve is placed on that scale. The odds ratio is the scale of the logistic regression itself, and across the `r nrow(logit_or)` logit specifications it runs from `r fmt(min(logit_or$or), 2)` to `r fmt(max(logit_or$or), 2)`. Odds ratios change when covariates are added even in a randomised experiment, because they compare odds within groups of similar emails rather than averaging over all of them, so the course reports the logit in points instead. The partial correlation is the scale of the robustness study, which runs from `r fmt(min(curve$r), 3)` to `r fmt(max(curve$r), 3)` on the curve, and which depends on the number of emails and the shares in each group as well as on the gap, as the [background page](index.qmd#sec-scale) shows.
 
 ## Worked example
 

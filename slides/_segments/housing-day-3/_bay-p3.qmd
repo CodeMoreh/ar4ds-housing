@@ -5,7 +5,7 @@ Part 3
 :::
 
 ::: notes
-Part three brings in the replication. The sceptical prior was an argument from inside the experiment; the replication is evidence from outside it, four times as many replies to new names in another year. Bayesian estimation has a natural way of using it, by letting the posterior of the original audit become the prior for the new data. We do that, then put both studies in one model, and then check whether that model can reproduce the data that it was fitted to.
+Part three brings in the replication. The sceptical prior was an argument from inside the experiment; the replication is evidence from outside it, four times as many replies to new names in another year. Bayesian estimation has a natural way of using it, by letting the posterior of the original experiment become the prior for the new data. We do that, then put both studies in one model, and then check whether that model can reproduce the data that it was fitted to.
 :::
 
 ## The replication as new data {#the-replication-as-new-data .smaller}
@@ -14,19 +14,19 @@ Part three brings in the replication. The sceptical prior was an argument from i
 #| label: d3-update
 #| fig-width: 9.5
 #| fig-height: 2.7
-# The posterior of the gap from the original audit alone and from the
+# The posterior of the gap from the original experiment alone and from the
 # replication alone (both with the weakly informative prior), and from the
 # replication with the posterior of the original as its prior, from 500 draws
-# each (companion/_model-outputs/bayes_audit_draws.csv)
+# each (companion/_model-outputs/bayes_housing_draws.csv)
 bayes_draws |>
   datawizard::data_filter(quantity == "gap" & model %in% c("original_weak", "replication_alone", "replication_updated")) |>
   datawizard::data_modify(result = factor(model, levels = c("original_weak", "replication_alone", "replication_updated"),
-                                          labels = c("original audit", "replication alone",
+                                          labels = c("original experiment", "replication alone",
                                                      "replication, original as prior"))) |>
   ggplot2::ggplot(ggplot2::aes(value, colour = result)) +
   ggplot2::geom_vline(xintercept = 0, colour = grey_mid) +
   ggplot2::geom_density(linewidth = 1.1) +
-  ggplot2::scale_colour_manual(values = c(`original audit` = ncl_blue, `replication alone` = green,
+  ggplot2::scale_colour_manual(values = c(`original experiment` = ncl_blue, `replication alone` = green,
                                           `replication, original as prior` = burgundy), name = NULL) +
   ggplot2::coord_cartesian(xlim = c(-40, 15)) +
   ggplot2::scale_x_continuous(labels = \(x) fmt_num(x, 0)) +
@@ -55,7 +55,7 @@ The first route is sequential, and McElreath describes it as the way in which a 
 # The posterior predictive check of the two joint models: for each study and
 # group of names, the 90% interval of the share greeted by name replicated from
 # the fitted model, and the observed share as a point
-# (companion/_model-outputs/bayes_audit_ppc.csv)
+# (companion/_model-outputs/bayes_housing_ppc.csv)
 bayes_ppc |>
   datawizard::data_modify(
     group = paste(dplyr::if_else(study == "original", "original,", "replication,"),
@@ -79,10 +79,10 @@ bayes_ppc |>
 ```
 
 ::: {.small}
-- Replicated from the model with one gap, the white share of the original has a 90% interval from `r fmt_num(ppc_orig$rep_q05[ppc_orig$hisp == 0], 1)`% to `r fmt_num(ppc_orig$rep_q95[ppc_orig$hisp == 0], 1)`%, and the observed `r fmt_num(ppc_orig$observed[ppc_orig$hisp == 0], 1)`% lies outside it: **one gap cannot reproduce the original audit**. priorsense flags the updated model as well, with a "`r sens_upd$diagnosis`"
+- Replicated from the model with one gap, the white share of the original has a 90% interval from `r fmt_num(ppc_orig$rep_q05[ppc_orig$hisp == 0], 1)`% to `r fmt_num(ppc_orig$rep_q95[ppc_orig$hisp == 0], 1)`%, and the observed `r fmt_num(ppc_orig$observed[ppc_orig$hisp == 0], 1)`% lies outside it: **one gap cannot reproduce the original experiment**. priorsense flags the updated model as well, with a "`r sens_upd$diagnosis`"
 - With a gap for each study, the replication gap exceeds the original gap by **`r fmt_num(joint_diff$median, 1)`** points (95% credible interval `r fmt_num(joint_diff$q025, 1)` to `r fmt_num(joint_diff$q975, 1)`): the two studies disagree, and a combined estimate of about four points describes neither of them
 :::
 
 ::: notes
-So check the assumption behind both routes, that the two audits measure one gap. A posterior predictive check asks whether the fitted model can reproduce the data that it was fitted to. On the left, the model with one gap: for each study and group of names, the bar is the ninety per cent interval of the share that the model replicates, and the point is the share that was observed. The white names of the original audit lie well outside their bar, and the Hispanic names just below theirs. A model with one gap cannot reproduce the original audit, and priorsense says the same in its own terms. The failed check names the next model, on the right, with a gap for each study, which reproduces all four shares. In that model the replication gap exceeds the original by nineteen points, so the studies disagree, and the combined estimate of four points describes neither of them.
+So check the assumption behind both routes, that the two experiments measure one gap. A posterior predictive check asks whether the fitted model can reproduce the data that it was fitted to. On the left, the model with one gap: for each study and group of names, the bar is the ninety per cent interval of the share that the model replicates, and the point is the share that was observed. The white names of the original experiment lie well outside their bar, and the Hispanic names just below theirs. A model with one gap cannot reproduce the original experiment, and priorsense says the same in its own terms. The failed check names the next model, on the right, with a gap for each study, which reproduces all four shares. In that model the replication gap exceeds the original by nineteen points, so the studies disagree, and the combined estimate of four points describes neither of them.
 :::

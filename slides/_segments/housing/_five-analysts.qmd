@@ -34,7 +34,7 @@ ggplot2::ggplot(five, ggplot2::aes(b_pp, lab)) +
 ```
 
 ::: {.small}
-Every gap points the way of the claim, from `r fmt_num(min(five$b_pp), 1)` to `r fmt_num(max(five$b_pp), 1)` points, and every test is significant. Multi100 Task 1 verdicts: `r sum(analysts$task1 == "evidence for the claim")` × evidence for the claim, `r sum(analysts$task1 == "no evidence either way")` × no evidence either way.
+Every gap points the way of the claim, from `r fmt_num(min(five$b_pp), 1)` to `r fmt_num(max(five$b_pp), 1)` points, and every test is significant. Task 1 verdicts in the robustness study: `r sum(analysts$task1 == "evidence for the claim")` × evidence for the claim, `r sum(analysts$task1 == "no evidence either way")` × no evidence either way.
 :::
 
 ::: notes
@@ -64,7 +64,7 @@ cat(c("::: {.fs-60}", # r-style: keep – writes the Markdown of the table
 ```
 
 ::: {.fragment .small}
-Both verdicts of no evidence come from analysts whose own work shows a significant gap. 25N5D concluded that the effect was real but "substantially smaller than that reported in the original results"; the first Multi100 model of P9W8Y tested ethnicity among the female names only.
+Both verdicts of no evidence come from analysts whose own work shows a significant gap. 25N5D concluded that the effect was real but "substantially smaller than that reported in the original results"; the Task 1 model of P9W8Y in the robustness study tested ethnicity among the female names only.
 :::
 
 ::: notes

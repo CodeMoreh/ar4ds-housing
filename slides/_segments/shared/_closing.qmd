@@ -14,7 +14,7 @@ A blueprint: precise question → causal reasoning (DAG) → multiverse → sens
 :::
 
 ::: notes
-The first point comes from the Multi100 paper: single-path analyses should not simply be assumed robust. A single path can be a good path, and still the reader is owed the space around it, so a report needs the chosen path and the alternatives together. From Auspurg and Brüderl comes the constructive recipe that we followed today: a precise question, explicit assumptions drawn as a graph, a multiverse, and a sensitivity analysis. And keep the two robustness standards apart in your own writing: the same conclusion, which was reached by seventy-four per cent of the reanalyses in Multi100, and the same number, which only thirty-four per cent came close to. When you claim robustness, say which one you mean.
+The first point comes from the paper on the robustness study: single-path analyses should not simply be assumed robust. A single path can be a good path, and still the reader is owed the space around it, so a report needs the chosen path and the alternatives together. From Auspurg and Brüderl comes the constructive recipe that we followed today: a precise question, explicit assumptions drawn as a graph, a multiverse, and a sensitivity analysis. And keep the two robustness standards apart in your own writing: the same conclusion, which was reached by seventy-four per cent of the reanalyses in the robustness study, and the same number, which only thirty-four per cent came close to. When you claim robustness, say which one you mean.
 :::
 
 ## The single analytical path {#a-single-analytical-path-is-a-choice}

@@ -52,11 +52,11 @@ The second cost concerns the data. Whether an official replied to an ostensibly 
 ## Replicating an audit {#replicating-an-audit .questionslide}
 
 ::: {.none}
-The replication found no gap in greetings by name. Would a third audit of housing authorities be worth its cost to the officials, and what would its design have to change to justify that cost?
+The replication found no gap in greetings by name. Would a third experiment on housing authorities be worth its cost to the officials, and what would its design have to change to justify that cost?
 :::
 
 ::: notes
-So here is a question for the class, and there is no answer on the next slide. The replication found no gap. Would a third audit of housing authorities be worth its cost to the officials who would answer it, and what would its design have to change to justify that cost? Draw on what this session has covered: the names, the comparison among replies, the power of each design, the blocks. Talk to your neighbour first, then I will take a few answers. [state the time; take three or four answers, and ask each speaker which part of the design their answer would change]
+So here is a question for the class, and there is no answer on the next slide. The replication found no gap. Would a third experiment on housing authorities be worth its cost to the officials who would answer it, and what would its design have to change to justify that cost? Draw on what this session has covered: the names, the comparison among replies, the power of each design, the blocks. Talk to your neighbour first, then I will take a few answers. [state the time; take three or four answers, and ask each speaker which part of the design their answer would change]
 :::
 
 ## The reading and the next session {#the-reading-and-the-next-session .smaller}

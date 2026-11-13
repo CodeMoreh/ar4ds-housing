@@ -8,4 +8,4 @@ include-in-header:
     <script>location.replace("https://codemoreh.github.io/ar4ds/tools/ide.html" + location.hash);</script>
 ---
 
-The module on the IDE (Positron, RStudio, VS Code, etc.) is on the umbrella site of the course, as [Positron and other IDEs](https://codemoreh.github.io/ar4ds/tools/ide.html), with its tasks set in the workspace of this case.
+The module on the IDE (Positron, RStudio, VS Code, etc.) is on the umbrella site of the course, as [Positron and other IDEs](https://codemoreh.github.io/ar4ds/tools/ide.html), with its tasks set in the workspace of this case study.

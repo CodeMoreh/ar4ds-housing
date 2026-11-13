@@ -5,7 +5,7 @@ Part 4
 :::
 
 ::: notes
-The last part asks what a significant result from a study of the size of the original can say about the size of a gap. The two studies disagree, and their disagreement could have many sources: the names, the authorities, the six years between them. One of those sources can be assessed with the numbers of the case alone, and it is the subject of a short paper by Gelman and Carlin, which adds two kinds of error to the familiar idea of power.
+The last part asks what a significant result from a study of the size of the original can say about the size of a gap. The two studies disagree, and their disagreement could have many sources: the names, the authorities, the six years between them. One of those sources can be assessed with the numbers of the case study alone, and it is the subject of a short paper by Gelman and Carlin, which adds two kinds of error to the familiar idea of power.
 :::
 
 ## Type S and type M errors {#type-s-and-type-m-errors .smaller}

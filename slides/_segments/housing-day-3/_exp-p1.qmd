@@ -49,7 +49,7 @@ No characteristic comes near a significant difference, as random assignment lead
 :::
 
 ::: {.src}
-cases/housing/data/housing_audit.csv and display_names.csv. The paper reports its own check, without a test, in Table SI1 of the supplemental information (p. 8).
+cases/housing/data/housing_emails.csv and display_names.csv. The paper reports its own check, without a test, in Table SI1 of the supplemental information (p. 8).
 :::
 
 ::: notes

@@ -6,22 +6,22 @@ subtitle: "Fitting specifications with `try_spec()`"
 ```{r}
 #| label: setup
 #| include: false
-# Every chunk on this page runs from the folder of the case, so that the paths
+# Every chunk on this page runs from the folder of the case study, so that the paths
 # read exactly as they do in the workspace and in the browser lab:
-# data/housing_audit.csv.
+# data/housing_emails.csv.
 knitr::opts_knit$set(root.dir = "../cases/housing")
 ```
 
 ```{r}
 #| label: page-numbers
 #| include: false
-# The numbers quoted in the prose, computed from the curve of the case.
+# The numbers quoted in the prose, computed from the curve of the case study.
 page_curve <- readr::read_csv("data/spec_curve.csv", show_col_types = FALSE)
 ref_row    <- page_curve |> datawizard::data_filter(is_reference)
 ref_gap    <- insight::format_value(ref_row$b_pp, digits = 2, style_negative = "minus")
 ```
 
-This page introduces the helper functions with which the exercise of the housing-audit case fits its specifications, and the self-study route reads it in [stage 2](../tracks/self-study/stage-2.qmd). It assumes the R taught in [Getting started with R](https://codemoreh.github.io/ar4ds/tools/r.html), the module on the umbrella site of the course, written on the data of this case, up to [section 10](https://codemoreh.github.io/ar4ds/tools/r.html#sec-shares), in which the share of replies that greeted the sender by name is computed for two groups of names and the difference between the two shares is taken.
+This page introduces the helper functions with which the exercise of the Housing and racial bias case study fits its specifications, and the self-study route reads it in [stage 2](../tracks/self-study/stage-2.qmd). It assumes the R taught in [Getting started with R](https://codemoreh.github.io/ar4ds/tools/r.html), the module on the umbrella site of the course, written on the data of this case study, up to [section 10](https://codemoreh.github.io/ar4ds/tools/r.html#sec-shares), in which the share of replies that greeted the sender by name is computed for two groups of names and the difference between the two shares is taken.
 
 The code on this page ran when the page was built, and what R printed appears under each block, so you can compare your own output with the page line by line. Type each block into the workspace that you downloaded from the [setup page](https://codemoreh.github.io/ar4ds/setup.html#the-workspace), or into the [browser lab](../cases/housing/lab.qmd), where the helpers are already loaded.
 
@@ -40,7 +40,7 @@ source("R/spec_tools.R")
 #| include: false
 # The page reads the helpers from the copy of the workspace beside the site,
 # the nested repository in _workspaces/housing/, and its data/ from the folder
-# of the case, which holds the same files.
+# of the case study, which holds the same files.
 source("../../_workspaces/housing/R/spec_tools.R")
 ```
 
@@ -51,7 +51,7 @@ source("../../_workspaces/housing/R/spec_tools.R")
 try_spec()
 ```
 
-The first lines repeat the two shares and their difference, `r ref_gap` points, now with a 95% interval around it. The test line comes from a linear probability model, a regression of the 0/1 outcome on an indicator of the Hispanic names, whose coefficient is exactly the difference in shares; the [binary-outcomes module](binary-outcomes.qmd) explains it. The last lines give the number of replies analysed, a partial correlation computed by the rule of the Multi100 project, the class of the result, and its place among the `r nrow(page_curve)` specifications of the curve of the claim.
+The first lines repeat the two shares and their difference, `r ref_gap` points, now with a 95% interval around it. The test line comes from a linear probability model, a regression of the 0/1 outcome on an indicator of the Hispanic names, whose coefficient is exactly the difference in shares; the [binary-outcomes module](binary-outcomes.qmd) explains it. The last lines give the number of replies analysed, a partial correlation computed by the rule of the robustness study of SCORE (Multi100; Aczel et al. 2026), the class of the result, and its place among the `r nrow(page_curve)` specifications of the curve of the claim.
 
 Changing one argument changes one decision. `population = "all"` counts every delivered email, as the second calculation of that section does:
 

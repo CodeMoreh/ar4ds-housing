@@ -1,11 +1,11 @@
 ################################################################################
 # Title:        03_reference_marks.R
-# Purpose:      The five Multi100 analyses, each refitted from its public script
-#               on the public data and checked against the value that Multi100
+# Purpose:      The five analyses of the robustness study, each refitted from its public script
+#               on the public data and checked against the value that the robustness study
 #               recorded, and the reference marks of the curve: the published
 #               result of the original authors, its refit on the blinded file,
 #               and the five analyses placed in percentage points.
-# Reads:        cases/housing/data/housing_audit.csv, data-raw/housing/multi100/multi100_einstein_extract.csv
+# Reads:        cases/housing/data/housing_emails.csv, data-raw/housing/robustness/robustness_einstein_extract.csv
 # Writes:       cases/housing/data/analysts5.csv, cases/housing/data/reference_marks.csv
 # Author:       Claude for CM
 # Last updated: 2026-10-26
@@ -13,10 +13,10 @@
 
 source("R/housing/_tools.R")
 
-audit <- readr::read_csv("cases/housing/data/housing_audit.csv", show_col_types = FALSE)
+housing <- readr::read_csv("cases/housing/data/housing_emails.csv", show_col_types = FALSE)
 PAPER <- "Einstein_AmJourPoliSci_2017_mxyQ"
 
-m100 <- readr::read_csv("data-raw/housing/multi100/multi100_einstein_extract.csv", show_col_types = FALSE) |>
+robustness_record <- readr::read_csv("data-raw/housing/robustness/robustness_einstein_extract.csv", show_col_types = FALSE) |>
   datawizard::data_filter(paper_id == PAPER) |>
   datawizard::data_modify(task1 = dplyr::case_when(
     stringr::str_starts(task1_categorisation, "The results show evidence for the relationship") ~ "evidence for the claim",
@@ -35,7 +35,7 @@ m100 <- readr::read_csv("data-raw/housing/multi100/multi100_einstein_extract.csv
 # The models of all three groups take the groups of names as a factor under
 # another name, and data without the column `group`, which marginaleffects
 # refuses as a column name.
-replies <- audit |>
+replies <- housing |>
   datawizard::data_filter(reply == 1 & !is.na(named)) |>
   datawizard::data_modify(ethnicity = factor(group, levels = c("white", "black", "hispanic")))
 replies3 <- datawizard::data_select(replies, exclude = "group")
@@ -80,26 +80,26 @@ pp_ewfmi <- 100 * marginaleffects::avg_comparisons(fit_ewfmi, variables = HISP_V
 # emails, a non-reply counted as no greeting; the five uncoded replies stay in the
 # denominators and so count as no greeting. data_summary() orders the groups
 # alphabetically, so the Hispanic names come first.
-counts_25n5d <- audit |>
+counts_25n5d <- housing |>
   datawizard::data_filter(!is.na(reply) & group != "black") |>
   datawizard::data_summary(greeted = sum(reply == 1 & named %in% 1), emails = n(), by = "group")
 x2_25n5d <- unname(stats::prop.test(counts_25n5d$greeted, counts_25n5d$emails)$statistic)
 
 # P9W8Y: three-group logit on replies, an omnibus likelihood-ratio test of the
-# three groups and Tukey-adjusted pairwise comparisons; Multi100 recorded no statistic
+# three groups and Tukey-adjusted pairwise comparisons; the robustness study recorded no statistic
 fit_p9w8y <- stats::glm(named ~ ethnicity, family = stats::binomial(), data = replies3)
 lr_p9w8y <- unname(stats::anova(stats::update(fit_p9w8y, . ~ 1), fit_p9w8y, test = "LRT")$Deviance[2])
 
 refits <- tibble::tribble(
   ~id,     ~comparison,                ~population,            ~method,                                                    ~statistic_refit, ~n_refit,           ~b_pp_refit,
-  "8PTRZ", "Hispanic vs other names",  "replies",              "chi-square test of independence (continuity-corrected)",  x2_8ptrz,         nrow(replies),      fit_spec(audit, "nonhispanic", "replies", "drop", "lpm", "none")$b_pp,
-  "UYV3F", "Hispanic vs white names",  "replies",              "logit, no covariates",                                     z_uyv3f,          nrow(replies_hw),   fit_spec(audit, "white", "replies", "drop", "logit", "none")$b_pp,
+  "8PTRZ", "Hispanic vs other names",  "replies",              "chi-square test of independence (continuity-corrected)",  x2_8ptrz,         nrow(replies),      fit_spec(housing, "nonhispanic", "replies", "drop", "lpm", "none")$b_pp,
+  "UYV3F", "Hispanic vs white names",  "replies",              "logit, no covariates",                                     z_uyv3f,          nrow(replies_hw),   fit_spec(housing, "white", "replies", "drop", "logit", "none")$b_pp,
   "EWFMI", "Hispanic vs white names (three-group model)", "replies", "logit with name sex, poverty third (as a number) and hard-to-find email", z_ewfmi, stats::nobs(fit_ewfmi), pp_ewfmi,
-  "25N5D", "Hispanic vs white names",  "all delivered emails",  "two-proportion test (continuity-corrected)",               x2_25n5d,         sum(counts_25n5d$emails), fit_spec(audit, "white", "all", "not_named", "lpm", "none")$b_pp,
+  "25N5D", "Hispanic vs white names",  "all delivered emails",  "two-proportion test (continuity-corrected)",               x2_25n5d,         sum(counts_25n5d$emails), fit_spec(housing, "white", "all", "not_named", "lpm", "none")$b_pp,
   "P9W8Y", "three groups",             "replies",              "logit, omnibus likelihood-ratio test and Tukey-adjusted pairs", lr_p9w8y,   nrow(replies),      100 * marginaleffects::avg_comparisons(fit_p9w8y, variables = HISP_VS_WHITE)$estimate
 )
 
-analysts <- m100 |>
+analysts <- robustness_record |>
   datawizard::data_join(refits, join = "left", by = "id") |>
   datawizard::data_modify(matches_record = abs(abs(statistic_refit) - abs(statistic_recorded)) < 0.0015 &
                             n_refit == n_recorded)
@@ -134,7 +134,7 @@ marks <- dplyr::bind_rows(
                      statistic = dplyr::coalesce(statistic_recorded, statistic_refit), n = n_refit,
                      b_pp = b_pp_refit, on_chart = TRUE,
                      note = dplyr::if_else(is.na(statistic_recorded),
-                                           "No statistic recorded by Multi100; placed by the course refit of the analysis.",
+                                           "No statistic recorded in the robustness study; placed by the course refit of the analysis.",
                                            "Placed by the course refit of the analysis, which reproduces the recorded statistic."))
 )
 

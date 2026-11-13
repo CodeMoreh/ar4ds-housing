@@ -8,4 +8,4 @@ include-in-header:
     <script>location.replace("https://codemoreh.github.io/ar4ds/tools/quarto.html" + location.hash);</script>
 ---
 
-The module on Quarto is on the umbrella site of the course, as [Quarto documents](https://codemoreh.github.io/ar4ds/tools/quarto.html), with its tasks set in the report of the workspace of this case.
+The module on Quarto is on the umbrella site of the course, as [Quarto documents](https://codemoreh.github.io/ar4ds/tools/quarto.html), with its tasks set in the report of the workspace of this case study.

@@ -6,13 +6,13 @@ case: housing
 **Slides.** [Open the deck at Part 2](../../slides/housing-one-day.html#/part-2-the-estimand-and-the-causal-graph){target="_blank"} in its own tab, or follow it on the [slides page](../housing-one-day/slides.qmd).
 :::
 
-The case begins in earnest, in a stage of nearly six hours of work. You write the estimand statement behind the claim, finish the causal graph of the experiment, and reproduce the value that Multi100 recorded for one of the five analysts, whichever you choose. The modules of the stage are the methods with which the claim is argued: what random assignment buys in an audit experiment, the models for a yes-or-no outcome, and the causal graph that shows why a comparison among the replies alone is no longer protected by the random assignment.
+The case study begins in earnest, in a stage of nearly six hours of work. You write the estimand statement behind the claim, finish the causal graph of the experiment, and reproduce the value recorded in the robustness study of SCORE (Multi100; Aczel et al. 2026) for one of the five analysts, whichever you choose. The modules of the stage are the methods with which the claim is argued: what random assignment buys in an audit experiment, the models for a yes-or-no outcome, and the causal graph that shows why a comparison among the replies alone is no longer protected by the random assignment.
 
 ## 1. The exercise
 
 [Read the exercise overview](../../cases/housing/exercise.qmd){.btn .btn-primary target="_blank"}
 
-The overview sets out the claim, the table of what the five Multi100 analysts found, and the five tasks that this stage and the next work through.
+The overview sets out the claim, the table of what the five analysts of the robustness study found, and the five tasks that this stage and the next work through.
 
 ## 2. The claim and its estimand
 
@@ -32,7 +32,7 @@ Count the emails that bounced, the replies, the replies with a greeting code and
 
 [Open the deck at Part 3](../../slides/housing-one-day.html#/part-3-the-reproduction){.btn .btn-primary target="_blank"} [Open the browser lab at Task 3](../../cases/housing/lab.qmd#task-3-reproduction){.btn .btn-outline-primary target="_blank"}
 
-The slides read the instruction of Task 2 of Multi100 word for word. Then reproduce the analysis from the public file `audit_original.csv`. Choose one of the five analysts. Four have a value that Multi100 recorded, and all four come out exactly: $\chi^2$ = 14.265 for 8PTRZ, z = −3.771 for UYV3F, z = 3.645 for EWFMI and $\chi^2$ = 13.683 for 25N5D. Multi100 recorded no statistic for P9W8Y, so its test of three groups, $\chi^2$ = 15.951 on 2 degrees of freedom, can be run again but not matched against the record. The report and `prep/reproduce_reanalyses.R` in the workspace hold all five, and the lab has a few cells for each, one of them with a hint and a solution, which are worth opening only after a try of your own. Working alone, you can take a second analyst whose test differs from the first.
+The slides read the instruction of Task 2 of the robustness study word for word. Then reproduce the analysis from the public file `housing_original.csv`. Choose one of the five analysts. Four have a value recorded in the robustness study, and all four come out exactly: $\chi^2$ = 14.265 for 8PTRZ, z = −3.771 for UYV3F, z = 3.645 for EWFMI and $\chi^2$ = 13.683 for 25N5D. The robustness study recorded no statistic for P9W8Y, so its test of three groups, $\chi^2$ = 15.951 on 2 degrees of freedom, can be run again but not matched against the record. The report and `prep/reproduce_reanalyses.R` in the workspace hold all five, and the lab has a few cells for each, one of them with a hint and a solution, which are worth opening only after a try of your own. Working alone, you can take a second analyst whose test differs from the first.
 
 ## 5. The continuity correction
 
@@ -54,7 +54,7 @@ Work from [A yes-or-no outcome](../../companion/binary-outcomes.qmd#sec-outcome)
 
 [Open Causal graphs and adjustment sets](../../companion/dags.qmd#sec-arrows){.btn .btn-primary target="_blank"}
 
-Work from [Arrows as claims](../../companion/dags.qmd#sec-arrows) to [Counting all delivered emails](../../companion/dags.qmd#sec-all-emails). The sections cover what an arrow commits you to, confounders, mediators and colliders, and why comparing greetings among replies conditions on a consequence of the name. They end on the graph of the case and on what counting every delivered email changes.
+Work from [Arrows as claims](../../companion/dags.qmd#sec-arrows) to [Counting all delivered emails](../../companion/dags.qmd#sec-all-emails). The sections cover what an arrow commits you to, confounders, mediators and colliders, and why comparing greetings among replies conditions on a consequence of the name. They end on the graph of the case study and on what counting every delivered email changes.
 
 ## 9. The decision map
 
@@ -62,6 +62,6 @@ Work from [Arrows as claims](../../companion/dags.qmd#sec-arrows) to [Counting a
 
 The map lays out every decision between the data and a result, in the order in which an analyst meets it, with what each option does to the estimand statement and to the estimate. It prepares Task 4 in the next stage.
 
-**Shortcuts.** If you know logistic regression and odds ratios, take from the binary-outcomes module only the sections on [odds ratios and covariates](../../companion/binary-outcomes.qmd#sec-collapsibility) and [the methods side by side](../../companion/binary-outcomes.qmd#sec-side-by-side). If you have drawn causal graphs before, take from the graph module only [Conditioning on a reply](../../companion/dags.qmd#sec-collider) and [The graph of the case](../../companion/dags.qmd#sec-case).
+**Shortcuts.** If you know logistic regression and odds ratios, take from the binary-outcomes module only the sections on [odds ratios and covariates](../../companion/binary-outcomes.qmd#sec-collapsibility) and [the methods side by side](../../companion/binary-outcomes.qmd#sec-side-by-side). If you have drawn causal graphs before, take from the graph module only [Conditioning on a reply](../../companion/dags.qmd#sec-collider) and [The graph of the case study](../../companion/dags.qmd#sec-case).
 
 **By the end of the stage** you have the estimand behind the claim written in one sentence, a graph that holds only the arrows that you are willing to defend, two sentences on what a comparison among the replies conditions on, and the value of at least one analyst reproduced yourself, with the defaults of the software on which it depends.

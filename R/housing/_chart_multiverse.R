@@ -1,14 +1,14 @@
 ################################################################################
 # Title:        _chart_multiverse.R
 # Purpose:      Builds the interactive specification curve of the multiverse
-#               page of the housing-audit case: the payload of the curve (the
+#               page of the Housing case study: the payload of the curve (the
 #               64 specifications ranked by the gap in percentage points, the
 #               option of every decision, the lines of each pop-up and the
 #               reference marks) and the raw HTML that places it on the page.
 #               The drawing and the interaction live in assets/chart/multiverse.js,
 #               the styles in assets/chart/multiverse.css and the markup of one
 #               chart in assets/chart/multiverse.template.html, shared by the
-#               cases of the course; the optional fields of the payload that
+#               case studies of the course; the optional fields of the payload that
 #               adapt the chart to this curve are listed at the top of
 #               multiverse.js.
 # Author:       Claude for CM
@@ -94,20 +94,20 @@ mv_marks <- function(marks, analysts, curve) {
       tag   = dplyr::case_when(.data$id == "OA" ~ "OAs 2017", .data$id == "SCORE" ~ "SCORE 2020",
                         .default = .data$id),
       title = dplyr::case_when(.data$id == "OA" ~ "The original authors (2017), Table 1, model 3",
-                        .data$id == "SCORE" ~ "The SCORE replication, a new audit (2020)",
-                        .default = paste("Multi100 analyst", .data$id)),
+                        .data$id == "SCORE" ~ "The SCORE replication, a new experiment (2020)",
+                        .default = paste("Analyst", .data$id, "of the robustness study")),
       stat  = dplyr::case_when(
         .data$id == "OA" ~ sprintf("z = %s as published; %s", mv_minus(.data$statistic, 2),
                                    mv_p_label(.data$p_num)),
         .data$id == "SCORE" ~ sprintf("t = %s with HC2 errors, from the course refit of the replication data; %s",
                                       mv_minus(.data$statistic, 2), mv_p_label(.data$p_num)),
         grepl("2 df", .data$statistic_type) ~ sprintf(
-          "chi-square = %s on 2 df, from the course refit (Multi100 recorded none); %s",
+          "chi-square = %s on 2 df, from the course refit (the robustness study recorded none); %s",
           formatC(.data$statistic, format = "f", digits = 3), mv_p_label(.data$p_num)),
-        .data$statistic_type == "chi2" ~ sprintf("chi-square = %s, as recorded by Multi100; %s",
+        .data$statistic_type == "chi2" ~ sprintf("chi-square = %s, as recorded in the robustness study; %s",
                                                  formatC(.data$statistic, format = "f", digits = 3),
                                                  mv_p_label(.data$p_num)),
-        .default = sprintf("z = %s, as recorded by Multi100; %s", mv_minus(.data$statistic, 3),
+        .default = sprintf("z = %s, as recorded in the robustness study; %s", mv_minus(.data$statistic, 3),
                            mv_p_label(.data$p_num))
       ),
       comparison_txt = dplyr::case_when(

@@ -1,7 +1,7 @@
 ## Hands-on 3 – The reproduction {#hands-on-3-reproduce-the-recorded-result .smaller}
 
 ::: {.small}
-**Task 3**, in the browser lab[ or in your workspace]{.content-visible unless-meta="deck.short"}: choose one of the five analysts, complete their cell on the public file `audit_original.csv`, and compare your value with the record.
+**Task 3**, in the browser lab[ or in your workspace]{.content-visible unless-meta="deck.short"}: choose one of the five analysts, complete their cell on the public file `housing_original.csv`, and compare your value with the record.
 :::
 
 ::: {.fs-60}

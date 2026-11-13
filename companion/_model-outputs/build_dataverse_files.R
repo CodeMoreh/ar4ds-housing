@@ -1,7 +1,7 @@
 ################################################################################
 # Title:        build_dataverse_files.R
-# Purpose:      The list of files in the Dataverse record of the housing-audit
-#               case, as the native API of the Harvard Dataverse returns it, so
+# Purpose:      The list of files in the Dataverse record of the Housing
+#               case study, as the native API of the Harvard Dataverse returns it, so
 #               that the data-sources module can show what a programmatic
 #               query of the record gives without a connection at render time.
 # Reads:        the metadata of doi:10.7910/DVN/1HOVTU, fetched from the API of

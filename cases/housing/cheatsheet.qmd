@@ -23,9 +23,9 @@ format:
 | **Specification menu** | [specification menu](menu.qmd) |
 | **Decision map** | [decision map](map.qmd) |
 | **The data (Harvard Dataverse, CC0)** | <https://doi.org/10.7910/DVN/1HOVTU> |
-| **The five Multi100 analyses** | <https://osf.io/38rsh/> |
+| **The five analyses of the robustness study** | <https://osf.io/38rsh/> |
 | **The SCORE dossier on the paper** | <https://osf.io/3a8bg/> |
-| **Multi100 project** | <https://osf.io/q5h2c/> |
+| **The robustness study (Multi100)** | <https://osf.io/q5h2c/> |
 
 ------------------------------------------------------------------------
 
@@ -51,9 +51,9 @@ Both submission functions take `nickname = "..."`, which replaces the tag that t
 
 ## The reproductions of Task 3 {#reproductions}
 
-Choose one analyst. Each reproduction reads the public file of the original authors (OAs), `audit_original.csv`, and the four recorded values come out exactly. The full code is in Task 3 of the browser lab and of your workspace, and `prep/reproduce_reanalyses.R` in the workspace holds all five.
+Choose one analyst. Each reproduction reads the public file of the original authors (OAs), `housing_original.csv`, and the four recorded values come out exactly. The full code is in Task 3 of the browser lab and of your workspace, and `prep/reproduce_reanalyses.R` in the workspace holds all five.
 
-| Analyst | Rows of `audit_original.csv` | The call | Recorded by Multi100 |
+| Analyst | Rows of `housing_original.csv` | The call | Recorded in the robustness study |
 |---|---|---|---|
 | 8PTRZ | `!is.na(ProperName)`: the 558 coded replies | `chisq.test(xtabs(~ hispanic_name + ProperName, ...))` | $\chi^2$ = 14.265 |
 | UYV3F | the coded replies to Hispanic and white names, 362 | `glm(ProperName ~ hispanic_name, family = binomial(), ...)` | z = −3.771 |
@@ -120,7 +120,7 @@ If any of that stalls, work down the list under [A stalled browser lab](#a-stall
 - `x <- value` stores a value under a name.
 - `source("R/spec_tools.R")` runs a script file; here it loads the helpers.
 - `readr::read_csv()`: the part before `::` names the package that the function comes from.
-- `audit |> datawizard::data_filter(!is.na(named))` passes the data on to the next step. Read `|>` as 'and then'.
+- `housing |> datawizard::data_filter(!is.na(named))` passes the data on to the next step. Read `|>` as 'and then'.
 - `datawizard::data_filter()`, `datawizard::data_modify()` and `datawizard::data_summary(..., by = "group")` keep some rows, add a column, and summarise by group.
 - `"white"`: options are text, so they go in quotes.
 - `# ...`: everything after `#` on a line is a comment, which R ignores. A `#` in front of an arrow of the graph switches it off.

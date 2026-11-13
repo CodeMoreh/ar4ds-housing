@@ -5,5 +5,5 @@ Part 3
 :::
 
 ::: notes
-Welcome back. This is the part in which the ideas of the morning meet the code. You reproduce the value that Multi100 recorded for one of the five analysts, whichever you choose, from the public file of the original study, and then find out why your number is exactly that number. We then ask what a reproduction needs besides the data and the code, and where the reproduction of this paper reaches its limit. If there is time, you reproduce a second analyst whose analysis differs from your first in one decision, and that comparison leads straight into the last part of the day.
+Welcome back. This is the part in which the ideas of the morning meet the code. You reproduce the value recorded in the robustness study for one of the five analysts, whichever you choose, from the public file of the original study, and then find out why your number is exactly that number. We then ask what a reproduction needs besides the data and the code, and where the reproduction of this paper reaches its limit. If there is time, you reproduce a second analyst whose analysis differs from your first in one decision, and that comparison leads straight into the last part of the day.
 :::

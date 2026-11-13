@@ -10,17 +10,17 @@ aliases:
 **Slides.** [Open the deck at this part](../../slides/housing-one-day.html#/part-3-the-reproduction){target="_blank"} in its own tab, or follow it on the [slides page](slides.qmd).
 :::
 
-Part 3 is about the first of the three Rs. You choose one of the five analysts and reproduce the value that Multi100 recorded for them, from the public file of the original study. You then find out why your number is exactly that number, what a reproduction needs besides the data and the code, and where the reproduction of this paper reaches its limit.
+Part 3 is about the first of the three Rs. You choose one of the five analysts and reproduce the value recorded for them in the robustness study of SCORE (Multi100; Aczel et al. 2026), from the public file of the original study. You then find out why your number is exactly that number, what a reproduction needs besides the data and the code, and where the reproduction of this paper reaches its limit.
 
-## 1. The instruction of Multi100
+## 1. The instruction of the robustness study {#the-instruction-of-the-robustness-study}
 
-**On the slides.** The slides read the instruction of Task 2 of Multi100 word for word and show what it left open. They then set the aim of the reproduction, which is one of the five reanalyses, whichever you choose, from the public file of the original authors (OAs).
+**On the slides.** The slides read the instruction of Task 2 of the robustness study word for word and show what it left open. They then set the aim of the reproduction, which is one of the five reanalyses, whichever you choose, from the public file of the original authors (OAs).
 
 ## 2. Task 3 – The reproduction
 
 [Open the browser lab at Task 3](../../cases/housing/lab.qmd#task-3-reproduction){.btn .btn-primary target="_blank"}
 
-If you work in the workspace, use your report or working script instead. Choose one of the five analysts and work through their cells on the public file `audit_original.csv`. Four of them have a value that Multi100 recorded: $\chi^2$ = 14.265 for 8PTRZ, z = −3.771 for UYV3F, z = 3.645 for EWFMI and $\chi^2$ = 13.683 for 25N5D. P9W8Y has none, so its test of three groups, $\chi^2$ = 15.951 on 2 degrees of freedom, can be run again but not matched. Type the analyst and the value in the chat without sending them, and send them when the facilitator says go, so that the matching values appear at the same moment.
+If you work in the workspace, use your report or working script instead. Choose one of the five analysts and work through their cells on the public file `housing_original.csv`. Four of them have a value recorded in the robustness study: $\chi^2$ = 14.265 for 8PTRZ, z = −3.771 for UYV3F, z = 3.645 for EWFMI and $\chi^2$ = 13.683 for 25N5D. P9W8Y has none, so its test of three groups, $\chi^2$ = 15.951 on 2 degrees of freedom, can be run again but not matched. Type the analyst and the value in the chat without sending them, and send them when the facilitator says go, so that the matching values appear at the same moment.
 
 ## 3. Reproducibility and analytical choice
 

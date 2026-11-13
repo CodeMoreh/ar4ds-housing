@@ -57,7 +57,7 @@ Power is the probability that a study of a given size detects a gap of a given s
 :::: {.columns}
 ::: {.column width="54%"}
 ::: {.small}
-- **The original audit** drew a name for each authority, without blocks
+- **The original experiment** drew a name for each authority, without blocks
 - **The replication**: "We will block randomize within each U.S. state to ensure that there is an equivalent number of Hispanic and white names contacting the housing agencies within each state"
 - Blocking assigns the names at random **within groups formed before the experiment**, in fixed numbers, so the groups of names are balanced on the blocking variable by design, not only in expectation
 - It buys **precision**, as far as the blocking variable predicts the outcome, and it **removes no bias**, since random assignment has already removed it [@ImaiEtAl2008MisunderstandingsExperimentalistsObservationalists; @AtheyImbens2017EconometricsRandomizedExperiments]
@@ -82,11 +82,11 @@ Chance had already balanced the two kinds: `r fmt_num(block_shares$hispanic_shar
 ::::
 
 ::: {.src}
-The preregistration of the replication, osf.io/2ug8x; the reference comparison with estimatr and ri2 (cases/housing/data/housing_audit.csv); companion/experiments.qmd, section 7.
+The preregistration of the replication, osf.io/2ug8x; the reference comparison with estimatr and ri2 (cases/housing/data/housing_emails.csv); companion/experiments.qmd, section 7.
 :::
 
 ::: notes
-The original audit drew one name for each authority, with nothing grouped beforehand. The replication blocked: within each state it assigned equal numbers of Hispanic and white names. Blocking means forming groups on something recorded before the experiment and randomising within each group in fixed numbers, so that the groups of names are balanced on it by design rather than only in expectation. What it buys is precision, and only as much as the blocking variable predicts the outcome. It removes no bias, because random assignment has already removed it. [advance] The original can show what blocking on the address would have changed. The address does predict the greeting: white names were greeted by name in two thirds of the replies to easy addresses and just over half of the others. Yet the gap and its standard error barely move, because chance had already given the two kinds of address the same share of Hispanic names, so the guarantee of a blocked design would have been worth little here.
+The original experiment drew one name for each authority, with nothing grouped beforehand. The replication blocked: within each state it assigned equal numbers of Hispanic and white names. Blocking means forming groups on something recorded before the experiment and randomising within each group in fixed numbers, so that the groups of names are balanced on it by design rather than only in expectation. What it buys is precision, and only as much as the blocking variable predicts the outcome. It removes no bias, because random assignment has already removed it. [advance] The original can show what blocking on the address would have changed. The address does predict the greeting: white names were greeted by name in two thirds of the replies to easy addresses and just over half of the others. Yet the gap and its standard error barely move, because chance had already given the two kinds of address the same share of Hispanic names, so the guarantee of a blocked design would have been worth little here.
 :::
 
 ## Hands-on 2 – Power and blocks {#hands-on-2-power-and-blocks .smaller}

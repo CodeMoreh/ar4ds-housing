@@ -6,26 +6,26 @@ bibliography: [references.bib, references-new.bib]
 
 ## Glossary {#glossary}
 
-The four terms below follow the definitions in @NosekEtAl2025BriefGlossaryTerms. They are not interchangeable, and the course depends on the difference: a finding can survive every robustness check on its own data and still fail on new data, or survive the checks and still be one that nobody can recompute from the original materials. The column 'In this course' notes where each idea appears in the housing-audit case.
+The four terms below follow the definitions in @NosekEtAl2025BriefGlossaryTerms. They are not interchangeable, and the course depends on the difference: a finding can survive every robustness check on its own data and still fail on new data, or survive the checks and still be one that nobody can recompute from the original materials. The column 'In this course' notes where each idea appears in the Housing and racial bias case study.
 
 | Term | Definition | In this course |
 |------------------------|------------------------|------------------------|
-| **Reproducibility** | Same question, same data, same analysis → same result | Tested across the SCORE sample by @MiskeEtAl2026InvestigatingReproducibilitySocial. In the housing-audit case SCORE never attempted a reproduction; the class reproduces in Task 3 a value that Multi100 recorded for one of the five analysts |
-| **Robustness** | Same question, same data, justifiable alternative analysis → stable result | The Multi100 design [@AczelEtAl2026InvestigatingAnalyticalRobustness]; the five analysts of the claim; the specification menu and the curve of the claim in Tasks 4 and 5, with 64 specifications |
-| **Replicability** | Same question, independent new data → same result | Tested across the SCORE sample by @TynerEtAl2026InvestigatingReplicabilitySocial. For the housing-audit claim, a preregistered audit of 3,050 housing authorities found no significant gap |
+| **Reproducibility** | Same question, same data, same analysis → same result | Tested across the SCORE sample by @MiskeEtAl2026InvestigatingReproducibilitySocial. In the Housing case study SCORE never attempted a reproduction; the class reproduces in Task 3 a value recorded in the robustness study of SCORE [Multi100; @AczelEtAl2026InvestigatingAnalyticalRobustness] for one of the five analysts |
+| **Robustness** | Same question, same data, justifiable alternative analysis → stable result | The design of the robustness study; the five analysts of the claim; the specification menu and the curve of the claim in Tasks 4 and 5, with 64 specifications |
+| **Replicability** | Same question, independent new data → same result | Tested across the SCORE sample by @TynerEtAl2026InvestigatingReplicabilitySocial. For the Housing claim, a preregistered experiment on 3,050 housing authorities found no significant gap |
 | **Repeatability** | Umbrella term covering all three above | Used in the glossary of Nosek and colleagues as the overarching category |
 
 ------------------------------------------------------------------------
 
-## The records of the case {#the-case}
+## The records of the case study {#the-case}
 
-The [case study](cases/housing/index.qmd) tells the story of the case in full, and the records below are the public deposits on which it is built.
+The [background page](cases/housing/index.qmd) tells the story of the case study in full, and the records below are the public deposits on which it is built.
 
 **The paper.** The paper of the original authors (OAs) [@EinsteinGlick2017DoesRaceAffect], published in the *American Journal of Political Science*: <https://doi.org/10.1111/ajps.12252>. The accepted manuscript is open at OpenBU, <https://hdl.handle.net/2144/37826>, and the page numbers quoted on the course site refer to it.
 
 **The data.** The replication package of the OAs on the Harvard Dataverse, released under CC0: <https://doi.org/10.7910/DVN/1HOVTU>. It holds the blinded data file, two Stata do-files (one that runs the analyses on the public file, and one written for the identifiable data, which are not public), two codebooks and a ReadMe that explains why the community variables are given in thirds. The course data in `cases/housing/data/` are built from it, and the codebooks beside them describe every column.
 
-**SCORE and Multi100 on the OSF.** The SCORE project of the paper on the Open Science Framework holds every activity that SCORE carried out on it, and the Multi100 component holds one sub-component for each of the five analysts. Four of the five published their scripts there; the course links to them and does not copy them.
+**SCORE on the OSF.** The SCORE project of the paper on the Open Science Framework holds every activity that SCORE carried out on it, and the component of the robustness study holds one sub-component for each of the five analysts. Four of the five published their scripts there; the course links to them and does not copy them.
 
 | Component | What it holds | Address |
 |---|---|---|
@@ -35,15 +35,15 @@ The [case study](cases/housing/index.qmd) tells the story of the case in full, a
 | Power analysis | The power analysis for the replication | <https://osf.io/kcsby/> |
 | Replication | The replication with new data, with its preregistration and final report | <https://osf.io/2ug8x/> |
 | Replication data | The de-identified data of the replication, its analysis do-file and a dictionary, in the folder "Public Data"; the licence is unstated, so the course links to them and does not copy them | <https://osf.io/xseqg/> |
-| Multi100 | The five reanalyses of the claim | <https://osf.io/38rsh/> |
+| Robustness study of the paper | The five reanalyses of the claim | <https://osf.io/38rsh/> |
 | 8PTRZ | Chi-square test of a two-by-two table, Hispanic against all other names | <https://osf.io/j8wvh/> |
 | UYV3F | Logit without covariates, Hispanic against white names (a review document only) | <https://osf.io/3672s/> |
 | EWFMI | Logit of three groups with covariates, in Stata | <https://osf.io/jhvca/> |
 | 25N5D | Two-proportion test on every delivered email to Hispanic and white names | <https://osf.io/v8zah/> |
 | P9W8Y | Three-group logit with an omnibus test | <https://osf.io/pzwbm/> |
-| The Multi100 project | The project as a whole, with the claims of all hundred studies | <https://osf.io/q5h2c/> |
+| The robustness study | The project as a whole, with the claims of all hundred studies | <https://osf.io/q5h2c/> |
 
-The three activities of SCORE ended in three different places on the same paper. The reproduction was never attempted. The five reanalyses agreed on the direction of the gap and split three to two on whether the data supported the claim, and the replication with new names and a wider set of authorities found no significant gap. The [case study](cases/housing/index.qmd) tells the story in full.
+The three activities of SCORE ended in three different places on the same paper. The reproduction was never attempted. The five reanalyses agreed on the direction of the gap and split three to two on whether the data supported the claim, and the replication with new names and a wider set of authorities found no significant gap. The [background page](cases/housing/index.qmd) tells the story in full.
 
 ------------------------------------------------------------------------
 
@@ -52,7 +52,7 @@ The three activities of SCORE ended in three different places on the same paper.
 ### The three *Nature* 2026 papers (SCORE)
 
 - **Reproducibility:** @MiskeEtAl2026InvestigatingReproducibilitySocial – how often the central result of a paper can be recomputed from its own data. <https://doi.org/10.1038/s41586-026-10203-5>
-- **Robustness:** @AczelEtAl2026InvestigatingAnalyticalRobustness – Multi100, in which at least five analysts reanalysed each of a hundred claims. <https://doi.org/10.1038/s41586-025-09844-9>
+- **Robustness:** @AczelEtAl2026InvestigatingAnalyticalRobustness – the robustness study, known as Multi100, in which at least five analysts reanalysed each of a hundred claims. <https://doi.org/10.1038/s41586-025-09844-9>
 - **Replicability:** @TynerEtAl2026InvestigatingReplicabilitySocial – how often claims hold on new data, under preregistered protocols. <https://doi.org/10.1038/s41586-025-10078-y>
 - @AlipourfardEtAl2021SystematizingConfidenceOpen – the SCORE programme, of which all three studies are part. <https://doi.org/10.31235/osf.io/46mnb>
 
@@ -67,7 +67,7 @@ The three activities of SCORE ended in three different places on the same paper.
 - @SilberzahnEtAl2018ManyAnalystsOne – the red-card study, in which twenty-nine teams analysed one dataset. <https://doi.org/10.1177/2515245917747646>
 - @AuspurgBruderl2021HasCredibilitySocial – the reanalysis of the red-card study that traced the spread of its results to teams answering different questions. <https://doi.org/10.1177/23780231211024421>
 
-### Audit studies and the housing-audit case
+### Audit studies and the Housing case study {#audit-studies-and-the-housing-case-study}
 
 - @Lipsky1980StreetLevelBureaucracy – the discretion of the officials who deliver public services in direct contact with citizens.
 - @Pager2003MarkCriminalRecord and @BertrandMullainathan2004AreEmilyGreg – two field experiments on hiring that made the audit design familiar, the first with matched pairs of testers and the second with résumés that differed only in a name.
@@ -101,13 +101,13 @@ None of these is required, because everything is taught in the course, but they 
 
 ## Companion
 
-The modules of the [companion](companion/index.qmd) hold the teaching that a session or a day can only mention, each on a page of its own that stands without the others, and each written on the data of this case.
+The modules of the [companion](companion/index.qmd) hold the teaching that a session or a day can only mention, each on a page of its own that stands without the others, and each written on the data of this case study.
 
 **Tools**
 
-The modules on the tools are on the [AR4DS site](https://codemoreh.github.io/ar4ds/), which every case shares, written on the data of this case.
+The modules on the tools are on the [AR4DS site](https://codemoreh.github.io/ar4ds/), which every case study shares, written on the data of this case study.
 
-- [Getting started with R](https://codemoreh.github.io/ar4ds/tools/r.html) – for participants arriving with no R at all, on the housing-audit data, with a [second part](https://codemoreh.github.io/ar4ds/tools/r-further.html) on reading other formats, the three dialects of R and the estimand habit.
+- [Getting started with R](https://codemoreh.github.io/ar4ds/tools/r.html) – for participants arriving with no R at all, on the Housing data, with a [second part](https://codemoreh.github.io/ar4ds/tools/r-further.html) on reading other formats, the three dialects of R and the estimand habit.
 - [The helpers of the workspace](companion/helpers.qmd) – `try_spec()` and `my_experiments()`, with which the exercise fits its specifications and keeps a record of them.
 - [Positron and other IDEs](https://codemoreh.github.io/ar4ds/tools/ide.html) – what an IDE does and what the course needs from one, with Positron in detail and RStudio and VS Code beside it.
 - [Quarto documents](https://codemoreh.github.io/ar4ds/tools/quarto.html) – the format in which your report and every page of this site are written.
@@ -115,18 +115,18 @@ The modules on the tools are on the [AR4DS site](https://codemoreh.github.io/ar4
 
 **Data and sharing**
 
-- [Social science data sources](companion/data-sources.qmd) – where data of the kind that this case uses come from, and the access rule for each kind of source.
-- [Reproducibility repositories](companion/repositories.qmd) – research-data archives, the public records behind the case, and preregistration templates in more depth.
+- [Social science data sources](companion/data-sources.qmd) – where data of the kind used by this case study come from, and the access rule for each kind of source.
+- [Reproducibility repositories](companion/repositories.qmd) – research-data archives, the public records behind the case study, and preregistration templates in more depth.
 
 **Methods**
 
 - [Audit experiments](companion/experiments.qmd) – field experiments on discrimination: random assignment, names as treatments, comparisons among replies, randomisation inference, power and the ethics of deception.
 - [Binary outcomes](companion/binary-outcomes.qmd) – proportions, linear probability models and logistic regression.
 - [Causal graphs and adjustment sets](companion/dags.qmd) – confounders, mediators and colliders, and what conditioning on a reply does to the experiment.
-- [Simulation as a method](companion/simulation.qmd) – simulated audits as a way of checking a method.
+- [Simulation as a method](companion/simulation.qmd) – simulated experiments as a way of checking a method.
 - [The multiverse and its critics](companion/multiverse.qmd) – where specification curves came from, the purposes that they serve, the current debate about them, and the curve of the claim.
 
-Installing R and an IDE, the setup help, and Git and GitHub are on the [AR4DS site](https://codemoreh.github.io/ar4ds/), which every case shares.
+Installing R and an IDE, the setup help, and Git and GitHub are on the [AR4DS site](https://codemoreh.github.io/ar4ds/), which every case study shares.
 
 ------------------------------------------------------------------------
 

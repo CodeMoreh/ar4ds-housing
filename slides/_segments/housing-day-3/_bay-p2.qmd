@@ -21,7 +21,7 @@ Neither prior is meant as the right one. They bracket a reader who has no view a
 :::
 
 ::: {.src}
-companion/bayesian.qmd, section 2; companion/_model-outputs/bayes_audit_summary.csv (the prior-only fits).
+companion/bayesian.qmd, section 2; companion/_model-outputs/bayes_housing_summary.csv (the prior-only fits).
 :::
 
 ::: notes
@@ -35,7 +35,7 @@ The second prior is centred on no gap as well, but it is narrow: normal of nough
 #| fig-width: 9.5
 #| fig-height: 2.9
 # The gap under the two priors: each prior dashed and its posterior solid, from
-# 500 draws each (companion/_model-outputs/bayes_audit_draws.csv); the vertical
+# 500 draws each (companion/_model-outputs/bayes_housing_draws.csv); the vertical
 # line is the reference specification
 bayes_draws |>
   datawizard::data_filter(quantity == "gap" &

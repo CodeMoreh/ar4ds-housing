@@ -2,7 +2,7 @@
 # Title:        02_spec_curve.R
 # Purpose:      The curve of the claim: every specification of the menu
 #               fitted once, with a randomisation test of each as the check.
-# Reads:        cases/housing/data/housing_audit.csv
+# Reads:        cases/housing/data/housing_emails.csv
 # Writes:       cases/housing/data/spec_curve.csv
 # Author:       Claude for CM
 # Last updated: 2026-10-26
@@ -10,7 +10,7 @@
 
 source("R/housing/_tools.R")
 
-audit <- readr::read_csv("cases/housing/data/housing_audit.csv", show_col_types = FALSE)
+housing <- readr::read_csv("cases/housing/data/housing_emails.csv", show_col_types = FALSE)
 
 # The randomisation test reshuffles the names among the analysed emails and
 # refits, so it asks how often an arbitrary relabelling gives a gap as large as
@@ -27,7 +27,7 @@ N_DRAWS <- 1999
 
 curve <- tidyr::expand_grid(!!!SPEC_AXES) |>
   purrr::pmap(\(comparison, population, uncoded, model, adjust)
-              fit_spec(audit, comparison, population, uncoded, model, adjust)) |>
+              fit_spec(housing, comparison, population, uncoded, model, adjust)) |>
   dplyr::bind_rows() |>
   dplyr::mutate(spec_id = dplyr::row_number(), .before = 1)
 
@@ -35,7 +35,7 @@ p_ri <- curve |>
   purrr::pmap_dbl(\(spec_id, comparison, population, uncoded, model, adjust, coef, ...) {
     set.seed(20261025 + spec_id)
     terms <- ADJUST_TERMS[[adjust]]
-    frame <- spec_frame(audit, comparison, population, uncoded) |>
+    frame <- spec_frame(housing, comparison, population, uncoded) |>
       dplyr::select("y", "hisp", dplyr::all_of(terms)) |>
       stats::na.omit()
     form <- stats::reformulate(c("hisp", terms), response = "y")

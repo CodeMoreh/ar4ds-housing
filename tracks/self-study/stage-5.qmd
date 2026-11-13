@@ -1,7 +1,7 @@
 ---
 title: "Stage 5 – Your own project"
 ---
-The route ends on a project of your own. You ask a question beyond the claim that SCORE selected from the paper, one that the data of the case support: another outcome of the paper, a comparison or a subgroup that the menu sets aside because it answers a different question, or a replication on new data. The [list below](#the-projects) gives the projects that the case supports and where to start. The project follows the rule of the case report, with one addition. Its preregistration is complete before anything in it runs, and it is also fixed with a date that someone else can check, either as the first commit of the repository of the project, pushed to GitHub, or as a registration on OSF Registries. This stage therefore begins with version control, then writes and commits the preregistration, runs the declared analysis and prepares the work for an archive. It is the longest stage of the route, about six and a quarter hours of work, and is best spread over several sittings.
+The route ends on a project of your own. You ask a question beyond the claim that SCORE selected from the paper, one that the data of the case study support: another outcome of the paper, a comparison or a subgroup that the menu sets aside because it answers a different question, or a replication on new data. The [list below](#the-projects) gives the projects that the case study supports and where to start. The project follows the rule of the case-study report, with one addition. Its preregistration is complete before anything in it runs, and it is also fixed with a date that someone else can check, either as the first commit of the repository of the project, pushed to GitHub, or as a registration on OSF Registries. This stage therefore begins with version control, then writes and commits the preregistration, runs the declared analysis and prepares the work for an archive. It is the longest stage of the route, about six and a quarter hours of work, and is best spread over several sittings.
 
 ## 1. Version control
 
@@ -19,11 +19,11 @@ The section on registrations describes two templates, the AsPredicted form and t
 
 [Open What to track](https://codemoreh.github.io/ar4ds/git-github.html#sec-repro){.btn .btn-primary target="_blank"}
 
-Read [What to track](https://codemoreh.github.io/ar4ds/git-github.html#sec-repro) and [Your own reanalysis](https://codemoreh.github.io/ar4ds/git-github.html#sec-application). The first says what belongs in a repository and what never does, with a public-domain file and licensed survey microdata as the two examples, and the second puts your own reanalysis under version control, one decision per commit. Add your case report to the repository, with the workspace that renders it.
+Read [What to track](https://codemoreh.github.io/ar4ds/git-github.html#sec-repro) and [Your own reanalysis](https://codemoreh.github.io/ar4ds/git-github.html#sec-application). The first says what belongs in a repository and what never does, with a public-domain file and licensed survey microdata as the two examples, and the second puts your own reanalysis under version control, one decision per commit. Add your case-study report to the repository, with the workspace that renders it.
 
 ## 4. Your project
 
-**In the repository of your project.** Run the specification that you declared, and that one first. Report its result as your preregistration said you would, and place it beside the curve of the case where it can be placed. Label anything that you add after seeing the result as exploratory, and commit as you go.
+**In the repository of your project.** Run the specification that you declared, and that one first. Report its result as your preregistration said you would, and place it beside the curve of the case study where it can be placed. Label anything that you add after seeing the result as exploratory, and commit as you go.
 
 ## 5. Depositing the project
 
@@ -35,16 +35,16 @@ The section sets out a route for depositing a reanalysis of your own. The code g
 
 [Open Quarto projects](https://codemoreh.github.io/ar4ds/tools/quarto.html#sec-project){.btn .btn-outline-primary target="_blank"}
 
-Read [Projects](https://codemoreh.github.io/ar4ds/tools/quarto.html#sec-project) and [Publishing the document](https://codemoreh.github.io/ar4ds/tools/quarto.html#sec-publish) in the module on Quarto on the umbrella site. Render your case report and the project together as one Quarto project, and publish the rendered output where other people can reach it.
+Read [Projects](https://codemoreh.github.io/ar4ds/tools/quarto.html#sec-project) and [Publishing the document](https://codemoreh.github.io/ar4ds/tools/quarto.html#sec-publish) in the module on Quarto on the umbrella site. Render your case-study report and the project together as one Quarto project, and publish the rendered output where other people can reach it.
 
 **Shortcuts.** If you already use git and GitHub, skip the first step and read [What to track](https://codemoreh.github.io/ar4ds/git-github.html#sec-repro) for what a licence can keep out of a repository.
 
-**By the end of the stage** you have a repository whose first commit is the preregistration of your project as you wrote it, which holds the case report and the project, and which another person can clone and re-render by following its README; and you have the declared analysis of your project run and reported.
+**By the end of the stage** you have a repository whose first commit is the preregistration of your project as you wrote it, which holds the case-study report and the project, and which another person can clone and re-render by following its README; and you have the declared analysis of your project run and reported.
 
 ## The projects {#the-projects}
 
-Each item names a direction that the data and the pages of the case support. The question, the specification and the rule by which the result is judged are yours to declare.
+Each item names a direction that the data and the pages of the case study support. The question, the specification and the rule by which the result is judged are yours to declare.
 
-- **Another outcome or the Black names.** You can take another outcome of the paper, whether officials replied at all or replied within 24 hours, or compare the Black names with the white names, and all of these are in `housing_audit.csv`. Start from [Other outcomes and the Black names](../../cases/housing/multiverse.qmd#outcomes) on the Multiverse page.
+- **Another outcome or the Black names.** You can take another outcome of the paper, whether officials replied at all or replied within 24 hours, or compare the Black names with the white names, and all of these are in `housing_emails.csv`. Start from [Other outcomes and the Black names](../../cases/housing/multiverse.qmd#outcomes) on the Multiverse page.
 - **A subgroup.** You can take the male or the female names alone, or the officials with Hispanic names, which makes a question about representative bureaucracy asked of a group selected after the emails arrived. Start from [Subgroups](../../cases/housing/multiverse.qmd#subgroups) on the Multiverse page and [Who replied](../../cases/housing/menu.qmd#who-replied) on the specification menu.
-- **A replication on new data.** You can analyse the preregistered audit of 3,050 housing authorities that SCORE ran, whose de-identified data, do-file and dictionary are public, with the decisions of the menu. Start from [the replication](../../cases/housing/index.qmd#sec-replication) in the case study, and from the data at [osf.io/xseqg](https://osf.io/xseqg/).
+- **A replication on new data.** You can analyse the preregistered experiment on 3,050 housing authorities that SCORE ran, whose de-identified data, do-file and dictionary are public, with the decisions of the menu. Start from [the replication](../../cases/housing/index.qmd#sec-replication) on the background page, and from the data at [osf.io/xseqg](https://osf.io/xseqg/).

@@ -1,5 +1,5 @@
 ---
-title: "One-day workshop – the housing-audit case"
+title: "One-day workshop – Housing and racial bias"
 subtitle: "Four parts, with a facilitator"
 # The three one-day focuses of October 2026 were merged into this workshop on
 # 6 November 2026; their old addresses forward here.
@@ -9,7 +9,7 @@ aliases:
   - ../housing-one-day-data-tools/index.html
 ---
 
-This is the one-day workshop on the housing-audit case. It works on one field experiment, in which emails that differed only in the name that signed them were sent to public housing authorities in the United States, and on a claim of the original authors (OAs) that five analysts reanalysed for Multi100. Across the day you work as analyst no. 6. In the morning you meet the evidence on the credibility of social science and the three kinds of repetition that go under the word 'replication', read the paper and its claim, write the estimand statement behind the claim and finish a causal graph of the experiment. In the afternoon you reproduce one of the five reanalyses, whichever you choose, and then turn to robustness. You work through a menu of defensible analyses, send the one that you would defend to the class chart, read the chart against the 64 specifications on the curve of the claim, meet the replication that tested the claim with new emails, and declare one analysis in a shortened preregistration template before you run it.
+This is the one-day workshop on the Housing and racial bias case study. It works on one field experiment, in which emails that differed only in the name that signed them were sent to public housing authorities in the United States, and on a claim of the original authors (OAs) that five analysts reanalysed for the robustness study of SCORE (Multi100; Aczel et al. 2026). Across the day you work as analyst no. 6. In the morning you meet the evidence on the credibility of social science and the three kinds of repetition that go under the word 'replication', read the paper and its claim, write the estimand statement behind the claim and finish a causal graph of the experiment. In the afternoon you reproduce one of the five reanalyses, whichever you choose, and then turn to robustness. You work through a menu of defensible analyses, send the one that you would defend to the class chart, read the chart against the 64 specifications on the curve of the claim, meet the replication that tested the claim with new emails, and declare one analysis in a shortened preregistration template before you run it.
 
 What you leave with is a report of your own, two marks on the class chart, one explored and one declared, and the place of your result on the curve.
 
@@ -23,8 +23,8 @@ Several of the steps are things that the class does together, such as everyone t
 
 ## The parts of the day
 
-- **[Before the day](before.qmd).** You install R and the workspace, work through the first module on R, and read the case study.
-- **[Part 1 – The claim and credibility](part-1.qmd).** The part asks what a claim is for and why the field talks of a crisis, sets out the three Rs and what SCORE and Multi100 found, presents the paper and its claim, and ends with R running on your machine.
+- **[Before the day](before.qmd).** You install R and the workspace, work through the first module on R, and read the background page.
+- **[Part 1 – The claim and credibility](part-1.qmd).** The part asks what a claim is for and why the field talks of a crisis, sets out the three Rs and what SCORE and its robustness study found, presents the paper and its claim, and ends with R running on your machine.
 - **[Part 2 – The estimand and the causal graph](part-2.qmd).** You meet the five analysts, estimands and a short course on causal graphs, and then you write the estimand statement and finish the graph.
 - **[Part 3 – The reproduction](part-3.qmd).** You reproduce one of the five reanalyses, find out why your number is exactly that number and what a reproduction needs, and reproduce a second one if there is time.
 - **[Part 4 – Robustness](part-4.qmd).** You work the specification menu and put an exploratory mark on the class chart, read the chart against the curve of 64, meet the replication with new data, and declare one analysis, run it and report it.
@@ -32,4 +32,4 @@ Several of the steps are things that the class does together, such as everyone t
 
 [Start with Before the day](before.qmd){.btn .btn-primary}
 
-The same case is also taught as a [short session](../housing-short/index.qmd), as the [Extended course](../housing-extended/index.qmd), whose second day is this workshop, and as a [self-study route](../self-study/index.qmd).
+The same case study is also taught as a [short session](../housing-short/index.qmd), as the [Extended course](../housing-extended/index.qmd), whose second day is this workshop, and as a [self-study route](../self-study/index.qmd).

@@ -4,7 +4,7 @@
 #               the other outcomes, the subgroups that the curve leaves out, the
 #               randomisation distribution of the reference specification, and
 #               the power of the original and the replication designs.
-# Reads:        cases/housing/data/housing_audit.csv
+# Reads:        cases/housing/data/housing_emails.csv
 # Writes:       cases/housing/data/display_names.csv, cases/housing/data/display_outcomes.csv,
 #               cases/housing/data/display_subgroups.csv, cases/housing/data/display_ri.csv,
 #               cases/housing/data/display_power.csv
@@ -14,7 +14,7 @@
 
 source("R/housing/_tools.R")
 
-audit <- readr::read_csv("cases/housing/data/housing_audit.csv", show_col_types = FALSE)
+housing <- readr::read_csv("cases/housing/data/housing_emails.csv", show_col_types = FALSE)
 
 # Counts and shares of one set of emails, with 95% Wilson intervals in percent,
 # which stay inside 0-100 for small groups: the score interval of
@@ -44,8 +44,8 @@ summarise_names <- function(data) {
 }
 
 names_tab <- dplyr::bind_rows(
-  audit |> dplyr::group_by(level = "name", name, group, name_sex) |> summarise_names(),
-  audit |> dplyr::group_by(level = "group", group) |> summarise_names() |> dplyr::mutate(name = group)
+  housing |> dplyr::group_by(level = "name", name, group, name_sex) |> summarise_names(),
+  housing |> dplyr::group_by(level = "group", group) |> summarise_names() |> dplyr::mutate(name = group)
 )
 readr::write_csv(names_tab, "cases/housing/data/display_names.csv")  # r-style: keep – datawizard::data_write() writes other bytes
 
@@ -64,7 +64,7 @@ diff_from_white <- function(data, outcome, contrast) {
                  ci_low = 100 * est$CI_low, ci_high = 100 * est$CI_high)
 }
 
-outcomes_data <- audit |>
+outcomes_data <- housing |>
   datawizard::data_filter(!is.na(reply)) |>
   datawizard::data_modify(named_any = dplyr::if_else(reply == 0, 0, named))
 
@@ -75,7 +75,7 @@ outcomes <- tidyr::expand_grid(outcome = c("reply", "reply24", "named", "named_a
 readr::write_csv(outcomes, "cases/housing/data/display_outcomes.csv")  # r-style: keep – datawizard::data_write() writes other bytes
 
 # Subgroups that the curve leaves out because each is a different question
-replies <- datawizard::data_filter(audit, reply == 1 & !is.na(named))
+replies <- datawizard::data_filter(housing, reply == 1 & !is.na(named))
 subgroup <- function(data, label) {
   diff_from_white(data, "named", "hispanic") |> dplyr::mutate(subgroup = label, .before = 1)
 }
@@ -96,7 +96,7 @@ readr::write_csv(subgroups, "cases/housing/data/display_subgroups.csv")  # r-sty
 # random assignment of as many Hispanic names as the design gave them
 # (ri2; Gerber and Green 2012, chapter 3), with the gap recomputed each time
 set.seed(20261025)
-ref_frame <- spec_frame(audit, "white", "replies", "drop") |>
+ref_frame <- spec_frame(housing, "white", "replies", "drop") |>
   datawizard::data_select(c("y", "hisp"))
 ri_ref <- ri2::conduct_ri(y ~ hisp, assignment = "hisp",
                           declaration = randomizr::declare_ra(N = nrow(ref_frame), m = sum(ref_frame$hisp)),

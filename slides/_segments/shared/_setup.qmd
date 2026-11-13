@@ -1,14 +1,14 @@
 ```{r}
 #| label: setup-shared
 #| include: false
-# The setup that the segments without a case need: the palette of
+# The setup that the segments without a case study need: the palette of
 # style/cgm-slides.scss, the slide theme, the repeatability matrix, the 29
 # red-card estimates and the number formats. Every function is called with its
 # namespace, so no package is attached. Every figure is drawn here or in its
 # segment from data files or from small tribbles of published values, never
 # from an image of a published figure. Relative paths resolve from slides/ at
-# render time. The setup of a case comes after this chunk and may use
-# everything defined in it; it must define case_vars, the entry of the case
+# render time. The setup of a case study comes after this chunk and may use
+# everything defined in it; it must define case_vars, the entry of the case study
 # under cases: in _variables.yml, whose addresses the shared segments print
 # (the workspace on the tools slide of Part 1).
 ncl_blue <- "#0e3b6a"
@@ -76,7 +76,7 @@ repeatability_matrix <- function(highlight = NULL) {
 
 # The 29 teams of Silberzahn et al. (2018), published values, read once
 # because two slides in different parts draw them. The file is shared by the
-# decks of every case; codebook: data/silberzahn29_codebook.md.
+# decks of every case study; codebook: data/silberzahn29_codebook.md.
 silberzahn29 <- readr::read_csv("../data/silberzahn29.csv", show_col_types = FALSE) |>
   datawizard::data_modify(distribution = factor(distribution, levels = c("Linear", "Logistic", "Poisson", "Other")))
 

@@ -10,7 +10,7 @@ bibliography: [../references.bib, ../references-new.bib]
 source("../R/housing/_tools.R")
 
 # readr rather than datawizard::data_read(), which reads empty cells as "" rather than NA
-audit     <- readr::read_csv("../cases/housing/data/housing_audit.csv", show_col_types = FALSE)
+housing     <- readr::read_csv("../cases/housing/data/housing_emails.csv", show_col_types = FALSE)
 names_tab <- readr::read_csv("../cases/housing/data/display_names.csv", show_col_types = FALSE)
 outcomes  <- readr::read_csv("../cases/housing/data/display_outcomes.csv", show_col_types = FALSE)
 subgroups <- readr::read_csv("../cases/housing/data/display_subgroups.csv", show_col_types = FALSE)
@@ -33,25 +33,25 @@ sent_range <- range(names_tab$sent[names_tab$level == "name"])
 # The test that the six accounts were equally likely, against the numbers sent
 sent_p <- chisq.test(names_tab$sent[names_tab$level == "name"])$p.value
 # The smallest gap that the reference comparison reports as significant at 5%:
-# the half-width of its 95% interval, from the estimator of the case
-ref_fit <- fit_spec(audit)
+# the half-width of its 95% interval, from the estimator of the case study
+ref_fit <- fit_spec(housing)
 sig_threshold <- (ref_fit$ci_high - ref_fit$ci_low) / 2
 # A logit coefficient moves a probability by at most a quarter of its value
 # (Gelman and Hill 2007, p. 82); 0.098 is the coefficient of the replication
 score_max_pp <- 100 * 0.098 / 4  # r-style: PENDING – the divide-by-4 bound of a logit coefficient; no package found
 # The share of replies written by officials with Hispanic names, by group of names
-official_share <- audit |>
+official_share <- housing |>
   datawizard::data_filter(reply == 1) |>
   datawizard::data_summary(share = 100 * mean(hispanic_official, na.rm = TRUE), by = "group")
 ```
 
-This module of the companion curriculum sets the housing-audit case among the field experiments that sociologists and political scientists use to measure discrimination. The case comes from a study by the original authors (OAs), who emailed public housing authorities across the United States from six names meant to indicate a white, a Black or a Hispanic applicant [@EinsteinGlick2017DoesRaceAffect], and the [case study](../cases/housing/index.qmd) tells it in full. Here the design itself is the subject: what random assignment buys, what a name conveys, why comparing the content of replies needs care, how a randomisation test works, what power has to do with the failed replication, what blocking the assignment would have added, and what such studies ask of the people whom they study. Every number on the page is computed when it is built, from the files of the course in `cases/housing/data/`, and the code that computes the less familiar ones is shown.
+This module of the companion curriculum sets the Housing and racial bias case study among the field experiments that sociologists and political scientists use to measure discrimination. The case study comes from a study by the original authors (OAs), who emailed public housing authorities across the United States from six names meant to indicate a white, a Black or a Hispanic applicant [@EinsteinGlick2017DoesRaceAffect], and the [background page](../cases/housing/index.qmd) tells it in full. Here the design itself is the subject: what random assignment buys, what a name conveys, why comparing the content of replies needs care, how a randomisation test works, what power has to do with the failed replication, what blocking the assignment would have added, and what such studies ask of the people whom they study. Every number on the page is computed when it is built, from the files of the course in `cases/housing/data/`, and the code that computes the less familiar ones is shown.
 
 ## 1. Audit and correspondence studies {#sec-audits}
 
 An audit study measures discrimination by sending requests that are identical except for one characteristic of the person who makes them, and by comparing how the requests are answered. In the older form, trained testers who differ in the characteristic apply in person, as in the study of hiring by @Pager2003MarkCriminalRecord, which used matched pairs of testers to measure what a criminal record costs an applicant. In the form that is now more common, the correspondence study, the requests are written, and the characteristic is carried by the name on a résumé, a letter or an email. @BertrandMullainathan2004AreEmilyGreg sent résumés that differed only in a name meant to indicate race, and a meta-analysis of field experiments on hiring found no change since 1989 in discrimination against African Americans, and some sign of a decline against Latinos [@QuillianEtAl2017MetaanalysisFieldExperiments].
 
-Political science adapted the correspondence design to the people who hold public office or administer it, by sending emails that ask a simple question. @ButlerBroockman2011PoliticiansRaciallyDiscriminate wrote to state legislators and @WhiteEtAl2015WhatNeedVote to local election officials, studies that the OAs summarise as finding that "blacks and Hispanics making queries about voting procedures are less likely to receive responses from state legislators and local election officials than whites" (p. 4 of the accepted manuscript, to which the page numbers on this page refer). The housing-audit case carries the question to officials who decide access to a scarce public good, the street-level bureaucrats whose discretion @Lipsky1980StreetLevelBureaucracy described. Such studies usually measure several outcomes of one request: whether a reply came at all, how fast it came, and what it contained. The claim of this course concerns the last, the tone of a reply, measured by whether it opened with the name of the sender, and section 4 shows why an outcome of that kind needs more care than the first.
+Political science adapted the correspondence design to the people who hold public office or administer it, by sending emails that ask a simple question. @ButlerBroockman2011PoliticiansRaciallyDiscriminate wrote to state legislators and @WhiteEtAl2015WhatNeedVote to local election officials, studies that the OAs summarise as finding that "blacks and Hispanics making queries about voting procedures are less likely to receive responses from state legislators and local election officials than whites" (p. 4 of the accepted manuscript, to which the page numbers on this page refer). The experiment of the OAs carries the question to officials who decide access to a scarce public good, the street-level bureaucrats whose discretion @Lipsky1980StreetLevelBureaucracy described. Such studies usually measure several outcomes of one request: whether a reply came at all, how fast it came, and what it contained. The claim of this course concerns the last, the tone of a reply, measured by whether it opened with the name of the sender, and section 4 shows why an outcome of that kind needs more care than the first.
 
 ## 2. Random assignment {#sec-randomisation}
 
@@ -61,19 +61,19 @@ The claim can be checked on anything that the emails could not have changed. @tb
 
 ```{r}
 #| label: tbl-balance
-#| tbl-cap: "The emails sent to each group of names, by characteristics that the emails could not have changed: the share of each group with a hard-to-find address, and the share in the top third of each community characteristic, with the p-value of a $\\chi^2$ test that the full distribution of the characteristic is the same in the three groups. Source: `cases/housing/data/housing_audit.csv`."
+#| tbl-cap: "The emails sent to each group of names, by characteristics that the emails could not have changed: the share of each group with a hard-to-find address, and the share in the top third of each community characteristic, with the p-value of a $\\chi^2$ test that the full distribution of the characteristic is the same in the three groups. Source: `cases/housing/data/housing_emails.csv`."
 balance_vars <- c(hard_email = "Hard-to-find address", hispanic_third = "Percent Hispanic, top third",
                   black_third = "Percent Black, top third", pop_third = "Population, top third",
                   poverty_third = "Poverty rate, top third", assessment_third = "HUD assessment, top third")
 # dplyr inside the loop, because datawizard does not find the variable of each pass
 balance <- purrr::imap(balance_vars, \(label, v) {
-  shares <- audit |>
+  shares <- housing |>
     dplyr::mutate(top = if (v == "hard_email") .data[[v]] == 1 else .data[[v]] == "top") |>
     dplyr::summarise(share = 100 * mean(top, na.rm = TRUE), .by = group)
   share_of <- \(g) pct(shares$share[shares$group == g])
   tibble::tibble(Characteristic = label,
                  White = share_of("white"), Black = share_of("black"), Hispanic = share_of("hispanic"),
-                 `χ<sup>2</sup> test` = pe(stats::chisq.test(table(audit$group, audit[[v]]))$p.value))  # r-style: keep – the table that chisq.test() takes
+                 `χ<sup>2</sup> test` = pe(stats::chisq.test(table(housing$group, housing[[v]]))$p.value))  # r-style: keep – the table that chisq.test() takes
 }) |>
   purrr::list_rbind()
 balance |>
@@ -115,7 +115,7 @@ Because the sex of the name was crossed with the group by design, every group ha
 
 ```{r}
 #| label: sex-check
-frame <- spec_frame(audit, comparison = "white", population = "replies", uncoded = "drop")
+frame <- spec_frame(housing, comparison = "white", population = "replies", uncoded = "drop")
 with_sex <- stats::lm(y ~ hisp + name_sex, data = frame)
 round(100 * stats::coef(with_sex)[["hisp"]], 2)
 ```
@@ -155,7 +155,7 @@ A bound shows how far a change in who replied could go towards explaining the ga
 # Kern): every delivered email to a Hispanic or a white name, a reply with a
 # greeting code counting as a response, and the Hispanic name assumed only to
 # discourage a reply, so that the replies to white names are trimmed
-delivered <- audit |>
+delivered <- housing |>
   datawizard::data_filter(!is.na(reply) & group %in% c("white", "hispanic")) |>
   datawizard::data_modify(
     hisp = as.integer(group == "hispanic"),
@@ -184,7 +184,7 @@ Random assignment also supplies a test that needs no model of the errors. The id
 # experiment assigned them, and recomputes the gap after each reshuffle
 # (Gerber and Green 2012, chapter 3); statmod::permp() turns the number of
 # reshuffles at least as extreme into the p-value of Phipson and Smyth (2010)
-all_emails <- spec_frame(audit, comparison = "white", population = "all", uncoded = "drop")
+all_emails <- spec_frame(housing, comparison = "white", population = "all", uncoded = "drop")
 set.seed(20261025)
 among_replies <- ri2::conduct_ri(y ~ hisp, assignment = "hisp",
                                  declaration = randomizr::declare_ra(N = nrow(frame), m = sum(frame$hisp)),
@@ -285,17 +285,17 @@ The paper describes the assignment of the names in the one sentence quoted in se
 
 The SCORE replication was designed differently. Its preregistration states: "We will block randomize within each U.S. state to ensure that there is an equivalent number of Hispanic and white names contacting the housing agencies within each state." Blocking, also called stratified randomisation, divides the units into groups on a characteristic recorded before the experiment and assigns the treatment at random within each group, in fixed numbers, so that the characteristic is balanced between the treatment groups by design rather than only in expectation. @ImaiEtAl2008MisunderstandingsExperimentalistsObservationalists, who recall the maxim of Box and colleagues, "block what you can and randomize what you cannot", put the advantage precisely: "randomization without blocking is incapable of achieving what blocking can, which is to eliminate one component of estimation error entirely" (p. 493), the component due to imbalance on the blocking variable. @AtheyImbens2017EconometricsRandomizedExperiments go further and recommend that experimenters "always stratify as much as possible, up to the point that each stratum contains at least two treated and two control units", since "committing to stratification can only improve precision, not lower it" (section 7). What blocking buys, in other words, is precision, and only as much of it as the blocking variable predicts the outcome; it removes no bias, because random assignment has already removed it.
 
-A blocked experiment is analysed block by block. The gap is estimated within each block and the block gaps are averaged with weights proportional to the size of each block [@AtheyImbens2017EconometricsRandomizedExperiments, section 6.1], which `estimatr::difference_in_means()` does when it is given the blocks. The assignment itself is drawn by `randomizr::block_ra()`, and a randomisation test reshuffles the treatment within each block, as the design did, which ri2 does when the declaration of `randomizr::declare_ra()` names the blocks. The chunk below draws, for illustration only, the kind of assignment that a blocked version of the original audit could have used, with the six names spread evenly within the two kinds of address.
+A blocked experiment is analysed block by block. The gap is estimated within each block and the block gaps are averaged with weights proportional to the size of each block [@AtheyImbens2017EconometricsRandomizedExperiments, section 6.1], which `estimatr::difference_in_means()` does when it is given the blocks. The assignment itself is drawn by `randomizr::block_ra()`, and a randomisation test reshuffles the treatment within each block, as the design did, which ri2 does when the declaration of `randomizr::declare_ra()` names the blocks. The chunk below draws, for illustration only, the kind of assignment that a blocked version of the original experiment could have used, with the six names spread evenly within the two kinds of address.
 
 ```{r}
 #| label: block-ra
 set.seed(20261105)
-blocked_names <- randomizr::block_ra(blocks = audit$hard_email,
+blocked_names <- randomizr::block_ra(blocks = housing$hard_email,
                                      conditions = c("Tyrone", "Shanice", "Santiago", "Gabriela", "Brett", "Emily"))
-table(hard_email = audit$hard_email, name = blocked_names)  # r-style: keep – a cross-tabulation of two vectors
+table(hard_email = housing$hard_email, name = blocked_names)  # r-style: keep – a cross-tabulation of two vectors
 ```
 
-The original audit can show what a blocked analysis would and would not have changed. The hard-to-find address is the one characteristic of the public file that was recorded for every authority before the emails went out and that predicts the greeting, so the chunk below analyses the reference comparison within its two blocks, as if the names had been blocked on it, an analysis that is called post-stratification when it is applied to a design that was not blocked.
+The original experiment can show what a blocked analysis would and would not have changed. The hard-to-find address is the one characteristic of the public file that was recorded for every authority before the emails went out and that predicts the greeting, so the chunk below analyses the reference comparison within its two blocks, as if the names had been blocked on it, an analysis that is called post-stratification when it is applied to a design that was not blocked.
 
 ```{r}
 #| label: post-stratified
@@ -355,7 +355,7 @@ Take the trimming argument of section 4 and reverse its assumption: suppose that
 
 ## Sources and further reading {#sec-sources}
 
-The design of the case is set out in the paper of the OAs [@EinsteinGlick2017DoesRaceAffect], whose accepted manuscript is open at [OpenBU](https://hdl.handle.net/2144/37826), and the data in its replication package on the Harvard Dataverse ([doi:10.7910/DVN/1HOVTU](https://doi.org/10.7910/DVN/1HOVTU)). The audit and correspondence literature cited above runs from @Pager2003MarkCriminalRecord and @BertrandMullainathan2004AreEmilyGreg to the meta-analysis of @QuillianEtAl2017MetaanalysisFieldExperiments, and in political science from @ButlerBroockman2011PoliticiansRaciallyDiscriminate to @WhiteEtAl2015WhatNeedVote. @Gaddis2017HowBlackAre examines names as treatments. Post-treatment conditioning in experiments is treated by @MontgomeryEtAl2018HowConditioningPosttreatment and, for audit studies, by @Coppock2019AvoidingPosttreatmentBias. Randomisation inference goes back to @Fisher1935DesignExperiments, with @Ernst2004PermutationMethods as an introduction and @PhipsonSmyth2010PermutationPValues on the p-value. Blocking is defended by @ImaiEtAl2008MisunderstandingsExperimentalistsObservationalists, and the analysis of blocked experiments is set out by @AtheyImbens2017EconometricsRandomizedExperiments. The SCORE replication, its preregistration and its final report are on the OSF at [osf.io/2ug8x](https://osf.io/2ug8x/). The files of the course behind the numbers are `housing_audit.csv`, `display_names.csv`, `display_outcomes.csv`, `display_subgroups.csv`, `display_power.csv` and `spec_curve.csv` in `cases/housing/data/`, each with a codebook.
+The design of the experiment is set out in the paper of the OAs [@EinsteinGlick2017DoesRaceAffect], whose accepted manuscript is open at [OpenBU](https://hdl.handle.net/2144/37826), and the data in its replication package on the Harvard Dataverse ([doi:10.7910/DVN/1HOVTU](https://doi.org/10.7910/DVN/1HOVTU)). The audit and correspondence literature cited above runs from @Pager2003MarkCriminalRecord and @BertrandMullainathan2004AreEmilyGreg to the meta-analysis of @QuillianEtAl2017MetaanalysisFieldExperiments, and in political science from @ButlerBroockman2011PoliticiansRaciallyDiscriminate to @WhiteEtAl2015WhatNeedVote. @Gaddis2017HowBlackAre examines names as treatments. Post-treatment conditioning in experiments is treated by @MontgomeryEtAl2018HowConditioningPosttreatment and, for audit studies, by @Coppock2019AvoidingPosttreatmentBias. Randomisation inference goes back to @Fisher1935DesignExperiments, with @Ernst2004PermutationMethods as an introduction and @PhipsonSmyth2010PermutationPValues on the p-value. Blocking is defended by @ImaiEtAl2008MisunderstandingsExperimentalistsObservationalists, and the analysis of blocked experiments is set out by @AtheyImbens2017EconometricsRandomizedExperiments. The SCORE replication, its preregistration and its final report are on the OSF at [osf.io/2ug8x](https://osf.io/2ug8x/). The files of the course behind the numbers are `housing_emails.csv`, `display_names.csv`, `display_outcomes.csv`, `display_subgroups.csv`, `display_power.csv` and `spec_curve.csv` in `cases/housing/data/`, each with a codebook.
 
 ## References {.unnumbered}
 

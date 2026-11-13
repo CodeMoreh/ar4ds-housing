@@ -1,11 +1,11 @@
-## The public record of the case {#the-public-record-of-the-case}
+## The public record of the case study {#the-public-record-of-the-case}
 
 ::: {.urlbox}
 [doi.org/10.7910/DVN/1HOVTU](https://doi.org/10.7910/DVN/1HOVTU)<br>[the data and code of the OAs, CC0]{.fs-60}
 :::
 
 ::: {.urlbox .fragment}
-[osf.io/3a8bg](https://osf.io/3a8bg/)<br>[the SCORE project of the paper, with Multi100 at osf.io/38rsh]{.fs-60}
+[osf.io/3a8bg](https://osf.io/3a8bg/)<br>[the SCORE project of the paper, with the robustness study at osf.io/38rsh]{.fs-60}
 :::
 
 ::: {.urlbox .fragment}
@@ -17,7 +17,7 @@
 :::
 
 ::: notes
-Each of these addresses does a different job. The first is the archive of the original study, on the Harvard Dataverse: the data and code of the OAs, released into the public domain, which is why every one of you could download the file and reproduce a published number earlier today without asking anybody. [advance] The second is the SCORE project of the paper on the OSF, with the Multi100 component inside it and one sub-component for each analyst, where four of the five published their scripts. [advance] The third is the replication, with the preregistration that fixed its plan and its final report, which lists every deviation from that plan. [advance] Three minutes: open the replication, find the preregistered analysis, and paste in chat what the report says about how often it found a significant gap. [wait] There it is: not significant approximately ninety-three per cent of the time. Because that plan was registered first, nobody can say that the analysis was chosen to make the gap disappear.
+Each of these addresses does a different job. The first is the archive of the original study, on the Harvard Dataverse: the data and code of the OAs, released into the public domain, which is why every one of you could download the file and reproduce a published number earlier today without asking anybody. [advance] The second is the SCORE project of the paper on the OSF, with the component of the robustness study inside it and one sub-component for each analyst, where four of the five published their scripts. [advance] The third is the replication, with the preregistration that fixed its plan and its final report, which lists every deviation from that plan. [advance] Three minutes: open the replication, find the preregistered analysis, and paste in chat what the report says about how often it found a significant gap. [wait] There it is: not significant approximately ninety-three per cent of the time. Because that plan was registered first, nobody can say that the analysis was chosen to make the gap disappear.
 :::
 
 ## The eight AsPredicted questions {#eight-questions-your-answers-already-mapped .smaller}

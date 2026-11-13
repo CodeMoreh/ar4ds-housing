@@ -1,7 +1,7 @@
 ```{r}
 #| label: setup-binary
 #| include: false
-# The numbers of the session on binary outcomes that the setup of the case does
+# The numbers of the session on binary outcomes that the setup of the case study does
 # not hold, computed from the rows of the reference specification (ref_rows:
 # the coded replies to Hispanic and white names) with the functions that
 # companion/binary-outcomes.qmd uses. Comes after the two setup chunks and uses

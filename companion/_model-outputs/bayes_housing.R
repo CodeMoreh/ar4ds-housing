@@ -1,10 +1,10 @@
 ################################################################################
-# Title:        Bayesian models of the housing-audit case
+# Title:        Bayesian models of the Housing case study
 # Purpose:      The fits behind the Bayesian estimation module. A binomial
 #               model of the greetings by name among the coded replies to
 #               Hispanic and white names, fitted with brms on the counts of
-#               the original audit and of the SCORE replication: the priors
-#               alone (prior predictive check), the original audit under a
+#               the original experiment and of the SCORE replication: the priors
+#               alone (prior predictive check), the original experiment under a
 #               weakly informative and a sceptical prior for the gap, the
 #               replication alone and with the posterior of the original as
 #               its prior, and both studies in one model, with a common gap
@@ -12,15 +12,15 @@
 #               percentage points with marginaleffects, the prior
 #               sensitivity comes from priorsense, and only summaries and a
 #               thinned set of draws leave the script.
-# Reads:        cases/housing/data/housing_audit.csv (the original replies),
+# Reads:        cases/housing/data/housing_emails.csv (the original replies),
 #               cases/housing/data/display_replication.csv (the replication,
 #               from which the counts of each group are recovered)
-# Writes:       companion/_model-outputs/bayes_audit_counts.csv
-#               companion/_model-outputs/bayes_audit_draws.csv
-#               companion/_model-outputs/bayes_audit_summary.csv
-#               companion/_model-outputs/bayes_audit_diagnostics.csv
-#               companion/_model-outputs/bayes_audit_sensitivity.csv
-#               companion/_model-outputs/bayes_audit_ppc.csv
+# Writes:       companion/_model-outputs/bayes_housing_counts.csv
+#               companion/_model-outputs/bayes_housing_draws.csv
+#               companion/_model-outputs/bayes_housing_summary.csv
+#               companion/_model-outputs/bayes_housing_diagnostics.csv
+#               companion/_model-outputs/bayes_housing_sensitivity.csv
+#               companion/_model-outputs/bayes_housing_ppc.csv
 #               (and the fitted models as fit_*.rds, which git ignores)
 # Author:       Claude for CM
 # Last updated: 2026-11-05
@@ -29,9 +29,9 @@
 set.seed(20261105)
 out <- "companion/_model-outputs/"
 
-# The original audit: the coded replies to Hispanic and white names, the rows
+# The original experiment: the coded replies to Hispanic and white names, the rows
 # of the reference specification of the curve (white, replies, drop)
-original <- readr::read_csv("cases/housing/data/housing_audit.csv", show_col_types = FALSE) |>
+original <- readr::read_csv("cases/housing/data/housing_emails.csv", show_col_types = FALSE) |>
   datawizard::data_filter(reply == 1, !is.na(named), group %in% c("white", "hispanic")) |>
   datawizard::data_modify(hisp = as.integer(group == "hispanic")) |>
   datawizard::data_summary(k = sum(named), n = length(named), by = "hisp") |>
@@ -41,7 +41,7 @@ original <- readr::read_csv("cases/housing/data/housing_audit.csv", show_col_typ
 # display_replication.csv holds the shares and the total of its replies but not
 # the size of each group. The only split of the 1,484 replies into whole
 # numbers of greetings at both shares is recovered here and checked against
-# the facts of the case (721 replies to Hispanic and 763 to white aliases).
+# the facts of the case study (721 replies to Hispanic and 763 to white aliases).
 replies_row <- readr::read_csv("cases/housing/data/display_replication.csv", show_col_types = FALSE) |>
   datawizard::data_filter(population == "replies", authorities == "all")
 split <- tibble::tibble(n_hisp = seq_len(replies_row$n - 1)) |>
@@ -59,7 +59,7 @@ counts <- dplyr::bind_rows(original, replication) |>
   datawizard::data_modify(hisp = as.integer(hisp), k = as.integer(k), n = as.integer(n),
                           study = factor(study, levels = c("original", "replication")))
 stopifnot(identical(counts$k, c(107L, 77L, 400L, 378L)), identical(counts$n, c(175L, 187L, 763L, 721L)))
-readr::write_csv(counts, paste0(out, "bayes_audit_counts.csv"))
+readr::write_csv(counts, paste0(out, "bayes_housing_counts.csv"))
 orig_counts <- datawizard::data_filter(counts, study == "original")
 repl_counts <- datawizard::data_filter(counts, study == "replication")
 
@@ -184,14 +184,14 @@ summary_tab <- gaps |>
     by = c("model", "quantity")
   ) |>
   dplyr::mutate(dplyr::across(dplyr::where(is.double), \(x) signif(x, 6)))
-readr::write_csv(summary_tab, paste0(out, "bayes_audit_summary.csv"))
+readr::write_csv(summary_tab, paste0(out, "bayes_housing_summary.csv"))
 
 # A thinned set of draws of the gaps and the white share, one in eight, for the
 # density figures of the module
 gaps |>
   datawizard::data_filter(draw %% 8 == 0, quantity != "coef") |>
   datawizard::data_modify(value = round(value, 2)) |>
-  readr::write_csv(paste0(out, "bayes_audit_draws.csv"))
+  readr::write_csv(paste0(out, "bayes_housing_draws.csv"))
 
 # Computation: the largest R-hat and the smallest bulk and tail effective
 # sample sizes of the coefficients, divergent transitions and the deepest tree
@@ -207,7 +207,7 @@ diagnostics <- purrr::imap(fits, \(fit, name) {
 }) |>
   purrr::list_rbind() |>
   dplyr::mutate(dplyr::across(dplyr::where(is.double), \(x) signif(x, 6)))
-readr::write_csv(diagnostics, paste0(out, "bayes_audit_diagnostics.csv"))
+readr::write_csv(diagnostics, paste0(out, "bayes_housing_diagnostics.csv"))
 
 # Prior sensitivity by power-scaling (Kallioinen et al.): how far the posterior
 # of each gap coefficient moves when the prior or the likelihood is raised to
@@ -222,7 +222,7 @@ sensitivity <- purrr::imap(sens_vars, \(vars, name) {
                      diagnosis)
 }) |>
   purrr::list_rbind()
-readr::write_csv(sensitivity, paste0(out, "bayes_audit_sensitivity.csv"))
+readr::write_csv(sensitivity, paste0(out, "bayes_housing_sensitivity.csv"))
 
 # Posterior predictive check of the two joint models: the share of greetings
 # in each of the four cells, observed and in replicated data (90% interval)
@@ -240,4 +240,4 @@ ppc <- purrr::imap(joint, \(fit, name) {
 }) |>
   purrr::list_rbind() |>
   dplyr::mutate(dplyr::across(dplyr::where(is.double), \(x) signif(x, 6)))
-readr::write_csv(ppc, paste0(out, "bayes_audit_ppc.csv"))
+readr::write_csv(ppc, paste0(out, "bayes_housing_ppc.csv"))

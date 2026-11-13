@@ -1,12 +1,12 @@
 ---
 title: "Applied replication for data skills"
-subtitle: "Short session – the housing-audit case"
+subtitle: "Short session – Housing and racial bias"
 format: revealjs
 # Optional runs that this deck includes in its main flow (core-runs.lua
 # strips their .deepdive mark); the others stay on the d toggle. This deck
 # carries one optional run, the multiverse background of the second half.
 core-runs: []
-# The format of the deck, which the segments of the housing-audit case read
+# The format of the deck, which the segments of the Housing case study read
 # through Quarto conditional content (when-meta="deck.short" and so on):
 # one of short, open-science, data-tools or methods, and menu where the
 # deck teaches the specification menu. The formats are set out in
@@ -23,12 +23,12 @@ deck:
 {{< include _segments/housing/_h1-divider.qmd >}}
 {{< include _segments/shared/_matrix.qmd >}}
 {{< include _segments/shared/_score-brief.qmd >}}
-{{< include _segments/shared/_multi100.qmd >}}
+{{< include _segments/shared/_robustness.qmd >}}
 {{< include _segments/housing/_handson1.qmd >}}
 {{< include _segments/housing/_paper.qmd >}}
 {{< include _segments/housing/_five-analysts.qmd >}}
 {{< include _segments/housing/_claim-estimand.qmd >}}
-{{< include _segments/housing/_task2-multi100.qmd >}}
+{{< include _segments/housing/_task2-robustness.qmd >}}
 {{< include _segments/housing/_handson3.qmd >}}
 {{< include _segments/housing/_onenumber.qmd >}}
 {{< include _segments/housing/_break-half.qmd >}}

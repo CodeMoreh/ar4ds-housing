@@ -1,4 +1,4 @@
-## What a Multi100 analyst received {#inside-multi100-what-an-analyst-was-sent .smaller}
+## What an analyst of the robustness study received {#what-an-analyst-received .smaller}
 
 ::: {.small}
 - A **published paper**, in full and not blinded, so the original estimates were in view
@@ -16,10 +16,10 @@ And two things that no analyst was told: **who the other analysts were**, and **
 :::
 
 ::: notes
-Multi100 handed a hundred published studies to at least five independent analysts each, and I was one of those analysts, on a different paper from the one we work on today. Let me describe what that was like from the inside, because it shapes how you read the results. What arrived was the published paper, the whole thing and not blinded, so the original estimates were in view, and if anything that pulls you towards the original answer. With it came the central claim of the paper in a single sentence, usually taken from the abstract, and the data or directions for fetching them. What did not arrive was any instruction on method: analyse it however you can defend. And two things stayed hidden throughout, who the other analysts were and what any of them were finding. The isolation was part of the design, because it is what makes the spread at the end mean something.
+The robustness study of SCORE, known as Multi100, handed a hundred published studies to at least five independent analysts each, and I was one of those analysts, on a different paper from the one we work on today. Let me describe what that was like from the inside, because it shapes how you read the results. What arrived was the published paper, the whole thing and not blinded, so the original estimates were in view, and if anything that pulls you towards the original answer. With it came the central claim of the paper in a single sentence, usually taken from the abstract, and the data or directions for fetching them. What did not arrive was any instruction on method: analyse it however you can defend. And two things stayed hidden throughout, who the other analysts were and what any of them were finding. The isolation was part of the design, because it is what makes the spread at the end mean something.
 :::
 
-## The two Multi100 tasks {#two-tasks-months-apart .smaller}
+## The two tasks of the robustness study {#two-tasks-months-apart .smaller}
 
 ::: {.small}
 **Task 1 – free reanalysis.** Reanalyse the claim however you see fit, then record one conclusion: evidence for the claim, evidence for the opposite, no evidence either way, or evidence for the null hypothesis.
@@ -51,5 +51,5 @@ Standardising makes the comparison possible, but it assumes that the analysts ar
 :::
 
 ::: notes
-Even with the question pinned down, the answers arrive in different forms. Everyone reports the test statistic that their model happens to produce, a t, a z, an F or a chi-square, with its degrees of freedom or its sample size. Multi100 converted those onto a common scale, a partial correlation and a standardised difference, so that a regression fitted in Stata and a test computed in R could be placed on the same axis. Alongside that, a peer panel judged whether each pipeline was an appropriate analysis of the claim at all, so the spread that comes out of the study is a spread among analyses that passed review. [advance] Putting several numbers on one axis takes two things for granted. One is that they estimate the same quantity, and a good deal of what follows is about what happens when they do not. The other is that each conversion counts the units that actually carry the evidence.
+Even with the question pinned down, the answers arrive in different forms. Everyone reports the test statistic that their model happens to produce, a t, a z, an F or a chi-square, with its degrees of freedom or its sample size. The robustness study converted those onto a common scale, a partial correlation and a standardised difference, so that a regression fitted in Stata and a test computed in R could be placed on the same axis. Alongside that, a peer panel judged whether each pipeline was an appropriate analysis of the claim at all, so the spread that comes out of the study is a spread among analyses that passed review. [advance] Putting several numbers on one axis takes two things for granted. One is that they estimate the same quantity, and a good deal of what follows is about what happens when they do not. The other is that each conversion counts the units that actually carry the evidence.
 :::

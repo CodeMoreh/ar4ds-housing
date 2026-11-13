@@ -79,7 +79,7 @@ This is not mostly a story about fraud, and I want to be emphatic about that. Fr
 :::
 
 ::: {.fragment .small}
-This is the first many-analysts study. Every one since is a variation on it, including Multi100, from which this course takes its case.
+This is the first many-analysts study. Every one since is a variation on it, including the robustness study of SCORE, known as Multi100, from which this course takes its case study.
 :::
 
 ::: {.src}

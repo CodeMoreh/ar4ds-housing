@@ -6,7 +6,7 @@
 #               margins for the average marginal effect of the logit and its
 #               delta-method error (Leeper 2017), on every specification; and
 #               the committed curve against a fresh fit.
-# Reads:        cases/housing/data/housing_audit.csv, cases/housing/data/spec_curve.csv
+# Reads:        cases/housing/data/housing_emails.csv, cases/housing/data/spec_curve.csv
 # Writes:       nothing; stops on any disagreement
 # Author:       Claude for CM
 # Last updated: 2026-10-26
@@ -14,14 +14,14 @@
 
 source("R/housing/_tools.R")
 
-audit <- readr::read_csv("cases/housing/data/housing_audit.csv", show_col_types = FALSE)
+housing <- readr::read_csv("cases/housing/data/housing_emails.csv", show_col_types = FALSE)
 curve <- readr::read_csv("cases/housing/data/spec_curve.csv", show_col_types = FALSE)
 
 # The independent route for each specification. margins takes the discrete
 # change of a factor, so the Hispanic name enters its logit as a factor.
 reference_fit <- function(comparison, population, uncoded, model, adjust) {
   terms <- ADJUST_TERMS[[adjust]]
-  frame <- spec_frame(audit, comparison, population, uncoded) |>
+  frame <- spec_frame(housing, comparison, population, uncoded) |>
     dplyr::select("y", "hisp", dplyr::all_of(terms)) |>
     stats::na.omit()
   form <- stats::reformulate(c("hisp", terms), response = "y")
@@ -40,7 +40,7 @@ check <- curve |>
   dplyr::mutate(ref = purrr::pmap(list(comparison, population, uncoded, model, adjust), reference_fit)) |>
   tidyr::unnest(ref) |>
   dplyr::mutate(fresh = purrr::pmap(list(comparison, population, uncoded, model, adjust),
-                                    \(...) fit_spec(audit, ...)[, c("b_pp", "stat")])) |>
+                                    \(...) fit_spec(housing, ...)[, c("b_pp", "stat")])) |>
   tidyr::unnest(fresh, names_sep = "_")
 
 gaps <- check |>

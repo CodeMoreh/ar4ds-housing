@@ -10,7 +10,7 @@ Everyone who chose the same analyst got the same value, to the third decimal, an
 :::
 
 ::: {.fragment}
-You all ran the *same code*. The five Multi100 analysts each wrote their own, on the same public file, and came back with five different numbers and two different verdicts.
+You all ran the *same code*. The five analysts of the robustness study each wrote their own, on the same public file, and came back with five different numbers and two different verdicts.
 :::
 
 ::: {.fragment}

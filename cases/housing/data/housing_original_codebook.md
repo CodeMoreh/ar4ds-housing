@@ -1,6 +1,6 @@
-# Codebook: `audit_original.csv`
+# Codebook: `housing_original.csv`
 
-The public file of the original authors (OAs) of "Does Race Affect Access to Government Services? An Experiment Exploring Street-Level Bureaucrats and Access to Public Housing" (*American Journal of Political Science* 61 (1), 2017), as a plain CSV with its own column names: 1,014 rows, one per email, and 14 columns. It is written by `R/housing/01_audit_data.R` from `HousingAuditAJPSFinalPublic_Unidentified.dta`, the blinded file of the replication package on the Harvard Dataverse (doi:10.7910/DVN/1HOVTU, CC0). The script turns the Stata value labels into their numeric codes and drops the variable labels and formats; it changes no value and no row. The reproduction of Task 3 runs on this file, because a reproduction starts from the data as the OAs published them. Every other exercise uses the course file, `housing_audit.csv` ([codebook](housing_audit_codebook.md)), which holds the same rows in the same order with readable names.
+The public file of the original authors (OAs) of "Does Race Affect Access to Government Services? An Experiment Exploring Street-Level Bureaucrats and Access to Public Housing" (*American Journal of Political Science* 61 (1), 2017), as a plain CSV with its own column names: 1,014 rows, one per email, and 14 columns. It is written by `R/housing/01_email_data.R` from `HousingAuditAJPSFinalPublic_Unidentified.dta`, the blinded file of the replication package on the Harvard Dataverse (doi:10.7910/DVN/1HOVTU, CC0). The script turns the Stata value labels into their numeric codes and drops the variable labels and formats; it changes no value and no row. The reproduction of Task 3 runs on this file, because a reproduction starts from the data as the OAs published them. Every other exercise uses the course file, `housing_emails.csv` ([codebook](housing_emails_codebook.md)), which holds the same rows in the same order with readable names.
 
 ## Columns
 
@@ -21,11 +21,11 @@ The public file of the original authors (OAs) of "Does Race Affect Access to Gov
 | `poverty_pop_third` | The same on the poverty rate | `poverty_third` |
 | `assesment_third` | The third of the housing authority on the HUD assessment score; the spelling is that of the source | `assessment_third` |
 
-The counts of every column are given in the [codebook of the course file](housing_audit_codebook.md). The community values are thirds because the continuous values of the 2012 American Community Survey would identify the housing authorities. The Stata file labels `HispanicEmailer` "Hard to find email address", a copy error in the source, and the codebook of the OAs labels it "Respondent had Hispanic name".
+The counts of every column are given in the [codebook of the course file](housing_emails_codebook.md). The community values are thirds because the continuous values of the 2012 American Community Survey would identify the housing authorities. The Stata file labels `HispanicEmailer` "Hard to find email address", a copy error in the source, and the codebook of the OAs labels it "Respondent had Hispanic name".
 
 ## The reproductions of Task 3
 
-The five Multi100 reanalyses of the claim are reproduced from this file, and the four statistics that Multi100 recorded come out exactly.
+The five reanalyses of the claim in the robustness study of SCORE (Multi100; Aczel et al. 2026) are reproduced from this file, and the four statistics recorded in the robustness study come out exactly.
 
 | Analyst | Rows | Test | Recorded |
 |:--|:--|:--|:--|

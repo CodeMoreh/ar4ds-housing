@@ -2,7 +2,7 @@
 
 <!-- The browser-first counterpart of the slide of the same id in
      slides/_segments/shared/_today-tools.qmd, for the one-day decks of the
-     housing-audit case, which are worked mainly in the browser lab. The second
+     Housing case study, which are worked mainly in the browser lab. The second
      slide is the shared one, copied verbatim, because a shared segment cannot
      be included in part. -->
 

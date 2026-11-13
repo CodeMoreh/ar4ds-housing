@@ -10,7 +10,7 @@ aliases:
 **Slides.** [Open the deck at this part](../../slides/housing-one-day.html#/part-1-the-claim-and-credibility){target="_blank"} in its own tab, or follow it on the [slides page](slides.qmd).
 :::
 
-Part 1 asks what a claim in social science is for, why people describe the field as being in crisis, and how three very large studies measured the problem, one of which supplies the case of the day. It ends on that case, the paper and the claim that five analysts reanalysed, and on R running on your machine. The hands-on work comes at the end and runs into the first break, so that if your machine gives trouble you miss none of the talk.
+Part 1 asks what a claim in social science is for, why people describe the field as being in crisis, and how three very large studies measured the problem, one of which supplies the case study of the day. It ends on that case study, the paper and the claim that five analysts reanalysed, and on R running on your machine. The hands-on work comes at the end and runs into the first break, so that if your machine gives trouble you miss none of the talk.
 
 ## 1. The plan of the day
 
@@ -22,11 +22,11 @@ Part 1 asks what a claim in social science is for, why people describe the field
 
 **On the slides.** Follow the talk on what social science is for, on false positives and forking paths, and on the evidence from replications and many-analysts studies. It goes on to incentives and questionable research practices, which matter far more than fraud, and to the red-card study, in which twenty-nine teams analysed one dataset, with the estimates that they returned. It then shows why 'replication' names three different operations, set out as a matrix of data against analysis with a quick check on it, and ends on the practices of open research.
 
-## 3. SCORE and Multi100
+## 3. SCORE {#score}
 
-**On the slides.** The SCORE programme ran three studies, of reproducibility, robustness and replicability, and the slides give the result of each in brief. They then present Multi100 from the position of an analyst inside it: what an analyst received, the two tasks, and how the results were put on a common scale.
+**On the slides.** The SCORE programme ran three studies, of reproducibility, robustness and replicability, and the slides give the result of each in brief. They then present the robustness study (Multi100; Aczel et al. 2026) from the position of an analyst inside it: what an analyst received, the two tasks, and how the results were put on a common scale.
 
-To go further: [SCORE and Multi100](https://codemoreh.github.io/ar4ds/score-multi100.html) on the AR4DS site.
+To go further: [SCORE](https://codemoreh.github.io/ar4ds/score.html) on the AR4DS site.
 
 ## 4. The paper and its claim
 
@@ -40,6 +40,6 @@ To go further: [SCORE and Multi100](https://codemoreh.github.io/ar4ds/score-mult
 
 [Open the browser lab at Task 1](../../cases/housing/lab.qmd#task-1-setup){.btn .btn-primary target="_blank"}
 
-In the browser lab, wait for the R engine, run the setup cell and check that `audit` has 1,014 rows. Then go on to the [warm-up](../../cases/housing/lab.qmd#warm-up), which asks you to name the R that each of four scenarios of the case describes, and one of the scenarios describes none of the three. If you work in the workspace, open its folder in your IDE instead and run `source("R/check_setup.R")` until every line prints OK. The last check fits the reference specification and prints −19.97 percentage points, a number that you meet again later. If you need more time, carry on into the break.
+In the browser lab, wait for the R engine, run the setup cell and check that `housing` has 1,014 rows. Then go on to the [warm-up](../../cases/housing/lab.qmd#warm-up), which asks you to name the R that each of four scenarios of the case study describes, and one of the scenarios describes none of the three. If you work in the workspace, open its folder in your IDE instead and run `source("R/check_setup.R")` until every line prints OK. The last check fits the reference specification and prints −19.97 percentage points, a number that you meet again later. If you need more time, carry on into the break.
 
-**By the end of the part** you can tell apart the three operations that go under the single word 'replication', you know the claim on which the day works, and you have R running in the browser lab or in your workspace, with the 1,014 emails of the housing-audit data loaded.
+**By the end of the part** you can tell apart the three operations that go under the single word 'replication', you know the claim on which the day works, and you have R running in the browser lab or in your workspace, with the 1,014 emails of the Housing data loaded.

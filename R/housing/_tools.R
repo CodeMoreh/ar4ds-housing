@@ -1,9 +1,9 @@
 ################################################################################
 # Title:        _tools.R
-# Purpose:      The estimator of the housing-audit case: one function that fits
+# Purpose:      The estimator of the Housing case study: one function that fits
 #               any specification of the menu and returns its estimate in
 #               percentage points, its 95% interval, the test of its model and
-#               the Multi100 partial correlation.
+#               the partial correlation by the rule of the robustness study.
 # Author:       Claude for CM
 # Last updated: 2026-10-26
 # Sourced by:   R/housing/02_spec_curve.R, R/housing/03_reference_marks.R,
@@ -41,8 +41,8 @@ ADJUST_TERMS <- list(
 
 # The analysed rows and the outcome of one specification. Bounced emails never
 # reached an official and are outside the experiment under every option.
-spec_frame <- function(audit, comparison = "white", population = "replies", uncoded = "drop") {
-  audit |>
+spec_frame <- function(housing, comparison = "white", population = "replies", uncoded = "drop") {
+  housing |>
     dplyr::filter(!is.na(reply),
                   .env$comparison == "nonhispanic" | group %in% c("white", "hispanic"),
                   .env$population == "all" | reply == 1) |>
@@ -55,11 +55,11 @@ spec_frame <- function(audit, comparison = "white", population = "replies", unco
     dplyr::filter(!is.na(y))
 }
 
-# The conversion rules of Multi100 (standard_correlation_coefficient.R in
+# The conversion rules of the robustness study (standard_correlation_coefficient.R in
 # github.com/marton-balazs-kovacs/multi100): t with its df, which is the rule of
 # effectsize::t_to_r(); z with the sample size standing in for the missing df;
 # a chi-square read as the square of a z, so it carries no sign.
-r_multi100 <- function(stat, stat_type, df, n) {
+r_robustness <- function(stat, stat_type, df, n) {
   dplyr::case_when(
     stat_type == "t" ~ effectsize::t_to_r(stat, df, ci = NULL)$r,
     stat_type == "z" ~ tanh(abs(stat) * sqrt(1 / (n - 3))) * sign(stat),
@@ -81,14 +81,14 @@ check_spec <- function(comparison, population, uncoded, model, adjust) {
 # One specification: estimate in percentage points (negative = Hispanic names
 # greeted by name less often, the direction of the claim), its SE and 95%
 # interval, the test of the model that the specification fits, and the partial
-# correlation by the Multi100 rule.
-fit_spec <- function(audit, comparison = "white", population = "replies", uncoded = "drop",
+# correlation by the rule of the robustness study.
+fit_spec <- function(housing, comparison = "white", population = "replies", uncoded = "drop",
                      model = "lpm", adjust = "none") {
   check_spec(comparison, population, uncoded, model, adjust)
   terms <- ADJUST_TERMS[[adjust]]
   # only the model columns, and only the emails with every covariate;
   # marginaleffects refuses a data column called `group`
-  frame <- spec_frame(audit, comparison, population, uncoded) |>
+  frame <- spec_frame(housing, comparison, population, uncoded) |>
     dplyr::select("y", "hisp", dplyr::all_of(terms)) |>
     stats::na.omit()
   form <- stats::reformulate(c("hisp", terms), response = "y")
@@ -122,7 +122,7 @@ fit_spec <- function(audit, comparison = "white", population = "replies", uncode
     b_pp = 100 * est$b, se_pp = 100 * est$se,
     coef = test$coef, coef_se = test$coef_se,
     stat_type = test$stat_type, stat = test$stat, df = test$df, p = test$p,
-    r = r_multi100(test$stat, test$stat_type, test$df, nrow(frame)),
+    r = r_robustness(test$stat, test$stat_type, test$df, nrow(frame)),
     n = nrow(frame), n_hisp = sum(frame$hisp == 1), n_comp = sum(frame$hisp == 0),
     rate_hisp = 100 * mean(frame$y[frame$hisp == 1]),
     rate_comp = 100 * mean(frame$y[frame$hisp == 0]),

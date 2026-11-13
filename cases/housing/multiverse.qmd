@@ -44,7 +44,7 @@ subgroups  <- readr::read_csv("data/display_subgroups.csv", show_col_types = FAL
 ri         <- readr::read_csv("data/display_ri.csv", show_col_types = FALSE)
 power      <- readr::read_csv("data/display_power.csv", show_col_types = FALSE)
 names_tab  <- readr::read_csv("data/display_names.csv", show_col_types = FALSE)
-audit      <- readr::read_csv("data/housing_audit.csv", show_col_types = FALSE)
+housing      <- readr::read_csv("data/housing_emails.csv", show_col_types = FALSE)
 
 # Fixed decimals and a true minus sign; signed shifts carry a plus sign
 fmt <- \(x, d = 1) formatC(x, format = "f", digits = d) |> sub(pattern = "^-", replacement = "−")
@@ -57,8 +57,8 @@ n_spec <- nrow(curve)
 ref <- datawizard::data_filter(curve, is_reference)
 n_tied <- sum(abs(curve$b_pp - ref$b_pp) < 1e-6) - 1
 n_options <- purrr::map_int(mv_axes$axis, \(a) dplyr::n_distinct(curve[[a]]))
-n_emails <- nrow(audit)
-no_thirds <- audit |>
+n_emails <- nrow(housing)
+no_thirds <- housing |>
   datawizard::data_filter(!stats::complete.cases(pop_third, poverty_third, black_third, hispanic_third)) |>
   nrow()
 reply_range <- range(names_tab$reply_pct[names_tab$level == "group"])
@@ -103,12 +103,12 @@ score_max_pp <- 100 * score$b / 4  # r-style: PENDING – the divide-by-4 bound 
 repl <- readr::read_csv("data/display_replication.csv", show_col_types = FALSE)
 rp <- \(pop, auth, col) repl[[col]][repl$population == pop & repl$authorities == auth]
 # The smallest gap that the reference comparison reports as significant at 5%:
-# the half-width of its 95% interval, from the estimator of the case
-ref_fit <- fit_spec(audit)
+# the half-width of its 95% interval, from the estimator of the case study
+ref_fit <- fit_spec(housing)
 sig_threshold <- (ref_fit$ci_high - ref_fit$ci_low) / 2
 ```
 
-This page holds the curve of the claim of the housing-audit case and the live chart of the class results. The claim, in the wording that SCORE took from the paper of the original authors (OAs) [@EinsteinGlick2017DoesRaceAffect], is that "Hispanic housing applicants were ... less likely to be greeted by name than were ... white counterparts". The curve holds every specification that the [specification menu](menu.qmd) keeps for this claim, `r n_spec` in all, each fitted on the `r format(n_emails, big.mark = ",")` emails of the housing-audit data. A specification is one complete set of answers to the decisions of an analysis. Five decisions vary on the curve: the comparison group (white names, or white and Black names together), the emails counted (the replies, or every delivered email), the replies without a greeting code (left out, or counted as no greeting), the model (a difference in proportions, or a logistic regression) and the adjustment (none, or one of three sets of covariates), which gives `r paste(n_options, collapse = " × ")` = `r n_spec` specifications. Every specification leaves out the bounced emails, pools the male and the female names, counts every reply whoever wrote it, is tested by its own model and reports the gap in percentage points. The [decision map](map.qmd) sets out every decision, including the options that are not on the curve, with the reason for each.
+This page holds the curve of the claim of the Housing and racial bias case study and the live chart of the class results. The claim, in the wording that SCORE took from the paper of the original authors (OAs) [@EinsteinGlick2017DoesRaceAffect], is that "Hispanic housing applicants were ... less likely to be greeted by name than were ... white counterparts". The curve holds every specification that the [specification menu](menu.qmd) keeps for this claim, `r n_spec` in all, each fitted on the `r format(n_emails, big.mark = ",")` emails of the Housing data. A specification is one complete set of answers to the decisions of an analysis. Five decisions vary on the curve: the comparison group (white names, or white and Black names together), the emails counted (the replies, or every delivered email), the replies without a greeting code (left out, or counted as no greeting), the model (a difference in proportions, or a logistic regression) and the adjustment (none, or one of three sets of covariates), which gives `r paste(n_options, collapse = " × ")` = `r n_spec` specifications. Every specification leaves out the bounced emails, pools the male and the female names, counts every reply whoever wrote it, is tested by its own model and reports the gap in percentage points. The [decision map](map.qmd) sets out every decision, including the options that are not on the curve, with the reason for each.
 
 ```{r}
 #| label: chart-claim
@@ -116,7 +116,7 @@ This page holds the curve of the claim of the housing-audit case and the live ch
 notes_claim <- paste(
   "Each mark is one specification: a circle for p &lt; 0.05 and a cross for p &ge; 0.05 under the test of its own model.",
   sprintf("All %d specifications are circles.", n_spec),
-  "The tags mark the published result of the original authors (OAs 2017), the five Multi100 analysts and the SCORE replication (SCORE 2020), each placed by its gap in percentage points; the replication comes from new data.",
+  "The tags mark the published result of the original authors (OAs 2017), the five analysts of the robustness study and the SCORE replication (SCORE 2020), each placed by its gap in percentage points; the replication comes from new data.",
   "Click or tap a tag to hold its details open, and click again to release it.",
   "<i>Colour by</i> colours the marks by one decision and adds rows under the curve that show where the specifications using each option fall in the ranking;",
   "<i>Show only</i> keeps the specifications that use one option and fades the rest.",
@@ -149,7 +149,7 @@ The share of specifications that agree with the claim describes this set of anal
 
 ## Reference marks {#reference-marks}
 
-Seven tagged marks come from outside the curve: the published result of the OAs, tagged OAs 2017, the five reanalyses of the claim that Multi100 recorded, tagged by the identifiers of the analysts, and the SCORE replication, tagged SCORE 2020. The replication comes from new data, so its mark, at zero, stands apart from the curve, and the [section on the replication](#replication) explains how the course computed it. Each is drawn as an ordinary mark in ink, at the end of a thin line to a tag that holds its pop-up open when clicked, so that its neighbours on the curve stay visible. Every mark is placed by its gap in percentage points. The published result is placed by the number that the paper gives on that scale, the change in the predicted probability of a named greeting from a white to a Hispanic name with the other variables at their means, `r fmt(mark("OA", "b_pp"))` points with a 95% confidence interval from −30.5 to −10.0 (p. 18 of the accepted manuscript). The five analyses are placed by the course refits of their scripts on the public file. The refits reproduce the four statistics that Multi100 recorded exactly, and they place P9W8Y, for whom Multi100 recorded no statistic, by the model in the report of the analyst.
+Seven tagged marks come from outside the curve: the published result of the OAs, tagged OAs 2017, the five reanalyses of the claim recorded in the robustness study of SCORE [Multi100; @AczelEtAl2026InvestigatingAnalyticalRobustness], tagged by the identifiers of the analysts, and the SCORE replication, tagged SCORE 2020. The replication comes from new data, so its mark, at zero, stands apart from the curve, and the [section on the replication](#replication) explains how the course computed it. Each is drawn as an ordinary mark in ink, at the end of a thin line to a tag that holds its pop-up open when clicked, so that its neighbours on the curve stay visible. Every mark is placed by its gap in percentage points. The published result is placed by the number that the paper gives on that scale, the change in the predicted probability of a named greeting from a white to a Hispanic name with the other variables at their means, `r fmt(mark("OA", "b_pp"))` points with a 95% confidence interval from −30.5 to −10.0 (p. 18 of the accepted manuscript). The five analyses are placed by the course refits of their scripts on the public file. The refits reproduce the four statistics recorded in the robustness study exactly, and they place P9W8Y, for whom the robustness study recorded no statistic, by the model in the report of the analyst.
 
 ```{r}
 #| label: tbl-marks
@@ -181,7 +181,7 @@ marks |>
 
 Three of the analyses are points of the curve itself. 8PTRZ compared Hispanic names with white and Black names together among the replies, UYV3F fitted a logistic regression without covariates to the replies to Hispanic and white names, and 25N5D counted every delivered email, with the uncoded replies as no greeting. In each case the gap of the refit equals the gap of the matching specification, and the test that the analyst reported, the $\chi^2$ test of a table, a z or a two-proportion test, is a check of the test that classes the point. P9W8Y fitted the three groups in one model without covariates, which gives exactly the raw gap of the reference specification, and then reported whether the three groups differ at all. EWFMI and the OAs fitted models outside the menu. EWFMI adjusted, beside the hard-to-find address, for the sex of the name and for the poverty third entered as a number, and the OAs adjusted for the continuous census values that the public file replaces with thirds. Refitted on those thirds, the model of the OAs gives `r fmt(mark("OA_blinded", "b_pp"))` points (z = `r fmt(mark("OA_blinded", "statistic"), 2)`), which is why the mark keeps the published number and the refit is not drawn.
 
-25N5D sits among the specifications that count every delivered email, and the other five marks sit among those that count the replies. Two of the six results come from analysts who concluded in Task 1 of Multi100 that the data showed no evidence either way, 25N5D and P9W8Y, although both marks are circles, and the [case study](index.qmd#sec-verdicts) explains how each verdict came about.
+25N5D sits among the specifications that count every delivered email, and the other five marks sit among those that count the replies. Two of the six results come from analysts who concluded in Task 1 of the robustness study that the data showed no evidence either way, 25N5D and P9W8Y, although both marks are circles, and the [background page](index.qmd#sec-verdicts) explains how each verdict came about.
 
 ## What moved the estimate {#shifts}
 
@@ -216,7 +216,7 @@ deviations |>
 
 Split by decision, the variance of the `r n_spec` estimates falls almost entirely on the emails counted, which carry `r pct(var_share[["population"]])` of it, against `r pct(var_share[["comparison"]])` for the comparison group, `r pct(var_share[["adjust"]])` for the adjustment, `r pct(var_share[["uncoded"]])` for the uncoded replies, `r pct(var_share[["model"]])` for the model, and `r pct(var_share[["Residuals"]])` for the interactions between decisions. Among the replies the estimates run from `r fmt(bp("replies", "lo"))` to `r fmt(bp("replies", "hi"))` points, and among all delivered emails from `r fmt(bp("all", "lo"))` to `r fmt(bp("all", "hi"))`.
 
-The emails counted move the estimate most because they change the outcome as well as the rows. Only `r pct(reply_range[1], 0)` to `r pct(reply_range[2], 0)` of the delivered emails in each group drew a reply, and among all delivered emails an email without a reply counts as one without a named greeting, so the shares of named greetings are roughly half those among the replies and the gap between the groups shrinks with them. Counting every delivered email keeps the groups as randomisation made them. The comparison among replies is a pure effect of the name only if the name did not change which officials replied, the post-treatment problem that analyst 25N5D raised, which the [case study](index.qmd#sec-posttreatment) and the [causal-graphs module](../../companion/dags.qmd#sec-case) set out. The curve keeps both as two estimands, so its two blocks are answers to two related questions, and the spread between them is not uncertainty about one quantity.
+The emails counted move the estimate most because they change the outcome as well as the rows. Only `r pct(reply_range[1], 0)` to `r pct(reply_range[2], 0)` of the delivered emails in each group drew a reply, and among all delivered emails an email without a reply counts as one without a named greeting, so the shares of named greetings are roughly half those among the replies and the gap between the groups shrinks with them. Counting every delivered email keeps the groups as randomisation made them. The comparison among replies is a pure effect of the name only if the name did not change which officials replied, the post-treatment problem that analyst 25N5D raised, which the [background page](index.qmd#sec-posttreatment) and the [causal-graphs module](../../companion/dags.qmd#sec-case) set out. The curve keeps both as two estimands, so its two blocks are answers to two related questions, and the spread between them is not uncertainty about one quantity.
 
 ## Beside the curve {#beside}
 
@@ -343,11 +343,11 @@ power |>
   ggplot2::theme(panel.grid.minor = ggplot2::element_blank(), legend.position = "top")
 ```
 
-At a white share of 61%, the comparison of the paper has a power of `r fmt(pw("original", 20), 2)` for a gap of 20 points and `r fmt(pw("original", 10), 2)` for a gap of 10 points, the near end of the published interval, against `r fmt(pw("replication", 10), 2)` for 10 points with the replies of the replication. The preregistration of the replication sized it so that its first round would have a power of 90% to detect three quarters of the original effect. The original design also sets a floor under any estimate that it can report as significant. With a standard error of `r fmt(ref$se_pp, 2)` points for the reference comparison, a gap has to exceed `r fmt(sig_threshold)` points before it clears the 5% threshold, so that if the true gap were small, the significant estimates of a study of this size would overstate it. The replication does not show which difference between the two studies is responsible for the change. The names, the authorities, the year and chance are all candidates, and the [case study](index.qmd#sec-reading) weighs them.
+At a white share of 61%, the comparison of the paper has a power of `r fmt(pw("original", 20), 2)` for a gap of 20 points and `r fmt(pw("original", 10), 2)` for a gap of 10 points, the near end of the published interval, against `r fmt(pw("replication", 10), 2)` for 10 points with the replies of the replication. The preregistration of the replication sized it so that its first round would have a power of 90% to detect three quarters of the original effect. The original design also sets a floor under any estimate that it can report as significant. With a standard error of `r fmt(ref$se_pp, 2)` points for the reference comparison, a gap has to exceed `r fmt(sig_threshold)` points before it clears the 5% threshold, so that if the true gap were small, the significant estimates of a study of this size would overstate it. The replication does not show which difference between the two studies is responsible for the change. The names, the authorities, the year and chance are all candidates, and the [background page](index.qmd#sec-reading) weighs them.
 
 ### Robustness and replicability {#robustness}
 
-Within the original data the claim holds under every defensible analysis that the course can fit. All `r n_spec` specifications are negative and significant, from `r fmt(min(curve$b_pp))` to `r fmt(max(curve$b_pp))` points, the reshuffled names almost never produce a gap as large, and the decisions of the menu change the size of the gap and never its sign. The analysts still disagreed on whether this was evidence for the claim, and a new experiment with new names and a wider set of authorities found a gap close to zero. A curve shows how much a conclusion depends on the decisions of the analysis, given one sample, and it says nothing about whether another sample would give the same answer. The course treats robustness to analytic choices and replicability as two separate properties of a finding, and this case has the first without the second.
+Within the original data the claim holds under every defensible analysis that the course can fit. All `r n_spec` specifications are negative and significant, from `r fmt(min(curve$b_pp))` to `r fmt(max(curve$b_pp))` points, the reshuffled names almost never produce a gap as large, and the decisions of the menu change the size of the gap and never its sign. The analysts still disagreed on whether this was evidence for the claim, and a new experiment with new names and a wider set of authorities found a gap close to zero. A curve shows how much a conclusion depends on the decisions of the analysis, given one sample, and it says nothing about whether another sample would give the same answer. The course treats robustness to analytic choices and replicability as two separate properties of a finding, and this case study has the first without the second.
 
 ## Class results {#class-results}
 
@@ -362,7 +362,7 @@ Each submission sits at the rank of its specification on the curve and at the ga
 # Class submissions are served as CSV by a Cloudflare Worker in front of the
 # Google Sheet of the results Form; when the Worker cannot be reached the
 # chart falls back to the committed data/class_results.csv. The Sheet is shared
-# by the cases of the course, so only the rows whose label carries the word
+# by the case studies of the course, so only the rows whose label carries the word
 # "housing" after the tag are read. The chart is drawn with tinyplot
 # (McDermott, Arel-Bundock and Zeileis; CRAN, doi:10.32614/CRAN.package.tinyplot),
 # the rows are handled with datawizard and purrr, and the labels are parsed
@@ -386,7 +386,7 @@ curve_key <- purrr::pmap_chr(curve[axis_codes], \(...) paste(..., sep = "|"))
 
 # A housing label, as the submission helpers write it:
 #   explore: [amber-otter-42] housing comparison=white population=replies uncoded=drop model=lpm adjust=none
-# The phase and the tag are read when present. Labels of the other cases
+# The phase and the tag are read when present. Labels of the other case studies
 # carry no "housing" at that place and are left out. The five decisions are
 # key=value pairs in any order; a label that does not name each of them exactly
 # once, or carries anything else, returns NA on every axis and so matches nothing.
@@ -578,7 +578,7 @@ refresh_multiverse(my_tag)
 
 ## Facilitator notes {#facilitator}
 
-Submissions go to a Google Form, land in a linked Google Sheet and are served as CSV, with permissive CORS headers, by a small Cloudflare Worker. Until a Form of its own is created, the housing-audit case shares the Form, the Sheet and the Worker that were set up for the EU-frames case. The cell above fetches the CSV in the browser, keeps only the rows whose free-text spec field carries the word `housing` after the tag, and falls back to the committed `data/class_results.csv`, which holds only the header row, when the Worker cannot be reached. The spec field carries the phase (`explore:` or `declared:`), the tag of the participant in square brackets, the word `housing` and the five decisions of the curve as `key=value` pairs, for example `explore: [amber-otter-42] housing comparison=white population=replies uncoded=drop model=lpm adjust=none`. Each submission is placed by the gap `b` that it carries, in percentage points, at the rank of its specification, and classed by the p-value of the matching row of `data/spec_curve.csv`. A housing label that does not name each of the five decisions exactly once, or that names an option off the curve, matches no row and is counted under the chart without being drawn. The EU-frames chart reads every row of the shared Sheet and would draw housing rows as unclassed diamonds, so clear the data rows of the Sheet before a delivery of either case. Replacing the Form means editing the `worker_url` line of the cell above and the configuration blocks of the workspace helpers and the browser lab; the setup note `facilitator/live-results-setup.md` in the repository lists the steps.
+Submissions go to a Google Form, land in a linked Google Sheet and are served as CSV, with permissive CORS headers, by a small Cloudflare Worker. Until a Form of its own is created, the Housing case study shares the Form, the Sheet and the Worker that were set up for the Europeanisation and the economy case study. The cell above fetches the CSV in the browser, keeps only the rows whose free-text spec field carries the word `housing` after the tag, and falls back to the committed `data/class_results.csv`, which holds only the header row, when the Worker cannot be reached. The spec field carries the phase (`explore:` or `declared:`), the tag of the participant in square brackets, the word `housing` and the five decisions of the curve as `key=value` pairs, for example `explore: [amber-otter-42] housing comparison=white population=replies uncoded=drop model=lpm adjust=none`. Each submission is placed by the gap `b` that it carries, in percentage points, at the rank of its specification, and classed by the p-value of the matching row of `data/spec_curve.csv`. A housing label that does not name each of the five decisions exactly once, or that names an option off the curve, matches no row and is counted under the chart without being drawn. The chart of the Europeanisation case study reads every row of the shared Sheet and would draw housing rows as unclassed diamonds, so clear the data rows of the Sheet before a delivery of either case study. Replacing the Form means editing the `worker_url` line of the cell above and the configuration blocks of the workspace helpers and the browser lab; the setup note `facilitator/live-results-setup.md` in the repository lists the steps.
 
 ## References {.unnumbered}
 

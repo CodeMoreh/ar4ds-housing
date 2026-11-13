@@ -1,5 +1,5 @@
 ---
-title: "Facilitator guide – the housing-audit case"
+title: "Facilitator guide – Housing and racial bias"
 subtitle: "Run sheets of the short session, the one-day workshop and the Extended course"
 format:
   html:
@@ -15,7 +15,7 @@ execute:
 #| label: setup
 #| include: false
 # Every number of the expected-numbers section is read from the committed data
-# files of the case, so that the guide and the pages cannot drift apart; readr
+# files of the case study, so that the guide and the pages cannot drift apart; readr
 # rather than datawizard::data_read(), which reads empty cells as "" rather than NA.
 fmt <- \(x, d = 1) formatC(x, format = "f", digits = d) |> sub(pattern = "^-", replacement = "−")
 
@@ -26,7 +26,7 @@ deviations <- readr::read_csv("../cases/housing/data/menu_deviations.csv", show_
 outcomes <- readr::read_csv("../cases/housing/data/display_outcomes.csv", show_col_types = FALSE)
 power <- readr::read_csv("../cases/housing/data/display_power.csv", show_col_types = FALSE)
 ri <- readr::read_csv("../cases/housing/data/display_ri.csv", show_col_types = FALSE)
-n_emails <- nrow(readr::read_csv("../cases/housing/data/housing_audit.csv", show_col_types = FALSE))
+n_emails <- nrow(readr::read_csv("../cases/housing/data/housing_emails.csv", show_col_types = FALSE))
 
 ref <- datawizard::data_filter(curve, is_reference)
 ref_all <- datawizard::data_match(curve, tibble::tibble(comparison = "white", population = "all",
@@ -45,7 +45,7 @@ rep_val <- \(population_code, authorities_code, col) {
 sgn <- \(x, d = 1) paste0(if (round(x, d) >= 0) "+" else "", fmt(x, d))
 
 # The Task 3 test of 8PTRZ: Hispanic against all other names among the coded replies
-coded <- readr::read_csv("../cases/housing/data/audit_original.csv", show_col_types = FALSE) |>
+coded <- readr::read_csv("../cases/housing/data/housing_original.csv", show_col_types = FALSE) |>
   datawizard::data_filter(!is.na(ProperName)) |>
   datawizard::data_modify(hispanic_name = grepl("^Hispanic", TreatmentGroup))
 tab_8ptrz <- stats::xtabs(~ hispanic_name + ProperName, data = coded)  # r-style: keep – the table that chisq.test() takes
@@ -55,7 +55,7 @@ chi_plain <- unname(stats::chisq.test(tab_8ptrz, correct = FALSE)$statistic)
 # The Task 3 test of 25N5D: Hispanic against white names among the delivered
 # emails, a missing reply counted as no greeting, with and without the
 # continuity correction that prop.test() applies by default
-counts_25n5d <- readr::read_csv("../cases/housing/data/audit_original.csv", show_col_types = FALSE) |>
+counts_25n5d <- readr::read_csv("../cases/housing/data/housing_original.csv", show_col_types = FALSE) |>
   datawizard::data_filter(!is.na(Response_Dichotomous) & !grepl("^black", TreatmentGroup)) |>
   datawizard::data_modify(hispanic_name = grepl("^Hispanic", TreatmentGroup),
                           greeted = Response_Dichotomous == 1 & ProperName %in% 1) |>
@@ -74,7 +74,7 @@ other_max <- deviations |>
 ```
 
 ::: {.callout-note}
-**This document is for the facilitator.** It is rendered with the site but left out of the navbar, so nothing on the site links to it. It holds the run sheets of the formats of the housing-audit case – the short session (deck `slides/housing-short.qmd`), the one-day workshop (deck `slides/housing-one-day.qmd`) and the Extended course, whose second day is the workshop – with the checks before a delivery, the expected numbers and the fallbacks. The participant pages under `tracks/` give the instructions for each part and its total length, and the timings of each step are kept here: the run sheets below for the parts of each format, [the preparation table](#preparation) for the pages "Before the session" and "Before the day", and [the self-study route](#run-self-study) for the stages of the self-study track.
+**This document is for the facilitator.** It is rendered with the site but left out of the navbar, so nothing on the site links to it. It holds the run sheets of the formats of the Housing and racial bias case study – the short session (deck `slides/housing-short.qmd`), the one-day workshop (deck `slides/housing-one-day.qmd`) and the Extended course, whose second day is the workshop – with the checks before a delivery, the expected numbers and the fallbacks. The participant pages under `tracks/` give the instructions for each part and its total length, and the timings of each step are kept here: the run sheets below for the parts of each format, [the preparation table](#preparation) for the pages "Before the session" and "Before the day", and [the self-study route](#run-self-study) for the stages of the self-study track.
 :::
 
 ---
@@ -117,7 +117,7 @@ The page "Before the session", "Before the day" or "Before the course" of each f
 
 | Step | Short session | One-day workshop | Extended course |
 |---|---|---|---|
-| The case study | required | required | required |
+| The background page | required | required | required |
 | The browser lab, opened once, with the setup cell of Task 1 run | required | required | – |
 | R, an IDE and the workspace, until `R/check_setup.R` prints OK | – | required | required |
 | Getting started with R (`tools/r.qmd` on the AR4DS site) | – | required | required |
@@ -128,14 +128,14 @@ The page "Before the session", "Before the day" or "Before the course" of each f
 
 - [ ] **The browser lab.** Every format is taught mainly in the browser lab, so check it on the published site in a real browser: the engine loads, the setup cell of Task 1 runs, and the cells of each of the five analysts of Task 3 print the right value (the expected numbers are at the end of this guide).
 - [ ] **The workspace.** The workspace is the repository `CodeMoreh/replication-lab-housing`, whose zip is linked from the setup page of the AR4DS site, the cheatsheet and the slide on the browser lab and the workspace in Part 1. Download the zip once from its public address and confirm that it unzips into `replication-lab-housing-main`, and that a change made on the site since the last delivery has reached the workspace where it should. The short session does not need it.
-- [ ] **The class-results Form**, for the workshop only. Out of the box, the housing helpers submit to the results Form that every case shares, the one set up for the EU-frames case, and the housing chart reads the same Sheet through the same Worker, keeping only the rows whose label carries the word `housing` after the tag. That works as it stands. Clear the Sheet of the rows of earlier deliveries before the day (the data rows below the header of the tab "Form Responses 1"; the Form keeps working), because the EU-frames chart reads every row and would draw housing rows as unclassed diamonds. The alternative, which keeps the two classes apart for good, is a Form of its own, about twenty minutes once, following [`facilitator/live-results-setup.md`](https://github.com/CodeMoreh/ar4ds-eu/blob/main/facilitator/live-results-setup.md) in the repository of the EU-frames site.
-- [ ] **Joining instructions.** Send the address of the track page, the case study as the pre-reading, and the request to open the browser lab once on the machine that each participant will bring, with a laptop charger. For the workshop and the Extended course add the setup page, with the request to run `R/check_setup.R` until it prints OK, the module Getting started with R and the help page.
+- [ ] **The class-results Form**, for the workshop only. Out of the box, the housing helpers submit to the results Form that every case study shares, the one set up for the Europeanisation and the economy case study, and the housing chart reads the same Sheet through the same Worker, keeping only the rows whose label carries the word `housing` after the tag. That works as it stands. Clear the Sheet of the rows of earlier deliveries before the day (the data rows below the header of the tab "Form Responses 1"; the Form keeps working), because the chart of the Europeanisation case study reads every row and would draw housing rows as unclassed diamonds. The alternative, which keeps the two classes apart for good, is a Form of its own, about twenty minutes once, following [`facilitator/live-results-setup.md`](https://github.com/CodeMoreh/ar4ds-eu/blob/main/facilitator/live-results-setup.md) in the repository of the site of the Europeanisation case study.
+- [ ] **Joining instructions.** Send the address of the track page, the background page as the pre-reading, and the request to open the browser lab once on the machine that each participant will bring, with a laptop charger. For the workshop and the Extended course add the setup page, with the request to run `R/check_setup.R` until it prints OK, the module Getting started with R and the help page.
 - [ ] **The tab switching.** Click once through the sequences that you run live: the deck and the browser lab in every format; the deck, the specification menu and the decision map, and the Multiverse page in the short session and the workshop.
 - [ ] **The room.** Confirm the projector, the power sockets, the wifi for visitors (webR downloads its engine and packages on first load) and whether the room has Vevox or a similar response tool. The slides say "type in chat" for the held answers; in the room, decide in advance what "chat" means, as the cue sheet below sets out.
 
 ### The night before
 
-- [ ] Render the pages that have changed, page by page (pCloud breaks a full render), and check that the opening page, the track pages, the case pages and the deck of the day are current; push if the site is published.
+- [ ] Render the pages that have changed, page by page (pCloud breaks a full render), and check that the opening page, the track pages, the pages of the case study and the deck of the day are current; push if the site is published.
 - [ ] **The browser lab, cold.** Open the live page of the lab in a private window on a connection like that of the venue, time the load of the R engine, and run the setup cell and the cells of one analyst of Task 3.
 - [ ] **The live-results loop**, for the workshop. Submit one test result from the browser lab (`try_spec()`, then `submit_exploration(nickname = "test-row")`), confirm that it reaches the Sheet, press *Run Code* on the class chart of the [Multiverse](../cases/housing/multiverse.qmd#class-results) page and find the test circle. Then delete the test row from the Sheet.
 - [ ] **The workspace, as a participant meets it**, for the workshop and the Extended course. Download the zip afresh, unzip it, open the folder in your IDE, run `source("R/check_setup.R")` (every line OK, the last at −19.97 points) and render the report. For the Extended course, also commit once and render the report from a clean session.
@@ -186,11 +186,11 @@ The short session runs on `slides/housing-short.qmd` as two halves of about seve
 | Rel. | Segment | What I do | What participants do | Watch out for |
 |---|---|---|---|---|
 | 0:00 | Welcome, what you do not need (3′) | The premise and the plan. "Open the browser lab now." | Open the lab in a tab. | Late arrivals: the address on the screen. |
-| 0:03 | The matrix, SCORE in brief, Multi100 (12′) | The four cells; SCORE on one slide; what an analyst received, the two tasks, the common scale. | Listen. | – |
+| 0:03 | The matrix, SCORE in brief, the robustness study (12′) | The four cells; SCORE on one slide; what an analyst of the robustness study of SCORE (Multi100; Aczel et al. 2026) received, the two tasks, the common scale. | Listen. | – |
 | 0:15 | Hands-on 1: the setup check (5′) | A quick confirmation in the lab. | Run the setup cell; 1,014 rows. | A lab that will not load: another browser, then the shared screen. |
 | 0:20 | The paper and the five analysts (18′) | Define the original authors (OAs); the design, the email, what came back, the claim; the five analysts and their table. | Listen. | – |
 | 0:38 | The estimand and the graph (12′) | The held estimand statement; the graph; the box around the reply; every delivered email. | Write the statement; send on "go". | Never compressed. |
-| 0:50 | The instruction and analyst no. 6 (6′) | The Multi100 instruction, what it left open, the choice of analyst. | Choose an analyst. | Encourage a spread across the five, so that the held answer shows several matches rather than one. |
+| 0:50 | The instruction and analyst no. 6 (6′) | The instruction of the robustness study, what it left open, the choice of analyst. | Choose an analyst. | Encourage a spread across the five, so that the held answer shows several matches rather than one. |
 | 0:56 | Hands-on 3: the reproduction (14′) | Drive one analyst in the lab on the shared screen; circulate. Then the held answer: "type the analyst and the value, hold it, go". | Complete one cell; send on "go". | Wait for most of the class. |
 | 1:10 | The continuity correction, reproducibility and choice (5′) | The defaults of `chisq.test()` and `prop.test()`, the base group of EWFMI; the class against the five analysts. | – | – |
 
@@ -243,7 +243,7 @@ The day runs on `slides/housing-one-day.qmd`, mainly in the browser lab, with th
 | 0:16 | Talk: the red-card study (4′) | The question, the design, and the twenty-nine estimates. | Watch. | The study returns in Part 2 as a single row, so tell it in full only here. |
 | 0:20 | Talk: the vocabulary and open research (10′) | Replication crises; the data × analysis matrix; repeatability and credibility; the quick check, two slides, answered aloud; open-research practices. | Answer the quick check. | The matrix is the slide to copy down. If the segment runs long, the open-research table compresses to one sentence a row. |
 | 0:30 | Talk: SCORE in brief (6′) | The programme and its three studies on one slide, and the finding that the three do not travel together. | Listen. | The first day of the Extended course takes SCORE in full. |
-| 0:36 | Talk: Multi100 from the inside (8′) | What an analyst received, the two tasks, results on a common scale. | Listen. | The five analysts of the case come in Part 2. |
+| 0:36 | Talk: the robustness study from the inside (8′) | What an analyst received, the two tasks, results on a common scale. | Listen. | The five analysts of the case study come in Part 2. |
 | 0:44 | Talk: the paper (16′) | Define the original authors (OAs) here. The question, the design, the email, what came back by name, four outcomes, the claim with its two ellipses. | Listen; ask. | The two ellipses decide the comparison group later, so read both aloud. |
 | 1:00 | The browser lab and the workspace (5′) | The two places to work, with the same tasks and the same numbers; what the tools cannot do. | Check that the lab has loaded. | – |
 | 1:05 | Task 1, the warm-up and the break (25′) | "Get to the point where a line of R runs and the data are in front of you; take the break for it if you need to." Circulate. Stay in the room through the break for red notes. | The setup cell of the lab and the warm-up on the three Rs, or `source("R/check_setup.R")`, every line OK, the last at −19.97 points. | Anyone whose workspace is still stuck at the end of the break moves to the browser lab, or to the zip on the USB stick. |
@@ -263,7 +263,7 @@ The day runs on `slides/housing-one-day.qmd`, mainly in the browser lab, with th
 
 | Rel. | Segment | What I do | What participants do | Watch out for |
 |---|---|---|---|---|
-| 0:00 | Re-entry and the instruction (10′) | A visual sweep; the catch-up card on screen. The Task 2 instruction of Multi100 word for word, what it left open, and analyst no. 6 with the choice of analyst. | Rejoin; choose an analyst. | Do not wait past 0:05. Encourage a spread across the five. |
+| 0:00 | Re-entry and the instruction (10′) | A visual sweep; the catch-up card on screen. The Task 2 instruction of the robustness study word for word, what it left open, and analyst no. 6 with the choice of analyst. | Rejoin; choose an analyst. | Do not wait past 0:05. Encourage a spread across the five. |
 | 0:10 | Hands-on 3: Task 3, the reproduction (20′) | Drive one analyst in the lab on the shared screen beside them; circulate. Then the second held answer: "type the analyst and the value, hold it, go". | Complete one cell; send on "go". | The matching values, analyst by analyst, are the point of the beat, so wait until most of the class has one. A failing machine goes to the browser lab. |
 | 0:30 | Defaults, reproducibility and choice (8′) | Why every value matches its record to the third decimal (the defaults of `chisq.test()` and `prop.test()`, the base group of EWFMI), and why five analysts writing their own code did not agree. | Listen. | Leave the question of the choices open for the menu of Part 4. |
 | 0:38 | What a reproduction needs (10′) | The data under a licence, the code, the defaults, someone who tries; the published model and the blinded thirds of the public file. | Listen; ask. | The point is that open data can still stop short of the published number, by design. |
@@ -287,7 +287,7 @@ The day runs on `slides/housing-one-day.qmd`, mainly in the browser lab, with th
 | 0:55 | What moved the estimate (5′) | The shifts by option, then the curve coloured by the emails counted. | Connect the step to their own choice. | – |
 | 1:00 | The SCORE replication (12′) | The design, the result, the two studies compared, power, the three Rs on this paper, robustness against replicability. | Listen; argue. | The robustness and replicability slide is the lesson of the day; never compress it. |
 | 1:12 | Critics and preregistration (7′) | The critics; one correct analysis and how to identify it; what preregistration settles; exploration against declaration. | Listen; ask. | If the clock is tight, the identification slide goes to one sentence. |
-| 1:19 | Archiving and the public record (7′) | Archiving and registering; the Multi100 preregistration; the two templates; the records slide with the three-minute search of the replication report; the eight AsPredicted questions. | Search the report; read. | The target of the search: not significant "approximately 93 percent of the time". If time is short, show it on the shared screen. |
+| 1:19 | Archiving and the public record (7′) | Archiving and registering; the preregistration of the robustness study; the two templates; the records slide with the three-minute search of the replication report; the eight AsPredicted questions. | Search the report; read. | The target of the search: not significant "approximately 93 percent of the time". If time is short, show it on the shared screen. |
 | 1:26 | Hands-on 5: preregistration, run and report (18′) | Called from the front: complete fields 1–5, copy the cell or render the report, then the fourth held answer, "declared". Count aloud. Move on at about 80% declared or at eight minutes. Then `run_spec()` and `report_result()`; press *Run Code* as the filled circles land. | Declare, run, submit. | Never cut the declaration. Re-declaring a specification already explored is allowed, and the block must say so. |
 | 1:44 | Close and feedback (6′) | Two points from the literature; the single analytical path; what you take with you; the feedback form, with the chart on screen. | Feedback. | End on time. |
 
@@ -306,7 +306,7 @@ When time runs short, cut from the optional runs before anything else, so that t
 
 ## Run sheet – the Extended course {#run-extended}
 
-The Extended course is three days, with the one-day workshop as its second day (`tracks/housing-extended/`). The first day is the same for every case of AR4DS and is given from decks of the AR4DS site; the third day teaches the methods of this case and ends with the report of each participant. A two-day version drops the third day and leaves the methods to self-study.
+The Extended course is three days, with the one-day workshop as its second day (`tracks/housing-extended/`). The first day is the same for every case study of AR4DS and is given from decks of the AR4DS site; the third day teaches the methods of this case study and ends with the report of each participant. A two-day version drops the third day and leaves the methods to self-study.
 
 ::: {.callout-note}
 Each session of the first and the third days has a deck of its own, written on 6 November 2026 and not yet tried in class, and a module as its reading. The durations are drafts for CM to adjust.
@@ -317,13 +317,13 @@ Each session of the first and the third days has a deck of its own, written on 6
 | Session | Deck, AR4DS site | Reading | Draft |
 |---|---|---|---|
 | 1. Credibility and the three Rs | `slides/credibility.qmd` | the glossary of `resources.qmd` | 75′ |
-| 2. SCORE and Multi100 | `slides/score-multi100.qmd` | the pages on SCORE and Multi100 and on the Multi100 article, AR4DS site | 60′ |
+| 2. SCORE | `slides/score.qmd` | the pages on SCORE and on the robustness article, AR4DS site | 60′ |
 | 3. Repositories and data sources | `slides/repositories.qmd` | `companion/data-sources.qmd`, `companion/repositories.qmd` | 60′ |
-| 4. R, taught live on the housing-audit data | `slides/r.qmd` | `tools/r.qmd`, AR4DS site | 75′ |
+| 4. R, taught live on the Housing data | `slides/r.qmd` | `tools/r.qmd`, AR4DS site | 75′ |
 | 5. Positron, in the workspace | `slides/ide.qmd` | `tools/ide.qmd`, AR4DS site | 45′ |
 | 6. Quarto, on the report of the workspace | `slides/quarto.qmd` | `tools/quarto.qmd`, AR4DS site | 60′ |
 
-**Day 2 – The workshop**, run as in its own run sheet above. After the first day, Part 1 can take SCORE and Multi100 at speed and give the time to Task 1 and Task 2.
+**Day 2 – The workshop**, run as in its own run sheet above. After the first day, Part 1 can take SCORE and its robustness study at speed and give the time to Task 1 and Task 2.
 
 **Day 3 – The methods and your report.**
 
@@ -387,16 +387,16 @@ Each row names the first move, not the only one, and every ladder ends at a poin
 
 - **Task 1.** The setup cell of the lab: 1,014 rows and −19.97 percentage points. The last check of `R/check_setup.R`: the reference specification reproduces at `r fmt(ref$b_pp, 2)` percentage points.
 - **Task 2.** `r format(n_emails, big.mark = ",")` emails, 23 bounced, 991 delivered, 563 replies, 5 without a greeting code, 558 coded. Greeted by name among the coded replies: white 61.1%, Black 56.1%, Hispanic 41.2%; Santiago lowest at 37.1%. The graph: with every delivered email counted, the adjustment set is empty, because the name was assigned at random; the paths with `Z = "reply"` report the paths through the official and through the community as open. Adding the community to `Z` closes the second, and nothing can close the first, because nobody observed the official.
-- **Task 3**, on the public file `audit_original.csv`. 8PTRZ: $\chi^2$ = `r fmt(chi_yates, 3)` on `r an("8PTRZ", "n_recorded")` coded replies with the continuity correction, `r fmt(chi_plain, 3)` without it. UYV3F: z = `r fmt(an("UYV3F", "statistic_recorded"), 3)` on `r an("UYV3F", "n_recorded")` coded replies to Hispanic and white names. EWFMI: z = `r fmt(an("EWFMI", "statistic_recorded"), 3)` on `r an("EWFMI", "n_recorded")` coded replies, the row of the white names against the Hispanic base group. 25N5D: $\chi^2$ = `r fmt(prop_yates, 3)` on `r an("25N5D", "n_recorded")` delivered emails with the continuity correction of `prop.test()`, `r fmt(prop_plain, 3)` without it. P9W8Y: no recorded statistic; the likelihood-ratio test of the three groups gives $\chi^2$ = `r fmt(an("P9W8Y", "statistic_refit"), 3)` on 2 degrees of freedom for `r an("P9W8Y", "n_refit")` coded replies, the value in the text of the report of the analyst.
+- **Task 3**, on the public file `housing_original.csv`. 8PTRZ: $\chi^2$ = `r fmt(chi_yates, 3)` on `r an("8PTRZ", "n_recorded")` coded replies with the continuity correction, `r fmt(chi_plain, 3)` without it. UYV3F: z = `r fmt(an("UYV3F", "statistic_recorded"), 3)` on `r an("UYV3F", "n_recorded")` coded replies to Hispanic and white names. EWFMI: z = `r fmt(an("EWFMI", "statistic_recorded"), 3)` on `r an("EWFMI", "n_recorded")` coded replies, the row of the white names against the Hispanic base group. 25N5D: $\chi^2$ = `r fmt(prop_yates, 3)` on `r an("25N5D", "n_recorded")` delivered emails with the continuity correction of `prop.test()`, `r fmt(prop_plain, 3)` without it. P9W8Y: no recorded statistic; the likelihood-ratio test of the three groups gives $\chi^2$ = `r fmt(an("P9W8Y", "statistic_refit"), 3)` on 2 degrees of freedom for `r an("P9W8Y", "n_refit")` coded replies, the value in the text of the report of the analyst.
 - **The reference specification** (white names, replies, uncoded dropped, linear model, no covariates): `r fmt(ref$b_pp, 2)` points (`r fmt(ref$rate_hisp)`% against `r fmt(ref$rate_comp)`%), t = `r fmt(ref$stat, 2)` on `r ref$df` df, n = `r ref$n`. Its twin on every delivered email: `r fmt(ref_all$b_pp, 2)` points (`r fmt(ref_all$rate_hisp)`% against `r fmt(ref_all$rate_comp)`%), n = `r ref_all$n`.
 - **The curve.** `r nrow(curve)` specifications, all below zero and all significant at 5% under the test of the model, from `r fmt(min(curve$b_pp))` to `r fmt(max(curve$b_pp))` points; the largest p is `r fmt(max(curve$p), 4)`, and the largest randomisation p is `r fmt(max(curve$p_ri), 4)`. Counting every delivered email moves the estimate by `r fmt(shift("population", "all"), 2)` points on average (from `r fmt(shift("population", "all", "shift_min"), 2)` to `r fmt(shift("population", "all", "shift_max"), 2)`); every other decision by at most `r fmt(other_max, 2)`. No pair changes its sign or its significance.
 - **Placement.** The reference specification is placed at `r placement_ref`: no specification of the curve lies further below zero, and the logit without covariates ties with it. A placement of 32 or more comes from counting every delivered email, because all 32 specifications that count the replies lie further below zero.
-- **The reference marks.** OAs 2017 `r fmt(mark("OA"))` points (z = −3.73, N = 549); 8PTRZ `r fmt(mark("8PTRZ"))`; UYV3F `r fmt(mark("UYV3F"))`; EWFMI `r fmt(mark("EWFMI"))`; 25N5D `r fmt(mark("25N5D"))`; P9W8Y `r fmt(mark("P9W8Y"))`, placed by the course refit because Multi100 recorded no statistic for it. The published model refitted on the blinded thirds: `r fmt(mark("OA_blinded"))` points, not on the chart.
+- **The reference marks.** OAs 2017 `r fmt(mark("OA"))` points (z = −3.73, N = 549); 8PTRZ `r fmt(mark("8PTRZ"))`; UYV3F `r fmt(mark("UYV3F"))`; EWFMI `r fmt(mark("EWFMI"))`; 25N5D `r fmt(mark("25N5D"))`; P9W8Y `r fmt(mark("P9W8Y"))`, placed by the course refit because the robustness study recorded no statistic for it. The published model refitted on the blinded thirds: `r fmt(mark("OA_blinded"))` points, not on the chart.
 - **Replies.** The gap in any reply between Hispanic and white names is `r fmt(reply_gap$b_pp)` points, two-sided p = `r fmt(reply_gap$p, 2)`; the paper reports p = .11 with a one-tailed test.
 - **Randomisation.** Reshuffling the names among the coded replies gives gaps between `r fmt(quantile(ri$b_pp, 0.025))` and `r fmt(quantile(ri$b_pp, 0.975))` points in 95% of `r format(nrow(ri), big.mark = ",")` reshuffles.
 - **Power.** The original comparison, about 181 replies a group at a white share of 61%: `r fmt(pw("original", 20), 2)` for a gap of 20 points, `r fmt(pw("original", 13), 2)` for 13, `r fmt(pw("original", 10), 2)` for 10. The replication, 369 a group: `r fmt(pw("replication", 10), 2)` for 10 points.
 - **The replication** (from its final report, osf.io/2ug8x): 3,050 authorities emailed, 1,811 replies; on the 1,243 replies of the authorities matched to census data, logit with the demographic covariates of the paper from the 2018 ACS (no Hard Email), b = 0.098 (SE 0.149), z = 0.66, p = 0.511 on a random draw of 738, and z = 0.44, p = 0.657 on all 1,243. The preregistered linear model was not significant "approximately 93 percent of the time". At most +2.45 points in favour of the Hispanic names. The plan was registered on 14 May 2020 (osf.io/v6wd8); the report lists the logit with covariates and the exclusion of the county authorities as deviations from it. The de-identified data are public at osf.io/xseqg (folder "Public Data": `Audit_Deidentified.dta`, the analysis do-file and a dictionary, licence unstated, so the course links to them and does not copy them). On the scale of the course (`cases/housing/data/display_replication.csv`), the gap is `r sgn(rep_val("replies", "all", "b_pp"))` points among all `r format(rep_val("replies", "all", "n"), big.mark = ",")` replies (`r fmt(rep_val("replies", "all", "rate_hisp"))`% against `r fmt(rep_val("replies", "all", "rate_comp"))`%), `r sgn(rep_val("replies", "sub-county", "b_pp"))` among the `r format(rep_val("replies", "sub-county", "n"), big.mark = ",")` replies of sub-county authorities, and `r sgn(rep_val("all", "all", "b_pp"))` points among all `r format(rep_val("all", "all", "n"), big.mark = ",")` emails in the de-identified file, none of them significant (smallest p = `r fmt(min(replication$p), 2)`). The logit with covariates in thirds on the 1,243 sub-county replies that carry every covariate (one of the 1,244 lacks the poverty third) gives b = 0.051, z = 0.45, column 4 of the report.
-- **The five analysts.** Three concluded "evidence for the claim" in Task 1 of Multi100 (8PTRZ, UYV3F, EWFMI) and two "no evidence either way" (25N5D, apparently judging the claim by the twenty points of the abstract; P9W8Y, whose Task 1 model tested the female names only).
+- **The five analysts.** Three concluded "evidence for the claim" in Task 1 of the robustness study (8PTRZ, UYV3F, EWFMI) and two "no evidence either way" (25N5D, apparently judging the claim by the twenty points of the abstract; P9W8Y, whose Task 1 model tested the female names only).
 
 ---
 

@@ -1,10 +1,10 @@
 ################################################################################
-# Title:        01_audit_data.R
-# Purpose:      The two data files of the housing-audit case: the public file of
+# Title:        01_email_data.R
+# Purpose:      The two data files of the Housing case study: the public file of
 #               the original authors as plain CSV with its own column names, and
 #               the course file with readable names and the derived columns.
 # Reads:        data-raw/housing/dataverse_1HOVTU/HousingAuditAJPSFinalPublic_Unidentified.dta
-# Writes:       cases/housing/data/audit_original.csv, cases/housing/data/housing_audit.csv
+# Writes:       cases/housing/data/housing_original.csv, cases/housing/data/housing_emails.csv
 # Author:       Claude for CM
 # Last updated: 2026-10-26
 ################################################################################
@@ -21,7 +21,7 @@ original <- raw |>
   dplyr::mutate(dplyr::across(dplyr::where(haven::is.labelled), \(x) as.numeric(x))) |>
   haven::zap_label() |>
   haven::zap_formats()
-readr::write_csv(original, "cases/housing/data/audit_original.csv", na = "")  # r-style: keep – datawizard::data_write() writes other bytes
+readr::write_csv(original, "cases/housing/data/housing_original.csv", na = "")  # r-style: keep – datawizard::data_write() writes other bytes
 
 names_key <- tibble::tibble(
   NumberAssignment = 1:6,
@@ -30,7 +30,7 @@ names_key <- tibble::tibble(
   name_sex = c("male", "female", "male", "female", "male", "female")
 )
 
-audit <- original |>
+housing <- original |>
   datawizard::data_modify(email_id = 1:n(), WaitListFinal = datawizard::convert_to_na(WaitListFinal, na = "")) |>
   datawizard::data_join(names_key, join = "left", by = "NumberAssignment") |>
   datawizard::data_select(c(
@@ -54,11 +54,11 @@ audit <- original |>
   )
 
 stopifnot(
-  nrow(audit) == 1014,
-  sum(is.na(audit$reply)) == 23,
-  sum(audit$reply == 1, na.rm = TRUE) == 563,
-  sum(audit$reply == 1 & is.na(audit$named), na.rm = TRUE) == 5,
-  all(is.na(audit$named[audit$reply %in% 0]))
+  nrow(housing) == 1014,
+  sum(is.na(housing$reply)) == 23,
+  sum(housing$reply == 1, na.rm = TRUE) == 563,
+  sum(housing$reply == 1 & is.na(housing$named), na.rm = TRUE) == 5,
+  all(is.na(housing$named[housing$reply %in% 0]))
 )
 
-readr::write_csv(audit, "cases/housing/data/housing_audit.csv", na = "")  # r-style: keep – datawizard::data_write() writes other bytes
+readr::write_csv(housing, "cases/housing/data/housing_emails.csv", na = "")  # r-style: keep – datawizard::data_write() writes other bytes

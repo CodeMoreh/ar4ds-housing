@@ -9,11 +9,11 @@ aliases:
 **Slides.** [Open the deck at this part](../../slides/housing-one-day.html#/part-2-the-estimand-and-the-causal-graph){target="_blank"} in its own tab, or follow it on the [slides page](slides.qmd).
 :::
 
-Part 2 is the conceptual middle of the day. It sets out what the five Multi100 analysts did with the claim of the paper, and argues that analysts who look as though they disagree are often answering different questions. It then gives you two tools for saying which question you are answering, the estimand statement and the causal graph, and uses both on the claim, where the graph shows something that is easy to miss.
+Part 2 is the conceptual middle of the day. It sets out what the five analysts of the robustness study of SCORE (Multi100; Aczel et al. 2026) did with the claim of the paper, and argues that analysts who look as though they disagree are often answering different questions. It then gives you two tools for saying which question you are answering, the estimand statement and the causal graph, and uses both on the claim, where the graph shows something that is easy to miss.
 
 ## 1. The five analysts
 
-**On the slides.** The five Multi100 analysts are placed by their gaps in percentage points. A table then sets out what each of them did, with five different questions behind two different verdicts.
+**On the slides.** The five analysts of the robustness study are placed by their gaps in percentage points. A table then sets out what each of them did, with five different questions behind two different verdicts.
 
 ## 2. Estimands
 

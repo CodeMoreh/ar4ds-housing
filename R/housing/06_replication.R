@@ -2,7 +2,7 @@
 # Title:        06_replication.R
 # Purpose:      The SCORE replication on the scale of the course: the gap in
 #               greetings by name between Hispanic and white aliases in the new
-#               audit, under the choices of the menu that its data allow, and
+#               experiment, under the choices of the menu that its data allow, and
 #               its mark on the curve of the claim.
 # Reads:        the de-identified replication data, osf.io/xseqg (downloaded at
 #               run time into data-raw/housing/score_replication/, gitignored),
@@ -59,7 +59,7 @@ ref <- datawizard::data_filter(replication, population == "replies" & authoritie
 marks <- readr::read_csv("cases/housing/data/reference_marks.csv", show_col_types = FALSE) |>
   datawizard::data_filter(id != "SCORE") |>
   dplyr::bind_rows(tibble::tibble(
-    id = "SCORE", label = "SCORE replication (new audit, 2020)", statistic_type = "t",
+    id = "SCORE", label = "SCORE replication (new experiment, 2020)", statistic_type = "t",
     statistic = ref$stat, n = ref$n, b_pp = ref$b_pp, on_chart = TRUE,
     note = "New data: 3,050 authorities emailed by four male aliases, two Hispanic and two white. Placed by the raw gap among all replies, computed by the course from the de-identified data on the OSF (osf.io/xseqg)."
   ))

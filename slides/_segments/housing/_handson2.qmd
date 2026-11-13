@@ -6,7 +6,7 @@
 ::: {.small}
 **Task 2** has three pieces, in the browser lab or in your workspace:
 
-1. **Look at the data.** `r fmt_n(nrow(audit))` emails, one row each. Count the emails that bounced, the replies, the replies with a greeting code and the greetings by name, for each name
+1. **Look at the data.** `r fmt_n(nrow(housing))` emails, one row each. Count the emails that bounced, the replies, the replies with a greeting code and the greetings by name, for each name
 2. **Write the estimand statement.** Fill every bracket of the template for *this* claim, and say which emails you count
 3. **Finish the graph**. Take the `#` off `"name -> greeting"` if you believe it, then run `adjustmentSets()` and `paths()` with `Z = "reply"`, and read which paths open among the replies
 :::

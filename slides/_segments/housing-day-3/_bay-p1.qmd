@@ -15,7 +15,7 @@ Part one builds the model and reads its result. The model is the logistic regres
 ```{r}
 #| label: d3-bayes-counts
 # The four counts of each study, the only information that a model with one
-# binary predictor uses (companion/_model-outputs/bayes_audit_counts.csv)
+# binary predictor uses (companion/_model-outputs/bayes_housing_counts.csv)
 bayes_counts |>
   datawizard::data_modify(
     Study = dplyr::if_else(study == "original", "Original, 2014", "Replication, 2020"),
@@ -30,7 +30,7 @@ bayes_counts |>
 :::
 ::: {.column width="50%"}
 ::: {.small}
-- With one binary predictor, everything that the data say is in **four counts** for each study, the original audit [@EinsteinGlick2017DoesRaceAffect] and the replication run for SCORE
+- With one binary predictor, everything that the data say is in **four counts** for each study, the original experiment [@EinsteinGlick2017DoesRaceAffect] and the replication run for SCORE
 - A **binomial model** treats the greetings of each group as a count out of its replies, with a logistic regression of their probability on the names: the logit of the last session, fitted to counts [@Burkner2017BrmsPackageBayesian]
 :::
 :::
@@ -44,7 +44,7 @@ brms::brm(k | trials(n) ~ 0 + Intercept + hisp, family = stats::binomial(), data
 ```
 
 ::: {.src}
-companion/_model-outputs/bayes_audit.R and bayes_audit_counts.csv; the counts of the replication are recovered from the shares and the total of its replies in cases/housing/data/display_replication.csv.
+companion/_model-outputs/bayes_housing.R and bayes_housing_counts.csv; the counts of the replication are recovered from the shares and the total of its replies in cases/housing/data/display_replication.csv.
 :::
 
 ::: notes
@@ -59,7 +59,7 @@ With a single binary predictor, everything that the data say is in four numbers 
 #| fig-height: 2.6
 # The prior predictive distributions under the weakly informative prior: the
 # share greeted by name for the white names and the gap, from 500 of the draws
-# of the prior-only fit (companion/_model-outputs/bayes_audit_draws.csv)
+# of the prior-only fit (companion/_model-outputs/bayes_housing_draws.csv)
 # A share is bounded by 0 and 100 and a gap by -100 and 100, so each panel
 # has a density layer with its own bounds
 panels <- c(white_share = "share greeted by name, white names (%)",
@@ -132,7 +132,7 @@ With the data switched on, here is the posterior distribution of the gap, drawn 
 
 ```{r}
 #| label: d3-diagnostics
-# The checks of the eight models (companion/_model-outputs/bayes_audit_diagnostics.csv)
+# The checks of the eight models (companion/_model-outputs/bayes_housing_diagnostics.csv)
 model_labels <- c(prior_weak = "Prior only, weakly informative", prior_sceptical = "Prior only, sceptical",
                   original_weak = "Original, weakly informative prior", original_sceptical = "Original, sceptical prior",
                   replication_alone = "Replication, weakly informative prior",

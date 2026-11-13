@@ -1,7 +1,7 @@
 ```{r}
 #| label: setup-experiments
 #| include: false
-# The numbers of the session on audit experiments that the setup of the case
+# The numbers of the session on audit experiments that the setup of the case study
 # does not hold, computed from the files of cases/housing/data/ with the
 # packages that companion/experiments.qmd uses, so that the deck and the module
 # agree. Comes after the two setup chunks and uses their data and formats.
@@ -24,14 +24,14 @@ balance_vars <- c(hard_email = "With a hard-to-find address",
                   poverty_third = "Top third of the poverty rate",
                   assessment_third = "Top third of the HUD assessment")
 balance <- purrr::imap(balance_vars, \(label, v) {
-  shares <- audit |>
+  shares <- housing |>
     dplyr::mutate(top = if (v == "hard_email") .data[[v]] == 1 else .data[[v]] == "top") |>
     dplyr::summarise(share = 100 * mean(top, na.rm = TRUE), .by = group)
   tibble::tibble(characteristic = label,
                  white = shares$share[shares$group == "white"],
                  black = shares$share[shares$group == "black"],
                  hispanic = shares$share[shares$group == "hispanic"],
-                 p = stats::chisq.test(table(audit$group, audit[[v]]))$p.value)  # r-style: keep – the table that chisq.test() takes
+                 p = stats::chisq.test(table(housing$group, housing[[v]]))$p.value)  # r-style: keep – the table that chisq.test() takes
 }) |>
   purrr::list_rbind()
 
@@ -39,7 +39,7 @@ balance <- purrr::imap(balance_vars, \(label, v) {
 # email to a Hispanic or a white name, a reply with a greeting code counting as
 # a response, and a Hispanic name assumed only ever to discourage a reply, so
 # that the replies to white names are the ones trimmed
-delivered <- audit |>
+delivered <- housing |>
   datawizard::data_filter(!is.na(reply) & group %in% c("white", "hispanic")) |>
   datawizard::data_modify(
     hisp = as.integer(group == "hispanic"),

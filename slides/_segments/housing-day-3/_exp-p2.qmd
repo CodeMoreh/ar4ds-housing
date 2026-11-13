@@ -53,7 +53,7 @@ attrition::estimator_trim(Y = greeted, Z = hisp, R = responded,
 :::
 
 ::: {.src}
-Trimming bounds from the attrition package, on the `r fmt_n(nrow(delivered))` delivered emails to Hispanic and white names (cases/housing/data/housing_audit.csv); companion/experiments.qmd, section 4.
+Trimming bounds from the attrition package, on the `r fmt_n(nrow(delivered))` delivered emails to Hispanic and white names (cases/housing/data/housing_emails.csv); companion/experiments.qmd, section 4.
 :::
 
 ::: notes
@@ -108,18 +108,18 @@ Random assignment also supplies a test that needs no model of the errors, and th
 
 1. Once, in the console: `pak::pak("ri2")`, which installs randomizr and estimatr with it
 2. **Balance.** Tabulate one characteristic by group, then test it, and try another:
-   `datawizard::data_tabulate(audit, select = "poverty_third", by = "group", proportions = "column")` and `chisq.test(table(audit$group, audit$poverty_third))`
+   `datawizard::data_tabulate(housing, select = "poverty_third", by = "group", proportions = "column")` and `chisq.test(table(housing$group, housing$poverty_third))`
 3. **Reshuffles among the replies**, on the rows of the reference specification:
 
    ```{.r}
-   frame <- spec_frame(audit)   # the 362 coded replies to Hispanic and white names
+   frame <- spec_frame(housing)   # the 362 coded replies to Hispanic and white names
    set.seed(20261106)
    reshuffled <- ri2::conduct_ri(y ~ hisp, assignment = "hisp", sharp_hypothesis = 0,
                                  declaration = randomizr::declare_ra(N = nrow(frame), m = sum(frame$hisp)),
                                  data = frame, sims = 1999)
    summary(reshuffled)
    ```
-4. Run the same on `spec_frame(audit, population = "all")`. **Which of the two reshuffles repeats the assignment of the design?**
+4. Run the same on `spec_frame(housing, population = "all")`. **Which of the two reshuffles repeats the assignment of the design?**
 :::
 
 ::: notes

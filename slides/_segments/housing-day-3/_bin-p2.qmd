@@ -11,7 +11,7 @@ Part two writes the same difference as a regression. That sounds like a detour, 
 ## The linear probability model {#the-linear-probability-model .smaller}
 
 ```{.r}
-lpm <- lm(y ~ hisp, data = frame)                     # frame <- spec_frame(audit)
+lpm <- lm(y ~ hisp, data = frame)                     # frame <- spec_frame(housing)
 parameters::model_parameters(lpm, vcov = "HC2")
 ```
 
@@ -45,7 +45,7 @@ The groups are similar in size and in share, so the classical error is close. Wh
 :::
 
 ::: {.src}
-The reference specification on cases/housing/data/housing_audit.csv; HC2 errors from sandwich through parameters, as in the estimator of the course (R/housing/_tools.R).
+The reference specification on cases/housing/data/housing_emails.csv; HC2 errors from sandwich through parameters, as in the estimator of the course (R/housing/_tools.R).
 :::
 
 ::: notes
@@ -57,14 +57,14 @@ Now the standard errors, because the menu fixes them and the estimator of the co
 ::: {.small}
 **In the workspace**, with the setup chunk of `index.qmd` run:
 
-1. `frame <- spec_frame(audit)` gives the rows of the reference specification, with the outcome `y` and the indicator `hisp`
+1. `frame <- spec_frame(housing)` gives the rows of the reference specification, with the outcome `y` and the indicator `hisp`
 2. The table and its tests: `counts <- table(frame$hisp, frame$y)`, then `chisq.test(counts)` and `chisq.test(counts, correct = FALSE)`. **Which one is the square of a z?**
 3. The model: `lpm <- lm(y ~ hisp, data = frame)`, then `parameters::model_parameters(lpm)` and `parameters::model_parameters(lpm, vcov = "HC2")`
 4. Check two equalities: the coefficient against the difference of the two shares, and the HC2 error against `t.test(y ~ hisp, data = frame)$stderr`
 :::
 
 ::: {.fragment .small}
-Then change one thing: `frame <- spec_frame(audit, comparison = "nonhispanic")`, Hispanic names against white and Black names together, and run steps 3 and 4 again.
+Then change one thing: `frame <- spec_frame(housing, comparison = "nonhispanic")`, Hispanic names against white and Black names together, and run steps 3 and 4 again.
 :::
 
 ::: notes

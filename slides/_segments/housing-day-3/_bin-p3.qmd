@@ -5,7 +5,7 @@ Part 3
 :::
 
 ::: notes
-Part three turns to the model of the paper. The original authors, the OAs, fitted a logistic regression, and so did three of the five analysts, so this is the model behind the published result and behind two of the four statistics that Multi100 recorded for the analysts. A logistic regression does not report in percentage points. It reports differences in log odds, and their exponents, odds ratios. We look at what that scale is, how to get back to the scale of the claim, and why the course does so for every logit on the curve.
+Part three turns to the model of the paper. The original authors, the OAs, fitted a logistic regression, and so did three of the five analysts, so this is the model behind the published result and behind two of the four statistics that the robustness study of SCORE, known as Multi100, recorded for the analysts. A logistic regression does not report in percentage points. It reports differences in log odds, and their exponents, odds ratios. We look at what that scale is, how to get back to the scale of the claim, and why the course does so for every logit on the curve.
 :::
 
 ## Logistic regression {#logistic-regression .smaller}
@@ -57,7 +57,7 @@ The coefficient of the paper: @EinsteinGlick2017DoesRaceAffect, Table 1, model 3
 :::
 
 ::: notes
-The logistic regression works on the log odds of a greeting, the log of the share divided by one minus the share. Log odds run from minus infinity to plus infinity, so a straight line on that scale never predicts an impossible share, and the curve on the slide takes it back to probabilities. The two points are our two groups of names. The coefficient of the Hispanic names, minus point eight one, is the horizontal step between them, a difference in log odds, and its z is exactly the value that Multi100 recorded for UYV3F. Exponentiated, it is an odds ratio of about point four four. The vertical step is the gap in points, minus twenty. Without covariates the logit reproduces the two observed shares exactly, so here the two scales tell the same story. The minus point eight two of the paper comes from a model with all three groups and with covariates.
+The logistic regression works on the log odds of a greeting, the log of the share divided by one minus the share. Log odds run from minus infinity to plus infinity, so a straight line on that scale never predicts an impossible share, and the curve on the slide takes it back to probabilities. The two points are our two groups of names. The coefficient of the Hispanic names, minus point eight one, is the horizontal step between them, a difference in log odds, and its z is exactly the value recorded in the robustness study for UYV3F. Exponentiated, it is an odds ratio of about point four four. The vertical step is the gap in points, minus twenty. Without covariates the logit reproduces the two observed shares exactly, so here the two scales tell the same story. The minus point eight two of the paper comes from a model with all three groups and with covariates.
 :::
 
 ## From odds ratios to percentage points {#from-odds-ratios-to-percentage-points .smaller}
@@ -120,7 +120,7 @@ Here is the least familiar property of the odds ratio. In an experiment, adding 
 ## Hands-on 2 – The logit and its two scales {#hands-on-2-the-logit-and-its-two-scales .smaller}
 
 ::: {.small}
-**In the workspace**, with `frame` from Hands-on 1 back at the reference, `spec_frame(audit)`:
+**In the workspace**, with `frame` from Hands-on 1 back at the reference, `spec_frame(housing)`:
 
 1. `cols <- datawizard::data_select(frame, c("y", "hisp", "hard_email"))`, because marginaleffects refuses a data column called `group`
 2. `logit <- glm(y ~ hisp, family = binomial(), data = cols)`, then `parameters::model_parameters(logit, exponentiate = TRUE)` for the odds ratio
@@ -140,5 +140,5 @@ Your turn again, with the reference rows from the first hands-on. One detail of 
 :::
 
 ::: notes
-That is the outcome and its models. The module Binary outcomes is the reading for this session. It builds each model from the table of counts, with the code beside every step, and it ends with a table that sets all the methods side by side on the one comparison of the reference specification, which is worth keeping for your own work. The next session fits the same logistic model again, to the same four counts, but by Bayesian methods. The gap then becomes a distribution about which we can make direct probability statements, and the replication can enter as new data that revise what the original audit told us.
+That is the outcome and its models. The module Binary outcomes is the reading for this session. It builds each model from the table of counts, with the code beside every step, and it ends with a table that sets all the methods side by side on the one comparison of the reference specification, which is worth keeping for your own work. The next session fits the same logistic model again, to the same four counts, but by Bayesian methods. The gap then becomes a distribution about which we can make direct probability statements, and the replication can enter as new data that revise what the original experiment told us.
 :::

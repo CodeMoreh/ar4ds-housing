@@ -1,6 +1,6 @@
 ## What you do not need {#what-you-do-not-need-today}
 
-<!-- The browser-first opening of the housing-audit decks. Lines that differ by
+<!-- The browser-first opening of the decks of the Housing case study. Lines that differ by
      format are shown by Quarto conditional content, keyed on the deck map in
      the YAML of each deck (deck: {short: true} and so on). -->
 

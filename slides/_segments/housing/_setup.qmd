@@ -1,15 +1,15 @@
 ```{r}
 #| label: setup-housing
 #| include: false
-# The data of the housing-audit case and the figures drawn from them, read
-# once for every segment of the case. Comes after the shared setup chunk and
+# The data of the Housing case study and the figures drawn from them, read
+# once for every segment of the case study. Comes after the shared setup chunk and
 # uses its palette, theme and number formats. The files and their codebooks
 # are in cases/housing/data/, written by R/housing/ (menu_options.csv by
 # hand); every number on the slides is computed from them or taken from
 # _planning/housing/housing-facts.md. Estimates are in percentage points, and a
 # negative estimate means that Hispanic names were greeted by name less often,
 # the direction of the claim.
-# The addresses of the case, which the shared segments print
+# The addresses of the case study, which the shared segments print
 case_vars <- yaml::read_yaml("../_variables.yml")$cases$housing
 
 # readr rather than datawizard::data_read(), which reads empty cells as "" rather than NA
@@ -34,8 +34,8 @@ ri <- readr::read_csv("../cases/housing/data/display_ri.csv", show_col_types = F
 power <- readr::read_csv("../cases/housing/data/display_power.csv", show_col_types = FALSE)
 deviations <- readr::read_csv("../cases/housing/data/menu_deviations.csv", show_col_types = FALSE)
 menu_opts <- readr::read_csv("../cases/housing/data/menu_options.csv", show_col_types = FALSE)
-audit <- readr::read_csv("../cases/housing/data/housing_audit.csv", show_col_types = FALSE)
-original <- readr::read_csv("../cases/housing/data/audit_original.csv", show_col_types = FALSE)
+housing <- readr::read_csv("../cases/housing/data/housing_emails.csv", show_col_types = FALSE)
+original <- readr::read_csv("../cases/housing/data/housing_original.csv", show_col_types = FALSE)
 
 # The published result and the five reanalyses, each placed by its gap in
 # points. Marks within 0.05 points of one another share one tag, because the
@@ -91,7 +91,7 @@ prop_plain <- unname(stats::prop.test(counts_25n5d$greetings, counts_25n5d$email
 
 # The reference comparison refitted with conventional errors, beside the HC2
 # errors of the curve, for the slide on standard errors
-ref_rows <- audit |>
+ref_rows <- housing |>
   datawizard::data_filter(group %in% c("white", "hispanic") & reply == 1 & !is.na(named)) |>
   datawizard::data_modify(hispanic = as.integer(group == "hispanic"))
 se_conventional <- parameters::model_parameters(stats::lm(named ~ hispanic, data = ref_rows)) |>

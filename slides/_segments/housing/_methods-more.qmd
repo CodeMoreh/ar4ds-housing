@@ -104,11 +104,11 @@ The randomisation test deserves a picture, because it is the test that the desig
 :::
 
 ::: {.fragment .small}
-The Multi100 instruction to leave out ethnic composition therefore changes very little on these data.
+The instruction of the robustness study to leave out ethnic composition therefore changes very little on these data.
 :::
 
 ::: notes
-In an observational study, covariates are how you try to remove confounding. In an experiment they have a different job. Randomisation already balances the communities across the six names, in expectation, so covariates are not needed to remove bias; at most they make an estimate more precise, if they predict the outcome. On the curve, adding the hard-to-find address moves the estimate by less than a tenth of a point, and adding the size, poverty and ethnic composition of the community moves it by about one point, partly because fourteen emails have no community data and drop out. The continuous census values of the paper are not available at all: the public file gives only thirds, because the exact values would identify the authorities. [advance] So the one instruction of Multi100 changes very little here.
+In an observational study, covariates are how you try to remove confounding. In an experiment they have a different job. Randomisation already balances the communities across the six names, in expectation, so covariates are not needed to remove bias; at most they make an estimate more precise, if they predict the outcome. On the curve, adding the hard-to-find address moves the estimate by less than a tenth of a point, and adding the size, poverty and ethnic composition of the community moves it by about one point, partly because fourteen emails have no community data and drop out. The continuous census values of the paper are not available at all: the public file gives only thirds, because the exact values would identify the authorities. [advance] So the one instruction of the robustness study changes very little here.
 :::
 
 ## Subgroups beside the curve {#subgroups-beside-the-curve .smaller .deepdive run="methods"}

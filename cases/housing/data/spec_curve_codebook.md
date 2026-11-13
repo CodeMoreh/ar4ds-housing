@@ -1,6 +1,6 @@
 # Codebook: `spec_curve.csv`
 
-The curve of the claim of the housing-audit case, "Hispanic housing applicants were ... less likely to be greeted by name than were ... white counterparts", in the wording that SCORE took from the paper of the original authors (OAs): every specification that the specification menu of the course keeps, 64 rows, fitted once on the course file `housing_audit.csv`. The file is written by `R/housing/02_spec_curve.R` with the estimator of `R/housing/_tools.R` (`fit_spec()`), which uses base R, dplyr and one function of purrr, so that the workspace and the browser lab run the identical code; `R/housing/check_parity.R` checks it against `estimatr` (HC2 errors) and `marginaleffects` (average marginal effects) on every row.
+The curve of the claim of the Housing and racial bias case study, "Hispanic housing applicants were ... less likely to be greeted by name than were ... white counterparts", in the wording that SCORE took from the paper of the original authors (OAs): every specification that the specification menu of the course keeps, 64 rows, fitted once on the course file `housing_emails.csv`. The file is written by `R/housing/02_spec_curve.R` with the estimator of `R/housing/_tools.R` (`fit_spec()`), which uses base R, dplyr and one function of purrr, so that the workspace and the browser lab run the identical code; `R/housing/check_parity.R` checks it against `estimatr` (HC2 errors) and `marginaleffects` (average marginal effects) on every row.
 
 ## The specifications
 
@@ -33,7 +33,7 @@ The reference specification (`is_reference`) is `white`, `replies`, `drop`, `lpm
 | `stat` | `coef` divided by `coef_se` |
 | `df` | The residual degrees of freedom of the linear model; empty for the logit |
 | `p` | The two-sided p-value of the test of the model: `stat` on `df` for the linear model, on the normal distribution for the logit. This is the test that classes every row |
-| `r` | The partial correlation by the rules of Multi100: t / sqrt(t^2 + df) for a t, and tanh(\|z\| / sqrt(n − 3)) with the sign of z for a z, the number of emails standing in for the missing degrees of freedom |
+| `r` | The partial correlation by the conversion rules of the robustness study of SCORE (Multi100; Aczel et al. 2026): t / sqrt(t^2 + df) for a t, and tanh(\|z\| / sqrt(n − 3)) with the sign of z for a z, the number of emails standing in for the missing degrees of freedom |
 | `n` | The emails analysed |
 | `n_hisp`, `n_comp` | The analysed emails with Hispanic names and with comparison names |
 | `rate_hisp`, `rate_comp` | The share of the analysed emails in each group whose outcome is 1, in per cent, before any adjustment |

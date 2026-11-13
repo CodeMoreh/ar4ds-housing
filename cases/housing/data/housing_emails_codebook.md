@@ -1,12 +1,12 @@
-# Codebook: `housing_audit.csv`
+# Codebook: `housing_emails.csv`
 
-The course file of the housing-audit case: one row per email of the field experiment reported in "Does Race Affect Access to Government Services? An Experiment Exploring Street-Level Bureaucrats and Access to Public Housing" (*American Journal of Political Science* 61 (1), 2017, doi:10.1111/ajps.12252), whose authors the course calls the original authors (OAs). It holds 1,014 rows, with readable names and the columns that the exercises use. It is written by `R/housing/01_audit_data.R` from the public file of the OAs, and it keeps the rows of that file in the same order, so that row *i* here is row *i* of `audit_original.csv` ([codebook](audit_original_codebook.md)).
+The course file of the Housing and racial bias case study: one row per email of the field experiment reported in "Does Race Affect Access to Government Services? An Experiment Exploring Street-Level Bureaucrats and Access to Public Housing" (*American Journal of Political Science* 61 (1), 2017, doi:10.1111/ajps.12252), whose authors the course calls the original authors (OAs). It holds 1,014 rows, with readable names and the columns that the exercises use. It is written by `R/housing/01_email_data.R` from the public file of the OAs, and it keeps the rows of that file in the same order, so that row *i* here is row *i* of `housing_original.csv` ([codebook](housing_original_codebook.md)).
 
 ## Sources and construction
 
 The OAs published their data and code on the Harvard Dataverse (doi:10.7910/DVN/1HOVTU) under a CC0 dedication. The public file is blinded. Its ReadMe explains that the census codes of the communities and the continuous community values would identify the housing authorities, so the file gives population, percent white, percent Black, percent Hispanic, the poverty rate and the HUD assessment score only as thirds of their distributions among the communities of the study (1 lower, 2 middle, 3 top). The experimental comparisons can be reproduced exactly from it, and the models with community covariates only approximately. Nothing in the course tries to recover the continuous values.
 
-The paper reports 1,017 emails, and the public file holds 1,014. Each email was signed with one of six names, assigned at random. The names were meant to indicate a white, a Black or a Hispanic sender, one male and one female name for each group, and the file records the name through the number of the email account (`NumberAssignment`), which `01_audit_data.R` translates as follows.
+The paper reports 1,017 emails, and the public file holds 1,014. Each email was signed with one of six names, assigned at random. The names were meant to indicate a white, a Black or a Hispanic sender, one male and one female name for each group, and the file records the name through the number of the email account (`NumberAssignment`), which `01_email_data.R` translates as follows.
 
 | `NumberAssignment` | `name` | `group` | `name_sex` | Emails |
 |--:|:--|:--|:--|--:|

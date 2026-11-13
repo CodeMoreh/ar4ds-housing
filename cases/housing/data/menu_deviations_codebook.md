@@ -1,6 +1,6 @@
 # Codebook: `menu_deviations.csv`
 
-What each option of the curve does to the estimate. For each of the five decisions that vary on the curve of the housing-audit case (`spec_curve.csv`, [codebook](spec_curve_codebook.md)), every specification is set beside its twin that differs from it only in that decision, the twin taking the first option of the decision, and the differences are summarised by option: 12 rows. The file is written by `R/housing/04_menu_deviations.R` from `spec_curve.csv`, so it holds no fit of its own. The decision map and the specification menu read it.
+What each option of the curve does to the estimate. For each of the five decisions that vary on the curve of the Housing and racial bias case study (`spec_curve.csv`, [codebook](spec_curve_codebook.md)), every specification is set beside its twin that differs from it only in that decision, the twin taking the first option of the decision, and the differences are summarised by option: 12 rows. The file is written by `R/housing/04_menu_deviations.R` from `spec_curve.csv`, so it holds no fit of its own. The decision map and the specification menu read it.
 
 ## Columns
 

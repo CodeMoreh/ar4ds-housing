@@ -5,7 +5,7 @@ title: "Second half – Exploration and replication"
 **Slides.** [Open the deck at this half](../../slides/housing-short.html#/half-2-exploration-and-replication){target="_blank"} in its own tab, or follow it on the [slides page](slides.qmd).
 :::
 
-In the first half everyone who chose the same analyst reproduced the same number, because everyone ran the same code. In the second you become the sixth analyst and make choices of your own: you try a few analyses from the menu in the browser lab, read where the one that you would defend sits among every justifiable specification on these data, and end on the new audit that tested the claim again. Nothing is sent anywhere.
+In the first half everyone who chose the same analyst reproduced the same number, because everyone ran the same code. In the second you become the sixth analyst and make choices of your own: you try a few analyses from the menu in the browser lab, read where the one that you would defend sits among every justifiable specification on these data, and end on the new experiment that tested the claim again. Nothing is sent anywhere.
 
 ## 1. The specification menu
 
@@ -41,9 +41,9 @@ Rerun `try_spec()` with the specification that you would defend and read your pl
 
 ## 6. The replication
 
-**On the slides.** The SCORE replication was a preregistered audit of 3,050 housing authorities with new names. The slides show what it found, compare the original study and the replication row by row, and set out the power of the two designs. They end on the three Rs on this paper and on what separates robustness from replicability.
+**On the slides.** The SCORE replication was a preregistered experiment on 3,050 housing authorities with new names. The slides show what it found, compare the original study and the replication row by row, and set out the power of the two designs. They end on the three Rs on this paper and on what separates robustness from replicability.
 
-To go further: [the replication](../../cases/housing/index.qmd#sec-replication) in the case study.
+To go further: [the replication](../../cases/housing/index.qmd#sec-replication) on the background page.
 
 ## 7. The close
 
