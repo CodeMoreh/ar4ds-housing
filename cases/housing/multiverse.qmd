@@ -88,7 +88,7 @@ ri_band <- stats::quantile(ri$b_pp, c(0.025, 0.975))
 ri_extreme <- sum(abs(ri$b_pp) >= abs(ref$b_pp) - 1e-9)
 
 # The SCORE replication, from its final report on the OSF (component 2ug8x),
-# as _planning/housing/housing-facts.md records it: the coefficient of the Hispanic
+# as ../_planning/housing/housing-facts.md records it: the coefficient of the Hispanic
 # alias in the logit of model 1, its standard error, z and p, the replies of
 # the random draw and of the full set
 score <- list(b = 0.098, se = 0.149, z = 0.66, p = 0.511, n_draw = 738, n_all = 1243,

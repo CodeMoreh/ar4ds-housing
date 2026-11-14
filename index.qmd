@@ -20,7 +20,7 @@ The page uses the custom layout of the opening pages of the AR4DS sites: every
 section is a fenced div with a home- class (styled in style/home.css), and the
 format cards, the tasks and all the text are ordinary Markdown below. The
 claim, the replication and the reproduction come from the facts file of the
-case study (D:\ACADEMIC\TEACHING\2026_OR_NCL\_planning\housing\housing-facts.md); the
+case study (D:\ACADEMIC\TEACHING\AR4DS\_planning\housing\housing-facts.md); the
 other numbers are read from the committed data files by the chunk below. -->
 
 ```{r}

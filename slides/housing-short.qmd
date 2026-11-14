@@ -10,7 +10,7 @@ core-runs: []
 # through Quarto conditional content (when-meta="deck.short" and so on):
 # one of short, open-science, data-tools or methods, and menu where the
 # deck teaches the specification menu. The formats are set out in
-# _planning/formats-2026-10-27.md.
+# ../_planning/formats-2026-10-27.md.
 deck:
   short: true
   menu: true

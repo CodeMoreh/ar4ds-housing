@@ -101,7 +101,7 @@ One more lens: power, the probability that a study of a given size detects a gap
 #| fig-width: 10.5
 #| fig-height: 4.6
 # The SCORE dossier on the Housing case study as a three-row scoreboard,
-# one row per R; the details come from _planning/housing/housing-facts.md and from
+# one row per R; the details come from ../_planning/housing/housing-facts.md and from
 # the curve and record files.
 sb <- tibble::tribble(
   ~ord, ~R,              ~verdict,                ~detail,                                                                                                   ~fill,

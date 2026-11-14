@@ -6,7 +6,7 @@
 # uses its palette, theme and number formats. The files and their codebooks
 # are in cases/housing/data/, written by R/housing/ (menu_options.csv by
 # hand); every number on the slides is computed from them or taken from
-# _planning/housing/housing-facts.md. Estimates are in percentage points, and a
+# ../_planning/housing/housing-facts.md. Estimates are in percentage points, and a
 # negative estimate means that Hispanic names were greeted by name less often,
 # the direction of the claim.
 # The addresses of the case study, which the shared segments print
