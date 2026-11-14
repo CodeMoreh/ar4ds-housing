@@ -253,8 +253,3 @@ Do the exercise above on the last analysis you ran, not on a hypothetical one. T
 ## Sources and further reading {#sec-sources}
 
 The estimand-first framing is @LundbergEtAl2021WhatYourEstimand, and the standard treatment of causal graphs for social scientists is @HernanRobins2020CausalInferenceWhat, which is freely available online; @Huntington-Klein2021EffectIntroductionResearch is a gentler introduction to the three shapes. On colliders, @ColeEtAl2010IllustratingBiasDue give the general treatment, @ElwertWinship2014EndogenousSelectionBias the treatment for sociologists, with selection into a sample as the leading case, and @GriffithEtAl2020ColliderBiasUndermines a widely read applied example, and on conditioning after the treatment in experiments, @MontgomeryEtAl2018HowConditioningPosttreatment, with @Coppock2019AvoidingPosttreatmentBias for audit studies. The demonstration that no statistic chooses an adjustment set is @DAgostinoMcGowanEtAl2024CausalInferenceNot. The software documentation is worth reading directly: the ggdag package site at <https://r-causal.github.io/ggdag/>, whose introductory vignette pictures association flowing along a path as water flows down a pipe, and the dagitty documentation at <https://dagitty.net/>, which also hosts a browser tool for sketching a graph by hand before writing it down. The numbers of the Housing case study come from `display_outcomes.csv`, `spec_curve.csv` and `housing_emails.csv` in `cases/housing/data/`.
-
-## References {.unnumbered}
-
-::: {#refs}
-:::

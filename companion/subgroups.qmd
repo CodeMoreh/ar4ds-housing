@@ -168,8 +168,3 @@ Add the gap among replies within 24 hours and among later replies to the family,
 ## Sources and further reading {#sec-sources}
 
 The subgroup estimates are those of `display_subgroups.csv`, written by `R/housing/05_displays.R` from the course file and documented in the [codebook of the displays](../cases/housing/data/displays_codebook.md). The step-down correction is that of @Holm1979SimpleSequentiallyRejective and the false discovery rate that of @BenjaminiHochberg1995ControllingFalseDiscovery; both are implemented in `p.adjust()`, whose help page lists the other methods. The argument for partial pooling over corrections is made by @GelmanEtAl2012WhyWeUsually, the warning about differences in significance by @GelmanStern2006DifferenceSignificantNot, and the garden of forking paths is the term of @GelmanLoken2014StatisticalCrisisScience, while the random-effects models of section 4 are fitted with metafor [@Viechtbauer2010ConductingMetaanalysesMetafor].
-
-## References {.unnumbered}
-
-::: {#refs}
-:::

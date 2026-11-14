@@ -257,8 +257,3 @@ Change the key so that code 3 reads `Gabriela` and code 4 `Santiago`, rerun the 
 ## Sources {#sec-sources}
 
 The data are the replication package of the OAs [@EinsteinGlick2017DoesRaceAffect] on the Harvard Dataverse ([doi:10.7910/DVN/1HOVTU](https://doi.org/10.7910/DVN/1HOVTU)), dedicated to the public domain under CC0; its ReadMe explains the blinding of the community values, and its codebook the coding of every column. The script that this page follows is `R/housing/01_email_data.R`, and the order of the pipeline is set out in `R/housing/README.md`. The two files are documented in the codebooks of the [deposited file](../cases/housing/data/housing_original_codebook.md) and of the [course file](../cases/housing/data/housing_emails_codebook.md). The route of the deposited file from the Dataverse to your disk is in the [module on data sources](data-sources.qmd#sec-dataverse).
-
-## References {.unnumbered}
-
-::: {#refs}
-:::

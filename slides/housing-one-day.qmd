@@ -13,11 +13,6 @@ core-runs: []
 deck:
   one-day: true
   menu: true
-# The decks of the three one-day focuses of October 2026 forward here.
-aliases:
-  - housing-one-day-methods.html
-  - housing-one-day-open-science.html
-  - housing-one-day-data-tools.html
 ---
 
 {{< include _segments/shared/_setup.qmd >}}

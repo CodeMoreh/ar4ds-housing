@@ -32,8 +32,3 @@ Sending your results to the class chart of the case study is optional. A result 
 [Start with Stage 1](stage-1.qmd){.btn .btn-primary}
 
 The same case study is also taught with a facilitator, as a [short session](../housing-short/index.qmd), as a [one-day workshop](../housing-one-day/index.qmd) and as the [Extended course](../housing-extended/index.qmd).
-
-## References {.unnumbered}
-
-::: {#refs}
-:::

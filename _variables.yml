@@ -40,9 +40,9 @@ cases:
     label: "Housing"
     name: "the Housing and racial bias case study"
     # A public template repository with Pages built by Actions, like the
-    # workspace of the Europeanisation case study; the zip unzips into replication-lab-housing-main
-    template-repo: "https://github.com/CodeMoreh/replication-lab-housing"
-    workspace-zip: "https://github.com/CodeMoreh/replication-lab-housing/archive/refs/heads/main.zip"
+    # workspace of the Europeanisation case study; the zip unzips into ar4ds-housing-workspace-main
+    template-repo: "https://github.com/CodeMoreh/ar4ds-housing-workspace"
+    workspace-zip: "https://github.com/CodeMoreh/ar4ds-housing-workspace/archive/refs/heads/main.zip"
     live-results-url: "https://codemoreh.github.io/ar4ds-housing/cases/housing/multiverse.html"
     results-word: "housing"
 

@@ -38,10 +38,10 @@ source("R/spec_tools.R")
 ```{r}
 #| label: source-tools-page
 #| include: false
-# The page reads the helpers from the copy of the workspace beside the site,
-# the nested repository in _workspaces/housing/, and its data/ from the folder
-# of the case study, which holds the same files.
-source("../../_workspaces/housing/R/spec_tools.R")
+# The page reads the helpers from the local copy of the workspace, the
+# repository ar4ds-housing-workspace in the folder beside this site, and its
+# data/ from the folder of the case study, which holds the same files.
+source("../../../ar4ds-housing-workspace/R/spec_tools.R")
 ```
 
 `try_spec()` fits one specification and prints its result. Every argument has a default, and the defaults make up the reference specification, the comparison that section 10 of Getting started with R makes by hand, so calling the function with no arguments reproduces the gap computed there:

@@ -283,8 +283,3 @@ Change the sceptical prior to normal(0, 0.5), the prior that McElreath uses for 
 ## Further reading {#sec-further}
 
 For learning Bayesian estimation from the start, *Statistical Rethinking* builds it from counting and simulation, with priors chosen by prior predictive simulation throughout [@McElreath2020StatisticalRethinkingBayesian], and *Regression and Other Stories* treats regression with the same habits and with weakly informative priors as the default [@GelmanEtAl2020RegressionOtherStories]. *Bayesian Data Analysis* is the reference text, including the hierarchical models that combine several studies [@GelmanEtAl2014BayesianDataAnalysis], and the *Bayesian Workflow* book sets out the cycle of building, checking and revising a model that this page follows in miniature, from the prior predictive check to the posterior predictive check that names the next model [@GelmanEtAl2026BayesianWorkflow]. The design analysis of section 6 comes from @GelmanCarlin2014PowerCalculationsAssessing. The models are fitted with brms [@Burkner2017BrmsPackageBayesian], the gaps in points come from marginaleffects [@Arel-BundockEtAl2024HowInterpretStatistical], and the sensitivity checks from priorsense [@KallioinenEtAl2026PriorsenseEfficientPrior]. The script `companion/_model-outputs/bayes_housing.R` fits every model on the page, and its outputs are listed in `companion/_model-outputs/manifest.txt`.
-
-## References {.unnumbered}
-
-::: {#refs}
-:::

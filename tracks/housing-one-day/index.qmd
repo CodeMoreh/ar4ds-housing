@@ -1,12 +1,6 @@
 ---
 title: "One-day workshop – Housing and racial bias"
 subtitle: "Four parts, with a facilitator"
-# The three one-day focuses of October 2026 were merged into this workshop on
-# 6 November 2026; their old addresses forward here.
-aliases:
-  - ../housing-one-day-methods/index.html
-  - ../housing-one-day-open-science/index.html
-  - ../housing-one-day-data-tools/index.html
 ---
 
 This is the one-day workshop on the Housing and racial bias case study. It works on one field experiment, in which emails that differed only in the name that signed them were sent to public housing authorities in the United States, and on a claim of the original authors (OAs) that five analysts reanalysed for the robustness study of SCORE (Multi100; Aczel et al. 2026). Across the day you work as analyst no. 6. In the morning you meet the evidence on the credibility of social science and the three kinds of repetition that go under the word 'replication', read the paper and its claim, write the estimand statement behind the claim and finish a causal graph of the experiment. In the afternoon you reproduce one of the five reanalyses, whichever you choose, and then turn to robustness. You work through a menu of defensible analyses, send the one that you would defend to the class chart, read the chart against the 64 specifications on the curve of the claim, meet the replication that tested the claim with new emails, and declare one analysis in a shortened preregistration template before you run it.

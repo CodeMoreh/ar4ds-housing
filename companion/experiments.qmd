@@ -356,8 +356,3 @@ Take the trimming argument of section 4 and reverse its assumption: suppose that
 ## Sources and further reading {#sec-sources}
 
 The design of the experiment is set out in the paper of the OAs [@EinsteinGlick2017DoesRaceAffect], whose accepted manuscript is open at [OpenBU](https://hdl.handle.net/2144/37826), and the data in its replication package on the Harvard Dataverse ([doi:10.7910/DVN/1HOVTU](https://doi.org/10.7910/DVN/1HOVTU)). The audit and correspondence literature cited above runs from @Pager2003MarkCriminalRecord and @BertrandMullainathan2004AreEmilyGreg to the meta-analysis of @QuillianEtAl2017MetaanalysisFieldExperiments, and in political science from @ButlerBroockman2011PoliticiansRaciallyDiscriminate to @WhiteEtAl2015WhatNeedVote. @Gaddis2017HowBlackAre examines names as treatments. Post-treatment conditioning in experiments is treated by @MontgomeryEtAl2018HowConditioningPosttreatment and, for audit studies, by @Coppock2019AvoidingPosttreatmentBias. Randomisation inference goes back to @Fisher1935DesignExperiments, with @Ernst2004PermutationMethods as an introduction and @PhipsonSmyth2010PermutationPValues on the p-value. Blocking is defended by @ImaiEtAl2008MisunderstandingsExperimentalistsObservationalists, and the analysis of blocked experiments is set out by @AtheyImbens2017EconometricsRandomizedExperiments. The SCORE replication, its preregistration and its final report are on the OSF at [osf.io/2ug8x](https://osf.io/2ug8x/). The files of the course behind the numbers are `housing_emails.csv`, `display_names.csv`, `display_outcomes.csv`, `display_subgroups.csv`, `display_power.csv` and `spec_curve.csv` in `cases/housing/data/`, each with a codebook.
-
-## References {.unnumbered}
-
-::: {#refs}
-:::

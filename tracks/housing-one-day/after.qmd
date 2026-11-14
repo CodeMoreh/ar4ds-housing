@@ -1,9 +1,5 @@
 ---
 title: "After the day"
-aliases:
-  - ../housing-one-day-methods/after.html
-  - ../housing-one-day-open-science/after.html
-  - ../housing-one-day-data-tools/after.html
 ---
 
 A single day has room for the exercise and very little else. The [companion curriculum](../../companion/index.qmd) covers the material that the day can only mention in passing, in modules that each stand on their own, so take the one you need and leave the rest. The section "Going further" at the end of the report in the workspace holds four more exercises: a sweep of a whole decision, the five analysts placed on the curve, the randomisation test beside the test of the model, and the replication with new data.

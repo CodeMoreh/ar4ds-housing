@@ -128,6 +128,8 @@ website:
             text: "Meta-analysis"
       - href: resources.qmd
         text: Resources
+      - href: references.qmd
+        text: References
     right:
       # The pages that every case study shares live on the umbrella site
       - href: "https://codemoreh.github.io/ar4ds/setup.html"

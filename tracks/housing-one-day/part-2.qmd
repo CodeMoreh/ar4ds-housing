@@ -1,8 +1,5 @@
 ---
 title: "Part 2 – The estimand and the causal graph"
-aliases:
-  - ../housing-one-day-methods/part-2.html
-  - ../housing-one-day-open-science/part-2.html
 ---
 
 ::: {.callout-note appearance="simple" icon=false}

@@ -32,8 +32,3 @@ Read sections 1 to 3. They cover [the original study](../../cases/housing/index.
 **Shortcuts.** If you already write R with the tidyverse, read the section on the datawizard verbs, which the course uses wherever they do the job, and the section on `try_spec()`, and run the rest only where its output surprises you. If you already write Quarto, render the report of the workspace and move on.
 
 **By the end of the stage** you have a script of your own that reads `housing_emails.csv`, counts the replies with a greeting code and the greetings by name for each group of names, and draws one figure from them; a rendered Quarto document holding that figure, a cross-reference to it and a citation; and the claim of the case study written in your own words.
-
-## References {.unnumbered}
-
-::: {#refs}
-:::

@@ -128,8 +128,3 @@ A result counts for the class chart if it is one of the `r nrow(curve)` specific
 - [Decision map](map.qmd) – every decision in the order in which an analyst meets it; selecting an option rewrites the estimand statement and shows the result.
 - [Multiverse](multiverse.qmd) – the curve of `r nrow(curve)` specifications and the live class chart.
 - [Background](index.qmd) – the original study, the robustness study, the five reanalyses and the replication.
-
-## References {.unnumbered}
-
-::: {#refs}
-:::

@@ -29,7 +29,7 @@ Each format has a docked sidebar (`_sidebar.yml`), part pages that lead into the
 | `resources.qmd` | Readings, records and tools |
 | `_variables.yml` | Site variables and the next-delivery block |
 
-The downloadable workspace of the case study is the repository `CodeMoreh/replication-lab-housing`, and the browser lab carries the same helper functions.
+The downloadable workspace of the case study is the repository `CodeMoreh/ar4ds-housing-workspace`, and the browser lab carries the same helper functions.
 
 ## Licence
 

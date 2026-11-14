@@ -1,9 +1,5 @@
 ---
 title: "Part 4 – Robustness"
-aliases:
-  - ../housing-one-day-methods/part-4.html
-  - ../housing-one-day-open-science/part-4.html
-  - ../housing-one-day-data-tools/part-4.html
 ---
 
 ::: {.callout-note appearance="simple" icon=false}

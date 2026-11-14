@@ -302,8 +302,3 @@ Fit the specification of the curve with the fullest adjustment (the hard-to-find
 ## Sources and further reading {#sec-sources}
 
 The terms of section 2 come from @Rubin1976InferenceMissingData, and @Little1992RegressionMissingXs reviews the methods for regression with missing covariates; @Allison2009MissingData is a short, clear introduction to listwise deletion, the methods that replace a missing value with a guess, maximum likelihood and multiple imputation. The case for the missing-indicator method in randomised experiments, and against complete cases there, is made by @ZhaoDing2024AdjustNotAdjust, under assumptions about nothing but the random assignment. Multiple imputation in political science is set out by @KingEtAl2001AnalyzingIncompletePolitical, and the mice package by its authors [@BuurenGroothuis-Oudshoorn2011MiceMultivariateImputation]. The construction of the course file, with the checks of its missing values, is in the [module on building the analysis file](data-management.qmd), and the counts of every column are in the [codebook of the course file](../cases/housing/data/housing_emails_codebook.md).
-
-## References {.unnumbered}
-
-::: {#refs}
-:::

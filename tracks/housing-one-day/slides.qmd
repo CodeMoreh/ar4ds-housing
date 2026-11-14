@@ -3,10 +3,6 @@ title: "Slides"
 subtitle: "One-day workshop – Housing and racial bias"
 page-layout: full
 toc: false
-aliases:
-  - ../housing-one-day-methods/slides.html
-  - ../housing-one-day-open-science/slides.html
-  - ../housing-one-day-data-tools/slides.html
 ---
 
 ```{=html}

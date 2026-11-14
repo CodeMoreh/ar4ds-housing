@@ -157,10 +157,3 @@ The course is open to anyone, and support of the kind listed below exists wherev
 | tinyplot package (the figures of the workspaces and labs) | <https://grantmcdermott.com/tinyplot/> |
 | dagitty (causal graphs) | <https://www.dagitty.net> |
 | ggdag (drawing causal graphs) | <https://r-causal.github.io/ggdag/> |
-
-------------------------------------------------------------------------
-
-## References
-
-::: {#refs}
-:::

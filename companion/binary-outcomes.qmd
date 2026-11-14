@@ -258,8 +258,3 @@ The curve of the claim takes the models of sections 1 to 7 as they are, and the 
 ## Sources {#sec-sources}
 
 The models on this page are fitted with `lm()` and `glm()` from base R, with the HC2 standard error and the average marginal effect of the estimator of the course in `R/housing/_tools.R`, which `R/housing/check_parity.R` checks against `estimatr` and `marginaleffects`. The data are `cases/housing/data/housing_emails.csv` and the curve `cases/housing/data/spec_curve.csv`, both with codebooks; the analyses of the five analysts of the robustness study are in `analysts5.csv`. @GelmanEtAl2020RegressionOtherStories treat logistic regression and its interpretation on the probability scale at length, and the [specification menu](../cases/housing/menu.qmd#level-estimation) sets out which models, tests and scales the curve of the claim keeps.
-
-## References {.unnumbered}
-
-::: {#refs}
-:::

@@ -290,8 +290,3 @@ The problems of this page belong to one claim and its five analysts. The [discus
 ## Sources and further reading {#sec-sources}
 
 The models on this page are fitted with metafor [@Viechtbauer2010ConductingMetaanalysesMetafor], whose article is a full introduction to the package, from the computation of effect sizes with `escalc()` to meta-regression. The three possibilities of a meta-analysis, and the estimands that each implies, are set out in *Bayesian Data Analysis* [@GelmanEtAl2014BayesianDataAnalysis, section 5.6], and equivalence tests and their bounds in @LakensEtAl2020ImprovingInferencesNull, beside Bayes factors for the same question. The conversion rules and the tolerance region are those of the article on the robustness study and its code [@AczelEtAl2026InvestigatingAnalyticalRobustness]. The files behind the numbers are `analysts5.csv`, `reference_marks.csv`, `spec_curve.csv`, `housing_emails.csv` and `display_replication.csv` in `cases/housing/data/`, each with a codebook, and the counts of the replication in `companion/_model-outputs/bayes_housing_counts.csv`.
-
-## References {.unnumbered}
-
-::: {#refs}
-:::

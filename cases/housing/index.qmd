@@ -324,8 +324,3 @@ tibble::tibble(
 ```
 
 The `r counts$bounced` bounced emails never reached an official, and the `r counts$uncoded` uncoded replies are replies whose greeting nobody coded. Both are decisions on the [specification menu](menu.qmd). `housing_original.csv` is the public file with the column names of the OAs, on which the reproduction of Task 3 runs ([codebook](data/housing_original_codebook.md)). `housing_emails.csv` is the course file, with readable names and derived columns, on which every other exercise runs ([codebook](data/housing_emails_codebook.md)). The [exercise overview](exercise.qmd) sets out what to do with them.
-
-## References {.unnumbered}
-
-::: {#refs}
-:::

@@ -1526,5 +1526,5 @@ This page keeps nothing once you refresh it, so work you want to keep belongs in
 ::: {.callout-tip icon="false"}
 ## The downloadable workspace
 
-The exercise on this page, Tasks 1 to 5, also exists in the downloadable workspace, the folder that you open in your IDE, edit and render offline, and keep after the session. The same folder holds the five reproductions of Task 3 as a script, and a GitHub Actions workflow that renders the report and publishes it to GitHub Pages once the folder is pushed to a GitHub repository whose Pages source is set to GitHub Actions. The folder is maintained in the [`replication-lab-housing`]({{< var cases.housing.template-repo >}}) repository, and it is yours to reuse.
+The exercise on this page, Tasks 1 to 5, also exists in the downloadable workspace, the folder that you open in your IDE, edit and render offline, and keep after the session. The same folder holds the five reproductions of Task 3 as a script, and a GitHub Actions workflow that renders the report and publishes it to GitHub Pages once the folder is pushed to a GitHub repository whose Pages source is set to GitHub Actions. The folder is maintained in the [`ar4ds-housing-workspace`]({{< var cases.housing.template-repo >}}) repository, and it is yours to reuse.
 :::

@@ -242,8 +242,3 @@ The specification gives `r fmt(bounced_twin$b_pp)` points (`r pct(bounced_twin$r
 ## Declaring and reporting
 
 In Task 4 you explore the menu with `try_spec()`, changing one argument at a time, and an option off the curve is refused with its reason from `menu_options.csv`. In Task 5 you fix one specification in the preregistration block before you fit it: `prereg()` prints the declaration, `run_spec()` fits it and `report_result()` sends it to the class chart on the [multiverse page](multiverse.qmd). The [exercise overview](exercise.qmd) sets out both tasks.
-
-## References {.unnumbered}
-
-::: {#refs}
-:::
