@@ -10,9 +10,9 @@ The case study begins in earnest, in a stage of nearly six hours of work. You wr
 
 ## 1. The exercise
 
-[Read the exercise overview](../../cases/housing/exercise.qmd){.btn .btn-primary target="_blank"}
+[Read the exercise page](exercise.qmd){.btn .btn-primary target="_blank"}
 
-The overview sets out the claim, the table of what the five analysts of the robustness study found, and the five tasks that this stage and the next work through.
+The page sets out the claim, the table of what the five analysts of the robustness study found, and the five tasks that this stage and the next work through.
 
 ## 2. The claim and its estimand
 
@@ -58,7 +58,7 @@ Work from [Arrows as claims](../../companion/dags.qmd#sec-arrows) to [Counting a
 
 ## 9. The decision map
 
-[Open the decision map](../../cases/housing/map.qmd){.btn .btn-primary target="_blank"}
+[Open the decision map](../../cases/housing/menu.qmd#map){.btn .btn-primary target="_blank"}
 
 The map lays out every decision between the data and a result, in the order in which an analyst meets it, with what each option does to the estimand statement and to the estimate. It prepares Task 4 in the next stage.
 

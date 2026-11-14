@@ -263,15 +263,15 @@ spec_line <- function(comparison, population, uncoded, model, adjust) {
 .pages <- c(
   "cases/housing/index.qmd"       = "Background",
   "cases/housing/menu.qmd"        = "Specification menu",
-  "cases/housing/map.qmd"         = "Decision map",
-  "cases/housing/multiverse.qmd"  = "Multiverse",
+  "cases/housing/menu.qmd#map"    = "Decision map",
+  "cases/housing/curve.qmd"       = "Specification curve",
   "companion/experiments.qmd"     = "Audit experiments",
   "companion/binary-outcomes.qmd" = "Binary outcomes",
   "companion/dags.qmd"            = "Causal graphs and conditioning",
   "companion/multiverse.qmd"      = "The multiverse and its critics")
 .page_ref <- function(path) {
   title <- if (path %in% names(.pages)) .pages[[path]] else path
-  sprintf("%s, %s/%s", title, .course_url, sub("\\.qmd$", ".html", path))
+  sprintf("%s, %s/%s", title, .course_url, sub(".qmd", ".html", path, fixed = TRUE))
 }
 .or_list <- function(x) {
   q <- paste0("\"", x, "\"")
@@ -290,7 +290,7 @@ spec_line <- function(comparison, population, uncoded, model, adjust) {
 .refuse <- function(axis, v, as_args) {
   shown <- if (as_args) axis else paste0("my_", axis)
   keep  <- .menu[[axis]]
-  map   <- paste0("  Every decision and its options: ", .page_ref("cases/housing/map.qmd"))
+  map   <- paste0("  Every decision and its options: ", .page_ref("cases/housing/menu.qmd#map"))
   if (!is.character(v) || length(v) != 1 || is.na(v))
     stop(sprintf("%s needs one option in quotes, for example %s = \"%s\".", shown, shown, keep[1]),
          call. = FALSE)
@@ -603,7 +603,7 @@ assign("tag", NULL, envir = .tag_env)
     "",
     sprintf("Your marks on the class chart carry the tag %s%s.", tg$tag,
             if (!is.null(tg$replaced)) sprintf(" (it replaces %s)", tg$replaced) else ""),
-    sprintf("Look for it on the Multiverse page, %s/cases/housing/multiverse.html.", .course_url),
+    sprintf("Look for it on the Class results page, %s/cases/housing/class-results.html.", .course_url),
     "Both of your submissions share it while this page stays open; after a reload,",
     sprintf("bring it back with nickname = \"%s\". To choose your own, pass a", tg$tag),
     "nickname rather than your name, because the chart is public."))
@@ -612,7 +612,7 @@ assign("tag", NULL, envir = .tag_env)
 }
 ```
 
-Five analysts reanalysed a claim of the Housing case study [@EinsteinGlick2017DoesRaceAffect] for the robustness study of SCORE [Multi100; @AczelEtAl2026InvestigatingAnalyticalRobustness]; you are analyst no. 6. The claim is that "Hispanic housing applicants were ... less likely to be greeted by name than were ... white counterparts", in the words of the original authors (OAs) as the SCORE programme selected them. The [exercise overview](exercise.qmd) sets out the five tasks, and the [background page](index.qmd) the original study, the robustness study and the five reanalyses.
+Five analysts reanalysed a claim of the Housing case study [@EinsteinGlick2017DoesRaceAffect] for the robustness study of SCORE [Multi100\; @AczelEtAl2026InvestigatingAnalyticalRobustness]; you are analyst no. 6. The claim is that "Hispanic housing applicants were ... less likely to be greeted by name than were ... white counterparts", in the words of the original authors (OAs) as the SCORE programme selected them. The exercise page of each format sets out the tasks that it takes, for the [short session](../../tracks/housing-short/exercise.qmd), the [one-day workshop](../../tracks/housing-one-day/exercise.qmd), the [Extended course](../../tracks/housing-extended/exercise.qmd) and the [self-study route](../../tracks/self-study/exercise.qmd). The [background page](index.qmd) presents the original study, the robustness study and the five reanalyses.
 
 The five tasks take you from a setup check to two marks on the live class chart, one submitted while you explore the menu in Task 4 and one that you declare in your preregistration in Task 5 before running it. The page of your track says which tasks your session covers, and whether it sends anything to the class chart. Every fit on this page is live: the estimator of the course runs in your browser, on the same file and with the same code as in the workspace.
 
@@ -1347,7 +1347,7 @@ The fifth changes the adjustment.
 try_spec(adjust = "place_ethnic")  # the covariates of the original model, in thirds
 ```
 
-The menu holds more options than the curve, which keeps only the options that answer this claim in a justifiable way. Every other option is still an argument of `try_spec()`, so trying one is part of the exercise. The helper refuses it, gives the reason why it is not on the curve and names the page of the course that teaches it, and the [decision map](map.qmd) sets out every decision and its options on one page. Run the cell, then edit it to try others, such as `outcome = "reply"`, `names = "male"`, `comparison = "black"`, `adjust = "acs_continuous"` or `inference = "one_tailed"`.
+The menu holds more options than the curve, which keeps only the options that answer this claim in a justifiable way. Every other option is still an argument of `try_spec()`, so trying one is part of the exercise. The helper refuses it, gives the reason why it is not on the curve and names the page of the course that teaches it, and the [decision map](menu.qmd#map) sets out every decision and its options on one page. Run the cell, then edit it to try others, such as `outcome = "reply"`, `names = "male"`, `comparison = "black"`, `adjust = "acs_continuous"` or `inference = "one_tailed"`.
 
 ```{webr}
 #| autorun: false
@@ -1384,7 +1384,7 @@ Everything you try is logged. Print the log to view the small multiverse that yo
 my_experiments()
 ```
 
-When you have tried three or four, decide which one you would defend if you had to, run it once more so that it is the most recent, and submit it. It appears on the live [Multiverse]({{< var cases.housing.live-results-url >}}) chart as an open circle, labelled **exploratory**, and marked with the tag that the cell prints, such as `amber-otter-42`. The tag is how you find your own marks on the chart, and your declared result in Task 5 carries the same one. To choose your own, write `submit_exploration(nickname = "...")` with a nickname rather than your name, because the chart is public:
+When you have tried three or four, decide which one you would defend if you had to, run it once more so that it is the most recent, and submit it. It appears on the live [class chart]({{< var cases.housing.live-results-url >}}) as an open circle, labelled **exploratory**, and marked with the tag that the cell prints, such as `amber-otter-42`. The tag is how you find your own marks on the chart, and your declared result in Task 5 carries the same one. To choose your own, write `submit_exploration(nickname = "...")` with a nickname rather than your name, because the chart is public:
 
 ```{webr}
 #| autorun: false
@@ -1465,7 +1465,7 @@ run_spec(my_spec)
 
 The difference is in percentage points, and a value below zero means that replies to Hispanic names greeted the sender by name less often, the direction of the claim. Whether it is significant is decided by the test of the model, and the line headed `Verdict:` says which of the four cases your result falls in.
 
-Now send it to the class chart. The submission is built from your declaration, so there is nothing to fill in or transcribe. The cell prints your submission line and a pre-filled form link; click it and press **Send**. Your mark joins the live [Multiverse]({{< var cases.housing.live-results-url >}}) chart within seconds, this time as a filled circle labelled **declared**, carrying the same tag as your exploratory result. If you have reloaded this page since Task 4, the session has forgotten that tag, so pass it back with `report_result(nickname = "your-tag")`.
+Now send it to the class chart. The submission is built from your declaration, so there is nothing to fill in or transcribe. The cell prints your submission line and a pre-filled form link; click it and press **Send**. Your mark joins the live [class chart]({{< var cases.housing.live-results-url >}}) within seconds, this time as a filled circle labelled **declared**, carrying the same tag as your exploratory result. If you have reloaded this page since Task 4, the session has forgotten that tag, so pass it back with `report_result(nickname = "your-tag")`.
 
 ```{webr}
 #| autorun: false
@@ -1515,7 +1515,7 @@ tinyplot::tinyplot(b_pp ~ rank, data = mine, type = tinyplot::type_points(clim =
 tinyplot::tinytheme()
 ```
 
-All 64 estimates lie below zero, from −20.0 to −12.1 points, and every one of them is significant at 5% under the test of its model. The two clusters are the two answers to the decision on which emails are counted: counting every delivered email moves the estimate about 5 points towards zero, and no other decision moves it by more than about 2.7 points. Within these data the claim holds under every choice on the menu, and only its size moves. The [Multiverse]({{< var cases.housing.live-results-url >}}) page sets the class submissions beside this curve.
+All 64 estimates lie below zero, from −20.0 to −12.1 points, and every one of them is significant at 5% under the test of its model. The two clusters are the two answers to the decision on which emails are counted: counting every delivered email moves the estimate about 5 points towards zero, and no other decision moves it by more than about 2.7 points. Within these data the claim holds under every choice on the menu, and only its size moves. The [Class results]({{< var cases.housing.live-results-url >}}) page sets the class submissions beside this curve.
 
 If you want a second declared specification, edit the preregistration cell, run it and the `prereg()` cell again, then rerun `run_spec(my_spec)`. The chart will still label it declared, so be clear with yourself about what the second one is. Your first declaration was made without knowing its result. Anything after it was not, which puts it back in the same category as Task 4, and you should say so wherever you write about the result.
 

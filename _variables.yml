@@ -31,7 +31,7 @@ results-form-url: "https://forms.gle/MWhimagFDmGtprAPA"
 # --- The case study -----------------------------------------------------------
 #   template-repo     the GitHub repository of the downloadable workspace
 #   workspace-zip     the zip of that repository that participants download
-#   live-results-url  the multiverse page that draws the class submissions
+#   live-results-url  the page of the class results, which draws the class submissions
 #   results-word      the word that follows the tag in every class-results
 #                     label of the case study, so that the chart of the case study reads
 #                     only its own rows of the shared Form (frozen)
@@ -43,7 +43,7 @@ cases:
     # workspace of the Europeanisation case study; the zip unzips into ar4ds-housing-workspace-main
     template-repo: "https://github.com/CodeMoreh/ar4ds-housing-workspace"
     workspace-zip: "https://github.com/CodeMoreh/ar4ds-housing-workspace/archive/refs/heads/main.zip"
-    live-results-url: "https://codemoreh.github.io/ar4ds-housing/cases/housing/multiverse.html"
+    live-results-url: "https://codemoreh.github.io/ar4ds-housing/cases/housing/class-results.html"
     results-word: "housing"
 
 # --- Next-delivery block --------------------------------------------------

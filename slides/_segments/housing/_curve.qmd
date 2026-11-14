@@ -4,8 +4,8 @@
 #| label: spec-curve
 #| fig-width: 9.5
 #| fig-height: 4.1
-# The curve of 64 (data/spec_curve.csv), the chart that the Multiverse page
-# draws, with the reference specification tagged in ink. Built on
+# The curve of 64 (data/spec_curve.csv), the chart that the Specification curve
+# page draws, with the reference specification tagged in ink. Built on
 # curve_base(), so that the next slide reuses this exact panel.
 curve_base() +
   mark_layer(dplyr::transmute(curve_ref, tag = "the raw gap of the paper", b_pp, rank, sig))
@@ -36,7 +36,7 @@ curve_base() + mark_layer(marks)
 ```
 
 ::: {.resultline}
-The [Multiverse](../cases/housing/multiverse.html) page draws this curve, with the reference marks and a description of every specification
+The [Specification curve](../cases/housing/curve.html) page draws this curve, with the reference marks and a description of every specification
 :::
 
 ::: {.src}

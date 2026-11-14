@@ -8,6 +8,7 @@ bibliography: [../../references.bib, ../../references-new.bib]
 #| label: setup
 #| include: false
 # The estimator of the case study, for the conversion rule of the robustness study
+# and the fit of the reference comparison
 source("../../R/housing/_tools.R")
 
 # readr rather than datawizard::data_read(), which reads empty cells as "" rather than NA
@@ -19,11 +20,16 @@ marks <- readr::read_csv("data/reference_marks.csv", show_col_types = FALSE)
 curve <- readr::read_csv("data/spec_curve.csv", show_col_types = FALSE)
 power <- readr::read_csv("data/display_power.csv", show_col_types = FALSE)
 ri <- readr::read_csv("data/display_ri.csv", show_col_types = FALSE)
+# The replication on the scale of the course, computed by R/housing/06_replication.R
+# from the de-identified data that it published on the OSF (osf.io/xseqg)
+repl <- readr::read_csv("data/display_replication.csv", show_col_types = FALSE)
 
-# Fixed decimals and a true minus sign, for every number on the page
+# Fixed decimals and a true minus sign, for every number on the page; signed
+# gaps carry a plus sign
 fmt <- \(x, d = 1) formatC(x, format = "f", digits = d) |> sub(pattern = "^-", replacement = "−")
 pct <- \(x, d = 1) paste0(fmt(x, d), "%")
 pe <- \(p) if (p < 0.001) "p < 0.001" else paste("p =", fmt(p, 3))
+sgn <- \(x, d = 1) paste0(dplyr::if_else(x > 0, "+", ""), fmt(x, d))  # r-style: approved
 
 # one value from a display or record file, for inline use
 grp <- \(g, col) names_tab[[col]][names_tab$level == "group" & names_tab$group == g]
@@ -31,7 +37,12 @@ mark <- \(id, col) marks[[col]][marks$id == id]
 an <- \(id, col) analysts[[col]][analysts$id == id]
 out <- \(o, cn, col) outcomes[[col]][outcomes$outcome == o & outcomes$contrast == cn]
 pw <- \(design, gap) power$power[startsWith(power$design, design) & power$gap_pp == gap]
+rp <- \(pop, auth, col) repl[[col]][repl$population == pop & repl$authorities == auth]  # r-style: approved
 ref <- datawizard::data_filter(curve, is_reference)
+# The smallest gap that the reference comparison reports as significant at 5%:
+# the half-width of its 95% interval, from the estimator of the case study
+ref_fit <- fit_spec(housing)
+sig_threshold <- (ref_fit$ci_high - ref_fit$ci_low) / 2
 
 counts <- housing |>
   datawizard::data_modify(
@@ -72,7 +83,7 @@ stat_txt <- \(type, x) dplyr::case_when(
 )
 ```
 
-This page presents the Housing and racial bias case study, on which the course is built, and every track starts here. The case study is one claim from a field experiment on how officials of public housing authorities in the United States answer emails from people who want to apply for housing, published in the *American Journal of Political Science* by the original authors (OAs) [@EinsteinGlick2017DoesRaceAffect]. Five independent analysts reanalysed the claim in the robustness study of SCORE [Multi100; @AczelEtAl2026InvestigatingAnalyticalRobustness], and a new experiment run for the SCORE programme tried to replicate it. The exercises begin where this page ends. Page numbers in quotations from the paper refer to the accepted manuscript, which is open at [OpenBU](https://hdl.handle.net/2144/37826).
+This page presents the Housing and racial bias case study, on which the course is built, and every track starts here. The case study is one claim from a field experiment on how officials of public housing authorities in the United States answer emails from people who want to apply for housing, published in the *American Journal of Political Science* by the original authors (OAs) [@EinsteinGlick2017DoesRaceAffect]. Five independent analysts reanalysed the claim in the robustness study of SCORE [Multi100\; @AczelEtAl2026InvestigatingAnalyticalRobustness], and a new experiment run for the SCORE programme tried to replicate it. The exercises begin where this page ends. Page numbers in quotations from the paper refer to the accepted manuscript, which is open at [OpenBU](https://hdl.handle.net/2144/37826).
 
 ## 1. The original study {#sec-study}
 
@@ -290,9 +301,40 @@ marks |>
 
 The SCORE replication ([osf.io/2ug8x](https://osf.io/2ug8x/)) was a preregistered experiment of the same kind. It emailed 3,050 public housing authorities listed by HUD, not only those matched to a core city, with block randomisation within each state, so that every state received equal numbers of Hispanic and white names. The names were new, Joe Garcia and Michael Hernandez against John Ryan and Nicholas Smith, chosen from pre-tested names that vary perceived ethnicity while keeping perceived class and migrant status similar. All four are male and none is meant to indicate a Black sender. The preregistration dropped the female names because, in its reading, the original study found no difference by the sex of the name, and the Black names because the claim does not concern them, which leaves more emails for each name. Replies were awaited for a week and coded as friendly if they used the first or the last name of the sender.
 
-The authorities sent 1,811 replies. To match Table 1, the team kept the authorities in localities matched with census data, 2,337 emails and 1,243 replies, and fitted a logistic regression with the demographic covariates of the paper, from the 2018 American Community Survey and without the Hard Email indicator. On a random draw of 738 replies, the size set by the power analysis, the coefficient of the Hispanic names was 0.098 with a standard error of 0.149 (z = 0.66, p = 0.511), and on all 1,243 replies z = 0.44 (p = 0.657). Covariates in thirds gave the same picture. The preregistered linear probability model without covariates, on 1,000 random draws of 738 from the 1,484 replies of all authorities, found no significant difference "approximately 93 percent of the time". A logit coefficient of 0.098 corresponds to a gap of at most 2.45 points in favour of the Hispanic names. SCORE judged the claim not replicated.
+The authorities sent 1,811 replies. To match Table 1, the team kept the authorities in localities matched with census data, 2,337 emails and 1,243 replies, and fitted a logistic regression with the demographic covariates of the paper, from the 2018 American Community Survey and without the Hard Email indicator. On a random draw of 738 replies, the size set by the power analysis, the coefficient of the Hispanic names was 0.098 with a standard error of 0.149 (z = 0.66, p = 0.511), and on all 1,243 replies z = 0.44 (p = 0.657). Covariates in thirds gave the same picture. The preregistered linear probability model without covariates, on 1,000 random draws of 738 from the 1,484 replies of all authorities, found no significant difference "approximately 93 percent of the time". A logit coefficient moves a probability by at most a quarter of its value, the slope of the logistic curve at a probability of one half, so the coefficient of 0.098 corresponds to a gap of at most 2.45 points in favour of the Hispanic names. SCORE judged the claim not replicated.
 
-### 5.2 Reading the replication {#sec-reading}
+### 5.2 On the scale of the course {#replication-scale}
+
+The replication also published its de-identified data on the OSF ([osf.io/xseqg](https://osf.io/xseqg/)), one row for each of its `r format(rp("all", "all", "n"), big.mark = ",")` emails, with the alias, the reply and its greeting coded as the original authors coded theirs. The course computed from them the same comparison as its reference specification, the difference in the share of named greetings between Hispanic and white names, with HC2 errors. Among all `r format(rp("replies", "all", "n"), big.mark = ",")` replies, `r pct(rp("replies", "all", "rate_hisp"))` of the replies to Hispanic aliases and `r pct(rp("replies", "all", "rate_comp"))` of those to white aliases opened with the name of the sender, a gap of `r sgn(rp("replies", "all", "b_pp"))` points (`r pe(rp("replies", "all", "p"))`). Counted over all emails, a non-reply counting as no greeting, the gap is `r sgn(rp("all", "all", "b_pp"))` points (`r pe(rp("all", "all", "p"))`), and among the authorities below the county level, which the replication kept to match the paper, it is `r sgn(rp("replies", "sub-county", "b_pp"))` points among the replies and `r sgn(rp("all", "sub-county", "b_pp"))` among all emails. The mark SCORE 2020 on the [curve of the claim](curve.qmd) is the first of these numbers. The licence of the file is not stated, so the course links to it rather than copying it, and anyone can download it from the OSF and repeat the comparison with a few lines of R.
+
+### 5.3 Power {#power}
+
+Power is the probability that a study detects a gap of a given size at the 5% level. @fig-power sets the power of the comparison of the paper, about 181 replies a group, against that of the 738 replies of the replication, split equally, for gaps from 2 to 25 points.
+
+```{r}
+#| label: fig-power
+#| fig-cap: "The power of a two-sided test at the 5% level to detect a gap in greetings by name, below a share of 61% for the white names, for the comparison among the replies of the original study and for the 738 replies of the replication. The dotted lines mark a gap of 10 points, the near end of the published confidence interval, and of 20 points, the published estimate. Source: `data/display_power.csv`."
+#| fig-alt: "Two rising power curves. The replication curve lies above the original one at every gap; at 10 points the original design has a power of about 0.48 and the replication about 0.78, and at 20 points both are close to 1."
+#| fig-width: 7.5
+#| fig-height: 3.4
+#| echo: false
+power |>
+  datawizard::data_modify(design = dplyr::if_else(startsWith(design, "original"), "original study", "replication")) |>
+  ggplot2::ggplot(ggplot2::aes(x = gap_pp, y = power, colour = design)) +
+  ggplot2::geom_vline(xintercept = c(10, 20), linetype = "dotted", colour = "#9aa8b3") +
+  ggplot2::geom_line(linewidth = 0.9) +
+  ggplot2::geom_point(data = \(d) datawizard::data_filter(d, gap_pp %in% c(10, 20)), size = 2.4) +
+  ggplot2::scale_colour_manual(values = c(`original study` = "#1d2733", replication = "#1f5fa8"), name = NULL) +
+  ggplot2::scale_y_continuous(breaks = seq(0, 1, 0.2)) +
+  ggplot2::coord_cartesian(ylim = c(0, 1)) +
+  ggplot2::labs(x = "gap in greetings by name (percentage points)", y = "power") +
+  ggplot2::theme_minimal(base_size = 12) +
+  ggplot2::theme(panel.grid.minor = ggplot2::element_blank(), legend.position = "top")
+```
+
+The preregistration of the replication sized it so that its first round would have a power of 90% to detect three quarters of the original effect. The original design also sets a floor under any estimate that it can report as significant. With a standard error of `r fmt(ref$se_pp, 2)` points for the reference comparison, a gap has to exceed `r fmt(sig_threshold)` points before it clears the 5% threshold, so that if the true gap were small, the significant estimates of a study of this size would overstate it.
+
+### 5.4 Reading the replication {#sec-reading}
 
 Within the original data the claim is hard to dislodge. Reshuffling the names at random among the replies to Hispanic and white names gives gaps between `r fmt(ri_band[1])` and `r fmt(ri_band[2])` points in 95% of `r format(nrow(ri), big.mark = ",")` reshuffles, far from the observed `r fmt(ref$b_pp)`, and all `r nrow(curve)` specifications of the curve of the claim are negative and significant, from `r fmt(min(curve$b_pp))` to `r fmt(max(curve$b_pp))` points. The replication shows that the same contrast, asked of a wider set of authorities in another year with other names, gave a gap close to zero, but it does not show which difference between the two studies is responsible.
 
@@ -323,4 +365,4 @@ tibble::tibble(
   tinytable::style_tt(j = 2, align = "r")
 ```
 
-The `r counts$bounced` bounced emails never reached an official, and the `r counts$uncoded` uncoded replies are replies whose greeting nobody coded. Both are decisions on the [specification menu](menu.qmd). `housing_original.csv` is the public file with the column names of the OAs, on which the reproduction of Task 3 runs ([codebook](data/housing_original_codebook.md)). `housing_emails.csv` is the course file, with readable names and derived columns, on which every other exercise runs ([codebook](data/housing_emails_codebook.md)). The [exercise overview](exercise.qmd) sets out what to do with them.
+The `r counts$bounced` bounced emails never reached an official, and the `r counts$uncoded` uncoded replies are replies whose greeting nobody coded. Both are decisions on the [specification menu](menu.qmd). `housing_original.csv` is the public file with the column names of the OAs, on which the reproduction of Task 3 runs ([codebook](data/housing_original_codebook.md)). `housing_emails.csv` is the course file, with readable names and derived columns, on which every other exercise runs ([codebook](data/housing_emails_codebook.md)). The exercise page of each format sets out what to do with them, for the [short session](../../tracks/housing-short/exercise.qmd), the [one-day workshop](../../tracks/housing-one-day/exercise.qmd), the [Extended course](../../tracks/housing-extended/exercise.qmd) and the [self-study route](../../tracks/self-study/exercise.qmd).

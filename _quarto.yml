@@ -47,37 +47,22 @@ website:
     logo: assets/logo.png
     logo-alt: "CM logo"
     left:
+      # The formats are reached from the Formats section of the opening page.
+      # Each has a docked sidebar (_sidebar.yml), and the navbar item of the
+      # format opened last (_includes/track-choice.html) leads back to it from
+      # the pages that every format shares.
       - href: index.qmd
         text: Home
-      - text: Case study
+      - href: cases/housing/index.qmd
+        text: Background
+      - text: Multiverse
         menu:
-          - href: cases/housing/index.qmd
-            text: "Background"
-          - href: cases/housing/exercise.qmd
-            text: "Exercise"
-          - href: cases/housing/lab.qmd
-            text: "Browser lab"
           - href: cases/housing/menu.qmd
             text: "Specification menu"
-          - href: cases/housing/map.qmd
-            text: "Decision map"
-          - href: cases/housing/multiverse.qmd
-            text: "Multiverse"
-          - href: cases/housing/cheatsheet.qmd
-            text: "Cheatsheet"
-      # Each format has a docked sidebar (_sidebar.yml) and a slides page that
-      # embeds its deck; the decks themselves are not in the navbar.
-      - text: Formats
-        menu:
-          - href: tracks/housing-short/index.qmd
-            text: "Short session"
-          - href: tracks/housing-one-day/index.qmd
-            text: "One-day workshop"
-          - href: tracks/housing-extended/index.qmd
-            text: "Extended course"
-          - text: "---"
-          - href: tracks/self-study/index.qmd
-            text: "Self-study"
+          - href: cases/housing/curve.qmd
+            text: "Specification curve"
+          - href: cases/housing/class-results.qmd
+            text: "Class results"
       - text: Companion
         menu:
           - href: companion/index.qmd
@@ -132,8 +117,6 @@ website:
         text: References
     right:
       # The pages that every case study shares live on the umbrella site
-      - href: "https://codemoreh.github.io/ar4ds/setup.html"
-        text: Setup
       - href: "https://codemoreh.github.io/ar4ds/"
         text: AR4DS
 

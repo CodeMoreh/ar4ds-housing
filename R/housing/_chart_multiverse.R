@@ -1,7 +1,7 @@
 ################################################################################
 # Title:        _chart_multiverse.R
-# Purpose:      Builds the interactive specification curve of the multiverse
-#               page of the Housing case study: the payload of the curve (the
+# Purpose:      Builds the interactive chart of the specification curve of the
+#               Housing case study: the payload of the curve (the
 #               64 specifications ranked by the gap in percentage points, the
 #               option of every decision, the lines of each pop-up and the
 #               reference marks) and the raw HTML that places it on the page.
@@ -12,8 +12,8 @@
 #               adapt the chart to this curve are listed at the top of
 #               multiverse.js.
 # Author:       Claude for CM
-# Last updated: 2026-10-26
-# Sourced by:   cases/housing/multiverse.qmd
+# Last updated: 2026-11-14
+# Sourced by:   cases/housing/curve.qmd
 ################################################################################
 
 # The decisions that vary on the curve, in the order of the "Colour by" and

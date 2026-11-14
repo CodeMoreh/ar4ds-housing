@@ -27,7 +27,7 @@ Read the whole article of the OAs [@EinsteinGlick2017DoesRaceAffect], in the acc
 
 [Read the background](../../cases/housing/index.qmd){.btn .btn-primary target="_blank"}
 
-Read sections 1 to 3. They cover [the original study](../../cases/housing/index.qmd#sec-study) and its design, [SCORE](../../cases/housing/index.qmd#sec-score) and its robustness study [Multi100; @AczelEtAl2026InvestigatingAnalyticalRobustness] with the claim as it reached the analysts, and [the five reanalyses](../../cases/housing/index.qmd#sec-reanalysts) with the question that each of them answered.
+Read sections 1 to 3. They cover [the original study](../../cases/housing/index.qmd#sec-study) and its design, [SCORE](../../cases/housing/index.qmd#sec-score) and its robustness study [Multi100\; @AczelEtAl2026InvestigatingAnalyticalRobustness] with the claim as it reached the analysts, and [the five reanalyses](../../cases/housing/index.qmd#sec-reanalysts) with the question that each of them answered.
 
 **Shortcuts.** If you already write R with the tidyverse, read the section on the datawizard verbs, which the course uses wherever they do the job, and the section on `try_spec()`, and run the rest only where its output surprises you. If you already write Quarto, render the report of the workspace and move on.
 

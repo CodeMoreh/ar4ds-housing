@@ -1,0 +1,255 @@
+---
+title: "Class results"
+engine: knitr
+format:
+  live-html:
+    toc: true
+    include-after-body: ../../_includes/track-choice.html
+    webr:
+      packages:
+        - tinyplot
+        - datawizard
+        - purrr
+resources:
+  - data/spec_curve.csv
+  - data/class_results.csv
+execute:
+  echo: false
+  warning: false
+  message: false
+---
+
+{{< include ../../_extensions/r-wasm/live/_knitr.qmd >}}
+
+```{r}
+#| label: setup
+#| include: false
+# The number of specifications on the curve, for the prose; the class chart
+# itself runs in the browser through webR.
+n_spec <- nrow(readr::read_csv("data/spec_curve.csv", show_col_types = FALSE))
+```
+
+The live chart below shows the results that the class submits, over the curve of `r n_spec` specifications. Pressing *Run Code* runs the `refresh_multiverse()` function, which downloads the latest submissions and draws them over the curve. The marks of the curve stay faint, so that the class results lead, and the reference marks are left to the chart of the [specification curve](curve.qmd).
+
+Each submission sits at the rank of its specification on the curve and at the gap that it reports, in percentage points, and it is classed by looking its specification up in the curve file: a circle if the matching specification has p < 0.05, as all `r n_spec` do, and a cross if it has not. An open green circle is an *explored* specification, one that you tried with `try_spec()` in Task 4 and submitted after seeing its result. A filled black circle is a *declared* specification, the one that you fixed in your preregistration in Task 5 before running it. A submission whose label names no specification of the curve is not drawn, and a line under the chart counts such submissions. Each submission also carries the tag that `submit_exploration()` and `report_result()` print, such as `amber-otter-42`, and your two submissions share it. The lines printed under the chart give each mark by its number, with its tag, its specification and its statistics. Typing your tag into the `my_tag` line of the cell below and pressing *Run Code* draws your marks in orange, joined in the order in which you submitted them.
+
+```{webr}
+#| label: live-multiverse-setup
+#| include: false
+#| autorun: true
+# Class submissions are served as CSV by a Cloudflare Worker in front of the
+# Google Sheet of the results Form; when the Worker cannot be reached the
+# chart falls back to the committed data/class_results.csv. The Sheet is shared
+# by the case studies of the course, so only the rows whose label carries the word
+# "housing" after the tag are read. The chart is drawn with tinyplot
+# (McDermott, Arel-Bundock and Zeileis; CRAN, doi:10.32614/CRAN.package.tinyplot),
+# the rows are handled with datawizard and purrr, and the labels are parsed
+# with the regular expressions of base R, so that participants download little.
+
+# ---- The Worker of the class results: replace this one line for a Form of its own
+worker_url <- "https://class-results.chris-moreh.workers.dev/"
+
+plain <- "#1f5fa8"; ink <- "#1d2733"; green <- "#009E73"; orange <- "#E69F00"
+grey_mid <- "#8a929a"
+phase_levels <- c("explored (Task 4)", "declared (Task 5)")
+
+# The backdrop is the curve of 64, ranked by the gap in percentage points, as
+# on the chart of the page Specification curve.
+curve <- utils::read.csv("data/spec_curve.csv", stringsAsFactors = FALSE) |>  # r-style: keep – base reader, nothing to download
+  datawizard::data_arrange("b_pp") |>
+  datawizard::data_modify(rank = 1:n(), sig = p < 0.05,
+                          sig_f = factor(sig, levels = c(FALSE, TRUE)))
+axis_codes <- c("comparison", "population", "uncoded", "model", "adjust")
+curve_key <- purrr::pmap_chr(curve[axis_codes], \(...) paste(..., sep = "|"))
+
+# A housing label, as the submission helpers write it:
+#   explore: [amber-otter-42] housing comparison=white population=replies uncoded=drop model=lpm adjust=none
+# The phase and the tag are read when present. Labels of the other case studies
+# carry no "housing" at that place and are left out. The five decisions are
+# key=value pairs in any order; a label that does not name each of them exactly
+# once, or carries anything else, returns NA on every axis and so matches nothing.
+housing_pattern <- "^((explore|declared): )?(\\[([a-z0-9-]{1,24})\\] )?housing( (.*))?$"
+parse_axes <- function(rest) {
+  none <- setNames(rep(NA_character_, length(axis_codes)), axis_codes)
+  pairs <- regmatches(rest, gregexpr("[a-z_]+=[a-z_]+", rest))[[1]]
+  keys <- sub("=.*$", "", pairs)
+  if (length(pairs) != length(axis_codes) || anyDuplicated(keys) > 0 || !setequal(keys, axis_codes))
+    return(none)
+  if (nzchar(trimws(gsub("[a-z_]+=[a-z_]+", "", rest)))) return(none)
+  setNames(sub("^.*=", "", pairs), keys)[axis_codes]
+}
+
+read_clean <- function(path) {
+  d <- utils::read.csv(path, stringsAsFactors = FALSE, check.names = FALSE, colClasses = "character")  # r-style: keep – base reader, nothing to download
+  names(d) <- tolower(trimws(names(d)))   # tolerate "B", " spec ", etc.
+  d
+}
+
+# my_tag is the tag that submit_exploration() and report_result() print. It is
+# reduced exactly as .clean_tag() in the submission helpers reduces a nickname
+# (transliterated to ASCII, lower case, single hyphens, at most 24 characters),
+# so that a nickname typed as the participant first wrote it still matches.
+clean_my_tag <- function(x) {
+  if (length(x) == 0 || is.na(x[1])) return("")
+  x <- gsub("ß", "ss", chartr("ȘșȚț", "SsTt", trimws(as.character(x[1]))))
+  ascii <- suppressWarnings(iconv(x, to = "ASCII//TRANSLIT"))
+  if (!is.na(ascii)) x <- ascii
+  x <- gsub("^-+|-+$", "", gsub("[^a-z0-9]+", "-", tolower(x)))
+  gsub("-+$", "", substr(x, 1, 24))
+}
+
+fmt_num <- function(x, d) sub("^-", "−", formatC(x, format = "f", digits = d))
+fmt_p <- function(p) ifelse(p < 0.001, "p < 0.001", sprintf("p = %.3f", p))  # r-style: keep – base, nothing to download
+as_num <- function(x) suppressWarnings(as.numeric(x))
+
+# The housing rows of the class CSV, parsed and looked up on the curve. Returns
+# the rows to draw, each with a line that describes it, the number of housing
+# rows, and the number that name no specification of the curve (or carry no
+# gap) and are therefore not drawn.
+prepare_class <- function(cls, my_tag = "") {
+  empty <- list(points = NULL, n_housing = 0L, n_off = 0L)
+  if (is.null(cls) || nrow(cls) == 0 || !("spec" %in% names(cls))) return(empty)
+  spec_raw <- trimws(ifelse(is.na(cls$spec), "", cls$spec))  # r-style: keep – base, nothing to download
+  m <- regmatches(spec_raw, regexec(housing_pattern, spec_raw))
+  is_housing <- lengths(m) > 0
+  if (!any(is_housing)) return(empty)
+  cls <- cls[is_housing, , drop = FALSE]
+  m <- m[is_housing]
+  n <- nrow(cls)
+  part <- function(k) purrr::map_chr(m, \(g) g[k])
+  ph <- ifelse(part(3) == "explore", "explored", "declared")  # r-style: keep – base, nothing to download
+  tg <- ifelse(nzchar(part(5)), part(5), NA_character_)  # r-style: keep – base, nothing to download
+  rest <- part(7)
+  hit <- rest |>
+    purrr::map(parse_axes) |>
+    purrr::map_chr(\(a) paste(a, collapse = "|")) |>
+    match(curve_key)
+  b <- as_num(cls$b)
+  drawn <- !is.na(hit) & !is.na(b)
+  stat_txt <- function(i) {
+    st <- as_num(cls$t[i])
+    if (is.na(st)) return("")
+    d_f <- if ("df" %in% names(cls)) as_num(cls$df[i]) else NA
+    if (is.na(d_f)) paste0(", z = ", fmt_num(st, 2)) else
+      paste0(", t = ", fmt_num(st, 2), " on ", d_f, " df")
+  }
+  info <- purrr::map_chr(seq_len(n), \(i) paste0(
+    "#", i, " (", ph[i], ")",
+    if (is.na(tg[i])) "" else paste0(", tag ", tg[i]),
+    ": gap = ", fmt_num(b[i], 2), " points", stat_txt(i),
+    if (is.na(hit[i])) "" else paste0(", on the curve ", fmt_p(curve$p[hit[i]]),
+                                      if (curve$sig[hit[i]]) " (circle)" else " (cross)"),
+    "; ", rest[i]
+  ))
+  points <- data.frame(n_lab = paste0("#", seq_len(n)),  # r-style: keep – base, nothing to download
+                       phase = factor(ifelse(ph == "explored", phase_levels[1], phase_levels[2]),  # r-style: keep – base, nothing to download
+                                      levels = phase_levels),
+                       tag = tg, b = b, rank = curve$rank[hit], sig = curve$sig[hit], info = info,
+                       mine = nzchar(my_tag) & !is.na(tg) & tg == my_tag,
+                       stringsAsFactors = FALSE)[drawn, , drop = FALSE]
+  list(points = points, n_housing = n, n_off = sum(!drawn))
+}
+
+# The chart: the curve faint behind, a submission at the rank of its
+# specification and at the gap that it reports, a circle where that
+# specification has p < 0.05 and a cross otherwise, open green for explored
+# and filled black for declared, numbered in the order of submission. The
+# marks of the tag typed into the live cell are ringed in orange and joined in
+# the order of submission. The lines printed under the chart describe each mark.
+draw_class_chart <- function(cls, my_tag = "") {
+  pts <- cls$points
+  has_pts <- !is.null(pts) && nrow(pts) > 0
+  ylim_lo <- if (has_pts) min(-25, min(pts$b) - 2) else -25
+  ylim_hi <- if (has_pts) max(5, max(pts$b) + 2) else 5
+  off_txt <- paste0(cls$n_off, " of ", cls$n_housing,
+                    " submission(s) name no specification of the curve of 64 and are not drawn.")
+  sub_txt <- if (!has_pts && cls$n_housing == 0) {
+    "No submissions yet – press Run Code to refresh"
+  } else if (!has_pts) {
+    "No submission can be placed yet – press Run Code to refresh"
+  } else if (any(pts$mine)) {
+    paste0(nrow(pts), " class result(s) on the chart. Tag ", my_tag, ": ",
+           paste(pts$n_lab[pts$mine], collapse = ", "))
+  } else if (nzchar(my_tag)) {
+    paste0(nrow(pts), " class result(s) on the chart. No mark carries the tag ", my_tag, " yet")
+  } else {
+    paste(nrow(pts), "class result(s) on the chart")
+  }
+
+  tinyplot::tinytheme("minimal")
+  on.exit(tinyplot::tinytheme())
+  # an empty frame that sets the axes and carries the legend of the two phases;
+  # tinyplot reads palette and legend as written, so they take values, not names
+  tinyplot::tinyplot(b ~ rank | phase,
+                     data = data.frame(rank = 1, b = 0, phase = factor(phase_levels, levels = phase_levels)),  # r-style: keep – base, nothing to download
+                     empty = TRUE, legend = list("bottom!", title = NULL),
+                     palette = c("#009E73", "#1d2733"), pch = c(1, 16),
+                     xlim = c(1, nrow(curve)), ylim = c(ylim_lo, ylim_hi),
+                     main = "Class submissions", sub = sub_txt,
+                     xlab = "Specifications of the curve, ranked by the gap",
+                     ylab = "Gap in greetings by name (points)",
+                     yaxl = \(x) sub("^-", "−", format(x, trim = TRUE)))
+  # the faint band above zero, against the direction of the claim, and zero
+  tinyplot::tinyplot(x = 0, y = 0, xmin = -1e6, xmax = 1e6, ymin = 0, ymax = 1e6, type = "rect",
+                     col = NA, fill = "#a100000c", add = TRUE)
+  tinyplot::tinyplot(x = 0, y = 0, type = tinyplot::type_hline(h = 0), col = grey_mid, add = TRUE)
+  # the curve: circles for p < 0.05, crosses otherwise
+  tinyplot::tinyplot(b_pp ~ rank | sig_f, data = curve, pch = c(4, 1), palette = c("#1f5fa8", "#1f5fa8"),
+                     alpha = 0.3, drop.unused.levels = FALSE, add = TRUE)
+
+  if (has_pts) {
+    mine <- datawizard::data_filter(pts, mine)
+    # a joining line needs two marks
+    if (nrow(mine) > 1)
+      tinyplot::tinyplot(b ~ rank, data = mine, type = "l", col = orange, lwd = 2, add = TRUE)
+    if (nrow(mine) > 0)
+      tinyplot::tinyplot(b ~ rank, data = mine, pch = 1, cex = 2.6, lwd = 2, col = orange, add = TRUE)
+    # a specification with p >= 0.05 is drawn as a cross, whatever the phase
+    sig_pts <- datawizard::data_filter(pts, sig)
+    ns_pts <- datawizard::data_filter(pts, !sig)
+    if (nrow(sig_pts) > 0)
+      tinyplot::tinyplot(b ~ rank | phase, data = sig_pts, pch = c(1, 16), palette = c("#009E73", "#1d2733"),
+                         cex = 1.5, lwd = 1.6, drop.unused.levels = FALSE, add = TRUE)
+    if (nrow(ns_pts) > 0)
+      tinyplot::tinyplot(b ~ rank | phase, data = ns_pts, pch = 4, palette = c("#009E73", "#1d2733"),
+                         cex = 1.5, lwd = 1.6, drop.unused.levels = FALSE, add = TRUE)
+    # submissions on the same specification stack their numbers vertically
+    stack <- stats::ave(seq_along(pts$rank), pts$rank, FUN = seq_along) - 1
+    tinyplot::tinyplot(x = pts$rank, y = pts$b + (ylim_hi - ylim_lo) * (0.035 + 0.04 * stack),
+                       type = tinyplot::type_text(labels = pts$n_lab), col = ink, cex = 0.8, add = TRUE)
+  }
+
+  writeLines(c(
+    if (has_pts) "Each submission sits at the rank of its specification and at the gap that it reports. Open circles: explored; filled circles: declared."
+    else "The curve: circles for p < 0.05 under the test of each model.",
+    if (cls$n_housing > 0) off_txt,
+    if (has_pts) c("", pts$info)
+  ))
+  invisible(cls)
+}
+
+refresh_multiverse <- function(my_tag = "") {
+  my_tag <- clean_my_tag(my_tag)
+  cls <- NULL
+  if (nzchar(worker_url)) {
+    cls <- tryCatch({
+      utils::download.file(paste0(worker_url, "?_=", as.numeric(Sys.time())), "class.csv", quiet = TRUE)
+      read_clean("class.csv")
+    }, error = function(e) NULL)
+  }
+  if (is.null(cls) && file.exists("data/class_results.csv")) {
+    cls <- tryCatch(read_clean("data/class_results.csv"), error = function(e) NULL)
+  }
+  draw_class_chart(prepare_class(cls, my_tag), my_tag)
+}
+```
+
+```{webr}
+#| label: live-multiverse
+#| autorun: true
+#| fig-width: 9
+#| fig-height: 5.6
+#| caption: "Press Run Code to refresh – pull the latest class results"
+my_tag <- ""   # your tag, e.g. "amber-otter-42", highlights your own marks
+refresh_multiverse(my_tag)
+```

@@ -4,7 +4,7 @@
 | Repetition | The study | What came back |
 |:-----|:-----|:-----|
 | **Reproduction** – same data, same analysis | 600 papers from 62 journals, 2009–2018 [@MiskeEtAl2026InvestigatingReproducibilitySocial] | Of the 143 that could be assessed, **53.6%** reproduced precisely and **73.5%** at least approximately; counting the papers that nobody could check, about **18%** |
-| **Robustness** – same data, other analyses | The robustness study: 100 studies, at least 5 analysts each [Multi100; @AczelEtAl2026InvestigatingAnalyticalRobustness] | **74%** of reanalyses reached the same conclusion; **34%** came within ±0.05 *d* of the original effect size |
+| **Robustness** – same data, other analyses | The robustness study: 100 studies, at least 5 analysts each [Multi100\; @AczelEtAl2026InvestigatingAnalyticalRobustness] | **74%** of reanalyses reached the same conclusion; **34%** came within ±0.05 *d* of the original effect size |
 | **Replication** – new data | 274 claims, independent data [@TynerEtAl2026InvestigatingReplicabilitySocial] | **55.1%** significant again; the median effect size fell from *r* = 0.25 to 0.10 |
 :::
 

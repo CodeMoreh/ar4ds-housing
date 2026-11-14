@@ -2,17 +2,22 @@
 # the pages of its own format, in teaching order, and the previous and next
 # links at the foot of each page follow that order. The pages under tracks/ and
 # this file are edited by hand. Day 2 of the Extended course is the one-day
-# workshop, whose pages stay in the sidebar of the workshop.
+# workshop, whose pages stay in the sidebar of the workshop. The section Tools
+# of each sidebar gives absolute addresses, which Quarto treats as external
+# links: the pages behind them, the browser lab and the cheatsheet among them,
+# show no sidebar, and the previous and next links never run into them.
 website:
   sidebar:
     - title: "Short session"
       style: docked
-      collapse-level: 1
+      collapse-level: 2
       contents:
         - text: "Overview"
           href: tracks/housing-short/index.qmd
         - text: "Before the session"
           href: tracks/housing-short/before.qmd
+        - text: "The exercise"
+          href: tracks/housing-short/exercise.qmd
         - text: "First half – The claim and its reproduction"
           href: tracks/housing-short/half-1.qmd
         - text: "Second half – Exploration and replication"
@@ -21,14 +26,20 @@ website:
           href: tracks/housing-short/slides.qmd
         - text: "After the session"
           href: tracks/housing-short/after.qmd
+        - section: "Tools"
+          contents:
+            - text: "Browser lab"
+              href: "https://codemoreh.github.io/ar4ds-housing/cases/housing/lab.html"
     - title: "One-day workshop"
       style: docked
-      collapse-level: 1
+      collapse-level: 2
       contents:
         - text: "Overview"
           href: tracks/housing-one-day/index.qmd
         - text: "Before the day"
           href: tracks/housing-one-day/before.qmd
+        - text: "The exercise"
+          href: tracks/housing-one-day/exercise.qmd
         - text: "Part 1 – The claim and credibility"
           href: tracks/housing-one-day/part-1.qmd
         - text: "Part 2 – The estimand and the causal graph"
@@ -41,14 +52,28 @@ website:
           href: tracks/housing-one-day/slides.qmd
         - text: "After the day"
           href: tracks/housing-one-day/after.qmd
+        - section: "Tools"
+          contents:
+            - text: "Setup"
+              href: "https://codemoreh.github.io/ar4ds/setup.html"
+            - text: "Setup help"
+              href: "https://codemoreh.github.io/ar4ds/help.html"
+            - text: "The workspace"
+              href: "https://codemoreh.github.io/ar4ds-housing-workspace/"
+            - text: "Browser lab"
+              href: "https://codemoreh.github.io/ar4ds-housing/cases/housing/lab.html"
+            - text: "Cheatsheet"
+              href: "https://codemoreh.github.io/ar4ds-housing/cases/housing/cheatsheet.html"
     - title: "Extended course"
       style: docked
-      collapse-level: 1
+      collapse-level: 2
       contents:
         - text: "Overview"
           href: tracks/housing-extended/index.qmd
         - text: "Before the course"
           href: tracks/housing-extended/before.qmd
+        - text: "The exercise"
+          href: tracks/housing-extended/exercise.qmd
         - text: "Day 1 – Open research and the tools"
           href: tracks/housing-extended/day-1.qmd
         - text: "Day 2 – The workshop"
@@ -57,12 +82,26 @@ website:
           href: tracks/housing-extended/day-3.qmd
         - text: "After the course"
           href: tracks/housing-extended/after.qmd
+        - section: "Tools"
+          contents:
+            - text: "Setup"
+              href: "https://codemoreh.github.io/ar4ds/setup.html"
+            - text: "Setup help"
+              href: "https://codemoreh.github.io/ar4ds/help.html"
+            - text: "The workspace"
+              href: "https://codemoreh.github.io/ar4ds-housing-workspace/"
+            - text: "Browser lab"
+              href: "https://codemoreh.github.io/ar4ds-housing/cases/housing/lab.html"
+            - text: "Cheatsheet"
+              href: "https://codemoreh.github.io/ar4ds-housing/cases/housing/cheatsheet.html"
     - title: "Self-study"
       style: docked
-      collapse-level: 1
+      collapse-level: 2
       contents:
         - text: "Overview"
           href: tracks/self-study/index.qmd
+        - text: "The exercise"
+          href: tracks/self-study/exercise.qmd
         - text: "Stage 1 – Credibility and the three Rs"
           href: tracks/self-study/stage-1.qmd
         - text: "Stage 2 – R and Quarto"
@@ -73,3 +112,13 @@ website:
           href: tracks/self-study/stage-4.qmd
         - text: "Stage 5 – Your own project"
           href: tracks/self-study/stage-5.qmd
+        - section: "Tools"
+          contents:
+            - text: "Setup"
+              href: "https://codemoreh.github.io/ar4ds/setup.html"
+            - text: "Setup help"
+              href: "https://codemoreh.github.io/ar4ds/help.html"
+            - text: "The workspace"
+              href: "https://codemoreh.github.io/ar4ds-housing-workspace/"
+            - text: "Browser lab"
+              href: "https://codemoreh.github.io/ar4ds-housing/cases/housing/lab.html"

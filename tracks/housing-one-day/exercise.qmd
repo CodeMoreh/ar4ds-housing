@@ -1,0 +1,36 @@
+---
+title: "The exercise"
+subtitle: "One-day workshop – Housing and racial bias"
+bibliography: [../../references.bib, ../../references-new.bib]
+---
+
+This page sets out what you do in the one-day workshop on the Housing and racial bias case study, and where. The [background page](../../cases/housing/index.qmd) presents the original study, the SCORE replication and the five reanalyses of the robustness study of SCORE [Multi100\; @AczelEtAl2026InvestigatingAnalyticalRobustness], and it is the place to start if you have not read it. The workshop takes all five tasks, and you do them in the workspace that you download and open in your IDE (Positron, RStudio, VS Code, etc.), as the [Setup page](https://codemoreh.github.io/ar4ds/setup.html) describes. The deck of the day shows each step with its output, so that you can compare your numbers with the slides. If your installation fails, the deck, whose slides run R inside your browser, and the [browser lab](../../cases/housing/lab.qmd), a page of this site that holds the same tasks, carry the work instead and give the same numbers. The pages of the four parts say in what order the tasks come.
+
+---
+
+{{< include ../../cases/housing/_exercise-claim.qmd >}}
+
+---
+
+{{< include ../../cases/housing/_exercise-tasks.qmd >}}
+
+---
+
+## What counts as a result
+
+{{< include ../../cases/housing/_exercise-result.qmd >}}
+
+---
+
+## Links
+
+The tools of the workshop:
+
+- [Slides](slides.qmd) – the deck of the day, which shows each step with its output.
+- [Setup](https://codemoreh.github.io/ar4ds/setup.html) – installing R and an IDE, and downloading the workspace.
+- [Setup help](https://codemoreh.github.io/ar4ds/help.html) – the problems that other participants have met, and what to do about each.
+- [The workspace](https://codemoreh.github.io/ar4ds-housing-workspace/) – the report of the workspace as it renders, with the output of every chunk under its code.
+- [Browser lab](../../cases/housing/lab.qmd) – the whole exercise and its data in a browser tab.
+- [Cheatsheet](../../cases/housing/cheatsheet.qmd) – the addresses, the helpers, the reproductions of Task 3 and the quick fixes of the day on one page.
+
+{{< include ../../cases/housing/_exercise-links.qmd >}}

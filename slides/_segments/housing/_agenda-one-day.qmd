@@ -6,7 +6,7 @@ A one-day workshop in four parts, on the Housing and racial bias case study
 
 :::: {.todaybox}
 ::: {.nonincremental .fs-85}
-1. The claim and credibility – science and its crisis, the three Rs, SCORE and its robustness study [Multi100; @AczelEtAl2026InvestigatingAnalyticalRobustness], and the paper
+1. The claim and credibility – science and its crisis, the three Rs, SCORE and its robustness study [Multi100\; @AczelEtAl2026InvestigatingAnalyticalRobustness], and the paper
 2. The estimand and the causal graph – five analysts, estimands, and the graph of the experiment
 3. The reproduction – one of the five reanalyses reproduced from the public file
 4. Robustness – the menu, the class chart, the curve, the new experiment and one preregistered analysis

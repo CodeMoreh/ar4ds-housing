@@ -23,9 +23,9 @@ Call `try_spec()` with no arguments for the reference specification, then two or
 
 ## 3. The multiverse
 
-**On the slides**, with the Multiverse page open in another tab.
+**On the slides**, with the specification curve open in another tab.
 
-[Open the Multiverse page](../../cases/housing/multiverse.qmd){.btn .btn-primary target="_blank"}
+[Open the specification curve](../../cases/housing/curve.qmd){.btn .btn-primary target="_blank"}
 
 The slides name what you did in Task 4, your own small multiverse, and then show the curve of the claim, with the published result of the original authors (OAs) and the five analysts placed on it. An optional pair of slides tells where the idea of a multiverse came from.
 

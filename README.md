@@ -13,14 +13,14 @@ The case study is a field experiment in which emails that differed only in the n
 | Extended course, three days built around the workshop | `tracks/housing-extended/` | the workspace, with the browser lab on the day of the workshop |
 | Self-study | `tracks/self-study/` | the workspace |
 
-Each format has a docked sidebar (`_sidebar.yml`), part pages that lead into the content, and a slides page that embeds its deck (`slides/housing-*.qmd`, assembled from `slides/_segments/`). The run sheet of the facilitator, with the timings, is `facilitator/housing-guide.qmd`.
+Each format has a docked sidebar (`_sidebar.yml`), an exercise page, part pages that lead into the content, and a slides page that embeds its deck (`slides/housing-*.qmd`, assembled from `slides/_segments/`). The run sheet of the facilitator, with the timings, is `facilitator/housing-guide.qmd`.
 
 ## Layout
 
 | Path | What it is |
 |---|---|
 | `index.qmd` | The home page |
-| `cases/housing/` | The background page, the exercise overview, the browser lab, the specification menu, the decision map, the multiverse page with the class chart, the cheatsheet, and `data/` with a codebook for every file |
+| `cases/housing/` | The background page, the browser lab, the specification menu with the decision map, the specification curve, the class results, the cheatsheet, the parts that the exercise pages of the formats share (`_exercise-*.qmd`), and `data/` with a codebook for every file |
 | `tracks/` | The formats |
 | `slides/` | The decks and their segments |
 | `companion/` | The modules of the companion, written on the data of the case study; `_model-outputs/` holds the scripts and aggregate outputs behind them |

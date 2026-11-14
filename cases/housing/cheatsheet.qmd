@@ -19,9 +19,10 @@ format:
 | **Browser lab** | [browser lab](lab.qmd) |
 | **Workspace download (zip)** | [{{< var cases.housing.workspace-zip >}}]({{< var cases.housing.workspace-zip >}}) |
 | **Submit your result** | [class-results form]({{< var results-form-url >}}) |
-| **Live multiverse** | [Multiverse page]({{< var cases.housing.live-results-url >}}) |
+| **Class results** | [class results]({{< var cases.housing.live-results-url >}}) |
 | **Specification menu** | [specification menu](menu.qmd) |
-| **Decision map** | [decision map](map.qmd) |
+| **Decision map** | [decision map](menu.qmd#map) |
+| **Specification curve** | [specification curve](curve.qmd) |
 | **The data (Harvard Dataverse, CC0)** | <https://doi.org/10.7910/DVN/1HOVTU> |
 | **The five analyses of the robustness study** | <https://osf.io/38rsh/> |
 | **The SCORE dossier on the paper** | <https://osf.io/3a8bg/> |
@@ -91,7 +92,7 @@ The five decisions on which the curve keeps more than one option, and what their
 - `model` – a linear probability model, whose coefficient is the difference in proportions (`"lpm"`), or a logistic regression, reported as an average marginal effect (`"logit"`).
 - `adjust` – no covariates (`"none"`); the hard-to-find address (`"email"`); that and the size and poverty of the community (`"place"`); or those and its ethnic composition (`"place_ethnic"`), all in the thirds of the public file.
 
-The [specification menu](menu.qmd) explains every option, and the [decision map](map.qmd) lays the decisions out in the order in which an analysis meets them.
+The [specification menu](menu.qmd) explains every option, and the [decision map](menu.qmd#map) lays the decisions out in the order in which an analysis meets them.
 
 ------------------------------------------------------------------------
 

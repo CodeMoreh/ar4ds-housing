@@ -24,7 +24,7 @@ The menu sets out the estimand statement and the eleven decisions in three group
 
 [Open the browser lab at Task 4](../../cases/housing/lab.qmd#task-4-menu){.btn .btn-outline-primary target="_blank"}
 
-Call `try_spec()` with no arguments for the reference specification, then three or four times more, changing one argument at a time, and compare the tries with `my_experiments()`. Ask once for an option off the curve, such as `model = "three_group"`, to read why it is refused. If you want your exploration on the [class chart](../../cases/housing/multiverse.qmd#class-results), send the try that you would defend with `submit_exploration()`, and it appears there as an open circle.
+Call `try_spec()` with no arguments for the reference specification, then three or four times more, changing one argument at a time, and compare the tries with `my_experiments()`. Ask once for an option off the curve, such as `model = "three_group"`, to read why it is refused. If you want your exploration on the [class chart](../../cases/housing/class-results.qmd), send the try that you would defend with `submit_exploration()`, and it appears there as an open circle.
 
 ## 4. Multiverse, replication and preregistration
 
@@ -40,9 +40,9 @@ Complete the block before you run anything. It asks for the claim, the data-in-h
 
 ## 6. The curve of the claim
 
-[Open the Multiverse page](../../cases/housing/multiverse.qmd){.btn .btn-primary target="_blank"}
+[Open the specification curve](../../cases/housing/curve.qmd){.btn .btn-primary target="_blank"}
 
-The Multiverse page shows how to read the curve, the reference marks, and what moved the estimate. Beside the curve it sets the other outcomes and the Black names, the subgroups, and the randomisation distribution. The [module on subgroups and multiple comparisons](../../companion/subgroups.qmd) reads those subgroups against tests of their differences and against corrections for the number of comparisons.
+The page shows how to read the curve, the reference marks, and what moved the estimate. Beside the curve it sets the other outcomes and the Black names, the subgroups, and the randomisation distribution. The [module on subgroups and multiple comparisons](../../companion/subgroups.qmd) reads those subgroups against tests of their differences and against corrections for the number of comparisons.
 
 ## 7. Randomisation, power and the replication
 

@@ -28,7 +28,7 @@ cat(c("::: {.fs-55}", # r-style: keep – writes the Markdown of the table
 ```
 
 ::: {.small}
-Five decisions keep more than one option, and they cross into the **`r nrow(curve)`** specifications of the curve. The [decision map](../cases/housing/map.html) gives the reason for every option.
+Five decisions keep more than one option, and they cross into the **`r nrow(curve)`** specifications of the curve. The [decision map](../cases/housing/menu.html#map) gives the reason for every option.
 :::
 
 ::: notes
@@ -67,7 +67,7 @@ Five of the eleven decisions keep more than one option on the curve. The compari
 :::
 
 ::: {.fragment .small}
-The estimand statement on the [decision map](../cases/housing/map.html) rewrites itself as you choose. A change in its first sentence asks another question, a change inside its parentheses counts the outcome differently, and a change in the second sentence reaches the answer another way.
+The estimand statement on the [decision map](../cases/housing/menu.html#map) rewrites itself as you choose. A change in its first sentence asks another question, a change inside its parentheses counts the outcome differently, and a change in the second sentence reaches the answer another way.
 :::
 
 ::: notes

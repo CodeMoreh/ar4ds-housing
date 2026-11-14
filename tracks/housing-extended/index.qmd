@@ -10,6 +10,7 @@ The case study is one field experiment, in which emails that differed only in th
 ## The days
 
 - **[Before the course](before.qmd).** You install R and the workspace, work through the first module on R, and read the background page.
+- **[The exercise](exercise.qmd).** The claim, the five analysts and the tasks of the course, which are all done in the workspace in your IDE.
 - **[Day 1 – Open research and the tools](day-1.qmd).** Credibility and the three Rs, SCORE and its robustness study, repositories and data sources, and then R, Positron and Quarto, taught live on the Housing data.
 - **[Day 2 – The workshop](day-2.qmd).** The one-day workshop in its four parts: the claim and credibility, the estimand and the causal graph, the reproduction, and robustness.
 - **[Day 3 – The methods and your report](day-3.qmd).** Audit experiments, binary outcomes and Bayesian estimation, taught on the data of the case study, and then your declared analysis written up as a short report under version control.

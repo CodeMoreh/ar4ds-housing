@@ -75,4 +75,4 @@ Every call to `try_spec()` is logged, and `my_experiments()` prints the log, sho
 my_experiments()
 ```
 
-That is the whole of Task 4 in miniature: change one decision at a time, read what moves, and keep a record. The [exercise overview](../cases/housing/exercise.qmd) sets out the five tasks, the [specification menu](../cases/housing/menu.qmd) lists every argument and its options, and the [cheatsheet](../cases/housing/cheatsheet.qmd) puts the helpers on one page.
+That is the whole of Task 4 in miniature: change one decision at a time, read what moves, and keep a record. The [exercise page of the self-study route](../tracks/self-study/exercise.qmd) sets out the five tasks, the [specification menu](../cases/housing/menu.qmd) lists every argument and its options, and the [cheatsheet](../cases/housing/cheatsheet.qmd) puts the helpers on one page.

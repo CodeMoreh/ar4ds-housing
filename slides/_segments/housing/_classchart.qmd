@@ -1,7 +1,7 @@
 ## The class multiverse {#the-class-multiverse}
 
 ::: {.urlbox}
-[Multiverse page – the class chart](../cases/housing/multiverse.html)
+[Class results – the class chart](../cases/housing/class-results.html)
 :::
 
 ::: {.small}
