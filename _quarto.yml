@@ -109,8 +109,6 @@ website:
             text: "Causal graphs and adjustment sets"
           - href: companion/missingness.qmd
             text: "Missing values"
-          - href: companion/simulation.qmd
-            text: "Simulation as a method"
           - href: companion/multiverse.qmd
             text: "The multiverse and its critics"
           - href: companion/meta-analysis.qmd

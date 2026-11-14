@@ -1,4 +1,4 @@
-Fitted: 2026-10-27 (companion module: simulation)
+Fitted: 2026-10-27 (companion module: Audit experiments, sections 3, 5 and 7)
 R 4.6.0
 simulate_housing.R -> sim_housing_diagnosis.csv, sim_housing_draws.csv: Housing case study, set.seed 20261027
 DeclareDesign 2.0.0 | fabricatr 2.0.0 | randomizr 2.0.1 | estimatr 2.0.1

@@ -120,10 +120,9 @@ The modules on the tools are on the [AR4DS site](https://codemoreh.github.io/ar4
 
 **Methods**
 
-- [Audit experiments](companion/experiments.qmd) – field experiments on discrimination: random assignment, names as treatments, comparisons among replies, randomisation inference, power and the ethics of deception.
+- [Audit experiments](companion/experiments.qmd) – field experiments on discrimination: random assignment, simulated experiments as a way of checking a method, names as treatments, comparisons among replies, randomisation inference, power and the ethics of deception.
 - [Binary outcomes](companion/binary-outcomes.qmd) – proportions, linear probability models and logistic regression.
 - [Causal graphs and adjustment sets](companion/dags.qmd) – confounders, mediators and colliders, and what conditioning on a reply does to the experiment.
-- [Simulation as a method](companion/simulation.qmd) – simulated experiments as a way of checking a method.
 - [The multiverse and its critics](companion/multiverse.qmd) – where specification curves came from, the purposes that they serve, the current debate about them, and the curve of the claim.
 
 Installing R and an IDE, the setup help, and Git and GitHub are on the [AR4DS site](https://codemoreh.github.io/ar4ds/), which every case study shares.

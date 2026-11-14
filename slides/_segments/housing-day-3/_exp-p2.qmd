@@ -53,7 +53,7 @@ attrition::estimator_trim(Y = greeted, Z = hisp, R = responded,
 :::
 
 ::: {.src}
-Trimming bounds from the attrition package, on the `r fmt_n(nrow(delivered))` delivered emails to Hispanic and white names (cases/housing/data/housing_emails.csv); companion/experiments.qmd, section 4.
+Trimming bounds from the attrition package, on the `r fmt_n(nrow(delivered))` delivered emails to Hispanic and white names (cases/housing/data/housing_emails.csv); companion/experiments.qmd, section 5.
 :::
 
 ::: notes

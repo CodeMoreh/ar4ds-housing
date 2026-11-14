@@ -1,6 +1,7 @@
 ################################################################################
 # Title:        Simulated experiments of the Housing case study
-# Purpose:      The simulations of the simulation module, declared and diagnosed
+# Purpose:      The simulations of the module Audit experiments
+#               (companion/experiments.qmd), declared and diagnosed
 #               with DeclareDesign (Blair, Cooper, Coppock and Humphreys 2019,
 #               American Political Science Review): an experiment whose recipe plants
 #               the gap in named greetings that the original study found, and
@@ -12,14 +13,15 @@
 #               and the power of the comparison among replies at the size of the
 #               original study and of the replication, for gaps from 0 to 25
 #               points, beside the analytic power of display_power.csv.
-#               The simulation module declares the first design on the page with
-#               the same code and reads the diagnoses from the files below.
+#               The module declares the first two designs on the page, in its
+#               sections 3 and 5, with the same code and reads the diagnoses
+#               from the files below.
 # Reads:        cases/housing/data/housing_emails.csv (the rates that the recipe
 #               plants)
 # Writes:       companion/_model-outputs/sim_housing_diagnosis.csv
 #               companion/_model-outputs/sim_housing_draws.csv
 # Author:       Claude for CM
-# Last updated: 2026-10-27
+# Last updated: 2026-11-14
 ################################################################################
 
 set.seed(20261027)

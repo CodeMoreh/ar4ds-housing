@@ -253,7 +253,7 @@ Change the two shares of the arithmetic in section 6 to 0.65 and 0.55, which pre
 
 ## 8. Where this leads {#sec-next}
 
-The curve of the claim takes the models of sections 1 to 7 as they are, and the [specification menu](../cases/housing/menu.qmd) sets out which of them it keeps. The [simulation module](simulation.qmd) uses the difference in proportions with HC2 errors as the estimator of a simulated experiment, to show what it recovers when the name changes only the greeting and what it misses when the name also changes who replies, and the [multiverse module](multiverse.qmd) reads the curve of the claim as a whole.
+The curve of the claim takes the models of sections 1 to 7 as they are, and the [specification menu](../cases/housing/menu.qmd) sets out which of them it keeps. The simulations of the [experiments module](experiments.qmd#sec-simulation) use the difference in proportions with HC2 errors as the estimator of a simulated experiment, to show what the estimator recovers when the name changes only the greeting and what it misses when the name also changes who replies, and the [multiverse module](multiverse.qmd) reads the curve of the claim as a whole.
 
 ## Sources {#sec-sources}
 

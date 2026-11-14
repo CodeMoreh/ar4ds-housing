@@ -43,15 +43,30 @@ score_max_pp <- 100 * 0.098 / 4  # r-style: PENDING – the divide-by-4 bound of
 official_share <- housing |>
   datawizard::data_filter(reply == 1) |>
   datawizard::data_summary(share = 100 * mean(hispanic_official, na.rm = TRUE), by = "group")
+# The delivered emails to white and Hispanic names and their coded replies, for
+# the rates quoted in section 3, whose declaration builds them again in view
+delivered <- housing |> datawizard::data_filter(group %in% c("white", "hispanic"), !is.na(reply))
+coded <- delivered |> datawizard::data_filter(reply == 1, !is.na(named))
+# The diagnoses of the simulated experiments of sections 3, 5 and 7, run once by
+# companion/_model-outputs/simulate_housing.R
+dx <- readr::read_csv("_model-outputs/sim_housing_diagnosis.csv", show_col_types = FALSE)
+draws <- readr::read_csv("_model-outputs/sim_housing_draws.csv", show_col_types = FALSE)
+recovery_dx <- dx |> datawizard::data_filter(set == "recovery")
+reply_dx <- dx |> datawizard::data_filter(set == "reply")
+power_dx <- dx |> datawizard::data_filter(set == "power")
+reply_never <- reply_dx |> datawizard::data_filter(greet_marginal == 0, estimator == "among replies")
+reply_always <- reply_dx |> datawizard::data_filter(greet_marginal == 1, estimator == "among replies")
+power_10 <- power_dx |> datawizard::data_filter(n_per_group == 181, gap == 0.1)
+power_null <- power_dx |> datawizard::data_filter(gap == 0)
 ```
 
-This module of the companion curriculum sets the Housing and racial bias case study among the field experiments that sociologists and political scientists use to measure discrimination. The case study comes from a study by the original authors (OAs), who emailed public housing authorities across the United States from six names meant to indicate a white, a Black or a Hispanic applicant [@EinsteinGlick2017DoesRaceAffect], and the [background page](../cases/housing/index.qmd) tells it in full. Here the design itself is the subject: what random assignment buys, what a name conveys, why comparing the content of replies needs care, how a randomisation test works, what power has to do with the failed replication, what blocking the assignment would have added, and what such studies ask of the people whom they study. Every number on the page is computed when it is built, from the files of the course in `cases/housing/data/`, and the code that computes the less familiar ones is shown.
+This module of the companion curriculum sets the Housing and racial bias case study among the field experiments that sociologists and political scientists use to measure discrimination. The case study comes from a study by the original authors (OAs), who emailed public housing authorities across the United States from six names meant to indicate a white, a Black or a Hispanic applicant [@EinsteinGlick2017DoesRaceAffect], and the [background page](../cases/housing/index.qmd) tells it in full. Here the design itself is the subject: what random assignment buys, what an experiment simulated from a known recipe shows about the estimator, what a name conveys, why comparing the content of replies needs care, how a randomisation test works, what power has to do with the failed replication, what blocking the assignment would have added, and what such studies ask of the people whom they study. Every number on the page is computed when it is built, from the files of the course in `cases/housing/data/` and from the diagnoses of the simulations in `companion/_model-outputs/`, and the code that computes the less familiar ones is shown.
 
 ## 1. Audit and correspondence studies {#sec-audits}
 
 An audit study measures discrimination by sending requests that are identical except for one characteristic of the person who makes them, and by comparing how the requests are answered. In the older form, trained testers who differ in the characteristic apply in person, as in the study of hiring by @Pager2003MarkCriminalRecord, which used matched pairs of testers to measure what a criminal record costs an applicant. In the form that is now more common, the correspondence study, the requests are written, and the characteristic is carried by the name on a résumé, a letter or an email. @BertrandMullainathan2004AreEmilyGreg sent résumés that differed only in a name meant to indicate race, and a meta-analysis of field experiments on hiring found no change since 1989 in discrimination against African Americans, and some sign of a decline against Latinos [@QuillianEtAl2017MetaanalysisFieldExperiments].
 
-Political science adapted the correspondence design to the people who hold public office or administer it, by sending emails that ask a simple question. @ButlerBroockman2011PoliticiansRaciallyDiscriminate wrote to state legislators and @WhiteEtAl2015WhatNeedVote to local election officials, studies that the OAs summarise as finding that "blacks and Hispanics making queries about voting procedures are less likely to receive responses from state legislators and local election officials than whites" (p. 4 of the accepted manuscript, to which the page numbers on this page refer). The experiment of the OAs carries the question to officials who decide access to a scarce public good, the street-level bureaucrats whose discretion @Lipsky1980StreetLevelBureaucracy described. Such studies usually measure several outcomes of one request: whether a reply came at all, how fast it came, and what it contained. The claim of this course concerns the last, the tone of a reply, measured by whether it opened with the name of the sender, and section 4 shows why an outcome of that kind needs more care than the first.
+Political science adapted the correspondence design to the people who hold public office or administer it, by sending emails that ask a simple question. @ButlerBroockman2011PoliticiansRaciallyDiscriminate wrote to state legislators and @WhiteEtAl2015WhatNeedVote to local election officials, studies that the OAs summarise as finding that "blacks and Hispanics making queries about voting procedures are less likely to receive responses from state legislators and local election officials than whites" (p. 4 of the accepted manuscript, to which the page numbers on this page refer). The experiment of the OAs carries the question to officials who decide access to a scarce public good, the street-level bureaucrats whose discretion @Lipsky1980StreetLevelBureaucracy described. Such studies usually measure several outcomes of one request: whether a reply came at all, how fast it came, and what it contained. The claim of this course concerns the last, the tone of a reply, measured by whether it opened with the name of the sender, and section 5 shows why an outcome of that kind needs more care than the first.
 
 ## 2. Random assignment {#sec-randomisation}
 
@@ -81,9 +96,87 @@ balance |>
   tinytable::style_tt(j = 2:5, align = "r")
 ```
 
-No characteristic comes near a significant difference, as random assignment leads one to expect. The paper reports a check of the same kind, without a test: the average of each characteristic of the communities for each of the six names, from the continuous census values, replaced by thirds in the public file (Table SI1, p. 43). The groups are not of equal size. The paper says that "[e]ach housing authority was randomly assigned (via random number generator) to receive an email from one of six different accounts" (p. 8), without stating the chance of each account, and the six names were sent between `r sent_range[1]` and `r sent_range[2]` times, a spread that equal chances would rarely produce (a $\chi^2$ test of equal shares gives p = `r formatC(sent_p, format = "f", digits = 3)`), so the six accounts may not have been equally likely. Unequal groups cost a little precision and nothing else, because every authority was still assigned at random, and for the same reason no covariate is needed to remove bias. Adjusting for characteristics that predict the outcome can still narrow the standard error, which is why the curve of the claim keeps three adjustment sets beside the raw difference and why two of them move the estimate by about a point on average and the third, the hard-to-find address alone, by less than a tenth of a point (the [Specification curve](../cases/housing/curve.qmd#shifts) page gives the shifts). The SCORE replication went one step further and randomised within each state, so that every state received equal numbers of each group of names, a design that section 7 takes up.
+No characteristic comes near a significant difference, as random assignment leads one to expect. The paper reports a check of the same kind, without a test: the average of each characteristic of the communities for each of the six names, from the continuous census values, replaced by thirds in the public file (Table SI1, p. 43). The groups are not of equal size. The paper says that "[e]ach housing authority was randomly assigned (via random number generator) to receive an email from one of six different accounts" (p. 8), without stating the chance of each account, and the six names were sent between `r sent_range[1]` and `r sent_range[2]` times, a spread that equal chances would rarely produce (a $\chi^2$ test of equal shares gives p = `r formatC(sent_p, format = "f", digits = 3)`), so the six accounts may not have been equally likely. Unequal groups cost a little precision and nothing else, because every authority was still assigned at random, and for the same reason no covariate is needed to remove bias. Adjusting for characteristics that predict the outcome can still narrow the standard error, which is why the curve of the claim keeps three adjustment sets beside the raw difference and why two of them move the estimate by about a point on average and the third, the hard-to-find address alone, by less than a tenth of a point (the [Specification curve](../cases/housing/curve.qmd#shifts) page gives the shifts). The SCORE replication went one step further and randomised within each state, so that every state received equal numbers of each group of names, a design that section 8 takes up.
 
-## 3. Names as treatments {#sec-names}
+## 3. Simulating the experiment {#sec-simulation}
+
+Most quantitative pages on this site analyse data that came from the world. This section analyses data that came from a recipe written in advance, so that the answer is known before any model runs. That inversion, known as fake-data simulation, is a standard habit in applied statistics. *Regression and Other Stories* uses it constantly, on the argument that fitting models to data whose coefficients you planted yourself is how you learn what your models can and cannot recover [@GelmanEtAl2020RegressionOtherStories]. The same habit underpins classroom practice [@GelmanVehtari2024ActiveStatisticsStories] and the workflow literature, where experimentation on simulated data is one of the named components of model-building [@GelmanEtAl2026BayesianWorkflow]. The design of the experiment is simple enough to write down in a few lines. This section plants a true gap in that design and recovers the gap, section 5 breaks the recovery by letting the name change who replies, and section 7 uses recipes of the same kind to count how often studies of the size of the original and of the replication find a gap.
+
+The simulations are declared and diagnosed with DeclareDesign [@BlairEtAl2023DeclareDesignDeclareDiagnose], an R package that describes a research design in four parts, which its authors call the model, the inquiry, the data strategy and the answer strategy. The **model** is the recipe, the description of the units and of how each would respond to each condition. The **inquiry** is the quantity that the study is meant to learn, its estimand. The **data strategy** says how the units are sampled and assigned, and the **answer strategy** is the estimator. Declared that way, a design can be run as often as one likes, and the package summarises the runs: how far the estimates fall from the estimand on average, how widely they scatter, how often the interval covers the truth, and how often the test rejects. The simulations with many draws ran once, in the script `simulate_housing.R` in `companion/_model-outputs/` of the source repository, and the page reads the diagnoses written by that script, while every declaration on the page runs when it is built.
+
+The claim compares the Hispanic and the white names, and the recipe below takes its numbers from the `r format(nrow(delivered), big.mark = ",")` delivered emails to those names in `housing_emails.csv`. In the data, `r insight::format_value(mean(delivered$reply), as_percent = TRUE, digits = 1)` of the authorities replied, and among the coded replies `r insight::format_value(mean(coded$named[coded$group == "white"]), as_percent = TRUE, digits = 1)` of those to white names and `r insight::format_value(mean(coded$named[coded$group == "hispanic"]), as_percent = TRUE, digits = 1)` of those to Hispanic names opened with the name, a gap of `r insight::format_value(out("named", "hispanic", "b_pp"), digits = 1, style_negative = "minus")` points.
+
+The first recipe plants that gap and nothing else. Each authority would reply or not whatever the name, so that the chance of a reply is the same `r insight::format_value(mean(delivered$reply), as_percent = TRUE, digits = 1)` for both. Among the authorities that reply, a white name is greeted by name with the probability observed for white names and a Hispanic name with the probability observed for Hispanic names, and an official who would greet the Hispanic name by name would also greet the white one. Each authority therefore carries two potential outcomes, the greeting that it would give each name, and the experiment reveals one of them. The names are assigned by complete random assignment to as many emails as in the experiment, and the answer strategy is the estimator of the case study: the difference in the proportions of named greetings among the replies, with HC2 errors.
+
+```{r}
+#| label: declare-recovery
+# The delivered emails to white and Hispanic names, whose rates the recipe
+# plants, and the replies among them that carry a greeting code
+delivered <- housing |> datawizard::data_filter(group %in% c("white", "hispanic"), !is.na(reply))
+coded <- delivered |> datawizard::data_filter(reply == 1, !is.na(named))
+n_delivered <- nrow(delivered)
+n_hispanic <- sum(delivered$group == "hispanic")
+reply_all <- mean(delivered$reply)
+greet_white <- mean(coded$named[coded$group == "white"])
+greet_hisp <- mean(coded$named[coded$group == "hispanic"])
+
+# Z = 1 is a Hispanic name; G_Z_0 and G_Z_1 are the greetings that an authority
+# would give a white and a Hispanic name if it replied
+recovery <-
+  DeclareDesign::declare_model(
+    N = n_delivered,
+    v = runif(N), u = runif(N),
+    R = as.integer(v < reply_all),
+    G_Z_0 = as.integer(u < greet_white), G_Z_1 = as.integer(u < greet_hisp)
+  ) +
+  DeclareDesign::declare_inquiry(gap = mean(G_Z_1[R == 1] - G_Z_0[R == 1])) +
+  DeclareDesign::declare_assignment(Z = randomizr::complete_ra(N, m = n_hispanic)) +
+  DeclareDesign::declare_measurement(G = fabricatr::reveal_outcomes(G ~ Z)) +
+  DeclareDesign::declare_estimator(G ~ Z, .method = estimatr::lm_robust, se_type = "HC2",
+                                   subset = R == 1, inquiry = "gap", term = "Z",
+                                   label = "among replies")
+
+set.seed(20260731)
+DeclareDesign::draw_data(recovery) |> head()
+DeclareDesign::run_design(recovery) |>
+  datawizard::data_select(select = c("inquiry", "estimand", "estimate", "std.error", "p.value"))
+```
+
+The first table shows six simulated authorities with both of their potential greetings, the name that the draw assigned them and the greeting that the experiment would record. The second is one run of the whole design: the planted gap among the authorities that replied in this draw (the estimand), the estimate from the replies, its standard error and its p-value. One run is one experiment, and it says nothing yet about the estimator. The planted value is known, but a single estimate that lands near it, or far from it, could be luck.
+
+The estimator is judged by what it does over many runs of the same design. The script `simulate_housing.R` runs this one 2,000 times:
+
+```r
+DeclareDesign::diagnose_design(recovery, sims = 2000)
+```
+
+```{r}
+#| label: fig-recovery
+#| echo: false
+#| fig-width: 7
+#| fig-height: 3.2
+#| fig-cap: "The estimates of the gap in named greetings in 2,000 simulated experiments whose recipe plants the gap of the original study and lets the name change nothing else. The burgundy line marks the planted gap, and the dashed line the gap that the original study found. Source: `companion/_model-outputs/sim_housing_draws.csv`."
+#| fig-alt: "A bell-shaped histogram of simulated gaps centred on about −20 points and spreading from about −37 to −3 points; the planted gap and the observed gap of the study lie together near its centre."
+ggplot2::ggplot(draws, ggplot2::aes(100 * estimate)) +
+  ggplot2::geom_histogram(binwidth = 1, boundary = 0, fill = "#0e3b6a", alpha = 0.8) +
+  ggplot2::geom_vline(xintercept = 100 * recovery_dx$mean_estimand, colour = "#8b1538", linewidth = 0.8) +
+  ggplot2::geom_vline(xintercept = out("named", "hispanic", "b_pp"), colour = "grey30", linetype = 2) +
+  ggplot2::scale_x_continuous(labels = \(x) sub("^-", "−", x)) +
+  ggplot2::labs(x = "estimated gap in named greetings (percentage points)", y = "simulated experiments") +
+  ggplot2::theme_minimal(base_size = 11)
+```
+
+Over the 2,000 draws the estimates average `r insight::format_value(100 * recovery_dx$mean_estimate, digits = 2, style_negative = "minus")` points against a planted gap of `r insight::format_value(100 * recovery_dx$mean_estimand, digits = 2, style_negative = "minus")`, so that the estimator is unbiased for this recipe to within the noise of the simulation. The standard deviation of the estimates, `r insight::format_value(100 * recovery_dx$sd_estimate, digits = 2)` points, is the sampling error of a study of this size, which no single study can observe, and the standard error that the case study reports for its one real estimate, `r insight::format_value(out("named", "hispanic", "se_pp"), digits = 2)` points, is an estimate of it. The 95% interval covered the planted gap in `r insight::format_value(recovery_dx$coverage, as_percent = TRUE, digits = 1)` of the draws, close to the 95% that it promises, and the test rejected a gap of zero in `r insight::format_value(recovery_dx$power, as_percent = TRUE, digits = 1)` of them. A real study is one draw from a distribution like this one, and the dashed line shows where the original study fell in it.
+
+Recovery is the first check of any estimator, and it is the one that the course runs implicitly whenever it calls an estimator unbiased. It holds only for the recipe that was written. Section 5 changes the recipe in the one respect that the data of the case study cannot check.
+
+::: {.callout-tip}
+## Try it
+
+Copy the declaration of `recovery` into your workspace and change one ingredient at a time: halve `n_delivered`, set `greet_hisp` equal to `greet_white`, or lower `reply_all` to a quarter. Diagnose each version with `DeclareDesign::diagnose_design(recovery, sims = 500)` and compare the standard deviation of the estimates, the coverage and the power. Which ingredient changes the bias, and which change only the precision?
+:::
+
+## 4. Names as treatments {#sec-names}
 
 The treatment in a correspondence study is a name, and a name tells its reader more than one thing about its bearer. The OAs chose names that are distinctive of each group and relied above all on the surname Martinez for the Hispanic names. They also tried to match the ages that the names suggest, and they explain why with an earlier study: "Butler and Broockman's (2011) comparison of responses to emails from Deshawn and Jake ... may actually be estimating the causal effect of being a young black male relative to being a white male of unclear age" (p. 10). They could match the white and the Black names, but not the Hispanic ones, Santiago and Gabriela among them, since "virtually all distinctively Hispanic names ... peak in the 1990s and 2000s in Social Security Administration data" (p. 10). Santiago and Gabriela may therefore have suggested a younger sender as well as a Hispanic one. @Gaddis2017HowBlackAre showed the wider problem for names meant to indicate Black applicants, which vary in how often readers perceive them as Black, so that the findings of an audit may depend on which names stand for a group.
 
@@ -122,7 +215,7 @@ round(100 * stats::coef(with_sex)[["hisp"]], 2)
 
 The gap moves from `r fmt(ref$b_pp, 2)` to `r fmt(100 * coef(with_sex)[["hisp"]], 2)` points, which is why the specification menu treats this adjustment as a check rather than as an answer of its own. What the experiment estimates, strictly, is the effect of receiving an email signed Santiago or Gabriela Martinez rather than Brett or Emily Smith, whatever those names conveyed to the officials who read them. The claim speaks of "Hispanic housing applicants", and the step from the names to ethnicity rests on what the names convey, which is a question about measurement that the design alone cannot settle.
 
-## 4. Comparing among replies {#sec-posttreatment}
+## 5. Comparing among replies {#sec-posttreatment}
 
 A greeting exists only where a reply exists, and that makes the tone of a reply a more delicate outcome than the reply itself. The names were assigned at random to the authorities, so the authorities that received each name are alike in expectation. The replies were not assigned at all. If the name changes whether an official replies, the officials who answered Santiago need not resemble those who answered Brett, and a comparison of greetings among the replies mixes the effect of the name on how officials write with a difference in which officials wrote. Conditioning an analysis on a variable that the treatment can change is called post-treatment conditioning, and it can produce a difference between the groups even where the treatment has no effect on the outcome [@MontgomeryEtAl2018HowConditioningPosttreatment]. @Coppock2019AvoidingPosttreatmentBias set out the problem for audit experiments, in which the content of replies is a common outcome.
 
@@ -172,9 +265,71 @@ round(c(extra_share = 100 * extra_share, bound), 1)
 
 About `r fmt(100 * extra_share)`% of the replies to white names would be removed, and the gap among the officials who would have replied to either name lies between `r fmt(bound[["far_from_zero"]])` and `r fmt(bound[["near_zero"]])` points, before any allowance for chance. Even the end nearest zero is a large gap, so a change in who replied cannot by itself account for the finding, provided that the assumption holds. The assumption cannot be checked in the data, which is why the curve of the claim keeps both comparisons, and why the [causal-graphs module](dags.qmd#sec-case) works through the same problem as a graph.
 
+The second recipe builds the difference in replies, `r insight::format_value(mean(delivered$reply[delivered$group == "hispanic"]), as_percent = TRUE, digits = 1)` for the Hispanic names against `r insight::format_value(mean(delivered$reply[delivered$group == "white"]), as_percent = TRUE, digits = 1)` for the white names, into the declaration of section 3, so that the name changes who replies as well as how a reply begins. Authorities with a low value of `v` reply to either name, and a band of authorities, `r insight::format_value(mean(delivered$reply[delivered$group == "white"]) - mean(delivered$reply[delivered$group == "hispanic"]), as_percent = TRUE, digits = 1)` of them, replies only to a white name. How those marginal repliers greet a white name is not in the data, because their replies to white names cannot be told apart from the others, so the recipe sets it three ways: never by name, as often as the other officials, or always by name.
+
+```{r}
+#| label: declare-reply
+reply_white <- mean(delivered$reply[delivered$group == "white"])
+reply_hisp <- mean(delivered$reply[delivered$group == "hispanic"])
+greet_marginal <- greet_white
+
+reply_design <-
+  DeclareDesign::declare_model(
+    N = n_delivered,
+    v = runif(N), u = runif(N),
+    always = v < reply_hisp,
+    R_Z_0 = as.integer(v < reply_white), R_Z_1 = as.integer(v < reply_hisp),
+    G_Z_0 = dplyr::if_else(always, as.integer(u < greet_white), as.integer(u < greet_marginal)),
+    G_Z_1 = as.integer(u < greet_hisp),
+    A_Z_0 = R_Z_0 * G_Z_0, A_Z_1 = R_Z_1 * G_Z_1
+  ) +
+  DeclareDesign::declare_inquiry(gap_always = mean(G_Z_1[always] - G_Z_0[always]),
+                                 gap_all = mean(A_Z_1 - A_Z_0)) +
+  DeclareDesign::declare_assignment(Z = randomizr::complete_ra(N, m = n_hispanic)) +
+  DeclareDesign::declare_measurement(R = fabricatr::reveal_outcomes(R ~ Z),
+                                     G = fabricatr::reveal_outcomes(G ~ Z),
+                                     A = fabricatr::reveal_outcomes(A ~ Z)) +
+  DeclareDesign::declare_estimator(G ~ Z, .method = estimatr::lm_robust, se_type = "HC2",
+                                   subset = R == 1, inquiry = "gap_always", term = "Z",
+                                   label = "among replies") +
+  DeclareDesign::declare_estimator(A ~ Z, .method = estimatr::lm_robust, se_type = "HC2",
+                                   inquiry = "gap_all", term = "Z", label = "all delivered")
+```
+
+```r
+DeclareDesign::redesign(reply_design, greet_marginal = c(0, greet_white, 1)) |>
+  DeclareDesign::diagnose_design(sims = 2000)
+```
+
+The design asks two questions. The first is the effect of the name on the greeting among the authorities that would reply to either name. The second is the effect of the name on whether an email receives a named greeting at all, counted over every delivered email. The first is answered by the comparison among replies, the second by the comparison among all delivered emails, the two estimands between which the curve of the case study chooses (the [multiverse module](multiverse.qmd#sec-forks) sets out how much of the curve that choice carries).
+
+```{r}
+#| label: tbl-reply
+#| echo: false
+#| tbl-cap: "The two comparisons over 2,000 simulated experiments under each assumption about the authorities that reply only to white names. Estimands and estimates in percentage points; the bias is the mean estimate minus the estimand, and the coverage the share of 95% intervals that contain the estimand. Source: `companion/_model-outputs/sim_housing_diagnosis.csv`."
+reply_dx |>
+  datawizard::data_arrange(c("greet_marginal", "estimator")) |>
+  dplyr::transmute(
+    `Marginal repliers greet a white name by name` = dplyr::case_when(
+      greet_marginal == 0 ~ "never", greet_marginal == 1 ~ "always",
+      .default = paste("as the others,", insight::format_value(greet_marginal, as_percent = TRUE, digits = 0))),
+    Comparison = estimator,
+    Estimand = sub("^-", "−", sprintf("%.1f", 100 * mean_estimand)),
+    `Mean estimate` = sub("^-", "−", sprintf("%.1f", 100 * mean_estimate)),
+    Bias = sub("^-", "−", sprintf("%.1f", 100 * bias)),
+    Coverage = insight::format_value(coverage, as_percent = TRUE, digits = 1)
+  ) |>
+  tinytable::tt() |>
+  tinytable::style_tt(j = 3:6, align = "r")
+```
+
+The comparison among replies recovers the effect on the authorities that reply to either name in one of the three recipes only, the one in which the marginal repliers greet a white name as the other officials do. If the marginal repliers never greet by name, the replies to white names hold more unnamed greetings than the authorities that reply to either name would give, and the estimate falls short of the planted gap by `r insight::format_value(100 * reply_never$bias, digits = 1)` points on average, with an interval that covers the truth in `r insight::format_value(reply_never$coverage, as_percent = TRUE, digits = 1)` of the draws. If the marginal repliers always greet by name, the estimate overshoots by `r insight::format_value(100 * abs(reply_always$bias), digits = 1)` points. No amount of data from the experiment distinguishes the three recipes, because each produces data of the same kind. The trimming bounds above work from the same premise and compute, from the observed replies, the range within which the effect on the authorities that reply to either name must lie whatever the marginal repliers do.
+
+The comparison among all delivered emails is unbiased in every recipe, because nothing is conditioned on after the names were assigned. Its estimand, however, moves with the recipe, from `r insight::format_value(100 * min(reply_dx$mean_estimand[reply_dx$estimator == "all delivered"]), digits = 1, style_negative = "minus")` to `r insight::format_value(100 * max(reply_dx$mean_estimand[reply_dx$estimator == "all delivered"]), digits = 1, style_negative = "minus")` points, because it adds the effect of the name on replying to its effect on the greeting. The two comparisons therefore answer different questions, and the simulation shows the price of each. One answers its own question exactly, and that question mixes two effects of the name. The other answers the narrower question about greetings only under an assumption that the data cannot test.
+
 The paper meets the same problem a second time, in its test of whether officials with Hispanic names treat Hispanic applicants differently. An official is known only by replying, so the subgroup of replies from such officials is selected after the treatment. The OAs note that "Since the treatments were randomly assigned, in expectation, our emails should have reached Hispanic officials at equal rates in each condition allowing us to compare those that were returned" (p. 14), and the shares agree with that expectation: officials with Hispanic names wrote `r pct(official_share$share[official_share$group == "white"])`, `r pct(official_share$share[official_share$group == "black"])` and `r pct(official_share$share[official_share$group == "hispanic"])` of the replies to white, Black and Hispanic names. Among their `r sub_("replies from officials", "n")` replies to Hispanic and white names the gap in greetings is `r fmt(sub_("replies from officials", "b_pp"))` points (`r pe(sub_("replies from officials", "p"))`), which answers a different question from the claim on very few replies, and the curve leaves the subgroup out.
 
-## 5. Randomisation inference {#sec-ri}
+## 6. Randomisation inference {#sec-ri}
 
 Random assignment also supplies a test that needs no model of the errors. The idea goes back to @Fisher1935DesignExperiments. Suppose that the name made no difference at all to any official, so that every authority would have answered exactly as it did whichever name it received. Under that hypothesis, called the sharp null, the outcomes stay fixed and only the labels could have fallen differently, so reshuffling the names among the emails, again and again, shows the gaps that chance alone produces [@Ernst2004PermutationMethods]. The p-value is the share of reshuffles that give a gap at least as large as the observed one, counting the observed assignment as one of them so that the p-value can never be zero [@PhipsonSmyth2010PermutationPValues].
 
@@ -225,16 +380,16 @@ dplyr::bind_rows(
   ggplot2::theme(panel.grid.minor = ggplot2::element_blank())
 ```
 
-Among the replies, `r extreme_replies` of the 1,999 reshuffles give a gap as large as the observed one, so that p = `r fmt(p_replies, 4)`, and among all delivered emails `r extreme_delivered` do, so that p = `r fmt(p_delivered, 4)`, the smallest value that 1,999 reshuffles can give. The two tests differ in one respect that connects with section 4. Reshuffling the names among all delivered emails repeats the random assignment of the design exactly. Reshuffling them among the replies treats the set of replies as fixed, which is right under the sharp null, since a name that changes nothing changes no reply either, but the replies are not a set that the design fixed. The curve of the claim stores a randomisation p-value of this kind for each of its `r nrow(curve)` specifications as a check, and the largest is `r fmt(max(curve$p_ri), 4)`.
+Among the replies, `r extreme_replies` of the 1,999 reshuffles give a gap as large as the observed one, so that p = `r fmt(p_replies, 4)`, and among all delivered emails `r extreme_delivered` do, so that p = `r fmt(p_delivered, 4)`, the smallest value that 1,999 reshuffles can give. The two tests differ in one respect that connects with section 5. Reshuffling the names among all delivered emails repeats the random assignment of the design exactly. Reshuffling them among the replies treats the set of replies as fixed, which is right under the sharp null, since a name that changes nothing changes no reply either, but the replies are not a set that the design fixed. The curve of the claim stores a randomisation p-value of this kind for each of its `r nrow(curve)` specifications as a check, and the largest is `r fmt(max(curve$p_ri), 4)`.
 
-## 6. Power and the replication {#sec-power}
+## 7. Power and the replication {#sec-power}
 
-The power of a study is the probability that it detects an effect of a given size at the chosen threshold. It depends on the size of the effect, on the number of observations and on how variable the outcome is, and for a 0/1 outcome the variability follows from the share itself. @fig-power-curves sets the comparison of the paper, about 181 coded replies in each group, against the 738 replies that the SCORE replication analysed, split equally.
+The power of a study is the probability that it detects an effect of a given size at the chosen threshold. It depends on the size of the effect, on the number of observations and on how variable the outcome is, and for a 0/1 outcome the variability follows from the share itself. For a difference between two proportions, a formula gives it. Simulation gives the same quantity by counting: declare the design with a planted gap, run it many times, and count the share of runs in which the test rejects. The script `simulate_housing.R` does that for gaps of 0 to 25 points below a white rate of 61%, with 1,000 runs for each gap and size. @fig-power-curves sets the comparison of the paper, about 181 coded replies in each group, against the 738 replies that the SCORE replication analysed, split equally, with the power from the formula as lines and the share of rejections in the simulated runs as points.
 
 ```{r}
 #| label: fig-power-curves
-#| fig-cap: "The power of a two-sided test at the 5% level to detect a gap in named greetings, below a share of 61% for the white names, for the comparison among the replies of the original study and for the 738 replies of the replication. Source: `cases/housing/data/display_power.csv`."
-#| fig-alt: "Two rising power curves; the replication curve lies above the original at every gap, and both approach 1 by a gap of 20 points."
+#| fig-cap: "The power of a two-sided test at the 5% level to detect a gap in named greetings, below a share of 61% for the white names, for the comparison among the replies of the original study (181 a group) and for the 738 replies of the replication (369 a group): the analytic power of a test of two proportions (lines) and the share of 1,000 simulated experiments in which the HC2 test rejected a gap of zero (points). Sources: `cases/housing/data/display_power.csv` and `companion/_model-outputs/sim_housing_diagnosis.csv`."
+#| fig-alt: "Two rising power curves; the replication curve lies above the original at every gap, and both approach 1 by a gap of 20 points. The simulated points, drawn as circles, lie on or very near the curves, and at a gap of zero they sit near 5%."
 #| fig-width: 7
 #| fig-height: 3
 #| code-fold: true
@@ -242,6 +397,10 @@ power |>
   datawizard::data_modify(design = dplyr::if_else(startsWith(design, "original"), "original study", "replication")) |>
   ggplot2::ggplot(ggplot2::aes(x = gap_pp, y = power, colour = design)) +
   ggplot2::geom_line(linewidth = 0.9) +
+  ggplot2::geom_point(
+    data = datawizard::data_modify(power_dx, design = dplyr::if_else(n_per_group == 181, "original study", "replication")),
+    ggplot2::aes(x = 100 * gap), size = 2.2, shape = 1, stroke = 0.9
+  ) +
   ggplot2::scale_colour_manual(values = c(`original study` = "#1d2733", replication = "#1f5fa8"), name = NULL) +
   ggplot2::coord_cartesian(ylim = c(0, 1)) +
   ggplot2::labs(x = "gap in named greetings (percentage points)", y = "power") +
@@ -264,6 +423,10 @@ gap_80 <- purrr::map_dbl(c(original = "original", replication = "replication"), 
 
 The original comparison has a power of `r fmt(pw("original", 20), 2)` for a gap of 20 points, but only `r fmt(pw("original", 10), 2)` for a gap of 10 points, the near end of the published confidence interval, against `r fmt(pw("replication", 10), 2)` for the replication. Put the other way round, the original comparison reaches a power of 0.8, the usual target when a study is planned, only for a gap of `r fmt(gap_80[["original"]])` points, and the replication for a gap of `r fmt(gap_80[["replication"]])` points. The preregistration of the replication states that its first round "achieves 90% power to detect 75% of the original effect size", following the guidelines of the Social Sciences Replication Project.
 
+The simulated points lie close to the analytic curves. At every gap but one the difference is within what 1,000 runs produce by chance, and at that one, a gap of 10 points at the size of the original study, the simulated share lies about two and a half standard errors of a share from 1,000 runs above the curve. Close agreement is what a check by simulation should find when the formula fits the design. At a planted gap of zero the share of rejections is the rate of false positives, `r insight::format_value(power_null$power[power_null$n_per_group == 181], as_percent = TRUE, digits = 1)` at the original size and `r insight::format_value(power_null$power[power_null$n_per_group == 369], as_percent = TRUE, digits = 1)` at the size of the replication. With 1,000 runs a share of about 5% is uncertain by about 0.7 points either way, so the test at the size of the replication holds its 5%, and the test at the original size, with few replies in each group, may reject slightly less often than it promises.
+
+Randomisation inference, which section 6 runs with ri2, builds a distribution of the same kind from the observed data without any recipe: it keeps the outcomes and reshuffles the names, so that every reshuffle is a draw from a world in which the names changed nothing. The simulation at a gap of zero writes that world as a recipe instead, and the two agree because both describe what a design of this size produces when there is nothing to find.
+
 Modest power has a second consequence, which bears on the size of a published effect. In the original comparison the standard error of the gap is `r fmt(ref$se_pp, 2)` points, so an estimate has to exceed about `r fmt(sig_threshold)` points before it is significant at 5%. If the true gap were 10 points, a study of this size would reach significance about half the time, and the significant estimates would be larger than the truth on average.
 
 ```{r}
@@ -277,11 +440,11 @@ design_10 <- retrodesign::retrodesign(10, ref$se_pp, df = ref$df, n.sims = 1e5)
 round(unlist(design_10), 3)
 ```
 
-Under a true gap of 10 points, the significant estimates average about `r fmt(-10 * design_10$type_m)` points. A literature that publishes significant results from studies of this size therefore tends to report effects larger than the ones that a replication will find, even when every study is carried out correctly. This is one reason why the replication, with larger samples and new names, can find a much smaller gap without either study being wrong, although it cannot show which of the many differences between them is responsible. Its logistic coefficient of 0.098 corresponds to a gap of at most `r fmt(score_max_pp, 2)` points in favour of the Hispanic names, since a logistic coefficient moves a probability by at most a quarter of its value. The [background page](../cases/housing/index.qmd#sec-replication) sets the replication beside the curve of the claim.
+Under a true gap of 10 points, the significant estimates average about `r fmt(-10 * design_10$type_m)` points. The simulated runs show the same exaggeration. At that gap the original design rejects in `r insight::format_value(power_10$power, as_percent = TRUE, digits = 1)` of the runs, and the estimates of the runs that reach significance average `r insight::format_value(100 * power_10$mean_estimate_significant, digits = 1, style_negative = "minus")` points, `r insight::format_value(power_10$mean_estimate_significant / power_10$mean_estimand - 1, as_percent = TRUE, digits = 0)` larger than the truth. A literature that publishes significant results from studies of this size therefore tends to report effects larger than the ones that a replication will find, even when every study is carried out correctly. This is one reason why the replication, with larger samples and new names, can find a much smaller gap without either study being wrong, although it cannot show which of the many differences between them is responsible. Its logistic coefficient of 0.098 corresponds to a gap of at most `r fmt(score_max_pp, 2)` points in favour of the Hispanic names, since a logistic coefficient moves a probability by at most a quarter of its value. The [background page](../cases/housing/index.qmd#sec-replication) sets the replication beside the curve of the claim.
 
-## 7. Blocked randomisation {#sec-blocking}
+## 8. Blocked randomisation {#sec-blocking}
 
-The paper describes the assignment of the names in the one sentence quoted in section 2 (p. 8), and a footnote adds that the emails were sent on two separate days because of the batching limits of Google Mail (p. 8, note 4). Neither the paper nor the public file describes any grouping of the authorities before the names were drawn, and the six names went out between `r sent_range[1]` and `r sent_range[2]` times, so the groups were not of equal size either. The reshuffles of section 5 therefore treat the assignment as complete random assignment of the numbers of each name that the experiment produced, which is the closest description of the design that the published record allows.
+The paper describes the assignment of the names in the one sentence quoted in section 2 (p. 8), and a footnote adds that the emails were sent on two separate days because of the batching limits of Google Mail (p. 8, note 4). Neither the paper nor the public file describes any grouping of the authorities before the names were drawn, and the six names went out between `r sent_range[1]` and `r sent_range[2]` times, so the groups were not of equal size either. The reshuffles of section 6 therefore treat the assignment as complete random assignment of the numbers of each name that the experiment produced, which is the closest description of the design that the published record allows.
 
 The SCORE replication was designed differently. Its preregistration states: "We will block randomize within each U.S. state to ensure that there is an equivalent number of Hispanic and white names contacting the housing agencies within each state." Blocking, also called stratified randomisation, divides the units into groups on a characteristic recorded before the experiment and assigns the treatment at random within each group, in fixed numbers, so that the characteristic is balanced between the treatment groups by design rather than only in expectation. @ImaiEtAl2008MisunderstandingsExperimentalistsObservationalists, who recall the maxim of Box and colleagues, "block what you can and randomize what you cannot", put the advantage precisely: "randomization without blocking is incapable of achieving what blocking can, which is to eliminate one component of estimation error entirely" (p. 493), the component due to imbalance on the blocking variable. @AtheyImbens2017EconometricsRandomizedExperiments go further and recommend that experimenters "always stratify as much as possible, up to the point that each stratum contains at least two treated and two control units", since "committing to stratification can only improve precision, not lower it" (section 7). What blocking buys, in other words, is precision, and only as much of it as the blocking variable predicts the outcome; it removes no bias, because random assignment has already removed it.
 
@@ -312,7 +475,7 @@ blocked_fits <- dplyr::bind_rows(
                 gap = 100 * estimate, se = 100 * std.error)
 blocked_fits |> dplyr::select("analysis", "gap", "se") |> dplyr::mutate(dplyr::across(c("gap", "se"), \(x) round(x, 2)))
 
-# The reshuffles of section 5, once by complete random assignment and once
+# The reshuffles of section 6, once by complete random assignment and once
 # within the two kinds of address, with as many Hispanic names in each as the
 # experiment gave them
 block_m <- frame |> datawizard::data_summary(m = sum(hisp), by = "hard_email")
@@ -337,11 +500,11 @@ block_named <- frame |>
   datawizard::data_summary(named_share = 100 * mean(y), by = "hard_email")
 ```
 
-White names were greeted by name in `r pct(block_named$named_share[1])` of the replies from authorities with an address that could be found quickly and in `r pct(block_named$named_share[2])` of those from the others, so the address does predict the greeting. Yet the analysis within the two blocks moves the gap only from `r fmt(blocked_fits$gap[1], 2)` to `r fmt(blocked_fits$gap[2], 2)` points, and its standard error from `r fmt(blocked_fits$se[1], 3)` to `r fmt(blocked_fits$se[2], 3)`, because the random assignment of the names happened to give the two blocks almost the same share of Hispanic names among their replies, `r pct(block_shares$hispanic_share[1])` and `r pct(block_shares$hispanic_share[2])`, and left nothing to correct. A blocked design would have guaranteed that balance instead of leaving it to chance, and the reshuffles show what the guarantee is worth: the standard deviation of the gaps that chance alone produces would have fallen from `r fmt(spread[["complete"]], 2)` to `r fmt(spread[["blocked"]], 2)` points, by about `r fmt(100 * (1 - spread[["blocked"]] / spread[["complete"]]), 0)`%. A blocked design would, on the other hand, have estimated the same gap, it would have removed no bias, since there was none for it to remove, and it would have left the problem of section 4 untouched, because blocking acts on the assignment of the emails and the comparison of the claim is made among the replies, which no design assigns.
+White names were greeted by name in `r pct(block_named$named_share[1])` of the replies from authorities with an address that could be found quickly and in `r pct(block_named$named_share[2])` of those from the others, so the address does predict the greeting. Yet the analysis within the two blocks moves the gap only from `r fmt(blocked_fits$gap[1], 2)` to `r fmt(blocked_fits$gap[2], 2)` points, and its standard error from `r fmt(blocked_fits$se[1], 3)` to `r fmt(blocked_fits$se[2], 3)`, because the random assignment of the names happened to give the two blocks almost the same share of Hispanic names among their replies, `r pct(block_shares$hispanic_share[1])` and `r pct(block_shares$hispanic_share[2])`, and left nothing to correct. A blocked design would have guaranteed that balance instead of leaving it to chance, and the reshuffles show what the guarantee is worth: the standard deviation of the gaps that chance alone produces would have fallen from `r fmt(spread[["complete"]], 2)` to `r fmt(spread[["blocked"]], 2)` points, by about `r fmt(100 * (1 - spread[["blocked"]] / spread[["complete"]]), 0)`%. A blocked design would, on the other hand, have estimated the same gap, it would have removed no bias, since there was none for it to remove, and it would have left the problem of section 5 untouched, because blocking acts on the assignment of the emails and the comparison of the claim is made among the replies, which no design assigns.
 
 The replication cannot be reanalysed by its blocks, because its de-identified file records no state, and the analyses of its report, the logit with covariates and the preregistered linear probability model, include no term for the states either. When every state receives the two groups of names in equal numbers, the difference in means that ignores the states equals the average of the differences within the states, so the estimate of the replication is the blocked estimate in all but name, and its standard error as a rule forgoes the precision that the blocks added rather than overstating it. An analysis that used the blocks would have estimated the gap of the replication a little more precisely, and no differently.
 
-## 8. The ethics of deception {#sec-ethics}
+## 9. The ethics of deception {#sec-ethics}
 
 An audit study deceives the people whom it studies. The officials who answered Santiago Martinez spent their working time on a request from someone who did not exist, and they never learned that their reply was data. The OAs devote a section of the paper to these costs (pp. 11–12). They contacted "government employees in their professional capacity", and the emails were "not designed to alter their behavior but rather to measure it". The authors were "attentive to minimizing the amount of time workers devoted to requests for information from fictitious constituents" and wrote the question so that a link or a pasted paragraph would answer it. They also report that "we did not engage with housing officials at all after the first email, even if our putative request for assistance was met with a followup question". On the deception itself they write: "This deception is necessary to experimentally test whether bureaucrats exhibit racial biases in their responses to constituents. Without the random assignment of race and gender, we would be unable to measure this important quantity of interest." They add that "all of our analyses reflect comparisons across groups of housing officials".
 
@@ -350,9 +513,13 @@ The publication of the data raises a second question, about the people who were 
 ::: {.callout-tip}
 ## Try it
 
-Take the trimming argument of section 4 and reverse its assumption: suppose that some officials would reply to a Hispanic name but ignore an identical email from a white name, and none the other way round. Which group of replies would you trim, and in which direction would the bounds move? Then write two sentences on which of the two assumptions you find more plausible for housing officials, and what evidence in the paper bears on it.
+Take the trimming argument of section 5 and reverse its assumption: suppose that some officials would reply to a Hispanic name but ignore an identical email from a white name, and none the other way round. Which group of replies would you trim, and in which direction would the bounds move? Then write two sentences on which of the two assumptions you find more plausible for housing officials, and what evidence in the paper bears on it.
 :::
 
 ## Sources and further reading {#sec-sources}
 
 The design of the experiment is set out in the paper of the OAs [@EinsteinGlick2017DoesRaceAffect], whose accepted manuscript is open at [OpenBU](https://hdl.handle.net/2144/37826), and the data in its replication package on the Harvard Dataverse ([doi:10.7910/DVN/1HOVTU](https://doi.org/10.7910/DVN/1HOVTU)). The audit and correspondence literature cited above runs from @Pager2003MarkCriminalRecord and @BertrandMullainathan2004AreEmilyGreg to the meta-analysis of @QuillianEtAl2017MetaanalysisFieldExperiments, and in political science from @ButlerBroockman2011PoliticiansRaciallyDiscriminate to @WhiteEtAl2015WhatNeedVote. @Gaddis2017HowBlackAre examines names as treatments. Post-treatment conditioning in experiments is treated by @MontgomeryEtAl2018HowConditioningPosttreatment and, for audit studies, by @Coppock2019AvoidingPosttreatmentBias. Randomisation inference goes back to @Fisher1935DesignExperiments, with @Ernst2004PermutationMethods as an introduction and @PhipsonSmyth2010PermutationPValues on the p-value. Blocking is defended by @ImaiEtAl2008MisunderstandingsExperimentalistsObservationalists, and the analysis of blocked experiments is set out by @AtheyImbens2017EconometricsRandomizedExperiments. The SCORE replication, its preregistration and its final report are on the OSF at [osf.io/2ug8x](https://osf.io/2ug8x/). The files of the course behind the numbers are `housing_emails.csv`, `display_names.csv`, `display_outcomes.csv`, `display_subgroups.csv`, `display_power.csv` and `spec_curve.csv` in `cases/housing/data/`, each with a codebook.
+
+For the habit of fake-data simulation, *Regression and Other Stories* is the core text, with short fake-data simulations that recur throughout and build on one another [@GelmanEtAl2020RegressionOtherStories], and *Active Statistics* packages the same moves as classroom activities [@GelmanVehtari2024ActiveStatisticsStories]. For declaring a design before the data exist and diagnosing it by simulation, the documentation of DeclareDesign works through experiments, surveys and observational designs in the four parts used in sections 3 and 5 [@BlairEtAl2023DeclareDesignDeclareDiagnose]. For multilevel structures, DeBruine and Barr build a mixed-effects simulation from nothing and recover its parameters, on the argument that constructing the data is how you come to understand the model [@DeBruineBarr2021UnderstandingMixedeffectsModels]. For simulation inside a modelling workflow – prior and posterior predictive checking, calibration, experimentation on synthetic data before touching the real thing – the Bayesian workflow book is the current statement [@GelmanEtAl2026BayesianWorkflow], and its habits transfer well beyond Bayesian settings. And for simulation as a research method in its own right, the design framework of @MorrisEtAl2019UsingSimulationStudies supplies the vocabulary (aims, data-generating mechanisms, estimands, methods and performance measures, stated before the study is run), and the book-length treatment written for social scientists is @CarseyHarden2014MonteCarloSimulation.
+
+Simulation studies are analyses too, and they have researcher degrees of freedom of their own – conditions, performance measures, which results get reported – so a comparative study can be tuned until any method looks superior [@PawelEtAl2024PitfallsPotentialsSimulation]. The disciplines that this course keeps returning to, preregistered designs and justified choices, apply to simulated data as much as to real data. The script behind every diagnosis on this page, `companion/_model-outputs/simulate_housing.R`, is committed beside the two files that it wrote, `sim_housing_diagnosis.csv` and `sim_housing_draws.csv`, and the declarations of sections 3 and 5 run when the page is built. The quickest place to begin is therefore the Try it of section 3: change what the recipe plants, run it again, and check what the estimator does when you already know the answer.

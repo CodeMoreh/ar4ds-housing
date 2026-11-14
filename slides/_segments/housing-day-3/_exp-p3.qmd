@@ -82,7 +82,7 @@ Chance had already balanced the two kinds: `r fmt_num(block_shares$hispanic_shar
 ::::
 
 ::: {.src}
-The preregistration of the replication, osf.io/2ug8x; the reference comparison with estimatr and ri2 (cases/housing/data/housing_emails.csv); companion/experiments.qmd, section 7.
+The preregistration of the replication, osf.io/2ug8x; the reference comparison with estimatr and ri2 (cases/housing/data/housing_emails.csv); companion/experiments.qmd, section 8.
 :::
 
 ::: notes

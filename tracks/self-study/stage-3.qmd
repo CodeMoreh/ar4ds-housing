@@ -44,7 +44,7 @@ The slides read the instruction of Task 2 of the robustness study word for word.
 
 [Open Audit experiments](../../companion/experiments.qmd#sec-audits){.btn .btn-primary target="_blank"}
 
-Work from [Audit and correspondence studies](../../companion/experiments.qmd#sec-audits) to [Comparing among replies](../../companion/experiments.qmd#sec-posttreatment). The sections cover audit and correspondence studies of discrimination, what random assignment buys, with a check of balance, and names as treatments. They end on why a comparison among replies needs care, with a bound on how far a change in who replied could go.
+Work from [Audit and correspondence studies](../../companion/experiments.qmd#sec-audits) to [Comparing among replies](../../companion/experiments.qmd#sec-posttreatment). The sections cover audit and correspondence studies of discrimination, what random assignment buys, with a check of balance, and names as treatments. They end on why a comparison among replies needs care, with a bound on how far a change in who replied could go. The tasks do not need section 3, which simulates the experiment with DeclareDesign, or the second simulation in section 5, and you can leave both until the route is done.
 
 ## 7. Binary outcomes
 

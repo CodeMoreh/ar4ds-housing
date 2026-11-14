@@ -23,7 +23,7 @@ ref_gap    <- insight::format_value(ref_row$b_pp, digits = 2, style_negative = "
 
 This page introduces the helper functions with which the exercise of the Housing and racial bias case study fits its specifications, and the self-study route reads it in [stage 2](../tracks/self-study/stage-2.qmd). It assumes the R taught in [Getting started with R](https://codemoreh.github.io/ar4ds/tools/r.html), the module on the umbrella site of the course, written on the data of this case study, up to [section 10](https://codemoreh.github.io/ar4ds/tools/r.html#sec-shares), in which the share of replies that greeted the sender by name is computed for two groups of names and the difference between the two shares is taken.
 
-The code on this page ran when the page was built, and what R printed appears under each block, so you can compare your own output with the page line by line. Type each block into the workspace that you downloaded from the [setup page](https://codemoreh.github.io/ar4ds/setup.html#the-workspace), or into the [browser lab](../cases/housing/lab.qmd), where the helpers are already loaded.
+The code on this page ran when the page was built, and what R printed appears under each block, so you can compare your own output with the page line by line. Type each block into the workspace that you downloaded from the [setup page](https://codemoreh.github.io/ar4ds/setup.html#the-workspace), or, if your installation fails, into the [browser lab](../cases/housing/lab.qmd), where the helpers are already loaded.
 
 ## A first look at `try_spec()` {#sec-try-spec}
 
