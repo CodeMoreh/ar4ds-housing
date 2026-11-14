@@ -2,7 +2,7 @@
 title: "Stage 1 – Credibility and the three Rs"
 ---
 ::: {.callout-note appearance="simple" icon=false}
-**Slides.** [Open the deck at Part 1](../../slides/housing-one-day.html#/part-1-the-claim-and-credibility){target="_blank"} in its own tab, where the `s` key opens the speaker view with the notes of each slide, or follow it on the [slides page](../housing-one-day/slides.qmd).
+**Slides.** [Open the deck at Part 1](../../live/housing-one-day.html#/part-1-the-claim-and-credibility){target="_blank"} in its own tab, where the `s` key opens the speaker view with the notes of each slide, or follow it on the [slides page](../housing-one-day/slides.qmd).
 :::
 
 The route opens on the question that gives the course its name. Reproduction, robustness and replication are three different ways of repeating a study, and the three can return different verdicts on the same paper, as the Housing and racial bias case study shows. This stage takes the talk from Part 1 of the deck of the one-day workshop and installs the tools, so that a machine that will not cooperate is found now rather than in the middle of a task. It takes about five and a quarter hours.
@@ -15,7 +15,7 @@ The route opens on the question that gives the course its name. Reproduction, ro
 
 [Install R and the workspace](https://codemoreh.github.io/ar4ds/setup.html){.btn .btn-primary target="_blank"}
 
-Install R, Quarto and an IDE (Positron, RStudio, VS Code, etc.), download the workspace of the Housing case study, and run `source("R/check_setup.R")` until every line prints OK. The last check fits the reference specification and prints −19.97 percentage points. This is Task 1 of the exercise. Open the [browser lab](../../cases/housing/lab.qmd#task-1-setup) of the case study once as well, which runs every task in a browser tab if your installation fails, and keep the [help page](https://codemoreh.github.io/ar4ds/help.html) at hand for the problems that others have met.
+Install R, Quarto and an IDE (Positron, RStudio, VS Code, etc.), download the workspace of the Housing case study, and run `source("R/check_setup.R")` until every line prints OK. The last check fits the reference specification and prints −19.97 percentage points. This is Task 1 of the exercise. Open the [deck of the workshop at Task 1](../../live/housing-one-day.html#/hands-on-1-get-yourself-running){target="_blank"} or the [browser lab](../../cases/housing/lab.qmd#task-1-setup) once as well, either of which runs every task in a browser tab if your installation fails, and keep the [help page](https://codemoreh.github.io/ar4ds/help.html) at hand for the problems that others have met.
 
 ## 3. The case study and the exercise {#the-case-and-the-exercise}
 

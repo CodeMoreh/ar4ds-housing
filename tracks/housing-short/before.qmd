@@ -11,7 +11,7 @@ The background page presents the original study and its design, SCORE and its ro
 
 ## 2. The deck
 
-[Open the deck](slides.qmd){.btn .btn-primary target="_blank"} [Open the browser lab at Task 1](../../cases/housing/lab.qmd#task-1-setup){.btn .btn-outline-primary target="_blank"}
+[Open the deck at Task 1](../../live/housing-short.html#/hands-on-1-get-yourself-running){.btn .btn-primary target="_blank"} [Open the browser lab at Task 1](../../cases/housing/lab.qmd#task-1-setup){.btn .btn-outline-primary target="_blank"}
 
 The deck of the session runs R inside your browser, with the data already in place, and its slides carry the cells of the tasks. Open it once on the machine and in the browser that you will use, wait until the setup cell shows a "Run Code" button, and run it. If it does not load, try another browser, and tell the facilitator before the session. The browser lab, a page of the course site that holds the same tasks outside the deck, is the fallback.
 

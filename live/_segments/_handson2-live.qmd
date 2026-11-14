@@ -1,0 +1,231 @@
+<!-- Task 2 of the browser lab (cases/housing/lab.qmd), for the one-day deck:
+     the overview of the task, then the cells of the lab one step at a time,
+     the data on four slides and the graph on four. The graph helpers come from
+     cases/housing/_lab-graph.qmd, which the deck includes after its setup
+     cell. Each slide names where the same step lives in the workspace. -->
+## Hands-on 2 – The data, the estimand and the graph {#hands-on-2-meet-the-emails-draw-the-graph .smaller}
+
+::: {.small}
+**Task 2** has three pieces. You work them in the boxes of Task 2 of `index.qmd` in your workspace, with the graph in `R/dag_starter.R`, and the slides after this one show each step as a cell:
+
+1. **Look at the data.** `r fmt_n(nrow(housing))` emails, one row each. Count the emails that bounced, the replies, the replies with a greeting code and the greetings by name, for each name
+2. **Write the estimand statement.** Fill every bracket of the template for *this* claim, and say which emails you count
+3. **Finish the graph**. Take the `#` off `"name -> greeting"` if you believe it, then run `adjustmentSets()` and `paths()` with `Z = "reply"`, and read which paths open among the replies
+:::
+
+::: {.fragment .small}
+Two sentences for your notes: **what does a comparison among the replies condition on, and what does counting every delivered email change?**
+:::
+
+::: {.fragment .small}
+Whatever you decide here is your starting point on the menu in Task 4, and field 4 of the preregistration in Task 5.
+:::
+
+::: notes
+Your turn, with three pieces, and you work them in your workspace. First, the data: a thousand and fourteen emails, one row each. Count what came back for each name, and notice the emails that bounced, which never reached anyone. Second, the estimand statement, every bracket filled for this claim, and in particular which emails you count. Third, the graph, in the starter script of the workspace. Switch on the arrow from the name to the greeting if you believe it, then ask what has to be adjusted for, and which paths between the name and the greeting are open once you compare among the replies. If a path through the official comes back as open, that is a finding about the design, not a bug in your code. The next slides show each step on my screen, and they carry the work if your installation failed. Then the two sentences for your notes. [state the time] Shout if you get stuck.
+:::
+
+## Hands-on 2 – The emails {#hands-on-2-the-emails .smaller .output-8}
+
+::: {.small}
+What came back, counted from the columns `reply` and `named`. *Workspace:* the chunk `count-emails`.
+:::
+
+```{webr}
+#| autorun: false
+# How many emails, and what came back?
+housing |>
+  datawizard::data_summary(emails    = n(),
+                           bounced   = sum(is.na(reply)),
+                           delivered = sum(!is.na(reply)),
+                           replies   = sum(reply %in% 1),
+                           coded     = sum(!is.na(named)))
+```
+
+::: {.fragment .small}
+**`r fmt_n(nrow(housing))` emails** (the paper reports 1,017, three more than the public file holds), of which **`r sum(is.na(housing$reply))` bounced** and never reached an official, **`r sum(!is.na(housing$reply))` delivered**, **`r sum(housing$reply %in% 1)` replies** and **`r sum(!is.na(housing$named))` replies with a greeting code**.
+:::
+
+::: notes
+The first cell counts what came back. A thousand and fourteen emails in the public file, three fewer than the paper reports. Twenty-three bounced and never reached an official, so they are outside the experiment under every analysis. Of the nine hundred and ninety-one that arrived, five hundred and sixty-three drew a reply, and five hundred and fifty-eight of those carry a code for the greeting. Two columns matter most. Reply is missing for a bounced email, and named is missing for every email without a reply and for the five replies that nobody coded. Hold on to those five, because the menu asks what to do with them. [advance]
+:::
+
+## Hands-on 2 – Replies by group {#hands-on-2-replies-by-group .smaller .output-8}
+
+::: {.small}
+The replies and the greetings by the group of the name, among the delivered emails. Tables print here as plain text, as they do in the console of your IDE. *Workspace:* the chunk `by-group`.
+:::
+
+```{webr}
+#| autorun: false
+housing |>
+  datawizard::data_filter(!is.na(reply)) |>
+  datawizard::data_summary(delivered   = n(),
+                           replies     = sum(reply == 1),
+                           coded       = sum(!is.na(named)),
+                           greeted     = sum(named %in% 1),
+                           greeted_pct = round(100 * sum(named %in% 1) / sum(!is.na(named)), 1),
+                           by = "group")
+```
+
+::: notes
+Now the same counts by the group of the name. Read the last column, the share of the coded replies that greeted the sender by name. The replies to white names greeted the sender by name in sixty-one per cent of cases, those to Black names in fifty-six, and those to Hispanic names in forty-one. That gap of about twenty points between the white and the Hispanic names is the size of the published estimate, before any model has been fitted. Notice also how close the numbers of replies are across the three groups. That matters later, when we ask whether the name changed who replied as well as the tone of the replies.
+:::
+
+## Hands-on 2 – The shares by name {#hands-on-2-the-shares-by-name .smaller}
+
+::: {.small}
+The share of the coded replies that greeted the sender by name, for each of the six names, from the lowest. The cell works out the shares and prints nothing, and the next slide draws them. *Workspace:* the first half of the chunk `fig-names`.
+:::
+
+```{webr}
+#| autorun: false
+# The share greeted by name for each of the six names, from the lowest
+greeted <- housing |>
+  datawizard::data_filter(!is.na(named)) |>
+  datawizard::data_summary(greeted_pct = 100 * mean(named), by = c("group", "name")) |>
+  datawizard::data_arrange("greeted_pct") |>
+  datawizard::data_modify(group = factor(group, levels = c("white", "black", "hispanic"),
+                                         labels = c("white", "Black", "Hispanic")))
+```
+
+::: notes
+Now the six names one by one. The names are the treatment, and the paper chose two for each group, a man and a woman, so each name stands on fewer than two hundred emails. This cell keeps the coded replies and takes the mean of named for each name, which is the share greeted by name, because named is a column of zeros and ones. It then sorts the names from the lowest share and labels the three groups for the figure. It prints nothing, because its result goes straight into the figure on the next slide. If you want to read the numbers themselves, type greeted on a new line at the end of the cell and run it again.
+:::
+
+## Hands-on 2 – The six names {#hands-on-2-the-six-names .smaller .output-fig}
+
+::: {.small}
+A bar for each name, with its share at the end. *Workspace:* the chunk `fig-names`.
+:::
+
+```{webr}
+#| autorun: false
+#| max-lines: 5
+#| fig-width: 8
+#| fig-height: 3.6
+# The shares drawn with tinyplot (McDermott, Arel-Bundock and Zeileis; CRAN,
+# doi:10.32614/CRAN.package.tinyplot)
+tinyplot::tinyplot(greeted_pct ~ name | group, data = greeted,
+                   type = tinyplot::type_barplot(xlevels = greeted$name, width = 0.7, drop.zeros = TRUE), flip = TRUE,
+                   palette = c("grey60", "#4a78ab", "#8b1538"), fill = "by",
+                   legend = list("right!", title = "Names meant to indicate"),
+                   xlab = NA, ylab = "Replies that greeted the sender by name (%)",
+                   ylim = c(0, 72), theme = "minimal")
+# the share at the end of each bar
+tinyplot::tinyplot(x = seq_len(nrow(greeted)), y = greeted$greeted_pct, flip = TRUE,
+                   type = tinyplot::type_text(labels = sprintf("%.1f%%", greeted$greeted_pct), pos = 4),
+                   cex = 0.9, add = TRUE)
+```
+
+::: notes
+And here the shares are drawn with tinyplot, the plotting package that the course uses wherever you write the code yourself, because it is light enough to load in a browser. One bar for each name, coloured by the group that the name was meant to indicate, with its share at the end of the bar; the editor shows the first lines of the code and scrolls for the rest. The white names drew a greeting by name in sixty-one per cent of the coded replies and the Hispanic names in forty-one, a gap of about twenty points, while the Black names fall in between. Of the six names, Santiago drew the fewest greetings by name. Keep the order of the bars in mind for the menu, which asks whether the male and the female names belong together.
+:::
+
+## Hands-on 2 – The graph {#hands-on-2-the-graph .smaller}
+
+::: {.small}
+One arrow per string, written the way it is drawn: `"name -> reply"` is the arrow from the name to the reply. The arrow of the claim is switched off with a `#`. The cell builds the graph and prints nothing. *Workspace:* the graph `dag` in `R/dag_starter.R`.
+:::
+
+```{webr}
+#| autorun: false
+#| max-lines: 14
+my_dag <- make_dag(
+  # The name can affect whether the official replies at all.
+  "name -> reply",
+  # Only a reply can greet the sender by name.
+  "reply -> greeting",
+  # The official, whom nobody observed, affects both the reply and the greeting.
+  "official -> reply",
+  "official -> greeting",
+  # So does the community of the housing authority, held in thirds in the data.
+  "community -> reply",
+  "community -> greeting",
+
+  # The effect on tone that the claim is about: take the # off if you believe it.
+  # "name -> greeting",
+
+  exposure = "name", outcome = "greeting", latent = "official"
+)
+```
+
+::: notes
+Now the graph, written in ordinary R, one arrow per string, each written the way it is drawn. The name can change whether the official replies, and only a reply can greet the sender by name. The official, whom nobody observed, affects both the reply and the greeting, and so does the community, which the data hold in thirds. One arrow is switched off with a hash: the arrow from the name to the greeting, the effect on tone that the claim is about. Leave it off for now. The cell builds the graph and prints nothing. In the workspace the same graph is built by the starter script with dagitty, the R package for causal graphs, which cannot run in a browser, so this deck reads the answers that dagitty gives from a table.
+:::
+
+## Hands-on 2 – The adjustment set {#hands-on-2-the-adjustment-set .smaller}
+
+::: {.small}
+The first question to the graph: what has to be adjusted for when every delivered email is counted. *Workspace:* the chunk `adjustment-set`.
+:::
+
+```{webr}
+#| autorun: false
+adjustmentSets(my_dag)  # r-style: keep – the function of this deck, which reads the answers of dagitty
+```
+
+::: {.fragment .small}
+`{}`, the empty set: nothing has to be adjusted for, because nothing points into the name.
+:::
+
+::: notes
+Two questions to the graph, one on this slide and one on the next. The first asks what has to be adjusted for to estimate the effect of the name on the greeting, counting every delivered email. [advance] The answer is a pair of empty braces, the empty set. Nothing has to be adjusted for, because nothing points into the name: the names were assigned at random, so nothing can cause both the name and the greeting. That is what the random number generator of the original authors bought them, and it holds whatever arrows leave the name.
+:::
+
+## Hands-on 2 – Paths among replies {#hands-on-2-paths-among-replies .smaller}
+
+::: {.small}
+The second question: which paths from the name to the greeting are open once the comparison is made among the replies only, which is what `Z = "reply"` asks. *Workspace:* the chunk `paths-replies`.
+:::
+
+```{webr}
+#| autorun: false
+paths(my_dag, Z = "reply")  # r-style: keep – the function of this deck, which reads the answers of dagitty
+```
+
+::: {.fragment .small}
+The path through the reply closes, and two open, through the community and through the official.
+:::
+
+::: notes
+The second question asks which paths between the name and the greeting are open once we compare among the replies only, which is what Z equals reply means: it conditions on the reply. The printout lists the paths, and under them whether each one is open. [advance] The path through the reply closes, and two others open, one through the community and one through the official, because the reply is a common effect of the name, of the community and of the official. Comparing among the replies conditions on that common effect, and the comparison is no longer protected by the random assignment.
+:::
+
+## Hands-on 2 – The graph drawn {#hands-on-2-the-graph-drawn .smaller .output-fig}
+
+::: {.small}
+The graph as the cell built it, with the official drawn pale because nobody observed it. *Workspace:* the chunk `fig-dag`.
+:::
+
+```{webr}
+#| autorun: false
+#| fig-width: 8
+#| fig-height: 4.5
+plot_dag(my_dag)
+```
+
+::: notes
+And the graph drawn. The name sits on the left in blue, the greeting on the right, the reply above the line between them and the community in the middle, while the official, whom nobody observed, is drawn in pale grey. Every arrow that you wrote is here, and the arrow of the claim is not, because you have not switched it on yet. This is the same graph as the one on the slides of Part 2, laid out by a function of the deck rather than by hand, so it looks a little plainer. If you add a node for which the deck has no position, it lands on a row below the graph, and the cue is to take that graph to the workspace, where dagitty answers whatever you ask of it.
+:::
+
+## Hands-on 2 – The arrow of the claim {#hands-on-2-the-arrow-of-the-claim .smaller .output-8}
+
+::: {.small}
+Take the `#` off `"name -> greeting"` in the cell that builds the graph, run it and the cells after it again, then run this one, which also adjusts for the community. For your notes: why does the adjustment set stay empty, which paths stay open among the replies, and which emails keep the comparison randomised? *Workspace:* the chunk `paths-adjusted`.
+:::
+
+```{webr}
+#| autorun: false
+paths(my_dag, Z = c("reply", "community"))  # r-style: keep – the function of this deck, which reads the answers of dagitty
+```
+
+::: {.fragment .fs-75}
+1. The set stays `{}`, because nothing points into the name, whatever arrows leave it
+2. The direct path and the path through the official stay open, and adjusting for the community cannot close the second, because nobody observed the official
+3. Every delivered email, with no reply counted as no greeting
+:::
+
+::: notes
+Now switch on the arrow of the claim. Go back to the slide that builds the graph, take the hash off name to greeting, and run that cell and the ones after it again; then run this cell, which conditions on the community as well as on the reply. Three questions for your notes. Why does the adjustment set stay empty? Which paths stay open among the replies once the community is adjusted for, and what does that mean for a gap among the replies? And which emails keep the comparison randomised? [advance] The set stays empty because nothing points into the name. The direct path and the path through the official stay open, so a gap among the replies mixes the effect on tone with a difference in which officials wrote. Only counting every delivered email keeps the groups as randomisation made them.
+:::

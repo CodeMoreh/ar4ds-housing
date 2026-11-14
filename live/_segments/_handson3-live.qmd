@@ -1,0 +1,400 @@
+<!-- Task 3 of the browser lab (cases/housing/lab.qmd) for both live decks: the
+     table of the five analysts with the cell that reads the public file, then
+     two slides for each analyst with the cells of the lab, the exercise of each
+     with its hint and solution, and the slide on the continuity correction.
+     The cells are divided so that no slide holds more than two printing
+     outputs at their bounded height. Lines that differ by format are shown by
+     Quarto conditional content, keyed on the deck map in the YAML of each
+     deck; no cell sits inside a conditional span or div. -->
+## Hands-on 3 – The reproduction {#hands-on-3-reproduce-the-recorded-result .smaller}
+
+::: {.small}
+**Task 3**: choose one of the five analysts, work through their cells on the public file `housing_original.csv`, and compare your value with the record. The cell on this slide reads the file as `original` and prints nothing; run it first.[ *Workspace:* the chunk `reproduce-read` of `index.qmd`, then the tab of your analyst.]{.content-visible unless-meta="deck.short"}
+:::
+
+::: {.fs-60}
+| Analyst | Emails | Test | Recorded |
+|:--|:--|:--|--:|
+| [8PTRZ](#hands-on-3-8ptrz) | coded replies, Hispanic against all other names | `chisq.test()` of the 2 × 2 table | $\chi^2$ = `r fmt_num(an("8PTRZ", "statistic_recorded"), 3)` |
+| [UYV3F](#hands-on-3-uyv3f) | coded replies, Hispanic against white names | logistic regression, `glm(..., family = binomial())` | *z* = `r fmt_num(an("UYV3F", "statistic_recorded"), 3)` |
+| [EWFMI](#hands-on-3-ewfmi) | coded replies, three groups, Hispanic names as the base | logistic regression with the sex of the name, the poverty third and the hard-to-find address | *z* = `r fmt_num(an("EWFMI", "statistic_recorded"), 3)` |
+| [25N5D](#hands-on-3-25n5d) | delivered emails, Hispanic against white names | `prop.test()` of two proportions | $\chi^2$ = `r fmt_num(an("25N5D", "statistic_recorded"), 3)` |
+| [P9W8Y](#hands-on-3-p9w8y) | coded replies, three groups | likelihood-ratio test, `anova(..., test = "LRT")` | none |
+:::
+
+```{webr}
+#| autorun: false
+original <- utils::read.csv("cases/housing/data/housing_original.csv", na.strings = c("", "NA"))  # r-style: keep – the base reader adds nothing to the download
+```
+
+::: {.fragment .small}
+When you have it, type **the analyst and your value** in chat, for example `UYV3F z = -3.771`, and hold it until I say "go".
+:::
+
+::: notes
+Now you work. Choose one of the five analysts, the one whose analysis you would most like to understand: the test of a table, the logistic regression, the model with covariates, the two-proportion test on every delivered email, or the test of three groups. Run the cell on this slide first, which reads the public file of the original authors and prints nothing, then go to the slides of your analyst, whose names in the table are links.[ You work in your workspace, and these slides show the same steps.]{.content-visible unless-meta="deck.short"} Each analyst has a few cells, one step each, and one of the cells has a blank to fill, with a hint and the solution under it. Using the solution is not cheating, because this task is about the number at the end. When you have your value, type the analyst and the value into chat, but do not send it: when I say go, everyone sends at once. [wait for the numbers in chat]
+:::
+
+## Hands-on 3 – 8PTRZ {#hands-on-3-8ptrz .smaller .output-8}
+
+::: {.small}
+**8PTRZ**: Hispanic names against all other names, among the `r an("8PTRZ", "n_recorded")` coded replies, with a chi-square test of the 2 × 2 table; on record **$\chi^2$ = `r fmt_num(an("8PTRZ", "statistic_recorded"), 3)`**. The exercise prints nothing, and the second cell prints the table.[ *Workspace:* the tab 8PTRZ, chunk `reproduce-8ptrz`.]{.content-visible unless-meta="deck.short"}
+:::
+
+```{webr}
+#| exercise: repro-8ptrz
+#| envir: global
+# keep the replies that carry a greeting code, and mark the Hispanic names
+coded_replies <- original |>
+  datawizard::data_filter(!is.na(______)) |>
+  datawizard::data_modify(hispanic_name = grepl("^Hispanic", TreatmentGroup))
+```
+
+:::: {.hint exercise="repro-8ptrz"}
+::: {.callout-note collapse="false"}
+## Hint – the replies with a greeting code
+
+`ProperName` is empty for every email without a reply, for the bounced emails and for the five replies without a greeting code, so keeping the rows in which it is not missing leaves the 558 coded replies.
+:::
+::::
+
+:::: {.solution exercise="repro-8ptrz"}
+::: {.callout-tip collapse="false"}
+## Solution
+
+``` r
+coded_replies <- original |>
+  datawizard::data_filter(!is.na(ProperName)) |>
+  datawizard::data_modify(hispanic_name = grepl("^Hispanic", TreatmentGroup))
+```
+:::
+::::
+
+```{webr}
+#| autorun: false
+# the 2 x 2 table: Hispanic or other name, by greeting
+tab_8ptrz <- xtabs(~ hispanic_name + ProperName, data = coded_replies)  # r-style: keep – the table that chisq.test() takes
+tab_8ptrz
+```
+
+::: notes
+8PTRZ ran the simplest analysis of the five: a table of two rows and two columns, Hispanic names against all other names, greeted by name or not, among the replies that carry a greeting code, and a chi-square test of that table. The exercise keeps those replies and marks the Hispanic names, and its one blank is the column whose missing values mark an email without a coded reply. The hint under the cell names the column, and the solution gives the whole step. It prints nothing, so a silent run is a good sign. The second cell crosses the mark for the Hispanic names with the greeting and prints the table: four counts, which are all the data that the test uses.
+:::
+
+## Hands-on 3 – The test of 8PTRZ {#hands-on-3-the-test-of-8ptrz .smaller}
+
+::: {.small}
+The chi-square test of the table, as 8PTRZ ran it.
+:::
+
+```{webr}
+#| autorun: false
+# the chi-square test of the table
+chisq.test(tab_8ptrz)
+```
+
+::: {.fragment .small}
+You should get **X-squared = `r fmt_num(chi_yates, 3)`** on 1 df, the value on record for 8PTRZ.
+:::
+
+::: notes
+Then the test. The cell runs chisq dot test on the table, exactly as 8PTRZ did. Read the first line of its printout before the numbers, because it names the test, and the name has a few more words than you might expect. [advance] You should get fourteen point two six five on one degree of freedom, the value on record. Everyone who chose this analyst should now have the same number, to the third decimal, because everyone ran the same code on the same file. Type the analyst and the value in chat, hold it, and send it when I say go.
+:::
+
+## Hands-on 3 – UYV3F {#hands-on-3-uyv3f .smaller .output-8}
+
+::: {.small}
+**UYV3F** compared Hispanic with white names only, among the `r an("UYV3F", "n_recorded")` coded replies to those names, with a logistic regression of the greeting on the name and no covariates: on record **z = `r fmt_num(an("UYV3F", "statistic_recorded"), 3)`**. The first cell keeps the rows and prints nothing, and the second, the exercise, fits the model.[ *Workspace:* the tab UYV3F, chunk `reproduce-uyv3f`.]{.content-visible unless-meta="deck.short"}
+:::
+
+```{webr}
+#| autorun: false
+# the coded replies to Hispanic and white names, with the Hispanic names marked
+replies_uyv3f <- original |>
+  datawizard::data_filter(!is.na(ProperName) & !grepl("^black", TreatmentGroup)) |>
+  datawizard::data_modify(hispanic_name = grepl("^Hispanic", TreatmentGroup))
+```
+
+```{webr}
+#| exercise: repro-uyv3f
+#| envir: global
+# the logistic regression of the greeting on the name
+m_uyv3f <- glm(ProperName ~ hispanic_name, family = ______(), data = replies_uyv3f)
+nobs(m_uyv3f)
+```
+
+:::: {.hint exercise="repro-uyv3f"}
+::: {.callout-note collapse="false"}
+## Hint – the family of the model
+
+A logistic regression is a generalised linear model of a 0/1 outcome with the family that R calls `binomial`.
+:::
+::::
+
+:::: {.solution exercise="repro-uyv3f"}
+::: {.callout-tip collapse="false"}
+## Solution
+
+``` r
+m_uyv3f <- glm(ProperName ~ hispanic_name, family = binomial(), data = replies_uyv3f)
+nobs(m_uyv3f)
+```
+:::
+::::
+
+::: notes
+UYV3F asked the question of the claim as SCORE selected it, Hispanic against white names, and fitted the model of the paper without its covariates, a logistic regression of the greeting on the name. The first cell keeps the coded replies to Hispanic and white names, which drops the Black names, and marks the Hispanic ones. The second fits the model and prints the number of replies that it used, three hundred and sixty-two, and its blank is the family of the model. A logistic regression is a generalised linear model of an outcome coded nought or one, and the hint says what R calls that family.
+:::
+
+## Hands-on 3 – The coefficients of UYV3F {#hands-on-3-the-coefficients-of-uyv3f .smaller}
+
+::: {.small}
+The last cell prints the coefficients, with the *z* of each.
+:::
+
+```{webr}
+#| autorun: false
+# the coefficients, with the z of each
+print(parameters::model_parameters(m_uyv3f, ci_method = "wald"), digits = 3)
+```
+
+::: {.fragment .small}
+The row of the Hispanic names gives **z = `r fmt_num(an("UYV3F", "statistic_recorded"), 3)`** on `r an("UYV3F", "n_recorded")` replies, the value on record for UYV3F.
+:::
+
+::: notes
+The last cell prints the coefficients through parameters, the easystats package that reads a fitted model into a table, with the z of each coefficient and its Wald interval. The intercept is the log odds of a greeting for the white names, and the row of the Hispanic names is the difference in log odds. [advance] Its z is minus three point seven seven one, on three hundred and sixty-two replies, the value on record. The number is negative because the model compares the Hispanic names with the white names, which is the direction of the claim. Hold on to the sign, because the next analyst gets a positive z for the same gap.
+:::
+
+## Hands-on 3 – EWFMI {#hands-on-3-ewfmi .smaller}
+
+::: {.small}
+**EWFMI** fitted a logistic regression of the greeting on all three groups of names, with the Hispanic names as the base group, the sex of the name, the poverty third of the community as a number and the hard-to-find address: on record **z = `r fmt_num(an("EWFMI", "statistic_recorded"), 3)`**, the *z* of the white names against the Hispanic names. The exercise prepares the rows and prints nothing.[ *Workspace:* the tab EWFMI, chunk `reproduce-ewfmi`.]{.content-visible unless-meta="deck.short"}
+:::
+
+```{webr}
+#| exercise: repro-ewfmi
+#| envir: global
+# the coded replies, with TreatmentGroup split into the group and the sex of the name
+replies_ewfmi <- original |>
+  datawizard::data_filter(!is.na(ProperName)) |>
+  datawizard::data_separate(select = "TreatmentGroup", new_columns = c("ethnicity", "name_sex"),
+                            separator = " ", append = TRUE) |>
+  # the first level of a factor is the base group of the model
+  datawizard::data_modify(ethnicity = factor(ethnicity, levels = c("______", "black", "white")))
+```
+
+:::: {.hint exercise="repro-ewfmi"}
+::: {.callout-note collapse="false"}
+## Hint – the base group
+
+The analyst compared the other groups with the Hispanic names, so `"Hispanic"` comes first among the levels, spelled as in `TreatmentGroup`.
+:::
+::::
+
+:::: {.solution exercise="repro-ewfmi"}
+::: {.callout-tip collapse="false"}
+## Solution
+
+``` r
+replies_ewfmi <- original |>
+  datawizard::data_filter(!is.na(ProperName)) |>
+  datawizard::data_separate(select = "TreatmentGroup", new_columns = c("ethnicity", "name_sex"),
+                            separator = " ", append = TRUE) |>
+  datawizard::data_modify(ethnicity = factor(ethnicity, levels = c("Hispanic", "black", "white")))
+```
+:::
+::::
+
+::: notes
+EWFMI fitted the richest model of the five, in Stata: all three groups of names, with the Hispanic names as the base group, the sex of the name, the poverty third of the community entered as a number, and the address that was hard to find. The first step splits TreatmentGroup into the group and the sex of the name, and sets the order of the groups, because the first level of a factor is the base group of the model. The blank is that first level. Spell it as TreatmentGroup spells it, with a capital H, which is a small lesson in itself about the codings of a file.
+:::
+
+## Hands-on 3 – The model of EWFMI {#hands-on-3-the-model-of-ewfmi .smaller .output-8}
+
+```{webr}
+#| autorun: false
+# the model of EWFMI; a reply without a poverty third drops out
+m_ewfmi <- glm(ProperName ~ ethnicity + name_sex + poverty_pop_third + HardEmail,
+               family = binomial(), data = replies_ewfmi)
+nobs(m_ewfmi)
+```
+
+```{webr}
+#| autorun: false
+print(parameters::model_parameters(m_ewfmi, ci_method = "wald"), digits = 3)
+```
+
+::: notes
+Then the model itself. The first cell fits it and prints the number of replies that it used, five hundred and forty-nine, because nine coded replies come from communities with no poverty third, and a row with a missing covariate drops out. The second prints the coefficients. Look for the row ethnicity white: z equals three point six four five, the value on record. It is positive although the gap points the same way as for UYV3F, because this model compares the white names with the Hispanic names of the base group, and the sign follows the comparison.
+:::
+
+## Hands-on 3 – 25N5D {#hands-on-3-25n5d .smaller .output-8}
+
+::: {.small}
+**25N5D**: every delivered email, Hispanic against white names, with `prop.test()`; on record **$\chi^2$ = `r fmt_num(an("25N5D", "statistic_recorded"), 3)`** on `r an("25N5D", "n_recorded")` emails.[ *Workspace:* the tab 25N5D, chunk `reproduce-25n5d`.]{.content-visible unless-meta="deck.short"}
+:::
+
+```{webr}
+#| exercise: repro-25n5d
+#| envir: global
+# the delivered emails to Hispanic and white names; a bounced email has no reply status
+emails_25n5d <- original |>
+  datawizard::data_filter(!is.na(______) & !grepl("^black", TreatmentGroup)) |>
+  datawizard::data_modify(hispanic_name = grepl("^Hispanic", TreatmentGroup),
+                          greeted = Response_Dichotomous == 1 & ProperName %in% 1)
+```
+
+:::: {.hint exercise="repro-25n5d"}
+::: {.callout-note collapse="false"}
+## Hint – the delivered emails
+
+`Response_Dichotomous` is empty for the 23 emails that bounced, so keeping the rows in which it is not missing keeps every delivered email.
+:::
+::::
+
+:::: {.solution exercise="repro-25n5d"}
+::: {.callout-tip collapse="false"}
+## Solution
+
+``` r
+emails_25n5d <- original |>
+  datawizard::data_filter(!is.na(Response_Dichotomous) & !grepl("^black", TreatmentGroup)) |>
+  datawizard::data_modify(hispanic_name = grepl("^Hispanic", TreatmentGroup),
+                          greeted = Response_Dichotomous == 1 & ProperName %in% 1)
+```
+:::
+::::
+
+```{webr}
+#| autorun: false
+# the greetings by name and the emails, for each group of names
+counts_25n5d <- datawizard::data_summary(emails_25n5d, greetings = sum(greeted), emails = n(),
+                                         by = "hispanic_name")
+counts_25n5d
+```
+
+::: notes
+25N5D asked a different question, about every email that arrived rather than the replies alone. An email without a reply counts as one without a greeting, so the comparison keeps the groups exactly as the random assignment made them. The exercise keeps the delivered emails to Hispanic and white names, marks the Hispanic names, and marks an email as greeted when it drew a reply that greeted the sender by name; its blank is the column that is missing for the twenty-three emails that bounced. The second cell gives, for each group, the greetings and the emails delivered: three hundred and eight to white names and three hundred and fifty-seven to Hispanic names.
+:::
+
+## Hands-on 3 – The test of 25N5D {#hands-on-3-the-test-of-25n5d .smaller}
+
+::: {.small}
+The test of the two proportions, as 25N5D ran it.
+:::
+
+```{webr}
+#| autorun: false
+# the test of the two proportions
+prop.test(counts_25n5d$greetings, counts_25n5d$emails)
+```
+
+::: {.fragment .small}
+You should get **X-squared = `r fmt_num(prop_yates, 3)`** on 1 df, on `r fmt_n(sum(counts_25n5d$emails))` emails, the value on record for 25N5D.
+:::
+
+::: notes
+Then the test. The cell passes the two counts to prop dot test, the test of two proportions, which is a chi-square test in another form. [advance] You should get thirteen point six eight three on one degree of freedom, the value on record. Read the first line of the printout again, because the same words about a correction appear here as for 8PTRZ, and the slide after the reproduction explains them. The five replies without a greeting code stayed in the denominators, counted as no greeting, which is a decision of its own that the menu takes up later.
+:::
+
+## Hands-on 3 – P9W8Y {#hands-on-3-p9w8y .smaller}
+
+::: {.small}
+**P9W8Y** fitted a logistic regression of the greeting on the three groups of names among the coded replies and tested whether the three differ at all, with a likelihood-ratio test against a model without the groups. The robustness study recorded **no statistic** for this analysis. The cell keeps the coded replies and prints nothing.[ *Workspace:* the tab P9W8Y, chunk `reproduce-p9w8y`.]{.content-visible unless-meta="deck.short"}
+:::
+
+```{webr}
+#| autorun: false
+# the coded replies, with the group of the name as a factor
+replies_p9w8y <- original |>
+  datawizard::data_filter(!is.na(ProperName)) |>
+  datawizard::data_separate(select = "TreatmentGroup", new_columns = c("ethnicity", "name_sex"),
+                            separator = " ", append = TRUE) |>
+  datawizard::data_modify(ethnicity = factor(ethnicity, levels = c("white", "black", "Hispanic")))
+```
+
+::: notes
+P9W8Y asked whether the three groups of names differ at all, rather than how two of the groups compare. The model is a logistic regression of the greeting on the three groups, among the five hundred and fifty-eight coded replies, and the test compares it with a model that has no groups, through the likelihood ratio. The robustness study recorded no statistic for this analysis, so there is nothing on record to match, and you can only read the value that the analyst wrote in the text of a report. The cell on this slide keeps the coded replies and orders the groups, and prints nothing.
+:::
+
+## Hands-on 3 – The test of P9W8Y {#hands-on-3-the-test-of-p9w8y .smaller .output-8}
+
+::: {.small}
+The model, then the exercise that tests it; the analyst reported $\chi^2$ = **`r fmt_num(an("P9W8Y", "statistic_refit"), 3)`** on 2 df.
+:::
+
+```{webr}
+#| autorun: false
+# the model of the three groups
+m_p9w8y <- glm(ProperName ~ ethnicity, family = binomial(), data = replies_p9w8y)
+nobs(m_p9w8y)
+```
+
+```{webr}
+#| exercise: repro-p9w8y
+#| envir: global
+# the likelihood-ratio test against the same model without the groups
+anova(update(m_p9w8y, . ~ 1), m_p9w8y, test = "______")
+```
+
+:::: {.hint exercise="repro-p9w8y"}
+::: {.callout-note collapse="false"}
+## Hint – the test
+
+`anova()` compares two nested models fitted to the same rows; a likelihood-ratio test is asked for with `test = "LRT"`.
+:::
+::::
+
+:::: {.solution exercise="repro-p9w8y"}
+::: {.callout-tip collapse="false"}
+## Solution
+
+``` r
+anova(update(m_p9w8y, . ~ 1), m_p9w8y, test = "LRT")
+```
+
+The column `Deviance` gives 15.951 on 2 degrees of freedom for 558 replies. The record of the robustness study holds no value to compare it with.
+:::
+::::
+
+::: notes
+The first cell fits the model of the three groups and prints the replies that it used, five hundred and fifty-eight. The second is the exercise: anova compares the model with the same model without the groups, and the blank is the name of the test. A likelihood-ratio test compares how well the two models fit the same rows, and the hint gives the word that R expects. The column Deviance holds the statistic, fifteen point nine five one on two degrees of freedom. The analyst wrote the same value in the report filed for the second task of the robustness study, but the record holds no number for this analysis, so your value cannot be matched against it. If you chose P9W8Y, type the analyst and the value in chat all the same.
+:::
+
+## The continuity correction {#the-continuity-correction .smaller}
+
+:::: {.columns}
+::: {.column width="45%"}
+::: {.small}
+8PTRZ, the replies with a code:
+
+| | Not greeted by name | Greeted by name |
+|:--|--:|--:|
+| Hispanic names | `r tab_8ptrz["TRUE", "0"]` | `r tab_8ptrz["TRUE", "1"]` |
+| All other names | `r tab_8ptrz["FALSE", "0"]` | `r tab_8ptrz["FALSE", "1"]` |
+:::
+:::
+::: {.column width="55%"}
+```{.r}
+chisq.test(tab_8ptrz)
+chisq.test(tab_8ptrz, correct = FALSE)
+```
+
+::: {.small}
+With the correction, $\chi^2$ = **`r fmt_num(chi_yates, 3)`**; without it, $\chi^2$ = **`r fmt_num(chi_plain, 3)`**.
+:::
+:::
+::::
+
+::: {.fragment .small}
+For a two-by-two table, `chisq.test()` and `prop.test()` both apply the **continuity correction** unless told otherwise: it shrinks each gap between an observed and an expected count by half a count before squaring. 8PTRZ and 25N5D kept the default, and so did you. For 25N5D the test gives `r fmt_num(prop_yates, 3)` with it and `r fmt_num(prop_plain, 3)` without it.
+:::
+
+::: {.fragment .small}
+A reproduction depends on the **defaults and the codings of the software** as well as on the data and the model. The *z* of EWFMI is positive because its model takes the Hispanic names as the base group.
+:::
+
+::: notes
+Here is the table of 8PTRZ: replies to Hispanic names and to all other names, greeted by name or not. The printout of chisq dot test has a first line that most people skip: Pearson's chi-square test with Yates' continuity correction. [advance] For a two-by-two table, R applies that correction by default, in chisq dot test and in prop dot test alike. It shrinks each gap between an observed and an expected count by half a count before squaring, which makes the test a little more cautious. Turn it off and 8PTRZ gets fourteen point nine five, 25N5D fourteen point three three. Both analysts kept the default, you kept the default, and that is why your values match the record to the third decimal. [advance] The coding matters in the same way: EWFMI took the Hispanic names as the base group, so its z is positive. A script that relies on a default is reproducible only for as long as that default stays put.
+:::

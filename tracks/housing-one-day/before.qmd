@@ -22,14 +22,14 @@ The module teaches the R that the tasks of the day ask of you, from a first line
 
 The background page presents the original study and its design, SCORE and its robustness study (Multi100; Aczel et al. 2026), the five reanalyses and the question that each of them answered, how their results were put on one scale, and the replication with new data. Every part of the day works on this case study.
 
-## 4. The browser lab
+## 4. The deck and the browser lab
 
-[Open the browser lab at Task 1](../../cases/housing/lab.qmd#task-1-setup){.btn .btn-outline-primary target="_blank"}
+[Open the deck at Task 1](../../live/housing-one-day.html#/hands-on-1-get-yourself-running){.btn .btn-outline-primary target="_blank"} [Open the browser lab at Task 1](../../cases/housing/lab.qmd#task-1-setup){.btn .btn-outline-primary target="_blank"}
 
-The browser lab is the fallback of the day if your installation fails. Open it once on the machine and in the browser that you will use, wait until the first cell shows a "Run Code" button, and run the setup cell of Task 1. If it does not load, try another browser, and tell the facilitator before the day.
+The deck of the day, whose slides run R inside your browser, and the browser lab are the fallback of the day if your installation fails. Open the deck once on the machine and in the browser that you will use, wait until the setup cell of Task 1 shows a "Run Code" button, and run it. If it does not load, try another browser, and tell the facilitator before the day.
 
 ## 5. Further preparation
 
 The modules on [the IDE (Positron and other IDEs)](https://codemoreh.github.io/ar4ds/tools/ide.html), on [Quarto documents](https://codemoreh.github.io/ar4ds/tools/quarto.html) and on [Git and GitHub](https://codemoreh.github.io/ar4ds/git-github.html) take the tools of the workspace further, each with tasks in the workspace of this case study. The [exercise](exercise.qmd) page sets out the claim that you will be working on, the five tasks with the tool in which each is done, and the table of what the five analysts of the robustness study found when they reanalysed it.
 
-**By the start of the day** you have the setup check printing OK, or the browser lab loading on the machine that you will use, you have worked through the first module on R, and you know what the claim is and how the five analysts of the robustness study came to different conclusions about it.
+**By the start of the day** you have the setup check printing OK, or the deck loading on the machine that you will use, you have worked through the first module on R, and you know what the claim is and how the five analysts of the robustness study came to different conclusions about it.

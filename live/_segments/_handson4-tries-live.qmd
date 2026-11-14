@@ -1,0 +1,18 @@
+<!-- The end of Task 4 of the browser lab (cases/housing/lab.qmd) for the short
+     deck: the log of the tries, with the cell of the lab. The short session
+     sends nothing to the class chart, so the cell of the submission stays in
+     the lab and in the one-day deck. -->
+## Hands-on 4 – Your tries {#hands-on-4-your-tries .smaller}
+
+::: {.small}
+`my_experiments()` lists every try side by side, with only the decisions that you varied. Rerun the one that you would defend, so that it is your last try, because the placement later in this half starts from it. Nothing is sent to a class chart in this session.
+:::
+
+```{webr}
+#| autorun: false
+my_experiments()
+```
+
+::: notes
+When you have three or four tries, print the log. My underscore experiments lists the tries side by side, with only the decisions that you varied, which is the small multiverse that you have just built. Read the range of the estimates at the bottom, and how many of your tries are below zero and significant. Then rerun whichever one you can argue for best, so that it is your last try, because in a few minutes we place it on the curve of the claim. This session sends nothing to a class chart, so there is no submission today. The workshop and the self-study route take that step, and the page after the session says where to find them.
+:::

@@ -1,0 +1,178 @@
+<!-- Task 5 of the browser lab (cases/housing/lab.qmd) for the one-day deck:
+     the preregistration moment, then the cells of the lab, the block, its
+     declaration, the run, the report and the curve with the declared result
+     ringed. Each slide names where the same step lives in the workspace. -->
+## Hands-on 5 – The preregistration {#the-preregistration-moment}
+
+::: {.none}
+1. Open the preregistration block of Task 5 in your report, or on the next slide of this deck
+2. Complete fields 1–5: the claim, the data-in-hand statement, your one specification, the one-sentence justification from your causal graph, and your rule for what supports or undermines the claim
+3. **Render** your report, or in this deck copy the completed cell into your notes
+4. Type **"declared"** in chat – then wait for the class
+:::
+
+::: {.fragment}
+Nobody runs a model until everyone in the class has completed their preregistration block.
+:::
+
+::: notes
+We preregister together, because a thing that the whole class does at once sticks in a way that an instruction does not. Open Task 5 in your report, or the block on the next slide if you work in this deck. Fill in the five fields: the claim, the data-in-hand statement, your one specification with an option for each decision of the menu, the one-sentence justification that your graph gives you, and the rule, written now and before any result, for what would support the claim and what would undermine it. Render the report; the rendered file with its date is the record of your preregistration. Then type "declared" in chat, and wait. [count them in aloud] If the specification that you choose is one that you already tried in Task 4, that is allowed, but say so in the block, because a specification whose result you have already seen is not preregistered in the strict sense.
+:::
+
+## Hands-on 5 – The preregistration block {#hands-on-5-the-preregistration-block .smaller}
+
+::: {.small}
+One choice on each decision of the menu, and the dotted lines completed; then run the cell, which prints nothing. *Workspace:* the chunk `prereg` of `index.qmd`.
+:::
+
+```{webr}
+#| autorun: false
+#| max-lines: 14
+# ============================================================================
+# MY PREREGISTRATION – one specification, declared before seeing its result
+# ============================================================================
+# 1. The claim I am testing: .................................................
+# 2. The data + what I already know: housing_emails.csv (1,014 emails, public,
+#    CC0); I know that the reference specification gives -19.97 points, and
+#    what my exploration in Task 4 showed.
+# 3. My one specification – one choice on each decision. An option that is
+#    not on the curve of 64 stops prereg() with the reason why.
+
+# The question (each of these changes what is being estimated)
+my_outcome    <- "named"     # named   (greeted by name, the outcome of the claim)
+my_comparison <- "white"     # white | nonhispanic   (white names, or white and Black names)
+my_population <- "replies"   # replies | all   (replies only, or every delivered email)
+my_names      <- "both"      # both   (male and female names pooled)
+my_officials  <- "any"       # any    (replies from every official)
+
+# Measurement (the same question, put to the data differently)
+my_uncoded    <- "drop"      # drop | not_named   (the five replies without a greeting code)
+my_bounced    <- "exclude"   # exclude   (the 23 emails that never arrived)
+
+# The model (the same question and measures, another fit)
+my_model      <- "lpm"       # lpm | logit   (difference in proportions, or logistic regression)
+my_adjust     <- "none"      # none | email | place | place_ethnic
+my_inference  <- "model"     # model   (HC2 t test, or the z test of the logit)
+my_scale      <- "pp"        # pp   (percentage points)
+
+# 4. Why this specification answers the claim, in one sentence grounded in
+#    the causal graph of Task 2: .............................................
+# 5. Supported if the estimate is below zero with p < .05 under the test of
+#    the model; undermined if it is not significant or above zero. I will
+#    report what I get.
+```
+
+::: notes
+Here is the block, the same as the one in your report. The numbered comments map onto the questions of the AsPredicted short form: the claim, the data and what you already know about them, your one specification, the reason from your causal graph, and your rule for what supports the claim. The eleven lines in the middle are the decisions of the menu in its three groups, each set to the reference specification, with the options of the curve in the comment beside it. Make one choice on each, complete the dotted lines, and run the cell. It prints nothing, because the session simply remembers your choices for the next cell. The editor shows fourteen lines and scrolls for the rest.
+:::
+
+## Hands-on 5 – The declaration {#hands-on-5-the-declaration .smaller}
+
+::: {.small}
+`prereg()` checks every choice against the menu, prints your preregistration with its estimand statement and keeps it as `my_spec`. The preregistration cell, copied into your notes, is your preregistration record. *Workspace:* the last line of the chunk `prereg`.
+:::
+
+```{webr}
+#| autorun: false
+my_spec <- prereg()   # checks every choice, prints your preregistration and keeps it
+```
+
+::: notes
+Then the declaration itself. Prereg reads the eleven choices of the block, checks each one against the menu, and stops with the reason if one of them is off the curve, as try underscore spec does. If every choice is on the curve, it prints your preregistration: the choices in the three groups of the menu, and the estimand statement that the choices make, written out in words. It also keeps the block as my underscore spec, which the run on the next slide needs. In your workspace the rendered report, with its date, is the record of the declaration, and in this deck you copy the block into your notes. Then type declared in chat, and wait for the class.
+:::
+
+## Hands-on 5 – The preregistered run {#run-it-then-watch-the-chart .smaller}
+
+::: {.small}
+- **Task 5** – run the specification in your preregistration, and only that one, with `run_spec()`
+- It prints the same lines as `try_spec()` and refuses to run if the block has changed since `prereg()` read it. The line headed `Verdict:` says which of the four cases your result falls in
+- *Workspace:* the chunk `run-spec`
+:::
+
+```{webr}
+#| autorun: false
+run_spec(my_spec)
+```
+
+::: notes
+Go. Run the specification in your preregistration, just that one, with run underscore spec. It fits the specification live and prints the same lines as try underscore spec, so you already know how to read them: the shares, the difference with its interval, the test of the model, the verdict and the place among the sixty-four. It refuses to run if you have changed the block since prereg read it, because the point of a declaration is that it comes before the result. A value below zero means that the replies to Hispanic names greeted the sender by name less often, the direction of the claim. Read your verdict, and then we send it to the chart.
+:::
+
+## Hands-on 5 – The report {#hands-on-5-the-report .smaller .output-8}
+
+::: {.small}
+`report_result()` prints a one-click link to the results form with your values already in it – open it, press Send. Your result joins the [Class results]({{< var cases.housing.live-results-url >}}) page as a *declared* result, a filled circle beside the open circles of Task 4. *Workspace:* the chunk `report`.
+:::
+
+```{webr}
+#| autorun: false
+report_result()
+```
+
+::: {.fragment .small}
+Compare the two waves. If the declared results fall systematically to one side of the exploratory ones, it is worth discussing why.
+:::
+
+::: {.fragment .small}
+Stuck? Type "STUCK", reload and rerun, try a second browser or follow my screen. Last resort: your specification is one row of `spec_curve.csv`, with its estimate and its test, and I will help you submit it by hand
+:::
+
+::: notes
+When the numbers are in front of you, call report underscore result. It builds your submission from the preregistration, so there is nothing to fill in or transcribe, and prints a link to the results form with your values already in it: one click, press Send, and you have submitted. Your mark joins the chart on the Class results page as a declared result, a filled circle, beside the open circles that the class submitted in Task 4, and with the same tag. [advance] If the declared results fall systematically to one side of the exploratory ones, that tells you something about what people chose to preregister once they had tried the alternatives. [advance] If anything misbehaves, type STUCK and work down the ladder on the cheatsheet. Your specification is one row of the curve file, and I will help you submit it by hand, so everybody gets a mark on the chart.
+:::
+
+## Hands-on 5 – The curve {#hands-on-5-the-curve .smaller}
+
+::: {.small}
+Finally, your result on the curve of the claim, the `r nrow(curve)` specifications ranked from the most negative estimate. The first cell reads and ranks the curve, and the second picks out yours by the choices of the preregistration cell; neither prints anything. *Workspace:* the first half of the chunk `fig-curve`.
+:::
+
+```{webr}
+#| autorun: false
+spec_curve <- utils::read.csv("cases/housing/data/spec_curve.csv") |>  # r-style: keep – the base reader adds nothing to the download
+  datawizard::data_arrange("b_pp") |>
+  datawizard::data_modify(rank = 1:n(),
+                          emails = factor(population, levels = c("replies", "all"),
+                                          labels = c("replies only", "all delivered emails")))
+```
+
+```{webr}
+#| autorun: false
+# Yours, chosen with dplyr, because datawizard cannot see the my_ choices of
+# the preregistration cell
+mine <- spec_curve |>
+  dplyr::filter(comparison == my_comparison, population == my_population, uncoded == my_uncoded,
+                model == my_model, adjust == my_adjust)
+```
+
+::: notes
+Finally, your result on the curve of the claim, the sixty-four specifications that the menu keeps, ranked from the most negative estimate. Two cells prepare the figure and print nothing. The first reads the curve that the deck loaded, ranks it, and labels the two answers to the decision on which emails are counted. The second picks out your own specification by the choices of your preregistration cell. It uses dplyr rather than datawizard, because datawizard evaluates its conditions in an environment of its own, from which the choices of the block cannot be reached. The figure is on the next slide, and in your workspace the same steps make the last figure of the report.
+:::
+
+## Hands-on 5 – Your declared result {#hands-on-5-your-declared-result .smaller .output-fig}
+
+::: {.small}
+The curve, coloured by the emails counted, with your declared specification ringed. *Workspace:* the chunk `fig-curve`.
+:::
+
+```{webr}
+#| autorun: false
+#| max-lines: 4
+#| fig-width: 8
+#| fig-height: 4.5
+tinyplot::tinytheme("minimal")
+tinyplot::tinyplot(b_pp ~ rank | emails, data = spec_curve, pch = 16,
+                   palette = c("#0e3b6a", "#2b8585"), legend = list("right!", title = "Emails counted"),
+                   ylim = c(min(spec_curve$b_pp), 0),
+                   xlab = "The 64 specifications, from the most negative estimate",
+                   ylab = "Hispanic minus comparison names (points)")
+tinyplot::tinyplot(b_pp ~ rank, data = spec_curve, type = tinyplot::type_hline(h = 0), col = "grey60", add = TRUE)
+# your specification, ringed; clim keeps a single ring at the size of cex
+tinyplot::tinyplot(b_pp ~ rank, data = mine, type = tinyplot::type_points(clim = c(3, 3)),
+                   pch = 1, cex = 3, lwd = 2.5, col = "#8b1538", add = TRUE)
+tinyplot::tinytheme()
+```
+
+::: notes
+And the figure, whose code scrolls in the editor. Each point is one of the sixty-four specifications, ranked from the most negative estimate and coloured by the emails counted, and yours is ringed in burgundy. All sixty-four lie below zero, from minus twenty to minus twelve points, and every one is significant at five per cent under the test of its model. The two clusters are the two answers to the decision on which emails are counted. Counting every delivered email moves the estimate about five points towards zero, and no other decision moves it by more than about two point seven. Within these data the claim holds under every choice on the menu, and only its size moves, although the replication with new emails found no difference in greetings by name.
+:::

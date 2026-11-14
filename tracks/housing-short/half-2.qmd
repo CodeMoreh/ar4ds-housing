@@ -2,10 +2,10 @@
 title: "Second half – Exploration and replication"
 ---
 ::: {.callout-note appearance="simple" icon=false}
-**Slides.** [Open the deck at this half](../../slides/housing-short.html#/half-2-exploration-and-replication){target="_blank"} in its own tab, or follow it on the [slides page](slides.qmd).
+**Slides.** [Open the deck at this half](../../live/housing-short.html#/half-2-exploration-and-replication){target="_blank"} in its own tab, or follow it on the [slides page](slides.qmd).
 :::
 
-In the first half everyone who chose the same analyst reproduced the same number, because everyone ran the same code. In the second you become the sixth analyst and make choices of your own: you try a few analyses from the menu in the browser lab, read where the one that you would defend sits among every justifiable specification on these data, and end on the new experiment that tested the claim again. Nothing is sent anywhere.
+In the first half everyone who chose the same analyst reproduced the same number, because everyone ran the same code. In the second you become the sixth analyst and make choices of your own: you try a few analyses from the menu in the deck, read where the one that you would defend sits among every justifiable specification on these data, and end on the new experiment that tested the claim again. Nothing is sent anywhere.
 
 ## 1. The specification menu
 
@@ -17,9 +17,9 @@ The slides take you through the eleven decisions in three groups, the five on wh
 
 ## 2. Task 4 – The menu
 
-[Open the browser lab at Task 4](../../cases/housing/lab.qmd#task-4-menu){.btn .btn-primary target="_blank"}
+[Open the deck at Task 4](../../live/housing-short.html#/hands-on-4-work-the-menu){.btn .btn-primary target="_blank"} [Open the browser lab at Task 4](../../cases/housing/lab.qmd#task-4-menu){.btn .btn-outline-primary target="_blank"}
 
-Call `try_spec()` with no arguments for the reference specification, then two or three times more, changing one argument at a time, and print the tries side by side with `my_experiments()`. Ask once for an option off the curve, such as `model = "three_group"`, to read why it is refused. Then rerun the one that you would defend, so that it is your last try. Skip `submit_exploration()`, because the session sends nothing to the class chart.
+In the deck, call `try_spec()` with no arguments for the reference specification, then two or three times more, changing one argument at a time, and print the tries side by side with `my_experiments()`. Ask once for an option off the curve, such as `model = "three_group"`, to read why it is refused. Then rerun the one that you would defend, so that it is your last try. The session sends nothing to the class chart, so the deck has no cell for `submit_exploration()`, and in the browser lab you leave it out.
 
 ## 3. The multiverse
 
@@ -31,9 +31,9 @@ The slides name what you did in Task 4, your own small multiverse, and then show
 
 ## 4. Your placement
 
-[Open the browser lab at Task 4](../../cases/housing/lab.qmd#task-4-menu){.btn .btn-primary target="_blank"}
+[Open the deck at your placement](../../live/housing-short.html#/find-your-own-percentile){.btn .btn-primary target="_blank"} [Open the browser lab at Task 4](../../cases/housing/lab.qmd#task-4-menu){.btn .btn-outline-primary target="_blank"}
 
-Rerun `try_spec()` with the specification that you would defend and read your placement, which is the number of the 64 specifications whose gap lies further below zero than yours. Send it in the chat when the facilitator says go.
+In the cell of the placement slide, rerun `try_spec()` with the specification that you would defend and read your placement, which is the number of the 64 specifications whose gap lies further below zero than yours. Send it in the chat when the facilitator says go.
 
 ## 5. What moved the estimate
 

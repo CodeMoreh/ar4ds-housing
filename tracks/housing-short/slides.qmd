@@ -6,7 +6,7 @@ toc: false
 ---
 
 ```{=html}
-<iframe class="slide-deck" src="../../slides/housing-short.html" title="Slides of the short session, the Housing case study"></iframe>
+<iframe class="slide-deck" src="../../live/housing-short.html" title="Slides of the short session, the Housing case study"></iframe>
 ```
 
-Open the deck [in its own tab](../../slides/housing-short.html){target="_blank"} for the full screen, the speaker view and the keyboard controls: the `d` key switches the optional slides on and off, `[` and `]` jump between the two halves, and `g` opens a jump bar that finds a slide by its title.
+Open the deck [in its own tab](../../live/housing-short.html){target="_blank"} for the full screen, the speaker view and the keyboard controls: the `d` key switches the optional slides on and off, `[` and `]` jump between the two halves, and `g` opens a jump bar that finds a slide by its title. The cells of its hands-on slides run R inside your browser once the engine has loaded, and the [browser lab](../../cases/housing/lab.qmd) holds the same cells if the deck does not load.

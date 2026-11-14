@@ -3,7 +3,7 @@ title: "Part 2 – The estimand and the causal graph"
 ---
 
 ::: {.callout-note appearance="simple" icon=false}
-**Slides.** [Open the deck at this part](../../slides/housing-one-day.html#/part-2-the-estimand-and-the-causal-graph){target="_blank"} in its own tab, or follow it on the [slides page](slides.qmd).
+**Slides.** [Open the deck at this part](../../live/housing-one-day.html#/part-2-the-estimand-and-the-causal-graph){target="_blank"} in its own tab, or follow it on the [slides page](slides.qmd).
 :::
 
 Part 2 is the conceptual middle of the day. It sets out what the five analysts of the robustness study of SCORE (Multi100; Aczel et al. 2026) did with the claim of the paper, and argues that analysts who look as though they disagree are often answering different questions. It then gives you two tools for saying which question you are answering, the estimand statement and the causal graph, and uses both on the claim, where the graph shows something that is easy to miss.
@@ -26,9 +26,11 @@ Part 2 is the conceptual middle of the day. It sets out what the five analysts o
 
 ## 5. Task 2 – The data, the estimand and the graph
 
-[Open the browser lab at Task 2](../../cases/housing/lab.qmd#task-2-data){.btn .btn-primary target="_blank"}
+**In your workspace**, in the boxes of Task 2 of `index.qmd`. Count the emails that bounced, the replies, the replies with a greeting code and the greetings by name, for each name, in the chunks `count-emails`, `by-group` and `fig-names`. Write the estimand statement with every bracket filled, saying which emails you count. Then open `R/dag_starter.R`, take the `#` off the arrow from the name to the greeting if you believe it, and run the chunks `adjustment-set` and `paths-replies`, which ask for the adjustment sets and for the paths with `Z = "reply"`. Read which paths open among the replies, and finish with two sentences, one on what a comparison among the replies conditions on and one on what counting every delivered email changes.
 
-If you work in the workspace, use your report or working script instead. Count the emails that bounced, the replies, the replies with a greeting code and the greetings by name, for each name. Write the estimand statement with every bracket filled, saying which emails you count. Then go to the [graph cells of the lab](../../cases/housing/lab.qmd#task-2-estimand-and-graph), or open `R/dag_starter.R` in the workspace. Take the `#` off the arrow from the name to the greeting if you believe it, ask for the adjustment sets and for the paths with `Z = "reply"`, and read which paths open among the replies. Finish with two sentences, one on what a comparison among the replies conditions on and one on what counting every delivered email changes.
+[Open the deck at Task 2](../../live/housing-one-day.html#/hands-on-2-meet-the-emails-draw-the-graph){.btn .btn-outline-primary target="_blank"} [Open the browser lab at Task 2](../../cases/housing/lab.qmd#task-2-data){.btn .btn-outline-primary target="_blank"}
+
+The deck shows each step with its output, with the graph on the slides after the data. If your installation fails, run the same cells in the deck or in the browser lab, whose [graph cells](../../cases/housing/lab.qmd#task-2-estimand-and-graph) print the answers that dagitty gives.
 
 To go further: [Causal graphs and adjustment sets](../../companion/dags.qmd), the slower companion of this task.
 

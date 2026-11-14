@@ -1,0 +1,78 @@
+<!-- Task 1 of the browser lab (cases/housing/lab.qmd) on two slides, the setup
+     check and the warm-up, with the cells of the lab. Both live decks include
+     this segment. Lines that differ by format are shown by Quarto conditional
+     content, keyed on the deck map in the YAML of each deck; no cell sits
+     inside a conditional span or div. -->
+## Hands-on 1 – The setup check {#hands-on-1-get-yourself-running .smaller .output-8}
+
+::: {.small}
+**Task 1 – the setup check.** Get to the point where a line of R runs and the data are in front of you, then type a green circle in chat, or **STUCK** if you need me.
+:::
+
+::: {.small .content-visible when-meta="deck.short"}
+Wait until the cell below shows **Run Code**, then run it: `housing` has `r fmt_n(nrow(housing))` rows, one per email, and the last line reads `r fmt_num(curve_ref$b_pp, 2)` percentage points.
+:::
+
+::: {.small .content-visible unless-meta="deck.short"}
+**Workspace:** `source("R/check_setup.R")` in the folder prints an `[OK]` line for every check and ends on `r fmt_num(curve_ref$b_pp, 2)` percentage points; this slide runs the same check in the browser.
+:::
+
+```{webr}
+#| autorun: false
+# The setup check. It uses only what the deck preloads, so if this runs, the
+# rest of the deck runs.
+writeLines(c(
+  paste("R is running in your browser:", R.version.string),
+  sprintf("The emails are loaded: %d rows", nrow(housing)),
+  sprintf("The estimator reproduces the reference specification: %.2f percentage points",
+          fit_spec(housing)$b_pp)))
+```
+
+::: notes
+Your turn, and this first task is deliberately not intellectual. The job is to reach the point where a line of R runs and the data are in front of you.[ In your workspace, open the folder in your IDE and source the check script, which prints one OK line for each thing that the course needs and ends by fitting a small model, at minus nineteen point nine seven points. The cell on this slide runs the same check in the browser. If your installation will not cooperate, do not fight it: carry on in this deck, or in the browser lab, which gives the same numbers. Take the time you need, into the break if you have to.]{.content-visible unless-meta="deck.short"}[ Wait for the cell on this slide to show its Run Code button, press it, and check that the data have one row for each of the emails, a thousand and fourteen of them. The last line fits a small model, and its number comes back later. Five minutes, nothing to install, and the warm-up on the next slide while the engine downloads.]{.content-visible when-meta="deck.short"} A green circle in chat when you are through, STUCK if you need me.
+:::
+
+## Hands-on 1 – The warm-up {#hands-on-1-the-warm-up .smaller}
+
+::: {.small}
+Three of the four scenarios describe one of the three Rs, and the fourth something else. Fill in the gaps in the cell and run it to print your answers back.[ *Workspace:* the same four scenarios are in the box of Task 1 of `index.qmd`.]{.content-visible unless-meta="deck.short"}
+:::
+
+:::: {.columns .fs-65}
+::: {.column width="50%"}
+**1.** A reviewer runs the Stata `.do` file of the original authors on their public file and gets another coefficient for Hispanic names than the paper prints, because the file holds each community in thirds rather than as the census values. This is an example of \_\_\_\_\_\_, even though the numbers do not match.
+
+**2.** An analyst re-implements the analysis in R on the same file, and also counts the five replies without a greeting code as replies without a greeting. Is this a case of \_\_\_\_\_\_ or \_\_\_\_\_\_?
+:::
+::: {.column width="50%"}
+**3.** A preregistered team emails 3,050 public housing authorities with four new names and finds no difference in how often the replies greet the sender by name. The original finding has failed to \_\_\_\_\_\_.
+
+**4.** A researcher telephones school districts rather than emailing housing authorities, codes recorded voice messages instead of written replies, and finds the same pattern. The original finding \_\_\_\_\_\_ to another service and another medium.
+:::
+::::
+
+```{webr}
+#| exercise: vocab
+#| code-overflow: wrap
+writeLines(c(
+  "Scenario 1: This is an example of ______.",
+  "Scenario 2: Is this a case of ______ or ______?",
+  "Scenario 3: The original finding has failed to ______.",
+  "Scenario 4: The original finding ______ to another service and another medium."
+))
+```
+
+:::: {.solution exercise="vocab"}
+::: {.callout-tip collapse="false"}
+## Answers
+
+1.  **reproducibility** – rerunning the code of the original authors on their data. The numbers differ, but the activity is still reproduction, and the difference has a documented cause: the blinded file.
+2.  a grey area. Re-implementing on the same data in different software is still **reproducibility**, but recoding the uncoded replies is an analytic choice, which makes it a test of **robustness**.
+3.  **replicability** – the same question asked of independent new data.
+4.  **generalises** (generalisability) – the odd one out, with a new population, new data and a new measure at once.
+:::
+::::
+
+::: notes
+While the engine downloads, a warm-up that settles the vocabulary before you touch any data. Four scenarios, all about this case study. Three of them describe one of the three Rs, reproducibility, robustness and replicability, and the fourth describes something else. Read all four, fill in the gaps in the cell and run it to print your answers back; the answers open under the cell once you have tried. Scenario two is a grey area on purpose. Running the analysis again in other software is still reproduction, but recoding the uncoded replies is an analytic choice, and a choice makes it a test of robustness.[ In the workspace the same four scenarios sit in the box of Task 1 of the report.]{.content-visible unless-meta="deck.short"} [after a few minutes] Which one was the odd one out?
+:::

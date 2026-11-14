@@ -8,28 +8,29 @@ The case study is a field experiment in which emails that differed only in the n
 
 | Format | Folder | Taught in |
 |---|---|---|
-| Short session, in two halves | `tracks/housing-short/` | the browser lab |
-| One-day workshop, in four parts | `tracks/housing-one-day/` | the browser lab, the workspace as an option |
-| Extended course, three days built around the workshop | `tracks/housing-extended/` | the workspace, with the browser lab on the day of the workshop |
+| Short session, in two halves | `tracks/housing-short/` | its live deck, with the browser lab as the fallback |
+| One-day workshop, in four parts | `tracks/housing-one-day/` | the workspace, with the live deck showing each step |
+| Extended course, three days built around the workshop | `tracks/housing-extended/` | the workspace, with the live deck on the day of the workshop |
 | Self-study | `tracks/self-study/` | the workspace |
 
-Each format has a docked sidebar (`_sidebar.yml`), an exercise page, part pages that lead into the content, and a slides page that embeds its deck (`slides/housing-*.qmd`, assembled from `slides/_segments/`). The run sheet of the facilitator, with the timings, is `facilitator/housing-guide.qmd`.
+Each format has a docked sidebar (`_sidebar.yml`), an exercise page, part pages that lead into the content, and a slides page that embeds its deck: the live decks `live/housing-short.qmd` and `live/housing-one-day.qmd`, whose slides run R in the browser, assembled from `live/_segments/`, and for day 3 of the Extended course the decks `slides/housing-*.qmd`, assembled from `slides/_segments/`. The run sheet of the facilitator, with the timings, is `facilitator/housing-guide.qmd`.
 
 ## Layout
 
 | Path | What it is |
 |---|---|
 | `index.qmd` | The home page |
-| `cases/housing/` | The background page, the browser lab, the specification menu with the decision map, the specification curve, the class results, the cheatsheet, the parts that the exercise pages of the formats share (`_exercise-*.qmd`), and `data/` with a codebook for every file |
+| `cases/housing/` | The background page, the browser lab with its helpers (`_lab-helpers.qmd`, `_lab-graph.qmd`), the specification menu with the decision map, the specification curve, the class results, the cheatsheet, the parts that the exercise pages of the formats share (`_exercise-*.qmd`), and `data/` with a codebook for every file |
 | `tracks/` | The formats |
-| `slides/` | The decks and their segments |
+| `live/` | The live decks of the short session and the workshop, whose slides carry the cells of the browser lab, with their segments |
+| `slides/` | The decks of day 3 of the Extended course and their segments, with the two setup segments that every deck includes |
 | `companion/` | The modules of the companion, written on the data of the case study; `_model-outputs/` holds the scripts and aggregate outputs behind them |
 | `R/housing/` | The pipeline that builds the data files of the case study; `R/housing/README.md` gives the order |
 | `data-raw/housing/` | The archived inputs of the pipeline |
 | `resources.qmd` | Readings, records and tools |
 | `_variables.yml` | Site variables and the next-delivery block |
 
-The downloadable workspace of the case study is the repository `CodeMoreh/ar4ds-housing-workspace`, and the browser lab carries the same helper functions.
+The downloadable workspace of the case study is the repository `CodeMoreh/ar4ds-housing-workspace`, and the browser lab and the live decks carry the same helper functions.
 
 ## Licence
 

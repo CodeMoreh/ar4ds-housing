@@ -1,0 +1,112 @@
+---
+title: "Applied replication for data skills"
+subtitle: "Short session – Housing and racial bias"
+engine: knitr
+format:
+  live-revealjs:
+    webr:
+      # The packages that the helpers of the lab and the cells of the hands-on
+      # slides call: dplyr and purrr in the helpers, parameters with sandwich
+      # for the HC2 errors, marginaleffects for the logit and effectsize for
+      # the conversion rule of the robustness study; datawizard in the cells of
+      # Task 3. The runtime adds evaluate, knitr and htmltools itself, and
+      # tibble comes with dplyr. The session has no graph task and no figure in
+      # a cell, so tinyplot stays out, and gt is left out because no slide
+      # prints a formatted table and it adds 12 to 23 seconds to the first
+      # opening of a page.
+      packages:
+        - dplyr
+        - datawizard
+        - purrr
+        - parameters
+        - sandwich
+        - marginaleffects
+        - effectsize
+# The four files that the cells read, fetched into the browser when the deck
+# opens; the runtime drops the leading ../ of each path, so inside the browser
+# they sit under cases/housing/data/, the folder that the setup cell below
+# names as .data_dir.
+resources:
+  - ../cases/housing/data/housing_emails.csv
+  - ../cases/housing/data/housing_original.csv
+  - ../cases/housing/data/spec_curve.csv
+  - ../cases/housing/data/menu_options.csv
+live:
+  show-hints: true
+  show-solutions: true
+# Optional runs that this deck includes in its main flow (core-runs.lua
+# strips their .deepdive mark); the others stay on the d toggle. This deck
+# carries one optional run, the multiverse background of the second half.
+core-runs: []
+# The format of the deck, which the segments of the Housing case study read
+# through Quarto conditional content (when-meta="deck.short" and so on): one
+# of short or one-day, and menu where the deck teaches the specification menu.
+deck:
+  short: true
+  menu: true
+# THE DECK OF THE SHORT SESSION
+# - The participants do every task of the session in this deck, whose
+#   hands-on slides carry the cells of the browser lab through the Quarto
+#   Live extension: Task 1 and its warm-up, Task 3 with each of the five
+#   reproductions, Task 4 without the submission, and the placement. The
+#   estimand statement of Task 2 is a held answer in the chat, and the
+#   session sends nothing to the class chart and has no Task 5. The browser
+#   lab, cases/housing/lab.qmd, stays the fallback.
+# - The hands-on segments in _segments/ (_handson1-live.qmd,
+#   _handson3-live.qmd, _handson4-live.qmd, _handson4-tries-live.qmd and
+#   _placement-live.qmd) hold the cells of the lab, one step to a cell, with
+#   the hints and solutions of its exercises. The helpers of the lab are
+#   ../cases/housing/_lab-helpers.qmd, included after the setup cell that
+#   names the data folder. The two setup segments stay in
+#   ../slides/_segments/, because the decks of day 3 include them as well.
+# - The setup cell and the helpers sit on the agenda slide, after its notes,
+#   because a cell or a comment placed before the first heading of a deck
+#   makes a slide of its own; they print nothing.
+# - The half dividers keep the ids that the pages of the format link.
+# - No duration goes on any slide or into any note.
+---
+
+{{< include ../slides/_segments/shared/_setup.qmd >}}
+{{< include ../slides/_segments/housing/_setup.qmd >}}
+{{< include ../_extensions/r-wasm/live/_knitr.qmd >}}
+{{< include _segments/_agenda-short.qmd >}}
+
+```{webr}
+#| include: false
+#| autorun: true
+# The setup of the deck, run once the engine is ready. .data_dir is the folder
+# in which the four files of the resources list arrive inside the browser: the
+# runtime drops the leading ../ of their paths, so from the working directory
+# of R they sit under cases/housing/data/. housing holds the emails, one row
+# each, the object from which the cells of the hands-on slides work.
+.data_dir <- "cases/housing/data"
+housing <- utils::read.csv(file.path(.data_dir, "housing_emails.csv"), na.strings = c("", "NA"))  # r-style: keep – the base reader adds nothing to the download
+```
+
+{{< include ../cases/housing/_lab-helpers.qmd >}}
+{{< include _segments/_not-needed.qmd >}}
+{{< include _segments/_h1-divider.qmd >}}
+{{< include _segments/_matrix.qmd >}}
+{{< include _segments/_score-brief.qmd >}}
+{{< include _segments/_robustness.qmd >}}
+{{< include _segments/_handson1-live.qmd >}}
+{{< include _segments/_paper.qmd >}}
+{{< include _segments/_five-analysts.qmd >}}
+{{< include _segments/_claim-estimand.qmd >}}
+{{< include _segments/_task2-robustness.qmd >}}
+{{< include _segments/_handson3-live.qmd >}}
+{{< include _segments/_onenumber.qmd >}}
+{{< include _segments/_break-half.qmd >}}
+{{< include _segments/_h2-divider.qmd >}}
+{{< include _segments/_menu.qmd >}}
+{{< include _segments/_methods.qmd >}}
+{{< include _segments/_handson4-live.qmd >}}
+{{< include _segments/_handson4-tries-live.qmd >}}
+{{< include _segments/_multiverse-intro.qmd >}}
+{{< include _segments/_curve.qmd >}}
+{{< include _segments/_placement-live.qmd >}}
+{{< include _segments/_whatmoved.qmd >}}
+{{< include _segments/_replication.qmd >}}
+{{< include _segments/_closing.qmd >}}
+{{< include _segments/_close.qmd >}}
+{{< include _segments/_references.qmd >}}

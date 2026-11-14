@@ -1,0 +1,129 @@
+<!-- Task 4 of the browser lab (cases/housing/lab.qmd) for both live decks: the
+     reference specification, the five single changes in the three groups of
+     the menu, an option off the curve and the full set of arguments, with the
+     cells of the lab. The one-day deck goes on to the submission
+     (_handson4-submit-live.qmd), the short deck to the log of its tries
+     (_handson4-tries-live.qmd). Lines that differ by format are shown by
+     Quarto conditional content, keyed on the deck map in the YAML of each
+     deck; no cell sits inside a conditional span or div. -->
+## Hands-on 4 – Exploring the menu {#hands-on-4-work-the-menu .smaller}
+
+::: {.small}
+**Task 4 is exploratory.** `try_spec()` with no arguments is the reference specification, the raw gap of the paper, and every argument defaults to it, so changing one thing means changing one argument. Run it and read the shares, the difference with its interval, the test, the verdict and the place among the `r nrow(curve)`.[ *Workspace:* the chunk `try-reference` of `index.qmd`.]{.content-visible unless-meta="deck.short"}
+:::
+
+```{webr}
+#| autorun: false
+# Nothing changed – the reference specification.
+try_spec()
+```
+
+::: {.fragment .small}
+[This is **not** your preregistered analysis.]{.content-visible when-meta="deck.one-day"}[Nothing is sent anywhere.]{.content-visible unless-meta="deck.one-day"} You are allowed to look, change your mind and try again, which is why this phase has a name of its own.
+:::
+
+::: notes
+This is where you get your hands properly dirty, and I want to be explicit about what kind of activity it is. Task 4 is exploration. Start from the reference with try underscore spec and no arguments, which gives the raw gap of the paper. Every call is a live fit in your browser, and it prints the shares greeted by name in the two groups, the difference in points with its interval, the test of the model, the verdict and the place of the result among the sixty-four. The next slides change one decision at a time, and every try is logged.[ In the workshop you do the same in your workspace, and I run the cells here.]{.content-visible when-meta="deck.one-day"} [advance] [And this is not your preregistered analysis: here you may look, change your mind and try again.]{.content-visible when-meta="deck.one-day"}[Nothing leaves your machine: here you may look, change your mind and try again.]{.content-visible unless-meta="deck.one-day"}
+:::
+
+## Hands-on 4 – The question {#hands-on-4-the-question .smaller .output-8}
+
+::: {.small}
+Each of the next five cells changes a single decision. These two change the question that is asked of the data: the comparison group, and the emails counted.[ *Workspace:* the chunk `try-one-at-a-time`.]{.content-visible unless-meta="deck.short"}
+:::
+
+```{webr}
+#| autorun: false
+try_spec(comparison = "nonhispanic")  # Hispanic names against white and Black names together
+```
+
+```{webr}
+#| autorun: false
+try_spec(population = "all")  # every delivered email, no reply counted as no greeting
+```
+
+::: notes
+Two cells, each changing one decision of the question, so that when a number moves you can say what moved it. The first sets the Hispanic names against the white and the Black names together, as the abstract of the paper does. The second counts every delivered email, with no reply counted as no greeting, which is the comparison that the causal graph told us randomisation protects. Run both and compare each with the reference, minus nineteen point nine seven. The comparison group moves the gap by under three points, to minus seventeen point three. The emails counted move it furthest, to minus thirteen point three, because the outcome is now a reply that greets the sender by name, which an email without a reply can never give.
+:::
+
+## Hands-on 4 – Measurement {#hands-on-4-measurement .smaller}
+
+::: {.small}
+This one changes how the outcome is measured: the five replies without a greeting code count as replies without a greeting, instead of being left out.
+:::
+
+```{webr}
+#| autorun: false
+try_spec(uncoded = "not_named")  # the five uncoded replies counted as no greeting
+```
+
+::: notes
+One decision of measurement. Five replies carry no code for the greeting, and the reference specification leaves them out. This cell counts the five as replies that did not greet the sender by name instead. It is the kind of decision that a methods section rarely mentions, and here it moves the gap by about half a point, to minus nineteen point five, because a handful of replies is few beside more than three hundred. Read the number of replies, which rises from three hundred and sixty-two to three hundred and sixty-five, and the difference, which hardly changes. A decision that moves nothing on these data is worth knowing about as well, because it can still matter on other data.
+:::
+
+## Hands-on 4 – The model {#hands-on-4-the-model .smaller .output-8}
+
+::: {.small}
+These two change only how the same question is estimated: the logit of the paper, reported as an average marginal effect, and the covariates of the original model, in thirds.
+:::
+
+```{webr}
+#| autorun: false
+try_spec(model = "logit")  # the model of the paper, as an average marginal effect
+```
+
+```{webr}
+#| autorun: false
+try_spec(adjust = "place_ethnic")  # the covariates of the original model, in thirds
+```
+
+::: notes
+Two decisions of the model, which leave the question and its measurement alone. The first fits the logistic regression of the paper and reports it as an average marginal effect, the mean change in the predicted probability of a greeting from a white to a Hispanic name, so that it sits on the same scale of percentage points as the linear model. The second adds the covariates of the original model, in the thirds of the public file. Run both. The logit gives exactly the gap of the linear model, minus nineteen point nine seven, because with the name as its only regressor both models reproduce the two shares. The covariates move it by about two points towards zero, to minus eighteen, without changing its sign or its significance.
+:::
+
+## Hands-on 4 – Off the curve {#hands-on-4-off-the-curve .smaller}
+
+::: {.small}
+The menu holds more options than the curve, and every other option is still an argument of `try_spec()`. The helper refuses it, gives the reason and names the page that teaches it. Then edit the cell to try others, such as `outcome = "reply"`, `names = "male"`, `comparison = "black"`, `adjust = "acs_continuous"` or `inference = "one_tailed"`.[ *Workspace:* the chunk `try-off-curve`.]{.content-visible unless-meta="deck.short"}
+:::
+
+```{webr}
+#| autorun: false
+# An option that is not on the curve: the helper refuses it and says why.
+try_spec(model = "three_group")
+```
+
+::: notes
+The curve keeps only the options that answer this claim in a justifiable way, but the menu holds more, and every other option is still an argument of try underscore spec. Ask for one, and the helper refuses it: it prints the reason recorded in the menu, the page of the course site that teaches the option, and the options that stay on the curve. This cell asks for the model of all three groups at once, which answers whether the groups differ at all rather than how the Hispanic names compare with the white names. Then edit the cell and try one or two of the others on the slide, and read the reason that comes back each time.
+:::
+
+## Hands-on 4 – Every argument {#hands-on-4-every-argument .smaller .output-8}
+
+::: {.small}
+The full set of arguments, each set to the reference specification, with the options of the menu in the comment beside it. Edit any argument and run the cell.[ *Workspace:* write your own calls below the chunk `try-off-curve`.]{.content-visible unless-meta="deck.short"}
+:::
+
+```{webr}
+#| autorun: false
+#| max-lines: 8
+try_spec(
+  # the five decisions on which the curve keeps more than one option
+  comparison = "white",      # white | nonhispanic          off the curve: black
+  population = "replies",    # replies | all
+  uncoded    = "drop",       # drop | not_named
+  model      = "lpm",        # lpm | logit                  off the curve: three_group
+  adjust     = "none",       # none | email | place | place_ethnic
+                             #                              off the curve: name_sex | acs_continuous
+  # the six decisions that are fixed on the curve
+  outcome    = "named",      # named                        off the curve: reply | reply24
+  names      = "both",       # both                         off the curve: male | female
+  officials  = "any",        # any                          off the curve: hispanic
+  bounced    = "exclude",    # exclude                      off the curve: no_reply
+  inference  = "model",      # model                        off the curve: randomisation | chisq | one_tailed
+  scale      = "pp"          # pp                           off the curve: odds_ratio | r
+)
+```
+
+::: notes
+Now your own combinations. This cell spells out every argument, each set to the reference specification, with the options of the menu in the comment beside it: the five decisions on which the curve keeps more than one option first, then the six on which it keeps one. The editor shows eight lines and scrolls for the rest. Change one or two of the arguments, run the cell, and restore the reference before you try the next, so that each try differs from the reference in a way that you can name. Three or four tries of your own is plenty, and everything that you try is logged for the next slide.
+:::

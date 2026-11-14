@@ -8,7 +8,7 @@ You leave with an estimand statement of your own and a reproduced value whose de
 
 ## How you work
 
-The session runs on its deck, whose slides run R inside your browser, with the data already in place, so that you follow and work in one place. Open the deck in a tab of its own and keep this page open beside it. Each half of the session has a page that lists its steps in order. The browser lab, a page of the course site that holds the same tasks outside the deck, is the fallback, and every step that you work at the keyboard has a button that opens the lab at the right task. The [exercise](exercise.qmd) page sets out the tasks of the session and the tool in which each is done. The slides are on the [slides page](slides.qmd), and each half opens with a link to its place in the deck.
+The session runs on its deck, whose slides run R inside your browser, with the data already in place, so that you follow and work in one place. Open the deck in a tab of its own and keep this page open beside it. Each half of the session has a page that lists its steps in order, and every step that you work at the keyboard has a button that opens the deck at the slide of the task. The browser lab, a page of the course site that holds the same tasks outside the deck, is the fallback, and a second button opens it at the same task. The [exercise](exercise.qmd) page sets out the tasks of the session and the tool in which each is done. The slides are on the [slides page](slides.qmd), and each half opens with a link to its place in the deck.
 
 [Open the deck](slides.qmd){.btn .btn-primary target="_blank"} [Open the browser lab](../../cases/housing/lab.qmd){.btn .btn-outline-primary target="_blank"}
 
