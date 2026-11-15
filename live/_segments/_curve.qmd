@@ -16,7 +16,7 @@ Every combination of the five decisions that keep more than one option: **`r sum
 :::
 
 ::: {.src}
-cases/housing/data/spec_curve.csv: the height of a mark is the estimate in percentage points, its shape the test of its own model (HC2 *t* for the linear model, *z* for the logit).
+data/spec_curve.csv: the height of a mark is the estimate in percentage points, its shape the test of its own model (HC2 *t* for the linear model, *z* for the logit).
 :::
 
 ::: notes
@@ -36,11 +36,11 @@ curve_base() + mark_layer(marks)
 ```
 
 ::: {.resultline}
-The [Specification curve](../cases/housing/curve.html) page draws this curve, with the reference marks and a description of every specification
+The [Specification curve](../curve.html) page draws this curve, with the reference marks and a description of every specification
 :::
 
 ::: {.src}
-cases/housing/data/reference_marks.csv: the published change in predicted probability for the OAs, the course refit of each script for the analysts.
+data/reference_marks.csv: the published change in predicted probability for the OAs, the course refit of each script for the analysts.
 :::
 
 ::: notes

@@ -12,8 +12,8 @@
 #               percentage points with marginaleffects, the prior
 #               sensitivity comes from priorsense, and only summaries and a
 #               thinned set of draws leave the script.
-# Reads:        cases/housing/data/housing_emails.csv (the original replies),
-#               cases/housing/data/display_replication.csv (the replication,
+# Reads:        data/housing_emails.csv (the original replies),
+#               data/display_replication.csv (the replication,
 #               from which the counts of each group are recovered)
 # Writes:       companion/_model-outputs/bayes_housing_counts.csv
 #               companion/_model-outputs/bayes_housing_draws.csv
@@ -23,7 +23,7 @@
 #               companion/_model-outputs/bayes_housing_ppc.csv
 #               (and the fitted models as fit_*.rds, which git ignores)
 # Author:       Claude for CM
-# Last updated: 2026-11-05
+# Last updated: 2026-11-15
 ################################################################################
 
 set.seed(20261105)
@@ -31,7 +31,7 @@ out <- "companion/_model-outputs/"
 
 # The original experiment: the coded replies to Hispanic and white names, the rows
 # of the reference specification of the curve (white, replies, drop)
-original <- readr::read_csv("cases/housing/data/housing_emails.csv", show_col_types = FALSE) |>
+original <- readr::read_csv("data/housing_emails.csv", show_col_types = FALSE) |>
   datawizard::data_filter(reply == 1, !is.na(named), group %in% c("white", "hispanic")) |>
   datawizard::data_modify(hisp = as.integer(group == "hispanic")) |>
   datawizard::data_summary(k = sum(named), n = length(named), by = "hisp") |>
@@ -42,7 +42,7 @@ original <- readr::read_csv("cases/housing/data/housing_emails.csv", show_col_ty
 # the size of each group. The only split of the 1,484 replies into whole
 # numbers of greetings at both shares is recovered here and checked against
 # the facts of the case study (721 replies to Hispanic and 763 to white aliases).
-replies_row <- readr::read_csv("cases/housing/data/display_replication.csv", show_col_types = FALSE) |>
+replies_row <- readr::read_csv("data/display_replication.csv", show_col_types = FALSE) |>
   datawizard::data_filter(population == "replies", authorities == "all")
 split <- tibble::tibble(n_hisp = seq_len(replies_row$n - 1)) |>
   datawizard::data_modify(

@@ -1,0 +1,139 @@
+---
+title: "Applied replication for data skills"
+subtitle: "Housing and racial bias"
+engine: knitr
+format:
+  live-revealjs:
+    webr:
+      # The packages that the helpers of the lab and the cells of the hands-on
+      # slides call: dplyr and purrr in the helpers, parameters with sandwich
+      # for the HC2 errors, marginaleffects for the logit and effectsize for
+      # the conversion rule of the robustness study; datawizard in the cells of
+      # Tasks 2, 3 and 5; tinyplot for the figures of Tasks 2 and 5 and for the
+      # graph. The runtime adds evaluate, knitr and htmltools itself, and tibble
+      # comes with dplyr. gt is left out, because no slide prints a formatted
+      # table and it adds 12 to 23 seconds to the first opening of a page.
+      packages:
+        - dplyr
+        - datawizard
+        - purrr
+        - tinyplot
+        - parameters
+        - sandwich
+        - marginaleffects
+        - effectsize
+# The five files that the cells read, fetched into the browser when the deck
+# opens; the runtime drops the leading ../ of each path, so inside the browser
+# they sit under data/, the folder that the setup cell below
+# names as .data_dir.
+resources:
+  - ../data/housing_emails.csv
+  - ../data/housing_original.csv
+  - ../data/spec_curve.csv
+  - ../data/menu_options.csv
+  - ../data/dag_answers.csv
+live:
+  show-hints: true
+  show-solutions: true
+# Optional runs that this deck includes in its main flow (core-runs.lua
+# strips their .deepdive mark); the others stay on the d toggle. The one run
+# of this deck is "methods": the methods tutorial after the menu in Part 4,
+# and the multiverse background after Task 4.
+core-runs: []
+# The format of the deck, which the segments of the Housing case study read
+# through Quarto conditional content (when-meta="deck.short" and so on): one
+# of short or day, and menu where the deck teaches the specification menu.
+deck:
+  day: true
+  menu: true
+# THE DECK OF THE DAY FORMAT, OF DAY 2 OF THE LONG FORMAT AND OF THE
+# INDEPENDENT FORMAT
+# - The participants of the day format do the five tasks in the workspace, in
+#   their IDE. This deck carries the whole browser lab on its slides, through
+#   the Quarto Live extension: the facilitator runs each step on the shared
+#   screen, so that the class can compare its output with the slides, and a
+#   participant whose installation fails carries on in the deck. Each
+#   hands-on slide names the chunk or the file of the workspace that holds
+#   the same step.
+# - The hands-on segments in _segments/ (_handson1-live.qmd to
+#   _handson4-submit-live.qmd, _defaults-live.qmd, _placement-live.qmd and
+#   _prereg-live.qmd) hold the cells of Tasks 1 to 5 of
+#   lab.qmd, one step to a cell, with the hints and solutions
+#   of its exercises. The helpers of the lab are
+#   ../_includes/_lab-helpers.qmd and the graph helpers of Task 2
+#   ../_includes/_lab-graph.qmd, both included after the setup cell that
+#   names the data folder. The two setup segments stay in
+#   ../slides/_segments/, because the decks of day 3 include them as well.
+# - The setup cell and the helpers sit on the agenda slide, after its notes,
+#   because a cell or a comment placed before the first heading of a deck
+#   makes a slide of its own; they print nothing.
+# - The part dividers keep the ids that the pages of the formats link.
+# - No duration goes on any slide or into any note.
+---
+
+{{< include ../slides/_segments/shared/_setup.qmd >}}
+{{< include ../slides/_segments/case/_setup.qmd >}}
+{{< include ../_extensions/r-wasm/live/_knitr.qmd >}}
+{{< include _segments/_agenda-day.qmd >}}
+
+```{webr}
+#| include: false
+#| autorun: true
+# The setup of the deck, run once the engine is ready. .data_dir is the folder
+# in which the five files of the resources list arrive inside the browser: the
+# runtime drops the leading ../ of their paths, so from the working directory
+# of R they sit under data/. housing holds the emails, one row
+# each, the object from which the cells of the hands-on slides work.
+.data_dir <- "data"
+housing <- utils::read.csv(file.path(.data_dir, "housing_emails.csv"), na.strings = c("", "NA"))  # r-style: keep – the base reader adds nothing to the download
+```
+
+{{< include ../_includes/_lab-helpers.qmd >}}
+{{< include ../_includes/_lab-graph.qmd >}}
+{{< include _segments/_aims.qmd >}}
+{{< include _segments/_not-needed.qmd >}}
+{{< include _segments/_p1-divider.qmd >}}
+{{< include _segments/_credibility.qmd >}}
+{{< include _segments/_matrix.qmd >}}
+{{< include _segments/_matrix-more.qmd >}}
+{{< include _segments/_score-brief.qmd >}}
+{{< include _segments/_robustness.qmd >}}
+{{< include _segments/_paper.qmd >}}
+{{< include _segments/_workspace-and-deck.qmd >}}
+{{< include _segments/_handson1-live.qmd >}}
+{{< include _segments/_break1.qmd >}}
+{{< include _segments/_p2-divider.qmd >}}
+{{< include _segments/_five-analysts.qmd >}}
+{{< include _segments/_estimands.qmd >}}
+{{< include _segments/_lundberg.qmd >}}
+{{< include _segments/_dags.qmd >}}
+{{< include _segments/_claim-estimand.qmd >}}
+{{< include _segments/_handson2-live.qmd >}}
+{{< include _segments/_lunch-reading.qmd >}}
+{{< include _segments/_p3-divider.qmd >}}
+{{< include _segments/_task2-robustness.qmd >}}
+{{< include _segments/_handson3-live.qmd >}}
+{{< include _segments/_defaults-live.qmd >}}
+{{< include _segments/_onenumber.qmd >}}
+{{< include _segments/_reproduction-record.qmd >}}
+{{< include _segments/_handson3b.qmd >}}
+{{< include _segments/_break-afternoon.qmd >}}
+{{< include _segments/_p4-divider.qmd >}}
+{{< include _segments/_menu.qmd >}}
+{{< include _segments/_methods.qmd >}}
+{{< include _segments/_methods-more.qmd >}}
+{{< include _segments/_handson4-live.qmd >}}
+{{< include _segments/_handson4-submit-live.qmd >}}
+{{< include _segments/_multiverse-intro.qmd >}}
+{{< include _segments/_curve.qmd >}}
+{{< include _segments/_classchart.qmd >}}
+{{< include _segments/_placement-live.qmd >}}
+{{< include _segments/_whatmoved.qmd >}}
+{{< include _segments/_replication.qmd >}}
+{{< include _segments/_critics-prereg.qmd >}}
+{{< include _segments/_archiving.qmd >}}
+{{< include _segments/_records.qmd >}}
+{{< include _segments/_prereg-live.qmd >}}
+{{< include _segments/_closing.qmd >}}
+{{< include _segments/_close.qmd >}}
+{{< include _segments/_references.qmd >}}

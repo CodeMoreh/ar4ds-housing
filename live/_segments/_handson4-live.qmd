@@ -1,7 +1,7 @@
-<!-- Task 4 of the browser lab (cases/housing/lab.qmd) for both live decks: the
+<!-- Task 4 of the browser lab (lab.qmd) for both live decks: the
      reference specification, the five single changes in the three groups of
      the menu, an option off the curve and the full set of arguments, with the
-     cells of the lab. The one-day deck goes on to the submission
+     cells of the lab. The day deck goes on to the submission
      (_handson4-submit-live.qmd), the short deck to the log of its tries
      (_handson4-tries-live.qmd). Lines that differ by format are shown by
      Quarto conditional content, keyed on the deck map in the YAML of each
@@ -19,11 +19,11 @@ try_spec()
 ```
 
 ::: {.fragment .small}
-[This is **not** your preregistered analysis.]{.content-visible when-meta="deck.one-day"}[Nothing is sent anywhere.]{.content-visible unless-meta="deck.one-day"} You are allowed to look, change your mind and try again, which is why this phase has a name of its own.
+[This is **not** your preregistered analysis.]{.content-visible when-meta="deck.day"}[Nothing is sent anywhere.]{.content-visible unless-meta="deck.day"} You are allowed to look, change your mind and try again, which is why this phase has a name of its own.
 :::
 
 ::: notes
-This is where you get your hands properly dirty, and I want to be explicit about what kind of activity it is. Task 4 is exploration. Start from the reference with try underscore spec and no arguments, which gives the raw gap of the paper. Every call is a live fit in your browser, and it prints the shares greeted by name in the two groups, the difference in points with its interval, the test of the model, the verdict and the place of the result among the sixty-four. The next slides change one decision at a time, and every try is logged.[ In the workshop you do the same in your workspace, and I run the cells here.]{.content-visible when-meta="deck.one-day"} [advance] [And this is not your preregistered analysis: here you may look, change your mind and try again.]{.content-visible when-meta="deck.one-day"}[Nothing leaves your machine: here you may look, change your mind and try again.]{.content-visible unless-meta="deck.one-day"}
+This is where you get your hands properly dirty, and I want to be explicit about what kind of activity it is. Task 4 is exploration. Start from the reference with try underscore spec and no arguments, which gives the raw gap of the paper. Every call is a live fit in your browser, and it prints the shares greeted by name in the two groups, the difference in points with its interval, the test of the model, the verdict and the place of the result among the sixty-four. The next slides change one decision at a time, and every try is logged.[ Today you do the same in your workspace, and I run the cells here.]{.content-visible when-meta="deck.day"} [advance] [And this is not your preregistered analysis: here you may look, change your mind and try again.]{.content-visible when-meta="deck.day"}[Nothing leaves your machine: here you may look, change your mind and try again.]{.content-visible unless-meta="deck.day"}
 :::
 
 ## Hands-on 4 – The question {#hands-on-4-the-question .smaller .output-8}

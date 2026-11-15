@@ -1,0 +1,60 @@
+---
+title: "The exercise"
+subtitle: "Short"
+bibliography: [../../references.bib, ../../references-new.bib]
+---
+
+This page sets out what you do in the short format, and where. The [background page](../../background.qmd) presents the original study, the SCORE replication and the five reanalyses of the robustness study of SCORE [Multi100\; @AczelEtAl2026InvestigatingAnalyticalRobustness], and it is the place to start if you have not read it. The session takes Tasks 1 to 4, and you do them in the deck of the session, whose slides run R inside your browser with the data already in place, so that there is nothing to install. The [browser lab](../../lab.qmd), a page of this site that holds the same tasks, is the fallback if the deck does not load. The pages of the two halves say in what order the tasks come.
+
+---
+
+{{< include ../../_includes/_exercise-claim.qmd >}}
+
+---
+
+## The tasks
+
+The session takes four of the five numbered tasks of the exercise. Each says what to do in the deck, and the browser lab holds the same cells as the fallback.
+
+### Task 1 – The setup check
+
+The only aim is to reach the point where a line of R runs and the data are in front of you. *Deck:* wait for the engine to finish downloading, then run the setup cell. If the deck will not load, carry on in the [browser lab](../../lab.qmd#task-1-setup), which runs every later task.
+
+### Task 2 – The estimand statement
+
+Write the **estimand statement** behind the claim. It says which comparison is made (Hispanic names against which names), which emails are counted (the replies, or every delivered email), and which outcome is compared. The [specification menu](../../menu.qmd) gives the template. *On the slides:* you type the statement in the chat, hold it, and send it with the rest of the class when the facilitator says go. The slides then draw the causal graph of the experiment and show why comparing greetings among the replies conditions on a consequence of the name.
+
+### Task 3 – The reproduction
+
+Choose one of the five analysts in the table above and reproduce the analysis from the public file of the OAs, `housing_original.csv` ([codebook](../../data/housing_original_codebook.md)). Four of them have a statistic recorded in the robustness study, from the $\chi^2$ test of a two-by-two table that 8PTRZ ran to the logistic regression of three groups with covariates that EWFMI fitted, and all four come out exactly. The robustness study recorded no statistic for P9W8Y, so its likelihood-ratio test of the three groups, $\chi^2$ = `r fmt(an("P9W8Y", "statistic_refit"), 3)` on 2 degrees of freedom, can be run again but cannot be matched against the record. *Deck:* the slides have a few cells for each analyst, one step each, and the [browser lab](../../lab.qmd#task-3-reproduction) holds the same cells. When the facilitator says so, the whole class types the analyst and the value that each person reproduced, and sends them at the same moment.
+
+Then find out why your number is what it is. `chisq.test()` and `prop.test()` apply a continuity correction to a two-by-two table unless they are told otherwise, so `correct = FALSE` gives `r fmt(chi_plain, 2)` instead of `r fmt(chi_yates, 3)` for 8PTRZ and `r fmt(prop_plain, 2)` instead of `r fmt(prop_yates, 3)` for 25N5D. The z of EWFMI is positive, where that of UYV3F is negative, because its model takes the Hispanic names as the base group. A reproduction depends on the defaults and the codings of the software as well as on the data and the model.
+
+### Task 4 – The menu
+
+This task is **exploratory**. `try_spec()` takes the five arguments of the curve, `comparison`, `population`, `uncoded`, `model` and `adjust`, each of which defaults to the reference specification, so changing one thing means changing one argument. Try several specifications from the [specification menu](../../menu.qmd), one decision at a time, and note which choices move the estimate and which barely touch it. An option that is not on the curve, such as `model = "three_group"`, is refused with the reason given in `menu_options.csv`. `my_experiments()` prints everything you have tried side by side. *Deck:* the slides of the second half carry the cells of the task, and the [browser lab](../../lab.qmd#task-4-menu) holds the same cells. Then choose the one that you would defend and run it once more, so that it is your last try, because the slides place it among the `r nrow(curve)` specifications of the curve. The session sends nothing to the class chart.
+
+Nothing in this task is preregistered. You may look, change your mind and try again.
+
+### Task 5 – Declaration and report
+
+The session stops before this task, in which you choose **one** specification and complete a preregistration block before you run it, and before the class chart, on which each participant puts the specifications of Tasks 4 and 5. Both take more time than the session has, and the page [After the session](after.qmd) says where to take them up.
+
+---
+
+## What counts as a result
+
+The session sends nothing to the class chart, and the rule below applies to the results that you send later.
+
+{{< include ../../_includes/_exercise-result.qmd >}}
+
+---
+
+## Links
+
+The tools of the session:
+
+- [Slides](slides.qmd) – the deck of the session, whose slides carry the cells of the tasks and run R inside your browser.
+- [Browser lab](../../lab.qmd) – the same tasks and their data in a browser tab, the fallback if the deck does not load.
+
+{{< include ../../_includes/_exercise-links.qmd >}}

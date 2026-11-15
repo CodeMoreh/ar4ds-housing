@@ -32,7 +32,7 @@ Every comparison between groups of names reproduces exactly from the public file
 :::
 
 ::: {.src}
-The ReadMe of the deposit; @EinsteinGlick2017DoesRaceAffect, Table 1; cases/housing/data/reference_marks.csv.
+The ReadMe of the deposit; @EinsteinGlick2017DoesRaceAffect, Table 1; data/reference_marks.csv.
 :::
 
 ::: notes

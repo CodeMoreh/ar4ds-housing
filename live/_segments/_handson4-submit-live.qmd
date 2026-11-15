@@ -1,10 +1,10 @@
-<!-- The end of Task 4 of the browser lab (cases/housing/lab.qmd) for the
-     one-day deck: the log of the tries and the submission of the explored
+<!-- The end of Task 4 of the browser lab (lab.qmd) for the
+     day deck: the log of the tries and the submission of the explored
      analysis to the class chart, with the cells of the lab. -->
 ## Hands-on 4 – The submission {#hands-on-4-the-submission .smaller .output-8}
 
 ::: {.small}
-`my_experiments()` lists your tries. Rerun the one that you would defend and **submit it**: the cell prints your tag and a link to the form, and your circle appears on the [Class results]({{< var cases.housing.live-results-url >}}) page. *Workspace:* the chunks `my-experiments` and `submit-exploration`.
+`my_experiments()` lists your tries. Rerun the one that you would defend and **submit it**: the cell prints your tag and the address of the form, and your circle appears on the [Class results]({{< var cases.housing.live-results-url >}}) page. *Workspace:* the chunks `my-experiments` and `submit-exploration`.
 :::
 
 ```{webr}
@@ -18,5 +18,5 @@ submit_exploration()
 ```
 
 ::: notes
-When you have three or four tries, print the log. My underscore experiments lists the tries side by side, with only the decisions that you varied, which is the small multiverse that you have just built. Then rerun whichever one you can argue for best, so that it is your last try, and submit it. The cell prints your submission line, a link to a form with every field filled in, and a tag, which marks your circle on the class chart. Press Send in the form, and the circle appears on the Class results page within seconds, open because it is exploratory. To choose your own tag, pass a nickname rather than your name, because the chart is public. I say it again: this is exploration, and the preregistered analysis comes in Task 5. [wait for the circles; then read the chart]
+When you have three or four tries, print the log. My underscore experiments lists the tries side by side, with only the decisions that you varied, which is the small multiverse that you have just built. Then rerun whichever one you can argue for best, so that it is your last try, and submit it. The cell prints your submission line, the address of a form with every field filled in, and a tag, which marks your circle on the class chart. Open the address in a new tab and press Send in the form, and the circle appears on the Class results page within seconds, open because it is exploratory. To choose your own tag, pass a nickname rather than your name, because the chart is public. I say it again: this is exploration, and the preregistered analysis comes in Task 5. [wait for the circles; then read the chart]
 :::

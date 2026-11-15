@@ -144,7 +144,7 @@ On the original data, every justifiable analysis finds the gap. Only its size mo
 :::
 
 ::: {.fragment}
-Every one of those analyses uses the same `r fmt_n(nrow(housing))` emails, the same six names, the same officials in the same year. **The curve varies the analysis and never the sample.**
+Every one of those analyses uses the same `r format(nrow(housing), big.mark = ",")` emails, the same six names, the same officials in the same year. **The curve varies the analysis and never the sample.**
 :::
 
 ::: {.fragment}

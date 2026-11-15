@@ -1,4 +1,4 @@
-<!-- Task 1 of the browser lab (cases/housing/lab.qmd) on two slides, the setup
+<!-- Task 1 of the browser lab (lab.qmd) on two slides, the setup
      check and the warm-up, with the cells of the lab. Both live decks include
      this segment. Lines that differ by format are shown by Quarto conditional
      content, keyed on the deck map in the YAML of each deck; no cell sits
@@ -10,7 +10,7 @@
 :::
 
 ::: {.small .content-visible when-meta="deck.short"}
-Wait until the cell below shows **Run Code**, then run it: `housing` has `r fmt_n(nrow(housing))` rows, one per email, and the last line reads `r fmt_num(curve_ref$b_pp, 2)` percentage points.
+Wait until the cell below shows **Run Code**, then run it: `housing` has `r format(nrow(housing), big.mark = ",")` rows, one per email, and the last line reads `r fmt_num(curve_ref$b_pp, 2)` percentage points.
 :::
 
 ::: {.small .content-visible unless-meta="deck.short"}

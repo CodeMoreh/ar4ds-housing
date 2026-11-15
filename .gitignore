@@ -26,13 +26,18 @@
 # into _site/; none of it belongs in git.
 /tracks/**/*.html
 /tracks/**/*_files/
-/cases/**/*.html
-/cases/**/*_files/
+/*.html
+/*_files/
+# The pages outside the build render beside their source when rendered alone
+/facilitator/*.html
+/facilitator/*_files/
+/slides/*.html
+!/slides/nav-tools.html
 
 # The de-identified data of the SCORE replication, fetched from osf.io/xseqg
-# at run time by R/housing/06_replication.R; only aggregates derived from them
+# at run time by R/06_replication.R; only aggregates derived from them
 # are committed
-/data-raw/housing/score_replication/
+/data-raw/score_replication/
 
 # Copies that pCloud makes when it renames a page during a render
 /*[conflicted*

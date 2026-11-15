@@ -1,4 +1,4 @@
-<!-- Task 5 of the browser lab (cases/housing/lab.qmd) for the one-day deck:
+<!-- Task 5 of the browser lab (lab.qmd) for the day deck:
      the preregistration moment, then the cells of the lab, the block, its
      declaration, the run, the report and the curve with the declared result
      ringed. Each slide names where the same step lives in the workspace. -->
@@ -101,7 +101,7 @@ Go. Run the specification in your preregistration, just that one, with run under
 ## Hands-on 5 – The report {#hands-on-5-the-report .smaller .output-8}
 
 ::: {.small}
-`report_result()` prints a one-click link to the results form with your values already in it – open it, press Send. Your result joins the [Class results]({{< var cases.housing.live-results-url >}}) page as a *declared* result, a filled circle beside the open circles of Task 4. *Workspace:* the chunk `report`.
+`report_result()` prints the address of the results form with your values already in it – open it in a new tab and press Send. Your result joins the [Class results]({{< var cases.housing.live-results-url >}}) page as a *declared* result, a filled circle beside the open circles of Task 4. *Workspace:* the chunk `report`.
 :::
 
 ```{webr}
@@ -118,7 +118,7 @@ Stuck? Type "STUCK", reload and rerun, try a second browser or follow my screen.
 :::
 
 ::: notes
-When the numbers are in front of you, call report underscore result. It builds your submission from the preregistration, so there is nothing to fill in or transcribe, and prints a link to the results form with your values already in it: one click, press Send, and you have submitted. Your mark joins the chart on the Class results page as a declared result, a filled circle, beside the open circles that the class submitted in Task 4, and with the same tag. [advance] If the declared results fall systematically to one side of the exploratory ones, that tells you something about what people chose to preregister once they had tried the alternatives. [advance] If anything misbehaves, type STUCK and work down the ladder on the cheatsheet. Your specification is one row of the curve file, and I will help you submit it by hand, so everybody gets a mark on the chart.
+When the numbers are in front of you, call report underscore result. It builds your submission from the preregistration, so there is nothing to fill in or transcribe, and prints the address of the results form with your values already in it: open it in a new tab, press Send, and you have submitted. Your mark joins the chart on the Class results page as a declared result, a filled circle, beside the open circles that the class submitted in Task 4, and with the same tag. [advance] If the declared results fall systematically to one side of the exploratory ones, that tells you something about what people chose to preregister once they had tried the alternatives. [advance] If anything misbehaves, type STUCK and work down the ladder on the cheatsheet. Your specification is one row of the curve file, and I will help you submit it by hand, so everybody gets a mark on the chart.
 :::
 
 ## Hands-on 5 – The curve {#hands-on-5-the-curve .smaller}
@@ -129,7 +129,7 @@ Finally, your result on the curve of the claim, the `r nrow(curve)` specificatio
 
 ```{webr}
 #| autorun: false
-spec_curve <- utils::read.csv("cases/housing/data/spec_curve.csv") |>  # r-style: keep – the base reader adds nothing to the download
+spec_curve <- utils::read.csv("data/spec_curve.csv") |>  # r-style: keep – the base reader adds nothing to the download
   datawizard::data_arrange("b_pp") |>
   datawizard::data_modify(rank = 1:n(),
                           emails = factor(population, levels = c("replies", "all"),

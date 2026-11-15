@@ -13,7 +13,7 @@
 # {{< var workshop.name >}} and {{< var workshop.format >}}.
 workshop:
   name: "Applied Replication for Data Skills"
-  format: "a short session, one day or self-study"
+  format: "short, day and independent formats"
   organiser: "Chris Moreh"
   # Add a public contact address here if you want one shown on the site.
   contact: ""
@@ -39,11 +39,11 @@ cases:
   housing:
     label: "Housing"
     name: "the Housing and racial bias case study"
-    # A public template repository with Pages built by Actions, like the
-    # workspace of the Europeanisation case study; the zip unzips into ar4ds-housing-workspace-main
+    # A public template repository with Pages built by Actions; the zip
+    # unzips into ar4ds-housing-workspace-main
     template-repo: "https://github.com/CodeMoreh/ar4ds-housing-workspace"
     workspace-zip: "https://github.com/CodeMoreh/ar4ds-housing-workspace/archive/refs/heads/main.zip"
-    live-results-url: "https://codemoreh.github.io/ar4ds-housing/cases/housing/class-results.html"
+    live-results-url: "https://codemoreh.github.io/ar4ds-housing/class-results.html"
     results-word: "housing"
 
 # --- Next-delivery block --------------------------------------------------
@@ -52,7 +52,7 @@ cases:
 delivery:
   active: 'false'
   # Which format this delivery follows, named by its folder under tracks/:
-  # housing-short, housing-one-day, housing-extended or self-study. An empty
+  # short, day or independent. An empty
   # value prints no format line in the callout, and so does a value that
   # matches no folder.
   track: ""

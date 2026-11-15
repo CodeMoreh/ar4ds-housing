@@ -19,7 +19,7 @@ For your notes: **which of your two analyses answers the claim as SCORE selected
 :::
 
 ::: {.src}
-cases/housing/data/analysts5.csv: the gap of each analysis in percentage points, from the course refit.
+data/analysts5.csv: the gap of each analysis in percentage points, from the course refit.
 :::
 
 ::: notes

@@ -8,18 +8,18 @@ bibliography: [../references.bib, ../references-new.bib]
 #| label: setup
 #| include: false
 # The estimator of the case study, for spec_frame()
-source("../R/housing/_tools.R")
+source("../R/_tools.R")
 
-housing <- readr::read_csv("../cases/housing/data/housing_emails.csv", show_col_types = FALSE)
-subgroups <- readr::read_csv("../cases/housing/data/display_subgroups.csv", show_col_types = FALSE)
+housing <- readr::read_csv("../data/housing_emails.csv", show_col_types = FALSE)
+subgroups <- readr::read_csv("../data/display_subgroups.csv", show_col_types = FALSE)
 ref <- spec_frame(housing, comparison = "white", population = "replies", uncoded = "drop")
 ```
 
-This module of the [companion curriculum](index.qmd) is about estimating an effect separately in parts of a sample, and about what follows from making many such estimates at once. The Housing and racial bias case study comes from a field experiment by the original authors (OAs), who emailed public housing authorities across the United States from names meant to indicate a white, a Black or a Hispanic applicant [@EinsteinGlick2017DoesRaceAffect]; the [background page](../cases/housing/index.qmd) tells it in full. The claim of the course concerns all the names together: replies to Hispanic names opened with the name of the sender less often than replies to white names. The paper also asked narrower questions of the same data, whether officials treat applicants of their own group differently and whether the gap depends on the composition of the community, and its abstract reports that the disparity in tone "is somewhat more muted in more diverse locations, but it does not depend on whether a housing official is Hispanic". Questions of this kind divide the replies into subgroups, and each division adds comparisons, each with its own chance of a false alarm. Every number on the page is computed when it is built, from the files of the case study in `cases/housing/data/`.
+This module of the [companion curriculum](index.qmd) is about estimating an effect separately in parts of a sample, and about what follows from making many such estimates at once. The Housing and racial bias case study comes from a field experiment by the original authors (OAs), who emailed public housing authorities across the United States from names meant to indicate a white, a Black or a Hispanic applicant [@EinsteinGlick2017DoesRaceAffect]; the [background page](../background.qmd) tells it in full. The claim of the course concerns all the names together: replies to Hispanic names opened with the name of the sender less often than replies to white names. The paper also asked narrower questions of the same data, whether officials treat applicants of their own group differently and whether the gap depends on the composition of the community, and its abstract reports that the disparity in tone "is somewhat more muted in more diverse locations, but it does not depend on whether a housing official is Hispanic". Questions of this kind divide the replies into subgroups, and each division adds comparisons, each with its own chance of a false alarm. Every number on the page is computed when it is built, from the files of the case study in `data/`.
 
 ## 1. The subgroups of the case study {#sec-subgroups}
 
-The pipeline stage `R/housing/05_displays.R` writes `display_subgroups.csv`, which holds the gap of the claim in seven subgroups beside the gap among all the coded replies. Each row is the same comparison as the reference specification of the course, the difference in the share of named greetings between replies to Hispanic and to white names, with HC2 standard errors, fitted to a subset of the replies, and the [codebook of the displays](../cases/housing/data/displays_codebook.md) documents the columns. The seven subgroups come from three divisions of the replies, which differ in what they can tell us.
+The pipeline stage `R/05_displays.R` writes `display_subgroups.csv`, which holds the gap of the claim in seven subgroups beside the gap among all the coded replies. Each row is the same comparison as the reference specification of the course, the difference in the share of named greetings between replies to Hispanic and to white names, with HC2 standard errors, fitted to a subset of the replies, and the [codebook of the displays](../data/displays_codebook.md) documents the columns. The seven subgroups come from three divisions of the replies, which differ in what they can tell us.
 
 - **The sex of the name.** Santiago against Brett and Gabriela against Emily. The sex of the name was crossed with the group by design, so each half is an experiment of its own, randomised like the whole.
 - **The official who replied.** Replies from officials with distinctively Hispanic names and from all other officials, the test of the second hypothesis of the paper. An official is known only by replying, so this division is selected after the email arrived, and the [module on audit experiments](experiments.qmd#sec-posttreatment) sets out why such a comparison needs more care.
@@ -27,7 +27,7 @@ The pipeline stage `R/housing/05_displays.R` writes `display_subgroups.csv`, whi
 
 ```{r}
 #| label: fig-subgroups
-#| fig-cap: "The gap in greetings by name between Hispanic and white names among the coded replies, overall and in seven subgroups, with 95% confidence intervals from HC2 standard errors; the number of replies in each comparison is printed on the right. Source: `cases/housing/data/display_subgroups.csv`."
+#| fig-cap: "The gap in greetings by name between Hispanic and white names among the coded replies, overall and in seven subgroups, with 95% confidence intervals from HC2 standard errors; the number of replies in each comparison is printed on the right. Source: `data/display_subgroups.csv`."
 #| fig-alt: "Dot plot of eight gaps with intervals. All lie below zero, between about −26 and −15 points; the interval for officials with Hispanic names runs from about −64 to +13, and those for the female names and for the middle third of communities reach or cross zero."
 #| fig-width: 7.5
 #| fig-height: 3.8
@@ -89,7 +89,7 @@ The classical answer to many tests is to make each test harder to pass. The olde
 
 ```{r}
 #| label: tbl-adjusted
-#| tbl-cap: "The p-values of the gap in seven subgroups, each tested on its own and adjusted for the seven tests by the methods of Holm and of Benjamini and Hochberg. The comparison of all names, the claim itself, is not part of the family. Source: `cases/housing/data/display_subgroups.csv`."
+#| tbl-cap: "The p-values of the gap in seven subgroups, each tested on its own and adjusted for the seven tests by the methods of Holm and of Benjamini and Hochberg. The comparison of all names, the claim itself, is not part of the family. Source: `data/display_subgroups.csv`."
 adjusted <- subgroups |>
   datawizard::data_filter(subgroup != "all names") |>
   datawizard::data_modify(holm = stats::p.adjust(p, method = "holm"),
@@ -131,7 +131,7 @@ pooled <- purrr::map(taus, \(tau) {
 
 ```{r}
 #| label: fig-pooling
-#| fig-cap: "The gap in greetings by name in the three thirds of communities by percent Hispanic, estimated separately (no pooling) and pooled by a random-effects model under four values of the standard deviation of the true gaps of the thirds, from 0 (complete pooling) to the upper limit of its 95% confidence interval. Source: `cases/housing/data/display_subgroups.csv`."
+#| fig-cap: "The gap in greetings by name in the three thirds of communities by percent Hispanic, estimated separately (no pooling) and pooled by a random-effects model under four values of the standard deviation of the true gaps of the thirds, from 0 (complete pooling) to the upper limit of its 95% confidence interval. Source: `data/display_subgroups.csv`."
 #| fig-alt: "Three lines of points. Estimated separately, the lower third lies near −21, the middle near −15 and the top near −22 points. At a standard deviation of 0 all three meet at about −19; at 5 and 10 points they spread out progressively, and at the upper limit of about 24 points they lie close to the separate estimates."
 #| fig-width: 7
 #| fig-height: 3
@@ -157,7 +157,7 @@ The model estimates $\tau$ at zero, because the three gaps differ by less than t
 
 The problem of multiple comparisons is usually framed as a count of the tests that a researcher ran. @GelmanLoken2014StatisticalCrisisScience extend it to the tests that a researcher could have run, in what they call the 'garden of forking paths': even an analyst who runs a single test has chosen it from many that the same data allow, and if the choice was made in the light of the data, the nominal p-value no longer describes the chance of a false alarm. Subgroups are among the widest of these paths, since almost every dataset can be divided in many ways, by the sex of a name, by the person who replied, by the composition of a community or by the year of a survey, and a gap that is significant in one division can be reported as the finding while the other divisions go unmentioned.
 
-The course handles the subgroups of this case study in three ways that follow from the argument of this page. The curve of the claim leaves them out, because each subgroup asks a narrower question than the claim, so the [specification menu](../cases/housing/menu.qmd#level-estimand) treats the names and the officials as decisions about the question rather than as different specifications of one question. The subgroups stay on the site as displays, all seven together, so that none of them can be read without the others. And the [multiverse module](multiverse.qmd#sec-forks) decomposes the curve by its decisions, which is the same habit applied to analytical choices rather than to subgroups: every path is reported, and the spread across the paths is part of the result. A declared analysis that tests a subgroup names the subgroup, the division and the test of the difference before the data are touched, and reports whatever comes out.
+The course handles the subgroups of this case study in three ways that follow from the argument of this page. The curve of the claim leaves them out, because each subgroup asks a narrower question than the claim, so the [specification menu](../menu.qmd#level-estimand) treats the names and the officials as decisions about the question rather than as different specifications of one question. The subgroups stay on the site as displays, all seven together, so that none of them can be read without the others. And the [multiverse module](multiverse.qmd#sec-forks) decomposes the curve by its decisions, which is the same habit applied to analytical choices rather than to subgroups: every path is reported, and the spread across the paths is part of the result. A declared analysis that tests a subgroup names the subgroup, the division and the test of the difference before the data are touched, and reports whatever comes out.
 
 ::: {.callout-tip}
 ## Try it
@@ -167,4 +167,4 @@ Add the gap among replies within 24 hours and among later replies to the family,
 
 ## Sources and further reading {#sec-sources}
 
-The subgroup estimates are those of `display_subgroups.csv`, written by `R/housing/05_displays.R` from the course file and documented in the [codebook of the displays](../cases/housing/data/displays_codebook.md). The step-down correction is that of @Holm1979SimpleSequentiallyRejective and the false discovery rate that of @BenjaminiHochberg1995ControllingFalseDiscovery; both are implemented in `p.adjust()`, whose help page lists the other methods. The argument for partial pooling over corrections is made by @GelmanEtAl2012WhyWeUsually, the warning about differences in significance by @GelmanStern2006DifferenceSignificantNot, and the garden of forking paths is the term of @GelmanLoken2014StatisticalCrisisScience, while the random-effects models of section 4 are fitted with metafor [@Viechtbauer2010ConductingMetaanalysesMetafor].
+The subgroup estimates are those of `display_subgroups.csv`, written by `R/05_displays.R` from the course file and documented in the [codebook of the displays](../data/displays_codebook.md). The step-down correction is that of @Holm1979SimpleSequentiallyRejective and the false discovery rate that of @BenjaminiHochberg1995ControllingFalseDiscovery; both are implemented in `p.adjust()`, whose help page lists the other methods. The argument for partial pooling over corrections is made by @GelmanEtAl2012WhyWeUsually, the warning about differences in significance by @GelmanStern2006DifferenceSignificantNot, and the garden of forking paths is the term of @GelmanLoken2014StatisticalCrisisScience, while the random-effects models of section 4 are fitted with metafor [@Viechtbauer2010ConductingMetaanalysesMetafor].

@@ -1,5 +1,5 @@
 <!-- The defaults and codings of Task 3 of the browser lab
-     (cases/housing/lab.qmd), for the one-day deck: the two tests of the
+     (lab.qmd), for the day deck: the two tests of the
      continuity-correction slide run again without the correction, with the
      cells of the lab, on the file read at the start of Task 3. -->
 ## Hands-on 3 – 8PTRZ uncorrected {#hands-on-3-8ptrz-uncorrected .smaller .output-8}

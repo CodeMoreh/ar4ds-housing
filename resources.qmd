@@ -2,6 +2,11 @@
 title: "Resources"
 subtitle: "Readings, records and tools"
 bibliography: [references.bib, references-new.bib]
+# The works cited on the pages and slides of the site, which the pages do not list
+# at their foot; the section References at the end of this page lists them. Add the
+# key of a work here when a page or a deck first cites it.
+nocite: |
+  @AczelEtAl2026InvestigatingAnalyticalRobustness, @AlipourfardEtAl2021SystematizingConfidenceOpen, @Allison2009MissingData, @Arel-BundockEtAl2024HowInterpretStatistical, @AtheyImbens2017EconometricsRandomizedExperiments, @Auspurg2025RobustnessBetterAssessed, @AuspurgBruderl2021HasCredibilitySocial, @BenjaminiHochberg1995ControllingFalseDiscovery, @BertrandMullainathan2004AreEmilyGreg, @BlairEtAl2023DeclareDesignDeclareDiagnose, @BreznauEtAl2022ObservingManyResearchers, @Burkner2017BrmsPackageBayesian, @ButlerBroockman2011PoliticiansRaciallyDiscriminate, @BuurenGroothuis-Oudshoorn2011MiceMultivariateImputation, @CarseyHarden2014MonteCarloSimulation, @ColeEtAl2010IllustratingBiasDue, @Coppock2019AvoidingPosttreatmentBias, @DAgostinoMcGowanEtAl2024CausalInferenceNot, @DeBruineBarr2021UnderstandingMixedeffectsModels, @DelGiudiceGangestad2021TravelersGuideMultiverse, @EinsteinGlick2017DoesRaceAffect, @ElwertWinship2014EndogenousSelectionBias, @Ernst2004PermutationMethods, @Fisher1935DesignExperiments, @Gaddis2017HowBlackAre, @GanslmeierVlandas2025EstimatingExtentSources, @GelmanCarlin2014PowerCalculationsAssessing, @GelmanEtAl2012WhyWeUsually, @GelmanEtAl2014BayesianDataAnalysis, @GelmanEtAl2020RegressionOtherStories, @GelmanEtAl2026BayesianWorkflow, @GelmanLoken2014StatisticalCrisisScience, @GelmanStern2006DifferenceSignificantNot, @GelmanVehtari2024ActiveStatisticsStories, @GriffithEtAl2020ColliderBiasUndermines, @HernanRobins2020CausalInferenceWhat, @HeymanVanpaemel2022MultiverseAnalysesClassroom, @Holm1979SimpleSequentiallyRejective, @HoogeveenEtAl2020ImprovingStatisticalAnalysis, @Hullman2026WhatMultiverseGood, @Huntington-Klein2021EffectIntroductionResearch, @ImaiEtAl2008MisunderstandingsExperimentalistsObservationalists, @Ioannidis2005WhyMostPublished, @JohnEtAl2012MeasuringPrevalenceQuestionable, @KallioinenEtAl2026PriorsenseEfficientPrior, @KeeleEtAl2020CausalInterpretationEstimated, @KingEtAl2001AnalyzingIncompletePolitical, @LakensEtAl2020ImprovingInferencesNull, @LakensEtAl2026ThereOnlyOne, @LeszczenskyWolbring2022HowDealReverse, @Lipsky1980StreetLevelBureaucracy, @Little1992RegressionMissingXs, @LundbergEtAl2021WhatYourEstimand, @McElreath2020StatisticalRethinkingBayesian, @MiskeEtAl2026InvestigatingReproducibilitySocial, @MontgomeryEtAl2018HowConditioningPosttreatment, @MorrisEtAl2019UsingSimulationStudies, @MunafoEtAl2017ManifestoReproducibleScience, @NosekErrington2020WhatReplication, @NosekEtAl2025BriefGlossaryTerms, @OpenScienceCollaboration2015EstimatingReproducibilityPsychological, @Pager2003MarkCriminalRecord, @PawelEtAl2024PitfallsPotentialsSimulation, @PhipsonSmyth2010PermutationPValues, @QuillianEtAl2017MetaanalysisFieldExperiments, @RohrerEtAl2026WhatsMultiverseGood, @Rubin1976InferenceMissingData, @SarmaEtAl2023MultiverseMultiplexingAlternative, @SarmaEtAl2024MilliwaysTamingMultiverses, @SilberzahnEtAl2018ManyAnalystsOne, @SimmonsEtAl2011FalsePositivePsychology, @SimonsohnEtAl2020SpecificationCurveAnalysis, @SteegenEtAl2016IncreasingTransparencyMultiverse, @TynerEtAl2026InvestigatingReplicabilitySocial, @Viechtbauer2010ConductingMetaanalysesMetafor, @WhiteEtAl2015WhatNeedVote, @YoungCumberworth2025MultiverseAnalysisComputational, @ZhaoDing2024AdjustNotAdjust
 ---
 
 ## Glossary {#glossary}
@@ -19,11 +24,11 @@ The four terms below follow the definitions in @NosekEtAl2025BriefGlossaryTerms.
 
 ## The records of the case study {#the-case}
 
-The [background page](cases/housing/index.qmd) tells the story of the case study in full, and the records below are the public deposits on which it is built.
+The [background page](background.qmd) tells the story of the case study in full, and the records below are the public deposits on which it is built.
 
 **The paper.** The paper of the original authors (OAs) [@EinsteinGlick2017DoesRaceAffect], published in the *American Journal of Political Science*: <https://doi.org/10.1111/ajps.12252>. The accepted manuscript is open at OpenBU, <https://hdl.handle.net/2144/37826>, and the page numbers quoted on the course site refer to it.
 
-**The data.** The replication package of the OAs on the Harvard Dataverse, released under CC0: <https://doi.org/10.7910/DVN/1HOVTU>. It holds the blinded data file, two Stata do-files (one that runs the analyses on the public file, and one written for the identifiable data, which are not public), two codebooks and a ReadMe that explains why the community variables are given in thirds. The course data in `cases/housing/data/` are built from it, and the codebooks beside them describe every column.
+**The data.** The replication package of the OAs on the Harvard Dataverse, released under CC0: <https://doi.org/10.7910/DVN/1HOVTU>. It holds the blinded data file, two Stata do-files (one that runs the analyses on the public file, and one written for the identifiable data, which are not public), two codebooks and a ReadMe that explains why the community variables are given in thirds. The course data in `data/` are built from it, and the codebooks beside them describe every column.
 
 **SCORE on the OSF.** The SCORE project of the paper on the Open Science Framework holds every activity that SCORE carried out on it, and the component of the robustness study holds one sub-component for each of the five analysts. Four of the five published their scripts there; the course links to them and does not copy them.
 
@@ -43,7 +48,7 @@ The [background page](cases/housing/index.qmd) tells the story of the case study
 | P9W8Y | Three-group logit with an omnibus test | <https://osf.io/pzwbm/> |
 | The robustness study | The project as a whole, with the claims of all hundred studies | <https://osf.io/q5h2c/> |
 
-The three activities of SCORE ended in three different places on the same paper. The reproduction was never attempted. The five reanalyses agreed on the direction of the gap and split three to two on whether the data supported the claim, and the replication with new names and a wider set of authorities found no significant gap. The [background page](cases/housing/index.qmd) tells the story in full.
+The three activities of SCORE ended in three different places on the same paper. The reproduction was never attempted. The five reanalyses agreed on the direction of the gap and split three to two on whether the data supported the claim, and the replication with new names and a wider set of authorities found no significant gap. The [background page](background.qmd) tells the story in full.
 
 ------------------------------------------------------------------------
 
@@ -105,9 +110,9 @@ The modules of the [companion](companion/index.qmd) hold the teaching that a ses
 
 **Tools**
 
-The modules on the tools are on the [AR4DS site](https://codemoreh.github.io/ar4ds/), which every case study shares, written on the data of this case study.
+The modules on the tools are on the [AR4DS site](https://codemoreh.github.io/ar4ds/), written on the data of this case study.
 
-- [Getting started with R](https://codemoreh.github.io/ar4ds/tools/r.html) – for participants arriving with no R at all, on the Housing data, with a [second part](https://codemoreh.github.io/ar4ds/tools/r-further.html) on reading other formats, the three dialects of R and the estimand habit.
+- [Getting started with R](https://codemoreh.github.io/ar4ds/tools/r.html) – for participants arriving with no R at all, on the Housing data, with a [second part](https://codemoreh.github.io/ar4ds/tools/r-further.html) on reading other formats, the three dialects of R and the estimand habit, and a [third part](https://codemoreh.github.io/ar4ds/tools/r-functions.html) on writing functions of your own.
 - [The helpers of the workspace](companion/helpers.qmd) – `try_spec()` and `my_experiments()`, with which the exercise fits its specifications and keeps a record of them.
 - [Positron and other IDEs](https://codemoreh.github.io/ar4ds/tools/ide.html) – what an IDE does and what the course needs from one, with Positron in detail and RStudio and VS Code beside it.
 - [Quarto documents](https://codemoreh.github.io/ar4ds/tools/quarto.html) – the format in which your report and every page of this site are written.
@@ -125,7 +130,7 @@ The modules on the tools are on the [AR4DS site](https://codemoreh.github.io/ar4
 - [Causal graphs and adjustment sets](companion/dags.qmd) – confounders, mediators and colliders, and what conditioning on a reply does to the experiment.
 - [The multiverse and its critics](companion/multiverse.qmd) – where specification curves came from, the purposes that they serve, the current debate about them, and the curve of the claim.
 
-Installing R and an IDE, the setup help, and Git and GitHub are on the [AR4DS site](https://codemoreh.github.io/ar4ds/), which every case study shares.
+Installing R and an IDE, the setup help, and Git and GitHub are on the [AR4DS site](https://codemoreh.github.io/ar4ds/).
 
 ------------------------------------------------------------------------
 
@@ -156,3 +161,12 @@ The course is open to anyone, and support of the kind listed below exists wherev
 | tinyplot package (the figures of the workspaces and labs) | <https://grantmcdermott.com/tinyplot/> |
 | dagitty (causal graphs) | <https://www.dagitty.net> |
 | ggdag (drawing causal graphs) | <https://r-causal.github.io/ggdag/> |
+
+------------------------------------------------------------------------
+
+## References {#references}
+
+The list holds every work cited on the pages and slides of this site, and on any page, resting the pointer on a citation shows its entry.
+
+::: {#refs}
+:::

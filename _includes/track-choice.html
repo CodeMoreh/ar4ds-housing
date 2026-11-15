@@ -1,20 +1,20 @@
-<!-- The track that a visitor last opened, shown as a navbar item on every page
-     of the site, so that someone who follows a link out of a track can find it
-     again. A page under tracks/<slug>/ records its slug in this browser only
-     (localStorage key "ar-track"); with no track opened yet, or with storage
-     blocked, nothing is shown. The facilitator chooses the track of a delivery
+<!-- The format that a visitor last opened, shown as a navbar item on every page
+     of the site, so that someone who follows a link out of a format can find it
+     again. A page under tracks/<format>/ records the name of its folder in this
+     browser only (localStorage key "ar-track"); with no format opened yet, or
+     with storage blocked, nothing is shown. The facilitator chooses the format of a delivery
      (../_planning/formats-2026-10-27.md), so there is no button that chooses one.
      Links use the quarto:offset meta tag, so they work from pages at any depth.
      Inline rather than a separate file for that reason. -->
 <script>
 (function () {
-  // The folders under tracks/, which _includes/next-delivery.qmd and the
-  // delivery block of _variables.yml name in the same way.
+  // The folders under tracks/ of the formats in the build, which
+  // _includes/next-delivery.qmd and the delivery block of _variables.yml name
+  // in the same way.
   var TRACKS = {
-    "housing-short": "Short session",
-    "housing-one-day": "One-day workshop",
-    "housing-extended": "Extended course",
-    "self-study": "Self-study"
+    "short": "Short",
+    "day": "Day",
+    "independent": "Independent"
   };
   var KEY = "ar-track";
   var slug = null;

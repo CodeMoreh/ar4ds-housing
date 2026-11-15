@@ -7,22 +7,22 @@ bibliography: [../references.bib, ../references-new.bib]
 ```{r}
 #| label: setup
 #| include: false
-source("../R/housing/_tools.R")
+source("../R/_tools.R")
 
-housing <- readr::read_csv("../cases/housing/data/housing_emails.csv", show_col_types = FALSE)
-curve <- readr::read_csv("../cases/housing/data/spec_curve.csv", show_col_types = FALSE)
-analysts <- readr::read_csv("../cases/housing/data/analysts5.csv", show_col_types = FALSE)
+housing <- readr::read_csv("../data/housing_emails.csv", show_col_types = FALSE)
+curve <- readr::read_csv("../data/spec_curve.csv", show_col_types = FALSE)
+analysts <- readr::read_csv("../data/analysts5.csv", show_col_types = FALSE)
 
 # Fixed decimals and a true minus sign, for every number on the page
-fmt <- \(x, d = 1) formatC(x, format = "f", digits = d) |> sub(pattern = "^-", replacement = "−")
-pct <- \(x, d = 1) paste0(fmt(x, d), "%")
-pe <- \(p) dplyr::case_when(p < 0.0001 ~ "p < 0.0001", p < 0.001 ~ paste("p =", fmt(p, 4)),
+fmt <- \(x, d = 1) formatC(x, format = "f", digits = d) |> sub(pattern = "^-", replacement = "−")  # r-style: approved
+pct <- \(x, d = 1) paste0(fmt(x, d), "%")  # r-style: approved
+pe <- \(p) dplyr::case_when(p < 0.0001 ~ "p < 0.0001", p < 0.001 ~ paste("p =", fmt(p, 4)),  # r-style: approved
                      .default = paste("p =", fmt(p, 3)))
-an <- \(id, col) analysts[[col]][analysts$id == id]
+an <- \(id, col) analysts[[col]][analysts$id == id]  # r-style: approved
 logit_or <- curve |> datawizard::data_filter(model == "logit") |> datawizard::data_modify(or = exp(coef))
 ```
 
-This module of the [companion curriculum](index.qmd) fits the models that the course uses for a yes-or-no outcome, on the outcome of the claim of the Housing and racial bias case study: whether a reply from a housing authority opened with the name of the person who wrote to it. The case study comes from a field experiment by the original authors (OAs), who emailed public housing authorities from six names meant to indicate a white, a Black or a Hispanic applicant [@EinsteinGlick2017DoesRaceAffect], and the [background page](../cases/housing/index.qmd) describes it. The module starts from a table of counts and builds up to the logistic regression of the paper, so that each step can be checked against the one before it. Every number is computed when the page is built, from the files of the course in `cases/housing/data/`, and the code is shown. The estimator of the course, `fit_spec()` in `R/housing/_tools.R`, does the same arithmetic for every specification of the curve.
+This module of the [companion curriculum](index.qmd) fits the models that the course uses for a yes-or-no outcome, on the outcome of the claim of the Housing and racial bias case study: whether a reply from a housing authority opened with the name of the person who wrote to it. The case study comes from a field experiment by the original authors (OAs), who emailed public housing authorities from six names meant to indicate a white, a Black or a Hispanic applicant [@EinsteinGlick2017DoesRaceAffect], and the [background page](../background.qmd) describes it. The module starts from a table of counts and builds up to the logistic regression of the paper, so that each step can be checked against the one before it. Every number is computed when the page is built, from the files of the course in `data/`, and the code is shown. The estimator of the course, `fit_spec()` in `R/_tools.R`, does the same arithmetic for every specification of the curve.
 
 ## 1. A yes-or-no outcome {#sec-outcome}
 
@@ -203,7 +203,7 @@ Every method on this page can be applied to the one comparison of the reference 
 
 ```{r}
 #| label: tbl-side-by-side
-#| tbl-cap: "One comparison, Hispanic against white names among the coded replies, reported by each method of the page: the estimate on its own scale, its standard error, the test statistic and the two-sided p-value. The randomisation p-value is stored in the curve file. Sources: `cases/housing/data/housing_emails.csv`, `cases/housing/data/spec_curve.csv`."
+#| tbl-cap: "One comparison, Hispanic against white names among the coded replies, reported by each method of the page: the estimate on its own scale, its standard error, the test statistic and the two-sided p-value. The randomisation p-value is stored in the curve file. Sources: `data/housing_emails.csv`, `data/spec_curve.csv`."
 #| code-fold: true
 # each model reported by parameters (classical, HC2 and Wald z), the average
 # marginal effect by marginaleffects
@@ -243,7 +243,7 @@ tibble::tribble(
   tinytable::style_tt(j = 2:5, align = "r")
 ```
 
-Every method finds the same gap, or a statistic that tests it, and the largest p-value in the table is `r fmt(max(all_p), 4)`, that of the randomisation test, which cannot go lower with 1,999 reshuffles. The z of the logistic coefficient, `r fmt(logit_z, 3)`, is the value that analyst UYV3F recorded. The methods differ in what they can carry and in the scale on which they report. A table test carries no covariates, a linear probability model reports in points and a logistic regression in log odds unless it is converted. They also differ in the statistic that they hand on to anyone who converts results to a common scale, which is why the same gap became different correlations in the robustness study of SCORE [Multi100\; @AczelEtAl2026InvestigatingAnalyticalRobustness], as the [background page](../cases/housing/index.qmd#sec-scale) shows.
+Every method finds the same gap, or a statistic that tests it, and the largest p-value in the table is `r fmt(max(all_p), 4)`, that of the randomisation test, which cannot go lower with 1,999 reshuffles. The z of the logistic coefficient, `r fmt(logit_z, 3)`, is the value that analyst UYV3F recorded. The methods differ in what they can carry and in the scale on which they report. A table test carries no covariates, a linear probability model reports in points and a logistic regression in log odds unless it is converted. They also differ in the statistic that they hand on to anyone who converts results to a common scale, which is why the same gap became different correlations in the robustness study of SCORE [Multi100\; @AczelEtAl2026InvestigatingAnalyticalRobustness], as the [background page](../background.qmd#sec-scale) shows.
 
 ::: {.callout-tip}
 ## Try it
@@ -253,8 +253,8 @@ Change the two shares of the arithmetic in section 6 to 0.65 and 0.55, which pre
 
 ## 8. Where this leads {#sec-next}
 
-The curve of the claim takes the models of sections 1 to 7 as they are, and the [specification menu](../cases/housing/menu.qmd) sets out which of them it keeps. The simulations of the [experiments module](experiments.qmd#sec-simulation) use the difference in proportions with HC2 errors as the estimator of a simulated experiment, to show what the estimator recovers when the name changes only the greeting and what it misses when the name also changes who replies, and the [multiverse module](multiverse.qmd) reads the curve of the claim as a whole.
+The curve of the claim takes the models of sections 1 to 7 as they are, and the [specification menu](../menu.qmd) sets out which of them it keeps. The simulations of the [experiments module](experiments.qmd#sec-simulation) use the difference in proportions with HC2 errors as the estimator of a simulated experiment, to show what the estimator recovers when the name changes only the greeting and what it misses when the name also changes who replies, and the [multiverse module](multiverse.qmd) reads the curve of the claim as a whole.
 
 ## Sources {#sec-sources}
 
-The models on this page are fitted with `lm()` and `glm()` from base R, with the HC2 standard error and the average marginal effect of the estimator of the course in `R/housing/_tools.R`, which `R/housing/check_parity.R` checks against `estimatr` and `marginaleffects`. The data are `cases/housing/data/housing_emails.csv` and the curve `cases/housing/data/spec_curve.csv`, both with codebooks; the analyses of the five analysts of the robustness study are in `analysts5.csv`. @GelmanEtAl2020RegressionOtherStories treat logistic regression and its interpretation on the probability scale at length, and the [specification menu](../cases/housing/menu.qmd#level-estimation) sets out which models, tests and scales the curve of the claim keeps.
+The models on this page are fitted with `lm()` and `glm()` from base R, with the HC2 standard error and the average marginal effect of the estimator of the course in `R/_tools.R`, which `R/check_parity.R` checks against `estimatr` and `marginaleffects`. The data are `data/housing_emails.csv` and the curve `data/spec_curve.csv`, both with codebooks; the analyses of the five analysts of the robustness study are in `analysts5.csv`. @GelmanEtAl2020RegressionOtherStories treat logistic regression and its interpretation on the probability scale at length, and the [specification menu](../menu.qmd#level-estimation) sets out which models, tests and scales the curve of the claim keeps.

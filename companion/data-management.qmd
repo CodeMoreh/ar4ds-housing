@@ -7,14 +7,15 @@ bibliography: [../references.bib, ../references-new.bib]
 ```{r}
 #| label: setup
 #| include: false
-# Every chunk on this page runs from the folder of the case study, so that the paths
-# read exactly as they do in the workspace: data/housing_original.csv.
-knitr::opts_knit$set(root.dir = "../cases/housing")
+# Every chunk on this page runs from the root of the site, whose data/ folder
+# holds the same files as that of the workspace, so that the paths read exactly
+# as they do in the workspace: data/housing_original.csv.
+knitr::opts_knit$set(root.dir = "..")
 ```
 
-This module of the [companion curriculum](index.qmd) follows the data of the Housing and racial bias case study from the file deposited by the original authors (OAs) to the file on which the exercises of the course run. The OAs emailed public housing authorities across the United States from six names meant to indicate a white, a Black or a Hispanic applicant and coded the replies that came back [@EinsteinGlick2017DoesRaceAffect], and the [background page](../cases/housing/index.qmd) tells the story of the experiment. The [module on data sources](data-sources.qmd#sec-dataverse) ends with the deposited file on your disk, checked against the checksum published by the Harvard Dataverse. This module starts there and works through `R/housing/01_email_data.R`, the first script of the pipeline of the case study, step by step: what each column of the course file is, how the names, the replies, the greeting codes, the bounced emails and the community thirds are derived, and which checks a rebuilt file has to pass before anything is estimated from it.
+This module of the [companion curriculum](index.qmd) follows the data of the Housing and racial bias case study from the file deposited by the original authors (OAs) to the file on which the exercises of the course run. The OAs emailed public housing authorities across the United States from six names meant to indicate a white, a Black or a Hispanic applicant and coded the replies that came back [@EinsteinGlick2017DoesRaceAffect], and the [background page](../background.qmd) tells the story of the experiment. The [module on data sources](data-sources.qmd#sec-dataverse) ends with the deposited file on your disk, checked against the checksum published by the Harvard Dataverse. This module starts there and works through `R/01_email_data.R`, the first script of the pipeline of the case study, step by step: what each column of the course file is, how the names, the replies, the greeting codes, the bounced emails and the community thirds are derived, and which checks a rebuilt file has to pass before anything is estimated from it.
 
-The code on the page runs on `housing_original.csv`, the deposited file saved as plain text with its original column names, which the course ships in its workspace and in `cases/housing/data/`. Every chunk runs from the folder of the case study, so each line can be copied into the workspace as it stands, and every number on the page was computed from the file when the page was built.
+The code on the page runs on `housing_original.csv`, the deposited file saved as plain text with its original column names, which the course ships in its workspace and in `data/`. Every chunk reads the files as the workspace does, so each line can be copied into the workspace as it stands, and every number on the page was computed from the file when the page was built.
 
 ## 1. Two files {#sec-two-files}
 
@@ -23,16 +24,16 @@ The deposit holds the data as a Stata file, `HousingAuditAJPSFinalPublic_Unident
 ```{r}
 #| label: from-stata
 #| eval: false
-raw <- haven::read_dta("data-raw/housing/dataverse_1HOVTU/HousingAuditAJPSFinalPublic_Unidentified.dta")
+raw <- haven::read_dta("data-raw/dataverse_1HOVTU/HousingAuditAJPSFinalPublic_Unidentified.dta")
 
 original <- raw |>
   dplyr::mutate(dplyr::across(dplyr::where(haven::is.labelled), \(x) as.numeric(x))) |>
   haven::zap_label() |>
   haven::zap_formats()
-readr::write_csv(original, "cases/housing/data/housing_original.csv", na = "")  # r-style: keep – datawizard::data_write() writes other bytes
+readr::write_csv(original, "data/housing_original.csv", na = "")  # r-style: keep – datawizard::data_write() writes other bytes
 ```
 
-`as.numeric()` on a labelled column keeps the codes and drops the labels, and `zap_label()` and `zap_formats()` remove the variable labels and the display formats of Stata. The labels are not lost, since the [codebook of the deposited file](../cases/housing/data/housing_original_codebook.md) records what every code means. One of the labels is worth knowing before the data are read: the Stata file labels `HispanicEmailer` "Hard to find email address", a copy error in the source, while the codebook of the OAs describes the column as recording whether the official who replied had a Hispanic name.
+`as.numeric()` on a labelled column keeps the codes and drops the labels, and `zap_label()` and `zap_formats()` remove the variable labels and the display formats of Stata. The labels are not lost, since the [codebook of the deposited file](../data/housing_original_codebook.md) records what every code means. One of the labels is worth knowing before the data are read: the Stata file labels `HispanicEmailer` "Hard to find email address", a copy error in the source, while the codebook of the OAs describes the column as recording whether the official who replied had a Hispanic name.
 
 The course keeps two files of the same 1,014 emails, in the same order. `housing_original.csv` keeps the names and codes of the OAs, because the reproduction of Task 3 starts from the data as they were published, and `housing_emails.csv`, the course file, gives every column a readable name and adds the columns that the exercises use, and the rest of this page rebuilds the course file from the deposited one.
 
@@ -120,15 +121,15 @@ housing <- original |>
 | `white_third` … `poverty_third` | The third of the community, among the communities of the study, on percent white, percent Black, percent Hispanic, population and the poverty rate | the five `_pop_third` columns |
 | `assessment_third` | The third of the housing authority on the HUD assessment score | `assesment_third` |
 
-The [codebook of the course file](../cases/housing/data/housing_emails_codebook.md) gives the counts of every column and the notes on its coding.
+The [codebook of the course file](../data/housing_emails_codebook.md) gives the counts of every column and the notes on its coding.
 
 ## 5. Replies, greetings and bounced emails {#sec-outcomes}
 
-The columns that describe a reply are missing by design wherever there was no reply, and the pattern of their missing values is itself part of the data. `reply` is missing for an email that bounced, which never reached an official. The four columns that describe a reply exist only for the emails that drew one, and `named` is missing as well for the replies whose greeting the OAs did not code. A rebuilt file should show exactly this pattern, and the counts of the [background page](../cases/housing/index.qmd) are the test.
+The columns that describe a reply are missing by design wherever there was no reply, and the pattern of their missing values is itself part of the data. `reply` is missing for an email that bounced, which never reached an official. The four columns that describe a reply exist only for the emails that drew one, and `named` is missing as well for the replies whose greeting the OAs did not code. A rebuilt file should show exactly this pattern, and the counts of the [background page](../background.qmd) are the test.
 
 ```{r}
 #| label: tbl-counts
-#| tbl-cap: "The emails of the Housing case study by the group of the name: sent, bounced (no reply status), delivered, replied, replied with a greeting code, and opened with the name of the sender. Source: `cases/housing/data/housing_original.csv`, rebuilt on this page."
+#| tbl-cap: "The emails of the Housing case study by the group of the name: sent, bounced (no reply status), delivered, replied, replied with a greeting code, and opened with the name of the sender. Source: `data/housing_original.csv`, rebuilt on this page."
 counts <- housing |>
   datawizard::data_summary(
     Sent = n(), Bounced = sum(is.na(reply)), Delivered = sum(!is.na(reply)),
@@ -149,7 +150,7 @@ totals <- housing |>
                            replied = sum(reply %in% 1), coded = sum(!is.na(named)))
 ```
 
-Of the `r format(totals$sent, big.mark = ",")` emails, `r totals$bounced` bounced and `r totals$delivered` were delivered; `r totals$replied` drew a reply, and `r totals$replied - totals$coded` of the replies carry no greeting code, which leaves `r totals$coded` coded replies. These are the counts of the background page and of the [codebook](../cases/housing/data/housing_emails_codebook.md#rows-and-missing-values). The pattern behind these counts can be checked directly: no email without a reply, bounced or not, should carry any value in the columns that describe a reply.
+Of the `r format(totals$sent, big.mark = ",")` emails, `r totals$bounced` bounced and `r totals$delivered` were delivered; `r totals$replied` drew a reply, and `r totals$replied - totals$coded` of the replies carry no greeting code, which leaves `r totals$coded` coded replies. These are the counts of the background page and of the [codebook](../data/housing_emails_codebook.md#rows-and-missing-values). The pattern behind these counts can be checked directly: no email without a reply, bounced or not, should carry any value in the columns that describe a reply.
 
 ```{r}
 #| label: reply-columns
@@ -160,7 +161,7 @@ housing |>
   all()
 ```
 
-The analyses of the course run on the rows chosen from the file for each question, and three decisions of the [specification menu](../cases/housing/menu.qmd#level-measurement) make the choice. Bounced emails are left out under every option, because no official read a bounced email. The emails counted are either the coded replies, the rows of the claim, or all delivered emails, in which case an email without a reply counts as one without a named greeting. And the five uncoded replies are either left out or counted as replies that did not open with the name. The chunk below computes the share of named greetings for white and Hispanic names in the first two ways, with the uncoded replies left out.
+The analyses of the course run on the rows chosen from the file for each question, and three decisions of the [specification menu](../menu.qmd#level-measurement) make the choice. Bounced emails are left out under every option, because no official read a bounced email. The emails counted are either the coded replies, the rows of the claim, or all delivered emails, in which case an email without a reply counts as one without a named greeting. And the five uncoded replies are either left out or counted as replies that did not open with the name. The chunk below computes the share of named greetings for white and Hispanic names in the first two ways, with the uncoded replies left out.
 
 ```{r}
 #| label: two-populations
@@ -251,9 +252,9 @@ readr::write_csv(housing, "data/housing_emails.csv", na = "")  # r-style: keep �
 ::: {.callout-tip}
 ## Try it
 
-Change the key so that code 3 reads `Gabriela` and code 4 `Santiago`, rerun the build, and note which of the checks on the page fail and which still pass. Then add `named_any` to the course file as a column of its own, with a comment that names its source columns, and compute the share for each of the six names; compare the result with `named_all_pct` in `display_names.csv`, which counts the uncoded replies differently, and work out from its [codebook](../cases/housing/data/displays_codebook.md) why the two can differ for some names. Finally, write one more condition for `stopifnot()` that would catch a reply recorded for a bounced email.
+Change the key so that code 3 reads `Gabriela` and code 4 `Santiago`, rerun the build, and note which of the checks on the page fail and which still pass. Then add `named_any` to the course file as a column of its own, with a comment that names its source columns, and compute the share for each of the six names; compare the result with `named_all_pct` in `display_names.csv`, which counts the uncoded replies differently, and work out from its [codebook](../data/displays_codebook.md) why the two can differ for some names. Finally, write one more condition for `stopifnot()` that would catch a reply recorded for a bounced email.
 :::
 
 ## Sources {#sec-sources}
 
-The data are the replication package of the OAs [@EinsteinGlick2017DoesRaceAffect] on the Harvard Dataverse ([doi:10.7910/DVN/1HOVTU](https://doi.org/10.7910/DVN/1HOVTU)), dedicated to the public domain under CC0; its ReadMe explains the blinding of the community values, and its codebook the coding of every column. The script that this page follows is `R/housing/01_email_data.R`, and the order of the pipeline is set out in `R/housing/README.md`. The two files are documented in the codebooks of the [deposited file](../cases/housing/data/housing_original_codebook.md) and of the [course file](../cases/housing/data/housing_emails_codebook.md). The route of the deposited file from the Dataverse to your disk is in the [module on data sources](data-sources.qmd#sec-dataverse).
+The data are the replication package of the OAs [@EinsteinGlick2017DoesRaceAffect] on the Harvard Dataverse ([doi:10.7910/DVN/1HOVTU](https://doi.org/10.7910/DVN/1HOVTU)), dedicated to the public domain under CC0; its ReadMe explains the blinding of the community values, and its codebook the coding of every column. The script that this page follows is `R/01_email_data.R`, and the order of the pipeline is set out in `R/README.md`. The two files are documented in the codebooks of the [deposited file](../data/housing_original_codebook.md) and of the [course file](../data/housing_emails_codebook.md). The route of the deposited file from the Dataverse to your disk is in the [module on data sources](data-sources.qmd#sec-dataverse).

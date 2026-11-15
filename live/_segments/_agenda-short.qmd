@@ -1,7 +1,7 @@
 ## {#today .darkslide background-color="rgba(0,0,0,0)"}
 
 ::: {.todaymeta}
-A short session in two halves, with one break, on the Housing and racial bias case study
+Two halves, with one break
 :::
 
 :::: {.todaybox}

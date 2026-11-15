@@ -1,8 +1,8 @@
 ## The workspace and the deck {#what-we-use-today .smaller}
 
-<!-- The two places in which the tasks of the one-day workshop of the Housing
-     case study run, the workspace and this deck, and, on the second slide,
-     what the tools cannot do. Only the one-day deck includes this segment. -->
+<!-- The two places in which the tasks of the day format run, the workspace
+     and this deck, and, on the second slide, what the tools cannot do. Only
+     the day deck includes this segment. -->
 
 :::: {.columns}
 ::: {.column width="50%"}

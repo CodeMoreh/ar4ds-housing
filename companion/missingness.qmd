@@ -8,13 +8,13 @@ bibliography: [../references.bib, ../references-new.bib]
 #| label: setup
 #| include: false
 # The estimator of the case study, for spec_frame()
-source("../R/housing/_tools.R")
+source("../R/_tools.R")
 
 # readr rather than datawizard::data_read(), which returns some empty cells as ""
-housing <- readr::read_csv("../cases/housing/data/housing_emails.csv", show_col_types = FALSE)
+housing <- readr::read_csv("../data/housing_emails.csv", show_col_types = FALSE)
 ```
 
-This module of the [companion curriculum](index.qmd) is about the values that a data file does not hold, and about what each way of handling them does to an estimate. The Housing and racial bias case study comes from a field experiment by the original authors (OAs), who emailed public housing authorities across the United States from names meant to indicate a white, a Black or a Hispanic applicant and found that replies to the Hispanic names opened with the name of the sender less often [@EinsteinGlick2017DoesRaceAffect]; the [background page](../cases/housing/index.qmd) tells it in full. The public file of the OAs is unusually complete for a social-science dataset, yet it lacks three kinds of information, each for a different reason, and each kind enters the analysis at a different point. Every number on the page is computed when it is built, from the course file `cases/housing/data/housing_emails.csv`, whose construction the [module on building the analysis file](data-management.qmd) follows step by step.
+This module of the [companion curriculum](index.qmd) is about the values that a data file does not hold, and about what each way of handling them does to an estimate. The Housing and racial bias case study comes from a field experiment by the original authors (OAs), who emailed public housing authorities across the United States from names meant to indicate a white, a Black or a Hispanic applicant and found that replies to the Hispanic names opened with the name of the sender less often [@EinsteinGlick2017DoesRaceAffect]; the [background page](../background.qmd) tells it in full. The public file of the OAs is unusually complete for a social-science dataset, yet it lacks three kinds of information, each for a different reason, and each kind enters the analysis at a different point. Every number on the page is computed when it is built, from the course file `data/housing_emails.csv`, whose construction the [module on building the analysis file](data-management.qmd) follows step by step.
 
 ## 1. Three kinds of missing information {#sec-kinds}
 
@@ -39,7 +39,7 @@ n_assess <- sum(is.na(housing$assessment_third))
 
 ```{r}
 #| label: tbl-kinds
-#| tbl-cap: "The kinds of missing information in the Housing data: how often each is missing in the file, when it arises in the experiment, and how many of the coded replies to white and Hispanic names, the rows of the reference specification, it affects. Source: `cases/housing/data/housing_emails.csv`."
+#| tbl-cap: "The kinds of missing information in the Housing data: how often each is missing in the file, when it arises in the experiment, and how many of the coded replies to white and Hispanic names, the rows of the reference specification, it affects. Source: `data/housing_emails.csv`."
 #| echo: false
 tibble::tibble(
   `Missing information` = c("Reply status of an email that bounced", "Greeting code of a reply",
@@ -110,7 +110,7 @@ share_of <- bounce_by$share[match(c("white", "black", "hispanic"), bounce_by$gro
 
 The bounces are few and spread across the groups, at `r insight::format_value(share_of[1], digits = 1)`% of the emails with white names, `r insight::format_value(share_of[2], digits = 1)`% with Black names and `r insight::format_value(share_of[3], digits = 1)`% with Hispanic names, and a $\chi^2$ test finds no more difference between the groups than chance would produce (`r insight::format_p(bounce_p, stars = FALSE)`). For the name to have caused a bounce, a mail server would have had to refuse a message because of its sender. The counts by group give no reason to suspect such a refusal, but the counts by name are uneven: all the bounces among the white names came from Emily and none from Brett, and Tyrone had none either, a spread across the six names that chance would rarely produce (a $\chi^2$ test across the six names, with its p-value simulated because the counts are small, gives p = `r formatC(bounce_name_p, format = "f", digits = 3)`), so the sending account may have played a part. A bounced email is therefore best read as an email to which the treatment was never delivered, for reasons that no official could have influenced, and leaving the bounced emails out keeps the comparison among the delivered emails nearly as random as the assignment of the names made it, and every specification of the curve leaves the bounced emails out.
 
-The alternative, counting a bounced email as one that went unanswered, matters only when all emails are counted, since a bounced email is never a reply. Among all delivered emails to white and Hispanic names, with the uncoded replies counted as not named, the gap in greetings by name is `r insight::format_value(gap_delivered, digits = 1, style_negative = "minus")` points. Counting the bounced emails as unanswered moves it to `r insight::format_value(gap_sent, digits = 1, style_negative = "minus")` points, a small change, but one produced by broken addresses rather than by officials, which is why the [specification menu](../cases/housing/menu.qmd#level-measurement) keeps the bounced emails off the curve.
+The alternative, counting a bounced email as one that went unanswered, matters only when all emails are counted, since a bounced email is never a reply. Among all delivered emails to white and Hispanic names, with the uncoded replies counted as not named, the gap in greetings by name is `r insight::format_value(gap_delivered, digits = 1, style_negative = "minus")` points. Counting the bounced emails as unanswered moves it to `r insight::format_value(gap_sent, digits = 1, style_negative = "minus")` points, a small change, but one produced by broken addresses rather than by officials, which is why the [specification menu](../menu.qmd#level-measurement) keeps the bounced emails off the curve.
 
 ## 4. Replies without a greeting code {#sec-uncoded}
 
@@ -127,7 +127,7 @@ Three of the five went to white or Hispanic names, two to Emily and one to Santi
 
 ```{r}
 #| label: tbl-uncoded
-#| tbl-cap: "The gap in greetings by name between Hispanic and white names among the replies, under four codings of the three uncoded replies to these names: left out, counted as not named, and the two extreme codings. Differences in proportions with HC2 standard errors. Source: `cases/housing/data/housing_emails.csv`."
+#| tbl-cap: "The gap in greetings by name between Hispanic and white names among the replies, under four codings of the three uncoded replies to these names: left out, counted as not named, and the two extreme codings. Differences in proportions with HC2 standard errors. Source: `data/housing_emails.csv`."
 codings <- list(
   `left out` = datawizard::data_filter(replies_wh, !is.na(named)),
   `not named` = datawizard::data_modify(replies_wh, named = dplyr::coalesce(named, 0)),
@@ -276,7 +276,7 @@ assess <- dplyr::bind_rows(
 
 ```{r}
 #| label: tbl-assessment
-#| tbl-cap: "The gap in greetings by name between Hispanic and white names among the coded replies, adjusted for the HUD assessment third under four ways of handling its missing values, beside the unadjusted gap among all replies and among the complete cases. Linear probability models with HC2 standard errors; the imputations are combined by Rubin's rules. Source: `cases/housing/data/housing_emails.csv`."
+#| tbl-cap: "The gap in greetings by name between Hispanic and white names among the coded replies, adjusted for the HUD assessment third under four ways of handling its missing values, beside the unadjusted gap among all replies and among the complete cases. Linear probability models with HC2 standard errors; the imputations are combined by Rubin's rules. Source: `data/housing_emails.csv`."
 #| echo: false
 assess |>
   datawizard::data_modify(gap = sub("^-", "−", sprintf("%.1f", gap)), se = sprintf("%.1f", se)) |>
@@ -291,7 +291,7 @@ Multiple imputation adds almost nothing here. The share of the variance of the g
 
 ## 6. Missing values on the curve {#sec-curve}
 
-Each kind of missing information enters the curve of the case study in its own way. The bounced emails are outside the experiment under every option, because no official read a bounced email. The uncoded replies are a decision of the menu, left out or counted as not named, and the two extreme codings of section 4 show that no handling of them can change the conclusion. The community thirds are handled as complete cases, so the specifications that adjust for them lose `r sum(is.na(ref$pop_third))` of the `r nrow(ref)` coded replies of the reference comparison, and part of the shift between the adjusted and the unadjusted specifications, as the [specification menu](../cases/housing/menu.qmd#level-estimation) notes, comes from the rows that the adjustment loses rather than from the adjustment itself. A declared analysis can name a different handling, such as a category for the missing, provided that the declaration names it before the model is run, since a choice made after the estimates are known is one more of the forking paths of the [multiverse module](multiverse.qmd).
+Each kind of missing information enters the curve of the case study in its own way. The bounced emails are outside the experiment under every option, because no official read a bounced email. The uncoded replies are a decision of the menu, left out or counted as not named, and the two extreme codings of section 4 show that no handling of them can change the conclusion. The community thirds are handled as complete cases, so the specifications that adjust for them lose `r sum(is.na(ref$pop_third))` of the `r nrow(ref)` coded replies of the reference comparison, and part of the shift between the adjusted and the unadjusted specifications, as the [specification menu](../menu.qmd#level-estimation) notes, comes from the rows that the adjustment loses rather than from the adjustment itself. A declared analysis can name a different handling, such as a category for the missing, provided that the declaration names it before the model is run, since a choice made after the estimates are known is one more of the forking paths of the [multiverse module](multiverse.qmd).
 
 ::: {.callout-tip}
 ## Try it
@@ -301,4 +301,4 @@ Fit the specification of the curve with the fullest adjustment (the hard-to-find
 
 ## Sources and further reading {#sec-sources}
 
-The terms of section 2 come from @Rubin1976InferenceMissingData, and @Little1992RegressionMissingXs reviews the methods for regression with missing covariates; @Allison2009MissingData is a short, clear introduction to listwise deletion, the methods that replace a missing value with a guess, maximum likelihood and multiple imputation. The case for the missing-indicator method in randomised experiments, and against complete cases there, is made by @ZhaoDing2024AdjustNotAdjust, under assumptions about nothing but the random assignment. Multiple imputation in political science is set out by @KingEtAl2001AnalyzingIncompletePolitical, and the mice package by its authors [@BuurenGroothuis-Oudshoorn2011MiceMultivariateImputation]. The construction of the course file, with the checks of its missing values, is in the [module on building the analysis file](data-management.qmd), and the counts of every column are in the [codebook of the course file](../cases/housing/data/housing_emails_codebook.md).
+The terms of section 2 come from @Rubin1976InferenceMissingData, and @Little1992RegressionMissingXs reviews the methods for regression with missing covariates; @Allison2009MissingData is a short, clear introduction to listwise deletion, the methods that replace a missing value with a guess, maximum likelihood and multiple imputation. The case for the missing-indicator method in randomised experiments, and against complete cases there, is made by @ZhaoDing2024AdjustNotAdjust, under assumptions about nothing but the random assignment. Multiple imputation in political science is set out by @KingEtAl2001AnalyzingIncompletePolitical, and the mice package by its authors [@BuurenGroothuis-Oudshoorn2011MiceMultivariateImputation]. The construction of the course file, with the checks of its missing values, is in the [module on building the analysis file](data-management.qmd), and the counts of every column are in the [codebook of the course file](../data/housing_emails_codebook.md).

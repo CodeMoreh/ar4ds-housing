@@ -1,14 +1,14 @@
-<!-- Task 2 of the browser lab (cases/housing/lab.qmd), for the one-day deck:
+<!-- Task 2 of the browser lab (lab.qmd), for the day deck:
      the overview of the task, then the cells of the lab one step at a time,
      the data on four slides and the graph on four. The graph helpers come from
-     cases/housing/_lab-graph.qmd, which the deck includes after its setup
+     _includes/_lab-graph.qmd, which the deck includes after its setup
      cell. Each slide names where the same step lives in the workspace. -->
 ## Hands-on 2 – The data, the estimand and the graph {#hands-on-2-meet-the-emails-draw-the-graph .smaller}
 
 ::: {.small}
 **Task 2** has three pieces. You work them in the boxes of Task 2 of `index.qmd` in your workspace, with the graph in `R/dag_starter.R`, and the slides after this one show each step as a cell:
 
-1. **Look at the data.** `r fmt_n(nrow(housing))` emails, one row each. Count the emails that bounced, the replies, the replies with a greeting code and the greetings by name, for each name
+1. **Look at the data.** `r format(nrow(housing), big.mark = ",")` emails, one row each. Count the emails that bounced, the replies, the replies with a greeting code and the greetings by name, for each name
 2. **Write the estimand statement.** Fill every bracket of the template for *this* claim, and say which emails you count
 3. **Finish the graph**. Take the `#` off `"name -> greeting"` if you believe it, then run `adjustmentSets()` and `paths()` with `Z = "reply"`, and read which paths open among the replies
 :::
@@ -43,7 +43,7 @@ housing |>
 ```
 
 ::: {.fragment .small}
-**`r fmt_n(nrow(housing))` emails** (the paper reports 1,017, three more than the public file holds), of which **`r sum(is.na(housing$reply))` bounced** and never reached an official, **`r sum(!is.na(housing$reply))` delivered**, **`r sum(housing$reply %in% 1)` replies** and **`r sum(!is.na(housing$named))` replies with a greeting code**.
+**`r format(nrow(housing), big.mark = ",")` emails** (the paper reports 1,017, three more than the public file holds), of which **`r sum(is.na(housing$reply))` bounced** and never reached an official, **`r sum(!is.na(housing$reply))` delivered**, **`r sum(housing$reply %in% 1)` replies** and **`r sum(!is.na(housing$named))` replies with a greeting code**.
 :::
 
 ::: notes

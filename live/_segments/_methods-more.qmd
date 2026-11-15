@@ -87,7 +87,7 @@ ggplot2::ggplot(ri, ggplot2::aes(b_pp)) +
 ```
 
 ::: {.small}
-The central 95% of `r fmt_n(nrow(ri))` reshuffles lies between `r fmt_num(ri_band[[1]], 1)` and +`r fmt_num(ri_band[[2]], 1)` points; a gap as large as the observed `r fmt_num(curve_ref$b_pp, 2)` comes up in `r ri_extreme` of them. The test uses nothing but the random assignment of the names [@Fisher1935DesignExperiments].
+The central 95% of `r format(nrow(ri), big.mark = ",")` reshuffles lies between `r fmt_num(ri_band[[1]], 1)` and +`r fmt_num(ri_band[[2]], 1)` points; a gap as large as the observed `r fmt_num(curve_ref$b_pp, 2)` comes up in `r ri_extreme` of them. The test uses nothing but the random assignment of the names [@Fisher1935DesignExperiments].
 :::
 
 ::: notes

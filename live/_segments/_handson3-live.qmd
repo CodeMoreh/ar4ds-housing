@@ -1,4 +1,4 @@
-<!-- Task 3 of the browser lab (cases/housing/lab.qmd) for both live decks: the
+<!-- Task 3 of the browser lab (lab.qmd) for both live decks: the
      table of the five analysts with the cell that reads the public file, then
      two slides for each analyst with the cells of the lab, the exercise of each
      with its hint and solution, and the slide on the continuity correction.
@@ -24,7 +24,7 @@
 
 ```{webr}
 #| autorun: false
-original <- utils::read.csv("cases/housing/data/housing_original.csv", na.strings = c("", "NA"))  # r-style: keep – the base reader adds nothing to the download
+original <- utils::read.csv("data/housing_original.csv", na.strings = c("", "NA"))  # r-style: keep – the base reader adds nothing to the download
 ```
 
 ::: {.fragment .small}
@@ -291,7 +291,7 @@ prop.test(counts_25n5d$greetings, counts_25n5d$emails)
 ```
 
 ::: {.fragment .small}
-You should get **X-squared = `r fmt_num(prop_yates, 3)`** on 1 df, on `r fmt_n(sum(counts_25n5d$emails))` emails, the value on record for 25N5D.
+You should get **X-squared = `r fmt_num(prop_yates, 3)`** on 1 df, on `r format(sum(counts_25n5d$emails), big.mark = ",")` emails, the value on record for 25N5D.
 :::
 
 ::: notes

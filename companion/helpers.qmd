@@ -6,10 +6,10 @@ subtitle: "Fitting specifications with `try_spec()`"
 ```{r}
 #| label: setup
 #| include: false
-# Every chunk on this page runs from the folder of the case study, so that the paths
-# read exactly as they do in the workspace and in the browser lab:
-# data/housing_emails.csv.
-knitr::opts_knit$set(root.dir = "../cases/housing")
+# Every chunk on this page runs from the root of the site, whose data/ folder
+# holds the same files as that of the workspace, so that the paths read exactly
+# as they do in the workspace and in the browser lab: data/housing_emails.csv.
+knitr::opts_knit$set(root.dir = "..")
 ```
 
 ```{r}
@@ -21,9 +21,9 @@ ref_row    <- page_curve |> datawizard::data_filter(is_reference)
 ref_gap    <- insight::format_value(ref_row$b_pp, digits = 2, style_negative = "minus")
 ```
 
-This page introduces the helper functions with which the exercise of the Housing and racial bias case study fits its specifications, and the self-study route reads it in [stage 2](../tracks/self-study/stage-2.qmd). It assumes the R taught in [Getting started with R](https://codemoreh.github.io/ar4ds/tools/r.html), the module on the umbrella site of the course, written on the data of this case study, up to [section 10](https://codemoreh.github.io/ar4ds/tools/r.html#sec-shares), in which the share of replies that greeted the sender by name is computed for two groups of names and the difference between the two shares is taken.
+This page introduces the helper functions with which the exercise of the Housing and racial bias case study fits its specifications. It assumes the R taught in [Getting started with R](https://codemoreh.github.io/ar4ds/tools/r.html), the module on the umbrella site of the course, written on the data of this case study, up to [section 10](https://codemoreh.github.io/ar4ds/tools/r.html#sec-shares), in which the share of replies that greeted the sender by name is computed for two groups of names and the difference between the two shares is taken.
 
-The code on this page ran when the page was built, and what R printed appears under each block, so you can compare your own output with the page line by line. Type each block into the workspace that you downloaded from the [setup page](https://codemoreh.github.io/ar4ds/setup.html#the-workspace), or, if your installation fails, into the [browser lab](../cases/housing/lab.qmd), where the helpers are already loaded.
+The code on this page ran when the page was built, and what R printed appears under each block, so you can compare your own output with the page line by line. Type each block into the [workspace](../tracks/day/before.qmd#the-workspace) that you downloaded, or, if your installation fails, into the [browser lab](../lab.qmd), where the helpers are already loaded.
 
 ## A first look at `try_spec()` {#sec-try-spec}
 
@@ -40,8 +40,8 @@ source("R/spec_tools.R")
 #| include: false
 # The page reads the helpers from the local copy of the workspace, the
 # repository ar4ds-housing-workspace in the folder beside this site, and its
-# data/ from the folder of the case study, which holds the same files.
-source("../../../ar4ds-housing-workspace/R/spec_tools.R")
+# data/ from the root of the site, which holds the same files.
+source("../ar4ds-housing-workspace/R/spec_tools.R")
 ```
 
 `try_spec()` fits one specification and prints its result. Every argument has a default, and the defaults make up the reference specification, the comparison that section 10 of Getting started with R makes by hand, so calling the function with no arguments reproduces the gap computed there:
@@ -75,4 +75,4 @@ Every call to `try_spec()` is logged, and `my_experiments()` prints the log, sho
 my_experiments()
 ```
 
-That is the whole of Task 4 in miniature: change one decision at a time, read what moves, and keep a record. The [exercise page of the self-study route](../tracks/self-study/exercise.qmd) sets out the five tasks, the [specification menu](../cases/housing/menu.qmd) lists every argument and its options, and the [cheatsheet](../cases/housing/cheatsheet.qmd) puts the helpers on one page.
+That is the whole of Task 4 in miniature: change one decision at a time, read what moves, and keep a record. The [specification menu](../menu.qmd) lists every argument and its options, and the [cheatsheet](../cheatsheet.qmd) puts the helpers on one page.

@@ -28,10 +28,10 @@ other numbers are read from the committed data files by the chunk below. -->
 #| include: false
 # Numbers quoted on the page, read from the committed data files of the case study;
 # the ends of the curve carry a true minus sign.
-h_curve <- readr::read_csv("cases/housing/data/spec_curve.csv", show_col_types = FALSE)
-h_analysts <- readr::read_csv("cases/housing/data/analysts5.csv", show_col_types = FALSE)
-h_emails <- nrow(readr::read_csv("cases/housing/data/housing_emails.csv", show_col_types = FALSE))
-coded <- readr::read_csv("cases/housing/data/housing_original.csv", show_col_types = FALSE) |>
+h_curve <- readr::read_csv("data/spec_curve.csv", show_col_types = FALSE)
+h_analysts <- readr::read_csv("data/analysts5.csv", show_col_types = FALSE)
+h_emails <- nrow(readr::read_csv("data/housing_emails.csv", show_col_types = FALSE))
+coded <- readr::read_csv("data/housing_original.csv", show_col_types = FALSE) |>
   datawizard::data_filter(!is.na(ProperName)) |>
   datawizard::data_modify(hispanic_name = startsWith(TreatmentGroup, "Hispanic"))
 tab_8ptrz <- xtabs(~ hispanic_name + ProperName, data = coded)  # r-style: keep – chisq.test() takes a table
@@ -56,11 +56,11 @@ Hands-on training in {{< var workshop.format >}}
 # Housing and racial bias {#housing-and-racial-bias .unnumbered .unlisted}
 
 ::: {.home-lead}
-This site teaches reproduction, robustness and replication in R on one published claim, together with the reanalyses that the claim received in a many-analyst study and the replication that tested it with new data. It is part of Applied Replication for Data Skills (AR4DS), which teaches the same exercise on four case studies.
+This site teaches reproduction, robustness and replication in R on one published claim, together with the reanalyses that the claim received in a many-analyst study and the replication that tested it with new data. It is part of Applied Replication for Data Skills (AR4DS).
 :::
 
 ::: {.home-cta}
-[Formats](#formats) [Read the background](cases/housing/index.qmd)
+[Formats](#formats) [Read the background](background.qmd)
 :::
 
 :::::
@@ -86,7 +86,7 @@ A field experiment published in 2017 sent the same short email to about a thousa
 The background page tells the story in six parts: the original study and its design, SCORE and its robustness study [Multi100\; @AczelEtAl2026InvestigatingAnalyticalRobustness], the five reanalyses, their effect sizes on the scale of the robustness study, the replication with new data, and the data that you will use. The case study teaches proportions and the chi-square test, the linear probability model set against the logit, what conditioning on a reply does to an experiment, randomisation inference and statistical power, on one file of `r format(h_emails, big.mark = ",")` emails, released into the public domain (CC0) and shipped with the workspace.
 
 ::: {.home-cta}
-[Read the background](cases/housing/index.qmd)
+[Read the background](background.qmd)
 :::
 
 ::::
@@ -128,7 +128,7 @@ The facilitator of a course chooses its format, and the link that you receive fo
 :::: {.home-grid}
 
 ::: {.home-track .home-reveal}
-### [Short session](tracks/housing-short/index.qmd) {.unnumbered .unlisted}
+### [Short](tracks/short/index.qmd) {.unnumbered .unlisted}
 
 [Two halves, in the browser]{.home-meta}
 
@@ -136,7 +136,7 @@ Two halves, with nothing to install and nothing to submit: the claim and the fiv
 :::
 
 ::: {.home-track .home-reveal}
-### [One-day workshop](tracks/housing-one-day/index.qmd) {.unnumbered .unlisted}
+### [Day](tracks/day/index.qmd) {.unnumbered .unlisted}
 
 [Four parts, in R on your own machine]{.home-meta}
 
@@ -144,15 +144,7 @@ The claim and the credibility of social science, the estimand and the causal gra
 :::
 
 ::: {.home-track .home-reveal}
-### [Extended course](tracks/housing-extended/index.qmd) {.unnumbered .unlisted}
-
-[Three days, built around the workshop]{.home-meta}
-
-A first day on open research and the tools, the same for every case study, the workshop as the second day, and a third day on the methods of the case study, which ends with a report of your own, written in Quarto and kept under Git.
-:::
-
-::: {.home-track .home-reveal}
-### [Self-study](tracks/self-study/index.qmd) {.unnumbered .unlisted}
+### [Independent](tracks/independent/index.qmd) {.unnumbered .unlisted}
 
 [Five stages at your own pace, in R]{.home-meta}
 
@@ -170,7 +162,7 @@ The case study for a reader who works alone, in R on your own machine, with the 
 ## The exercise {.unnumbered .home-reveal}
 
 ::: {.home-intro .home-reveal}
-Every format works through the same five tasks, or a selection of them. The short session centres on the first three and sends nothing to the class chart, while the one-day workshop, the Extended course and the self-study route take all five. The decisions that the tasks ask for fall into three groups: the question that the analysis answers; measurement, how the variables are built; and the model, how it is fitted and its uncertainty judged.
+Every format works through the same five tasks, or a selection of them. The short format centres on the first three and sends nothing to the class chart, while the day and independent formats take all five. The decisions that the tasks ask for fall into three groups: the question that the analysis answers; measurement, how the variables are built; and the model, how it is fitted and its uncertainty judged.
 :::
 
 :::: {.home-reveal}
@@ -178,7 +170,7 @@ Every format works through the same five tasks, or a selection of them. The shor
 <details>
 <summary><span class="home-n">Task 1</span>The setup check</summary>
 
-Check that your tools work before the rest of the work depends on them: the check script of the workspace, or in the short session the setup cell of the deck.
+Check that your tools work before the rest of the work depends on them: the check script of the workspace, or in the short format the setup cell of the deck.
 
 </details>
 
@@ -199,20 +191,20 @@ Choose one of the five analysts and reproduce the value recorded in the robustne
 <details>
 <summary><span class="home-n">Task 4</span>The menu</summary>
 
-Work through the decisions that lie between the data and a result, try alternatives one change at a time, and send one exploration to the class chart. The [decision map](cases/housing/menu.qmd#map) lays every decision out.
+Work through the decisions that lie between the data and a result, try alternatives one change at a time, and send one exploration to the class chart. The [decision map](menu.qmd#map) lays every decision out.
 
 </details>
 
 <details>
 <summary><span class="home-n">Task 5</span>Declaration and report</summary>
 
-Declare one specification in a short preregistration, run it, report it, and find where it sits among the `r h_spec` specifications of the [curve of the claim](cases/housing/curve.qmd).
+Declare one specification in a short preregistration, run it, report it, and find where it sits among the `r h_spec` specifications of the [curve of the claim](curve.qmd).
 
 </details>
 
 ::::
 
-The exercise page of each format sets out its tasks in full, with the tool in which each is done, for the [short session](tracks/housing-short/exercise.qmd), the [one-day workshop](tracks/housing-one-day/exercise.qmd), the [Extended course](tracks/housing-extended/exercise.qmd) and the [self-study route](tracks/self-study/exercise.qmd).
+The exercise page of each format sets out its tasks in full, with the tool in which each is done, for the [short](tracks/short/exercise.qmd), [day](tracks/day/exercise.qmd) and [independent](tracks/independent/exercise.qmd) formats.
 
 :::::
 ::::::
@@ -242,35 +234,17 @@ The exercise follows the design of the robustness study on a smaller scale, with
 
 </details>
 
-<details id="the-one-day-course">
-<summary>The one-day workshop</summary>
-
-The one-day workshop runs in four parts, with breaks and a lunch between them, and when a delivery is scheduled, the callout near the top of this page gives its date. Part 1 sets out the claim and the credibility of social science, with the three Rs (reproducibility, robustness and replicability), and SCORE and its robustness study in brief. Part 2 takes the estimand and the causal graph, and Part 3 the reproduction of one reanalysis, chosen by each participant. Part 4 is the robustness exercise: the specification menu, the class chart and its submissions, the curve of the claim, the replication with new data, and one analysis declared before it runs.
-
-The Extended course builds two more days around the workshop, a first day on open research and the tools and a third on the methods of the case study and a report of your own. The short session runs as two halves, on a deck whose slides run R inside the browser, and sends nothing to the class chart.
-
-</details>
-
-<details id="running-the-analyses">
-<summary>Running the analyses</summary>
-
-The exercise is done in R, either in the browser or on your own machine. The short session needs only a browser, because its deck runs R inside the browser and carries every task of the session. The one-day workshop, the Extended course and the self-study route do the tasks in R on your own machine, and the deck of the workshop shows each step with its output. For those formats you install R and an IDE (Positron, RStudio, VS Code, etc.) once, then download the ready-made workspace, a single zip file holding the analysis code, the data and a report to fill in. There is nothing to configure, so you open the folder and start working, and the workspace is yours to keep afterwards. The data of the case study are in the public domain and ship inside the workspace. The [setup page](https://codemoreh.github.io/ar4ds/setup.html) on the AR4DS site walks you through the installation in plain steps.
-
-The [browser lab](cases/housing/lab.qmd) holds the same exercise on a version of R that runs inside a browser tab, with the data in the page and nothing installed. It is the place to try R and the data before you have installed anything, and with the deck it is the fallback if a machine fails on the day. Anyone can use it, whether or not they are taking the course.
-
-</details>
-
 <details>
 <summary>The companion</summary>
 
-The [companion](companion/index.qmd) holds the teaching material of the course on this case study, in three groups: tools, data and sharing, and methods. Every module keeps its own page and stands on its own, so you can read one for the skill that it covers or take it in the place that a format gives it. A single day has room for the exercise and very little else, which is why the workshop points to the modules rather than working through them, while the Extended course teaches some of them as sessions and the self-study route sets each module beside the task that first needs it.
+The [companion](companion/index.qmd) holds the teaching material of the course on this case study, in three groups: tools, data and sharing, and methods. Every module keeps its own page and stands on its own, so you can read one for the skill that it covers or take it in the place that a format gives it.
 
 </details>
 
 <details>
 <summary>SCORE</summary>
 
-The claim comes from the work of SCORE, a programme that put claims from published social and behavioural research through reproduction, robustness checks and replication, and the exercise follows the design of its robustness study. The AR4DS site describes [the programme and the record of the four case studies of the course](https://codemoreh.github.io/ar4ds/score.html), and its page on [the robustness article](https://codemoreh.github.io/ar4ds/robustness-article.html) explains how the results of the analysts were placed on one scale and compared.
+The claim comes from the work of SCORE, a programme that put claims from published social and behavioural research through reproduction, robustness checks and replication, and the exercise follows the design of its robustness study. The AR4DS site describes [the programme](https://codemoreh.github.io/ar4ds/score.html), and its page on [the robustness article](https://codemoreh.github.io/ar4ds/robustness-article.html) explains how the results of the analysts were placed on one scale and compared.
 
 </details>
 
@@ -285,7 +259,7 @@ The claim comes from the work of SCORE, a programme that put claims from publish
 ## Getting started {.unnumbered .home-reveal}
 
 ::: {.home-intro .home-reveal}
-The short session needs only a browser, because every task of the session is done in its deck, which runs R inside the browser. The one-day workshop, the Extended course and the self-study route do the tasks in the workspace, in your IDE, and install R, an IDE and the workspace as part of their preparation. In those formats the deck shows each step with its output, and the deck and the browser lab carry the tasks if an installation fails.
+The short format needs only a browser, because every task of the format is done in its deck, which runs R inside the browser. The day and independent formats do the tasks in the workspace, in your IDE, and install R, an IDE and the workspace as part of their preparation. In those formats the deck shows each step with its output, and the deck and the browser lab carry the tasks if an installation fails.
 :::
 
 :::: {.home-steps .home-reveal}
@@ -293,25 +267,25 @@ The short session needs only a browser, because every task of the session is don
 ::: {.home-step}
 ### R and an IDE {.unnumbered .unlisted}
 
-Install R, Quarto and an IDE (Positron, RStudio, VS Code, etc.), following the steps for your operating system; the short session needs none of them. [Install and check](https://codemoreh.github.io/ar4ds/setup.html)
+Install R, Quarto and an IDE (Positron, RStudio, VS Code, etc.), following the steps for your operating system; the short format needs none of them. [Install and check](https://codemoreh.github.io/ar4ds/setup.html)
 :::
 
 ::: {.home-step}
 ### The workspace {.unnumbered .unlisted}
 
-Download the workspace of the case study as a zip file, open it in your IDE and run the check script. The one-day workshop, the Extended course and the self-study route do their tasks in it. [The workspace](https://codemoreh.github.io/ar4ds/setup.html#the-workspace)
+Download the workspace of the case study as a zip file, open it in your IDE and run the check script. The day and independent formats do their tasks in it. [The workspace](tracks/day/before.qmd#the-workspace)
 :::
 
 ::: {.home-step}
 ### The deck {.unnumbered .unlisted}
 
-The decks of the short session and of the one-day workshop run R inside the browser. The short session does every task in its deck, and in the workshop the deck shows each step with its output. [Choose a format](#formats)
+The decks of the short and day formats run R inside the browser. The short format does every task in its deck, and in the day format the deck shows each step with its output. [Choose a format](#formats)
 :::
 
 ::: {.home-step}
 ### The browser lab {.unnumbered .unlisted}
 
-Try the exercise in the browser, without installing anything. With the deck, it is also the fallback when a machine fails on the day. [Open the browser lab](cases/housing/lab.qmd)
+Try the exercise in the browser, without installing anything. With the deck, it is also the fallback when a machine fails on the day. [Open the browser lab](lab.qmd)
 :::
 
 ::::

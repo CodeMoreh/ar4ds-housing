@@ -8,22 +8,22 @@ bibliography: [../references.bib, ../references-new.bib]
 #| label: setup
 #| include: false
 # The estimator of the case study, for spec_frame() and the conversion rule of the robustness study
-source("../R/housing/_tools.R")
+source("../R/_tools.R")
 
-housing <- readr::read_csv("../cases/housing/data/housing_emails.csv", show_col_types = FALSE)
-analysts <- readr::read_csv("../cases/housing/data/analysts5.csv", show_col_types = FALSE)
-marks <- readr::read_csv("../cases/housing/data/reference_marks.csv", show_col_types = FALSE)
-curve <- readr::read_csv("../cases/housing/data/spec_curve.csv", show_col_types = FALSE)
+housing <- readr::read_csv("../data/housing_emails.csv", show_col_types = FALSE)
+analysts <- readr::read_csv("../data/analysts5.csv", show_col_types = FALSE)
+marks <- readr::read_csv("../data/reference_marks.csv", show_col_types = FALSE)
+curve <- readr::read_csv("../data/spec_curve.csv", show_col_types = FALSE)
 # The counts of the four groups of replies, recovered from display_replication.csv
 # by companion/_model-outputs/bayes_housing.R
 counts <- readr::read_csv("_model-outputs/bayes_housing_counts.csv", show_col_types = FALSE)
 ref <- datawizard::data_filter(curve, is_reference)
 oa <- datawizard::data_filter(marks, id == "OA")
-replication <- readr::read_csv("../cases/housing/data/display_replication.csv", show_col_types = FALSE)
+replication <- readr::read_csv("../data/display_replication.csv", show_col_types = FALSE)
 subcounty <- datawizard::data_filter(replication, population == "replies", authorities == "sub-county")
 ```
 
-This module of the [companion curriculum](index.qmd) is about putting results on one scale and combining them, and it works through the two kinds of comparison that the Housing and racial bias case study raises. The case study comes from a field experiment by the original authors (OAs), who emailed public housing authorities in the United States from names meant to indicate a white, a Black or a Hispanic applicant and found that replies to the Hispanic names opened with the name of the sender less often [@EinsteinGlick2017DoesRaceAffect]; the [background page](../cases/housing/index.qmd) tells it in full. Five analysts reanalysed the claim in the robustness study of SCORE [Multi100\; @AczelEtAl2026InvestigatingAnalyticalRobustness], each on the public file of the OAs, and a new experiment run for the SCORE programme tried to replicate it on new data. The first comparison sets five analyses of one file side by side, and the second sets two studies of the same question side by side. Meta-analysis has tools for the second, and the module argues that the first needs a different kind of summary. Every number on the page is computed when it is built, from the files of the case study in `cases/housing/data/`.
+This module of the [companion curriculum](index.qmd) is about putting results on one scale and combining them, and it works through the two kinds of comparison that the Housing and racial bias case study raises. The case study comes from a field experiment by the original authors (OAs), who emailed public housing authorities in the United States from names meant to indicate a white, a Black or a Hispanic applicant and found that replies to the Hispanic names opened with the name of the sender less often [@EinsteinGlick2017DoesRaceAffect]; the [background page](../background.qmd) tells it in full. Five analysts reanalysed the claim in the robustness study of SCORE [Multi100\; @AczelEtAl2026InvestigatingAnalyticalRobustness], each on the public file of the OAs, and a new experiment run for the SCORE programme tried to replicate it on new data. The first comparison sets five analyses of one file side by side, and the second sets two studies of the same question side by side. Meta-analysis has tools for the second, and the module argues that the first needs a different kind of summary. Every number on the page is computed when it is built, from the files of the case study in `data/`.
 
 ## 1. What a meta-analysis combines {#sec-what}
 
@@ -44,7 +44,7 @@ tanh(sqrt(abs(test_statistic))*sqrt(1/(sample_size-3)))*sign(test_statistic)
 sqrt(abs(test_statistic)^2/(test_statistic^2+df1))*sign(test_statistic)
 ```
 
-Each correlation then became a Cohen's d by the rule of the script `cohens_d.R` of the same team, `sign(r)*sqrt(4/((1/r^2)-1))`, which is $d = 2r/\sqrt{1 - r^2}$. The estimator of the course carries the first three rules in `r_robustness()` in `R/housing/_tools.R`, and applied to the four statistics recorded in the robustness study for this claim it returns the four recorded correlations.
+Each correlation then became a Cohen's d by the rule of the script `cohens_d.R` of the same team, `sign(r)*sqrt(4/((1/r^2)-1))`, which is $d = 2r/\sqrt{1 - r^2}$. The estimator of the course carries the first three rules in `r_robustness()` in `R/_tools.R`, and applied to the four statistics recorded in the robustness study for this claim it returns the four recorded correlations.
 
 ```{r}
 #| label: conversion
@@ -70,7 +70,7 @@ The rule reproduces every recorded correlation, sign included, and every d up to
 
 ```{r}
 #| label: tbl-five
-#| tbl-cap: "The five analyses of the Housing claim in the robustness study: the recorded statistic, the emails on which it was converted, the recorded correlation and Cohen's d, and the gap between Hispanic and comparison names in the course refit of each analysis. Source: `cases/housing/data/analysts5.csv`."
+#| tbl-cap: "The five analyses of the Housing claim in the robustness study: the recorded statistic, the emails on which it was converted, the recorded correlation and Cohen's d, and the gap between Hispanic and comparison names in the course refit of each analysis. Source: `data/analysts5.csv`."
 #| echo: false
 # dplyr, because datawizard reads the column name `d` on the left as a reference
 analysts |>
@@ -151,7 +151,7 @@ recorded |>
   dplyr::mutate(dplyr::across(dplyr::where(is.double), \(x) round(x, 3)))
 ```
 
-Three of the four recorded analyses fall within ±0.05 of the original d, and the one outside is UYV3F, whose gap of `r insight::format_value(analysts$b_pp_refit[analysts$id == "UYV3F"], digits = 1, style_negative = "minus")` points is exactly the raw gap of the paper. Its z comes from a model without covariates on `r analysts$n_refit[analysts$id == "UYV3F"]` replies, against a model with covariates on `r oa$n`, and the conversion turns that difference in model and sample into a difference in d of `r insight::format_value(analysts$d_recorded[analysts$id == "UYV3F"] - d_oa, digits = 3)`. Meanwhile 25N5D, whose gap among all delivered emails is about seven points smaller than the published one, lands within the region. On this claim the common scale ranks the analyses partly by their test statistics and sample sizes, which is the limitation that the article itself flags. The course places every analysis on the scale of the claim instead, in percentage points, as the [background page](../cases/housing/index.qmd#sec-scale) explains.
+Three of the four recorded analyses fall within ±0.05 of the original d, and the one outside is UYV3F, whose gap of `r insight::format_value(analysts$b_pp_refit[analysts$id == "UYV3F"], digits = 1, style_negative = "minus")` points is exactly the raw gap of the paper. Its z comes from a model without covariates on `r analysts$n_refit[analysts$id == "UYV3F"]` replies, against a model with covariates on `r oa$n`, and the conversion turns that difference in model and sample into a difference in d of `r insight::format_value(analysts$d_recorded[analysts$id == "UYV3F"] - d_oa, digits = 3)`. Meanwhile 25N5D, whose gap among all delivered emails is about seven points smaller than the published one, lands within the region. On this claim the common scale ranks the analyses partly by their test statistics and sample sizes, which is the limitation that the article itself flags. The course places every analysis on the scale of the claim instead, in percentage points, as the [background page](../background.qmd#sec-scale) explains.
 
 ## 4. Five analyses of one file {#sec-one-file}
 
@@ -167,7 +167,7 @@ round(c(estimate = pooled_curve$beta[[1]], se = pooled_curve$se, se_one_spec = s
 
 The pooled gap has a standard error of `r insight::format_value(pooled_curve$se, digits = 2)` points, as if `r nrow(curve)` independent experiments of `r min(curve$n)` to `r max(curve$n)` emails had been run, when there was one experiment, whose reference comparison has a standard error of `r insight::format_value(ref$se_pp, digits = 2)` points. The estimate is an average over a menu of specifications whose make-up the course chose, so even its centre depends on how many options each decision was given, and its standard error belongs to no sampling process.
 
-Analyses of one file can be summarised by their spread and by what drives it. On this claim, all five analyses and all `r nrow(curve)` specifications give a gap in the direction of the claim, and each of the five tests that the analysts reported for Task 2 is significant at the 5% level. The gaps of the five run from `r insight::format_value(min(analysts$b_pp_refit), digits = 1, style_negative = "minus")` to `r insight::format_value(max(analysts$b_pp_refit), digits = 1, style_negative = "minus")` points and those of the curve from `r insight::format_value(min(curve$b_pp), digits = 1, style_negative = "minus")` to `r insight::format_value(max(curve$b_pp), digits = 1, style_negative = "minus")`, with a standard deviation of `r insight::format_value(stats::sd(curve$b_pp), digits = 1)` points across the specifications, smaller than the standard error of any one of them. The range, the share of results in each direction and the share that are significant describe the robustness of the claim to analytical choices, and the decomposition of the curve by its decisions, set out in the [multiverse module](multiverse.qmd), says which choices produce the spread. Two verdicts of "no evidence either way" sit beside these numbers, and the [background page](../cases/housing/index.qmd#sec-verdicts) traces both to the questions that the two analysts asked, not to their estimates. A spread of this kind is the counterpart of what @GelmanLoken2014StatisticalCrisisScience call the 'garden of forking paths', the many analyses that the same data allow, each of which a researcher could have chosen in the light of the data, and on this claim the analyses chosen by the five analysts and by the course all give a gap in the same direction.
+Analyses of one file can be summarised by their spread and by what drives it. On this claim, all five analyses and all `r nrow(curve)` specifications give a gap in the direction of the claim, and each of the five tests that the analysts reported for Task 2 is significant at the 5% level. The gaps of the five run from `r insight::format_value(min(analysts$b_pp_refit), digits = 1, style_negative = "minus")` to `r insight::format_value(max(analysts$b_pp_refit), digits = 1, style_negative = "minus")` points and those of the curve from `r insight::format_value(min(curve$b_pp), digits = 1, style_negative = "minus")` to `r insight::format_value(max(curve$b_pp), digits = 1, style_negative = "minus")`, with a standard deviation of `r insight::format_value(stats::sd(curve$b_pp), digits = 1)` points across the specifications, smaller than the standard error of any one of them. The range, the share of results in each direction and the share that are significant describe the robustness of the claim to analytical choices, and the decomposition of the curve by its decisions, set out in the [multiverse module](multiverse.qmd), says which choices produce the spread. Two verdicts of "no evidence either way" sit beside these numbers, and the [background page](../background.qmd#sec-verdicts) traces both to the questions that the two analysts asked, not to their estimates. A spread of this kind is the counterpart of what @GelmanLoken2014StatisticalCrisisScience call the 'garden of forking paths', the many analyses that the same data allow, each of which a researcher could have chosen in the light of the data, and on this claim the analyses chosen by the five analysts and by the course all give a gap in the same direction.
 
 ## 5. Two studies of one question {#sec-two-studies}
 
@@ -203,7 +203,7 @@ The equal-effects model pools the two gaps to `r insight::format_value(equal$bet
 #| echo: false
 #| fig-width: 7
 #| fig-height: 2.8
-#| fig-cap: "The gap in greetings by name between Hispanic and white names among the coded replies, in the original experiment and in the SCORE replication, with 95% confidence intervals, and the two pooled estimates. The size of each square is proportional to the weight of the study in the equal-effects model. Sources: `cases/housing/data/housing_emails.csv`, `cases/housing/data/display_replication.csv`."
+#| fig-cap: "The gap in greetings by name between Hispanic and white names among the coded replies, in the original experiment and in the SCORE replication, with 95% confidence intervals, and the two pooled estimates. The size of each square is proportional to the weight of the study in the equal-effects model. Sources: `data/housing_emails.csv`, `data/display_replication.csv`."
 #| fig-alt: "Forest plot. The original experiment lies at about −20 points with an interval from about −30 to −10; the replication lies at about 0 with an interval from about −5 to +5; the equal-effects pool lies near −4 with a narrow interval, and the random-effects pool near −10 with an interval from about −29 to +9."
 forest <- dplyr::bind_rows(
   summary(gaps) |>
@@ -289,4 +289,4 @@ The problems of this page belong to one claim and its five analysts. The [discus
 
 ## Sources and further reading {#sec-sources}
 
-The models on this page are fitted with metafor [@Viechtbauer2010ConductingMetaanalysesMetafor], whose article is a full introduction to the package, from the computation of effect sizes with `escalc()` to meta-regression. The three possibilities of a meta-analysis, and the estimands that each implies, are set out in *Bayesian Data Analysis* [@GelmanEtAl2014BayesianDataAnalysis, section 5.6], and equivalence tests and their bounds in @LakensEtAl2020ImprovingInferencesNull, beside Bayes factors for the same question. The conversion rules and the tolerance region are those of the article on the robustness study and its code [@AczelEtAl2026InvestigatingAnalyticalRobustness]. The files behind the numbers are `analysts5.csv`, `reference_marks.csv`, `spec_curve.csv`, `housing_emails.csv` and `display_replication.csv` in `cases/housing/data/`, each with a codebook, and the counts of the replication in `companion/_model-outputs/bayes_housing_counts.csv`.
+The models on this page are fitted with metafor [@Viechtbauer2010ConductingMetaanalysesMetafor], whose article is a full introduction to the package, from the computation of effect sizes with `escalc()` to meta-regression. The three possibilities of a meta-analysis, and the estimands that each implies, are set out in *Bayesian Data Analysis* [@GelmanEtAl2014BayesianDataAnalysis, section 5.6], and equivalence tests and their bounds in @LakensEtAl2020ImprovingInferencesNull, beside Bayes factors for the same question. The conversion rules and the tolerance region are those of the article on the robustness study and its code [@AczelEtAl2026InvestigatingAnalyticalRobustness]. The files behind the numbers are `analysts5.csv`, `reference_marks.csv`, `spec_curve.csv`, `housing_emails.csv` and `display_replication.csv` in `data/`, each with a codebook, and the counts of the replication in `companion/_model-outputs/bayes_housing_counts.csv`.

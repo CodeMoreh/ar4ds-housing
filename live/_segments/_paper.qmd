@@ -19,7 +19,7 @@ The case study of the day is a paper in the American Journal of Political Scienc
 :::: {.columns}
 ::: {.column width="52%"}
 ::: {.small}
-- Every public housing authority that could be matched with a core city of a metropolitan or micropolitan area: **1,017** in the paper, **`r fmt_n(nrow(housing))`** in the public file
+- Every public housing authority that could be matched with a core city of a metropolitan or micropolitan area: **1,017** in the paper, **`r format(nrow(housing), big.mark = ",")`** in the public file
 - **One email each**, sent on one of two days in the same week of 2014
 - Each authority assigned **at random**, "via random number generator", to one of six senders
 :::
@@ -108,7 +108,7 @@ Each name drew replies to between `r fmt_num(min(name_rows$reply_pct), 1)`% and 
 :::
 
 ::: {.src}
-cases/housing/data/display_names.csv, from the public file of the OAs: `r fmt_n(sum(name_rows$delivered))` delivered emails, `r fmt_n(sum(name_rows$replies))` replies, `r fmt_n(sum(name_rows$coded))` with a greeting code.
+data/display_names.csv, from the public file of the OAs: `r format(sum(name_rows$delivered), big.mark = ",")` delivered emails, `r format(sum(name_rows$replies), big.mark = ",")` replies, `r format(sum(name_rows$coded), big.mark = ",")` with a greeting code.
 :::
 
 ::: notes

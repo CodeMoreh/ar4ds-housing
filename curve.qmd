@@ -1,0 +1,269 @@
+---
+title: "Specification curve"
+subtitle: "The curve of the claim"
+execute:
+  echo: false
+  warning: false
+  message: false
+bibliography: [references.bib, references-new.bib]
+---
+
+```{r}
+#| label: setup
+#| include: false
+# The chart is drawn by assets/chart/multiverse.js from the payload built in
+# R/_chart_multiverse.R. Every number in the prose is read from the
+# data files here.
+source("R/_chart_multiverse.R")
+
+# readr rather than datawizard::data_read(), which reads empty cells as "" rather than NA
+curve      <- readr::read_csv("data/spec_curve.csv", show_col_types = FALSE)
+menu       <- readr::read_csv("data/menu_options.csv", show_col_types = FALSE)
+marks      <- readr::read_csv("data/reference_marks.csv", show_col_types = FALSE)
+analysts   <- readr::read_csv("data/analysts5.csv", show_col_types = FALSE)
+deviations <- readr::read_csv("data/menu_deviations.csv", show_col_types = FALSE)
+outcomes   <- readr::read_csv("data/display_outcomes.csv", show_col_types = FALSE)
+subgroups  <- readr::read_csv("data/display_subgroups.csv", show_col_types = FALSE)
+ri         <- readr::read_csv("data/display_ri.csv", show_col_types = FALSE)
+names_tab  <- readr::read_csv("data/display_names.csv", show_col_types = FALSE)
+housing      <- readr::read_csv("data/housing_emails.csv", show_col_types = FALSE)
+
+# Fixed decimals and a true minus sign; signed shifts carry a plus sign
+fmt <- \(x, d = 1) formatC(x, format = "f", digits = d) |> sub(pattern = "^-", replacement = "−")  # r-style: approved
+sgn <- \(x, d = 1) paste0(dplyr::if_else(x > 0, "+", ""), fmt(x, d))  # r-style: approved
+pct <- \(x, d = 1) paste0(fmt(x, d), "%")  # r-style: approved
+pe <- \(p) dplyr::case_when(p < 0.0001 ~ "p < 0.0001", p < 0.001 ~ paste("p =", fmt(p, 4)),  # r-style: approved
+                            .default = paste("p =", fmt(p, 3)))
+
+n_spec <- nrow(curve)
+ref <- datawizard::data_filter(curve, is_reference)
+n_tied <- sum(abs(curve$b_pp - ref$b_pp) < 1e-6) - 1
+n_options <- purrr::map_int(mv_axes$axis, \(a) dplyr::n_distinct(curve[[a]]))
+n_emails <- nrow(housing)
+no_thirds <- housing |>
+  datawizard::data_filter(!stats::complete.cases(pop_third, poverty_third, black_third, hispanic_third)) |>
+  nrow()
+reply_range <- range(names_tab$reply_pct[names_tab$level == "group"])
+
+dv <- \(axis, option, col) deviations[[col]][deviations$axis == axis & deviations$option == option]  # r-style: approved
+max_other <- deviations |>
+  datawizard::data_filter(axis != "population") |>
+  datawizard::data_summary(m = max(abs(c(shift_min, shift_max)))) |>
+  datawizard::data_extract("m")
+by_pop <- curve |>
+  datawizard::data_summary(lo = min(b_pp), hi = max(b_pp), mean = mean(b_pp), by = "population")
+bp <- \(pop, col) by_pop[[col]][by_pop$population == pop]  # r-style: approved
+
+# Share of the variance of the 64 estimates carried by each decision: the eta
+# squared of each decision in a main-effects model (effectsize), the sum of
+# squares of the decision over the total; the residual holds the interactions
+variance <- stats::lm(b_pp ~ comparison + population + uncoded + model + adjust, data = curve) |>
+  effectsize::eta_squared(partial = FALSE, ci = NULL)
+var_share <- 100 * c(stats::setNames(variance$Eta2, variance$Parameter),
+                     Residuals = 1 - sum(variance$Eta2))
+
+out <- \(o, cn, col) outcomes[[col]][outcomes$outcome == o & outcomes$contrast == cn]  # r-style: approved
+sub_ <- \(start, col) subgroups[[col]][startsWith(subgroups$subgroup, start)]  # r-style: approved
+mark <- \(id, col) marks[[col]][marks$id == id]  # r-style: approved
+ri_band <- stats::quantile(ri$b_pp, c(0.025, 0.975))
+ri_extreme <- sum(abs(ri$b_pp) >= abs(ref$b_pp) - 1e-9)
+```
+
+This page holds the curve of the claim of the Housing and racial bias case study. The claim, in the wording that SCORE took from the paper of the original authors (OAs) [@EinsteinGlick2017DoesRaceAffect], is that "Hispanic housing applicants were ... less likely to be greeted by name than were ... white counterparts". The curve holds every specification that the [specification menu](menu.qmd) keeps for this claim, `r n_spec` in all, each fitted on the `r format(n_emails, big.mark = ",")` emails of the Housing data. A specification is one complete set of answers to the decisions of an analysis. Five decisions vary on the curve: the comparison group (white names, or white and Black names together), the emails counted (the replies, or every delivered email), the replies without a greeting code (left out, or counted as no greeting), the model (a difference in proportions, or a logistic regression) and the adjustment (none, or one of three sets of covariates), which gives `r paste(n_options, collapse = " × ")` = `r n_spec` specifications. Every specification leaves out the bounced emails, pools the male and the female names, counts every reply whoever wrote it, is tested by its own model and reports the gap in percentage points. The [decision map](menu.qmd#map) sets out every decision, including the options that are not on the curve, with the reason for each.
+
+```{r}
+#| label: chart-claim
+#| output: asis
+notes_claim <- paste(
+  "Each mark is one specification: a circle for p &lt; 0.05 and a cross for p &ge; 0.05 under the test of its own model.",
+  sprintf("All %d specifications are circles.", n_spec),
+  "The tags mark the published result of the original authors (OAs 2017), the five analysts of the robustness study and the SCORE replication (SCORE 2020), each placed by its gap in percentage points; the replication comes from new data.",
+  "Click or tap a tag to hold its details open, and click again to release it.",
+  "<i>Colour by</i> colours the marks by one decision and adds rows under the curve that show where the specifications using each option fall in the ranking;",
+  "<i>Show only</i> keeps the specifications that use one option and fades the rest.",
+  "Hover over or tap a mark for its details, or focus the chart and use the arrow keys."
+)
+src_claim <- paste(
+  'Data: <a href="data/spec_curve_codebook.html">data/spec_curve.csv</a> and',
+  '<a href="data/reference_marks_codebook.html">data/reference_marks.csv</a>, with their codebooks.'
+)
+cat(mv_chart_html(   # r-style: keep – an asis chunk writes its raw HTML block through cat()
+  id = "mv-claim",
+  payload = mv_payload(curve, menu, marks, analysts),
+  title = "Specification curve of the claim",
+  sub = sprintf("%d specifications, with the published result, the five reanalyses and the replication", n_spec),
+  notes = notes_claim, src = src_claim
+))
+```
+
+All `r n_spec` specifications lie below zero, in the direction of the claim, and all `r sum(curve$p < 0.05)` have p < 0.05 under the test of their own model, so every mark on the chart is a circle and the shaded band above zero is empty. The estimates run from `r fmt(min(curve$b_pp))` to `r fmt(max(curve$b_pp))` points. The reference specification compares Hispanic with white names among the replies, with a difference in proportions and no covariates, and it reproduces the raw gap of the paper: `r pct(ref$rate_hisp)` of the replies to Hispanic names opened with the name of the sender, against `r pct(ref$rate_comp)` of the replies to white names, a gap of `r fmt(ref$b_pp, 2)` points. It sits at the left end of the curve, level with the logistic regression without covariates, which reproduces the same two shares.
+
+## Reading the curve {#reading}
+
+Each mark is one specification, and the marks are ranked by their estimate, from the largest gap on the left to the smallest on the right. The estimate is the difference in the share of greetings by name between Hispanic names and the comparison names, in percentage points, which is the scale on which the abstract of the paper states the finding ("twenty percentage points"). A linear probability model gives that difference as its coefficient. A logistic regression gives it as an average marginal effect, the difference in the predicted probability of a named greeting between a Hispanic and a comparison name, averaged over the analysed emails, so that the two models share one scale. A value below zero means that Hispanic names were greeted by name less often, the direction of the claim, and the shaded band above zero would hold the results that run against it.
+
+The shape of a mark gives its class at the 5% level, an open circle for p < 0.05 and a cross for p ≥ 0.05. The p-value is the two-sided test of the model of each specification, a t with HC2 standard errors for the linear model and a Wald z for the logistic regression, which is the test that a single analyst would report. On this curve the p-values run from `r fmt(min(curve$p), 5)` to `r fmt(max(curve$p), 4)`, so that every specification clears the threshold by a wide margin and the shape carries no information. What varies between the specifications is the size of the gap. The pop-up of each mark also gives the p-value of a randomisation test, which reshuffles the names among the analysed emails 1,999 times and refits the model after each reshuffle, and it is at most `r fmt(max(curve$p_ri), 4)` across the curve. Every test on the curve is two-sided. A one-tailed test halves the p-value by fixing the direction of the gap in advance, which the menu treats as a weaker answer, and the paper uses one only for the gap in replies, as the section [beside the curve](#beside) shows.
+
+Choosing a decision under *Colour by* colours the marks by the option that each specification uses and adds a row for each option under the curve, with a tick at the rank of every specification that uses it, so that an option which pushes results towards one end of the curve shows as a bunched row. Colouring by the emails counted divides the curve into two blocks. *Show only* keeps the specifications that use one option, fades the rest, and reports how many are shown and how many of them lie below zero with p < 0.05. Hovering over or tapping a mark, or focusing the chart and pressing the arrow keys, opens a pop-up with the full recipe of the specification, the number of emails analysed and the two shares behind the gap. The button above the chart downloads the data behind it, with the option codes that `try_spec()` takes as arguments.
+
+The share of specifications that agree with the claim describes this set of analyses. It is not the probability that the claim is true, a distinction that [section 6 of the multiverse module](companion/multiverse.qmd#sec-reading) explains.
+
+## Reference marks {#reference-marks}
+
+Seven tagged marks come from outside the curve: the published result of the OAs, tagged OAs 2017, the five reanalyses of the claim recorded in the robustness study of SCORE [Multi100\; @AczelEtAl2026InvestigatingAnalyticalRobustness], tagged by the identifiers of the analysts, and the SCORE replication, tagged SCORE 2020. The replication comes from new data, so its mark, at zero, stands apart from the curve, and the [background page](background.qmd#replication-scale) explains how the course computed it. Each is drawn as an ordinary mark in ink, at the end of a thin line to a tag that holds its pop-up open when clicked, so that its neighbours on the curve stay visible. Every mark is placed by its gap in percentage points. The published result is placed by the number that the paper gives on that scale, the change in the predicted probability of a named greeting from a white to a Hispanic name with the other variables at their means, `r fmt(mark("OA", "b_pp"))` points with a 95% confidence interval from −30.5 to −10.0 (p. 18 of the accepted manuscript). The five analyses are placed by the course refits of their scripts on the public file. The refits reproduce the four statistics recorded in the robustness study exactly, and they place P9W8Y, for whom the robustness study recorded no statistic, by the model in the report of the analyst.
+
+```{r}
+#| label: tbl-marks
+#| tbl-cap: "The six reference marks of the original data: the statistic as published or recorded, the emails analysed, the gap in percentage points by which the mark is placed, the number of specifications on the curve that lie further below zero, and where the result stands in relation to the menu. Sources: `data/reference_marks.csv`, `data/analysts5.csv`."
+relation <- c(OA = "outside the menu", `8PTRZ` = "on the curve", UYV3F = "on the curve",
+              EWFMI = "outside the menu", `25N5D` = "on the curve",
+              P9W8Y = "beside the curve (three-group model)")
+marks |>
+  datawizard::data_filter(on_chart & id != "SCORE") |>
+  datawizard::data_arrange("b_pp") |>
+  datawizard::data_modify(
+    Mark = dplyr::if_else(id == "OA", "OAs 2017", id),
+    Statistic = dplyr::case_when(
+      grepl("2 df", statistic_type) ~ paste0("χ<sup>2</sup>(2) = ", fmt(statistic, 3), " (refit)"),
+      statistic_type == "chi2" ~ paste0("χ<sup>2</sup> = ", fmt(statistic, 3)),
+      id == "OA" ~ paste("z =", fmt(statistic, 2)),
+      .default = paste("z =", fmt(statistic, 3))
+    ),
+    Emails = format(n, big.mark = ","),
+    `Gap (points)` = fmt(b_pp),
+    `Further below zero` = purrr::map_int(b_pp, \(x) sum(curve$b_pp < x - 1e-9)),
+    `Relation to the menu` = unname(relation[id])
+  ) |>
+  datawizard::data_select(c("Mark", "Statistic", "Emails", "Gap (points)", "Further below zero",
+                            "Relation to the menu")) |>
+  tinytable::tt() |>
+  tinytable::style_tt(j = 3:5, align = "r")
+```
+
+Three of the analyses are points of the curve itself. 8PTRZ compared Hispanic names with white and Black names together among the replies, UYV3F fitted a logistic regression without covariates to the replies to Hispanic and white names, and 25N5D counted every delivered email, with the uncoded replies as no greeting. In each case the gap of the refit equals the gap of the matching specification, and the test that the analyst reported, the $\chi^2$ test of a table, a z or a two-proportion test, is a check of the test that classes the point. P9W8Y fitted the three groups in one model without covariates, which gives exactly the raw gap of the reference specification, and then reported whether the three groups differ at all. EWFMI and the OAs fitted models outside the menu. EWFMI adjusted, beside the hard-to-find address, for the sex of the name and for the poverty third entered as a number, and the OAs adjusted for the continuous census values that the public file replaces with thirds. Refitted on those thirds, the model of the OAs gives `r fmt(mark("OA_blinded", "b_pp"))` points (z = `r fmt(mark("OA_blinded", "statistic"), 2)`), which is why the mark keeps the published number and the refit is not drawn.
+
+25N5D sits among the specifications that count every delivered email, and the other five marks sit among those that count the replies. Two of the six results come from analysts who concluded in Task 1 of the robustness study that the data showed no evidence either way, 25N5D and P9W8Y, although both marks are circles, and the [background page](background.qmd#sec-verdicts) explains how each verdict came about.
+
+## What moved the estimate {#shifts}
+
+Every option on the curve can be set beside the first option of its decision on twin specifications, which agree on every other decision, and @fig-shifts summarises what each option does to the estimate. Counting every delivered email instead of the replies moves it by `r sgn(dv("population", "all", "shift_mean"), 2)` points on average, towards zero (from `r sgn(dv("population", "all", "shift_min"), 2)` to `r sgn(dv("population", "all", "shift_max"), 2)` across its `r dv("population", "all", "n_pairs")` pairs), from a mean of `r fmt(bp("replies", "mean"))` points among the replies to `r fmt(bp("all", "mean"))` among all delivered emails. No other option moves any specification by more than `r fmt(max_other)` points. Pooling the Black names with the white ones moves the estimate by `r sgn(dv("comparison", "nonhispanic", "shift_mean"), 2)` points on average, the adjustment for the size and poverty of the community by `r sgn(dv("adjust", "place", "shift_mean"), 2)` and the set with its ethnic composition by `r sgn(dv("adjust", "place_ethnic", "shift_mean"), 2)`. Counting the uncoded replies as no greeting moves it by `r sgn(dv("uncoded", "not_named", "shift_mean"), 2)`, adjusting for the hard-to-find address by `r sgn(dv("adjust", "email", "shift_mean"), 2)` and fitting a logistic regression by `r sgn(dv("model", "logit", "shift_mean"), 2)`. Part of the shift under the two community sets comes from the `r no_thirds` emails without community thirds, which those sets leave out. `r if (all(deviations$flips == 0)) "No option moves any specification across the 5% threshold." else "Some options move a specification across the 5% threshold."`
+
+```{r}
+#| label: fig-shifts
+#| fig-cap: "What each option on the curve does to the estimate, against the first option of its decision on twin specifications: the mean shift (point) and the smallest and largest shift (line), in percentage points. A positive shift moves the estimate towards zero. Source: `data/menu_deviations.csv`."
+#| fig-alt: "Dot-and-range chart of seven options. All delivered emails shifts the estimate by about +5 points, from about +3.7 to +6.7; the other six options lie between about −0.1 and +2.7 points, most of them near zero."
+#| fig-width: 7.5
+#| fig-height: 3.4
+lab <- \(axis, option) menu$label[menu$axis == axis & menu$option == option]  # r-style: approved
+dec <- \(axis) menu$decision[menu$axis == axis][1]  # r-style: approved
+deviations |>
+  datawizard::data_filter(option != baseline) |>
+  datawizard::data_modify(
+    option_lab = stats::reorder(paste0(purrr::map_chr(axis, dec), ": ", purrr::map2_chr(axis, option, lab)),
+                                shift_mean),
+    population = axis == "population"
+  ) |>
+  ggplot2::ggplot(ggplot2::aes(x = shift_mean, y = option_lab, colour = population)) +
+  ggplot2::geom_vline(xintercept = 0, colour = "#9aa8b3") +
+  ggplot2::geom_linerange(ggplot2::aes(xmin = shift_min, xmax = shift_max), linewidth = 0.8) +
+  ggplot2::geom_point(size = 2.6) +
+  ggplot2::scale_colour_manual(values = c(`FALSE` = "#1d2733", `TRUE` = "#8b1538"), guide = "none") +
+  ggplot2::scale_x_continuous(labels = \(x) sub("^-", "−", x)) +
+  ggplot2::coord_cartesian(xlim = c(-1, 7)) +
+  ggplot2::labs(x = "shift in the estimate (percentage points)", y = NULL) +
+  ggplot2::theme_minimal(base_size = 12) +
+  ggplot2::theme(panel.grid.minor = ggplot2::element_blank())
+```
+
+Split by decision, the variance of the `r n_spec` estimates falls almost entirely on the emails counted, which carry `r pct(var_share[["population"]])` of it, against `r pct(var_share[["comparison"]])` for the comparison group, `r pct(var_share[["adjust"]])` for the adjustment, `r pct(var_share[["uncoded"]])` for the uncoded replies, `r pct(var_share[["model"]])` for the model, and `r pct(var_share[["Residuals"]])` for the interactions between decisions. Among the replies the estimates run from `r fmt(bp("replies", "lo"))` to `r fmt(bp("replies", "hi"))` points, and among all delivered emails from `r fmt(bp("all", "lo"))` to `r fmt(bp("all", "hi"))`.
+
+The emails counted move the estimate most because they change the outcome as well as the rows. Only `r pct(reply_range[1], 0)` to `r pct(reply_range[2], 0)` of the delivered emails in each group drew a reply, and among all delivered emails an email without a reply counts as one without a named greeting, so the shares of named greetings are roughly half those among the replies and the gap between the groups shrinks with them. Counting every delivered email keeps the groups as randomisation made them. The comparison among replies is a pure effect of the name only if the name did not change which officials replied, the post-treatment problem that analyst 25N5D raised, which the [background page](background.qmd#sec-posttreatment) and the [causal-graphs module](companion/dags.qmd#sec-case) set out. The curve keeps both as two estimands, so its two blocks are answers to two related questions, and the spread between them is not uncertainty about one quantity.
+
+## Beside the curve {#beside}
+
+Several findings of the paper stay off the curve, because each answers a question other than the claim, and three displays keep them.
+
+### Other outcomes and the Black names {#outcomes}
+
+The paper also asks whether officials replied at all and whether they replied within 24 hours, and it compares the Black names with the white ones on every outcome. @tbl-outcomes sets these comparisons beside the greeting.
+
+```{r}
+#| label: tbl-outcomes
+#| tbl-cap: "Four outcomes, for the Hispanic and the Black names against the white names: the difference in percentage points, as a difference in proportions with an HC2 test, two-sided. Source: `data/display_outcomes.csv`."
+outcome_lab <- c(reply = "Any reply, among delivered emails",
+                 reply24 = "Reply within 24 hours, among replies",
+                 named = "Greeted by name, among coded replies",
+                 named_any = "Greeted by name, among delivered emails")
+outcomes |>
+  datawizard::data_modify(cell = paste0(fmt(b_pp), " (", pe(p), ")")) |>
+  datawizard::data_select(c("outcome", "contrast", "cell", "n")) |>
+  datawizard::data_to_wide(id_cols = "outcome", names_from = "contrast", values_from = c("cell", "n")) |>
+  datawizard::data_modify(
+    Outcome = unname(outcome_lab[outcome]),
+    Emails = format(n_hispanic, big.mark = ","),
+    `Emails ` = format(n_black, big.mark = ",")
+  ) |>
+  datawizard::data_select(c("Outcome", `Hispanic names` = "cell_hispanic", "Emails",
+                            `Black names` = "cell_black", "Emails ")) |>
+  tinytable::tt() |>
+  tinytable::style_tt(j = 2:5, align = "r")
+```
+
+Emails with Hispanic names drew a reply `r fmt(abs(out("reply", "hispanic", "b_pp")))` points less often than emails with white names, with `r pe(out("reply", "hispanic", "p"))` two-sided. The paper reports p = .11 for this gap and calls it "borderline significant (with a one-tailed test)" (p. 15), and the one-tailed p of the same test is `r fmt(out("reply", "hispanic", "p") / 2, 3)`. A one-tailed test is defensible only when the direction was fixed before anyone looked at the data, which is why the curve keeps two-sided tests throughout. Replies to Hispanic names came within 24 hours `r fmt(out("reply24", "hispanic", "b_pp"))` points more often than replies to white names (`r pe(out("reply24", "hispanic", "p"))`). For the Black names no comparison comes near significance: they drew a reply `r fmt(out("reply", "black", "b_pp"))` points more often than the white names, and their replies opened with the name `r fmt(abs(out("named", "black", "b_pp")))` points less often (`r pe(out("named", "black", "p"))`). These are other claims of the same paper, about access rather than tone or about another group, and they stay off the curve.
+
+### Subgroups {#subgroups}
+
+The curve pools the male and the female names and counts every reply, whoever wrote it. @fig-subgroups splits the reference comparison three ways: by the sex of the name, by whether the official who replied had a Hispanic name, and by the third of the community on percent Hispanic.
+
+```{r}
+#| label: fig-subgroups
+#| fig-cap: "The gap in greetings by name between Hispanic and white names among the coded replies, in subgroups, with 95% confidence intervals from HC2 standard errors. Circles have p < 0.05 and crosses p ≥ 0.05; the burgundy row is the reference comparison. Source: `data/display_subgroups.csv`."
+#| fig-alt: "Dot-and-interval chart of eight rows. All names −20.0; male names −23.3, female names −15.7; officials with Hispanic names −25.7 with a very wide interval crossing zero; other officials −19.8; lower, middle and top thirds of percent Hispanic −20.7, −14.8 and −22.5, the middle third crossing zero."
+#| fig-width: 7.5
+#| fig-height: 3.8
+subgroups |>
+  datawizard::data_modify(
+    label = paste0(toupper(substr(subgroup, 1, 1)), substring(subgroup, 2), " (", n, ")"),
+    label = factor(label, levels = rev(label)),
+    reference = subgroup == "all names",
+    shape = dplyr::if_else(p < 0.05, "p < 0.05", "p ≥ 0.05")
+  ) |>
+  ggplot2::ggplot(ggplot2::aes(x = b_pp, y = label, colour = reference)) +
+  ggplot2::geom_vline(xintercept = 0, colour = "#9aa8b3") +
+  ggplot2::geom_linerange(ggplot2::aes(xmin = ci_low, xmax = ci_high), linewidth = 0.7) +
+  ggplot2::geom_point(ggplot2::aes(shape = shape), size = 2.6, stroke = 1.1) +
+  ggplot2::scale_colour_manual(values = c(`FALSE` = "#1d2733", `TRUE` = "#8b1538"), guide = "none") +
+  ggplot2::scale_shape_manual(values = c("p < 0.05" = 1, "p ≥ 0.05" = 4), name = NULL) +
+  ggplot2::scale_x_continuous(labels = \(x) sub("^-", "−", x)) +
+  ggplot2::coord_cartesian(xlim = c(-65, 15)) +
+  ggplot2::labs(x = "gap in greetings by name, Hispanic minus white names (points); replies in brackets", y = NULL) +
+  ggplot2::theme_minimal(base_size = 12) +
+  ggplot2::theme(panel.grid.minor = ggplot2::element_blank(), legend.position = "bottom")
+```
+
+The gap is `r fmt(sub_("male", "b_pp"))` points between Santiago and Brett (`r pe(sub_("male", "p"))`, `r sub_("male", "n")` replies) and `r fmt(sub_("female", "b_pp"))` points between Gabriela and Emily (`r pe(sub_("female", "p"))`, `r sub_("female", "n")` replies). Each half answers a narrower question, about men or about women, and the SCORE replication used male names only. Among the `r sub_("replies from officials", "n")` replies from officials with Hispanic names the gap is `r fmt(sub_("replies from officials", "b_pp"))` points (`r pe(sub_("replies from officials", "p"))`), against `r fmt(sub_("replies from other", "b_pp"))` among the `r sub_("replies from other", "n")` replies from other officials. That subgroup is selected after the email arrived, since an official is known only by replying, and it is small. By the Hispanic third of the community the gap is `r fmt(sub_("communities in the lower", "b_pp"))` points in the lower third, `r fmt(sub_("communities in the middle", "b_pp"))` in the middle third and `r fmt(sub_("communities in the top", "b_pp"))` in the top third, a pattern that the intervals cannot tell apart from a single gap. The [audit-experiments module](companion/experiments.qmd#sec-names) takes up what the names convey and why a subgroup of officials is a different kind of split from a subgroup of names.
+
+### The randomisation distribution {#randomisation}
+
+The names were assigned to the housing authorities at random, so the gap that chance alone produces can be found by reshuffling them. @fig-ri reshuffles the names among the `r ref$n` coded replies to Hispanic and white names `r format(nrow(ri), big.mark = ",")` times and recomputes the gap after each reshuffle.
+
+```{r}
+#| label: fig-ri
+#| fig-cap: "The gap in greetings by name between Hispanic and white names among the coded replies, after each of 4,999 random reshuffles of the names among those replies. The dashed lines enclose the central 95% of the reshuffled gaps, and the burgundy line marks the observed gap. Source: `data/display_ri.csv`."
+#| fig-alt: "Histogram of reshuffled gaps centred on zero, mostly between about −10 and +10 points, with a burgundy line at the observed gap of about −20 points, in the far left tail."
+#| fig-width: 7.5
+#| fig-height: 3
+ggplot2::ggplot(ri, ggplot2::aes(x = b_pp)) +
+  ggplot2::geom_histogram(binwidth = 1.1, fill = "#c9d1d9", colour = "white", boundary = 0) +
+  ggplot2::geom_vline(xintercept = ri_band, linetype = "dashed", colour = "#4f5b67") +
+  ggplot2::geom_vline(xintercept = ref$b_pp, colour = "#8b1538", linewidth = 0.9) +
+  ggplot2::annotate("text", x = ref$b_pp, y = Inf, label = "observed", hjust = -0.1, vjust = 1.5,
+                    colour = "#8b1538", size = 3.6) +
+  ggplot2::scale_x_continuous(labels = \(x) sub("^-", "−", x)) +
+  ggplot2::coord_cartesian(xlim = c(-25, 25)) +
+  ggplot2::labs(x = "gap after reshuffling the names (points)", y = "reshuffles") +
+  ggplot2::theme_minimal(base_size = 12) +
+  ggplot2::theme(panel.grid.minor = ggplot2::element_blank())
+```
+
+The central 95% of the reshuffled gaps lies between `r sgn(ri_band[1])` and `r sgn(ri_band[2])` points, and a gap at least as large in absolute value as the observed `r fmt(ref$b_pp, 2)` comes up in `r ri_extreme` of the `r format(nrow(ri), big.mark = ",")` reshuffles. The test needs no model of the errors, only the fact that the names were assigned at random, and it agrees with the test of the model, so that within the original data chance is a poor explanation of the gap.

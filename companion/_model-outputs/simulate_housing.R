@@ -16,12 +16,12 @@
 #               The module declares the first two designs on the page, in its
 #               sections 3 and 5, with the same code and reads the diagnoses
 #               from the files below.
-# Reads:        cases/housing/data/housing_emails.csv (the rates that the recipe
+# Reads:        data/housing_emails.csv (the rates that the recipe
 #               plants)
 # Writes:       companion/_model-outputs/sim_housing_diagnosis.csv
 #               companion/_model-outputs/sim_housing_draws.csv
 # Author:       Claude for CM
-# Last updated: 2026-11-14
+# Last updated: 2026-11-15
 ################################################################################
 
 set.seed(20261027)
@@ -29,7 +29,7 @@ set.seed(20261027)
 # The recipe takes its numbers from the delivered emails to white and Hispanic
 # names: how many there were, how often each group drew a reply, and how often
 # a coded reply opened with the name of the sender
-housing <- readr::read_csv("cases/housing/data/housing_emails.csv", show_col_types = FALSE) |>
+housing <- readr::read_csv("data/housing_emails.csv", show_col_types = FALSE) |>
   datawizard::data_filter(group %in% c("white", "hispanic"), !is.na(reply))
 n_delivered <- nrow(housing)
 n_hispanic <- sum(housing$group == "hispanic")
@@ -99,7 +99,7 @@ reply_dx <- DeclareDesign::redesign(reply_design, greet_marginal = c(0, greet_wh
 
 # 3. Power. The comparison among replies with fixed numbers of replies, as the
 # analytic power of the experiments module assumes (stats::power.prop.test()
-# in R/housing/05_displays.R): 181 replies a group at the size of the original
+# in R/05_displays.R): 181 replies a group at the size of the original
 # comparison and 369 at that of the replication, a white rate of 61%, and
 # gaps of 0 to 25 points. At a gap of 0 the share of significant draws is the
 # rate of false positives.

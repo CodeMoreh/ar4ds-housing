@@ -12,7 +12,7 @@
 # options change.
 #
 # The event line names the course and no case study, because every deck shares
-# it; the subtitle of a deck names its format and the case study.
+# it; the subtitle of a deck names the case study.
 
 author: "Chris Moreh"
 event: "Applied replication for data skills, a CodeMoreh course"
