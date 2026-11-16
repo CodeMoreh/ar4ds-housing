@@ -85,7 +85,7 @@ deck:
 # of R they sit under data/. housing holds the emails, one row
 # each, the object from which the cells of the hands-on slides work.
 .data_dir <- "data"
-housing <- utils::read.csv(file.path(.data_dir, "housing_emails.csv"), na.strings = c("", "NA"))  # r-style: keep – the base reader adds nothing to the download
+housing <- utils::read.csv(file.path(.data_dir, "housing_emails.csv"), na.strings = c("", "NA"))
 ```
 
 {{< include ../_includes/_lab-helpers.qmd >}}

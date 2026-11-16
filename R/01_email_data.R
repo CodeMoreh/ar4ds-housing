@@ -21,7 +21,7 @@ original <- raw |>
   dplyr::mutate(dplyr::across(dplyr::where(haven::is.labelled), \(x) as.numeric(x))) |>
   haven::zap_label() |>
   haven::zap_formats()
-readr::write_csv(original, "data/housing_original.csv", na = "")  # r-style: keep – datawizard::data_write() writes other bytes
+readr::write_csv(original, "data/housing_original.csv", na = "")
 
 names_key <- tibble::tibble(
   NumberAssignment = 1:6,
@@ -61,4 +61,4 @@ stopifnot(
   all(is.na(housing$named[housing$reply %in% 0]))
 )
 
-readr::write_csv(housing, "data/housing_emails.csv", na = "")  # r-style: keep – datawizard::data_write() writes other bytes
+readr::write_csv(housing, "data/housing_emails.csv", na = "")

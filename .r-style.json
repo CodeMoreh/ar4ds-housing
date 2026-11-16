@@ -1,3 +1,481 @@
 {
-  "namespaces": "always"
+  "namespaces": "always",
+  "approved": [
+    ".check_choices",
+    ".class_line",
+    ".class_tag",
+    ".clean_tag",
+    ".comparison_label",
+    ".curve",
+    ".dag_parts",
+    ".fmt_p",
+    ".housing",
+    ".new_tag",
+    ".on_menu",
+    ".options",
+    ".or_list",
+    ".page_ref",
+    ".print_result",
+    ".read_once",
+    ".refuse",
+    ".result",
+    ".submit",
+    ".validate",
+    "adjustmentSets",
+    "an",
+    "as_num",
+    "at",
+    "bounced_by",
+    "bp",
+    "case_dag",
+    "check_spec",
+    "clean_my_tag",
+    "curve_base",
+    "dag_plot",
+    "dec",
+    "dev_of",
+    "diff_from_white",
+    "draw_class_chart",
+    "dv",
+    "field",
+    "find_variables_file",
+    "fit_spec",
+    "fmt",
+    "fmt_num",
+    "fmt_p",
+    "fmt_pct",
+    "fmt_signed",
+    "gap",
+    "grp",
+    "judged",
+    "lab",
+    "lab_of",
+    "level_table",
+    "make_dag",
+    "mark",
+    "mark_layer",
+    "mark_of",
+    "mv_chart_html",
+    "mv_clean",
+    "mv_levels",
+    "mv_marks",
+    "mv_p_label",
+    "mv_payload",
+    "mv_placement",
+    "mv_upper_first",
+    "my_experiments",
+    "nm",
+    "out",
+    "out_of",
+    "page_title",
+    "parse_axes",
+    "part",
+    "paths",
+    "pct",
+    "pe",
+    "phrase_of",
+    "plot_dag",
+    "prepare_class",
+    "prereg",
+    "present",
+    "print.simple_dag_sets",
+    "pw",
+    "r_robustness",
+    "read_clean",
+    "reference_fit",
+    "refresh_multiverse",
+    "rep_val",
+    "repeatability_matrix",
+    "report_result",
+    "rp",
+    "run_spec",
+    "sgn",
+    "shift",
+    "spec_frame",
+    "spec_line",
+    "stat_txt",
+    "sub_",
+    "sub_of",
+    "subgroup",
+    "submit_exploration",
+    "summarise_names",
+    "theme_slide",
+    "tidy_approach",
+    "to_edge",
+    "try_spec"
+  ],
+  "keep": [
+    {
+      "file": "class-results.qmd",
+      "code": "curve <- utils::read.csv(\"data/spec_curve.csv\", stringsAsFactors = FALSE) |>",
+      "reason": "base reader, nothing to download"
+    },
+    {
+      "file": "class-results.qmd",
+      "code": "d <- utils::read.csv(path, stringsAsFactors = FALSE, check.names = FALSE, colClasses = \"character\")",
+      "reason": "base reader, nothing to download"
+    },
+    {
+      "file": "class-results.qmd",
+      "code": "fmt_p <- function(p) ifelse(p < 0.001, \"p < 0.001\", sprintf(\"p = %.3f\", p))",
+      "reason": "base, nothing to download"
+    },
+    {
+      "file": "class-results.qmd",
+      "code": "spec_raw <- trimws(ifelse(is.na(cls$spec), \"\", cls$spec))",
+      "reason": "base, nothing to download"
+    },
+    {
+      "file": "class-results.qmd",
+      "code": "ph <- ifelse(part(3) == \"explore\", \"explored\", \"declared\")",
+      "reason": "base, nothing to download"
+    },
+    {
+      "file": "class-results.qmd",
+      "code": "tg <- ifelse(nzchar(part(5)), part(5), NA_character_)",
+      "reason": "base, nothing to download"
+    },
+    {
+      "file": "class-results.qmd",
+      "code": "points <- data.frame(n_lab = paste0(\"#\", seq_len(n)),",
+      "reason": "base, nothing to download"
+    },
+    {
+      "file": "class-results.qmd",
+      "code": "phase = factor(ifelse(ph == \"explored\", phase_levels[1], phase_levels[2]),",
+      "reason": "base, nothing to download"
+    },
+    {
+      "file": "class-results.qmd",
+      "code": "data = data.frame(rank = 1, b = 0, phase = factor(phase_levels, levels = phase_levels)),",
+      "reason": "base, nothing to download"
+    },
+    {
+      "file": "curve.qmd",
+      "code": "cat(mv_chart_html(",
+      "reason": "an asis chunk writes its raw HTML block through cat()"
+    },
+    {
+      "file": "index.qmd",
+      "code": "tab_8ptrz <- xtabs(~ hispanic_name + ProperName, data = coded)",
+      "reason": "chisq.test() takes a table"
+    },
+    {
+      "file": "lab.qmd",
+      "code": "housing <- utils::read.csv(\"data/housing_emails.csv\", na.strings = c(\"\", \"NA\"))",
+      "reason": "the base reader adds nothing to the download"
+    },
+    {
+      "file": "lab.qmd",
+      "code": "adjustmentSets(my_dag)",
+      "reason": "the function of this page, which reads the answers of dagitty"
+    },
+    {
+      "file": "lab.qmd",
+      "code": "paths(my_dag, Z = \"reply\")",
+      "reason": "the function of this page, which reads the answers of dagitty"
+    },
+    {
+      "file": "lab.qmd",
+      "code": "paths(my_dag, Z = c(\"reply\", \"community\"))",
+      "reason": "the function of this page, which reads the answers of dagitty"
+    },
+    {
+      "file": "lab.qmd",
+      "code": "original <- utils::read.csv(\"data/housing_original.csv\", na.strings = c(\"\", \"NA\"))",
+      "reason": "the base reader adds nothing to the download"
+    },
+    {
+      "file": "lab.qmd",
+      "code": "tab_8ptrz <- xtabs(~ hispanic_name + ProperName, data = coded_replies)",
+      "reason": "the table that chisq.test() takes"
+    },
+    {
+      "file": "lab.qmd",
+      "code": "tab_8ptrz <- xtabs(~ hispanic_name + ProperName, data = coded_replies)",
+      "reason": "the table that chisq.test() takes"
+    },
+    {
+      "file": "lab.qmd",
+      "code": "spec_curve <- utils::read.csv(\"data/spec_curve.csv\") |>",
+      "reason": "the base reader adds nothing to the download"
+    },
+    {
+      "file": "menu.qmd",
+      "code": "stats::xtabs(formula = ~ startsWith(TreatmentGroup, \"Hispanic\") + ProperName, data = _)",
+      "reason": "the contingency table that chisq.test() takes"
+    },
+    {
+      "file": "companion/binary-outcomes.qmd",
+      "code": "counts <- table(hispanic = frame$hisp, named = frame$y)",
+      "reason": "chisq.test() and prop.test() take a table"
+    },
+    {
+      "file": "companion/binary-outcomes.qmd",
+      "code": "tab_8ptrz <- table(frame_8ptrz$hisp, frame_8ptrz$y)",
+      "reason": "chisq.test() takes a table"
+    },
+    {
+      "file": "companion/binary-outcomes.qmd",
+      "code": "`25N5D` = unname(prop.test(table(frame_25n5d$hisp, frame_25n5d$y)[, 2:1])$statistic)) |>",
+      "reason": "prop.test() takes a table"
+    },
+    {
+      "file": "companion/data-management.qmd",
+      "code": "readr::write_csv(original, \"data/housing_original.csv\", na = \"\")",
+      "reason": "datawizard::data_write() writes other bytes"
+    },
+    {
+      "file": "companion/data-management.qmd",
+      "code": "readr::write_csv(housing, \"data/housing_emails.csv\", na = \"\")",
+      "reason": "datawizard::data_write() writes other bytes"
+    },
+    {
+      "file": "companion/experiments.qmd",
+      "code": "`χ<sup>2</sup> test` = pe(stats::chisq.test(table(housing$group, housing[[v]]))$p.value))",
+      "reason": "the table that chisq.test() takes"
+    },
+    {
+      "file": "companion/experiments.qmd",
+      "code": "table(hard_email = housing$hard_email, name = blocked_names)",
+      "reason": "a cross-tabulation of two vectors"
+    },
+    {
+      "file": "companion/meta-analysis.qmd",
+      "code": "tab_8ptrz <- table(frame_8ptrz$hisp, frame_8ptrz$y)",
+      "reason": "chisq.test() takes a table"
+    },
+    {
+      "file": "companion/meta-analysis.qmd",
+      "code": "tab_25n5d <- table(frame_25n5d$hisp, frame_25n5d$y)[, 2:1]",
+      "reason": "prop.test() takes a table"
+    },
+    {
+      "file": "companion/missingness.qmd",
+      "code": "stats::chisq.test(table(housing$group, is.na(housing$reply)))$p.value",
+      "reason": "chisq.test() takes a table"
+    },
+    {
+      "file": "companion/missingness.qmd",
+      "code": "bounce_p <- stats::chisq.test(table(housing$group, is.na(housing$reply)))$p.value",
+      "reason": "chisq.test() takes a table"
+    },
+    {
+      "file": "companion/missingness.qmd",
+      "code": "bounce_name_p <- stats::chisq.test(table(housing$name, is.na(housing$reply)), simulate.p.value = TRUE, B = 9999)$p.value",
+      "reason": "chisq.test() takes a table"
+    },
+    {
+      "file": "facilitator/guide.qmd",
+      "code": "tab_8ptrz <- stats::xtabs(~ hispanic_name + ProperName, data = coded)",
+      "reason": "the table that chisq.test() takes"
+    },
+    {
+      "file": "live/day.qmd",
+      "code": "housing <- utils::read.csv(file.path(.data_dir, \"housing_emails.csv\"), na.strings = c(\"\", \"NA\"))",
+      "reason": "the base reader adds nothing to the download"
+    },
+    {
+      "file": "live/short.qmd",
+      "code": "housing <- utils::read.csv(file.path(.data_dir, \"housing_emails.csv\"), na.strings = c(\"\", \"NA\"))",
+      "reason": "the base reader adds nothing to the download"
+    },
+    {
+      "file": "R/01_email_data.R",
+      "code": "readr::write_csv(original, \"data/housing_original.csv\", na = \"\")",
+      "reason": "datawizard::data_write() writes other bytes"
+    },
+    {
+      "file": "R/01_email_data.R",
+      "code": "readr::write_csv(housing, \"data/housing_emails.csv\", na = \"\")",
+      "reason": "datawizard::data_write() writes other bytes"
+    },
+    {
+      "file": "R/02_spec_curve.R",
+      "code": "readr::write_csv(curve, \"data/spec_curve.csv\")",
+      "reason": "datawizard::data_write() writes other bytes"
+    },
+    {
+      "file": "R/03_reference_marks.R",
+      "code": "tab_8ptrz <- stats::xtabs(~ I(group == \"hispanic\") + named, data = replies)",
+      "reason": "the contingency table that chisq.test() takes"
+    },
+    {
+      "file": "R/03_reference_marks.R",
+      "code": "readr::write_csv(analysts, \"data/analysts5.csv\", na = \"\")",
+      "reason": "datawizard::data_write() writes other bytes"
+    },
+    {
+      "file": "R/03_reference_marks.R",
+      "code": "readr::write_csv(marks, \"data/reference_marks.csv\", na = \"\")",
+      "reason": "datawizard::data_write() writes other bytes"
+    },
+    {
+      "file": "R/04_menu_deviations.R",
+      "code": "readr::write_csv(deviations, \"data/menu_deviations.csv\")",
+      "reason": "datawizard::data_write() writes other bytes"
+    },
+    {
+      "file": "R/05_displays.R",
+      "code": "readr::write_csv(names_tab, \"data/display_names.csv\")",
+      "reason": "datawizard::data_write() writes other bytes"
+    },
+    {
+      "file": "R/05_displays.R",
+      "code": "readr::write_csv(outcomes, \"data/display_outcomes.csv\")",
+      "reason": "datawizard::data_write() writes other bytes"
+    },
+    {
+      "file": "R/05_displays.R",
+      "code": "readr::write_csv(subgroups, \"data/display_subgroups.csv\")",
+      "reason": "datawizard::data_write() writes other bytes"
+    },
+    {
+      "file": "R/05_displays.R",
+      "code": "readr::write_csv(ri, \"data/display_ri.csv\")",
+      "reason": "datawizard::data_write() writes other bytes"
+    },
+    {
+      "file": "R/05_displays.R",
+      "code": "readr::write_csv(power, \"data/display_power.csv\")",
+      "reason": "datawizard::data_write() writes other bytes"
+    },
+    {
+      "file": "R/06_replication.R",
+      "code": "readr::write_csv(replication, \"data/display_replication.csv\")",
+      "reason": "datawizard::data_write() writes other bytes"
+    },
+    {
+      "file": "R/06_replication.R",
+      "code": "readr::write_csv(marks, \"data/reference_marks.csv\", na = \"\")",
+      "reason": "datawizard::data_write() writes other bytes"
+    },
+    {
+      "file": "R/07_dag_answers.R",
+      "code": "readr::write_csv(answers, \"data/dag_answers.csv\")",
+      "reason": "datawizard::data_write() writes other bytes"
+    },
+    {
+      "file": "R/check_parity.R",
+      "code": "ame <- summary(margins::margins(fit, variables = \"hisp\", data = frame))",
+      "reason": "the independent route; marginaleffects is the estimator under test"
+    },
+    {
+      "file": "R/check_parity.R",
+      "code": "cat(\"Parity holds on all\", nrow(check), \"specifications.\\n\")",
+      "reason": "a checker, whose output is its report"
+    },
+    {
+      "file": "_includes/next-delivery.qmd",
+      "code": "cat(paste(out, collapse = \"\\n\"))",
+      "reason": "an asis chunk writes its Markdown through cat()"
+    },
+    {
+      "file": "_includes/_exercise-claim.qmd",
+      "code": "stats::xtabs(formula = ~ startsWith(TreatmentGroup, \"Hispanic\") + ProperName, data = _)",
+      "reason": "the contingency table that chisq.test() takes"
+    },
+    {
+      "file": "_includes/_lab-graph.qmd",
+      "code": ".dag_answers <- utils::read.csv(file.path(.data_dir, \"dag_answers.csv\"), stringsAsFactors = FALSE,",
+      "reason": "the base reader adds nothing to the download"
+    },
+    {
+      "file": "_includes/_lab-graph.qmd",
+      "code": "data.frame(from = ends[-length(ends)], to = ends[-1])",
+      "reason": "base, nothing to download"
+    },
+    {
+      "file": "_includes/_lab-helpers.qmd",
+      "code": "assign(name, utils::read.csv(path, stringsAsFactors = FALSE, encoding = \"UTF-8\",",
+      "reason": "the same reader as the workspace"
+    },
+    {
+      "file": "_includes/_lab-helpers.qmd",
+      "code": "row <- data.frame(ch, b_pp = res$b_pp, ci_low = res$ci_low, ci_high = res$ci_high,",
+      "reason": "data.frame() spreads the list of choices into columns"
+    },
+    {
+      "file": "live/_segments/_defaults-live.qmd",
+      "code": "tab_8ptrz <- xtabs(~ hispanic_name + ProperName, data = coded_replies)",
+      "reason": "the table that chisq.test() takes"
+    },
+    {
+      "file": "live/_segments/_five-analysts.qmd",
+      "code": "cat(c(\"::: {.fs-60}\",",
+      "reason": "writes the Markdown of the table"
+    },
+    {
+      "file": "live/_segments/_handson2-live.qmd",
+      "code": "adjustmentSets(my_dag)",
+      "reason": "the function of this deck, which reads the answers of dagitty"
+    },
+    {
+      "file": "live/_segments/_handson2-live.qmd",
+      "code": "paths(my_dag, Z = \"reply\")",
+      "reason": "the function of this deck, which reads the answers of dagitty"
+    },
+    {
+      "file": "live/_segments/_handson2-live.qmd",
+      "code": "paths(my_dag, Z = c(\"reply\", \"community\"))",
+      "reason": "the function of this deck, which reads the answers of dagitty"
+    },
+    {
+      "file": "live/_segments/_handson3-live.qmd",
+      "code": "original <- utils::read.csv(\"data/housing_original.csv\", na.strings = c(\"\", \"NA\"))",
+      "reason": "the base reader adds nothing to the download"
+    },
+    {
+      "file": "live/_segments/_handson3-live.qmd",
+      "code": "tab_8ptrz <- xtabs(~ hispanic_name + ProperName, data = coded_replies)",
+      "reason": "the table that chisq.test() takes"
+    },
+    {
+      "file": "live/_segments/_menu.qmd",
+      "code": "cat(c(\"::: {.fs-55}\",",
+      "reason": "writes the Markdown of the table"
+    },
+    {
+      "file": "live/_segments/_prereg-live.qmd",
+      "code": "spec_curve <- utils::read.csv(\"data/spec_curve.csv\") |>",
+      "reason": "the base reader adds nothing to the download"
+    },
+    {
+      "file": "slides/_segments/case/_setup.qmd",
+      "code": "tab_8ptrz <- stats::xtabs(~ hispanic_name + ProperName, data = coded_original)",
+      "reason": "the table that chisq.test() takes"
+    },
+    {
+      "file": "slides/_segments/case/_setup.qmd",
+      "code": "tab_ref <- stats::xtabs(~ hispanic + named, data = ref_rows)",
+      "reason": "the table that chisq.test() takes"
+    },
+    {
+      "file": "slides/_segments/day-3/_exp-setup.qmd",
+      "code": "p = stats::chisq.test(table(housing$group, housing[[v]]))$p.value)",
+      "reason": "the table that chisq.test() takes"
+    },
+    {
+      "file": "companion/_model-outputs/build_dataverse_files.R",
+      "code": "dplyr::arrange(label)",
+      "reason": "dplyr::arrange() sorts in the C locale on every machine"
+    }
+  ],
+  "skip": [
+    {
+      "file": "companion/dags.qmd",
+      "block": "gap_replies = purrr::map_dbl(sim, \\(d) d |> dplyr::filter(reply == 1) |> dplyr::summarise(g = gap(greeting, hisp)) |> dplyr::pull(g)),",
+      "reason": "a block shown or quoted on the page, left out of the checks"
+    },
+    {
+      "file": "companion/experiments.qmd",
+      "block": "#| tbl-cap: \"The emails sent to each group of names, by characteristics that the emails could not have changed: the share of each group with a hard-to-find address, and the share in the top third of each community characteristic, with the p-value of a $\\\\chi^2$ test that the full distribution of the characteristic is the same in the three groups. Source: `data/housing_emails.csv`.\"",
+      "reason": "a block shown or quoted on the page, left out of the checks"
+    },
+    {
+      "file": "companion/multiverse.qmd",
+      "block": "#| tbl-cap: \"Options that answer another question than the claim, with the result that each gives on the Housing data: a difference in percentage points against the white names, as a difference in proportions with an HC2 test. Sources: `data/display_outcomes.csv`, `data/display_subgroups.csv`.\"",
+      "reason": "a block shown or quoted on the page, left out of the checks"
+    }
+  ]
 }

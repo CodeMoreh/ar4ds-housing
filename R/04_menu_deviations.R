@@ -40,4 +40,4 @@ deviations <- purrr::imap(SPEC_AXES, \(options, axis) {
 }) |>
   dplyr::bind_rows()
 
-readr::write_csv(deviations, "data/menu_deviations.csv")  # r-style: keep – datawizard::data_write() writes other bytes
+readr::write_csv(deviations, "data/menu_deviations.csv")

@@ -74,24 +74,6 @@ iframe.slide-deck {
   }
 }
 
-/* The line that names the case study at the top of every page of a case study, placed
-   in the title block above the title by style/case-label.lua. */
-.case-label {
-  font-size: 0.8rem;
-  font-weight: 600;
-  letter-spacing: 0.08em;
-  text-transform: uppercase;
-  color: #5b6673;
-  margin: 0 0 0.35rem;
-}
-.case-label a {
-  color: #2a5d8f;
-  text-decoration: none;
-}
-.case-label a:hover {
-  text-decoration: underline;
-}
-
 /* The reference list of a page stays in the page, where the pop-up of each citation
    reads its entry, but is not shown; the section References of resources.qmd lists
    every work cited on the site. The second rule hides the appendix when the list is

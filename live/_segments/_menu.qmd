@@ -21,7 +21,7 @@ menu_rows <- menu_opts |>
   dplyr::mutate(off = dplyr::coalesce(off, "–"),
          level = dplyr::if_else(level == dplyr::lag(level, default = ""), "", level_txt[level]),
          line = paste0("| ", level, " | **", decision, "** | ", on, " | ", off, " |"))
-cat(c("::: {.fs-55}", # r-style: keep – writes the Markdown of the table
+cat(c("::: {.fs-55}",
       "| Group | Decision | On the curve | Off the curve |",
       "|:--|:--|:--|:--|",
       menu_rows$line, ":::"), sep = "\n")

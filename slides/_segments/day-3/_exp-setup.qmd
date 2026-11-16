@@ -31,7 +31,7 @@ balance <- purrr::imap(balance_vars, \(label, v) {
                  white = shares$share[shares$group == "white"],
                  black = shares$share[shares$group == "black"],
                  hispanic = shares$share[shares$group == "hispanic"],
-                 p = stats::chisq.test(table(housing$group, housing[[v]]))$p.value)  # r-style: keep – the table that chisq.test() takes
+                 p = stats::chisq.test(table(housing$group, housing[[v]]))$p.value)
 }) |>
   purrr::list_rbind()
 

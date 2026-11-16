@@ -48,12 +48,12 @@ mv_menu_relation <- tibble::tribble(
 # "minus"), which agrees with formatC() on every value of these files but can
 # round an exact tie the other way. mv_clean() puts an en-dash in ranges and a
 # typographic minus in text that the data files write with hyphens.
-mv_p_label <- \(p) dplyr::if_else(p < 0.001, "p < 0.001", sprintf("p = %.3f", p))  # r-style: approved
-mv_clean <- \(x) x |>  # r-style: approved
+mv_p_label <- \(p) dplyr::if_else(p < 0.001, "p < 0.001", sprintf("p = %.3f", p))
+mv_clean <- \(x) x |>
   stringr::str_replace_all("(?<=\\d)-(?=\\d)", "–") |>
   stringr::str_replace_all("(?<![\\w.])-(?=[0-9.])", "−")
-mv_upper_first <- \(x) paste0(toupper(substr(x, 1, 1)), substring(x, 2))  # r-style: approved
-mv_placement <- \(rank, n) dplyr::case_when(  # r-style: approved
+mv_upper_first <- \(x) paste0(toupper(substr(x, 1, 1)), substring(x, 2))
+mv_placement <- \(rank, n) dplyr::case_when(
   rank == 0 ~ sprintf("None of the %d specifications lies further below zero", n),
   rank == 1 ~ sprintf("1 of the %d specifications lies further below zero", n),
   .default = sprintf("%d of the %d specifications lie further below zero", rank, n)
@@ -62,7 +62,7 @@ mv_placement <- \(rank, n) dplyr::case_when(  # r-style: approved
 # ---- the labels of the menu ------------------------------------------------------
 # The options of one decision that occur on the curve, in the order of
 # menu_options.csv, with their labels and phrases.
-mv_levels <- function(curve, options, axis_code) {  # r-style: approved
+mv_levels <- function(curve, options, axis_code) {
   lev <- options |>
     dplyr::filter(.data$axis == axis_code, .data$option %in% curve[[axis_code]]) |>
     dplyr::select("option", "label", "phrase")
@@ -74,7 +74,7 @@ mv_levels <- function(curve, options, axis_code) {  # r-style: approved
 # Each mark is placed by its gap in points, and by rank among the specifications
 # at that gap. The p-value comes from the statistic as published or recorded
 # (a chi-square on 1 df, the omnibus test of P9W8Y on 2 df, a z otherwise).
-mv_marks <- function(marks, analysts, curve) {  # r-style: approved
+mv_marks <- function(marks, analysts, curve) {
   # not n: a lambda built inside mutate() would find the column n of the marks first
   n_spec <- nrow(curve)
   out <- marks |>
@@ -156,7 +156,7 @@ mv_marks <- function(marks, analysts, curve) {  # r-style: approved
 # analysts: analysts5.csv. The mark settings suit a curve of 64, whose marks
 # barely overlap, so they are drawn larger and less faint than on a curve of
 # hundreds, and remain translucent.
-mv_payload <- function(curve, options, marks, analysts, file = "spec-curve-housing.csv",  # r-style: approved
+mv_payload <- function(curve, options, marks, analysts, file = "spec-curve-housing.csv",
                        size = c(4.5, 6), sw = "1",
                        op = list(sig = "0.55", ns = "0.3", ghostSig = "0.12", ghostNs = "0.06")) {
   curve <- curve |> dplyr::arrange(.data$b_pp)
@@ -165,8 +165,8 @@ mv_payload <- function(curve, options, marks, analysts, file = "spec-curve-housi
   code <- purrr::map2(mv_axes$axis, levels, \(a, lev) match(curve[[a]], lev$option) - 1L) |>
     rlang::set_names(mv_axes$key)
   an <- mv_marks(marks, analysts, curve)
-  lab_of <- \(k, i) levels[[k]]$label[code[[k]][i] + 1L]  # r-style: approved
-  phrase_of <- \(k, i) levels[[k]]$phrase[code[[k]][i] + 1L]  # r-style: approved
+  lab_of <- \(k, i) levels[[k]]$label[code[[k]][i] + 1L]
+  phrase_of <- \(k, i) levels[[k]]$phrase[code[[k]][i] + 1L]
 
   stat_line <- dplyr::if_else(
     curve$stat_type == "t",
@@ -247,7 +247,7 @@ mv_payload <- function(curve, options, marks, analysts, file = "spec-curve-housi
 # path from the page to the root of the site, for reading the template and for
 # the links to the script and the styles, which the first chart of a page
 # carries; the default suits curve.qmd, which sits at the root.
-mv_chart_html <- function(id, payload, title, sub, notes, src, root = "./", assets = TRUE) {  # r-style: approved
+mv_chart_html <- function(id, payload, title, sub, notes, src, root = "./", assets = TRUE) {
   template <- readr::read_file(file.path(root, "assets/chart/multiverse.template.html")) |>
     sub(pattern = "(?s)^\\s*<!--.*?-->\\s*", replacement = "", perl = TRUE)
   json <- jsonlite::toJSON(payload, auto_unbox = TRUE, digits = NA, na = "null")

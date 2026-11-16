@@ -51,7 +51,7 @@ Keep this tab open. Your work stays in this page until you refresh it – there 
 # page, and .data_dir names that folder for the helpers of the course, which
 # read the emails, the curve, the menu and the answers of the graph from it.
 .data_dir <- "data"
-housing <- utils::read.csv("data/housing_emails.csv", na.strings = c("", "NA"))  # r-style: keep – the base reader adds nothing to the download
+housing <- utils::read.csv("data/housing_emails.csv", na.strings = c("", "NA"))
 ```
 
 {{< include _includes/_lab-helpers.qmd >}}
@@ -222,14 +222,14 @@ The first question is what has to be adjusted for when the comparison counts eve
 
 ```{webr}
 #| autorun: false
-adjustmentSets(my_dag)  # r-style: keep – the function of this page, which reads the answers of dagitty
+adjustmentSets(my_dag)
 ```
 
 The second is which paths from the name to the greeting are open once the comparison is made among replies only, which is what `Z = "reply"` asks: it conditions on the reply.
 
 ```{webr}
 #| autorun: false
-paths(my_dag, Z = "reply")  # r-style: keep – the function of this page, which reads the answers of dagitty
+paths(my_dag, Z = "reply")
 ```
 
 The last cell draws the graph.
@@ -247,7 +247,7 @@ Now take the `#` off the arrow `"name -> greeting"` in the cell that builds the 
 
 ```{webr}
 #| autorun: false
-paths(my_dag, Z = c("reply", "community"))  # r-style: keep – the function of this page, which reads the answers of dagitty
+paths(my_dag, Z = c("reply", "community"))
 ```
 
 ::: {.callout-note collapse="true"}
@@ -278,7 +278,7 @@ Whichever analyst you choose, run the cell below first. It reads the public file
 
 ```{webr}
 #| autorun: false
-original <- utils::read.csv("data/housing_original.csv", na.strings = c("", "NA"))  # r-style: keep – the base reader adds nothing to the download
+original <- utils::read.csv("data/housing_original.csv", na.strings = c("", "NA"))
 ```
 
 ### 8PTRZ – the test of a table {#task-3-8ptrz}
@@ -319,7 +319,7 @@ Then run the next two cells in order. The first makes the table and prints it, a
 ```{webr}
 #| autorun: false
 # the 2 x 2 table: Hispanic or other name, by greeting
-tab_8ptrz <- xtabs(~ hispanic_name + ProperName, data = coded_replies)  # r-style: keep – the table that chisq.test() takes
+tab_8ptrz <- xtabs(~ hispanic_name + ProperName, data = coded_replies)
 tab_8ptrz
 ```
 
@@ -554,7 +554,7 @@ coded_replies <- original |>
 
 ```{webr}
 #| autorun: false
-tab_8ptrz <- xtabs(~ hispanic_name + ProperName, data = coded_replies)  # r-style: keep – the table that chisq.test() takes
+tab_8ptrz <- xtabs(~ hispanic_name + ProperName, data = coded_replies)
 ```
 
 ```{webr}
@@ -773,7 +773,7 @@ Finally, place your result on the curve of the claim: the 64 specifications that
 
 ```{webr}
 #| autorun: false
-spec_curve <- utils::read.csv("data/spec_curve.csv") |>  # r-style: keep – the base reader adds nothing to the download
+spec_curve <- utils::read.csv("data/spec_curve.csv") |>
   datawizard::data_arrange("b_pp") |>
   datawizard::data_modify(rank = 1:n(),
                           emails = factor(population, levels = c("replies", "all"),

@@ -80,7 +80,7 @@ housing |>
   datawizard::data_modify(bounced = as.integer(is.na(reply))) |>
   datawizard::data_summary(emails = n(), bounced = sum(bounced), share = 100 * mean(bounced), by = "hard_email")
 
-stats::chisq.test(table(housing$group, is.na(housing$reply)))$p.value  # r-style: keep – chisq.test() takes a table
+stats::chisq.test(table(housing$group, is.na(housing$reply)))$p.value
 ```
 
 ```{r}
@@ -89,12 +89,12 @@ stats::chisq.test(table(housing$group, is.na(housing$reply)))$p.value  # r-style
 bounce_by <- housing |>
   datawizard::data_modify(bounced = as.integer(is.na(reply))) |>
   datawizard::data_summary(emails = n(), bounced = sum(bounced), share = 100 * mean(bounced), by = "group")
-bounce_p <- stats::chisq.test(table(housing$group, is.na(housing$reply)))$p.value  # r-style: keep – chisq.test() takes a table
+bounce_p <- stats::chisq.test(table(housing$group, is.na(housing$reply)))$p.value
 # With fewer than ten bounces for each name, the p-value of the test across the
 # six names, each its own sending account, is simulated rather than read from
 # the chi-square distribution
 set.seed(20261105)
-bounce_name_p <- stats::chisq.test(table(housing$name, is.na(housing$reply)), simulate.p.value = TRUE, B = 9999)$p.value  # r-style: keep – chisq.test() takes a table
+bounce_name_p <- stats::chisq.test(table(housing$name, is.na(housing$reply)), simulate.p.value = TRUE, B = 9999)$p.value
 # The twin of the menu page: every delivered email to a white or Hispanic name,
 # an uncoded reply counted as not named, against every email sent, a bounced
 # email counted as unanswered

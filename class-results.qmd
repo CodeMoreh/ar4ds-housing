@@ -55,7 +55,7 @@ phase_levels <- c("explored (Task 4)", "declared (Task 5)")
 
 # The backdrop is the curve of 64, ranked by the gap in percentage points, as
 # on the chart of the page Specification curve.
-curve <- utils::read.csv("data/spec_curve.csv", stringsAsFactors = FALSE) |>  # r-style: keep – base reader, nothing to download
+curve <- utils::read.csv("data/spec_curve.csv", stringsAsFactors = FALSE) |>
   datawizard::data_arrange("b_pp") |>
   datawizard::data_modify(rank = 1:n(), sig = p < 0.05,
                           sig_f = factor(sig, levels = c(FALSE, TRUE)))
@@ -69,7 +69,7 @@ curve_key <- purrr::pmap_chr(curve[axis_codes], \(...) paste(..., sep = "|"))
 # key=value pairs in any order; a label that does not name each of them exactly
 # once, or carries anything else, returns NA on every axis and so matches nothing.
 housing_pattern <- "^((explore|declared): )?(\\[([a-z0-9-]{1,24})\\] )?housing( (.*))?$"
-parse_axes <- function(rest) {  # r-style: approved
+parse_axes <- function(rest) {
   none <- setNames(rep(NA_character_, length(axis_codes)), axis_codes)
   pairs <- regmatches(rest, gregexpr("[a-z_]+=[a-z_]+", rest))[[1]]
   keys <- sub("=.*$", "", pairs)
@@ -79,8 +79,8 @@ parse_axes <- function(rest) {  # r-style: approved
   setNames(sub("^.*=", "", pairs), keys)[axis_codes]
 }
 
-read_clean <- function(path) {  # r-style: approved
-  d <- utils::read.csv(path, stringsAsFactors = FALSE, check.names = FALSE, colClasses = "character")  # r-style: keep – base reader, nothing to download
+read_clean <- function(path) {
+  d <- utils::read.csv(path, stringsAsFactors = FALSE, check.names = FALSE, colClasses = "character")
   names(d) <- tolower(trimws(names(d)))   # tolerate "B", " spec ", etc.
   d
 }
@@ -89,7 +89,7 @@ read_clean <- function(path) {  # r-style: approved
 # reduced exactly as .clean_tag() in the submission helpers reduces a nickname
 # (transliterated to ASCII, lower case, single hyphens, at most 24 characters),
 # so that a nickname typed as the participant first wrote it still matches.
-clean_my_tag <- function(x) {  # r-style: approved
+clean_my_tag <- function(x) {
   if (length(x) == 0 || is.na(x[1])) return("")
   x <- gsub("ß", "ss", chartr("ȘșȚț", "SsTt", trimws(as.character(x[1]))))
   ascii <- suppressWarnings(iconv(x, to = "ASCII//TRANSLIT"))
@@ -98,27 +98,27 @@ clean_my_tag <- function(x) {  # r-style: approved
   gsub("-+$", "", substr(x, 1, 24))
 }
 
-fmt_num <- function(x, d) sub("^-", "−", formatC(x, format = "f", digits = d))  # r-style: approved
-fmt_p <- function(p) ifelse(p < 0.001, "p < 0.001", sprintf("p = %.3f", p))  # r-style: keep – base, nothing to download  # r-style: approved
-as_num <- function(x) suppressWarnings(as.numeric(x))  # r-style: approved
+fmt_num <- function(x, d) sub("^-", "−", formatC(x, format = "f", digits = d))
+fmt_p <- function(p) ifelse(p < 0.001, "p < 0.001", sprintf("p = %.3f", p))
+as_num <- function(x) suppressWarnings(as.numeric(x))
 
 # The housing rows of the class CSV, parsed and looked up on the curve. Returns
 # the rows to draw, each with a line that describes it, the number of housing
 # rows, and the number that name no specification of the curve (or carry no
 # gap) and are therefore not drawn.
-prepare_class <- function(cls, my_tag = "") {  # r-style: approved
+prepare_class <- function(cls, my_tag = "") {
   empty <- list(points = NULL, n_housing = 0L, n_off = 0L)
   if (is.null(cls) || nrow(cls) == 0 || !("spec" %in% names(cls))) return(empty)
-  spec_raw <- trimws(ifelse(is.na(cls$spec), "", cls$spec))  # r-style: keep – base, nothing to download
+  spec_raw <- trimws(ifelse(is.na(cls$spec), "", cls$spec))
   m <- regmatches(spec_raw, regexec(housing_pattern, spec_raw))
   is_housing <- lengths(m) > 0
   if (!any(is_housing)) return(empty)
   cls <- cls[is_housing, , drop = FALSE]
   m <- m[is_housing]
   n <- nrow(cls)
-  part <- function(k) purrr::map_chr(m, \(g) g[k])  # r-style: approved
-  ph <- ifelse(part(3) == "explore", "explored", "declared")  # r-style: keep – base, nothing to download
-  tg <- ifelse(nzchar(part(5)), part(5), NA_character_)  # r-style: keep – base, nothing to download
+  part <- function(k) purrr::map_chr(m, \(g) g[k])
+  ph <- ifelse(part(3) == "explore", "explored", "declared")
+  tg <- ifelse(nzchar(part(5)), part(5), NA_character_)
   rest <- part(7)
   hit <- rest |>
     purrr::map(parse_axes) |>
@@ -126,7 +126,7 @@ prepare_class <- function(cls, my_tag = "") {  # r-style: approved
     match(curve_key)
   b <- as_num(cls$b)
   drawn <- !is.na(hit) & !is.na(b)
-  stat_txt <- function(i) {  # r-style: approved
+  stat_txt <- function(i) {
     st <- as_num(cls$t[i])
     if (is.na(st)) return("")
     d_f <- if ("df" %in% names(cls)) as_num(cls$df[i]) else NA
@@ -141,8 +141,8 @@ prepare_class <- function(cls, my_tag = "") {  # r-style: approved
                                       if (curve$sig[hit[i]]) " (circle)" else " (cross)"),
     "; ", rest[i]
   ))
-  points <- data.frame(n_lab = paste0("#", seq_len(n)),  # r-style: keep – base, nothing to download
-                       phase = factor(ifelse(ph == "explored", phase_levels[1], phase_levels[2]),  # r-style: keep – base, nothing to download
+  points <- data.frame(n_lab = paste0("#", seq_len(n)),
+                       phase = factor(ifelse(ph == "explored", phase_levels[1], phase_levels[2]),
                                       levels = phase_levels),
                        tag = tg, b = b, rank = curve$rank[hit], sig = curve$sig[hit], info = info,
                        mine = nzchar(my_tag) & !is.na(tg) & tg == my_tag,
@@ -156,7 +156,7 @@ prepare_class <- function(cls, my_tag = "") {  # r-style: approved
 # and filled black for declared, numbered in the order of submission. The
 # marks of the tag typed into the live cell are ringed in orange and joined in
 # the order of submission. The lines printed under the chart describe each mark.
-draw_class_chart <- function(cls, my_tag = "") {  # r-style: approved
+draw_class_chart <- function(cls, my_tag = "") {
   pts <- cls$points
   has_pts <- !is.null(pts) && nrow(pts) > 0
   ylim_lo <- if (has_pts) min(-25, min(pts$b) - 2) else -25
@@ -181,7 +181,7 @@ draw_class_chart <- function(cls, my_tag = "") {  # r-style: approved
   # an empty frame that sets the axes and carries the legend of the two phases;
   # tinyplot reads palette and legend as written, so they take values, not names
   tinyplot::tinyplot(b ~ rank | phase,
-                     data = data.frame(rank = 1, b = 0, phase = factor(phase_levels, levels = phase_levels)),  # r-style: keep – base, nothing to download
+                     data = data.frame(rank = 1, b = 0, phase = factor(phase_levels, levels = phase_levels)),
                      empty = TRUE, legend = list("bottom!", title = NULL),
                      palette = c("#009E73", "#1d2733"), pch = c(1, 16),
                      xlim = c(1, nrow(curve)), ylim = c(ylim_lo, ylim_hi),
@@ -228,7 +228,7 @@ draw_class_chart <- function(cls, my_tag = "") {  # r-style: approved
   invisible(cls)
 }
 
-refresh_multiverse <- function(my_tag = "") {  # r-style: approved
+refresh_multiverse <- function(my_tag = "") {
   my_tag <- clean_my_tag(my_tag)
   cls <- NULL
   if (nzchar(worker_url)) {

@@ -56,16 +56,16 @@ marks <- datawizard::data_filter(marks_all, on_chart & id != "SCORE")
 mark_score <- datawizard::data_filter(marks_all, id == "SCORE")
 
 # One value of a record or display file, for inline use
-an <- \(id_code, col) analysts[[col]][analysts$id == id_code]  # r-style: approved
-mark_of <- \(id_code, col) marks_all[[col]][marks_all$id == id_code]  # r-style: approved
-grp <- \(group_code, col) names_disp[[col]][names_disp$level == "group" & names_disp$group == group_code]  # r-style: approved
-out_of <- \(outcome_code, contrast_code, col) {  # r-style: approved
+an <- \(id_code, col) analysts[[col]][analysts$id == id_code]
+mark_of <- \(id_code, col) marks_all[[col]][marks_all$id == id_code]
+grp <- \(group_code, col) names_disp[[col]][names_disp$level == "group" & names_disp$group == group_code]
+out_of <- \(outcome_code, contrast_code, col) {
   outcomes[[col]][outcomes$outcome == outcome_code & outcomes$contrast == contrast_code]
 }
-sub_of <- \(pattern, col) subgroups[[col]][startsWith(subgroups$subgroup, pattern)][1]  # r-style: approved
-pw <- \(design_code, gap) power$power[startsWith(power$design, design_code) & power$gap_pp == gap]  # r-style: approved
-dev_of <- \(option_code, col) deviations[[col]][deviations$option == option_code & deviations$option != deviations$baseline]  # r-style: approved
-fmt_p <- \(p) if (p < 0.001) "p < 0.001" else paste("p =", fmt_num(p, 3))  # r-style: approved
+sub_of <- \(pattern, col) subgroups[[col]][startsWith(subgroups$subgroup, pattern)][1]
+pw <- \(design_code, gap) power$power[startsWith(power$design, design_code) & power$gap_pp == gap]
+dev_of <- \(option_code, col) deviations[[col]][deviations$option == option_code & deviations$option != deviations$baseline]
+fmt_p <- \(p) if (p < 0.001) "p < 0.001" else paste("p =", fmt_num(p, 3))
 
 # Task 3: the values recorded for 8PTRZ and 25N5D, from the public file of
 # the original authors, with and without the continuity correction. 8PTRZ
@@ -75,7 +75,7 @@ fmt_p <- \(p) if (p < 0.001) "p < 0.001" else paste("p =", fmt_num(p, 3))  # r-s
 coded_original <- original |>
   datawizard::data_filter(Response_Dichotomous == 1 & !is.na(ProperName)) |>
   datawizard::data_modify(hispanic_name = startsWith(TreatmentGroup, "Hispanic"))
-tab_8ptrz <- stats::xtabs(~ hispanic_name + ProperName, data = coded_original)  # r-style: keep – the table that chisq.test() takes
+tab_8ptrz <- stats::xtabs(~ hispanic_name + ProperName, data = coded_original)
 chi_yates <- unname(stats::chisq.test(tab_8ptrz)$statistic)
 chi_plain <- unname(stats::chisq.test(tab_8ptrz, correct = FALSE)$statistic)
 # The value recorded for 25N5D: Hispanic against white names among the
@@ -100,7 +100,7 @@ se_conventional <- parameters::model_parameters(stats::lm(named ~ hispanic, data
 logit_ref <- parameters::model_parameters(stats::glm(named ~ hispanic, family = stats::binomial(), data = ref_rows),
                                           ci_method = "wald") |>
   datawizard::data_filter(Parameter == "hispanic")
-tab_ref <- stats::xtabs(~ hispanic + named, data = ref_rows)  # r-style: keep – the table that chisq.test() takes
+tab_ref <- stats::xtabs(~ hispanic + named, data = ref_rows)
 chi_ref_plain <- unname(stats::chisq.test(tab_ref, correct = FALSE)$statistic)
 chi_ref_p <- stats::chisq.test(tab_ref, correct = FALSE)$p.value
 
@@ -123,7 +123,7 @@ pop_labels <- c(replies = "replies only", all = "all delivered emails")
 # otherwise. `colour_by` = "population" colours the marks by the emails
 # counted. coord_cartesian() fixes the range, so that an overlay never
 # rescales the axis between consecutive slides.
-curve_base <- function(colour_by = NULL) {  # r-style: approved
+curve_base <- function(colour_by = NULL) {
   p <- ggplot2::ggplot(curve, ggplot2::aes(rank, b_pp)) +
     ggplot2::geom_hline(yintercept = 0, colour = grey_mid, linewidth = 0.4)
   p <- if (is.null(colour_by)) {
@@ -149,7 +149,7 @@ curve_base <- function(colour_by = NULL) {  # r-style: approved
 # Reference results as ink marks at the end of a thin line to a tag. Marks at
 # the same height share a tag, and tags alternate between two heights from
 # left to right, so that neighbours on the curve do not crowd one another.
-mark_layer <- function(m) {  # r-style: approved
+mark_layer <- function(m) {
   tags <- m |>
     dplyr::mutate(spot = round(b_pp, 1)) |>
     dplyr::summarise(rank = mean(rank), b_pp = mean(b_pp), sig = all(sig),
@@ -173,7 +173,7 @@ mark_layer <- function(m) {  # r-style: approved
 # "replies"`, the reply is boxed: the two paths that the box opens, through
 # the official and through the community, are drawn in red, and the path
 # through the reply, which the box closes, in pale grey.
-case_dag <- function(among = c("all", "replies")) {  # r-style: approved
+case_dag <- function(among = c("all", "replies")) {
   among <- match.arg(among)
   nodes <- tibble::tribble(
     ~name,       ~x,   ~y,    ~role,
@@ -197,7 +197,7 @@ case_dag <- function(among = c("all", "replies")) {  # r-style: approved
                              from == "reply" ~ "blocked",
                              .default = "opened"))
   # how far along a unit vector (ux, uy) the edge of a box lies
-  to_edge <- \(ux, uy, w, h) pmin(w / pmax(abs(ux), 1e-9), h / pmax(abs(uy), 1e-9))  # r-style: approved
+  to_edge <- \(ux, uy, w, h) pmin(w / pmax(abs(ux), 1e-9), h / pmax(abs(uy), 1e-9))
   tails <- dplyr::select(nodes, from = name, x0 = x, y0 = y, w0 = half_w, h0 = half_h)
   heads <- dplyr::select(nodes, to = name, x1 = x, y1 = y, w1 = half_w, h1 = half_h)
   segs <- edges |>

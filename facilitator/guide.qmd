@@ -17,7 +17,7 @@ execute:
 # Every number of the expected-numbers section is read from the committed data
 # files of the case study, so that the guide and the pages cannot drift apart; readr
 # rather than datawizard::data_read(), which reads empty cells as "" rather than NA.
-fmt <- \(x, d = 1) formatC(x, format = "f", digits = d) |> sub(pattern = "^-", replacement = "−")  # r-style: approved
+fmt <- \(x, d = 1) formatC(x, format = "f", digits = d) |> sub(pattern = "^-", replacement = "−")
 
 curve <- readr::read_csv("../data/spec_curve.csv", show_col_types = FALSE)
 analysts <- readr::read_csv("../data/analysts5.csv", show_col_types = FALSE)
@@ -31,24 +31,24 @@ n_emails <- nrow(readr::read_csv("../data/housing_emails.csv", show_col_types = 
 ref <- datawizard::data_filter(curve, is_reference)
 ref_all <- datawizard::data_match(curve, tibble::tibble(comparison = "white", population = "all",
                                                         uncoded = "drop", model = "lpm", adjust = "none"))
-an <- \(id, col) analysts[[col]][analysts$id == id]  # r-style: approved
-mark <- \(id) marks$b_pp[marks$id == id]  # r-style: approved
-shift <- \(axis, option, col = "shift_mean") deviations[[col]][deviations$axis == axis & deviations$option == option]  # r-style: approved
-pw <- \(design, gap) power$power[startsWith(power$design, design) & power$gap_pp == gap]  # r-style: approved
+an <- \(id, col) analysts[[col]][analysts$id == id]
+mark <- \(id) marks$b_pp[marks$id == id]
+shift <- \(axis, option, col = "shift_mean") deviations[[col]][deviations$axis == axis & deviations$option == option]
+pw <- \(design, gap) power$power[startsWith(power$design, design) & power$gap_pp == gap]
 reply_gap <- datawizard::data_filter(outcomes, outcome == "reply" & contrast == "hispanic")
 # The SCORE replication on the scale of the course (display_replication.csv)
 replication <- readr::read_csv("../data/display_replication.csv", show_col_types = FALSE)
-rep_val <- \(population_code, authorities_code, col) {  # r-style: approved
+rep_val <- \(population_code, authorities_code, col) {
   replication[[col]][replication$population == population_code &
                        replication$authorities == authorities_code]
 }
-sgn <- \(x, d = 1) paste0(if (round(x, d) >= 0) "+" else "", fmt(x, d))  # r-style: approved
+sgn <- \(x, d = 1) paste0(if (round(x, d) >= 0) "+" else "", fmt(x, d))
 
 # The Task 3 test of 8PTRZ: Hispanic against all other names among the coded replies
 coded <- readr::read_csv("../data/housing_original.csv", show_col_types = FALSE) |>
   datawizard::data_filter(!is.na(ProperName)) |>
   datawizard::data_modify(hispanic_name = grepl("^Hispanic", TreatmentGroup))
-tab_8ptrz <- stats::xtabs(~ hispanic_name + ProperName, data = coded)  # r-style: keep – the table that chisq.test() takes
+tab_8ptrz <- stats::xtabs(~ hispanic_name + ProperName, data = coded)
 chi_yates <- unname(stats::chisq.test(tab_8ptrz)$statistic)
 chi_plain <- unname(stats::chisq.test(tab_8ptrz, correct = FALSE)$statistic)
 

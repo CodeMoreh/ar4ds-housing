@@ -66,4 +66,4 @@ curve <- curve |>
 
 stopifnot(nrow(curve) == 64, sum(curve$is_reference) == 1)
 
-readr::write_csv(curve, "data/spec_curve.csv")  # r-style: keep – datawizard::data_write() writes other bytes
+readr::write_csv(curve, "data/spec_curve.csv")

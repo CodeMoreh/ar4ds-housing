@@ -21,7 +21,7 @@ housing <- readr::read_csv("data/housing_emails.csv", show_col_types = FALSE)
 # stats::prop.test() without the continuity correction (Wilson 1927; Newcombe
 # 1998, Statistics in Medicine). The verbs are those of dplyr, because the data
 # arrive grouped by the caller.
-summarise_names <- function(data) {  # r-style: approved
+summarise_names <- function(data) {
   data |>
     dplyr::summarise(
       sent = dplyr::n(),
@@ -47,12 +47,12 @@ names_tab <- dplyr::bind_rows(
   housing |> dplyr::group_by(level = "name", name, group, name_sex) |> summarise_names(),
   housing |> dplyr::group_by(level = "group", group) |> summarise_names() |> dplyr::mutate(name = group)
 )
-readr::write_csv(names_tab, "data/display_names.csv")  # r-style: keep – datawizard::data_write() writes other bytes
+readr::write_csv(names_tab, "data/display_names.csv")
 
 # Each outcome as a difference in percentage points from white names, as a
 # linear probability model with HC2 errors from parameters and sandwich, and
 # its 95% interval
-diff_from_white <- function(data, outcome, contrast) {  # r-style: approved
+diff_from_white <- function(data, outcome, contrast) {
   frame <- data |>
     dplyr::filter(group %in% c("white", contrast), !is.na(.data[[outcome]])) |>
     dplyr::mutate(hisp = as.integer(group == contrast), y = .data[[outcome]])
@@ -72,11 +72,11 @@ outcomes <- tidyr::expand_grid(outcome = c("reply", "reply24", "named", "named_a
                                contrast = c("hispanic", "black")) |>
   purrr::pmap(\(outcome, contrast) diff_from_white(outcomes_data, outcome, contrast)) |>
   dplyr::bind_rows()
-readr::write_csv(outcomes, "data/display_outcomes.csv")  # r-style: keep – datawizard::data_write() writes other bytes
+readr::write_csv(outcomes, "data/display_outcomes.csv")
 
 # Subgroups that the curve leaves out because each is a different question
 replies <- datawizard::data_filter(housing, reply == 1 & !is.na(named))
-subgroup <- function(data, label) {  # r-style: approved
+subgroup <- function(data, label) {
   diff_from_white(data, "named", "hispanic") |> dplyr::mutate(subgroup = label, .before = 1)
 }
 subgroups <- dplyr::bind_rows(
@@ -89,7 +89,7 @@ subgroups <- dplyr::bind_rows(
   subgroup(datawizard::data_filter(replies, hispanic_third == "middle"), "communities in the middle third of percent Hispanic"),
   subgroup(datawizard::data_filter(replies, hispanic_third == "top"), "communities in the top third of percent Hispanic")
 )
-readr::write_csv(subgroups, "data/display_subgroups.csv")  # r-style: keep – datawizard::data_write() writes other bytes
+readr::write_csv(subgroups, "data/display_subgroups.csv")
 
 # Randomisation distribution of the reference specification: the names
 # reshuffled among the white and Hispanic replies, 4,999 times, by complete
@@ -102,7 +102,7 @@ ri_ref <- ri2::conduct_ri(y ~ hisp, assignment = "hisp",
                           declaration = randomizr::declare_ra(N = nrow(ref_frame), m = sum(ref_frame$hisp)),
                           sharp_hypothesis = 0, IPW = FALSE, data = ref_frame, sims = 4999)
 ri <- tibble::tibble(draw = 1:4999, b_pp = 100 * ri_ref$sims_df$est_sim)
-readr::write_csv(ri, "data/display_ri.csv")  # r-style: keep – datawizard::data_write() writes other bytes
+readr::write_csv(ri, "data/display_ri.csv")
 
 # Power of a two-sided test at the 5% level for a gap of a given size from a
 # white rate of 61%, at the group sizes of the original (replies, Hispanic
@@ -115,4 +115,4 @@ power <- tidyr::expand_grid(design = c("original (175 and 187 replies)", "replic
     power = purrr::map2_dbl(gap_pp, n_per_group, \(g, n)
                             stats::power.prop.test(n = n, p1 = 0.61, p2 = 0.61 - g / 100)$power)
   )
-readr::write_csv(power, "data/display_power.csv")  # r-style: keep – datawizard::data_write() writes other bytes
+readr::write_csv(power, "data/display_power.csv")

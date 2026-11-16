@@ -29,10 +29,10 @@ names_tab  <- readr::read_csv("data/display_names.csv", show_col_types = FALSE)
 housing      <- readr::read_csv("data/housing_emails.csv", show_col_types = FALSE)
 
 # Fixed decimals and a true minus sign; signed shifts carry a plus sign
-fmt <- \(x, d = 1) formatC(x, format = "f", digits = d) |> sub(pattern = "^-", replacement = "−")  # r-style: approved
-sgn <- \(x, d = 1) paste0(dplyr::if_else(x > 0, "+", ""), fmt(x, d))  # r-style: approved
-pct <- \(x, d = 1) paste0(fmt(x, d), "%")  # r-style: approved
-pe <- \(p) dplyr::case_when(p < 0.0001 ~ "p < 0.0001", p < 0.001 ~ paste("p =", fmt(p, 4)),  # r-style: approved
+fmt <- \(x, d = 1) formatC(x, format = "f", digits = d) |> sub(pattern = "^-", replacement = "−")
+sgn <- \(x, d = 1) paste0(dplyr::if_else(x > 0, "+", ""), fmt(x, d))
+pct <- \(x, d = 1) paste0(fmt(x, d), "%")
+pe <- \(p) dplyr::case_when(p < 0.0001 ~ "p < 0.0001", p < 0.001 ~ paste("p =", fmt(p, 4)),
                             .default = paste("p =", fmt(p, 3)))
 
 n_spec <- nrow(curve)
@@ -45,14 +45,14 @@ no_thirds <- housing |>
   nrow()
 reply_range <- range(names_tab$reply_pct[names_tab$level == "group"])
 
-dv <- \(axis, option, col) deviations[[col]][deviations$axis == axis & deviations$option == option]  # r-style: approved
+dv <- \(axis, option, col) deviations[[col]][deviations$axis == axis & deviations$option == option]
 max_other <- deviations |>
   datawizard::data_filter(axis != "population") |>
   datawizard::data_summary(m = max(abs(c(shift_min, shift_max)))) |>
   datawizard::data_extract("m")
 by_pop <- curve |>
   datawizard::data_summary(lo = min(b_pp), hi = max(b_pp), mean = mean(b_pp), by = "population")
-bp <- \(pop, col) by_pop[[col]][by_pop$population == pop]  # r-style: approved
+bp <- \(pop, col) by_pop[[col]][by_pop$population == pop]
 
 # Share of the variance of the 64 estimates carried by each decision: the eta
 # squared of each decision in a main-effects model (effectsize), the sum of
@@ -62,9 +62,9 @@ variance <- stats::lm(b_pp ~ comparison + population + uncoded + model + adjust,
 var_share <- 100 * c(stats::setNames(variance$Eta2, variance$Parameter),
                      Residuals = 1 - sum(variance$Eta2))
 
-out <- \(o, cn, col) outcomes[[col]][outcomes$outcome == o & outcomes$contrast == cn]  # r-style: approved
-sub_ <- \(start, col) subgroups[[col]][startsWith(subgroups$subgroup, start)]  # r-style: approved
-mark <- \(id, col) marks[[col]][marks$id == id]  # r-style: approved
+out <- \(o, cn, col) outcomes[[col]][outcomes$outcome == o & outcomes$contrast == cn]
+sub_ <- \(start, col) subgroups[[col]][startsWith(subgroups$subgroup, start)]
+mark <- \(id, col) marks[[col]][marks$id == id]
 ri_band <- stats::quantile(ri$b_pp, c(0.025, 0.975))
 ri_extreme <- sum(abs(ri$b_pp) >= abs(ref$b_pp) - 1e-9)
 ```
@@ -87,7 +87,7 @@ src_claim <- paste(
   'Data: <a href="data/spec_curve_codebook.html">data/spec_curve.csv</a> and',
   '<a href="data/reference_marks_codebook.html">data/reference_marks.csv</a>, with their codebooks.'
 )
-cat(mv_chart_html(   # r-style: keep – an asis chunk writes its raw HTML block through cat()
+cat(mv_chart_html(
   id = "mv-claim",
   payload = mv_payload(curve, menu, marks, analysts),
   title = "Specification curve of the claim",
@@ -154,8 +154,8 @@ Every option on the curve can be set beside the first option of its decision on 
 #| fig-alt: "Dot-and-range chart of seven options. All delivered emails shifts the estimate by about +5 points, from about +3.7 to +6.7; the other six options lie between about −0.1 and +2.7 points, most of them near zero."
 #| fig-width: 7.5
 #| fig-height: 3.4
-lab <- \(axis, option) menu$label[menu$axis == axis & menu$option == option]  # r-style: approved
-dec <- \(axis) menu$decision[menu$axis == axis][1]  # r-style: approved
+lab <- \(axis, option) menu$label[menu$axis == axis & menu$option == option]
+dec <- \(axis) menu$decision[menu$axis == axis][1]
 deviations |>
   datawizard::data_filter(option != baseline) |>
   datawizard::data_modify(

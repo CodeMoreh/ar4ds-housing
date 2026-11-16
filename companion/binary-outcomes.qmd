@@ -14,11 +14,11 @@ curve <- readr::read_csv("../data/spec_curve.csv", show_col_types = FALSE)
 analysts <- readr::read_csv("../data/analysts5.csv", show_col_types = FALSE)
 
 # Fixed decimals and a true minus sign, for every number on the page
-fmt <- \(x, d = 1) formatC(x, format = "f", digits = d) |> sub(pattern = "^-", replacement = "−")  # r-style: approved
-pct <- \(x, d = 1) paste0(fmt(x, d), "%")  # r-style: approved
-pe <- \(p) dplyr::case_when(p < 0.0001 ~ "p < 0.0001", p < 0.001 ~ paste("p =", fmt(p, 4)),  # r-style: approved
+fmt <- \(x, d = 1) formatC(x, format = "f", digits = d) |> sub(pattern = "^-", replacement = "−")
+pct <- \(x, d = 1) paste0(fmt(x, d), "%")
+pe <- \(p) dplyr::case_when(p < 0.0001 ~ "p < 0.0001", p < 0.001 ~ paste("p =", fmt(p, 4)),
                      .default = paste("p =", fmt(p, 3)))
-an <- \(id, col) analysts[[col]][analysts$id == id]  # r-style: approved
+an <- \(id, col) analysts[[col]][analysts$id == id]
 logit_or <- curve |> datawizard::data_filter(model == "logit") |> datawizard::data_modify(or = exp(coef))
 ```
 
@@ -31,7 +31,7 @@ A reply either opened with the name of the sender or it did not, so the outcome 
 ```{r}
 #| label: table
 frame <- spec_frame(housing, comparison = "white", population = "replies", uncoded = "drop")
-counts <- table(hispanic = frame$hisp, named = frame$y)  # r-style: keep – chisq.test() and prop.test() take a table
+counts <- table(hispanic = frame$hisp, named = frame$y)
 counts
 shares <- frame |> dplyr::summarise(n = dplyr::n(), named = sum(y), share = mean(y), .by = hisp) |> dplyr::arrange(hisp)
 shares
@@ -75,10 +75,10 @@ The last two numbers differ from the first two because `chisq.test()` and `prop.
 #| label: analysts-chisq
 frame_8ptrz <- spec_frame(housing, comparison = "nonhispanic", population = "replies", uncoded = "drop")
 frame_25n5d <- spec_frame(housing, comparison = "white", population = "all", uncoded = "not_named")
-tab_8ptrz <- table(frame_8ptrz$hisp, frame_8ptrz$y)  # r-style: keep – chisq.test() takes a table
+tab_8ptrz <- table(frame_8ptrz$hisp, frame_8ptrz$y)
 c(`8PTRZ` = unname(chisq.test(tab_8ptrz)$statistic),
   `8PTRZ, uncorrected` = unname(chisq.test(tab_8ptrz, correct = FALSE)$statistic),
-  `25N5D` = unname(prop.test(table(frame_25n5d$hisp, frame_25n5d$y)[, 2:1])$statistic)) |>  # r-style: keep – prop.test() takes a table
+  `25N5D` = unname(prop.test(table(frame_25n5d$hisp, frame_25n5d$y)[, 2:1])$statistic)) |>
   round(3)
 ```
 

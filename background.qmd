@@ -26,18 +26,18 @@ repl <- readr::read_csv("data/display_replication.csv", show_col_types = FALSE)
 
 # Fixed decimals and a true minus sign, for every number on the page; signed
 # gaps carry a plus sign
-fmt <- \(x, d = 1) formatC(x, format = "f", digits = d) |> sub(pattern = "^-", replacement = "−")  # r-style: approved
-pct <- \(x, d = 1) paste0(fmt(x, d), "%")  # r-style: approved
-pe <- \(p) if (p < 0.001) "p < 0.001" else paste("p =", fmt(p, 3))  # r-style: approved
-sgn <- \(x, d = 1) paste0(dplyr::if_else(x > 0, "+", ""), fmt(x, d))  # r-style: approved
+fmt <- \(x, d = 1) formatC(x, format = "f", digits = d) |> sub(pattern = "^-", replacement = "−")
+pct <- \(x, d = 1) paste0(fmt(x, d), "%")
+pe <- \(p) if (p < 0.001) "p < 0.001" else paste("p =", fmt(p, 3))
+sgn <- \(x, d = 1) paste0(dplyr::if_else(x > 0, "+", ""), fmt(x, d))
 
 # one value from a display or record file, for inline use
-grp <- \(g, col) names_tab[[col]][names_tab$level == "group" & names_tab$group == g]  # r-style: approved
-mark <- \(id, col) marks[[col]][marks$id == id]  # r-style: approved
-an <- \(id, col) analysts[[col]][analysts$id == id]  # r-style: approved
-out <- \(o, cn, col) outcomes[[col]][outcomes$outcome == o & outcomes$contrast == cn]  # r-style: approved
-pw <- \(design, gap) power$power[startsWith(power$design, design) & power$gap_pp == gap]  # r-style: approved
-rp <- \(pop, auth, col) repl[[col]][repl$population == pop & repl$authorities == auth]  # r-style: approved
+grp <- \(g, col) names_tab[[col]][names_tab$level == "group" & names_tab$group == g]
+mark <- \(id, col) marks[[col]][marks$id == id]
+an <- \(id, col) analysts[[col]][analysts$id == id]
+out <- \(o, cn, col) outcomes[[col]][outcomes$outcome == o & outcomes$contrast == cn]
+pw <- \(design, gap) power$power[startsWith(power$design, design) & power$gap_pp == gap]
+rp <- \(pop, auth, col) repl[[col]][repl$population == pop & repl$authorities == auth]
 ref <- datawizard::data_filter(curve, is_reference)
 # The smallest gap that the reference comparison reports as significant at 5%:
 # the half-width of its 95% interval, from the estimator of the case study
@@ -76,7 +76,7 @@ oa_z <- abs(mark("OA", "statistic"))
 oa_n <- mark("OA", "n")
 oa_r <- r_robustness(oa_z, "z", NA, oa_n)
 
-stat_txt <- \(type, x) dplyr::case_when(  # r-style: approved
+stat_txt <- \(type, x) dplyr::case_when(
   is.na(x) ~ "none recorded",
   type == "chi2" ~ paste0("χ<sup>2</sup> = ", fmt(x, 3)),
   .default = paste(type, "=", fmt(x, 3))

@@ -162,7 +162,7 @@ The first question to the graph: what has to be adjusted for when every delivere
 
 ```{webr}
 #| autorun: false
-adjustmentSets(my_dag)  # r-style: keep – the function of this deck, which reads the answers of dagitty
+adjustmentSets(my_dag)
 ```
 
 ::: {.fragment .small}
@@ -181,7 +181,7 @@ The second question: which paths from the name to the greeting are open once the
 
 ```{webr}
 #| autorun: false
-paths(my_dag, Z = "reply")  # r-style: keep – the function of this deck, which reads the answers of dagitty
+paths(my_dag, Z = "reply")
 ```
 
 ::: {.fragment .small}
@@ -217,7 +217,7 @@ Take the `#` off `"name -> greeting"` in the cell that builds the graph, run it 
 
 ```{webr}
 #| autorun: false
-paths(my_dag, Z = c("reply", "community"))  # r-style: keep – the function of this deck, which reads the answers of dagitty
+paths(my_dag, Z = c("reply", "community"))
 ```
 
 ::: {.fragment .fs-75}

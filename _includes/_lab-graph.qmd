@@ -23,7 +23,7 @@ tinyplot.
 # downloadable workspace. The table arrives with the page through its
 # `resources:` list, in the folder that the setup cell of the including page
 # names as .data_dir.
-.dag_answers <- utils::read.csv(file.path(.data_dir, "dag_answers.csv"), stringsAsFactors = FALSE,  # r-style: keep – the base reader adds nothing to the download
+.dag_answers <- utils::read.csv(file.path(.data_dir, "dag_answers.csv"), stringsAsFactors = FALSE,
                                 na.strings = "NA")
 .dag_elsewhere <- c(
   "This page holds the answers that dagitty gives to the questions of Task 2, for the",
@@ -41,14 +41,14 @@ tinyplot.
 # arguments come last, so that switching off the last arrow with a # never
 # leaves a comma dangling. The arrows, sorted, are the key under which
 # data/dag_answers.csv holds the answers for the graph.
-make_dag <- function(..., exposure = "name", outcome = "greeting", latent = "official") {  # r-style: approved
+make_dag <- function(..., exposure = "name", outcome = "greeting", latent = "official") {
   arrows <- c(...)
   edges <- purrr::map(arrows, \(a) {
     ends <- trimws(strsplit(a, "->", fixed = TRUE)[[1]])
     if (length(ends) < 2 || !all(nzchar(ends)) || grepl("<-", a, fixed = TRUE))
       stop(sprintf("Write each arrow as \"cause -> effect\", for example \"name -> reply\"; \"%s\" is not one.",
                    a), call. = FALSE)
-    data.frame(from = ends[-length(ends)], to = ends[-1])  # r-style: keep – base, nothing to download
+    data.frame(from = ends[-length(ends)], to = ends[-1])
   }) |>
     dplyr::bind_rows() |>
     dplyr::distinct()
@@ -63,7 +63,7 @@ make_dag <- function(..., exposure = "name", outcome = "greeting", latent = "off
 # outcome, as dagitty::adjustmentSets() returns them, read from the table. The
 # rows are chosen with dplyr, because datawizard cannot see the arguments of a
 # function.
-adjustmentSets <- function(x, exposure = x$exposure, outcome = x$outcome, effect = "total", ...) {  # r-style: approved
+adjustmentSets <- function(x, exposure = x$exposure, outcome = x$outcome, effect = "total", ...) {
   rows <- dplyr::filter(.dag_answers, .data$call == "adjustmentSets", .data$arrows %in% x$key,
                         .data$exposure %in% paste(.env$exposure, collapse = ", "),
                         .data$outcome %in% paste(.env$outcome, collapse = ", "),
@@ -76,7 +76,7 @@ adjustmentSets <- function(x, exposure = x$exposure, outcome = x$outcome, effect
   structure(strsplit(rows$answer[rows$item > 0], ", ", fixed = TRUE), class = "simple_dag_sets")
 }
 
-print.simple_dag_sets <- function(x, ...) {  # r-style: approved
+print.simple_dag_sets <- function(x, ...) {
   shown <- if (length(x) == 0) "(no set of observed variables closes every backdoor path)" else
     purrr::map_chr(x, \(z) if (length(z) > 0) paste0("{ ", paste(z, collapse = ", "), " }") else "{}")
   writeLines(shown)
@@ -90,7 +90,7 @@ registerS3method("print", "simple_dag_sets", print.simple_dag_sets)
 # The paths between the exposure and the outcome, each with its arrows, and
 # whether it is open given the conditioning set Z, as dagitty::paths() returns
 # them, read from the table.
-paths <- function(x, from = x$exposure, to = x$outcome, Z = character(0), ...) {  # r-style: approved
+paths <- function(x, from = x$exposure, to = x$outcome, Z = character(0), ...) {
   rows <- dplyr::filter(.dag_answers, .data$call == "paths", .data$arrows %in% x$key,
                         .data$exposure %in% paste(.env$from, collapse = ", "),
                         .data$outcome %in% paste(.env$to, collapse = ", "),
@@ -107,14 +107,14 @@ paths <- function(x, from = x$exposure, to = x$outcome, Z = character(0), ...) {
 # The figure. Colour marks the exposure and the outcome, and the official,
 # whom nobody observed, is drawn pale. Each arrow stops at the edge of the box
 # of its target.
-.dag_parts <- function(d) {  # r-style: approved
-  at <- \(v, k) if (v %in% names(.dag_xy)) .dag_xy[[v]][k] else NA_real_  # r-style: approved
+.dag_parts <- function(d) {
+  at <- \(v, k) if (v %in% names(.dag_xy)) .dag_xy[[v]][k] else NA_real_
   list(nodes = tibble::tibble(name = d$nodes, x = purrr::map_dbl(d$nodes, \(v) at(v, 1)),
                               y = purrr::map_dbl(d$nodes, \(v) at(v, 2))),
        edges = d$edges, exposure = d$exposure, outcome = d$outcome, latent = d$latent)
 }
 
-plot_dag <- function(d) {  # r-style: approved
+plot_dag <- function(d) {
   parts <- .dag_parts(d)
   nodes <- parts$nodes |>
     dplyr::mutate(
@@ -128,7 +128,7 @@ plot_dag <- function(d) {  # r-style: approved
                                      .default = "observed"),
                     levels = c("exposure", "outcome", "observed", "unobserved")))
   # how far along a unit vector (ux, uy) the edge of a box of half-width w lies
-  to_edge <- \(ux, uy, w) pmin(w / pmax(abs(ux), 1e-9), 0.15 / pmax(abs(uy), 1e-9))  # r-style: approved
+  to_edge <- \(ux, uy, w) pmin(w / pmax(abs(ux), 1e-9), 0.15 / pmax(abs(uy), 1e-9))
   tails <- dplyr::select(nodes, from = "name", x0 = "x", y0 = "y", w0 = "half_w")
   heads <- dplyr::select(nodes, to = "name", x1 = "x", y1 = "y", w1 = "half_w")
   arrows <- parts$edges |>

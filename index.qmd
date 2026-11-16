@@ -34,7 +34,7 @@ h_emails <- nrow(readr::read_csv("data/housing_emails.csv", show_col_types = FAL
 coded <- readr::read_csv("data/housing_original.csv", show_col_types = FALSE) |>
   datawizard::data_filter(!is.na(ProperName)) |>
   datawizard::data_modify(hispanic_name = startsWith(TreatmentGroup, "Hispanic"))
-tab_8ptrz <- xtabs(~ hispanic_name + ProperName, data = coded)  # r-style: keep – chisq.test() takes a table
+tab_8ptrz <- xtabs(~ hispanic_name + ProperName, data = coded)
 
 h_spec <- nrow(h_curve)
 h_sig <- sum(h_curve$b_pp < 0 & h_curve$p < 0.05)

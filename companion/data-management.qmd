@@ -30,7 +30,7 @@ original <- raw |>
   dplyr::mutate(dplyr::across(dplyr::where(haven::is.labelled), \(x) as.numeric(x))) |>
   haven::zap_label() |>
   haven::zap_formats()
-readr::write_csv(original, "data/housing_original.csv", na = "")  # r-style: keep – datawizard::data_write() writes other bytes
+readr::write_csv(original, "data/housing_original.csv", na = "")
 ```
 
 `as.numeric()` on a labelled column keeps the codes and drops the labels, and `zap_label()` and `zap_formats()` remove the variable labels and the display formats of Stata. The labels are not lost, since the [codebook of the deposited file](../data/housing_original_codebook.md) records what every code means. One of the labels is worth knowing before the data are read: the Stata file labels `HispanicEmailer` "Hard to find email address", a copy error in the source, while the codebook of the OAs describes the column as recording whether the official who replied had a Hispanic name.
@@ -246,7 +246,7 @@ Every one of the `r format(length(shipped_lines), big.mark = ",")` lines, the he
 ```{r}
 #| label: write
 #| eval: false
-readr::write_csv(housing, "data/housing_emails.csv", na = "")  # r-style: keep – datawizard::data_write() writes other bytes
+readr::write_csv(housing, "data/housing_emails.csv", na = "")
 ```
 
 ::: {.callout-tip}

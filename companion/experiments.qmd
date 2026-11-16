@@ -18,16 +18,16 @@ power     <- readr::read_csv("../data/display_power.csv", show_col_types = FALSE
 curve     <- readr::read_csv("../data/spec_curve.csv", show_col_types = FALSE)
 
 # Fixed decimals and a true minus sign, for every number on the page
-fmt <- \(x, d = 1) formatC(x, format = "f", digits = d) |> sub(pattern = "^-", replacement = "−")  # r-style: approved
-pct <- \(x, d = 1) paste0(fmt(x, d), "%")  # r-style: approved
-pe <- \(p) dplyr::case_when(p < 0.0001 ~ "p < 0.0001", p < 0.001 ~ paste("p =", fmt(p, 4)),  # r-style: approved
+fmt <- \(x, d = 1) formatC(x, format = "f", digits = d) |> sub(pattern = "^-", replacement = "−")
+pct <- \(x, d = 1) paste0(fmt(x, d), "%")
+pe <- \(p) dplyr::case_when(p < 0.0001 ~ "p < 0.0001", p < 0.001 ~ paste("p =", fmt(p, 4)),
                             .default = paste("p =", fmt(p, 3)))
 
-grp <- \(g, col) names_tab[[col]][names_tab$level == "group" & names_tab$group == g]  # r-style: approved
-nm <- \(n, col) names_tab[[col]][names_tab$level == "name" & names_tab$name == n]  # r-style: approved
-out <- \(o, cn, col) outcomes[[col]][outcomes$outcome == o & outcomes$contrast == cn]  # r-style: approved
-sub_ <- \(start, col) subgroups[[col]][startsWith(subgroups$subgroup, start)]  # r-style: approved
-pw <- \(design, gap) power$power[startsWith(power$design, design) & power$gap_pp == gap]  # r-style: approved
+grp <- \(g, col) names_tab[[col]][names_tab$level == "group" & names_tab$group == g]
+nm <- \(n, col) names_tab[[col]][names_tab$level == "name" & names_tab$name == n]
+out <- \(o, cn, col) outcomes[[col]][outcomes$outcome == o & outcomes$contrast == cn]
+sub_ <- \(start, col) subgroups[[col]][startsWith(subgroups$subgroup, start)]
+pw <- \(design, gap) power$power[startsWith(power$design, design) & power$gap_pp == gap]
 ref <- datawizard::data_filter(curve, is_reference)
 sent_range <- range(names_tab$sent[names_tab$level == "name"])
 # The test that the six accounts were equally likely, against the numbers sent
@@ -38,7 +38,7 @@ ref_fit <- fit_spec(housing)
 sig_threshold <- (ref_fit$ci_high - ref_fit$ci_low) / 2
 # A logit coefficient moves a probability by at most a quarter of its value
 # (Gelman and Hill 2007, p. 82); 0.098 is the coefficient of the replication
-score_max_pp <- 100 * 0.098 / 4  # r-style: PENDING – the divide-by-4 bound of a logit coefficient; no package found
+score_max_pp <- 100 * 0.098 / 4
 # The share of replies written by officials with Hispanic names, by group of names
 official_share <- housing |>
   datawizard::data_filter(reply == 1) |>
@@ -74,7 +74,6 @@ Political science adapted the correspondence design to the people who hold publi
 
 The claim can be checked on anything that the emails could not have changed. @tbl-balance sets the three groups side by side on the characteristics that the public file holds, with a $\chi^2$ test of whether each characteristic is distributed alike across the groups.
 
-<!-- r-style: skip -->
 ```{r}
 #| label: tbl-balance
 #| tbl-cap: "The emails sent to each group of names, by characteristics that the emails could not have changed: the share of each group with a hard-to-find address, and the share in the top third of each community characteristic, with the p-value of a $\\chi^2$ test that the full distribution of the characteristic is the same in the three groups. Source: `data/housing_emails.csv`."
@@ -89,7 +88,7 @@ balance <- purrr::imap(balance_vars, \(label, v) {
   share_of <- \(g) pct(shares$share[shares$group == g])
   tibble::tibble(Characteristic = label,
                  White = share_of("white"), Black = share_of("black"), Hispanic = share_of("hispanic"),
-                 `χ<sup>2</sup> test` = pe(stats::chisq.test(table(housing$group, housing[[v]]))$p.value))  # r-style: keep – the table that chisq.test() takes
+                 `χ<sup>2</sup> test` = pe(stats::chisq.test(table(housing$group, housing[[v]]))$p.value))
 }) |>
   purrr::list_rbind()
 balance |>
@@ -456,7 +455,7 @@ A blocked experiment is analysed block by block. The gap is estimated within eac
 set.seed(20261105)
 blocked_names <- randomizr::block_ra(blocks = housing$hard_email,
                                      conditions = c("Tyrone", "Shanice", "Santiago", "Gabriela", "Brett", "Emily"))
-table(hard_email = housing$hard_email, name = blocked_names)  # r-style: keep – a cross-tabulation of two vectors
+table(hard_email = housing$hard_email, name = blocked_names)
 ```
 
 The original experiment can show what a blocked analysis would and would not have changed. The hard-to-find address is the one characteristic of the public file that was recorded for every authority before the emails went out and that predicts the greeting, so the chunk below analyses the reference comparison within its two blocks, as if the names had been blocked on it, an analysis that is called post-stratification when it is applied to a design that was not blocked.

@@ -129,7 +129,7 @@ Finally, your result on the curve of the claim, the `r nrow(curve)` specificatio
 
 ```{webr}
 #| autorun: false
-spec_curve <- utils::read.csv("data/spec_curve.csv") |>  # r-style: keep – the base reader adds nothing to the download
+spec_curve <- utils::read.csv("data/spec_curve.csv") |>
   datawizard::data_arrange("b_pp") |>
   datawizard::data_modify(rank = 1:n(),
                           emails = factor(population, levels = c("replies", "all"),

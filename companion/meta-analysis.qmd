@@ -125,8 +125,8 @@ round(r_robustness(c(z_white_base$z, z_hisp_base$z), "z", NA, nrow(frame_white))
 #| label: continuity
 frame_8ptrz <- spec_frame(housing, comparison = "nonhispanic", population = "replies", uncoded = "drop")
 frame_25n5d <- spec_frame(housing, comparison = "white", population = "all", uncoded = "not_named")
-tab_8ptrz <- table(frame_8ptrz$hisp, frame_8ptrz$y)  # r-style: keep – chisq.test() takes a table
-tab_25n5d <- table(frame_25n5d$hisp, frame_25n5d$y)[, 2:1]  # r-style: keep – prop.test() takes a table
+tab_8ptrz <- table(frame_8ptrz$hisp, frame_8ptrz$y)
+tab_25n5d <- table(frame_25n5d$hisp, frame_25n5d$y)[, 2:1]
 chi <- c(`8PTRZ corrected` = unname(chisq.test(tab_8ptrz)$statistic),
          `8PTRZ uncorrected` = unname(chisq.test(tab_8ptrz, correct = FALSE)$statistic),
          `25N5D corrected` = unname(prop.test(tab_25n5d)$statistic),

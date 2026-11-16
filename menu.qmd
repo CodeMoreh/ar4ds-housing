@@ -25,18 +25,18 @@ housing <- readr::read_csv("data/housing_emails.csv", show_col_types = FALSE)
 original <- readr::read_csv("data/housing_original.csv", show_col_types = FALSE)
 
 # Fixed decimals and a true minus sign; signed shifts carry a plus sign
-fmt <- \(x, d = 1) formatC(x, format = "f", digits = d) |> sub(pattern = "^-", replacement = "−")  # r-style: approved
-sgn <- \(x, d = 1) paste0(dplyr::if_else(x > 0, "+", ""), fmt(x, d))  # r-style: approved
-pct <- \(x, d = 1) paste0(fmt(x, d), "%")  # r-style: approved
-pe <- \(p) dplyr::case_when(p < 0.0001 ~ "p < 0.0001", p < 0.001 ~ paste("p =", fmt(p, 4)),  # r-style: approved
+fmt <- \(x, d = 1) formatC(x, format = "f", digits = d) |> sub(pattern = "^-", replacement = "−")
+sgn <- \(x, d = 1) paste0(dplyr::if_else(x > 0, "+", ""), fmt(x, d))
+pct <- \(x, d = 1) paste0(fmt(x, d), "%")
+pe <- \(p) dplyr::case_when(p < 0.0001 ~ "p < 0.0001", p < 0.001 ~ paste("p =", fmt(p, 4)),
                             .default = paste("p =", fmt(p, 3)))
 
 ref <- datawizard::data_filter(curve, is_reference)
-dv <- \(axis, option, col) deviations[[col]][deviations$axis == axis & deviations$option == option]  # r-style: approved
-out <- \(o, cn, col) outcomes[[col]][outcomes$outcome == o & outcomes$contrast == cn]  # r-style: approved
-sub_ <- \(start, col) subgroups[[col]][startsWith(subgroups$subgroup, start)]  # r-style: approved
-grp <- \(g, col) names_tab[[col]][names_tab$level == "group" & names_tab$group == g]  # r-style: approved
-mark <- \(id, col) marks[[col]][marks$id == id]  # r-style: approved
+dv <- \(axis, option, col) deviations[[col]][deviations$axis == axis & deviations$option == option]
+out <- \(o, cn, col) outcomes[[col]][outcomes$outcome == o & outcomes$contrast == cn]
+sub_ <- \(start, col) subgroups[[col]][startsWith(subgroups$subgroup, start)]
+grp <- \(g, col) names_tab[[col]][names_tab$level == "group" & names_tab$group == g]
+mark <- \(id, col) marks[[col]][marks$id == id]
 
 n_dec <- dplyr::n_distinct(menu$axis)
 varying <- names(SPEC_AXES)
@@ -54,7 +54,7 @@ bounced_b <- 100 * unname(stats::coef(bounced_fit)["hisp"])
 bounced_n <- housing |>
   datawizard::data_filter(is.na(reply)) |>
   datawizard::data_summary(n = n(), by = "group")
-bounced_by <- \(g) bounced_n$n[bounced_n$group == g]  # r-style: approved
+bounced_by <- \(g) bounced_n$n[bounced_n$group == g]
 no_thirds <- housing |>
   datawizard::data_filter(!stats::complete.cases(pop_third, poverty_third, black_third, hispanic_third)) |>
   nrow()
@@ -75,7 +75,7 @@ sex_p <- parameters::model_parameters(sex_fit, vcov = "HC2") |>
 # the continuity correction that chisq.test() applies to a 2 x 2 table
 chi_tab <- original |>
   datawizard::data_filter(Response_Dichotomous == 1 & !is.na(ProperName)) |>
-  stats::xtabs(formula = ~ startsWith(TreatmentGroup, "Hispanic") + ProperName, data = _)  # r-style: keep – the contingency table that chisq.test() takes
+  stats::xtabs(formula = ~ startsWith(TreatmentGroup, "Hispanic") + ProperName, data = _)
 chi_yates <- stats::chisq.test(chi_tab)
 chi_plain <- stats::chisq.test(chi_tab, correct = FALSE)
 
@@ -117,7 +117,7 @@ fallback_titles <- c(
 )
 # page titles without their Markdown emphasis; a page not yet written takes
 # the title of its navbar entry
-page_title <- \(f) {  # r-style: approved
+page_title <- \(f) {
   title <- if (file.exists(f)) rmarkdown::yaml_front_matter(f)$title
   title <- title %||% unname(fallback_titles[f])  # %||% of base R, 4.4 and later
   if (is.na(title)) f else gsub("*", "", title, fixed = TRUE)
@@ -659,8 +659,8 @@ Within the curve, what varies is the size of the gap, and @tbl-shifts shows whic
 #| label: tbl-shifts
 #| tbl-cap: "What each option on the curve does to the estimate, against the first option of its decision on twin specifications that agree on every other decision. A positive shift moves the estimate towards zero. Source: `data/menu_deviations.csv`."
 #| echo: false
-lab <- \(axis, option) menu$label[menu$axis == axis & menu$option == option]  # r-style: approved
-dec <- \(axis) menu$decision[menu$axis == axis][1]  # r-style: approved
+lab <- \(axis, option) menu$label[menu$axis == axis & menu$option == option]
+dec <- \(axis) menu$decision[menu$axis == axis][1]
 deviations |>
   datawizard::data_filter(option != baseline) |>
   datawizard::data_modify(
@@ -691,7 +691,7 @@ Each decision in this group rewrites a bold slot of the statement, so two analys
 judgement_txt <- c(kept = "on the curve", other_question = "another question",
                    weaker_answer = "a weaker answer", check = "a check",
                    unavailable = "not in the public file")
-level_table <- \(lv) {  # r-style: approved
+level_table <- \(lv) {
   # dplyr, because datawizard evaluates its conditions in a fresh environment
   # and so cannot see the level that is asked for
   menu |>

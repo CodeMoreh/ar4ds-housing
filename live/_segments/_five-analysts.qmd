@@ -57,7 +57,7 @@ rows <- analysts |>
                                         " | ", method, " | ", stat_txt(statistic_type, statistic_recorded),
                                         " | ", task1, " |")) |>
   datawizard::data_extract("line")
-cat(c("::: {.fs-60}", # r-style: keep – writes the Markdown of the table
+cat(c("::: {.fs-60}",
       "| Analyst | Compared with | Emails counted | Method | Recorded | Verdict |",
       "|:--|:--|:--|:--|--:|:--|",
       rows, ":::"), sep = "\n")

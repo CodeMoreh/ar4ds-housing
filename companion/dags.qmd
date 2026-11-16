@@ -13,13 +13,13 @@ no_thirds <- readr::read_csv("../data/housing_emails.csv", show_col_types = FALS
   dplyr::filter(dplyr::if_any(c(pop_third, poverty_third, black_third, hispanic_third), is.na)) |>
   nrow()
 
-fmt <- \(x, d = 1) formatC(x, format = "f", digits = d) |> sub(pattern = "^-", replacement = "−")  # r-style: approved
-out <- \(o, cn, col) outcomes[[col]][outcomes$outcome == o & outcomes$contrast == cn]  # r-style: approved
+fmt <- \(x, d = 1) formatC(x, format = "f", digits = d) |> sub(pattern = "^-", replacement = "−")
+out <- \(o, cn, col) outcomes[[col]][outcomes$outcome == o & outcomes$contrast == cn]
 
 # A causal graph drawn from the coordinates stored in a dagitty object, with
 # ggplot2 alone, without ggdag. Observed nodes are filled boxes, latent ones
 # outlined; arrows are shortened at both ends so that they stop at the boxes.
-dag_plot <- function(g, gap = 0.3) {  # r-style: approved
+dag_plot <- function(g, gap = 0.3) {
   xy <- dagitty::coordinates(g)
   nodes <- tibble::tibble(name = names(xy$x), x = unname(xy$x), y = unname(xy$y)) |>
     dplyr::mutate(latent = name %in% dagitty::latents(g))
@@ -95,7 +95,6 @@ In the Housing case study the reply is the variable that needs care. Whether an 
 
 The quickest way to find out what that does is to build data in which the answer is known. The simulation below writes a world in which the name lowers the chance of a reply but has *no* effect at all on how a reply begins. Each official has one unrecorded trait, and the three worlds differ in what it does. In the first it makes both a reply and a named greeting more likely, in the second it makes a reply more likely and a named greeting less likely, and in the third it affects only the greeting.
 
-<!-- r-style: skip -->
 ```{r}
 #| label: collider-sim
 simulate_housing <- function(trait_on_reply, trait_on_greeting, n = 1e5, seed = 20261025) {

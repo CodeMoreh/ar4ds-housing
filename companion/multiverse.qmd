@@ -14,20 +14,20 @@ subgroups <- readr::read_csv("../data/display_subgroups.csv", show_col_types = F
 analysts  <- readr::read_csv("../data/analysts5.csv", show_col_types = FALSE)
 n_emails  <- nrow(readr::read_csv("../data/housing_emails.csv", show_col_types = FALSE))
 
-fmt <- \(x, d = 1) formatC(x, format = "f", digits = d) |> sub(pattern = "^-", replacement = "−")  # r-style: approved
-pct <- \(x, d = 1) paste0(fmt(x, d), "%")  # r-style: approved
-pe <- \(p) dplyr::case_when(p < 0.0001 ~ "p < 0.0001", p < 0.001 ~ paste("p =", fmt(p, 4)),  # r-style: approved
+fmt <- \(x, d = 1) formatC(x, format = "f", digits = d) |> sub(pattern = "^-", replacement = "−")
+pct <- \(x, d = 1) paste0(fmt(x, d), "%")
+pe <- \(p) dplyr::case_when(p < 0.0001 ~ "p < 0.0001", p < 0.001 ~ paste("p =", fmt(p, 4)),
                      .default = paste("p =", fmt(p, 3)))
 
 n_spec <- nrow(curve)
 n_neg_sig <- sum(curve$b_pp < 0 & curve$p < 0.05)
 n_decisions <- dplyr::n_distinct(menu$axis)
 n_off <- sum(!menu$on_curve)
-judged <- \(j) sum(menu$judgement == j)  # r-style: approved
+judged <- \(j) sum(menu$judgement == j)
 variance <- anova(lm(b_pp ~ comparison + population + uncoded + model + adjust, data = curve))
 var_share <- setNames(100 * variance$`Sum Sq` / sum(variance$`Sum Sq`), rownames(variance))
 by_pop <- curve |> dplyr::summarise(lo = min(b_pp), hi = max(b_pp), .by = population)
-bp <- \(pop, col) by_pop[[col]][by_pop$population == pop]  # r-style: approved
+bp <- \(pop, col) by_pop[[col]][by_pop$population == pop]
 no_evidence <- analysts |> datawizard::data_filter(task1 == "no evidence either way") |> dplyr::pull(id)
 ```
 
@@ -65,7 +65,6 @@ Auspurg replies that "Multiverse analyses are only informative when all included
 
 The course applied her test to its own menu. For every option of the `r xfun::numbers_to_words(n_decisions)` decisions, the course asked whether that option is a justifiable way of answering the claim as the course reads it. Of the `r nrow(menu)` options, `r judged("kept")` are on the curve and `r n_off` are not: `r judged("other_question")` answer another question, `r judged("weaker_answer")` answer this one less well, `r judged("check")` check an answer that the curve already holds, and `r judged("unavailable")` cannot be fitted on the public file. The options that answer another question are off the curve but stay in the course, and @tbl-off shows why they would not belong in a count of votes on the claim: each gives its own answer to its own question.
 
-<!-- r-style: skip -->
 ```{r}
 #| label: tbl-off
 #| tbl-cap: "Options that answer another question than the claim, with the result that each gives on the Housing data: a difference in percentage points against the white names, as a difference in proportions with an HC2 test. Sources: `data/display_outcomes.csv`, `data/display_subgroups.csv`."

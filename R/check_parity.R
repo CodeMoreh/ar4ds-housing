@@ -19,7 +19,7 @@ curve <- readr::read_csv("data/spec_curve.csv", show_col_types = FALSE)
 
 # The independent route for each specification. margins takes the discrete
 # change of a factor, so the Hispanic name enters its logit as a factor.
-reference_fit <- function(comparison, population, uncoded, model, adjust) {  # r-style: approved
+reference_fit <- function(comparison, population, uncoded, model, adjust) {
   terms <- ADJUST_TERMS[[adjust]]
   frame <- spec_frame(housing, comparison, population, uncoded) |>
     dplyr::select("y", "hisp", dplyr::all_of(terms)) |>
@@ -31,7 +31,7 @@ reference_fit <- function(comparison, population, uncoded, model, adjust) {  # r
   } else {
     frame <- dplyr::mutate(frame, hisp = factor(hisp))
     fit <- stats::glm(form, family = stats::binomial(), data = frame)
-    ame <- summary(margins::margins(fit, variables = "hisp", data = frame))  # r-style: keep – the independent route; marginaleffects is the estimator under test
+    ame <- summary(margins::margins(fit, variables = "hisp", data = frame))
     tibble::tibble(b_ref = 100 * ame$AME, se_ref = 100 * ame$SE)
   }
 }
@@ -54,4 +54,4 @@ print(gaps)
 
 stopifnot(gaps$b_vs_reference < 1e-6, gaps$se_vs_reference < 1e-3,
           gaps$b_vs_fresh < 1e-9, gaps$stat_vs_fresh < 1e-9)
-cat("Parity holds on all", nrow(check), "specifications.\n")  # r-style: keep – a checker, whose output is its report
+cat("Parity holds on all", nrow(check), "specifications.\n")

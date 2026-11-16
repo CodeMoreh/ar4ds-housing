@@ -35,7 +35,7 @@ stopifnot(nrow(repl) == 2717, sum(repl$reply) == 1484, all(repl$named <= repl$re
 # The two populations of the menu; there are no uncoded replies and no Black
 # aliases, so the comparison is white names under every option. The gap is a
 # linear probability model with HC2 errors from parameters and sandwich.
-gap <- function(data, population, authorities) {  # r-style: approved
+gap <- function(data, population, authorities) {
   frame <- if (population == "replies") datawizard::data_filter(data, reply == 1) else data
   fit <- stats::lm(named ~ hisp, data = frame)
   est <- parameters::model_parameters(fit, vcov = "HC2") |>
@@ -51,7 +51,7 @@ replication <- tidyr::expand_grid(population = c("replies", "all"), authorities 
   purrr::pmap(\(population, authorities) gap(if (authorities == "all") repl else datawizard::data_filter(repl, county == 0),
                                              population, authorities)) |>
   dplyr::bind_rows()
-readr::write_csv(replication, "data/display_replication.csv")  # r-style: keep – datawizard::data_write() writes other bytes
+readr::write_csv(replication, "data/display_replication.csv")
 
 # The mark: the raw gap among all replies, the analogue of the reference
 # specification of the curve (white names, replies, no covariates)
@@ -63,4 +63,4 @@ marks <- readr::read_csv("data/reference_marks.csv", show_col_types = FALSE) |>
     statistic = ref$stat, n = ref$n, b_pp = ref$b_pp, on_chart = TRUE,
     note = "New data: 3,050 authorities emailed by four male aliases, two Hispanic and two white. Placed by the raw gap among all replies, computed by the course from the de-identified data on the OSF (osf.io/xseqg)."
   ))
-readr::write_csv(marks, "data/reference_marks.csv", na = "")  # r-style: keep – datawizard::data_write() writes other bytes
+readr::write_csv(marks, "data/reference_marks.csv", na = "")

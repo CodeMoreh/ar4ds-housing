@@ -15,14 +15,14 @@ curve <- readr::read_csv("../../data/spec_curve.csv", show_col_types = FALSE)
 original <- readr::read_csv("../../data/housing_original.csv", show_col_types = FALSE)
 housing <- readr::read_csv("../../data/housing_emails.csv", show_col_types = FALSE)
 
-fmt <- \(x, d = 1) formatC(x, format = "f", digits = d) |> sub(pattern = "^-", replacement = "−")  # r-style: approved
-an <- \(id, col) analysts[[col]][analysts$id == id]  # r-style: approved
+fmt <- \(x, d = 1) formatC(x, format = "f", digits = d) |> sub(pattern = "^-", replacement = "−")
+an <- \(id, col) analysts[[col]][analysts$id == id]
 
 # The Task 3 target, on the public file of the OAs: Hispanic against all other
 # names among the coded replies, with and without the continuity correction
 chi_tab <- original |>
   datawizard::data_filter(Response_Dichotomous == 1 & !is.na(ProperName)) |>
-  stats::xtabs(formula = ~ startsWith(TreatmentGroup, "Hispanic") + ProperName, data = _)  # r-style: keep – the contingency table that chisq.test() takes
+  stats::xtabs(formula = ~ startsWith(TreatmentGroup, "Hispanic") + ProperName, data = _)
 chi_yates <- unname(stats::chisq.test(chi_tab)$statistic)
 chi_plain <- unname(stats::chisq.test(chi_tab, correct = FALSE)$statistic)
 

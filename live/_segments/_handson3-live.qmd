@@ -24,7 +24,7 @@
 
 ```{webr}
 #| autorun: false
-original <- utils::read.csv("data/housing_original.csv", na.strings = c("", "NA"))  # r-style: keep – the base reader adds nothing to the download
+original <- utils::read.csv("data/housing_original.csv", na.strings = c("", "NA"))
 ```
 
 ::: {.fragment .small}
@@ -73,7 +73,7 @@ coded_replies <- original |>
 ```{webr}
 #| autorun: false
 # the 2 x 2 table: Hispanic or other name, by greeting
-tab_8ptrz <- xtabs(~ hispanic_name + ProperName, data = coded_replies)  # r-style: keep – the table that chisq.test() takes
+tab_8ptrz <- xtabs(~ hispanic_name + ProperName, data = coded_replies)
 tab_8ptrz
 ```
 

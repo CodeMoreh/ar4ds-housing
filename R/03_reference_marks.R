@@ -51,7 +51,7 @@ HISP_VS_WHITE <- list(ethnicity = c("white", "hispanic"))
 
 # 8PTRZ: chi-square test of independence, Hispanic against all other names, replies
 # only, with the continuity correction that chisq.test() applies to a 2 x 2 table
-tab_8ptrz <- stats::xtabs(~ I(group == "hispanic") + named, data = replies)  # r-style: keep – the contingency table that chisq.test() takes
+tab_8ptrz <- stats::xtabs(~ I(group == "hispanic") + named, data = replies)
 x2_8ptrz <- unname(stats::chisq.test(tab_8ptrz)$statistic)
 
 # UYV3F: logit, Hispanic against white names, replies only, no covariates
@@ -108,7 +108,7 @@ stopifnot(nrow(analysts) == 5,
           sum(analysts$matches_record, na.rm = TRUE) == 4,
           is.na(analysts$statistic_recorded[analysts$id == "P9W8Y"]))
 
-readr::write_csv(analysts, "data/analysts5.csv", na = "")  # r-style: keep – datawizard::data_write() writes other bytes
+readr::write_csv(analysts, "data/analysts5.csv", na = "")
 
 # The published result: Table 1, model 3 (logit, N = 549), and the change in the
 # predicted probability from a white to a Hispanic name, other variables at
@@ -138,4 +138,4 @@ marks <- dplyr::bind_rows(
                                            "Placed by the course refit of the analysis, which reproduces the recorded statistic."))
 )
 
-readr::write_csv(marks, "data/reference_marks.csv", na = "")  # r-style: keep – datawizard::data_write() writes other bytes
+readr::write_csv(marks, "data/reference_marks.csv", na = "")

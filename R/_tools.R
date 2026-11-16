@@ -5,7 +5,7 @@
 #               percentage points, its 95% interval, the test of its model and
 #               the partial correlation by the rule of the robustness study.
 # Author:       Claude for CM
-# Last updated: 2026-11-15
+# Last updated: 2026-11-16
 # Sourced by:   R/02_spec_curve.R, R/03_reference_marks.R,
 #               R/04_menu_deviations.R, R/05_displays.R,
 #               R/06_replication.R, R/check_parity.R,
@@ -17,9 +17,10 @@
 # marginal effect come from packages: parameters with sandwich for the HC2
 # errors of the linear model, marginaleffects for the average marginal effect
 # of the logit. R/check_parity.R checks both against estimatr and
-# margins. The rows are chosen with dplyr, because datawizard evaluates its
-# conditions in a fresh environment and so cannot see the arguments of a
-# function.
+# margins. The rows and the outcome are built with dplyr, because inside a
+# function datawizard::data_modify() and data_summary() do not find the
+# arguments of that function, and data_filter() finds such arguments only
+# from datawizard 1.5.0.
 
 # The options of the curve, in menu order. Anything else is refused by
 # check_spec() with the reason recorded in data/menu_options.csv.
@@ -41,7 +42,7 @@ ADJUST_TERMS <- list(
 
 # The analysed rows and the outcome of one specification. Bounced emails never
 # reached an official and are outside the experiment under every option.
-spec_frame <- function(housing, comparison = "white", population = "replies", uncoded = "drop") {  # r-style: approved
+spec_frame <- function(housing, comparison = "white", population = "replies", uncoded = "drop") {
   housing |>
     dplyr::filter(!is.na(reply),
                   .env$comparison == "nonhispanic" | group %in% c("white", "hispanic"),
@@ -59,7 +60,7 @@ spec_frame <- function(housing, comparison = "white", population = "replies", un
 # github.com/marton-balazs-kovacs/multi100): t with its df, which is the rule of
 # effectsize::t_to_r(); z with the sample size standing in for the missing df;
 # a chi-square read as the square of a z, so it carries no sign.
-r_robustness <- function(stat, stat_type, df, n) {  # r-style: approved
+r_robustness <- function(stat, stat_type, df, n) {
   dplyr::case_when(
     stat_type == "t" ~ effectsize::t_to_r(stat, df, ci = NULL)$r,
     stat_type == "z" ~ tanh(abs(stat) * sqrt(1 / (n - 3))) * sign(stat),
@@ -67,7 +68,7 @@ r_robustness <- function(stat, stat_type, df, n) {  # r-style: approved
   )
 }
 
-check_spec <- function(comparison, population, uncoded, model, adjust) {  # r-style: approved
+check_spec <- function(comparison, population, uncoded, model, adjust) {
   chosen <- list(comparison = comparison, population = population, uncoded = uncoded,
                  model = model, adjust = adjust)
   bad <- names(chosen)[!purrr::map2_lgl(chosen, SPEC_AXES[names(chosen)], \(v, ok) v %in% ok)]
@@ -82,7 +83,7 @@ check_spec <- function(comparison, population, uncoded, model, adjust) {  # r-st
 # greeted by name less often, the direction of the claim), its SE and 95%
 # interval, the test of the model that the specification fits, and the partial
 # correlation by the rule of the robustness study.
-fit_spec <- function(housing, comparison = "white", population = "replies", uncoded = "drop",  # r-style: approved
+fit_spec <- function(housing, comparison = "white", population = "replies", uncoded = "drop",
                      model = "lpm", adjust = "none") {
   check_spec(comparison, population, uncoded, model, adjust)
   terms <- ADJUST_TERMS[[adjust]]
@@ -131,7 +132,7 @@ fit_spec <- function(housing, comparison = "white", population = "replies", unco
 }
 
 # The free-text label that carries a specification to the class chart.
-spec_line <- function(comparison, population, uncoded, model, adjust) {  # r-style: approved
+spec_line <- function(comparison, population, uncoded, model, adjust) {
   sprintf("comparison=%s population=%s uncoded=%s model=%s adjust=%s",
           comparison, population, uncoded, model, adjust)
 }

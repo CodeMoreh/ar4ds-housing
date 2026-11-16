@@ -32,7 +32,7 @@ files <- latest$files$dataFile |>
     version = paste(latest$versionNumber, latest$versionMinorNumber, sep = "."),
     released = substr(latest$releaseTime, 1, 10)
   ) |>
-  # r-style: keep – dplyr::arrange() sorts in the C locale on every machine
+  # dplyr::arrange() sorts in the C locale on every machine
   dplyr::arrange(label)
 
 readr::write_csv(files, "companion/_model-outputs/dataverse_1HOVTU_files.csv")
