@@ -2,44 +2,42 @@
 title: "Before the day"
 ---
 
-Three things are needed before the day, none of them an account or a piece of paid software, and each ends in something that you can check: R, an IDE and the workspace installed, with the setup check printing OK; the first module on R worked through; and the background page read. The modules on the IDE, on Quarto and on Git and GitHub are recommended for anyone who would rather meet the tools at their own pace than on the day. The day itself is worked in the workspace, and a machine on which the installation failed can still follow every task in the deck of the day, whose slides run R inside your browser with the data already in place, or in the browser lab, a page of the course site that holds the same tasks.
+Before the day, install R, an IDE and the workspace, work through the first module on R, and read the background page. None of this needs an account or paid software.
 
 ## 1. R and an IDE
 
 [Install R and an IDE](https://codemoreh.github.io/ar4ds/setup.html){.btn .btn-primary target="_blank"}
 
-Install R, Quarto and an IDE (Positron, RStudio, VS Code, etc.) once, by following the setup page. The [help page](https://codemoreh.github.io/ar4ds/help.html) lists the problems that other participants have met. If the installation will not cooperate, tell the facilitator before the day, and follow the day in the deck and the browser lab.
+Install R, Quarto and an IDE (Positron, RStudio, VS Code, etc.) by following the setup page. The [help page](https://codemoreh.github.io/ar4ds/help.html) lists the problems that other participants have met. If the installation fails, tell the facilitator before the day.
 
 ## 2. The workspace {#the-workspace}
 
 [Download the workspace (zip)]({{< var cases.housing.workspace-zip >}}){.btn .btn-primary}
 
-The workspace is a single zip file that holds the analysis code, the data and a report to fill in, and it is yours to keep after the day. Save it somewhere you will find again, such as your Desktop or Documents folder, and unzip it, choosing "Extract All" on Windows rather than working inside the compressed preview. The folder that it makes, `ar4ds-housing-workspace-main`, holds the report with Tasks 1 to 5 and the preregistration block (`index.qmd`), the same steps as a plain script (`working_script.R`), the check script, the starter file of the causal graph and the helpers in `R/`, and the data with their codebooks in `data/`. Open the folder in your IDE, with **File → Open Folder** in Positron and VS Code or by opening the file `ar4ds-housing-workspace.Rproj` inside it in RStudio, and run `R/check_setup.R` as the [setup page](https://codemoreh.github.io/ar4ds/setup.html#check-that-it-works) describes, until every line prints OK. The last line fits the reference specification of the course and prints −19.97 percentage points.
+Save the zip file where you will find it again and unzip it, choosing "Extract All" on Windows rather than working inside the compressed preview. Open the folder that it makes, `ar4ds-housing-workspace-main`, in your IDE, with **File → Open Folder** in Positron and VS Code or by opening the file `ar4ds-housing-workspace.Rproj` inside it in RStudio. Then run `R/check_setup.R`, as the [setup page](https://codemoreh.github.io/ar4ds/setup.html#check-that-it-works) describes, until every line prints OK. The tasks of the day are in the report `index.qmd` of the same folder.
 
 ## 3. Getting started with R
 
 [Open Getting started with R](https://codemoreh.github.io/ar4ds/tools/r.html){.btn .btn-primary target="_blank"}
 
-The module teaches the R that the tasks of the day ask of you, from a first line of code to a share of replies, a difference between two shares, a table and a figure, all on the data of this case study. Its blocks of code run in your browser, so it can be worked before the installation, alongside it, or on a machine on which you cannot install anything.
+Work through the module. Its code runs in your browser, so it needs no installation.
 
 ## 4. Background {#the-case-study}
 
 [Read the background](../../background.qmd){.btn .btn-primary target="_blank"}
 
-The background page presents the original study and its design, SCORE and its robustness study (Multi100; Aczel et al. 2026), the five reanalyses and the question that each of them answered, how their results were put on one scale, and the replication with new data. Every part of the day works on this case study.
+The background page presents the claim on which the day works, and how the five analysts of the robustness study of SCORE (Multi100; Aczel et al. 2026) came to different conclusions about it.
 
 ## 5. The deck and the browser lab
 
 [Open the deck at Task 1](../../live/day.html#/hands-on-1-get-yourself-running){.btn .btn-outline-primary target="_blank"} [Open the browser lab at Task 1](../../lab.qmd#task-1-setup){.btn .btn-outline-primary target="_blank"}
 
-The deck of the day, whose slides run R inside your browser, and the browser lab are the fallback of the day if your installation fails, and both need nothing but a recent version of Chrome, Edge or Firefox. Open the deck once on the machine and in the browser that you will use, wait until the setup cell of Task 1 shows a "Run Code" button, and run it. If it does not load, try another browser, and tell the facilitator before the day.
+The deck of the day and the browser lab run R inside your browser, and they are the fallback if your installation fails. Open the deck once on the machine and in the browser that you will use (a recent version of Chrome, Edge or Firefox), wait until the setup cell of Task 1 shows a "Run Code" button, and run it. If the deck does not load, try another browser, and tell the facilitator before the day.
 
 ## 6. Further preparation
 
-The modules on [the IDE (Positron and other IDEs)](https://codemoreh.github.io/ar4ds/tools/ide.html), on [Quarto documents](https://codemoreh.github.io/ar4ds/tools/quarto.html) and on [Git and GitHub](https://codemoreh.github.io/ar4ds/git-github.html) take the tools of the workspace further, each with tasks in the workspace of this case study, and the readings on [preregistration](../../resources.qmd#preregistration) on the resources page prepare Task 5. The [exercise](exercise.qmd) page sets out the claim that you will be working on, the five tasks with the tool in which each is done, and the table of what the five analysts of the robustness study found when they reanalysed it.
+Optional: the modules on [the IDE (Positron and other IDEs)](https://codemoreh.github.io/ar4ds/tools/ide.html), on [Quarto documents](https://codemoreh.github.io/ar4ds/tools/quarto.html) and on [Git and GitHub](https://codemoreh.github.io/ar4ds/git-github.html), and the readings on [preregistration](../../resources.qmd#preregistration).
 
 ## 7. On the day
 
-In person, bring a laptop with the workspace already working on it, and its charger. Online, join the video call, whose link comes with the joining details, on one screen or device, and keep a second window or device free for your IDE, or for the deck if your machine fails, so that you can follow the shared screen and do the hands-on tasks side by side.
-
-**By the start of the day** you have the setup check printing OK, or the deck loading on the machine that you will use, you have worked through the first module on R, and you know what the claim is and how the five analysts of the robustness study came to different conclusions about it.
+In person, bring your laptop, with the workspace working on it, and its charger. Online, keep the video call on one screen or device and your IDE, or the deck, on another, so that you can follow the shared screen while you work.

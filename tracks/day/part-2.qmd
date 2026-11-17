@@ -6,32 +6,12 @@ title: "Part 2 – The estimand and the causal graph"
 **Slides.** [Open the deck at this part](../../live/day.html#/part-2-the-estimand-and-the-causal-graph){target="_blank"} in its own tab, or follow it on the [slides page](slides.qmd).
 :::
 
-Part 2 is the conceptual middle of the day. It sets out what the five analysts of the robustness study of SCORE (Multi100; Aczel et al. 2026) did with the claim of the paper, and argues that analysts who look as though they disagree are often answering different questions. It then gives you two tools for saying which question you are answering, the estimand statement and the causal graph, and uses both on the claim, where the graph shows something that is easy to miss.
+The slides of this part set out what the five analysts of the robustness study of SCORE (Multi100; Aczel et al. 2026) did with the claim, and present two tools for saying which question an analysis answers, the estimand statement and the causal graph. When the slides ask for your estimand statement, write it in the chat, hold it, and send it when the facilitator says go.
 
-## 1. The five analysts
+## Task 2 – The data, the estimand and the graph
 
-**On the slides.** The five analysts of the robustness study are placed by their gaps in percentage points. A table then sets out what each of them did, with five different questions behind two different verdicts.
-
-## 2. Estimands
-
-**On the slides.** Two studies are set beside our five. The red-card estimates return as a single row, with the four estimands that the twenty-nine teams were in fact pursuing and the spread that collapses once the estimand is fixed. The slides then ask what under-specified research questions mean for the reading of many-analysts studies, and present the steps from a theoretical to an empirical estimand that Lundberg and colleagues set out.
-
-## 3. Causal graphs
-
-**On the slides.** A short course on causal graphs covers confounders, mediators and colliders, and the causal stories that can lie behind one correlation. It goes on to open and closed paths, total against direct effects, and selection and feedback.
-
-## 4. The estimand statement and the graph
-
-**On the slides.** You write the estimand statement in the chat, hold it, and send it with the rest of the class when the facilitator says go. The slides then draw the causal graph of the experiment, show why comparing greetings among the replies conditions on a consequence of the name, and end on what changes when every delivered email is counted.
-
-## 5. Task 2 – The data, the estimand and the graph
-
-**In your workspace**, in the boxes of Task 2 of `index.qmd`. Count the emails that bounced, the replies, the replies with a greeting code and the greetings by name, for each name, in the chunks `count-emails`, `by-group` and `fig-names`. Write the estimand statement with every bracket filled, saying which emails you count. Then open `R/dag_starter.R`, take the `#` off the arrow from the name to the greeting if you believe it, and run the chunks `adjustment-set` and `paths-replies`, which ask for the adjustment sets and for the paths with `Z = "reply"`. Read which paths open among the replies, and finish with two sentences, one on what a comparison among the replies conditions on and one on what counting every delivered email changes.
+**In your workspace**, in the two boxes of Task 2 of `index.qmd`. Count what came back for each name, complete the estimand statement, and put the questions of the second box to the causal graph of `R/dag_starter.R`.
 
 [Open the deck at Task 2](../../live/day.html#/hands-on-2-meet-the-emails-draw-the-graph){.btn .btn-outline-primary target="_blank"} [Open the browser lab at Task 2](../../lab.qmd#task-2-data){.btn .btn-outline-primary target="_blank"}
 
-The deck shows each step with its output, with the graph on the slides after the data. If your installation fails, run the same cells in the deck or in the browser lab, whose [graph cells](../../lab.qmd#task-2-estimand-and-graph) print the answers that dagitty gives.
-
-To go further: [Causal graphs and adjustment sets](../../companion/dags.qmd), the slower companion of this task.
-
-**By the end of the part** you have the estimand behind the claim written in one sentence, a graph that includes only the arrows that you are willing to defend, and two sentences on why the choice of which emails to count changes the question.
+To go further: [Causal graphs and adjustment sets](../../companion/dags.qmd).
