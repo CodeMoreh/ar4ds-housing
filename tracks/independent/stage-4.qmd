@@ -28,7 +28,7 @@ Read the menu.
 
 **On the slides**, from [your own small multiverse](../../live/day.html#/you-just-built-a-small-multiverse){target="_blank"} onwards.
 
-## 5. Task 5 – The preregistration
+## 5. Task 5 – Preregistration
 
 **In the preregistration block of your report**, the chunk `prereg` of `index.qmd`. Complete the block before you run anything. Render the report and keep the rendered copy, which carries the date on which it was rendered. Then fit the specification with `run_spec()`, and send it with `report_result()` if you want it on the chart, where it appears as a filled circle.
 

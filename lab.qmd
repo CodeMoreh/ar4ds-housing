@@ -648,7 +648,7 @@ When you have tried three or four, decide which one you would defend, run it onc
 submit_exploration()
 ```
 
-## Task 5 – The preregistration {#task-5-preregistration}
+## Task 5 – Preregistration {#task-5-preregistration}
 
 Preregistration means setting out your choice in a plan **before** you know what it does, which stops you from quietly picking the specification that happens to give the answer you wanted. On this page the plan is the cell below, and `run_spec()` and `report_result()` read your choices from it. Its numbered fields follow the preregistration template of AsPredicted in a shortened form, and field 2 also stands in for the prior-knowledge section of the template for secondary data (van den Akker et al. 2021).
 

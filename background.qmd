@@ -93,7 +93,7 @@ This page presents the Housing and racial bias case study, on which the course i
 
 ### 1.2 Audit studies {#sec-audits}
 
-An audit study measures discrimination by sending requests that are identical except for one characteristic of the sender, assigned at random, and by comparing how they are answered. Sociology and economics made the design familiar through studies of hiring, with matched pairs of testers [@Pager2003MarkCriminalRecord] or with résumés that differed only in a name meant to indicate race [@BertrandMullainathan2004AreEmilyGreg], and a meta-analysis of such field experiments found no change since 1989 in hiring discrimination against African Americans, and some sign of a decline against Latinos [@QuillianEtAl2017MetaanalysisFieldExperiments]. Political science adapted the design to emails sent to state legislators [@ButlerBroockman2011PoliticiansRaciallyDiscriminate] and to local election officials [@WhiteEtAl2015WhatNeedVote], which found, as the OAs summarise them, that "blacks and Hispanics making queries about voting procedures are less likely to receive responses from state legislators and local election officials than whites" (p. 4). Because the characteristic is assigned at random, the groups of requests differ only by chance in everything else, and a difference in the answers can be read as its effect. What such a design manipulates, however, is a name, and a name tells its reader more than one thing about the sender, a point to which section 5 returns.
+An audit study measures discrimination by sending requests that are identical except for one characteristic of the sender, assigned at random, and by comparing how they are answered. The module [Audit experiments](companion/experiments.qmd#sec-audits) presents the studies of hiring and of public officials that made the design familiar. Because the characteristic is assigned at random, the groups of requests differ only by chance in everything else, and a difference in the answers can be read as its effect. What such a design manipulates, however, is a name, and a name tells its reader more than one thing about the sender, a point to which section 5 returns.
 
 ### 1.3 The design {#sec-design}
 
@@ -164,20 +164,7 @@ The abstract states the finding in the sentence from which the claim was taken: 
 
 ### 2.1 Reproduction, robustness and replication {#sec-repetition}
 
-SCORE, short for Systematizing Confidence in Open Research and Evidence, put claims from published social and behavioural research through three kinds of repetition [@AlipourfardEtAl2021SystematizingConfidenceOpen]. A reproduction repeats the original analysis on the original data, a robustness check applies different but defensible analyses to the same data, and a replication asks the same question of new data. The three studies were reported in *Nature* in 2026 [@MiskeEtAl2026InvestigatingReproducibilitySocial; @AczelEtAl2026InvestigatingAnalyticalRobustness; @TynerEtAl2026InvestigatingReplicabilitySocial]. This paper went through two of them. Its data and code are public, but its reproduction component on the Open Science Framework (OSF) holds only an unfilled template, and the record of the robustness study marks the reproduction as never attempted.
-
-::: {.callout-note collapse="true"}
-## The dossier on the OSF
-
-- The SCORE project of the paper: [osf.io/3a8bg](https://osf.io/3a8bg/)
-- Original materials: [osf.io/nrt4s](https://osf.io/nrt4s/)
-- Reproduction with the data and code of the OAs, an unfilled template: [osf.io/9wp8d](https://osf.io/9wp8d/)
-- Power analysis for the replication: [osf.io/kcsby](https://osf.io/kcsby/)
-- Replication with new data, with its preregistration and final report: [osf.io/2ug8x](https://osf.io/2ug8x/)
-- The robustness study: [osf.io/38rsh](https://osf.io/38rsh/), with one component for each analyst – 8PTRZ [osf.io/j8wvh](https://osf.io/j8wvh/), UYV3F [osf.io/3672s](https://osf.io/3672s/) (a review document), EWFMI [osf.io/jhvca](https://osf.io/jhvca/), 25N5D [osf.io/v8zah](https://osf.io/v8zah/) and P9W8Y [osf.io/pzwbm](https://osf.io/pzwbm/)
-
-The scripts of the analysts are read on the OSF, and the course does not copy them.
-:::
+SCORE, short for Systematizing Confidence in Open Research and Evidence, put claims from published social and behavioural research through three kinds of repetition [@AlipourfardEtAl2021SystematizingConfidenceOpen]. A reproduction repeats the original analysis on the original data, a robustness check applies different but defensible analyses to the same data, and a replication asks the same question of new data. The three studies were reported in *Nature* in 2026 [@MiskeEtAl2026InvestigatingReproducibilitySocial; @AczelEtAl2026InvestigatingAnalyticalRobustness; @TynerEtAl2026InvestigatingReplicabilitySocial]. This paper went through two of them. Its data and code are public, but its reproduction component on the Open Science Framework (OSF) holds only an unfilled template, and the record of the robustness study marks the reproduction as never attempted. The [Resources page](resources.qmd#the-case) links every component of the record on the OSF.
 
 ### 2.2 The claim and the Task 2 instruction {#sec-robustness}
 

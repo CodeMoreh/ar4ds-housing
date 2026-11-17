@@ -649,9 +649,7 @@ The `r xfun::numbers_to_words(n_dec)` decisions fall into three groups, and one 
 
 ## The curve of `r nrow(curve)` {#the-curve}
 
-Five decisions vary on the curve: the comparison group (white names, or white and Black names together), the emails counted (replies, or all delivered emails), the replies without a greeting code (left out, or counted as no greeting), the model (a difference in proportions, or a logistic regression) and the adjustment (none, the hard-to-find address, the size and poverty of the community, or those with its ethnic composition). That gives 2 × 2 × 2 × 2 × 4 = `r nrow(curve)` specifications. The other `r xfun::numbers_to_words(length(fixed_axes))` decisions take a single option on the curve.
-
-Every estimate is in percentage points, and a negative estimate means that Hispanic names were greeted by name less often, the direction of the claim. All `r nrow(curve)` specifications are negative and significant at the 5% level under the test of their own model, from `r fmt(min(curve$b_pp))` to `r fmt(max(curve$b_pp))` points, with p-values between `r fmt(min(curve$p), 5)` and `r fmt(max(curve$p), 4)`. The randomisation test, which reshuffles the names among the analysed emails 1,999 times, gives at most p = `r fmt(max(curve$p_ri), 4)`. The reference specification, Hispanic against white names among the replies with a difference in proportions and no covariates, is the raw gap of the paper: `r fmt(ref$b_pp)` points (`r pct(ref$rate_hisp)` against `r pct(ref$rate_comp)`), t = `r fmt(ref$stat, 2)` on `r ref$df` df, n = `r ref$n`.
+Five decisions vary on the curve, which gives 2 × 2 × 2 × 2 × 4 = `r nrow(curve)` specifications, and the other `r xfun::numbers_to_words(length(fixed_axes))` decisions take a single option. The [Specification curve](curve.qmd) page shows all `r nrow(curve)` and the reference specification among them.
 
 Within the curve, what varies is the size of the gap, and @tbl-shifts shows which decisions move it. Each row compares the specifications with an option against their twins that differ only in that decision.
 
@@ -789,7 +787,3 @@ The claim, in the abstract, states the gap in percentage points, which a reader 
 **Justification, by group of decisions.** The claim as selected compares Hispanic with white names, so the white names are the comparison. Counting every delivered email keeps the groups as randomisation made them, so the difference is an effect of the name and does not depend on which officials chose to reply, at the cost of an outcome that combines replying with greeting. A reply without a greeting code most probably did not open with a name. The names were randomised, so the raw difference in proportions needs no covariates, and its HC2 test is the test that a single analyst would report.
 
 The specification gives `r fmt(bounced_twin$b_pp)` points (`r pct(bounced_twin$rate_hisp)` against `r pct(bounced_twin$rate_comp)`), t = `r fmt(bounced_twin$stat, 2)` on `r bounced_twin$df` df. A justification of this kind connects each choice to the wording of the claim or to the design, according to the group to which the choice belongs, and it is what the preregistration of Task 5 asks you to write before you run the model.
-
-## Declaring and reporting
-
-In Task 4 you explore the menu with `try_spec()`, changing one argument at a time, and an option off the curve is refused with its reason from `menu_options.csv`. In Task 5 you fix one specification in the preregistration block before you fit it: `prereg()` prints the declaration, `run_spec()` fits it and `report_result()` sends it to the class chart on the [Class results](class-results.qmd) page.

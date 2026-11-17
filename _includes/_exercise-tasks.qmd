@@ -22,7 +22,7 @@ Choose one of the five analysts in the table above and reproduce the analysis fr
 
 This task is **exploratory**: nothing in it is preregistered, and you may look, change your mind and try again. Try several specifications from the [specification menu](../../menu.qmd) with `try_spec()`, one decision at a time, and note which choices move the estimate and which barely touch it. Then choose the one that you would defend, and `submit_exploration()` sends it to the class chart on the [Class results](../../class-results.qmd) page, where it appears as an open circle.
 
-### Task 5 – Declaration and report
+### Task 5 – Preregistration
 
 Choose **one** specification, one option for each decision, and complete the preregistration block **before you run it**. `run_spec()` fits the specification that you declared, and `report_result()` sends the declared result to the class chart, where it appears as a filled circle. Then find where your result sits on the curve of `r nrow(curve)` specifications.
 

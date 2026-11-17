@@ -196,7 +196,7 @@ Work through the decisions that lie between the data and a result, try alternati
 </details>
 
 <details>
-<summary><span class="home-n">Task 5</span>Declaration and report</summary>
+<summary><span class="home-n">Task 5</span>Preregistration</summary>
 
 Declare one specification in a short preregistration, run it, report it, and find where it sits among the `r h_spec` specifications of the [curve of the claim](curve.qmd).
 
@@ -219,18 +219,7 @@ The exercise page of each format sets out its tasks, with the tool in which each
 <details>
 <summary>What the course teaches</summary>
 
-The main aim of the course is to introduce technical skills for modern empirical data analysis: finding the data and code of a study in an online repository, working with code so that another person (or your future self) can reproduce your steps, fixing your analytical choices in a preregistration before you run the analysis, and writing a live report that combines code and text.
-
-These skills are taught through an applied 'replication' exercise. Participants reproduce one of the reanalyses that made up the robustness study, whose results appeared in *Nature* [@AczelEtAl2026InvestigatingAnalyticalRobustness]. This case study takes the claim of a field experiment published in the *American Journal of Political Science* [@EinsteinGlick2017DoesRaceAffect] and tests the statistical robustness of a claim made by the original authors (OAs). You will:
-
-1. **Reproduce a published analyst's result.** Choose one of the five analysts of the case study, run the analysis that they ran on the public file, and find the exact value that it produced.
-2. **Find out why five analysts got five different answers.** When you run the same code, you get the same result; but there are different analysis options to choose from, and the five analysts each made different choices. Working through those options involves engaging with and choosing between various statistical methods.
-3. **State an _estimand_ and draw a causal graph.** Often, variation in methods and therefore results is driven by having an imprecise understanding of the *quantity* that the study is trying to estimate. That quantity is the *estimand*. Causal graphs, or directed acyclic graphs (DAGs), are a useful way to set out the relationships between the variables in your dataset and to decide what to adjust for.
-4. **Preregister one specification.** Pick one defensible analysis from a menu of choices. Before you run it, fill in the preregistration block of your report, which is a shortened version of a real preregistration template: the claim you are testing, one option for each decision on the menu, and a sentence grounded in your causal graph on why the specification answers the claim.
-5. **Run it and submit the result.** Your result appears as a point on a live chart, against the curve of the claim and, in a taught session, beside everyone else in the class.
-6. **Read a specification curve and a replication.** Work out what the `r h_spec` specifications of the curve of the claim, taken together, can and cannot establish, and what the replication with new data adds.
-
-The exercise follows the design of the robustness study on a smaller scale, with many analysts testing the same claim, each stating their analytical choices, and results reported in a form that allows them to be compared.
+The main aim of the course is to introduce technical skills for modern empirical data analysis: finding the data and code of a study in an online repository, working with code so that another person (or your future self) can reproduce your steps, fixing your analytical choices in a preregistration before you run the analysis, and writing a live report that combines code and text. The exercise follows the design of the robustness study on a smaller scale, with many analysts testing the same claim, each stating their analytical choices, and results reported in a form that allows them to be compared.
 
 </details>
 
@@ -244,7 +233,7 @@ The [companion](companion/index.qmd) holds the teaching material of the course o
 <details>
 <summary>SCORE</summary>
 
-The claim comes from the work of SCORE, a programme that put claims from published social and behavioural research through reproduction, robustness checks and replication, and the exercise follows the design of its robustness study. The AR4DS site describes [the programme](https://codemoreh.github.io/ar4ds/score.html), and its page on [the robustness article](https://codemoreh.github.io/ar4ds/robustness-article.html) explains how the results of the analysts were placed on one scale and compared.
+The claim comes from the work of SCORE, a programme that put claims from published social and behavioural research through reproduction, robustness checks and replication. The AR4DS site describes [the programme](https://codemoreh.github.io/ar4ds/score.html), and its page on [the robustness article](https://codemoreh.github.io/ar4ds/robustness-article.html) explains how the results of the analysts were placed on one scale and compared.
 
 </details>
 
