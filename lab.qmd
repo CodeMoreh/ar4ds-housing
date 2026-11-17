@@ -523,7 +523,7 @@ The column `Deviance` gives 15.951 on 2 degrees of freedom for 558 replies, the 
 
 ### Defaults and codings {#task-3-defaults}
 
-Now find out why your number is exactly that number. For a 2 × 2 table, `chisq.test()` and `prop.test()` both apply the continuity correction of Yates unless they are told otherwise. Neither 8PTRZ nor 25N5D asked for the correction: the defaults of the two functions applied it, and the recorded values are the corrected ones. The cells below run both tests without it. The first three redo the comparison of 8PTRZ, and only the third, the test, prints anything.
+Now find out why your number is exactly that number. For a 2 × 2 table, `chisq.test()` and `prop.test()` both apply the continuity correction of Yates unless they are told otherwise: it shrinks each gap between an observed and an expected count by 0.5 before squaring, a remedy designed for small tables. Neither 8PTRZ nor 25N5D asked for the correction. The defaults of the two functions applied it, and the recorded values are the corrected ones. The cells below run both tests without it. The first three redo the comparison of 8PTRZ, and only the third, the test, prints anything.
 
 ```{webr}
 #| autorun: false

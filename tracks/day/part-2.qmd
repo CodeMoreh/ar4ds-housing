@@ -6,7 +6,13 @@ title: "Part 2 – The estimand and the causal graph"
 **Slides.** [Open the deck at this part](../../live/day.html#/part-2-the-estimand-and-the-causal-graph){target="_blank"} in its own tab, or follow it on the [slides page](slides.qmd).
 :::
 
-The slides of this part set out what the five analysts of the robustness study of SCORE (Multi100; Aczel et al. 2026) did with the claim, and present two tools for saying which question an analysis answers, the estimand statement and the causal graph. When the slides ask for your estimand statement, write it in the chat, hold it, and send it when the facilitator says go.
+1. The five analysts of the robustness study of SCORE (Multi100; Aczel et al. 2026)
+2. Estimands
+3. Causal graphs
+4. The estimand statement and the graph
+5. Task 2 – The data, the estimand and the graph
+
+When the slides ask for your estimand statement, write it in the chat, hold it, and send it when the facilitator says go.
 
 ## Task 2 – The data, the estimand and the graph
 

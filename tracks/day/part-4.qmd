@@ -6,7 +6,19 @@ title: "Part 4 – Robustness"
 **Slides.** [Open the deck at this part](../../live/day.html#/part-4-robustness){target="_blank"} in its own tab, or follow it on the [slides page](slides.qmd).
 :::
 
-The slides of this part cover the specification menu and its methods, the multiverse, what moved the estimate, the replication with new data, the critics of the multiverse, and archives and registrations. Keep the menu and the curve open in other tabs while the facilitator talks.
+1. The specification menu
+2. The methods
+3. Task 4 – The menu
+4. The multiverse
+5. The class results and your placement
+6. What moved the estimate
+7. The replication
+8. The critics of the multiverse
+9. Archives and registrations
+10. Task 5 – The preregistration
+11. The close
+
+Keep the menu and the curve open in other tabs while the facilitator talks.
 
 [Open the specification menu](../../menu.qmd){.btn .btn-primary target="_blank"} [Open the specification curve](../../curve.qmd){.btn .btn-primary target="_blank"}
 

@@ -6,7 +6,11 @@ title: "Part 3 – The reproduction"
 **Slides.** [Open the deck at this part](../../live/day.html#/part-3-the-reproduction){target="_blank"} in its own tab, or follow it on the [slides page](slides.qmd).
 :::
 
-In this part you choose one of the five analysts of the robustness study of SCORE (Multi100; Aczel et al. 2026) and reproduce the value recorded for that analyst from the public file of the original study. The slides cover the instruction that the analysts received, the reason why your number is exactly that number, and what a reproduction needs.
+1. The instruction of the robustness study of SCORE (Multi100; Aczel et al. 2026)
+2. Task 3 – The reproduction
+3. Reproducibility and analytical choice
+4. What a reproduction needs
+5. A second reproduction
 
 ## Task 3 – The reproduction
 
