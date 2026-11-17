@@ -1,22 +1,20 @@
 ---
 title: "Before the session"
 ---
-Before the session you read the background page and check that the deck of the session loads on the machine that you will bring. The two steps take about an hour, and there is nothing to install and nothing to register for.
+Before the session, read the background page and check that the deck of the session loads on the machine that you will bring. There is nothing to install and nothing to register for.
 
 ## 1. Background {#the-case-study}
 
 [Read the background](../../background.qmd){.btn .btn-primary target="_blank"}
 
-The background page presents the original study and its design, SCORE and its robustness study (Multi100; Aczel et al. 2026), the five reanalyses and the question that each of them answered, how their results were put on one scale, and the replication with new data. Read it before you come, because the session works on this case study throughout and can give it only a few slides.
+The background page presents the claim on which the session works, and how the five analysts of the robustness study of SCORE (Multi100; Aczel et al. 2026) came to different conclusions about it.
 
 ## 2. The deck
 
 [Open the deck at Task 1](../../live/short.html#/hands-on-1-get-yourself-running){.btn .btn-primary target="_blank"} [Open the browser lab at Task 1](../../lab.qmd#task-1-setup){.btn .btn-outline-primary target="_blank"}
 
-The deck of the session runs R inside your browser, with the data already in place, and its slides carry the cells of the tasks. It needs nothing but a recent version of Chrome, Edge or Firefox. Open it once on the machine and in the browser that you will use, wait until the setup cell shows a "Run Code" button, and run it. If it does not load, try another browser, and tell the facilitator before the session. The browser lab, a page of the course site that holds the same tasks outside the deck, is the fallback.
+The deck of the session runs R inside your browser, with the data already in place. Open it once on the machine and in the browser that you will use (a recent version of Chrome, Edge or Firefox), wait until the setup cell shows a "Run Code" button, and run it. If the deck does not load, try another browser, and tell the facilitator before the session. The browser lab holds the same tasks and is the fallback.
 
 ## 3. On the day
 
-In person, bring a laptop and its charger. Online, join the video call, whose link comes with the joining details, on one screen or device, and keep a second window or device free for the deck, so that you can follow the shared screen and work on the slides side by side.
-
-**By the start of the session** you have the deck loading on the machine that you will use, and you know what the claim is and how the five analysts of the robustness study came to different conclusions about it.
+In person, bring a laptop and its charger. Online, keep the video call on one screen or device and the deck on another, so that you can follow the shared screen while you work.

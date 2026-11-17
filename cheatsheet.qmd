@@ -6,7 +6,7 @@ format:
 ---
 
 ::: {.callout-note}
-**Print this page** (Ctrl+P / Cmd+P) or keep it open on a second device. It has everything you need for the day.
+**Print this page** (Ctrl+P / Cmd+P) or keep it open on a second device.
 :::
 
 ------------------------------------------------------------------------
@@ -32,7 +32,7 @@ format:
 
 ## The helpers {#helpers}
 
-The downloadable workspace and the browser lab have the same helpers, with the same names and arguments, and both fit every specification live.
+The downloadable workspace and the browser lab have the same helpers, with the same names and arguments.
 
 | Helper | Task | What it does |
 |---|---|---|
@@ -61,8 +61,6 @@ Choose one analyst. Each reproduction reads the public file of the original auth
 | EWFMI | the coded replies with a poverty third, 549 | `glm(ProperName ~ ethnicity + name_sex + poverty_pop_third + HardEmail, ...)`, Hispanic names as the base | z = 3.645 |
 | 25N5D | `!is.na(Response_Dichotomous)`: the delivered emails to Hispanic and white names, 665 | `prop.test(greetings, emails)` | $\chi^2$ = 13.683 |
 | P9W8Y | the 558 coded replies | `anova(update(m, . ~ 1), m, test = "LRT")` on the three groups | none; the test gives 15.951 on 2 df |
-
-When the facilitator says so, type the analyst and the value into the chat, for example `UYV3F z = -3.771`, and send it on "go".
 
 ------------------------------------------------------------------------
 
@@ -98,17 +96,17 @@ The [specification menu](menu.qmd) explains every option, and the [decision map]
 
 ## Submitting to the chart {#submitting}
 
-The short format sends nothing to the class chart, and its participants can skip this section. Otherwise you submit twice, and the two submissions are different in kind.
+The short format sends nothing to the class chart, and its participants can skip this section. Otherwise you submit twice.
 
-**Task 4 – the exploratory mark (open circle).** Nothing in this task is preregistered.
+**Task 4 – the exploratory mark (open circle).**
 
-1. **`try_spec(...)`** – change one argument at a time, for example `try_spec(population = "all")`. An option off the curve, such as `model = "three_group"`, stops with the reason and the page that teaches it.
+1. **`try_spec(...)`** – change one argument at a time, for example `try_spec(population = "all")`.
 2. **`my_experiments()`** – prints everything that you have tried so far.
 3. **`submit_exploration()`** – sends the most recent try to the chart. Open the printed link and press **Send**. Note the tag that it prints: it marks your submissions on the class chart.
 
-**Task 5 – the declared mark (filled circle).** Here you preregister one specification before you run it.
+**Task 5 – the declared mark (filled circle).**
 
-4. **Preregister.** Make one choice for every `my_` line of the preregistration block, complete the dotted lines, and run the block, which ends in `my_spec <- prereg()`. In the browser lab that line is a cell of its own below the block, to be run after it. The completed block is your preregistration. In the workspace, keep it in the report as set out under [Rendering the report](#rendering-the-report); on the browser lab page, copy the whole cell into your notes.
+4. **Preregister.** Make one choice for every `my_` line of the preregistration block, complete the dotted lines, and run the block, which ends in `my_spec <- prereg()`. In the browser lab that line is a cell of its own below the block, to be run after it. In the workspace, keep the completed block in the report as set out under [Rendering the report](#rendering-the-report); on the browser lab page, copy the whole cell into your notes.
 5. **`run_spec(my_spec)`** – fits your specification and prints its result and its place on the curve.
 6. **`report_result()`** – builds your submission from the preregistration and prints a pre-filled form link; open it and press **Send**. It reuses your tag from Task 4. In the browser lab, if you have reloaded the page since then, pass the tag back with `report_result(nickname = "your-tag")`.
 
@@ -139,11 +137,11 @@ If any of that stalls, work down the list under [A stalled browser lab](#a-stall
 
 ## A stalled browser lab
 
-The browser lab runs R inside your browser tab, and browsers occasionally baulk. Work down this list. Each step is more certain than the one before, and step 4 puts your mark on the chart whatever your machine does.
+Work down this list. Step 4 puts your mark on the chart whatever your machine does.
 
 1. **Hard reload, then rerun.** Reload the page clearing the cache (Ctrl+Shift+R / Cmd+Shift+R), wait for R to restart, and **rerun the cells above** the one that failed – the R engine in the browser needs the earlier cells to have run in this session before a later one will work.
-2. **Switch browser.** If a cell still will not run, open the browser lab in a different browser (Chrome, Edge or Firefox). A fresh browser clears most stubborn problems.
-3. **Follow the shared screen.** If your machine simply will not cooperate, watch the facilitator run the same cell on the shared screen and read the printed results from there. You miss no step by doing this.
+2. **Switch browser.** If a cell still will not run, open the browser lab in a different browser (Chrome, Edge or Firefox).
+3. **Follow the shared screen.** If your machine simply will not cooperate, watch the facilitator run the same cell on the shared screen and read the printed results from there.
 4. **Read your printed result to the facilitator.** If `submit_exploration()` or `report_result()` printed your result but the form link will not open, read the printed `b`, `se`, `t` (or `z`), `df`, `n` and `r` to the facilitator, who adds the mark to the chart for you. If a cell refuses to run at all, nothing is printed and there are no numbers to read, so give the facilitator your five choices instead, and the facilitator reads the result off the curve file by hand (the note below).
 
 ::: {.callout-note}
@@ -159,14 +157,14 @@ Last resort, facilitator-side, if the cells of a participant will not run at all
 | If ... | Then ... |
 |---|---|
 | A package will not load, or `try_spec` is "not found" | Run the checker again – `source("R/check_setup.R")` – and run the install line that it prints. |
-| The `pak` install that `R/check_setup.R` prints stalls or half-finishes | Restart R (Session menu), then run the install again; a second pass usually completes what the first left. |
+| The install line that `R/check_setup.R` prints stalls or half-finishes | Restart R (Session menu), then run the install again; a second pass usually completes what the first left. |
 | "Permission denied" while installing a package | Let R use a personal library that it can write to – accept the offer from R to create a personal library, then reinstall. |
 | A data file is "not found" | Check that you opened the unzipped **folder** in your IDE (File → Open Folder in Positron and VS Code; the `.Rproj` file in RStudio), not a single file – the paths in the code are relative to that folder. |
 | Something not listed here | The [setup help page](https://codemoreh.github.io/ar4ds/help.html) has the longer table, with prompts to give an AI assistant. |
-| Everything is stuck | Open the [browser lab](lab.qmd) and carry on there. You lose nothing required. |
+| Everything is stuck | Open the [browser lab](lab.qmd) and carry on there. |
 
 ------------------------------------------------------------------------
 
 ## Rendering the report {#rendering-the-report}
 
-Render your report once your preregistration block is complete. The rendered copy carries the date on which it was rendered and keeps the declaration above the cells that fit the specification. In Positron and in RStudio, press the **Render** button at the top of the open report. In VS Code, run the Render command of the Quarto extension. In any of the three you can also run `quarto render index.qmd` in a terminal. On the browser lab page the same block is a cell on the page, and it updates in the tab when you run it.
+Render your report once your preregistration block is complete. The rendered copy carries the date on which it was rendered and keeps the declaration above the cells that fit the specification. In Positron and in RStudio, press the **Render** button at the top of the open report. In VS Code, run the Render command of the Quarto extension. In any of the three you can also run `quarto render index.qmd` in a terminal.

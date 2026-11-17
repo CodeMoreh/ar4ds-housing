@@ -1,7 +1,7 @@
 The pages of the case study:
 
-- [Background](../../background.qmd) – the original study, the robustness study, the five reanalyses and the replication.
-- [Specification menu](../../menu.qmd) – the decisions of the analysis in three groups, with the options that the curve keeps and the reasons for the ones that it does not.
-- [Decision map](../../menu.qmd#map) – every decision in the order in which an analyst meets it; selecting an option rewrites the estimand statement and shows the result.
-- [Specification curve](../../curve.qmd) – the curve of `r nrow(curve)` specifications, with the published result, the five reanalyses and the replication placed on it.
-- [Class results](../../class-results.qmd) – the live class chart.
+- [Background](../../background.qmd)
+- [Specification menu](../../menu.qmd)
+- [Decision map](../../menu.qmd#map)
+- [Specification curve](../../curve.qmd)
+- [Class results](../../class-results.qmd)

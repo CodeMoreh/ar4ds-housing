@@ -11,7 +11,7 @@ nocite: |
 
 ## Glossary {#glossary}
 
-The four terms below follow the definitions in @NosekEtAl2025BriefGlossaryTerms. They are not interchangeable, and the course depends on the difference: a finding can survive every robustness check on its own data and still fail on new data, or survive the checks and still be one that nobody can recompute from the original materials. The column 'In this course' notes where each idea appears in the Housing and racial bias case study.
+The four terms below follow the definitions in @NosekEtAl2025BriefGlossaryTerms. They are not interchangeable, and the course depends on the difference: a finding can survive every robustness check on its own data and still fail on new data, or survive the checks and still be one that nobody can recompute from the original materials.
 
 | Term | Definition | In this course |
 |------------------------|------------------------|------------------------|
@@ -47,8 +47,6 @@ The [background page](background.qmd) tells the story of the case study in full,
 | 25N5D | Two-proportion test on every delivered email to Hispanic and white names | <https://osf.io/v8zah/> |
 | P9W8Y | Three-group logit with an omnibus test | <https://osf.io/pzwbm/> |
 | The robustness study | The project as a whole, with the claims of all hundred studies | <https://osf.io/q5h2c/> |
-
-The three activities of SCORE ended in three different places on the same paper. The reproduction was never attempted. The five reanalyses agreed on the direction of the gap and split three to two on whether the data supported the claim, and the replication with new names and a wider set of authorities found no significant gap. The [background page](background.qmd) tells the story in full.
 
 ------------------------------------------------------------------------
 

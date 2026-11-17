@@ -3,26 +3,22 @@ title: "Day"
 subtitle: "Four parts, with a facilitator"
 ---
 
-This format takes one day. It works on one field experiment, in which emails that differed only in the name that signed them were sent to public housing authorities in the United States, and on a claim of the original authors (OAs) that five analysts reanalysed for the robustness study of SCORE (Multi100; Aczel et al. 2026). Across the day you work as analyst no. 6. In the morning you meet the evidence on the credibility of social science and the three kinds of repetition that go under the word 'replication', read the paper and its claim, write the estimand statement behind the claim and finish a causal graph of the experiment. In the afternoon you reproduce one of the five reanalyses, whichever you choose, and then turn to robustness. You work through a menu of defensible analyses, send the one that you would defend to the class chart, read the chart against the 64 specifications on the curve of the claim, meet the replication that tested the claim with new emails, and declare one analysis in a shortened preregistration template before you run it.
-
-What you leave with is a report of your own, two marks on the class chart, one explored and one declared, and the place of your result on the curve.
+This format takes one day. It works on one field experiment, in which emails that differed only in the name that signed them were sent to public housing authorities in the United States, and on a claim of the original authors (OAs) that five analysts reanalysed for the robustness study of SCORE (Multi100; Aczel et al. 2026). Across the day you work as analyst no. 6, and you leave with a report of your own, two marks on the class chart, one explored and one declared, and the place of your result on the curve.
 
 ## How you work
 
-You do the tasks of the day in the workspace that you install before the day, in your IDE (Positron, RStudio, VS Code, etc.), and you keep your work afterwards. The deck of the day shows each step with its output, so that you can compare your numbers with the slides. If your installation fails, the deck, whose slides run R inside your browser, and the browser lab, a page of the course site that holds the same tasks, carry the work instead and give the same numbers. Each part of the day has a page that lists its steps in order. Every step that you work at the keyboard names the chunk or the file of the workspace where it is done, with buttons that open the deck and the browser lab at the same task. The [exercise](exercise.qmd) page sets out the tasks and the tool in which each is done. The slides are on the [slides page](slides.qmd), and each part opens with a link to its place in the deck.
+You do the tasks of the day in the workspace that you install before the day, in your IDE (Positron, RStudio, VS Code, etc.), and you keep your work afterwards. If your installation fails, the deck of the day and the browser lab, which run R inside your browser, hold the same tasks and give the same numbers. The day runs in four parts, with a break after the first and the third and lunch after the second.
 
 [Install R and an IDE](https://codemoreh.github.io/ar4ds/setup.html){.btn .btn-primary target="_blank"} [Open the browser lab](../../lab.qmd){.btn .btn-outline-primary target="_blank"}
 
-Several of the steps are things that the class does together, such as everyone typing the value that they have just reproduced and holding it back until the facilitator says go, so the day needs a facilitator. Some stretches of the slides are optional, a closer look at the statistics and the background of the multiverse in the last part, and the facilitator switches them on or off to suit the class. The day runs in four parts, with a break after the first and the third and lunch after the second.
-
 ## The parts of the day
 
-- **[Before the day](before.qmd).** You install R and the workspace, work through the first module on R, and read the background page.
-- **[The exercise](exercise.qmd).** The claim, the five analysts and the five tasks of the day, which are all done in the workspace.
-- **[Part 1 – The claim and credibility](part-1.qmd).** The part asks what a claim is for and why the field talks of a crisis, sets out the three Rs and what SCORE and its robustness study found, presents the paper and its claim, and ends with R running on your machine.
-- **[Part 2 – The estimand and the causal graph](part-2.qmd).** You meet the five analysts, estimands and a short course on causal graphs, and then you write the estimand statement and finish the graph.
-- **[Part 3 – The reproduction](part-3.qmd).** You reproduce one of the five reanalyses, find out why your number is exactly that number and what a reproduction needs, and reproduce a second one if there is time.
-- **[Part 4 – Robustness](part-4.qmd).** You work the specification menu and put an exploratory mark on the class chart, read the chart against the curve of 64, meet the replication with new data, and declare one analysis, run it and report it.
-- **[After the day](after.qmd).** The page says where to go next in the companion curriculum.
+- [Before the day](before.qmd)
+- [The exercise](exercise.qmd)
+- [Part 1 – The claim and credibility](part-1.qmd)
+- [Part 2 – The estimand and the causal graph](part-2.qmd)
+- [Part 3 – The reproduction](part-3.qmd)
+- [Part 4 – Robustness](part-4.qmd)
+- [After the day](after.qmd)
 
 [Start with Before the day](before.qmd){.btn .btn-primary}

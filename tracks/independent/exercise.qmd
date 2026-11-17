@@ -4,7 +4,7 @@ subtitle: "Independent"
 bibliography: [../../references.bib, ../../references-new.bib]
 ---
 
-This page sets out what you do in the independent format, and where. The [background page](../../background.qmd) presents the original study, the SCORE replication and the five reanalyses of the robustness study of SCORE [Multi100\; @AczelEtAl2026InvestigatingAnalyticalRobustness], and it is the place to start if you have not read it. The route takes all five tasks, and you do them in the workspace, which stage 1 installs and which you open in your IDE (Positron, RStudio, VS Code, etc.). The [browser lab](../../lab.qmd), a page of this site on which R runs inside your browser, holds every task as well, with hints and worked solutions, and it carries the work if your installation fails. Stage 1 takes Task 1, stage 3 Tasks 2 and 3, and stage 4 Tasks 4 and 5. Sending your results to the class chart is optional, and the helpers of Tasks 4 and 5 work exactly as they do in class.
+The [background page](../../background.qmd) presents the original study, the SCORE replication and the five reanalyses of the robustness study of SCORE [Multi100\; @AczelEtAl2026InvestigatingAnalyticalRobustness]. The independent format takes all five tasks, and you do them in the workspace, which stage 1 installs and which you open in your IDE (Positron, RStudio, VS Code, etc.). The [browser lab](../../lab.qmd), on which R runs inside your browser, holds every task as well, with hints and worked solutions, and it carries the work if your installation fails. Stage 1 takes Task 1, stage 3 Tasks 2 and 3, and stage 4 Tasks 4 and 5. Sending your results to the class chart is optional.
 
 ---
 
@@ -30,10 +30,10 @@ Stage 5 asks a question beyond the claim, one that the data of the case study su
 
 The tools of the route:
 
-- [Setup](https://codemoreh.github.io/ar4ds/setup.html) – installing R, Quarto and an IDE, and running the setup check of the workspace.
-- [Setup help](https://codemoreh.github.io/ar4ds/help.html) – the problems that other participants have met, and what to do about each.
-- [The workspace](https://codemoreh.github.io/ar4ds-housing-workspace/) – the report of the workspace as it renders, with the output of every chunk under its code.
-- [Browser lab](../../lab.qmd) – the whole exercise and its data in a browser tab, with hints and worked solutions.
-- [Slides](../day/slides.qmd) – the deck of the day format, which the stages use, with the speaker notes of every slide.
+- [Setup](https://codemoreh.github.io/ar4ds/setup.html)
+- [Setup help](https://codemoreh.github.io/ar4ds/help.html)
+- [The workspace](https://codemoreh.github.io/ar4ds-housing-workspace/) – the report as it renders
+- [Browser lab](../../lab.qmd)
+- [Slides](../day/slides.qmd) – the deck of the day format
 
 {{< include ../../_includes/_exercise-links.qmd >}}

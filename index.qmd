@@ -122,7 +122,7 @@ A preregistered experiment on 3,050 housing authorities, with new names, found n
 ## Formats {.unnumbered .home-reveal}
 
 ::: {.home-intro .home-reveal}
-The facilitator of a course chooses its format, and the link that you receive for a course leads to it. Each card below opens the overview of a format, which is an ordered route through the pages of this site, with a sidebar that lists its parts and the tools that it uses, and links at the foot of every page to the part before and the part after.
+The facilitator of a course chooses its format, and the link that you receive for a course leads to it. Each card below opens the overview of a format.
 :::
 
 :::: {.home-grid}
@@ -162,7 +162,7 @@ The case study for a reader who works alone, in R on your own machine, with the 
 ## The exercise {.unnumbered .home-reveal}
 
 ::: {.home-intro .home-reveal}
-Every format works through the same five tasks, or a selection of them. The short format centres on the first three and sends nothing to the class chart, while the day and independent formats take all five. The decisions that the tasks ask for fall into three groups: the question that the analysis answers; measurement, how the variables are built; and the model, how it is fitted and its uncertainty judged.
+Every format works through the same five tasks, or a selection of them. The short format takes the first four and sends nothing to the class chart, while the day and independent formats take all five. The decisions that the tasks ask for fall into three groups: the question that the analysis answers; measurement, how the variables are built; and the model, how it is fitted and its uncertainty judged.
 :::
 
 :::: {.home-reveal}
@@ -204,7 +204,7 @@ Declare one specification in a short preregistration, run it, report it, and fin
 
 ::::
 
-The exercise page of each format sets out its tasks in full, with the tool in which each is done, for the [short](tracks/short/exercise.qmd), [day](tracks/day/exercise.qmd) and [independent](tracks/independent/exercise.qmd) formats.
+The exercise page of each format sets out its tasks, with the tool in which each is done, for the [short](tracks/short/exercise.qmd), [day](tracks/day/exercise.qmd) and [independent](tracks/independent/exercise.qmd) formats.
 
 :::::
 ::::::
@@ -259,7 +259,7 @@ The claim comes from the work of SCORE, a programme that put claims from publish
 ## Getting started {.unnumbered .home-reveal}
 
 ::: {.home-intro .home-reveal}
-The short format needs only a browser, because every task of the format is done in its deck, which runs R inside the browser. The day and independent formats do the tasks in the workspace, in your IDE, and install R, an IDE and the workspace as part of their preparation. In those formats the deck shows each step with its output, and the deck and the browser lab carry the tasks if an installation fails.
+The short format needs only a browser, because every task of the format is done in its deck, which runs R inside the browser. The day and independent formats do the tasks in the workspace, in your IDE, and install R, an IDE and the workspace as part of their preparation.
 :::
 
 :::: {.home-steps .home-reveal}

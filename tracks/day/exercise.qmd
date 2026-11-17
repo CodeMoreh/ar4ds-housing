@@ -4,7 +4,7 @@ subtitle: "Day"
 bibliography: [../../references.bib, ../../references-new.bib]
 ---
 
-This page sets out what you do in the day format, and where. The [background page](../../background.qmd) presents the original study, the SCORE replication and the five reanalyses of the robustness study of SCORE [Multi100\; @AczelEtAl2026InvestigatingAnalyticalRobustness], and it is the place to start if you have not read it. The day takes all five tasks, and you do them in the workspace that you download and open in your IDE (Positron, RStudio, VS Code, etc.), as [Before the day](before.qmd#the-workspace) describes. The deck of the day shows each step with its output, so that you can compare your numbers with the slides. If your installation fails, the deck, whose slides run R inside your browser, and the [browser lab](../../lab.qmd), a page of this site that holds the same tasks, carry the work instead and give the same numbers. The pages of the four parts say in what order the tasks come.
+The [background page](../../background.qmd) presents the original study, the SCORE replication and the five reanalyses of the robustness study of SCORE [Multi100\; @AczelEtAl2026InvestigatingAnalyticalRobustness]. The day format takes all five tasks, and you do them in the workspace that you download and open in your IDE (Positron, RStudio, VS Code, etc.), as [Before the day](before.qmd#the-workspace) describes. If your installation fails, the deck of the day and the [browser lab](../../lab.qmd), which run R inside your browser, hold the same tasks and give the same numbers.
 
 ---
 
@@ -26,11 +26,11 @@ This page sets out what you do in the day format, and where. The [background pag
 
 The tools of the day:
 
-- [Slides](slides.qmd) – the deck of the day, which shows each step with its output.
-- [Setup](https://codemoreh.github.io/ar4ds/setup.html) – installing R, Quarto and an IDE, and running the setup check of the workspace.
-- [Setup help](https://codemoreh.github.io/ar4ds/help.html) – the problems that other participants have met, and what to do about each.
-- [The workspace](https://codemoreh.github.io/ar4ds-housing-workspace/) – the report of the workspace as it renders, with the output of every chunk under its code.
-- [Browser lab](../../lab.qmd) – the whole exercise and its data in a browser tab.
-- [Cheatsheet](../../cheatsheet.qmd) – the addresses, the helpers, the reproductions of Task 3 and the quick fixes of the day on one page.
+- [Slides](slides.qmd)
+- [Setup](https://codemoreh.github.io/ar4ds/setup.html)
+- [Setup help](https://codemoreh.github.io/ar4ds/help.html)
+- [The workspace](https://codemoreh.github.io/ar4ds-housing-workspace/) – the report as it renders
+- [Browser lab](../../lab.qmd)
+- [Cheatsheet](../../cheatsheet.qmd)
 
 {{< include ../../_includes/_exercise-links.qmd >}}

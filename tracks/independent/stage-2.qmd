@@ -3,32 +3,30 @@ title: "Stage 2 – R and Quarto"
 case: housing
 bibliography: [../../references.bib, ../../references-new.bib]
 ---
-The second stage is a first working session in R, on the data of the case study: one public file of 1,014 emails sent to housing authorities in the United States, each signed with a name chosen to indicate a white, a Black or a Hispanic sender. The R module works on that file from its first section to its first call of `try_spec()`, and every block of code in that stretch was run when the page was built, so you can compare each result on the page with your own. The Quarto module explains the document format in which your case-study report is written. The stage ends with the paper of the original authors (OAs) and the first sections of the background page, and takes about five hours.
+This stage is a first working session in R and in Quarto, on the data of the case study. It ends with the paper of the original authors (OAs) and the first sections of the background page, and takes about five hours.
 
 ## 1. R on the data of the case study {#r-on-the-data-of-the-case}
 
 [Open Getting started with R at section 6](https://codemoreh.github.io/ar4ds/tools/r.html#sec-reading){.btn .btn-primary target="_blank"}
 
-Work from [Reading the data](https://codemoreh.github.io/ar4ds/tools/r.html#sec-reading) to [A first figure](https://codemoreh.github.io/ar4ds/tools/r.html#sec-figure) in the module on the umbrella site, then read [The helpers of the workspace](../../companion/helpers.qmd) on this site. The sections cover reading the Housing data and looking at them, the pipe and the datawizard verbs, and a share and a difference in shares, which is the quantity on which the claim of the case study rests. They go on to a first table and a first figure with tinyplot and with ggplot2, and the page on the helpers makes a first call to `try_spec()`, the helper with which Task 4 explores the menu. Type each block into the workspace rather than pasting it.
+Work from [Reading the data](https://codemoreh.github.io/ar4ds/tools/r.html#sec-reading) to [A first figure](https://codemoreh.github.io/ar4ds/tools/r.html#sec-figure) in the module on the umbrella site, then read [The helpers of the workspace](../../companion/helpers.qmd) on this site. Type each block into the workspace rather than pasting it. Keep a script of your own that reads `housing_emails.csv`, counts the replies with a greeting code and the greetings by name for each group of names, and draws one figure from those counts.
 
 ## 2. Quarto
 
 [Open Quarto documents](https://codemoreh.github.io/ar4ds/tools/quarto.html#sec-what){.btn .btn-primary target="_blank"}
 
-Work from [Source and output](https://codemoreh.github.io/ar4ds/tools/quarto.html#sec-what) to [Citations](https://codemoreh.github.io/ar4ds/tools/quarto.html#sec-citations) in the module on the umbrella site. The sections cover the `.qmd` file and the render step, a small document knitted in the browser, Quarto in Positron, the YAML header, code chunks and their options, and inline code. They go on to captions and cross-references, Markdown, and citations drawn from a `.bib` file. Then render the report of the workspace, `index.qmd`, once, and read through the five tasks that you will fill in.
+Work from [Source and output](https://codemoreh.github.io/ar4ds/tools/quarto.html#sec-what) to [Citations](https://codemoreh.github.io/ar4ds/tools/quarto.html#sec-citations) in the module on the umbrella site. Write and render a Quarto document of your own that holds your figure, a cross-reference to it and a citation. Then render the report of the workspace, `index.qmd`, once, and read through the five tasks that you will fill in.
 
 ## 3. The paper
 
 [Open the accepted manuscript](https://hdl.handle.net/2144/37826){.btn .btn-primary target="_blank"}
 
-Read the whole article of the OAs [@EinsteinGlick2017DoesRaceAffect], in the accepted manuscript to which the page numbers of the background page refer. Follow the argument about the discretion of street-level officials, the design of the experiment, the email word for word, and the four outcomes that were coded. Then find the third model of Table 1, and the sentence of the abstract from which the claim was taken.
+Read the whole article of the OAs [@EinsteinGlick2017DoesRaceAffect], in the accepted manuscript to which the page numbers of the background page refer. Then find the third model of Table 1, and the sentence of the abstract from which the claim was taken.
 
 ## 4. Background {#the-case-study}
 
 [Read the background](../../background.qmd){.btn .btn-primary target="_blank"}
 
-Read sections 1 to 3. They cover [the original study](../../background.qmd#sec-study) and its design, [SCORE](../../background.qmd#sec-score) and its robustness study [Multi100\; @AczelEtAl2026InvestigatingAnalyticalRobustness] with the claim as it reached the analysts, and [the five reanalyses](../../background.qmd#sec-reanalysts) with the question that each of them answered.
+Read sections 1 to 3: [the original study](../../background.qmd#sec-study), [SCORE](../../background.qmd#sec-score) and its robustness study [Multi100\; @AczelEtAl2026InvestigatingAnalyticalRobustness], and [the five reanalyses](../../background.qmd#sec-reanalysts). Then write the claim of the case study in your own words.
 
 **Shortcuts.** If you already write R with the tidyverse, read the section on the datawizard verbs, which the course uses wherever they do the job, and the section on `try_spec()`, and run the rest only where its output surprises you. If you already write Quarto, render the report of the workspace and move on.
-
-**By the end of the stage** you have a script of your own that reads `housing_emails.csv`, counts the replies with a greeting code and the greetings by name for each group of names, and draws one figure from them; a rendered Quarto document holding that figure, a cross-reference to it and a citation; and the claim of the case study written in your own words.
