@@ -16,8 +16,8 @@ axes <- names(SPEC_AXES)
 
 # For each decision, the first option is the baseline; every other option is
 # compared with it on pairs of specifications that agree on all other decisions.
-# The verbs are those of dplyr, because datawizard evaluates its conditions in
-# a fresh environment and so cannot see the decision that each pass handles.
+# The verbs are those of dplyr, whose .data pronoun takes the decision of each
+# pass as the name of a column.
 deviations <- purrr::imap(SPEC_AXES, \(options, axis) {
   others <- setdiff(axes, axis)
   base <- curve |>

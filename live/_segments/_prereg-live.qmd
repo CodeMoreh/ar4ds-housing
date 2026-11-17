@@ -138,11 +138,9 @@ spec_curve <- utils::read.csv("data/spec_curve.csv") |>
 
 ```{webr}
 #| autorun: false
-# Yours, chosen with dplyr, because datawizard cannot see the my_ choices of
-# the preregistration cell
 mine <- spec_curve |>
-  dplyr::filter(comparison == my_comparison, population == my_population, uncoded == my_uncoded,
-                model == my_model, adjust == my_adjust)
+  datawizard::data_filter(comparison == my_comparison, population == my_population,
+                          uncoded == my_uncoded, model == my_model, adjust == my_adjust)
 ```
 
 ::: notes

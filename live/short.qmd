@@ -22,6 +22,8 @@ format:
         - sandwich
         - marginaleffects
         - effectsize
+      repos:
+        - https://codemoreh.github.io/ar4ds-wasm
 # The four files that the cells read, fetched into the browser when the deck
 # opens; the runtime drops the leading ../ of each path, so inside the browser
 # they sit under data/, the folder that the setup cell below

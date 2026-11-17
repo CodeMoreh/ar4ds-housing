@@ -61,8 +61,8 @@ make_dag <- function(..., exposure = "name", outcome = "greeting", latent = "off
 
 # The minimal adjustment sets for the total effect of the exposure on the
 # outcome, as dagitty::adjustmentSets() returns them, read from the table. The
-# rows are chosen with dplyr, because datawizard cannot see the arguments of a
-# function.
+# rows are chosen with dplyr, whose .data and .env pronouns keep a column and
+# an argument of the same name apart.
 adjustmentSets <- function(x, exposure = x$exposure, outcome = x$outcome, effect = "total", ...) {
   rows <- dplyr::filter(.dag_answers, .data$call == "adjustmentSets", .data$arrows %in% x$key,
                         .data$exposure %in% paste(.env$exposure, collapse = ", "),

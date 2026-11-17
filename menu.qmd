@@ -692,8 +692,8 @@ judgement_txt <- c(kept = "on the curve", other_question = "another question",
                    weaker_answer = "a weaker answer", check = "a check",
                    unavailable = "not in the public file")
 level_table <- \(lv) {
-  # dplyr, because datawizard evaluates its conditions in a fresh environment
-  # and so cannot see the level that is asked for
+  # dplyr: of the datawizard verbs only data_filter() finds the argument lv,
+  # and only from version 1.5.0
   menu |>
     dplyr::filter(level == lv) |>
     dplyr::mutate(item = paste0(label, " <code>", option, "</code>")) |>

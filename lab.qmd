@@ -16,6 +16,8 @@ format:
         - marginaleffects
         - effectsize
         - gt
+      repos:
+        - https://codemoreh.github.io/ar4ds-wasm
 resources:
   - data/housing_emails.csv
   - data/housing_original.csv
@@ -784,11 +786,9 @@ The second picks out your specification by the choices of the preregistration ce
 
 ```{webr}
 #| autorun: false
-# Yours, chosen with dplyr, because datawizard cannot see the my_ choices of
-# the preregistration cell
 mine <- spec_curve |>
-  dplyr::filter(comparison == my_comparison, population == my_population, uncoded == my_uncoded,
-                model == my_model, adjust == my_adjust)
+  datawizard::data_filter(comparison == my_comparison, population == my_population,
+                          uncoded == my_uncoded, model == my_model, adjust == my_adjust)
 ```
 
 The third draws the curve and rings yours.

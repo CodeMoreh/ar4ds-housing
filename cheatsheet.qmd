@@ -158,7 +158,7 @@ Last resort, facilitator-side, if the cells of a participant will not run at all
 
 | If ... | Then ... |
 |---|---|
-| A package will not load, or `try_spec` is "not found" | Run the checker again – `source("R/check_setup.R")` – and run the install line that it prints; or install by hand, for example `pak::pak("dagitty")`. |
+| A package will not load, or `try_spec` is "not found" | Run the checker again – `source("R/check_setup.R")` – and run the install line that it prints. |
 | The `pak` install that `R/check_setup.R` prints stalls or half-finishes | Restart R (Session menu), then run the install again; a second pass usually completes what the first left. |
 | "Permission denied" while installing a package | Let R use a personal library that it can write to – accept the offer from R to create a personal library, then reinstall. |
 | A data file is "not found" | Check that you opened the unzipped **folder** in your IDE (File → Open Folder in Positron and VS Code; the `.Rproj` file in RStudio), not a single file – the paths in the code are relative to that folder. |

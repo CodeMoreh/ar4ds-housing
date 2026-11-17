@@ -10,6 +10,8 @@ format:
         - tinyplot
         - datawizard
         - purrr
+      repos:
+        - https://codemoreh.github.io/ar4ds-wasm
 resources:
   - data/spec_curve.csv
   - data/class_results.csv
