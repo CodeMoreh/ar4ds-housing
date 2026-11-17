@@ -13,3 +13,8 @@
 # tinytable::format_tt(markdown = TRUE) converts the markdown of a cell with
 # litedown (the table of the page on repositories).
 requireNamespace("litedown", quietly = TRUE)
+
+# brms fits the models of companion/_model-outputs/bayes_housing.R through
+# cmdstanr (backend = "cmdstanr"). cmdstanr is not on CRAN: the lockfile
+# records the release of the Stan repository, https://stan-dev.r-universe.dev.
+requireNamespace("cmdstanr", quietly = TRUE)
