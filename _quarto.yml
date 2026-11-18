@@ -130,10 +130,6 @@ website:
   page-footer:
     left: |
       Content licensed [CC BY 4.0](https://creativecommons.org/licenses/by/4.0/).
-      Data: [CC0](https://doi.org/10.7910/DVN/1HOVTU).
-      [GitHub repository](https://github.com/CodeMoreh/ar4ds-housing)
-    right: |
-      Part of [AR4DS](https://codemoreh.github.io/ar4ds/). Built with [Quarto](https://quarto.org/)
 
 filters:
   - highlight-text
