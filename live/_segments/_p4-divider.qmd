@@ -5,5 +5,5 @@ Part 4
 :::
 
 ::: notes
-Last part, and the centre of the day. The reproduction showed that the number of each analyst follows from the choices that the analyst made. Now you make the choices yourself. We open the menu of decisions that any analyst of this claim faces, you work it one decision at a time, and you send the analysis that you would defend to the class chart. Then we read that chart against every justifiable analysis of the claim on these data, leave the original data behind for the new experiment that SCORE ran to test the claim again, and end on one analysis that you declare before you run it.
+Last part, and the centre of what we do today. The reproduction showed that the number of each analyst follows from the choices that the analyst made. Now you make the choices yourself. We open the menu of decisions that any analyst of this claim faces, you work it one decision at a time, and you send the analysis that you would defend to the class chart. Then we read that chart against every justifiable analysis of the claim on these data, leave the original data behind for the new experiment that SCORE ran to test the claim again, and end on one analysis that you declare before you run it.
 :::

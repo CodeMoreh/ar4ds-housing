@@ -85,7 +85,7 @@ other_max <- deviations |>
 |---|---|---|---|
 | Short format, two halves | `housing-short` | its live deck, with the browser lab as the fallback | installation, the class chart, Task 5 |
 | Day format, four parts | `housing-one-day` | the workspace, with the live deck showing each step and, with the browser lab, standing in when an installation fails | nothing of the five tasks |
-| long format, three days | `housing-extended` | the workspace, with the live deck of the day format on day 2 | nothing; day 2 is the day format |
+| long format, three days | `housing-extended` | the workspace, with the live deck used in the day format on day 2 | nothing; day 2 is the day format |
 | Self-study, five stages | `self-study` | the workspace | the class, but not the class chart |
 
 In every format the participant chooses which of the five reanalyses to reproduce in Task 3. Only the day format, on its own or as the second day of the long format, sends results to the class chart. The segments that differ by format read the `deck:` map in the YAML of each deck through Quarto conditional content (`when-meta="deck.short"` and the like), so a change of wording for one format is made in the segment, inside the span or the div that carries that condition.
@@ -100,9 +100,9 @@ Between deliveries the opening page advertises no delivery. Scheduling one takes
 
 - [ ] Fill the `delivery:` block in `_variables.yml` (date, venue, event, mode, registration URL), set `track:` to one of the track slugs of the table above, and set `active: 'true'`. Render the opening page (`quarto render index.qmd`), and it shows a "Next delivery" callout with a link to the track. Set `active: 'false'` again afterwards.
 - [ ] Decide on recording. If you record, record the talk only, announce it at the start of each recorded stretch, and pause it for the hands-on tasks. Nothing in the day depends on the recording either way.
-- [ ] Decide which way the day leans. The deck of the day format keeps one optional run on the `d` key, `methods`: the six-slide methods tutorial after the menu and the two slides of multiverse background after Task 4, of which the multiverse background is also the one optional run of the short format. To make the run part of the main flow, list it under `core-runs:` in the YAML of the deck and render it again; a run that is not listed stays optional and can still be switched on live.
+- [ ] Decide which way the day leans. The deck used in the day format keeps one optional run on the `d` key, `methods`: the six-slide methods tutorial after the menu and the two slides of multiverse background after Task 4, of which the multiverse background is also the one optional run of the short format. To make the run part of the main flow, list it under `core-runs:` in the YAML of the deck and render it again; a run that is not listed stays optional and can still be switched on live.
 
-**Resetting, before the next delivery of the day format.**
+**Resetting, before the day format is next delivered.**
 
 - [ ] Export the responses Sheet (File → Download → CSV) and keep it as a dated snapshot, for example `data/class_results_2026-11-06.csv`.
 - [ ] Clear the data rows of the Sheet, so that the chart opens almost empty for the next class. Do not touch the Form, the Worker or the field schema; only the rows change from one class to the next.
@@ -141,7 +141,7 @@ The page "Before the session", "Before the day" or "Before the course" of each f
 
 ### The night before
 
-- [ ] Render the pages that have changed, page by page (pCloud breaks a full render), and check that the opening page, the track pages, the pages of the case study and the deck of the day are current; push if the site is published.
+- [ ] Render the pages that have changed, page by page (pCloud breaks a full render), and check that the opening page, the track pages, the pages of the case study and the deck for the day are current; push if the site is published.
 - [ ] **The deck, cold.** Open the live deck of the format in a private window on a connection like that of the venue, time the load of the R engine, and run the setup cell and the cells of one analyst of Task 3. Then open the browser lab, the fallback, in the same way.
 - [ ] **The live-results loop**, for the day format. Submit one test result from the deck or the browser lab (`try_spec()`, then `submit_exploration(nickname = "test-row")`), confirm that it reaches the Sheet, press *Run Code* on the class chart of the [Class results](../class-results.qmd) page and find the test circle. Then delete the test row from the Sheet.
 - [ ] **The workspace, as a participant meets it**, for the day format and the long format. Download the zip afresh, unzip it, open the folder in your IDE, run `source("R/check_setup.R")` (every line OK, the last at −19.97 points) and render the report. For the long format, also commit once and render the report from a clean session.
@@ -153,7 +153,7 @@ The page "Before the session", "Before the day" or "Before the course" of each f
 
 - [ ] Put the address of the course site, the deck of the format, the browser lab and the cheatsheet on the screen or the whiteboard as people arrive, with the wifi details.
 - [ ] Hand out the green and red sticky notes, or open the response tool, and say what each means: green, working; red, stuck.
-- [ ] Keep the tabs of the day ready: the deck and the browser lab in every format, in the short format and the day format the [specification menu](../menu.qmd) with its [decision map](../menu.qmd#map) and the [Specification curve](../curve.qmd) page, and in the day format the [Class results](../class-results.qmd) page.
+- [ ] Keep the tabs for the session ready: the deck and the browser lab in every format, in the short format and the day format the [specification menu](../menu.qmd) with its [decision map](../menu.qmd#map) and the [Specification curve](../curve.qmd) page, and in the day format the [Class results](../class-results.qmd) page.
 - [ ] If you record, announce it now and say what is and is not recorded.
 
 ---
@@ -291,7 +291,7 @@ The day runs on its live deck, `live/day.qmd`. The participants do the tasks in 
 | 0:40 | Your own small multiverse and the curve (6′) | Name what Task 4 was; optionally the origins and the garden of forking paths; then the curve of the claim and the published results placed on it. | Watch. | – |
 | 0:46 | The class multiverse and the placement (9′) | Refresh the class chart; the question bank (below). Then the third held answer: "rerun your submitted specification, read your placement, hold it, go". | Find their mark; read and send their placement. | Participants without a submission use the reference specification, whose placement is `r placement_ref`. |
 | 0:55 | What moved the estimate (5′) | The shifts by option, then the curve coloured by the emails counted. | Connect the step to their own choice. | – |
-| 1:00 | The SCORE replication (12′) | The design, the result, the two studies compared, power, the three Rs on this paper, robustness against replicability. | Listen; argue. | The robustness and replicability slide is the lesson of the day; never compress it. |
+| 1:00 | The SCORE replication (12′) | The design, the result, the two studies compared, power, the three Rs on this paper, robustness against replicability. | Listen; argue. | The robustness and replicability slide is the main lesson for the day; never compress it. |
 | 1:12 | Critics and preregistration (7′) | The critics; one correct analysis and how to identify it; what preregistration settles; exploration against declaration. | Listen; ask. | If the clock is tight, the identification slide goes to one sentence. |
 | 1:19 | Archiving and the public record (7′) | Archiving and registering; the preregistration of the robustness study; the two templates; the records slide with the three-minute search of the replication report; the eight AsPredicted questions. | Search the report; read. | The target of the search: not significant "approximately 93 percent of the time". If time is short, show it on the shared screen. |
 | 1:26 | Hands-on 5: preregistration, run and report (18′) | Called from the front: complete fields 1–5, copy the cell or render the report, then the fourth held answer, "declared". Count aloud. Move on at about 80% declared or at eight minutes. Then `run_spec()` and `report_result()`; press *Run Code* as the filled circles land. | Declare, run, submit. | Never cut the declaration. Re-declaring a specification already explored is allowed, and the block must say so. |
@@ -346,7 +346,7 @@ The hands-on slides of the first and the third sessions have the class install r
 
 ## The independent format {#run-self-study}
 
-The independent format runs without a facilitator, and each stage page gives the total of its stage and nothing finer, because the time that a stage takes depends on the reader. The stages use the live deck of the day format, `live/day.qmd`.
+The independent format runs without a facilitator, and each stage page gives the total of its stage and nothing finer, because the time that a stage takes depends on the reader. The stages use the same live deck as the day format, `live/day.qmd`.
 
 ---
 
@@ -380,7 +380,7 @@ Each row names the first move, not the only one, and every ladder ends at a poin
 | Situation | What to do |
 |---|---|
 | **A deck or the browser lab stalls** | The ladder of the [cheatsheet](../cheatsheet.qmd): a hard reload and the cells above run again, then a second browser, then the shared screen. In the day format the last rung is the by-hand lookup, in which the facilitator reads the five choices off `spec_curve.csv` and submits the row through the Form, so that everyone still gets a mark. |
-| **An installation fails on the day** | The deck of the day and the browser lab hold the whole exercise and give the same numbers; the participant carries on in either, and the workspace survives for later. |
+| **An installation fails on the day** | The live deck and the browser lab hold the whole exercise and give the same numbers; the participant carries on in either, and the workspace survives for later. |
 | **The workspace download fails in the room** | The zip on the USB stick. |
 | **The wifi fails** | The workspace runs offline once its packages are installed, so the tasks continue for anyone who has it; the others follow the shared screen. In the day format, collect the printed results (the tag, the label, `b`, `se`, `t`, `df`, `n`, `r`) and submit them through the Form when the network returns. The decks and the browser lab need the network for their first load. |
 | **The live chart fails** (the day format: Form, Worker, CORS) | The chart falls back to the committed `data/class_results.csv`, which holds only its header. Pull the Sheet as CSV, put it in place of that file, render the Class results page locally and share the screen. The static curve and the reference marks of the Specification curve page are enough for the debrief. Submissions are safe in the Sheet whatever happens to the chart. |
@@ -408,7 +408,7 @@ Each row names the first move, not the only one, and every ladder ends at a poin
 
 ## Debrief questions {#debrief}
 
-Choose by what the class shows, not by the order below. Questions 1 to 3 and 8 need the class chart of the day format; the others work in every format.
+Choose by what the class shows, not by the order below. Questions 1 to 3 and 8 need the class chart built in the day format; the others work in every format.
 
 1. **The step in the curve.** "Who counted every delivered email? What question does your estimate answer that the estimate of the paper does not, and which one is the claim?"
 2. **The decision that did nothing.** "Who changed the model from the linear probability model to the logit and found that the estimate barely moved? Why does it barely move here, when the coefficients look so different?"

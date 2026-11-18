@@ -30,7 +30,7 @@ On the third day you turn the folder of the workspace into a repository, with th
 
 The tools of the course:
 
-- [Slides of the day format](../day/slides.qmd) – the deck of the second day, which shows each step with its output; the pages of the first and the third days link the deck of each session.
+- [Slides](../day/slides.qmd) – the deck of the second day, which shows each step with its output; the pages of the first and the third days link the deck of each session.
 - [Setup](https://codemoreh.github.io/ar4ds/setup.html) – installing R and an IDE, and downloading the workspace.
 - [Setup help](https://codemoreh.github.io/ar4ds/help.html) – the problems that other participants have met, and what to do about each.
 - [The workspace](https://codemoreh.github.io/ar4ds-housing-workspace/) – the report of the workspace as it renders, with the output of every chunk under its code.

@@ -166,7 +166,7 @@ Two halves, with nothing to install and nothing to submit: the claim and the fiv
 
 [Four parts, in R on your own machine]{.home-meta}
 
-The claim and the credibility of social science, the estimand and the causal graph, the reproduction of one reanalysis chosen by each participant, and the robustness exercise at the centre of the day: the specification menu, the class chart and its submissions, the curve of the claim, the replication with new data, and one analysis declared before it runs.
+The claim and the credibility of social science, the estimand and the causal graph, the reproduction of one reanalysis chosen by each participant, and the robustness exercise on which the day centres: the specification menu, the class chart and its submissions, the curve of the claim, the replication with new data, and one analysis declared before it runs.
 :::
 
 ::: {.home-track .home-reveal}

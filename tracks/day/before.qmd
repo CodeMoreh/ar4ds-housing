@@ -14,7 +14,7 @@ Install R, Quarto and an IDE (Positron, RStudio, VS Code, etc.) by following the
 
 [Download the workspace (zip)]({{< var cases.housing.workspace-zip >}}){.btn .btn-primary}
 
-Save the zip file where you will find it again and unzip it, choosing "Extract All" on Windows rather than working inside the compressed preview. Open the folder that it makes, `ar4ds-housing-workspace-main`, in your IDE, with **File → Open Folder** in Positron and VS Code or by opening the file `ar4ds-housing-workspace.Rproj` inside it in RStudio. Then run `R/check_setup.R`, as the [setup page](https://codemoreh.github.io/ar4ds/setup.html#check-that-it-works) describes, until every line prints OK. The tasks of the day are in the report `index.qmd` of the same folder.
+Save the zip file where you will find it again and unzip it, choosing "Extract All" on Windows rather than working inside the compressed preview. Open the folder that it makes, `ar4ds-housing-workspace-main`, in your IDE, with **File → Open Folder** in Positron and VS Code or by opening the file `ar4ds-housing-workspace.Rproj` inside it in RStudio. Then run `R/check_setup.R`, as the [setup page](https://codemoreh.github.io/ar4ds/setup.html#check-that-it-works) describes, until every line prints OK. The tasks for the day are in the report `index.qmd` of the same folder.
 
 ## 3. Getting started with R
 
@@ -32,7 +32,7 @@ The background page presents the claim on which the day works, and how the five 
 
 [Open the deck at Task 1](../../live/day.html#/hands-on-1-get-yourself-running){.btn .btn-outline-primary target="_blank"} [Open the browser lab at Task 1](../../lab.qmd#task-1-setup){.btn .btn-outline-primary target="_blank"}
 
-The deck of the day and the browser lab run R inside your browser, and they are the fallback if your installation fails. Open the deck once on the machine and in the browser that you will use (a recent version of Chrome, Edge or Firefox), wait until the setup cell of Task 1 shows a "Run Code" button, and run it. If the deck does not load, try another browser, and tell the facilitator before the day.
+The deck and the browser lab run R inside your browser, and they are the fallback if your installation fails. Open the deck once on the machine and in the browser that you will use (a recent version of Chrome, Edge or Firefox), wait until the setup cell of Task 1 shows a "Run Code" button, and run it. If the deck does not load, try another browser, and tell the facilitator before the day.
 
 ## 6. Further preparation
 

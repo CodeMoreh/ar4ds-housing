@@ -34,6 +34,6 @@ The tools of the route:
 - [Setup help](https://codemoreh.github.io/ar4ds/help.html)
 - [The workspace](https://codemoreh.github.io/ar4ds-housing-workspace/) – the report as it renders
 - [Browser lab](../../lab.qmd)
-- [Slides](../day/slides.qmd) – the deck of the day format
+- [Slides](../day/slides.qmd) – the deck used in the day format
 
 {{< include ../../_includes/_exercise-links.qmd >}}

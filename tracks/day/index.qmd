@@ -7,11 +7,11 @@ This format takes one day. It works on one field experiment, in which emails tha
 
 ## How you work
 
-You do the tasks of the day in the workspace that you install before the day, in your IDE (Positron, RStudio, VS Code, etc.), and you keep your work afterwards. If your installation fails, the deck of the day and the browser lab, which run R inside your browser, hold the same tasks and give the same numbers. The day runs in four parts, with a break after the first and the third and lunch after the second.
+You do the tasks in the workspace that you install before the day, in your IDE (Positron, RStudio, VS Code, etc.), and you keep your work afterwards. If your installation fails, the deck for the day and the browser lab, which run R inside your browser, hold the same tasks and give the same numbers. The day runs in four parts, with a break after the first and the third and lunch after the second.
 
 [Install R and an IDE](https://codemoreh.github.io/ar4ds/setup.html){.btn .btn-primary target="_blank"} [Open the browser lab](../../lab.qmd){.btn .btn-outline-primary target="_blank"}
 
-## The parts of the day
+## The parts {#the-parts-of-the-day}
 
 - [Before the day](before.qmd)
 - [The exercise](exercise.qmd)
