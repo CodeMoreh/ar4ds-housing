@@ -11,7 +11,7 @@ nocite: |
 
 ## Glossary {#glossary}
 
-The four terms below follow the definitions in @NosekEtAl2025BriefGlossaryTerms. They are not interchangeable, and the course depends on the difference: a finding can survive every robustness check on its own data and still fail on new data, or survive the checks and still be one that nobody can recompute from the original materials.
+The four terms below follow the definitions in @NosekEtAl2025BriefGlossaryTerms, and the four terms are not interchangeable, a difference on which the course depends, since a finding can survive every robustness check on its own data and still fail on new data, or survive the checks and still be one that nobody can recompute from the original materials.
 
 | Term | Definition | In this course |
 |------------------------|------------------------|------------------------|
@@ -24,19 +24,19 @@ The four terms below follow the definitions in @NosekEtAl2025BriefGlossaryTerms.
 
 ## The records of the case study {#the-case}
 
-The [background page](background.qmd) tells the story of the case study in full, and the records below are the public deposits on which it is built.
+The case study, told in full on the [background page](background.qmd), is built on the public deposits listed below.
 
-**The paper.** The paper of the original authors (OAs) [@EinsteinGlick2017DoesRaceAffect], published in the *American Journal of Political Science*: <https://doi.org/10.1111/ajps.12252>. The accepted manuscript is open at OpenBU, <https://hdl.handle.net/2144/37826>, and the page numbers quoted on the course site refer to it.
+**The paper.** The paper by the original authors [@EinsteinGlick2017DoesRaceAffect], published in the *American Journal of Political Science*: <https://doi.org/10.1111/ajps.12252>. The accepted manuscript is openly available at OpenBU, <https://hdl.handle.net/2144/37826>, and the page numbers quoted on the course site refer to this version.
 
-**The data.** The replication package of the OAs on the Harvard Dataverse, released under CC0: <https://doi.org/10.7910/DVN/1HOVTU>. It holds the blinded data file, two Stata do-files (one that runs the analyses on the public file, and one written for the identifiable data, which are not public), two codebooks and a ReadMe that explains why the community variables are given in thirds. The course data in `data/` are built from it, and the codebooks beside them describe every column.
+**The data.** The replication package deposited by the original authors on the Harvard Dataverse, released under CC0: <https://doi.org/10.7910/DVN/1HOVTU>. It contains the blinded data file, two Stata do-files (one that runs the analyses on the public file, and one written for the identifiable data, which are not public), two codebooks and a ReadMe explaining why the community variables are given in thirds. The course data in `data/` are built from this package, and the codebooks placed beside the data files describe every column.
 
-**SCORE on the OSF.** The SCORE project of the paper on the Open Science Framework holds every activity that SCORE carried out on it, and the component of the robustness study holds one sub-component for each of the five analysts. Four of the five published their scripts there; the course links to them and does not copy them.
+**SCORE on the OSF.** The SCORE project for the paper on the Open Science Framework records every activity that SCORE carried out on the paper, and the component of the robustness study contains one sub-component for each of the five analysts. Four of the five analysts published their scripts there, and the course links to these scripts rather than copying them.
 
 | Component | What it holds | Address |
 |---|---|---|
 | SCORE project of the paper | The parent of the components below | <https://osf.io/3a8bg/> |
 | Original materials | The materials of the original study collected by SCORE | <https://osf.io/nrt4s/> |
-| Reproduction | A reproduction with the data and code of the OAs, which holds only an unfilled template | <https://osf.io/9wp8d/> |
+| Reproduction | A reproduction with the data and code of the original authors, which holds only an unfilled template | <https://osf.io/9wp8d/> |
 | Power analysis | The power analysis for the replication | <https://osf.io/kcsby/> |
 | Replication | The replication with new data, with its preregistration and final report | <https://osf.io/2ug8x/> |
 | Replication data | The de-identified data of the replication, its analysis do-file and a dictionary, in the folder "Public Data"; the licence is unstated, so the course links to them and does not copy them | <https://osf.io/xseqg/> |
@@ -75,7 +75,7 @@ The [background page](background.qmd) tells the story of the case study in full,
 - @Lipsky1980StreetLevelBureaucracy – the discretion of the officials who deliver public services in direct contact with citizens.
 - @Pager2003MarkCriminalRecord and @BertrandMullainathan2004AreEmilyGreg – two field experiments on hiring that made the audit design familiar, the first with matched pairs of testers and the second with résumés that differed only in a name.
 - @QuillianEtAl2017MetaanalysisFieldExperiments – a meta-analysis of field experiments on racial discrimination in hiring.
-- @ButlerBroockman2011PoliticiansRaciallyDiscriminate and @WhiteEtAl2015WhatNeedVote – the audits of state legislators and local election officials on which the design of the OAs builds.
+- @ButlerBroockman2011PoliticiansRaciallyDiscriminate and @WhiteEtAl2015WhatNeedVote – the audits of state legislators and local election officials on which the original authors' design builds.
 - @Gaddis2017HowBlackAre – how often the names used in audits are read as indicating the group that they are meant to indicate.
 - @MontgomeryEtAl2018HowConditioningPosttreatment – what conditioning on a variable that the treatment can change does to an experiment.
 - @Coppock2019AvoidingPosttreatmentBias – the same problem in audit experiments that compare the content of replies, and the remedies, one of which analyst 25N5D chose.
@@ -90,11 +90,11 @@ The [background page](background.qmd) tells the story of the case study in full,
 - @RohrerEtAl2026WhatsMultiverseGood and @LakensEtAl2026ThereOnlyOne – what a multiverse is good for, and the argument that a fully specified question has only one correct analysis.
 - @HeymanVanpaemel2022MultiverseAnalysesClassroom – the multiverse as a teaching device.
 
-The [companion module on the multiverse](companion/multiverse.qmd) reads these against the curve of the claim.
+These works are read against the curve of the claim in the [companion module on the multiverse](companion/multiverse.qmd).
 
 ### Preregistration
 
-None of these is required, because everything is taught in the course, but they let you arrive with the ideas already in hand. All three are open access.
+None of these readings is required, since everything is taught in the course, but they allow you to arrive with the ideas already in hand, and all three are open access.
 
 - Nosek, Ebersole, DeHaven & Mellor (2018). The preregistration revolution. *PNAS*, 115(11), 2600–2606. <https://doi.org/10.1073/pnas.1708274114> – a short primer on the idea on which preregistration depends: predicting a result against explaining one after the fact, and the case, like ours, where the data already exist.
 - The AsPredicted eight-question form – the short template on which the preregistration block of your report is modelled, listed on the OSF as the "Preregistration Template from AsPredicted.org". Live form: <https://aspredicted.org>; OSF listing: <https://help.osf.io/article/158-create-a-preregistration>.
@@ -104,15 +104,15 @@ None of these is required, because everything is taught in the course, but they 
 
 ## Companion
 
-The modules of the [companion](companion/index.qmd) hold the teaching that a session or a day can only mention, each on a page of its own that stands without the others, and each written on the data of this case study.
+The modules of the [companion](companion/index.qmd) contain the teaching that a session or a day can only mention, each module occupying a page of its own that can be read without the others, and each written on the data of this case study.
 
-Installing R and an IDE, the setup help, and the modules on the tools, from [Getting started with R](https://codemoreh.github.io/ar4ds/tools/r.html) to [Quarto documents](https://codemoreh.github.io/ar4ds/tools/quarto.html) and [Git and GitHub](https://codemoreh.github.io/ar4ds/git-github.html), are on the [AR4DS site](https://codemoreh.github.io/ar4ds/).
+Installing R and an IDE, the setup help and the modules on the tools, from [Getting started with R](https://codemoreh.github.io/ar4ds/tools/r.html) to [Quarto documents](https://codemoreh.github.io/ar4ds/tools/quarto.html) and [Git and GitHub](https://codemoreh.github.io/ar4ds/git-github.html), can all be found on the [AR4DS site](https://codemoreh.github.io/ar4ds/).
 
 ------------------------------------------------------------------------
 
 ## If you are at Newcastle University
 
-The course is open to anyone, and support of the kind listed below exists wherever you are: the library at your own institution and its research-software or research-data team are the places to ask. As an example, participants based at Newcastle University can draw on the following.
+The course is open to anyone, and support of the kind listed below exists wherever you are, with the library at your own institution and its research-software or research-data team as the places to ask. Participants based at Newcastle University, for example, can draw on the following resources.
 
 | Resource | URL |
 |------------------------------------|------------------------------------|
@@ -142,7 +142,7 @@ The course is open to anyone, and support of the kind listed below exists wherev
 
 ## References {#references}
 
-The list holds every work cited on the pages and slides of this site, and on any page, resting the pointer on a citation shows its entry.
+The list below contains every work cited on the pages and slides of this site, and on any page the entry for a citation is shown when the pointer rests on it.
 
 ::: {#refs}
 :::
