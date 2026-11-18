@@ -13,13 +13,13 @@ bibliography: [../references.bib, ../references-new.bib]
 knitr::opts_knit$set(root.dir = "..")
 ```
 
-This module of the [companion curriculum](index.qmd) follows the data of the Housing and racial bias case study from the file deposited by the original authors (OAs) to the file on which the exercises of the course run. The OAs emailed public housing authorities across the United States from six names meant to indicate a white, a Black or a Hispanic applicant and coded the replies that came back [@EinsteinGlick2017DoesRaceAffect], and the [background page](../background.qmd) tells the story of the experiment. The [module on data sources](data-sources.qmd#sec-dataverse) ends with the deposited file on your disk, checked against the checksum published by the Harvard Dataverse. This module starts there and works through `R/01_email_data.R`, the first script of the pipeline of the case study, step by step: what each column of the course file is, how the names, the replies, the greeting codes, the bounced emails and the community thirds are derived, and which checks a rebuilt file has to pass before anything is estimated from it.
+The route taken by the data of the Housing and racial bias case study, from the file deposited by the original authors to the file on which the exercises in the course run, is the subject of this part of the [companion curriculum](index.qmd). In the experiment, presented in full on the [background page](../background.qmd), the original authors emailed public housing authorities across the United States from six names meant to indicate a white, a Black or a Hispanic applicant and coded the replies that came back [@EinsteinGlick2017DoesRaceAffect]. The [module on data sources](data-sources.qmd#sec-dataverse) ends with the deposited file on your disk, checked against the checksum published by the Harvard Dataverse, and the present module starts at that point, working step by step through `R/01_email_data.R`, the first script in the case-study pipeline. It describes each column of the course file, shows how the names, the replies, the greeting codes, the bounced emails and the community thirds are derived, and presents the checks that a rebuilt file has to pass before anything is estimated from it.
 
-The code on the page runs on `housing_original.csv`, the deposited file saved as plain text with its original column names, which the course ships in its workspace and in `data/`. Every chunk reads the files as the workspace does, so each line can be copied into the workspace as it stands, and every number on the page was computed from the file when the page was built.
+The code on the page runs on `housing_original.csv`, the deposited file saved as plain text with its original column names, which the course supplies in its workspace and in `data/`. As every chunk reads the files as the workspace does, each line can be copied into the workspace as it stands, and every number on the page was computed from the file when the page was built.
 
 ## 1. Two files {#sec-two-files}
 
-The deposit holds the data as a Stata file, `HousingAuditAJPSFinalPublic_Unidentified.dta`, in which `NumberAssignment` and the six thirds carry value labels (the text attached to each code, such as "Brett" for 5 and "Top Third" for 3) and each column a variable label describing it. The pipeline reads that file with haven and writes it out again with no change to any value or row, so that it can be opened by anyone without Stata. The step is shown here without being run, because the Stata file is not part of the repository of the course, and it is all that separates the two versions of the deposited data.
+The deposit holds the data as a Stata file, `HousingAuditAJPSFinalPublic_Unidentified.dta`, in which `NumberAssignment` and the six thirds have value labels (the text attached to each code, such as "Brett" for 5 and "Top Third" for 3) and each column has a variable label describing it. The pipeline reads that file with haven and writes it out again with no change to any value or row, in order that anyone without Stata can open it. This step, which is all that separates the two versions of the deposited data, is shown here without being run, because the Stata file is not part of the course repository.
 
 ```{r}
 #| label: from-stata
@@ -33,13 +33,13 @@ original <- raw |>
 readr::write_csv(original, "data/housing_original.csv", na = "")
 ```
 
-`as.numeric()` on a labelled column keeps the codes and drops the labels, and `zap_label()` and `zap_formats()` remove the variable labels and the display formats of Stata. The labels are not lost, since the [codebook of the deposited file](../data/housing_original_codebook.md) records what every code means. One of the labels is worth knowing before the data are read: the Stata file labels `HispanicEmailer` "Hard to find email address", a copy error in the source, while the codebook of the OAs describes the column as recording whether the official who replied had a Hispanic name.
+`as.numeric()` on a labelled column retains the codes and drops the labels, and `zap_label()` and `zap_formats()` remove the variable labels and the Stata display formats. The labels are not lost, since the [codebook of the deposited file](../data/housing_original_codebook.md) records what every code means. Before the data are read, it is worth knowing that the Stata file labels `HispanicEmailer` "Hard to find email address", a copy error in the source, while the original authors' codebook describes the column as recording whether the official who replied had a Hispanic name.
 
-The course keeps two files of the same 1,014 emails, in the same order. `housing_original.csv` keeps the names and codes of the OAs, because the reproduction of Task 3 starts from the data as they were published, and `housing_emails.csv`, the course file, gives every column a readable name and adds the columns that the exercises use, and the rest of this page rebuilds the course file from the deposited one.
+The course holds two files of the same 1,014 emails, in the same order. `housing_original.csv` retains the names and codes given by the original authors, because the reproduction of Task 3 starts from the data as they were published, while `housing_emails.csv`, the course file rebuilt from the deposited one in the rest of this page, gives every column a readable name and adds the columns used in the exercises.
 
 ## 2. Reading the deposited file {#sec-reading}
 
-readr reads the file. Its choice matters for this file in particular, because the replies carry text in `WaitListFinal`, and readr reads an empty cell as a missing value (`NA`), whereas `datawizard::data_read()` returns some of the empty cells of this column as empty strings rather than as missing values.
+The file is read with readr, a choice that matters for this file in particular, because the replies carry text in `WaitListFinal`, and readr reads an empty cell as a missing value (`NA`), whereas `datawizard::data_read()` returns some of the empty cells in this column as empty strings rather than as missing values.
 
 ```{r}
 #| label: read-original
@@ -48,11 +48,11 @@ original <- readr::read_csv("data/housing_original.csv", show_col_types = FALSE)
 dplyr::glimpse(original)
 ```
 
-The file holds `r format(nrow(original), big.mark = ",")` rows, one for each email, and `r ncol(original)` columns. Three of the columns describe the email before it was sent: `NumberAssignment`, the email account from which it was sent, `TreatmentGroup`, the same assignment as text, and `HardEmail`, whether the address had to be taken from the list of housing authorities kept by the Department of Housing and Urban Development (HUD) because the authority offered no contact that could be found quickly. Five record what came back: `Response_Dichotomous`, `Respond24`, `ProperName`, `HispanicEmailer` and `WaitListFinal`. The remaining six give the five community thirds and the third of the authority on the HUD assessment score, to which section 6 returns.
+The file holds `r format(nrow(original), big.mark = ",")` rows, one for each email, and `r ncol(original)` columns. Three of the columns describe the email before it was sent: `NumberAssignment`, the email account from which it was sent, `TreatmentGroup`, the same assignment as text, and `HardEmail`, whether the address had to be taken from the list of housing authorities kept by the Department of Housing and Urban Development (HUD) because the authority offered no contact that could be found quickly. Five record what came back: `Response_Dichotomous`, `Respond24`, `ProperName`, `HispanicEmailer` and `WaitListFinal`. The remaining six contain the five community thirds and the third of the authority on the HUD assessment score, to which section 6 returns.
 
 ## 3. The names {#sec-names}
 
-The file records the name that signed each email only through the number of the account, so the first step of the build is a key that translates the six numbers into the name, the group that the name was meant to indicate and the sex of the name. The key comes from the codebook of the OAs, and the paper names the six senders: Brett Smith and Emily Smith, Tyrone Johnson and Shanice Johnson, Santiago Martinez and Gabriela Martinez.
+As the file records the name that signed each email only through the number of the account, the first step of the build is a key that translates the six numbers into the name, the group that the name was meant to indicate and the sex of the name. The key is taken from the original authors' codebook, and the paper names the six senders: Brett Smith and Emily Smith, Tyrone Johnson and Shanice Johnson, Santiago Martinez and Gabriela Martinez.
 
 ```{r}
 #| label: names-key
@@ -64,7 +64,7 @@ names_key <- tibble::tibble(
 )
 ```
 
-A key typed by hand is the most likely place for an error in the whole build, and the deposited file offers a way to check it. `TreatmentGroup` records the same assignment as `NumberAssignment` in words, and the codebook of the OAs calls the column redundant, which is exactly what makes it useful here. Joining the key to the file and cross-tabulating the two should put every email of each name in a single cell of the text column:
+A key typed by hand is arguably the most likely place for an error in the whole build, and the deposited file offers a way to check it. `TreatmentGroup` records the same assignment as `NumberAssignment` in words, and the original authors' codebook calls the column redundant, which is precisely what makes it useful here. Joining the key to the file and cross-tabulating the two should put every email of each name in a single cell of the text column:
 
 ```{r}
 #| label: names-check
@@ -74,11 +74,11 @@ original |>
   insight::print_md()
 ```
 
-Each name falls in the cell of its own group and sex, and nowhere else, so the key agrees with the text that the OAs wrote. The six names were sent between `r min(table(original$NumberAssignment))` and `r max(table(original$NumberAssignment))` times. A swap of two names within one group, Santiago for Gabriela, say, would leave every count by group intact, and the cross-tabulation against the text column is the only check on the page that would catch it.
+Each name falls in the cell of its own group and sex, and nowhere else, which shows that the key agrees with the text written by the original authors. The six names were sent between `r min(table(original$NumberAssignment))` and `r max(table(original$NumberAssignment))` times. A swap of two names within one group, Santiago for Gabriela, say, would leave every count by group intact, and the cross-tabulation against the text column is the only check on the page that would catch it.
 
 ## 4. The columns of the course file {#sec-columns}
 
-The rest of the build is one pipe, taken almost line for line from `01_email_data.R`. It numbers the emails, turns empty text into missing values, joins the key, selects the columns in the order of the course file under their new names, and turns the codes of the community thirds into labelled categories.
+The rest of the build is one pipe, taken almost line for line from `01_email_data.R`. The pipe numbers the emails, converts empty text into missing values, joins the key, selects the columns in the order of the course file under their new names, and turns the codes of the community thirds into labelled categories.
 
 ```{r}
 #| label: build
@@ -106,7 +106,7 @@ housing <- original |>
   )
 ```
 
-`data_select()` renames as it selects, with the new name on the left of each pair and the old one on the right, so the order of the vector is the order of the columns in the result. `convert_to_na()` matters when the source is the Stata file, in which an empty text cell arrives as an empty string; read from the CSV by readr, the column holds no empty strings, and the line changes nothing. The pipeline keeps the line so that the build gives the same file from either source. The sixteen columns of the result, with the source of each, are set out in the table below.
+`data_select()` renames as it selects, with the new name on the left of each pair and the old one on the right, the order of the vector thus being the order of the columns in the result. `convert_to_na()` matters when the source is the Stata file, in which an empty text cell arrives as an empty string, whereas the column read from the CSV by readr holds no empty strings, and there the line changes nothing. The pipeline retains the line in order that the build yields the same file from either source. The sixteen columns of the result are listed in the table below, with the source of each.
 
 | Column | What it holds | From |
 |:--|:--|:--|
@@ -121,11 +121,11 @@ housing <- original |>
 | `white_third` … `poverty_third` | The third of the community, among the communities of the study, on percent white, percent Black, percent Hispanic, population and the poverty rate | the five `_pop_third` columns |
 | `assessment_third` | The third of the housing authority on the HUD assessment score | `assesment_third` |
 
-The [codebook of the course file](../data/housing_emails_codebook.md) gives the counts of every column and the notes on its coding.
+The counts of every column and the notes on its coding are given in the [codebook of the course file](../data/housing_emails_codebook.md).
 
 ## 5. Replies, greetings and bounced emails {#sec-outcomes}
 
-The columns that describe a reply are missing by design wherever there was no reply, and the pattern of their missing values is itself part of the data. `reply` is missing for an email that bounced, which never reached an official. The four columns that describe a reply exist only for the emails that drew one, and `named` is missing as well for the replies whose greeting the OAs did not code. A rebuilt file should show exactly this pattern, and the counts of the [background page](../background.qmd) are the test.
+The columns that describe a reply are missing by design wherever there was no reply, and the pattern of their missing values is itself part of the data. `reply` is missing for an email that bounced, which never reached an official. The four columns that describe a reply exist only for the emails that drew one, and `named` is missing as well for the replies whose greeting was not coded by the original authors. A rebuilt file should show exactly this pattern, the counts reported on the [background page](../background.qmd) serving as the test.
 
 ```{r}
 #| label: tbl-counts
@@ -150,7 +150,7 @@ totals <- housing |>
                            replied = sum(reply %in% 1), coded = sum(!is.na(named)))
 ```
 
-Of the `r format(totals$sent, big.mark = ",")` emails, `r totals$bounced` bounced and `r totals$delivered` were delivered; `r totals$replied` drew a reply, and `r totals$replied - totals$coded` of the replies carry no greeting code, which leaves `r totals$coded` coded replies. These are the counts of the background page and of the [codebook](../data/housing_emails_codebook.md#rows-and-missing-values). The pattern behind these counts can be checked directly: no email without a reply, bounced or not, should carry any value in the columns that describe a reply.
+Of the `r format(totals$sent, big.mark = ",")` emails, `r totals$bounced` bounced and `r totals$delivered` were delivered, and of the `r totals$replied` that drew a reply, `r totals$replied - totals$coded` carry no greeting code, leaving `r totals$coded` coded replies. The same counts are reported on the background page and in the [codebook](../data/housing_emails_codebook.md#rows-and-missing-values). The pattern behind these counts can be checked directly, by confirming that no email without a reply, bounced or not, carries any value in the columns that describe a reply.
 
 ```{r}
 #| label: reply-columns
@@ -161,7 +161,7 @@ housing |>
   all()
 ```
 
-The analyses of the course run on the rows chosen from the file for each question, and three decisions of the [specification menu](../menu.qmd#level-measurement) make the choice. Bounced emails are left out under every option, because no official read a bounced email. The emails counted are either the coded replies, the rows of the claim, or all delivered emails, in which case an email without a reply counts as one without a named greeting. And the five uncoded replies are either left out or counted as replies that did not open with the name. The chunk below computes the share of named greetings for white and Hispanic names in the first two ways, with the uncoded replies left out.
+The analyses in the course run on the rows chosen from the file for each question, a choice made through three decisions in the [specification menu](../menu.qmd#level-measurement). Bounced emails are left out under every option, because no official read a bounced email. The emails counted are either the coded replies, the rows of the claim, or all delivered emails, in which case an email without a reply counts as one without a named greeting. The five uncoded replies, finally, are either left out or counted as replies that did not open with the name. The chunk below computes the share of named greetings for white and Hispanic names in the first two ways, with the uncoded replies left out.
 
 ```{r}
 #| label: two-populations
@@ -186,11 +186,11 @@ gap_replies <- diff(pop_shares$among_replies[match(c("white", "hispanic"), pop_s
 gap_delivered <- diff(pop_shares$among_delivered[match(c("white", "hispanic"), pop_shares$group)])
 ```
 
-`named` is missing for every email without a reply, so `mean(named, na.rm = TRUE)` over the delivered emails is the share among the coded replies, and the gap between the two groups is `r insight::format_value(gap_replies, digits = 1, style_negative = "minus")` points, the reference specification of the course. `named_any` sets a missing reply to 0 and keeps the code of every reply, so its mean is the share of all delivered emails, uncoded replies aside, that drew a reply opening with the name, and the gap there is `r insight::format_value(gap_delivered, digits = 1, style_negative = "minus")` points. Both numbers are in `display_outcomes.csv`, and the [module on audit experiments](experiments.qmd#sec-posttreatment) explains why the two comparisons answer different questions. The helper `spec_frame()` in the estimator of the course builds the rows of each specification in exactly this way, and the [missing-values module](missingness.qmd) takes up what each of the three decisions does to the estimate.
+Since `named` is missing for every email without a reply, `mean(named, na.rm = TRUE)` over the delivered emails corresponds to the share among the coded replies, and the gap between the two groups is `r insight::format_value(gap_replies, digits = 1, style_negative = "minus")` points, the reference specification of the course. `named_any` sets a missing reply to 0 and retains the code of every reply, its mean thus corresponding to the share of all delivered emails, uncoded replies aside, that drew a reply opening with the name, with a gap of `r insight::format_value(gap_delivered, digits = 1, style_negative = "minus")` points. Both numbers are stored in `display_outcomes.csv`, and the [module on audit experiments](experiments.qmd#sec-posttreatment) explains why the two comparisons answer different questions. The helper `spec_frame()` in the course estimator builds the rows of each specification in exactly this way, while the [missing-values module](missingness.qmd) examines what each of the three decisions does to the estimate.
 
 ## 6. The community thirds {#sec-thirds}
 
-The public file gives the size, the composition and the poverty of each community, and the assessment score of each authority, only as thirds of the distribution of each measure among the communities of the study, coded 1 for the lower, 2 for the middle and 3 for the top third. The ReadMe of the deposit explains why: the census codes and the continuous values would identify the housing authorities, and whether an authority replied to an applicant from a minority is sensitive information. The build turns the codes into a factor with the labels `lower`, `middle` and `top`, in that order, so that a model or a table treats the thirds as categories in their natural order and prints the labels.
+The public file gives the size, the composition and the poverty of each community, and the assessment score of each authority, only as thirds, coded 1 for the lower, 2 for the middle and 3 for the top third, of the distribution that each measure takes among the communities in the study. The reason, as explained in the ReadMe of the deposit, is that the census codes and the continuous values would identify the housing authorities, and that whether an authority replied to an applicant from a minority is sensitive information. The build turns the codes into a factor with the labels `lower`, `middle` and `top`, in that order, which leads a model or a table to treat the thirds as categories in their natural order and to print the labels.
 
 ```{r}
 #| label: thirds
@@ -199,7 +199,7 @@ housing |>
   insight::print_md()
 ```
 
-Each community third holds 333 or 334 emails in each band, except the poverty third, as a division into thirds should, and the assessment third holds fewer emails in its bands because `r sum(is.na(housing$assessment_third))` emails lack it. The community thirds are missing for `r sum(is.na(housing$pop_third))` emails, and the next check shows that these are the same emails for all five thirds, since each email lacks either none of the five thirds or every one of them.
+Each community third holds 333 or 334 emails in each band, as a division into thirds should, with the exception of the poverty third, while the assessment third holds fewer emails in its bands because `r sum(is.na(housing$assessment_third))` emails lack it. The community thirds are missing for `r sum(is.na(housing$pop_third))` emails, and the next check shows that these are the same emails for all five thirds, since each email lacks either none of the five thirds or every one of them.
 
 ```{r}
 #| label: thirds-missing
@@ -210,13 +210,13 @@ housing |>
   insight::print_md()
 ```
 
-The OAs do not say why these authorities lack their thirds, and the course does not guess. What the missing values do to the adjusted specifications, which need the thirds, is one of the questions of the [missing-values module](missingness.qmd#sec-covariates).
+The original authors do not say why these authorities lack the thirds, and the course does not guess. What the missing values do to the adjusted specifications, which need the thirds, is one of the questions examined in the [missing-values module](missingness.qmd#sec-covariates).
 
-`waitlist` keeps the text of the source. Fewer than half of the entries are numbers of months, often converted by the OAs from phrases such as "two years", and the rest are the words `Closed` and `No Housing`. Turning the column into numbers would lose the words, so the course file keeps the text, and the [R module](https://codemoreh.github.io/ar4ds/tools/r.html#sec-figure) on the AR4DS site shows how the numeric entries are taken out of it for a figure.
+`waitlist` retains the text of the source, in which fewer than half of the entries are numbers of months, often converted by the original authors from phrases such as "two years", the rest being the words `Closed` and `No Housing`. As turning the column into numbers would lose the words, the course file keeps the text, and the [R module](https://codemoreh.github.io/ar4ds/tools/r.html#sec-figure) on the AR4DS site shows how the numeric entries are extracted from it for a figure.
 
 ## 7. Checking the rebuilt file {#sec-checks}
 
-A rebuilt file is ready for analysis only when it passes checks written down in advance, and the pipeline stops if any of them fails. `stopifnot()` does nothing when every condition holds and stops with the first condition that does not, so a file that differs from the counts of the background page cannot slip through unnoticed.
+A rebuilt file is ready for analysis only when it passes checks written down in advance, and the pipeline stops if any of them fails. `stopifnot()` does nothing when every condition holds and stops at the first condition that does not, which means that a file differing from the counts reported on the background page cannot slip through unnoticed.
 
 ```{r}
 #| label: stopifnot
@@ -231,7 +231,7 @@ stopifnot(
 )
 ```
 
-The first five conditions are those of `01_email_data.R`, and the last two add the missing thirds. The final check compares the rebuilt file with the course file line by line, as text, which is how the pipeline writes it:
+The first five conditions are those of `01_email_data.R`, the last two adding the missing thirds. The final check compares the rebuilt file with the course file line by line, as text, which is how the pipeline writes it:
 
 ```{r}
 #| label: compare
@@ -241,7 +241,7 @@ c(rebuilt = length(rebuilt_lines), shipped = length(shipped_lines),
   differing = sum(rebuilt_lines != shipped_lines))
 ```
 
-Every one of the `r format(length(shipped_lines), big.mark = ",")` lines, the header included, is the same in both. The comparison runs on lines rather than on a checksum of the two files because Git on Windows can be set to rewrite line endings when it puts a file on your disk (the setting `core.autocrlf`), so a checkout of the course may differ byte for byte from the repository while holding exactly the same lines. The pipeline ends by writing the file, with an empty cell for every missing value, as the deposited file has:
+Every one of the `r format(length(shipped_lines), big.mark = ",")` lines, the header included, is the same in both. The comparison runs on lines rather than on a checksum of the two files because Git on Windows can be set to rewrite line endings when it puts a file on your disk (the setting `core.autocrlf`), with the result that a checkout of the course may differ byte for byte from the repository while holding exactly the same lines. The pipeline ends by writing the file, with an empty cell for every missing value, as the deposited file has:
 
 ```{r}
 #| label: write
@@ -257,4 +257,4 @@ Change the key so that code 3 reads `Gabriela` and code 4 `Santiago`, rerun the 
 
 ## Sources {#sec-sources}
 
-The data are the replication package of the OAs [@EinsteinGlick2017DoesRaceAffect] on the Harvard Dataverse ([doi:10.7910/DVN/1HOVTU](https://doi.org/10.7910/DVN/1HOVTU)), dedicated to the public domain under CC0; its ReadMe explains the blinding of the community values, and its codebook the coding of every column. The script that this page follows is `R/01_email_data.R`, and the order of the pipeline is set out in `R/README.md`. The two files are documented in the codebooks of the [deposited file](../data/housing_original_codebook.md) and of the [course file](../data/housing_emails_codebook.md). The route of the deposited file from the Dataverse to your disk is in the [module on data sources](data-sources.qmd#sec-dataverse).
+The data come from the replication package deposited by the original authors [@EinsteinGlick2017DoesRaceAffect] on the Harvard Dataverse ([doi:10.7910/DVN/1HOVTU](https://doi.org/10.7910/DVN/1HOVTU)) and dedicated to the public domain under CC0, a package whose ReadMe explains the blinding of the community values and whose codebook explains the coding of every column. The script followed on this page is `R/01_email_data.R`, and the order of the pipeline is given in `R/README.md`. The two files are documented in the codebooks of the [deposited file](../data/housing_original_codebook.md) and of the [course file](../data/housing_emails_codebook.md). The route of the deposited file from the Dataverse to your disk is described in the [module on data sources](data-sources.qmd#sec-dataverse).
