@@ -25,7 +25,7 @@ The modules on the tools are held on the umbrella site of the course and written
 
 - [Social science data sources](data-sources.qmd) – the three routes by which data reach a researcher, a map of the archives, surveys, panels and statistics with the access rule for each, the route of the Housing data from the Harvard Dataverse, and citing data.
 - [Building the analysis file](data-management.qmd) – the course file rebuilt step by step from the file deposited with the published study: the names, the replies and their greeting codes, the bounced emails and the community thirds, and the checks that a rebuilt file has to pass.
-- [Reproducibility repositories](repositories.qmd) – what a repository has to do, the repositories that researchers use, the package of the study on the Harvard Dataverse, the records kept on the paper by the SCORE programme and the SCORE robustness study (Aczel et al. 2026), registrations and preregistration templates, and depositing a reanalysis of your own.
+- [Reproducibility repositories](repositories.qmd) – what a repository has to do, the repositories that researchers use, the package of the study on the Harvard Dataverse, the records kept on the paper by the SCORE programme and its robustness study (Aczel et al. 2026), registrations and preregistration templates, and depositing a reanalysis of your own.
 
 ## Methods {#sec-methods}
 

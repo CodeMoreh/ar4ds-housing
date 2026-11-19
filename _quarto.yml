@@ -18,7 +18,7 @@ project:
     - "live/*.qmd"
     - "!_planning/**"
     # In the repository but out of the build until CM has vetted them (15
-    # November 2026): the long format, the four decks of its third day, and
+    # November 2026): the multi-day format, the four decks of its third day, and
     # the run sheet and the notes on the formats of the facilitator
     - "!tracks/long/**"
     - "!slides/experiments.qmd"

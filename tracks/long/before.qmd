@@ -20,6 +20,6 @@ The module teaches the R that the course asks of you, from a first line of code 
 
 [Read the background](../../background.qmd){.btn .btn-primary target="_blank"}
 
-The background page presents the original study and its design, SCORE and the SCORE robustness study (Aczel et al. 2026), the five reanalyses and the question that each of them answered, how their results were put on one scale, and the replication in the SCORE replicability study. Every day of the course works on this case study.
+The background page presents the original study and its design, SCORE and its robustness study (Aczel et al. 2026), the five reanalyses and the question that each of them answered, how their results were put on one scale, and the replication in the SCORE replicability study. Every day of the course works on this case study.
 
 **By the start of the course** you have the setup check printing OK, you have worked through the first module on R, and you know what the claim is and how the five analysts of the robustness study came to different conclusions about it.

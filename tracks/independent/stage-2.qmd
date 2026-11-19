@@ -27,6 +27,6 @@ Read the whole article of the OAs [@EinsteinGlick2017DoesRaceAffect], in the acc
 
 [Read the background](../../background.qmd){.btn .btn-primary target="_blank"}
 
-Read sections 1 to 3: [the original study](../../background.qmd#sec-study), [SCORE](../../background.qmd#sec-score) with the SCORE robustness study [@AczelEtAl2026InvestigatingAnalyticalRobustness], and [the five reanalyses](../../background.qmd#sec-reanalysts). Then write the claim of the case study in your own words.
+Read sections 1 to 3: [the original study](../../background.qmd#sec-study), [SCORE](../../background.qmd#sec-score) and its robustness study [@AczelEtAl2026InvestigatingAnalyticalRobustness], and [the five reanalyses](../../background.qmd#sec-reanalysts). Then write the claim of the case study in your own words.
 
 **Shortcuts.** If you already write R with the tidyverse, read the section on the datawizard verbs, which the course uses wherever they do the job, and the section on `try_spec()`, and run the rest only where its output surprises you. If you already write Quarto, render the report of the workspace and move on.

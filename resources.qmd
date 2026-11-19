@@ -15,9 +15,9 @@ The four terms below follow the definitions in @NosekEtAl2025BriefGlossaryTerms,
 
 | Term | Definition | In this course |
 |------------------------|------------------------|------------------------|
-| **Reproducibility** | Same question, same data, same analysis → same result | Tested across the SCORE sample by the SCORE reproducibility study [@MiskeEtAl2026InvestigatingReproducibilitySocial]. In the Housing case study that study never attempted a reproduction; the class reproduces in Task 3 a value recorded in the SCORE robustness study [@AczelEtAl2026InvestigatingAnalyticalRobustness] for one of the five analysts |
+| **Reproducibility** | Same question, same data, same analysis → same result | Tested across the SCORE sample by the reproducibility study of the programme [@MiskeEtAl2026InvestigatingReproducibilitySocial]. In the Housing case study that study never attempted a reproduction; the class reproduces in Task 3 a value recorded in the SCORE robustness study [@AczelEtAl2026InvestigatingAnalyticalRobustness] for one of the five analysts |
 | **Robustness** | Same question, same data, justifiable alternative analysis → stable result | The design of the robustness study; the five analysts of the claim; the specification menu and the curve of the claim in Tasks 4 and 5, with 64 specifications |
-| **Replicability** | Same question, independent new data → same result | Tested across the SCORE sample by the SCORE replicability study [@TynerEtAl2026InvestigatingReplicabilitySocial]. For the Housing claim, the replication in that study, a preregistered experiment on 3,050 housing authorities, found no significant gap, and in Task 6 the class fits its declared specifications on the data of that experiment |
+| **Replicability** | Same question, independent new data → same result | Tested across the SCORE sample by the replicability study of the programme [@TynerEtAl2026InvestigatingReplicabilitySocial]. For the Housing claim, the replication in that study, a preregistered experiment on 3,050 housing authorities, found no significant gap, and in Task 6 the class fits its declared specifications on the data of that experiment |
 | **Repeatability** | Umbrella term covering all three above | Used in the glossary of Nosek and colleagues as the overarching category |
 
 ------------------------------------------------------------------------
@@ -30,7 +30,7 @@ The case study, told in full on the [background page](background.qmd), is built 
 
 **The data.** The replication package deposited by the original authors on the Harvard Dataverse, released under CC0: <https://doi.org/10.7910/DVN/1HOVTU>. It contains the blinded data file, two Stata do-files (one that runs the analyses on the public file, and one written for the identifiable data, which are not public), two codebooks and a ReadMe explaining why the community variables are given in thirds. The course data in `data/` are built from this package, and the codebooks placed beside the data files describe every column.
 
-**SCORE on the OSF.** The SCORE project for the paper on the Open Science Framework records every activity that SCORE carried out on the paper, and the component of the robustness study contains one sub-component for each of the five analysts. Four of the five analysts published their scripts there, and the course links to these scripts rather than copying them.
+**SCORE on the OSF.** The SCORE project for the paper on the Open Science Framework records every activity carried out on the paper by the programme, and the component of the robustness study contains one sub-component for each of the five analysts. Four of the five analysts published their scripts there, and the course links to these scripts rather than copying them.
 
 | Component | What it holds | Address |
 |---|---|---|
