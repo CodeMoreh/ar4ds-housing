@@ -40,4 +40,4 @@ Optional: the modules on [the IDE (Positron and other IDEs)](https://codemoreh.g
 
 ## 7. On the day
 
-In person, bring your laptop, with the workspace working on it, and its charger. Online, keep the video call on one screen or device and your IDE, or the deck, on another, so that you can follow the shared screen while you work.
+Bring your laptop, with the workspace working on it, and its charger.

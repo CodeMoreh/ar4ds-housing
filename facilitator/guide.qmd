@@ -362,16 +362,14 @@ Each participant reproduces the analyst given to them in Task 3, in the workspac
 
 ---
 
-## In person and online {#cue-sheet}
+## Cue sheet {#cue-sheet}
 
-The materials are the same in both settings. What changes is how people ask for help and receive links.
-
-| Beat | In person (Newcastle) | Online |
-|---|---|---|
-| Stuck | a raised hand | a raised hand in the call, or the microphone |
-| Rescues | the facilitator circulates | the problem shown on the shared screen |
-| The live chart (the day format) | on the projector, and on the laptops | everyone opens the Class results page |
-| Form links (the day format) | on the screen | on the shared screen |
+| Beat | In the room |
+|---|---|
+| Stuck | a raised hand |
+| Rescues | the facilitator circulates |
+| The live chart (the day format) | on the projector, and on the laptops |
+| Form links (the day format) | on the screen |
 
 ---
 

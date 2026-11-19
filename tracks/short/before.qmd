@@ -17,4 +17,4 @@ The deck of the session runs R inside your browser, with the data already in pla
 
 ## 3. On the day
 
-In person, bring a laptop and its charger. Online, keep the video call on one screen or device and the deck on another, so that you can follow the shared screen while you work.
+Bring a laptop and its charger.
