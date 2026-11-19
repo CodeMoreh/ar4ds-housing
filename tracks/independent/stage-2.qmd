@@ -15,7 +15,7 @@ Work from [Reading the data](https://codemoreh.github.io/ar4ds/tools/r.html#sec-
 
 [Open Quarto documents](https://codemoreh.github.io/ar4ds/tools/quarto.html#sec-what){.btn .btn-primary target="_blank"}
 
-Work from [Source and output](https://codemoreh.github.io/ar4ds/tools/quarto.html#sec-what) to [Citations](https://codemoreh.github.io/ar4ds/tools/quarto.html#sec-citations) in the module on the AR4DS site. Write and render a Quarto document of your own that holds your figure, a cross-reference to it and a citation. Then render the report of the workspace, `index.qmd`, once, and read through the five tasks that you will fill in.
+Work from [Source and output](https://codemoreh.github.io/ar4ds/tools/quarto.html#sec-what) to [Citations](https://codemoreh.github.io/ar4ds/tools/quarto.html#sec-citations) in the module on the AR4DS site. Write and render a Quarto document of your own that holds your figure, a cross-reference to it and a citation. Then render the report of the workspace, `index.qmd`, once, and read through the six tasks that you will fill in.
 
 ## 3. The paper
 

@@ -17,7 +17,7 @@ The four terms below follow the definitions in @NosekEtAl2025BriefGlossaryTerms,
 |------------------------|------------------------|------------------------|
 | **Reproducibility** | Same question, same data, same analysis → same result | Tested across the SCORE sample by @MiskeEtAl2026InvestigatingReproducibilitySocial. In the Housing case study SCORE never attempted a reproduction; the class reproduces in Task 3 a value recorded in the robustness study of SCORE [Multi100\; @AczelEtAl2026InvestigatingAnalyticalRobustness] for one of the five analysts |
 | **Robustness** | Same question, same data, justifiable alternative analysis → stable result | The design of the robustness study; the five analysts of the claim; the specification menu and the curve of the claim in Tasks 4 and 5, with 64 specifications |
-| **Replicability** | Same question, independent new data → same result | Tested across the SCORE sample by @TynerEtAl2026InvestigatingReplicabilitySocial. For the Housing claim, a preregistered experiment on 3,050 housing authorities found no significant gap |
+| **Replicability** | Same question, independent new data → same result | Tested across the SCORE sample by @TynerEtAl2026InvestigatingReplicabilitySocial. For the Housing claim, a preregistered experiment on 3,050 housing authorities found no significant gap, and in Task 6 the class fits its declared specifications on its data |
 | **Repeatability** | Umbrella term covering all three above | Used in the glossary of Nosek and colleagues as the overarching category |
 
 ------------------------------------------------------------------------

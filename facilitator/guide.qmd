@@ -89,7 +89,7 @@ other_max <- deviations |>
 | Format | Track | Taught in | What it leaves out |
 |---|---|---|---|
 | Short format, two halves | `housing-short` | its live deck, with the browser lab as the fallback | installation, the class chart, Task 5 |
-| Day format, four parts | `housing-one-day` | the workspace, with the live deck showing each step and, with the browser lab, standing in when an installation fails | nothing of the five tasks |
+| Day format, four parts | `housing-one-day` | the workspace, with the live deck showing each step and, with the browser lab, standing in when an installation fails | nothing of the six tasks |
 | long format, three days | `housing-extended` | the workspace, with the live deck used in the day format on day 2 | nothing; day 2 is the day format |
 | Self-study, five stages | `self-study` | the workspace | the class, but not the class chart |
 
