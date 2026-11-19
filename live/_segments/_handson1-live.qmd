@@ -19,12 +19,11 @@ Wait until the cell below shows **Run Code**, then run it: `housing` has `r form
 
 ```{webr}
 #| autorun: false
-# The setup check. It uses only what the deck preloads, so if this runs, the
-# rest of the deck runs.
+# The setup check: if this cell runs, every cell of the deck runs.
 writeLines(c(
-  paste("R is running in your browser:", R.version.string),
-  sprintf("The emails are loaded: %d rows", nrow(housing)),
-  sprintf("The estimator reproduces the reference specification: %.2f percentage points",
+  paste("R in the browser:", R.version.string),
+  sprintf("Emails: %d rows", nrow(housing)),
+  sprintf("Reference specification: %.2f percentage points",
           fit_spec(housing)$b_pp)))
 ```
 

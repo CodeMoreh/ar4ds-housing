@@ -49,8 +49,8 @@ The R engine downloads into your browser when you open this page (a minute or so
 #| edit: false
 #| autorun: true
 #| output: false
-# Runs by itself once the engine is ready: the Housing data as `housing`, one
-# row per email, and the folder from which the helpers read their files.
+# Runs once the engine is ready: the Housing data as `housing`, one row per
+# email, and the folder from which the helpers read their files.
 .data_dir <- "data"
 housing <- utils::read.csv("data/housing_emails.csv", na.strings = c("", "NA"))
 ```
@@ -68,9 +68,9 @@ Press **Run Code** on the cell below.
 ```{webr}
 #| autorun: false
 writeLines(c(
-  paste("R is running in your browser:", R.version.string),
-  sprintf("The emails are loaded: %d rows", nrow(housing)),
-  sprintf("The estimator reproduces the reference specification: %.2f percentage points",
+  paste("R in the browser:", R.version.string),
+  sprintf("Emails: %d rows", nrow(housing)),
+  sprintf("Reference specification: %.2f percentage points",
           fit_spec(housing)$b_pp)))
 ```
 

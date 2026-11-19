@@ -1,7 +1,7 @@
 ################################################################################
 # Title:        06_replication.R
-# Purpose:      The data of the SCORE replication in the form of the course
-#               file, the replication on the scale of the course, its mark on
+# Purpose:      The data of the replication in the SCORE replicability study
+#               in the form of the course file, the replication on the scale of the course, its mark on
 #               the curve of the claim, and the curve of the claim on the new
 #               data: every specification of the curve, translated to the design
 #               of the new experiment and fitted on its data.
@@ -76,7 +76,7 @@ ref <- datawizard::data_filter(display, population == "replies" & authorities ==
 marks <- readr::read_csv("data/reference_marks.csv", show_col_types = FALSE) |>
   datawizard::data_filter(id != "SCORE") |>
   dplyr::bind_rows(tibble::tibble(
-    id = "SCORE", label = "SCORE replication (new experiment, 2020)", statistic_type = "t",
+    id = "SCORE", label = "Replication in the SCORE replicability study (new experiment, 2020)", statistic_type = "t",
     statistic = ref$stat, n = ref$n, b_pp = ref$b_pp, on_chart = TRUE,
     note = "New data: 3,050 authorities emailed by four male aliases, two Hispanic and two white. Placed by the raw gap among all replies, computed by the course from the de-identified data on the OSF (osf.io/xseqg)."
   ))

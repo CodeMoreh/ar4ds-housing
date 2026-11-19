@@ -48,9 +48,9 @@ Each correlation was then converted into a Cohen's d by the rule contained in th
 
 ```{r}
 #| label: conversion
-# The d rule is quoted from cohens_d.R of the team of the robustness study; the d that
-# the robustness study recorded is positive for all four, because the project took the
-# direction from the box that each analyst ticked
+# The d rule is quoted from cohens_d.R of the team of the robustness study; the
+# recorded d is positive for all four, because the team took the direction from
+# the box that each analyst ticked
 recorded <- analysts |>
   datawizard::data_filter(!is.na(statistic_recorded)) |>
   datawizard::data_modify(
@@ -176,7 +176,7 @@ The original experiment and the replication are a different matter. The replicat
 ```{r}
 #| label: escalc
 two <- tibble::tibble(
-  study = c("Original experiment, 2014", "SCORE replication, 2020"),
+  study = c("Original experiment, 2014", "Replication, 2020"),
   k_hisp = counts$k[counts$hisp == 1], n_hisp = counts$n[counts$hisp == 1],
   k_white = counts$k[counts$hisp == 0], n_white = counts$n[counts$hisp == 0]
 )
@@ -203,7 +203,7 @@ The equal-effects model pools the two gaps to `r insight::format_value(equal$bet
 #| echo: false
 #| fig-width: 7
 #| fig-height: 2.8
-#| fig-cap: "The gap in greetings by name between Hispanic and white names among the coded replies, in the original experiment and in the SCORE replication, with 95% confidence intervals, and the two pooled estimates. The size of each square is proportional to the weight of the study in the equal-effects model. Sources: `data/housing_emails.csv`, `data/display_replication.csv`."
+#| fig-cap: "The gap in greetings by name between Hispanic and white names among the coded replies, in the original experiment and in the replication, with 95% confidence intervals, and the two pooled estimates. The size of each square is proportional to the weight of the study in the equal-effects model. Sources: `data/housing_emails.csv`, `data/display_replication.csv`."
 #| fig-alt: "Forest plot. The original experiment lies at about −20 points with an interval from about −30 to −10; the replication lies at about 0 with an interval from about −5 to +5; the equal-effects pool lies near −4 with a narrow interval, and the random-effects pool near −10 with an interval from about −29 to +9."
 forest <- dplyr::bind_rows(
   summary(gaps) |>
@@ -242,7 +242,7 @@ The smallest effect size of interest has to be argued for, and the case study of
 #| label: tost
 critical_gap <- ref$se_pp * stats::qt(0.975, ref$df)
 bounds <- c(critical_gap, 5, 3)
-repl <- datawizard::data_filter(two, study == "SCORE replication, 2020")
+repl <- datawizard::data_filter(two, study == "Replication, 2020")
 orig <- datawizard::data_filter(two, study == "Original experiment, 2014")
 tost <- purrr::map(list(replication = repl, original = orig), \(s) {
   purrr::map(bounds, \(b) {

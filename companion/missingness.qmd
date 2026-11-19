@@ -134,7 +134,6 @@ codings <- list(
   `named if Hispanic, not if white` = datawizard::data_modify(replies_wh, named = dplyr::coalesce(named, hisp)),
   `named if white, not if Hispanic` = datawizard::data_modify(replies_wh, named = dplyr::coalesce(named, 1 - hisp))
 )
-# dplyr inside the lambda, because datawizard does not see the arguments of a function
 uncoded_gaps <- purrr::imap(codings, \(d, coding) {
   stats::lm(named ~ hisp, data = d) |>
     parameters::model_parameters(vcov = "HC2") |>

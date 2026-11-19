@@ -44,14 +44,10 @@ A second chart, below the first, places every declared specification on the curv
 #| label: live-multiverse-setup
 #| include: false
 #| autorun: true
-# Class submissions are served as CSV by a Cloudflare Worker in front of the
-# Google Sheet of the results Form; when the Worker cannot be reached the
-# chart falls back to the committed data/class_results.csv. The Sheet is shared
-# by the case studies of the course, so only the rows whose label carries the word
-# "housing" after the tag are read. The chart is drawn with tinyplot
-# (McDermott, Arel-Bundock and Zeileis; CRAN, doi:10.32614/CRAN.package.tinyplot),
-# the rows are handled with datawizard and purrr, and the labels are parsed
-# with the regular expressions of base R, so that participants download little.
+# Class submissions come as CSV from a Cloudflare Worker in front of the Google
+# Sheet of the results Form, or from the committed data/class_results.csv when
+# the Worker cannot be reached. The Sheet is shared by the case studies of the
+# course, so only the rows whose label carries "housing" after the tag are read.
 
 # ---- The Worker of the class results: replace this one line for a Form of its own
 worker_url <- "https://class-results.chris-moreh.workers.dev/"
@@ -68,7 +64,7 @@ curve <- utils::read.csv("data/spec_curve.csv", stringsAsFactors = FALSE) |>
                           sig_f = factor(sig, levels = c(FALSE, TRUE)))
 axis_codes <- c("comparison", "population", "uncoded", "model", "adjust")
 curve_key <- purrr::pmap_chr(curve[axis_codes], \(...) paste(..., sep = "|"))
-# The curve of the claim on the data of the SCORE replication: one row for each
+# The curve of the claim on the data of the replication: one row for each
 # specification of the curve of 64, with the estimate that its translation to
 # the new experiment gives; the 64 collapse to 12, ranked by rep_rank.
 replication_curve <- utils::read.csv("data/replication_curve.csv", stringsAsFactors = FALSE)

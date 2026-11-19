@@ -3,7 +3,7 @@
 # Purpose:      The fits behind the Bayesian estimation module. A binomial
 #               model of the greetings by name among the coded replies to
 #               Hispanic and white names, fitted with brms on the counts of
-#               the original experiment and of the SCORE replication: the priors
+#               the original experiment and of the replication: the priors
 #               alone (prior predictive check), the original experiment under a
 #               weakly informative and a sceptical prior for the gap, the
 #               replication alone and with the posterior of the original as
@@ -23,7 +23,7 @@
 #               companion/_model-outputs/bayes_housing_ppc.csv
 #               (and the fitted models as fit_*.rds, which git ignores)
 # Author:       Claude for CM
-# Last updated: 2026-11-15
+# Last updated: 2026-11-19
 ################################################################################
 
 set.seed(20261105)

@@ -49,11 +49,11 @@ The comparison examined here is the reference specification of the course, which
 
 ```{r}
 #| label: tbl-counts
-#| tbl-cap: "The replies to Hispanic and white names that carry a greeting code, and those that opened with the name of the sender, in the original experiment and in the SCORE replication. Source: `companion/_model-outputs/bayes_housing_counts.csv`."
+#| tbl-cap: "The replies to Hispanic and white names that carry a greeting code, and those that opened with the name of the sender, in the original experiment and in the replication. Source: `companion/_model-outputs/bayes_housing_counts.csv`."
 #| echo: false
 counts |>
   datawizard::data_modify(
-    Study = dplyr::if_else(study == "original", "Original experiment, 2014", "SCORE replication, 2020"),
+    Study = dplyr::if_else(study == "original", "Original experiment, 2014", "Replication, 2020"),
     Names = dplyr::if_else(hisp == 1, "Hispanic", "white"),
     Share = insight::format_value(k / n, as_percent = TRUE, digits = 1)
   ) |>

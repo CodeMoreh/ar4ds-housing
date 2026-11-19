@@ -5,22 +5,19 @@
 #               percentage points, its 95% interval, the test of its model and
 #               the partial correlation by the rule of the robustness study.
 # Author:       Claude for CM
-# Last updated: 2026-11-16
+# Last updated: 2026-11-19
 # Sourced by:   R/02_spec_curve.R, R/03_reference_marks.R,
 #               R/04_menu_deviations.R, R/05_displays.R,
 #               R/06_replication.R, R/check_parity.R,
 #               background.qmd, menu.qmd
 ################################################################################
 
-# The same code runs in the downloadable workspace and in webR on the browser
-# lab, so all three give the same numbers. The standard errors and the average
-# marginal effect come from packages: parameters with sandwich for the HC2
-# errors of the linear model, marginaleffects for the average marginal effect
-# of the logit. R/check_parity.R checks both against estimatr and
-# margins. The rows and the outcome are built with dplyr, because inside a
-# function datawizard::data_modify() and data_summary() do not find the
-# arguments of that function, and data_filter() finds such arguments only
-# from datawizard 1.5.0.
+# The workspace (R/spec_tools.R) and the browser lab (_includes/_lab-helpers.qmd)
+# run the same code. R/check_parity.R checks the HC2 errors and the average
+# marginal effect against estimatr and margins. The rows and the outcome are
+# built with dplyr, because inside a function datawizard::data_modify() and
+# data_summary() do not find the arguments of that function, and data_filter()
+# finds such arguments only from datawizard 1.5.0.
 
 # The options of the curve, in menu order. Anything else is refused by
 # check_spec() with the reason recorded in data/menu_options.csv.
@@ -86,8 +83,8 @@ check_spec <- function(comparison, population, uncoded, model, adjust) {
 fit_spec <- function(housing, comparison = "white", population = "replies", uncoded = "drop",
                      model = "lpm", adjust = "none") {
   check_spec(comparison, population, uncoded, model, adjust)
-  # the data of the SCORE replication hold no hard_email, which their
-  # adjustment sets therefore leave out
+  # the data of the replication hold no hard_email, which the adjustment
+  # leaves out
   terms <- intersect(ADJUST_TERMS[[adjust]], names(housing))
   # only the model columns, and only the emails with every covariate;
   # marginaleffects refuses a data column called `group`

@@ -12,7 +12,7 @@
 #               adapt the chart to this curve are listed at the top of
 #               multiverse.js.
 # Author:       Claude for CM
-# Last updated: 2026-11-15
+# Last updated: 2026-11-19
 # Sourced by:   curve.qmd
 ################################################################################
 
@@ -39,7 +39,7 @@ mv_menu_relation <- tibble::tribble(
   "UYV3F", "white",       "replies",   "drop",      "logit", "none",  "A point of the curve: a logistic regression without covariates on the replies to Hispanic and white names, whose average marginal effect is the raw gap.",
   "EWFMI", NA,            NA,          NA,          NA,      NA,      "Outside the menu: a model of all three groups, adjusted for the sex of the name and for the poverty third entered as a number, which the menu treats as a check or does not offer. Its z is positive because its model takes the Hispanic names as the base.",
   "25N5D", "white",       "all",       "not_named", "lpm",   "none",  "A point of the curve: Hispanic against white names among all delivered emails, the uncoded replies counted as no greeting. The two-proportion test is a check of that specification.",
-  "SCORE", NA,            NA,          NA,          NA,      NA,      "New data: the SCORE replication emailed 3,050 authorities in 2020 with four male aliases, two Hispanic and two white. Placed by the raw comparison of the reference specification, the gap among all replies.",
+  "SCORE", NA,            NA,          NA,          NA,      NA,      "New data: the replication in the SCORE replicability study emailed 3,050 authorities in 2020 with four male aliases, two Hispanic and two white. Placed by the raw comparison of the reference specification, the gap among all replies.",
   "P9W8Y", "white",       "replies",   "drop",      "lpm",   "none",  "Beside the curve: without covariates the three-group model gives exactly the raw gap of the reference specification, but its omnibus test asks whether the three groups differ at all, a broader question than the claim."
 )
 
@@ -95,7 +95,7 @@ mv_marks <- function(marks, analysts, curve) {
       tag   = dplyr::case_when(.data$id == "OA" ~ "OAs 2017", .data$id == "SCORE" ~ "SCORE 2020",
                         .default = .data$id),
       title = dplyr::case_when(.data$id == "OA" ~ "The original authors (2017), Table 1, model 3",
-                        .data$id == "SCORE" ~ "The SCORE replication, a new experiment (2020)",
+                        .data$id == "SCORE" ~ "Replication in the SCORE replicability study (new experiment, 2020)",
                         .default = paste("Analyst", .data$id, "of the robustness study")),
       stat  = dplyr::case_when(
         .data$id == "OA" ~ sprintf("z = %s as published; %s",

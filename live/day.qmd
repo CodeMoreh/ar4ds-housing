@@ -50,7 +50,7 @@ core-runs: []
 deck:
   day: true
   menu: true
-# THE DECK OF THE FULL-DAY FORMAT, OF DAY 2 OF THE LONG FORMAT AND OF THE
+# THE DECK OF THE FULL-DAY FORMAT, OF DAY 2 OF THE MULTI-DAY FORMAT AND OF THE
 # SELF-TAUGHT FORMAT
 # - The participants of the full-day format do the six tasks in the workspace, in
 #   their IDE. This deck carries the whole browser lab on its slides, through

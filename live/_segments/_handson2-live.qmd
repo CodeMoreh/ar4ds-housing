@@ -104,8 +104,6 @@ A bar for each name, with its share at the end. *Workspace:* the chunk `fig-name
 #| max-lines: 5
 #| fig-width: 8
 #| fig-height: 3.6
-# The shares drawn with tinyplot (McDermott, Arel-Bundock and Zeileis; CRAN,
-# doi:10.32614/CRAN.package.tinyplot)
 tinyplot::tinyplot(greeted_pct ~ name | group, data = greeted,
                    type = tinyplot::type_barplot(xlevels = greeted$name, width = 0.7, drop.zeros = TRUE), flip = TRUE,
                    palette = c("grey60", "#4a78ab", "#8b1538"), fill = "by",

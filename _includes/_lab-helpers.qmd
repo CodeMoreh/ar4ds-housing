@@ -13,25 +13,18 @@ _lab-graph.qmd beside this file.
 ```{webr}
 #| include: false
 #| autorun: true
-# Lab machinery: the estimator of the course, the specification menu, its
-# validation, and the helpers of Tasks 4 to 6 – try_spec(), my_experiments(),
-# submit_exploration(), prereg(), run_spec(), report_result() and
-# replicate_spec(). The same
-# code as R/spec_tools.R of the downloadable workspace, apart from the tag of
-# the class chart, which lasts for the browser session here. Every
-# specification is fitted live; data/spec_curve.csv places it among the 64,
-# and data/menu_options.csv gives the reason for every option that is not on
-# the curve. Both arrive with the page through its `resources:` list, in the
-# folder that the setup cell of the including page names as .data_dir.
+# The estimator, the menu, its validation and the helpers of Tasks 4 to 6, as
+# in R/spec_tools.R of the workspace, apart from the tag of the class chart,
+# which lasts for the browser session. The data files arrive through the
+# resources list of the including page, in the folder named by .data_dir.
 
 # ============================================================================
 # CONFIGURATION – the class chart and the course site
 # ============================================================================
-# The results Form that submit_exploration() and report_result() pre-fill: its
-# ID and the entry codes of its seven fields. They belong to the shared results
-# Form of the course; a Form of its own replaces them here and nowhere else.
-# The word in .case_word follows the tag in every label, so that the chart of
-# this case study reads only its own rows.
+# The results Form pre-filled by submit_exploration() and report_result(): its
+# ID and the entry codes of its seven fields, shared by the course; a Form of
+# its own replaces them here only. .case_word follows the tag in every label,
+# and the chart of this case study reads only the rows that carry it.
 .form_id <- "1FAIpQLSezoAEOnZUfP4pkfN28_XtEBwSyc2RLsXB-h8RPSegF7_t76A"
 .form_entry <- c(spec = "entry.832496914", b = "entry.1656311800", se = "entry.1337458262",
                  t = "entry.1940779437", df = "entry.1682711955", n = "entry.1586392724",
@@ -45,15 +38,9 @@ _lab-graph.qmd beside this file.
 # A verbatim copy of R/_tools.R in the course repository, which builds
 # the curve; the downloadable workspace carries the same copy in R/spec_tools.R.
 
-# The same code runs in the downloadable workspace and in webR on the browser
-# lab, so all three give the same numbers. The standard errors and the average
-# marginal effect come from packages: parameters with sandwich for the HC2
-# errors of the linear model, marginaleffects for the average marginal effect
-# of the logit. R/check_parity.R in the course repository checks both
-# against estimatr and margins. The rows and the outcome are built with
-# dplyr, because inside a function datawizard::data_modify() and
-# data_summary() do not find the arguments of that function, and
-# data_filter() finds such arguments only from datawizard 1.5.0.
+# The workspace, the browser lab and the pipeline of the course site run the
+# same code. R/check_parity.R in the course repository checks the HC2 errors
+# and the average marginal effect against estimatr and margins.
 
 # The options of the curve, in menu order. Anything else is refused by
 # check_spec() with the reason recorded in data/menu_options.csv.
@@ -119,8 +106,8 @@ check_spec <- function(comparison, population, uncoded, model, adjust) {
 fit_spec <- function(housing, comparison = "white", population = "replies", uncoded = "drop",
                      model = "lpm", adjust = "none") {
   check_spec(comparison, population, uncoded, model, adjust)
-  # the data of the SCORE replication hold no hard_email, which their
-  # adjustment sets therefore leave out
+  # the data of the replication hold no hard_email, which the adjustment
+  # leaves out
   terms <- intersect(ADJUST_TERMS[[adjust]], names(housing))
   # only the model columns, and only the emails with every covariate;
   # marginaleffects refuses a data column called `group`
@@ -174,11 +161,10 @@ spec_line <- function(comparison, population, uncoded, model, adjust) {
 
 
 # ---- The menu --------------------------------------------------------------------
-# The eleven decisions in the order of the menu, each with the options that the
-# curve keeps. The five decisions of SPEC_AXES keep two or more options, which
-# multiply to the 64 specifications; on the other six the curve keeps one.
-# Every other option is a row of data/menu_options.csv, whose reason the
-# helpers print when it is asked for.
+# The eleven decisions in menu order, with the options on the curve: those of
+# the five decisions of SPEC_AXES multiply to the 64 specifications, and the
+# other six keep one each. Every other option is a row of data/menu_options.csv,
+# with its reason.
 .menu <- list(
   # The question
   outcome    = "named",
@@ -201,15 +187,14 @@ spec_line <- function(comparison, population, uncoded, model, adjust) {
 
 
 # ---- The shipped files -----------------------------------------------------------
-# Each file is read once and cached. The base reader keeps this code identical,
-# line for line, with the copy in R/spec_tools.R of the workspace. An empty cell must read as
-# NA, as readr reads it: the 14 authorities without community thirds would
-# otherwise enter the adjusted models as a fourth level "".
+# Each file is read once and cached. An empty cell must read as NA: the 14
+# authorities without community thirds would otherwise enter the adjusted
+# models as a fourth level "".
 .cache <- new.env(parent = emptyenv())
 .read_once <- function(name, path) {
   if (is.null(.cache[[name]])) {
     if (!file.exists(path))
-      stop(sprintf("%s is missing – the page loads it through its resources list. Reload the page.",
+      stop(sprintf("%s not found. Reload the page.",
                    path), call. = FALSE)
     assign(name, utils::read.csv(path, stringsAsFactors = FALSE, encoding = "UTF-8",
                                  na.strings = c("", "NA")),
@@ -243,17 +228,16 @@ spec_line <- function(comparison, population, uncoded, model, adjust) {
 
 
 # ---- Validation ------------------------------------------------------------------
-# Two entry points into the same rules. .validate() takes a named list, which
-# is how try_spec() supplies its arguments; .check_choices() reads the eleven
-# my_* choices of the preregistration block. An option that is not on the
-# curve stops with the reason from menu_options.csv, the page of the course
-# site that teaches it, and the options that stay on the curve.
+# .validate() checks a named list, the arguments of try_spec(); .check_choices()
+# reads the eleven my_* choices of the preregistration block. An option off the
+# curve stops with its reason from menu_options.csv, the page that teaches it
+# and the options on the curve.
 .on_menu <- function(axis, v) is.character(v) && length(v) == 1 && !is.na(v) && v %in% .menu[[axis]]
 
 .refuse <- function(axis, v, as_args) {
   shown <- if (as_args) axis else paste0("my_", axis)
   keep  <- .menu[[axis]]
-  map   <- paste0("  Every decision and its options: ", .page_ref("menu.qmd#map"))
+  map   <- paste0("  All decisions and options: ", .page_ref("menu.qmd#map"))
   if (!is.character(v) || length(v) != 1 || is.na(v))
     stop(sprintf("%s needs one option in quotes, for example %s = \"%s\".", shown, shown, keep[1]),
          call. = FALSE)
@@ -261,17 +245,17 @@ spec_line <- function(comparison, population, uncoded, model, adjust) {
   row  <- dplyr::filter(opts, .data$axis == .env$axis, .data$option == .env$v)
   off  <- dplyr::filter(opts, .data$axis == .env$axis, !.data$on_curve)$option
   msg <- if (nrow(row) == 1) c(
-    sprintf("%s = \"%s\" (%s) is not on the curve of %d specifications, so it has no result here.",
-            shown, v, row$label, nrow(.curve())),
+    sprintf("Not on the curve of %d specifications: %s = \"%s\" (%s).",
+            nrow(.curve()), shown, v, row$label),
     paste0("  Why: ", row$reason),
-    paste0("  Where it is taught: ", .page_ref(row$taught_on)),
+    paste0("  Taught in: ", .page_ref(row$taught_on)),
     map,
-    sprintf("  To stay on the curve, choose %s = %s.", shown, .or_list(keep))
+    sprintf("  On the curve: %s = %s.", shown, .or_list(keep))
   ) else c(
     sprintf("%s = \"%s\" is not an option on the menu.", shown, v),
     sprintf("  On the curve: %s.", paste(keep, collapse = " | ")),
     if (length(off) > 0)
-      sprintf("  Off the curve, refused with the reason why: %s.", paste(off, collapse = " | ")),
+      sprintf("  Off the curve, refused with a reason: %s.", paste(off, collapse = " | ")),
     map
   )
   stop(paste(msg, collapse = "\n"), call. = FALSE)
@@ -291,18 +275,16 @@ spec_line <- function(comparison, population, uncoded, model, adjust) {
   missing <- need[purrr::map_lgl(ch, is.null)]
   if (length(missing) > 0)
     stop("Not declared yet: ", paste(missing, collapse = ", "),
-         ". Fill in every choice in the preregistration block and run it first.", call. = FALSE)
+         ". Fill in every choice of the preregistration block and run the block.", call. = FALSE)
   .validate(stats::setNames(ch, names(.menu)))
 }
 
 
 # ---- The live fit ----------------------------------------------------------------
-# fit_spec() on the five decisions that vary on the curve, with the 95%
-# interval of the estimate that it returns (a t interval from parameters for
-# the linear model, a normal interval from marginaleffects for the average
-# marginal effect of the logit) and the place of the result among the 64. The
-# fit is checked against its row of data/spec_curve.csv; a difference means
-# that the page loaded an incomplete file.
+# fit_spec() on the five decisions that vary on the curve, with its 95%
+# interval (t for the linear model, normal for the average marginal effect of
+# the logit) and its place among the 64, checked against its row of
+# data/spec_curve.csv.
 .result <- function(ch) {
   fit <- fit_spec(.housing(), ch$comparison, ch$population, ch$uncoded, ch$model, ch$adjust) |>
     as.list()
@@ -314,7 +296,7 @@ spec_line <- function(comparison, population, uncoded, model, adjust) {
     warning("This specification has no row in data/spec_curve.csv; reload the page.",
             call. = FALSE)
   } else if (abs(fit$b_pp - stored$b_pp) > 1e-6 || abs(fit$stat - stored$stat) > 1e-6) {
-    warning(sprintf("The live fit (%.4f points, %s = %.4f) differs from the curve that this page loaded (%.4f points, %s = %.4f). Reload the page.",
+    warning(sprintf("The fit (%.4f points, %s = %.4f) differs from data/spec_curve.csv (%.4f points, %s = %.4f). Reload the page.",
                     fit$b_pp, fit$stat_type, fit$stat, stored$b_pp, fit$stat_type, stored$stat),
             call. = FALSE)
   }
@@ -369,9 +351,8 @@ spec_line <- function(comparison, population, uncoded, model, adjust) {
 assign("log", NULL, envir = .tried)
 assign("last", NULL, envir = .tried)
 
-# The first five arguments are the decisions on which the curve keeps more
-# than one option; the other six are fixed on the curve, and asking for any
-# other option of theirs prints the reason why it is not on the curve.
+# The first five arguments vary on the curve; the other six are fixed on it,
+# and any other option of theirs is refused with its reason.
 try_spec <- function(comparison = "white", population = "replies", uncoded = "drop",
                      model = "lpm", adjust = "none", outcome = "named", names = "both",
                      officials = "any", bounced = "exclude", inference = "model", scale = "pp") {
@@ -389,12 +370,11 @@ try_spec <- function(comparison = "white", population = "replies", uncoded = "dr
   invisible(row)
 }
 
-# The running log of everything try_spec() has fitted. Only the decisions that
-# varied are shown; the others are those of the reference specification.
+# The log of every fit of try_spec(), with only the decisions that varied.
 my_experiments <- function() {
   d <- .tried$log
   if (is.null(d)) {
-    writeLines("Nothing tried yet – call try_spec() at least once.")
+    writeLines("Nothing tried yet. Run try_spec() first.")
     return(invisible(NULL))
   }
   varied <- purrr::keep(names(.menu), \(a) dplyr::n_distinct(d[[a]]) > 1)
@@ -405,7 +385,7 @@ my_experiments <- function() {
                      test = sprintf("%s = %.2f", .data$stat_type, .data$stat),
                      p = signif(.data$p, 2),
                      n = .data$n)
-  writeLines(sprintf("Specifications you have tried (%d), estimates in percentage points:\n", nrow(d)))
+  writeLines(sprintf("Specifications tried: %d (estimates in percentage points)\n", nrow(d)))
   # wide enough for all five varied decisions on one line
   old_width <- options(width = max(getOption("width"), 120))
   on.exit(options(old_width))
@@ -417,10 +397,10 @@ my_experiments <- function() {
 
 submit_exploration <- function(nickname = NULL) {
   if (is.null(.tried$last))
-    stop("Nothing to submit – call try_spec() first, ending with the specification you want on the chart.",
+    stop("Nothing to submit. Run try_spec() first; the last specification tried is submitted.",
          call. = FALSE)
   .submit(.tried$last$ch, .tried$last$res, "explore",
-          "Your exploratory submission (the last specification you tried):", nickname)
+          "Exploratory submission (the last specification tried):", nickname)
 }
 
 
@@ -444,16 +424,14 @@ prereg <- function() {
     sprintf("Estimated with %s, %s, tested by %s and reported %s.",
             ph[["model"]], ph[["adjust"]], ph[["inference"]], ph[["scale"]]))
   writeLines(c(
-    "DECLARED – your preregistered specification, fixed before it is fitted:",
+    "DECLARED – the preregistered specification:",
     "",
     block,
     "",
     "  The estimand statement",
     strwrap(statement, width = 78, indent = 4, exdent = 4),
     "",
-    "run_spec() and report_result() read these choices from here. Rendered into",
-    "your report, this block is your preregistration, and it sits above the",
-    "cells that fit and submit this specification."))
+    "run_spec() and report_result() read these choices."))
   invisible(structure(list(choices = ch), class = "housing_prereg"))
 }
 
@@ -462,25 +440,24 @@ run_spec <- function(spec) {
     stop("Pass the object that prereg() returned: my_spec <- prereg(), then run_spec(my_spec).",
          call. = FALSE)
   if (!identical(spec$choices, .check_choices()))
-    stop("Your choices have changed since prereg() returned this object. Run your choices and my_spec <- prereg() again, then run_spec(my_spec).",
+    stop("The choices have changed since prereg(). Run the block and my_spec <- prereg() again, then run_spec(my_spec).",
          call. = FALSE)
-  .print_result(spec$choices, .result(spec$choices), "Your preregistered specification, fitted live:")
+  .print_result(spec$choices, .result(spec$choices), "Preregistered specification:")
 }
 
 report_result <- function(nickname = NULL) {
   ch <- .check_choices()
   .submit(ch, .result(ch), "declared",
-          "Your declared submission (straight from your preregistration):", nickname)
+          "Declared submission (from the preregistration):", nickname)
 }
 
 
 # ---- Task 6: the replication --------------------------------------------------------
-# replicate_spec() fits the declared specification on the data of the SCORE
-# replication. The new experiment had no Black names, no reply without a
-# greeting code and no indicator of a hard-to-find address, so the
-# specification is translated first and each change is printed. The fit is
-# checked against its row of data/replication_curve.csv and placed among the
-# 12 specifications that the curve of 64 becomes on the new data.
+# replicate_spec() fits the declared specification on the data of the
+# replication, translated to the new experiment (no Black names, no reply
+# without a greeting code, no hard_email) with each change printed, checks the
+# fit against data/replication_curve.csv and places it among the 12
+# specifications to which the 64 collapse on the new data.
 replicate_spec <- function(spec) {
   if (missing(spec) || !inherits(spec, "housing_prereg"))
     stop("Pass the object that prereg() returned: my_spec <- prereg(), then replicate_spec(my_spec).",
@@ -490,11 +467,11 @@ replicate_spec <- function(spec) {
                                     adjust = if (ch$adjust == "email") "none" else ch$adjust))
   changes <- c(
     if (ch$comparison == "nonhispanic")
-      "  The comparison is with white names only, because the new experiment used no Black names.",
+      "  comparison = \"white\": the new experiment used no Black names.",
     if (ch$uncoded == "not_named")
-      "  Every reply of the new experiment carries a greeting code, so the rule for uncoded replies changes nothing.",
+      "  uncoded = \"drop\": every reply of the new experiment carries a greeting code.",
     if (ch$adjust != "none")
-      "  The new data hold no indicator of a hard-to-find address, so the adjustment leaves it out.")
+      "  adjust: without hard_email, which the new data do not hold.")
   fit <- fit_spec(.read_once("replication", file.path(.data_dir, "housing_replication.csv")),
                   new$comparison, new$population, new$uncoded, new$model, new$adjust) |>
     as.list()
@@ -502,24 +479,23 @@ replicate_spec <- function(spec) {
   stored <- dplyr::filter(curve, .data$comparison == ch$comparison, .data$population == ch$population,
                           .data$uncoded == ch$uncoded, .data$model == ch$model, .data$adjust == ch$adjust)
   if (nrow(stored) != 1 || abs(fit$b_pp - stored$b_pp) > 1e-6)
-    warning("The fit on the new data differs from data/replication_curve.csv. A file in data/ may have been edited; restore it from the course repository.",
+    warning("The fit on the new data differs from data/replication_curve.csv. Reload the page.",
             call. = FALSE)
   distinct <- dplyr::filter(curve, !duplicated(.data$rep_spec))
-  .print_result(ch, .result(ch), "Your declared specification on the original data:")
-  writeLines(c("", "The same specification on the new data of the SCORE replication:",
+  .print_result(ch, .result(ch), "Declared specification on the original data:")
+  writeLines(c("", "Declared specification on the data of the replication:",
                if (length(changes) > 0) changes
-               else "  Every choice of your specification exists in the new data, so nothing is translated."))
+               else "  No translation: every choice exists in the new data."))
   .print_result(new, c(fit, list(further = sum(distinct$b_pp < fit$b_pp - 1e-9), n_curve = nrow(distinct))))
 }
 
 
 # ---- Submission tags ---------------------------------------------------------------
-# Both submissions of a participant carry one short tag inside the spec label,
-# "explore: [amber-otter-42] housing …", so that the participant can find
-# their own marks on the class chart. The same functions sit in
-# R/spec_tools.R of the workspace, which keeps the tag in a file; here it
+# Both submissions carry one tag inside the spec label, "explore:
+# [amber-otter-42] housing …", by which a participant finds their marks on the
+# class chart; the label carries it because the Form is shared. Here the tag
 # lasts for the browser session, and a nickname passed to either submission
-# function sets it or brings it back after a reload.
+# function sets it or restores it after a reload.
 .tag_words <- list(
   adj  = c("amber", "azure", "bright", "calm", "coral", "crisp", "dusky", "early",
            "fair", "gentle", "golden", "hazel", "ivory", "jade", "keen", "lively",
@@ -567,11 +543,10 @@ assign("tag", NULL, envir = .tag_env)
   list(tag = tag, replaced = if (!is.null(stored) && !identical(tag, stored)) stored)
 }
 
-# One submission, used by both phases. The phase, the tag and the word of the
-# case study are prefixed to the free-text spec label, which carries the five
-# decisions that vary on the curve. The estimate and its standard error are
-# sent in percentage points, the statistic of the model in the t field (a z
-# for a logit, whose df field stays empty), and r by the rule of the robustness study.
+# One submission of either phase. The label is the phase, the tag, the word of
+# the case study and the five decisions that vary on the curve; b and se go in
+# percentage points, the statistic in the t field (a z for a logit, with df
+# empty) and r by the rule of the robustness study.
 .submit <- function(ch, res, phase, lead, nickname = NULL) {
   tg <- .class_tag(nickname)
   spec_label <- paste0(phase, ": [", tg$tag, "] ", .case_word, " ",
@@ -594,17 +569,15 @@ assign("tag", NULL, envir = .tag_env)
     "  (b and se in percentage points)",
     paste0("  Verdict: ", .class_line(res)),
     "",
-    "Open the link below (or copy the URL) – the form opens with every field",
-    "pre-filled; just press Send.",
+    "Open this address and press Send; every field of the form is filled in:",
     "",
     url,
     "",
-    sprintf("Your marks on the class chart carry the tag %s%s.", tg$tag,
-            if (!is.null(tg$replaced)) sprintf(" (it replaces %s)", tg$replaced) else ""),
-    sprintf("Look for it on the Class results page, %s/class-results.html.", .course_url),
-    "Both of your submissions share it while this page stays open; after a reload,",
-    sprintf("bring it back with nickname = \"%s\". To choose your own, pass a", tg$tag),
-    "nickname rather than your name, because the chart is public."))
+    sprintf("Tag on the class chart: %s%s", tg$tag,
+            if (!is.null(tg$replaced)) sprintf(" (replaces %s)", tg$replaced) else ""),
+    sprintf("Class results: %s/class-results.html", .course_url),
+    sprintf("Both submissions carry this tag while the page stays open; after a reload, nickname = \"%s\" restores it.", tg$tag),
+    "Another tag: nickname = \"...\" (not your name; the chart is public)."))
   invisible(list(spec = spec_label, tag = tg$tag, b = res$b_pp, se = res$se_pp, statistic = res$stat,
                  df = res$df, n = res$n, r = res$r, url = url))
 }

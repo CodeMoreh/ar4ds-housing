@@ -11,25 +11,20 @@ tinyplot.
 ```{webr}
 #| include: false
 #| autorun: true
-# Graph machinery for Task 2. make_dag() reads a graph from its arrows, and
-# plot_dag() draws it with tinyplot. adjustmentSets() and paths() print the
-# answers of dagitty, the R package that the workspace uses, from
-# data/dag_answers.csv: R/07_dag_answers.R in the course repository
-# computes them with dagitty for every graph to which the graph cell below
-# leads. dagitty itself cannot run on this page, because its graph algorithms
-# need a JavaScript engine that a browser grants only to a page served with
-# cross-origin isolation headers (COOP and COEP), and the course site does not
-# send them. Another graph, or another question, goes to dagitty in the
-# downloadable workspace. The table arrives with the page through its
-# `resources:` list, in the folder that the setup cell of the including page
-# names as .data_dir.
+# The graph helpers of Task 2. make_dag() builds a graph from its arrows and
+# plot_dag() draws it. adjustmentSets() and paths() print the answers of
+# dagitty for every graph to which the graph cell leads, from
+# data/dag_answers.csv (written by R/07_dag_answers.R in the course
+# repository): dagitty cannot run on this page, which lacks the cross-origin
+# isolation headers (COOP and COEP) that its engine needs. The table arrives
+# through the resources list of the including page, in the folder named by
+# .data_dir.
 .dag_answers <- utils::read.csv(file.path(.data_dir, "dag_answers.csv"), stringsAsFactors = FALSE,
                                 na.strings = "NA")
 .dag_elsewhere <- c(
-  "This page holds the answers that dagitty gives to the questions of Task 2, for the",
-  "graph of the cell with and without the arrow \"name -> greeting\". For another graph",
-  "or another question, use the downloadable workspace, where R/dag_starter.R builds",
-  "the graph and dagitty answers whatever you ask of it.")
+  "No answer stored for this graph or question. This page holds the answers of dagitty",
+  "for the graph of Task 2, with and without the arrow \"name -> greeting\". Other graphs",
+  "and questions: R/dag_starter.R and dagitty in the workspace.")
 
 # Where each node sits in the figure, with y counted upwards: the name on the
 # left, the greeting on the right, the reply above the line between them. A
@@ -60,9 +55,7 @@ make_dag <- function(..., exposure = "name", outcome = "greeting", latent = "off
 }
 
 # The minimal adjustment sets for the total effect of the exposure on the
-# outcome, as dagitty::adjustmentSets() returns them, read from the table. The
-# rows are chosen with dplyr, whose .data and .env pronouns keep a column and
-# an argument of the same name apart.
+# outcome, as dagitty::adjustmentSets() returns them, read from the table.
 adjustmentSets <- function(x, exposure = x$exposure, outcome = x$outcome, effect = "total", ...) {
   rows <- dplyr::filter(.dag_answers, .data$call == "adjustmentSets", .data$arrows %in% x$key,
                         .data$exposure %in% paste(.env$exposure, collapse = ", "),
