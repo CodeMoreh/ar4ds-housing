@@ -30,6 +30,7 @@ other numbers are read from the committed data files by the chunk below. -->
 h_curve <- readr::read_csv("data/spec_curve.csv", show_col_types = FALSE)
 h_analysts <- readr::read_csv("data/analysts5.csv", show_col_types = FALSE)
 h_emails <- nrow(readr::read_csv("data/housing_emails.csv", show_col_types = FALSE))
+h_rep_emails <- nrow(readr::read_csv("data/housing_replication.csv", show_col_types = FALSE))
 coded <- readr::read_csv("data/housing_original.csv", show_col_types = FALSE) |>
   datawizard::data_filter(!is.na(ProperName)) |>
   datawizard::data_modify(hispanic_name = startsWith(TreatmentGroup, "Hispanic"))
@@ -134,7 +135,7 @@ Proportions and the chi-square test, the linear probability model set against th
 ::: {.home-r}
 ### Data {.unnumbered .unlisted}
 
-One file of `r format(h_emails, big.mark = ",")` emails, released into the public domain (CC0) and shipped with the workspace.
+Two files shipped with the workspace: the `r format(h_emails, big.mark = ",")` emails of the original experiment, released into the public domain (CC0), and the `r format(h_rep_emails, big.mark = ",")` emails of the SCORE replication, from its de-identified data on the OSF.
 :::
 
 ::::
