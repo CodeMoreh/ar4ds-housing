@@ -6,7 +6,7 @@ title: "First half – The claim and its reproduction"
 :::
 
 1. The plan of the session
-2. The three Rs and the robustness study of SCORE (Multi100; Aczel et al. 2026)
+2. The three Rs and the SCORE robustness study (Aczel et al. 2026)
 3. Task 1 – The setup check
 4. The paper and the five analysts
 5. The estimand and the graph
@@ -14,7 +14,7 @@ title: "First half – The claim and its reproduction"
 7. Task 3 – The reproduction
 8. The defaults of the software
 
-Open the deck in a tab of its own while the facilitator talks, so that R loads in it. When the slides ask for your estimand statement, which is Task 2, write it in your notes.
+When the slides ask for your estimand statement, which is Task 2, write it in your notes.
 
 ## Task 1 – The setup check
 
@@ -26,6 +26,6 @@ If the deck does not load, run the same cells in the browser lab, which gives th
 
 ## Task 3 – The reproduction
 
-**In the deck.** Run the cell that reads the public file `housing_original.csv`, then work through the cells of the analyst given to you by the facilitator, who shares the five analysts out so that the class reproduces all five.
+**In the deck.** Run the cell that reads the public file `housing_original.csv`, then work through the cells of the analyst given to you.
 
 [Open the deck at Task 3](../../live/short.html#/hands-on-3-reproduce-the-recorded-result){.btn .btn-primary target="_blank"} [Open the browser lab at Task 3](../../lab.qmd#task-3-reproduction){.btn .btn-outline-primary target="_blank"}

@@ -19,8 +19,6 @@ title: "Part 4 – Robustness"
 11. The replication
 12. The close
 
-Keep the menu and the curve open in other tabs while the facilitator talks.
-
 [Open the specification menu](../../menu.qmd){.btn .btn-primary target="_blank"} [Open the specification curve](../../curve.qmd){.btn .btn-primary target="_blank"}
 
 ## Task 4 – The menu
@@ -45,7 +43,7 @@ If your installation fails, complete the block in the deck or in the browser lab
 
 ## Task 6 – Replication
 
-**In your workspace**, in the chunks of Task 6 of `index.qmd`. Run `replicate_spec(my_spec)`, which translates your declared specification to the new experiment of the SCORE replication and fits it on its data, then draw the figure and write your two sentences. The second chart of the [Class results](../../class-results.qmd) page draws the declared specifications of the class on the new data in the same way.
+**In your workspace**, in the chunks of Task 6 of `index.qmd`. Run `replicate_spec(my_spec)`, which translates your declared specification to the new experiment run for the SCORE replicability study and fits it on the data of that experiment, then draw the figure and write your two sentences. The second chart of the [Class results](../../class-results.qmd) page draws the declared specifications of the class on the new data in the same way.
 
 [Open the deck at Task 6](../../live/day.html#/hands-on-6-replication){.btn .btn-outline-primary target="_blank"} [Open the browser lab at Task 6](../../lab.qmd#task-6-replication){.btn .btn-outline-primary target="_blank"}
 

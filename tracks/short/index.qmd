@@ -1,8 +1,8 @@
 ---
-title: "Short"
+title: "Part-day"
 subtitle: "Two halves, with a facilitator"
 ---
-This format fills a slot of two to three hours, with nothing to install, nothing sent to a class chart and nothing preregistered. The session works on a field experiment, in which emails that differed only in the name that signed them were sent to public housing authorities in the United States, and on a claim of the original authors (OAs) that five analysts reanalysed for the robustness study of SCORE (Multi100; Aczel et al. 2026). You leave with an estimand statement of your own, a reproduced value, and the place of the analysis that you would defend among the 64 specifications on the curve of the claim.
+This format fills a slot of two to three hours, with nothing to install, nothing sent to a class chart and nothing preregistered. The session works on a field experiment, in which emails that differed only in the name that signed them were sent to public housing authorities in the United States, and on a claim of the original authors (OAs) that five analysts reanalysed for the SCORE robustness study (Aczel et al. 2026). You leave with an estimand statement of your own, a reproduced value, and the place of the analysis that you would defend among the 64 specifications on the curve of the claim.
 
 ## How you work
 

@@ -76,7 +76,7 @@ Applied Replication for Data Skills (AR4DS) is a course that introduces technica
 The main aim of the course is to introduce technical skills for modern empirical data analysis: finding the data and code of a study in an online repository, working with code so that another person (or your future self) can reproduce your steps, fixing your analytical choices in a preregistration before you run the analysis, and writing a live report that combines code and text.
 :::
 
-The claim at the centre of the exercise comes from the work of SCORE, a programme that put claims from published social and behavioural research through reproduction, robustness checks and replication. The exercise follows the design of its robustness study [Multi100\; @AczelEtAl2026InvestigatingAnalyticalRobustness] on a smaller scale, with many analysts testing the same claim, each stating their analytical choices, and results reported in a form that allows them to be compared. The AR4DS site describes [the programme](https://codemoreh.github.io/ar4ds/score.html), and its page on [the robustness article](https://codemoreh.github.io/ar4ds/robustness-article.html) explains how the results of the analysts were placed on one scale and compared.
+The claim at the centre of the exercise comes from the work of SCORE, a programme that put claims from published social and behavioural research through reproduction, robustness checks and replication. The exercise follows the design of the SCORE robustness study [@AczelEtAl2026InvestigatingAnalyticalRobustness] on a smaller scale, with many analysts testing the same claim, each stating their analytical choices, and results reported in a form that allows them to be compared. The AR4DS site describes [the programme](https://codemoreh.github.io/ar4ds/score.html), and its page on [the robustness article](https://codemoreh.github.io/ar4ds/robustness-article.html) explains how the results of the analysts were placed on one scale and compared.
 
 ::::
 
@@ -91,13 +91,13 @@ Participants choose one of the five independent reanalyses of the claim and repe
 ::: {.home-r}
 ### Robustness {.unnumbered .unlisted}
 
-Participants then work through the analytical decisions that lie between the data and a result, trying alternative specifications one change at a time, locating each result on a specification curve of `r h_spec` defensible analyses and – in the day and independent formats – declaring one specification in a short preregistration before it is run.
+Participants then work through the analytical decisions that lie between the data and a result, trying alternative specifications one change at a time, locating each result on a specification curve of `r h_spec` defensible analyses and – in the full-day and self-taught formats – declaring one specification in a short preregistration before it is run.
 :::
 
 ::: {.home-r}
 ### Replication {.unnumbered .unlisted}
 
-The course then sets the claim against its replication with new data, a preregistered experiment on 3,050 housing authorities in which no significant gap was found, and in the day and independent formats each participant runs the declared analysis again on the data of that experiment. The course considers what a failed replication can and cannot establish about the original result.
+The course then sets the claim against its replication in the SCORE replicability study, a preregistered experiment on 3,050 housing authorities in which no significant gap was found, and in the full-day and self-taught formats each participant runs the declared analysis again on the data of that experiment. The course considers what a failed replication can and cannot establish about the original result.
 :::
 
 ::::
@@ -135,7 +135,7 @@ Proportions and the chi-square test, the linear probability model set against th
 ::: {.home-r}
 ### Data {.unnumbered .unlisted}
 
-Two files shipped with the workspace: the `r format(h_emails, big.mark = ",")` emails of the original experiment, released into the public domain (CC0), and the `r format(h_rep_emails, big.mark = ",")` emails of the SCORE replication, from its de-identified data on the OSF.
+Two files shipped with the workspace: the `r format(h_emails, big.mark = ",")` emails of the original experiment, released into the public domain (CC0), and the `r format(h_rep_emails, big.mark = ",")` emails of the replication, from its de-identified data on the OSF.
 :::
 
 ::::
@@ -155,7 +155,7 @@ The facilitator of a course chooses its format, and the link that you receive fo
 :::: {.home-grid}
 
 ::: {.home-track .home-reveal}
-### [Short](tracks/short/index.qmd) {.unnumbered .unlisted}
+### [Part-day](tracks/short/index.qmd) {#short .unnumbered .unlisted}
 
 [Two halves, in the browser]{.home-meta}
 
@@ -163,7 +163,7 @@ Two halves, with nothing to install and nothing to submit: the claim and the fiv
 :::
 
 ::: {.home-track .home-reveal}
-### [Day](tracks/day/index.qmd) {.unnumbered .unlisted}
+### [Full-day](tracks/day/index.qmd) {#day .unnumbered .unlisted}
 
 [Four parts, in R on your own machine]{.home-meta}
 
@@ -171,7 +171,7 @@ The claim and the credibility of social science, the estimand and the causal gra
 :::
 
 ::: {.home-track .home-reveal}
-### [Independent](tracks/independent/index.qmd) {.unnumbered .unlisted}
+### [Self-taught](tracks/independent/index.qmd) {#independent .unnumbered .unlisted}
 
 [Five stages at your own pace, in R]{.home-meta}
 
@@ -189,7 +189,7 @@ The case study for a reader who works alone, in R on your own machine, with the 
 ## The exercise {.unnumbered .home-reveal}
 
 ::: {.home-intro .home-reveal}
-Every format works through the same six tasks, or a selection of them. The short format takes the first four and sends nothing to the class chart, while the day and independent formats take all six. The decisions that the tasks ask for fall into three groups: the question that the analysis answers; measurement, how the variables are built; and the model, how it is fitted and its uncertainty judged.
+Every format works through the same six tasks, or a selection of them. The part-day format takes the first four and sends nothing to the class chart, while the full-day and self-taught formats take all six. The decisions that the tasks ask for fall into three groups: the question that the analysis answers; measurement, how the variables are built; and the model, how it is fitted and its uncertainty judged.
 :::
 
 :::: {.home-reveal}
@@ -197,7 +197,7 @@ Every format works through the same six tasks, or a selection of them. The short
 <details>
 <summary><span class="home-n">Task 1</span>The setup check</summary>
 
-Check that your tools work before the rest of the work depends on them: the check script of the workspace, or in the short format the setup cell of the deck.
+Check that your tools work before the rest of the work depends on them: the check script of the workspace, or in the part-day format the setup cell of the deck.
 
 </details>
 
@@ -232,13 +232,13 @@ Declare one specification in a short preregistration, run it, report it, and fin
 <details>
 <summary><span class="home-n">Task 6</span>Replication</summary>
 
-Run the specification that you declared on the data of the SCORE replication, a new experiment of 2020, and place it on the curve of the claim on the new data, beside its place on the curve of the original data.
+Run the specification that you declared on the data of the replication, a new experiment of 2020, and place it on the curve of the claim on the new data, beside its place on the curve of the original data.
 
 </details>
 
 ::::
 
-The exercise page of each format sets out its tasks, with the tool in which each is done, for the [short](tracks/short/exercise.qmd), [day](tracks/day/exercise.qmd) and [independent](tracks/independent/exercise.qmd) formats.
+The exercise page of each format sets out its tasks, with the tool in which each is done, for the [part-day](tracks/short/exercise.qmd), [full-day](tracks/day/exercise.qmd) and [self-taught](tracks/independent/exercise.qmd) formats.
 
 :::::
 ::::::
@@ -249,7 +249,7 @@ The exercise page of each format sets out its tasks, with the tool in which each
 ## Getting started {.unnumbered .home-reveal}
 
 ::: {.home-intro .home-reveal}
-The short format needs only a browser, because every task of the format is done in its deck, which runs R inside the browser. The day and independent formats do the tasks in the workspace, in your IDE, and install R, an IDE and the workspace as part of their preparation.
+The part-day format needs only a browser, because every task of the format is done in its deck, which runs R inside the browser. The full-day and self-taught formats do the tasks in the workspace, in your IDE, and install R, an IDE and the workspace as part of their preparation.
 :::
 
 :::: {.home-steps .home-reveal}
@@ -257,19 +257,19 @@ The short format needs only a browser, because every task of the format is done 
 ::: {.home-step}
 ### R and an IDE {.unnumbered .unlisted}
 
-Install R, Quarto and an IDE (Positron, RStudio, VS Code, etc.), following the steps for your operating system; the short format needs none of them. [Install and check](https://codemoreh.github.io/ar4ds/setup.html)
+Install R, Quarto and an IDE (Positron, RStudio, VS Code, etc.), following the steps for your operating system; the part-day format needs none of them. [Install and check](https://codemoreh.github.io/ar4ds/setup.html)
 :::
 
 ::: {.home-step}
 ### The workspace {.unnumbered .unlisted}
 
-Download the workspace of the case study as a zip file, open it in your IDE and run the check script. The day and independent formats do their tasks in it. [The workspace](tracks/day/before.qmd#the-workspace)
+Download the workspace of the case study as a zip file, open it in your IDE and run the check script. The full-day and self-taught formats do their tasks in it. [The workspace](tracks/day/before.qmd#the-workspace)
 :::
 
 ::: {.home-step}
 ### The deck {.unnumbered .unlisted}
 
-The decks of the short and day formats run R inside the browser. The short format does every task in its deck, and in the day format the deck shows each step with its output. [Choose a format](#formats)
+The decks of the part-day and full-day formats run R inside the browser. The part-day format does every task in its deck, and in the full-day format the deck shows each step with its output. [Choose a format](#formats)
 :::
 
 ::: {.home-step}

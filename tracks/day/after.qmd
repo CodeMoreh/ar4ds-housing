@@ -16,4 +16,4 @@ The section "Going further" at the end of the report in the workspace holds thre
 - [Quarto documents](https://codemoreh.github.io/ar4ds/tools/quarto.html)
 - [Reproducibility repositories](../../companion/repositories.qmd), then [Git and GitHub](https://codemoreh.github.io/ar4ds/git-github.html)
 
-The final report of the replication with new data is at [osf.io/2ug8x](https://osf.io/2ug8x/), and its de-identified data, do-file and dictionary are at [osf.io/xseqg](https://osf.io/xseqg/). The [background page](../../background.qmd) and the [resources page](../../resources.qmd) give the sources of the case study.
+The final report of the replication in the SCORE replicability study is at [osf.io/2ug8x](https://osf.io/2ug8x/), and its de-identified data, do-file and dictionary are at [osf.io/xseqg](https://osf.io/xseqg/). The [background page](../../background.qmd) and the [resources page](../../resources.qmd) give the sources of the case study.

@@ -1,9 +1,9 @@
 ---
-title: "Day"
+title: "Full-day"
 subtitle: "Four parts, with a facilitator"
 ---
 
-This format takes one day. It works on one field experiment, in which emails that differed only in the name that signed them were sent to public housing authorities in the United States, and on a claim of the original authors (OAs) that five analysts reanalysed for the robustness study of SCORE (Multi100; Aczel et al. 2026). Across the day you work as analyst no. 6, and you leave with a report of your own, two marks on the class chart, one explored and one declared, and the place of your declared result on the curve of the original data and on the curve of the new data of the replication.
+This format takes one day. It works on one field experiment, in which emails that differed only in the name that signed them were sent to public housing authorities in the United States, and on a claim of the original authors (OAs) that five analysts reanalysed for the SCORE robustness study (Aczel et al. 2026). Across the day you work as analyst no. 6, and you leave with a report of your own, two marks on the class chart, one explored and one declared, and the place of your declared result on the curve of the original data and on the curve of the new data of the replication in the SCORE replicability study.
 
 ## How you work
 

@@ -8,7 +8,7 @@
 # show no sidebar, and the previous and next links never run into them.
 website:
   sidebar:
-    - title: "Short"
+    - title: "Part-day"
       style: docked
       collapse-level: 2
       contents:
@@ -30,7 +30,7 @@ website:
           contents:
             - text: "Browser lab"
               href: "https://codemoreh.github.io/ar4ds-housing/lab.html"
-    - title: "Day"
+    - title: "Full-day"
       style: docked
       collapse-level: 2
       contents:
@@ -64,7 +64,7 @@ website:
               href: "https://codemoreh.github.io/ar4ds-housing/lab.html"
             - text: "Cheatsheet"
               href: "https://codemoreh.github.io/ar4ds-housing/cheatsheet.html"
-    - title: "Independent"
+    - title: "Self-taught"
       style: docked
       collapse-level: 2
       contents:

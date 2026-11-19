@@ -6,7 +6,7 @@ format:
 ---
 
 ::: {.callout-note}
-**Print this page** (Ctrl+P / Cmd+P) or keep it open on a second device.
+**Print this page** (Ctrl+P / Cmd+P).
 :::
 
 ------------------------------------------------------------------------
@@ -24,9 +24,9 @@ format:
 | **Decision map** | [decision map](menu.qmd#map) |
 | **Specification curve** | [specification curve](curve.qmd) |
 | **The data (Harvard Dataverse, CC0)** | <https://doi.org/10.7910/DVN/1HOVTU> |
-| **The five analyses of the robustness study** | <https://osf.io/38rsh/> |
+| **The five analyses of the SCORE robustness study** | <https://osf.io/38rsh/> |
 | **The SCORE dossier on the paper** | <https://osf.io/3a8bg/> |
-| **The robustness study (Multi100)** | <https://osf.io/q5h2c/> |
+| **The data of the robustness study** | <https://osf.io/q5h2c/> |
 
 ------------------------------------------------------------------------
 
@@ -45,7 +45,7 @@ The downloadable workspace and the browser lab have the same helpers, with the s
 | `my_spec <- prereg()` | 5 | Checks the eleven `my_*` choices of the preregistration block against the menu, prints the block with its estimand statement, and keeps it as `my_spec`. |
 | `run_spec(my_spec)` | 5 | Fits the declared specification and prints the same lines as `try_spec()`. It refuses to run if the block has changed since `prereg()`. |
 | `report_result()` | 5 | Sends the declared result to the class chart, a filled circle, with the same tag as your exploratory result. |
-| `replicate_spec(my_spec)` | 6 | Translates the declared specification to the new experiment of the SCORE replication, prints each change, and fits it on its data; it prints the result on the original data above the result on the new data. |
+| `replicate_spec(my_spec)` | 6 | Translates the declared specification to the new experiment run for the SCORE replicability study, prints each change, and fits it on its data; it prints the result on the original data above the result on the new data. |
 
 Both submission functions take `nickname = "..."`, which replaces the tag that they draw for you, such as `amber-otter-42`. Use a nickname rather than your name, because the chart is public.
 
@@ -97,7 +97,7 @@ The [specification menu](menu.qmd) explains every option, and the [decision map]
 
 ## Submitting to the chart {#submitting}
 
-The short format sends nothing to the class chart, and its participants can skip this section. Otherwise you submit twice.
+The part-day format sends nothing to the class chart. The other formats submit twice.
 
 **Task 4 – the exploratory mark (open circle).**
 
@@ -142,17 +142,16 @@ If any of that stalls, work down the list under [A stalled browser lab](#a-stall
 
 ## A stalled browser lab
 
-Work down this list. Step 4 puts your mark on the chart whatever your machine does.
+Work down this list.
 
 1. **Hard reload, then rerun.** Reload the page clearing the cache (Ctrl+Shift+R / Cmd+Shift+R), wait for R to restart, and **rerun the cells above** the one that failed – the R engine in the browser needs the earlier cells to have run in this session before a later one will work.
 2. **Switch browser.** If a cell still will not run, open the browser lab in a different browser (Chrome, Edge or Firefox).
-3. **Follow the shared screen.** If your machine simply will not cooperate, watch the facilitator run the same cell on the shared screen and read the printed results from there.
-4. **Read your printed result to the facilitator.** If `submit_exploration()` or `report_result()` printed your result but the form link will not open, read the printed `b`, `se`, `t` (or `z`), `df`, `n` and `r` to the facilitator, who adds the mark to the chart for you. If a cell refuses to run at all, nothing is printed and there are no numbers to read, so give the facilitator your five choices instead, and the facilitator reads the result off the curve file by hand (the note below).
+3. **Read your printed result to the facilitator.** If `submit_exploration()` or `report_result()` printed your result but the form link will not open, read the printed `b`, `se`, `t` (or `z`), `df`, `n` and `r` to the facilitator, who adds the mark to the chart. If a cell refuses to run at all, give the facilitator your five choices instead (the note below).
 
 ::: {.callout-note}
 ## The by-hand lookup
 
-Last resort, facilitator-side, if the cells of a participant will not run at all: every specification on the curve is one row of `data/spec_curve.csv`, picked by its five codes (`comparison`, `population`, `uncoded`, `model`, `adjust`), and the reference specification is the row in which `is_reference` is TRUE. Read off `b_pp` and `se_pp` (the form fields `b` and `se`, in percentage points), `stat` (the field `t`, a z for a logit), `df` (empty for a logit), `n` and `r`, and write the label as `explore: [tag] housing comparison=… population=… uncoded=… model=… adjust=…`, or `declared:` for Task 5. Enter those into the [form]({{< var results-form-url >}}), and the mark appears without anything being fitted.
+If no cell will run at all: every specification on the curve is one row of `data/spec_curve.csv`, picked by its five codes (`comparison`, `population`, `uncoded`, `model`, `adjust`), and the reference specification is the row in which `is_reference` is TRUE. Read off `b_pp` and `se_pp` (the form fields `b` and `se`, in percentage points), `stat` (the field `t`, a z for a logit), `df` (empty for a logit), `n` and `r`, and write the label as `explore: [tag] housing comparison=… population=… uncoded=… model=… adjust=…`, or `declared:` for Task 5. Enter those into the [form]({{< var results-form-url >}}), and the mark appears without anything being fitted.
 :::
 
 ------------------------------------------------------------------------

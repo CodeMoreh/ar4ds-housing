@@ -13,8 +13,6 @@ title: "Second half – Exploration and replication"
 6. The replication
 7. The close
 
-Keep the menu and the curve open in other tabs while the facilitator talks.
-
 [Open the specification menu](../../menu.qmd){.btn .btn-primary target="_blank"} [Open the specification curve](../../curve.qmd){.btn .btn-primary target="_blank"}
 
 ## Task 4 – The menu

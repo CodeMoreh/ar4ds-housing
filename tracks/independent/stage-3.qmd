@@ -6,7 +6,7 @@ case: housing
 **Slides.** [Open the deck at Part 2](../../live/day.html#/part-2-the-estimand-and-the-causal-graph){target="_blank"} in its own tab, or follow it on the [slides page](../day/slides.qmd).
 :::
 
-In this stage you write the estimand statement behind the claim, finish the causal graph of the experiment, and reproduce the value recorded in the robustness study of SCORE (Multi100; Aczel et al. 2026) for one of the five analysts, whichever you choose. It takes nearly six hours.
+In this stage you write the estimand statement behind the claim, finish the causal graph of the experiment, and reproduce the value recorded in the SCORE robustness study (Aczel et al. 2026) for one of the five analysts, whichever you choose. It takes nearly six hours.
 
 ## 1. The exercise
 

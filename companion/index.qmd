@@ -7,7 +7,7 @@ The course is built around one exercise, in which you reproduce a recorded resul
 
 Every module is written for this case study. The modules that run code compute their numbers from the case-study files in `data/` when the page is built, with the result that a module can be read as a worked analysis as well as an explanation, and that you can check each number against your own output.
 
-Nothing here is required for the short and day formats, which run in full without any module and with no account to create. The pages of these formats point to some modules as preparation, to others as the slower companion to a part of the session, and to the rest as reading for afterwards, while the independent format takes up the modules in its stages, between the tasks of the case study.
+Nothing here is required for the part-day and full-day formats, which run in full without any module and with no account to create. The pages of these formats point to some modules as preparation, to others as the slower companion to a part of the session, and to the rest as reading for afterwards, while the self-taught format takes up the modules in its stages, between the tasks of the case study.
 
 The modules fall into the three groups of the Companion menu. The first comprises the computational tools with which an analysis is written, the second the data and the public records that allow others to find an analysis and run it again, and the third the statistical methods with which the case study is analysed. Within each group, the modules are ordered roughly according to what each of them assumes of the reader.
 
@@ -25,7 +25,7 @@ The modules on the tools are held on the umbrella site of the course and written
 
 - [Social science data sources](data-sources.qmd) – the three routes by which data reach a researcher, a map of the archives, surveys, panels and statistics with the access rule for each, the route of the Housing data from the Harvard Dataverse, and citing data.
 - [Building the analysis file](data-management.qmd) – the course file rebuilt step by step from the file deposited with the published study: the names, the replies and their greeting codes, the bounced emails and the community thirds, and the checks that a rebuilt file has to pass.
-- [Reproducibility repositories](repositories.qmd) – what a repository has to do, the repositories that researchers use, the package of the study on the Harvard Dataverse, the records that SCORE and its robustness study (Multi100; Aczel et al. 2026) keep on the paper, registrations and preregistration templates, and depositing a reanalysis of your own.
+- [Reproducibility repositories](repositories.qmd) – what a repository has to do, the repositories that researchers use, the package of the study on the Harvard Dataverse, the records kept on the paper by the SCORE programme and the SCORE robustness study (Aczel et al. 2026), registrations and preregistration templates, and depositing a reanalysis of your own.
 
 ## Methods {#sec-methods}
 

@@ -1,10 +1,10 @@
 ---
 title: "The exercise"
-subtitle: "Short"
+subtitle: "Part-day"
 bibliography: [../../references.bib, ../../references-new.bib]
 ---
 
-The [background page](../../background.qmd) presents the original study, the SCORE replication and the five reanalyses of the robustness study of SCORE [Multi100\; @AczelEtAl2026InvestigatingAnalyticalRobustness]. The short format takes Tasks 1 to 4, and you do them in the deck of the session, whose slides run R inside your browser with the data already in place. The [browser lab](../../lab.qmd) holds the same tasks and is the fallback if the deck does not load.
+The [background page](../../background.qmd) presents the original study, its replication in the SCORE replicability study and the five reanalyses of the SCORE robustness study [@AczelEtAl2026InvestigatingAnalyticalRobustness]. The part-day format takes Tasks 1 to 4, and you do them in the deck of the session, whose slides run R inside your browser with the data already in place. The [browser lab](../../lab.qmd) holds the same tasks and is the fallback if the deck does not load.
 
 ---
 
@@ -26,7 +26,7 @@ Write the **estimand statement** behind the claim in your notes. It says which c
 
 ### Task 3 – The reproduction
 
-Choose one of the five analysts in the table above and reproduce the analysis from the public file of the OAs, `housing_original.csv` ([codebook](../../data/housing_original_codebook.md)), in the cells of that analyst. Then find out why your number is what it is. A reproduction depends on the defaults and the codings of the software as well as on the data and the model.
+Reproduce the analysis of one of the five analysts in the table above from the public file of the OAs, `housing_original.csv` ([codebook](../../data/housing_original_codebook.md)), in the cells of that analyst. Then find out why your number is what it is. A reproduction depends on the defaults and the codings of the software as well as on the data and the model.
 
 ### Task 4 – The menu
 

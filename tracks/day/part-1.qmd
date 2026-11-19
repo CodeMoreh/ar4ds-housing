@@ -8,12 +8,10 @@ title: "Part 1 – The claim and credibility"
 
 1. The plan for the day
 2. The credibility of social science
-3. SCORE and its robustness study (Multi100; Aczel et al. 2026)
+3. SCORE in brief and the SCORE robustness study (Aczel et al. 2026)
 4. The paper and its claim
 5. The workspace and the deck
 6. Task 1 – The setup check
-
-Open your workspace in your IDE while the facilitator talks.
 
 ## Task 1 – The setup check
 

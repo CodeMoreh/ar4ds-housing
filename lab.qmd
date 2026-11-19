@@ -42,7 +42,7 @@ This page holds the exercise of the course, Tasks 1 to 6, on a copy of R that ru
 ::: {.callout-important icon="false"}
 ## While the R engine loads
 
-The R engine downloads into your browser when you open this page (a minute or so, longer on a slow connection). It is ready when the first code cell shows a "Run Code" button. Keep this tab open, because your work is lost when the page is refreshed.
+The R engine downloads into your browser when you open this page (a minute or so, longer on a slow connection). It is ready when the first code cell shows a "Run Code" button. Your work is lost when the page is refreshed.
 :::
 
 ```{webr}
@@ -57,7 +57,7 @@ housing <- utils::read.csv("data/housing_emails.csv", na.strings = c("", "NA"))
 
 {{< include _includes/_lab-helpers.qmd >}}
 
-Five analysts reanalysed a claim of the Housing case study [@EinsteinGlick2017DoesRaceAffect] for the robustness study of SCORE [Multi100\; @AczelEtAl2026InvestigatingAnalyticalRobustness]; you are analyst no. 6. The claim is that "Hispanic housing applicants were ... less likely to be greeted by name than were ... white counterparts", in the words of the original authors (OAs) as selected by the SCORE programme. The [background page](background.qmd) presents the original study, the robustness study and the five reanalyses.
+Five analysts reanalysed a claim of the Housing case study [@EinsteinGlick2017DoesRaceAffect] for the SCORE robustness study [@AczelEtAl2026InvestigatingAnalyticalRobustness]; you are analyst no. 6. The claim is that "Hispanic housing applicants were ... less likely to be greeted by name than were ... white counterparts", in the words of the original authors (OAs) as selected by the SCORE programme. The [background page](background.qmd) presents the original study, the robustness study and the five reanalyses.
 
 The pages of your format say which of the six tasks it covers, and whether it sends anything to the class chart.
 
@@ -74,7 +74,7 @@ writeLines(c(
           fit_spec(housing)$b_pp)))
 ```
 
-You should see **1,014 rows** and, on the last line, **−19.97 percentage points**. If not, reload the page, wait for the engine and run the cell again. If it still fails, open the page in another browser.
+You should see **1,014 rows** and, on the last line, **−19.97 percentage points**. If not, reload the page and run the cell again. If it still fails, open the page in another browser.
 
 ## Warm-up – the three Rs {#warm-up}
 
@@ -236,7 +236,7 @@ plot_dag(my_dag)
 
 `adjustmentSets()` returns `{}`, the empty set: nothing has to be adjusted for, because nothing points into the name. The names were assigned at random, so no common cause of the name and the greeting can exist. Conditioning on the reply changes the picture. The path through the reply closes, but two paths open, one through the community and one through the official, because the reply is a common effect of the name and of each of them (a collider), and comparing replies only conditions on it. This is the problem of conditioning on a consequence of the treatment, which @Coppock2019AvoidingPosttreatmentBias sets out for audit experiments.
 
-Now take the `#` off the arrow `"name -> greeting"` in the cell that builds the graph, and run that cell and the three after it again. Then run the cell below, which also adjusts for the community. Answer three questions for your own notes: why the adjustment set stays empty; which paths stay open among replies once the community is adjusted for, and what that means for a gap among replies; and which emails keep the comparison randomised.
+Now take the `#` off the arrow `"name -> greeting"` in the cell that builds the graph, and run that cell and the three after it again. Then run the cell below, which also adjusts for the community. Answer three questions: why the adjustment set stays empty; which paths stay open among replies once the community is adjusted for, and what that means for a gap among replies; and which emails keep the comparison randomised.
 
 ```{webr}
 #| autorun: false
@@ -768,7 +768,7 @@ A second declaration is possible: edit the preregistration cell, run it and the 
 
 ## Task 6 – Replication {#task-6-replication}
 
-The SCORE replication put the question of the claim to a new experiment. In 2020 it emailed 3,050 public housing authorities under four new male names, two meant to indicate Hispanic and two white senders, and the page holds the 2,717 emails that arrived, in the columns of the Housing data ([codebook](data/housing_replication_codebook.md)). `replicate_spec()` fits the specification that you declared in Task 5 on these data. The new experiment had no Black names, no reply without a greeting code and no indicator of a hard-to-find address, so the function first translates your specification and prints each change, then prints your result on the original data above your result on the new data.
+The replication of the paper in the SCORE replicability study put the question of the claim to a new experiment. In 2020 it emailed 3,050 public housing authorities under four new male names, two meant to indicate Hispanic and two white senders, and the page holds the 2,717 emails that arrived, in the columns of the Housing data ([codebook](data/housing_replication_codebook.md)). `replicate_spec()` fits the specification that you declared in Task 5 on these data. The new experiment had no Black names, no reply without a greeting code and no indicator of a hard-to-find address, so the function first translates your specification and prints each change, then prints your result on the original data above your result on the new data.
 
 ```{webr}
 #| autorun: false

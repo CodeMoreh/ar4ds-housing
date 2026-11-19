@@ -12,7 +12,7 @@ project:
     - "tracks/**/*.qmd"
     - "companion/*.qmd"
     - "slides/*.qmd"
-    # The live decks of the short and day formats, whose slides run R in the
+    # The live decks of the part-day and full-day formats, whose slides run R in the
     # browser; a folder of their own, because the revealjs key of
     # slides/_metadata.yml would render them twice
     - "live/*.qmd"

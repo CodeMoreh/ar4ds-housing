@@ -7,7 +7,7 @@ Before the session, read the background page and check that the deck of the sess
 
 [Read the background](../../background.qmd){.btn .btn-primary target="_blank"}
 
-The background page presents the claim on which the session works, and how the five analysts of the robustness study of SCORE (Multi100; Aczel et al. 2026) came to different conclusions about it.
+The background page presents the claim on which the session works, and how the five analysts of the SCORE robustness study (Aczel et al. 2026) came to different conclusions about it.
 
 ## 2. The deck
 

@@ -13,7 +13,7 @@
 # {{< var workshop.name >}} and {{< var workshop.format >}}.
 workshop:
   name: "Applied Replication for Data Skills"
-  format: "short, day and independent formats"
+  format: "part-day, full-day and self-taught formats"
   organiser: "Chris Moreh"
   # Add a public contact address here if you want one shown on the site.
   contact: ""

@@ -1,10 +1,10 @@
 ---
 title: "The exercise"
-subtitle: "Independent"
+subtitle: "Self-taught"
 bibliography: [../../references.bib, ../../references-new.bib]
 ---
 
-The [background page](../../background.qmd) presents the original study, the SCORE replication and the five reanalyses of the robustness study of SCORE [Multi100\; @AczelEtAl2026InvestigatingAnalyticalRobustness]. The independent format takes all six tasks, and you do them in the workspace, which stage 1 installs and which you open in your IDE (Positron, RStudio, VS Code, etc.). The [browser lab](../../lab.qmd), on which R runs inside your browser, holds every task as well, with hints and worked solutions, and it carries the work if your installation fails. Stage 1 takes Task 1, stage 3 Tasks 2 and 3, and stage 4 Tasks 4 to 6. Sending your results to the class chart is optional.
+The [background page](../../background.qmd) presents the original study, its replication in the SCORE replicability study and the five reanalyses of the SCORE robustness study [@AczelEtAl2026InvestigatingAnalyticalRobustness]. The self-taught format takes all six tasks, and you do them in the workspace, which stage 1 installs and which you open in your IDE (Positron, RStudio, VS Code, etc.). The [browser lab](../../lab.qmd), on which R runs inside your browser, holds every task as well, with hints and worked solutions, and it carries the work if your installation fails. Stage 1 takes Task 1, stage 3 Tasks 2 and 3, and stage 4 Tasks 4 to 6. Sending your results to the class chart is optional.
 
 ---
 
@@ -34,6 +34,6 @@ The tools of the route:
 - [Setup help](https://codemoreh.github.io/ar4ds/help.html)
 - [The workspace](https://codemoreh.github.io/ar4ds-housing-workspace/) – the report as it renders
 - [Browser lab](../../lab.qmd)
-- [Slides](../day/slides.qmd) – the deck used in the day format
+- [Slides](../day/slides.qmd) – the deck used in the full-day format
 
 {{< include ../../_includes/_exercise-links.qmd >}}

@@ -12,4 +12,4 @@ The modules of the [companion curriculum](../../companion/index.qmd) each stand 
 - [Getting started with R](https://codemoreh.github.io/ar4ds/tools/r.html)
 - [Reproducibility repositories](../../companion/repositories.qmd), then [Git and GitHub](https://codemoreh.github.io/ar4ds/git-github.html)
 
-The final report of the replication with new data is at [osf.io/2ug8x](https://osf.io/2ug8x/), and its de-identified data, do-file and dictionary are at [osf.io/xseqg](https://osf.io/xseqg/).
+The final report of the replication in the SCORE replicability study is at [osf.io/2ug8x](https://osf.io/2ug8x/), and its de-identified data, do-file and dictionary are at [osf.io/xseqg](https://osf.io/xseqg/).

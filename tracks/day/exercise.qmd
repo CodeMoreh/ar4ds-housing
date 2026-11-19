@@ -1,10 +1,10 @@
 ---
 title: "The exercise"
-subtitle: "Day"
+subtitle: "Full-day"
 bibliography: [../../references.bib, ../../references-new.bib]
 ---
 
-The [background page](../../background.qmd) presents the original study, the SCORE replication and the five reanalyses of the robustness study of SCORE [Multi100\; @AczelEtAl2026InvestigatingAnalyticalRobustness]. The day format takes all six tasks, and you do them in the workspace that you download and open in your IDE (Positron, RStudio, VS Code, etc.), as [Before the day](before.qmd#the-workspace) describes. If your installation fails, the deck for the day and the [browser lab](../../lab.qmd), which run R inside your browser, hold the same tasks and give the same numbers.
+The [background page](../../background.qmd) presents the original study, its replication in the SCORE replicability study and the five reanalyses of the SCORE robustness study [@AczelEtAl2026InvestigatingAnalyticalRobustness]. The full-day format takes all six tasks, and you do them in the workspace that you download and open in your IDE (Positron, RStudio, VS Code, etc.), as [Before the day](before.qmd#the-workspace) describes. If your installation fails, the deck for the day and the [browser lab](../../lab.qmd), which run R inside your browser, hold the same tasks and give the same numbers.
 
 ---
 
