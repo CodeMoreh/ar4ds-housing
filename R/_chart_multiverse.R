@@ -92,10 +92,10 @@ mv_marks <- function(marks, analysts, curve) {
         .default = 2 * pnorm(-abs(.data$statistic))
       ),
       sg    = as.integer(.data$p_num < 0.05),
-      tag   = dplyr::case_when(.data$id == "OA" ~ "OAs 2017", .data$id == "SCORE" ~ "SCORE 2020",
+      tag   = dplyr::case_when(.data$id == "OA" ~ "OAs 2017", .data$id == "SCORE" ~ "Replication 2020",
                         .default = .data$id),
       title = dplyr::case_when(.data$id == "OA" ~ "The original authors (2017), Table 1, model 3",
-                        .data$id == "SCORE" ~ "Replication in the SCORE replicability study (new experiment, 2020)",
+                        .data$id == "SCORE" ~ "The SCORE replicability study (2020)",
                         .default = paste("Analyst", .data$id, "of the robustness study")),
       stat  = dplyr::case_when(
         .data$id == "OA" ~ sprintf("z = %s as published; %s",

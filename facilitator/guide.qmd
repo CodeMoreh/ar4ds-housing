@@ -86,12 +86,12 @@ other_max <- deviations |>
 
 ## The formats {#formats}
 
-| Format | Track | Taught in | What it leaves out |
+| Format | Folder | Taught in | What it leaves out |
 |---|---|---|---|
-| Part-day format, two halves | `housing-short` | its live deck, with the browser lab as the fallback | installation, the class chart, Task 5 |
-| Full-day format, four parts | `housing-one-day` | the workspace, with the live deck showing each step and, with the browser lab, standing in when an installation fails | nothing of the six tasks |
-| Multi-day format, three days | `housing-extended` | the workspace, with the live deck used in the full-day format on day 2 | nothing; day 2 is the full-day format |
-| Self-taught format, five stages | `self-study` | the workspace | the class, but not the class chart |
+| Part-day format, two halves | `tracks/short/` | its live deck, with the browser lab as the fallback | installation, the class chart, Task 5 |
+| Full-day format, four parts | `tracks/day/` | the workspace, with the live deck showing each step and, with the browser lab, standing in when an installation fails | nothing of the six tasks |
+| Multi-day format, three days | `tracks/long/` | the workspace, with the live deck used in the full-day format on day 2 | nothing; day 2 is the full-day format |
+| Self-taught format, five stages | `tracks/independent/` | the workspace | the class, but not the class chart |
 
 In the part-day format and the full-day format the facilitator gives each participant one of the five reanalyses to reproduce in Task 3, so that the class covers all five, and in the self-taught format the reader chooses one. Only the full-day format, on its own or as the second day of the multi-day format, sends results to the class chart. The segments that differ by format read the `deck:` map in the YAML of each deck through Quarto conditional content (`when-meta="deck.short"` and the like), so a change of wording for one format is made in the segment, inside the span or the div that carries that condition.
 
