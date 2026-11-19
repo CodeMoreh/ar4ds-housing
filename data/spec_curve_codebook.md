@@ -33,7 +33,7 @@ The reference specification (`is_reference`) is `white`, `replies`, `drop`, `lpm
 | `stat` | `coef` divided by `coef_se` |
 | `df` | The residual degrees of freedom of the linear model; empty for the logit |
 | `p` | The two-sided p-value of the test of the model: `stat` on `df` for the linear model, on the normal distribution for the logit. This is the test that classes every row |
-| `r` | The partial correlation by the conversion rules of the robustness study of SCORE (Multi100; Aczel et al. 2026): t / sqrt(t^2 + df) for a t, and tanh(\|z\| / sqrt(n − 3)) with the sign of z for a z, the number of emails standing in for the missing degrees of freedom |
+| `r` | The partial correlation by the conversion rules of the SCORE robustness study (Aczel et al. 2026): t / sqrt(t^2 + df) for a t, and tanh(\|z\| / sqrt(n − 3)) with the sign of z for a z, the number of emails standing in for the missing degrees of freedom |
 | `n` | The emails analysed |
 | `n_hisp`, `n_comp` | The analysed emails with Hispanic names and with comparison names |
 | `rate_hisp`, `rate_comp` | The share of the analysed emails in each group whose outcome is 1, in per cent, before any adjustment |

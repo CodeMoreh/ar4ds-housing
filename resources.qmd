@@ -15,9 +15,9 @@ The four terms below follow the definitions in @NosekEtAl2025BriefGlossaryTerms,
 
 | Term | Definition | In this course |
 |------------------------|------------------------|------------------------|
-| **Reproducibility** | Same question, same data, same analysis → same result | Tested across the SCORE sample by @MiskeEtAl2026InvestigatingReproducibilitySocial. In the Housing case study SCORE never attempted a reproduction; the class reproduces in Task 3 a value recorded in the robustness study of SCORE [Multi100\; @AczelEtAl2026InvestigatingAnalyticalRobustness] for one of the five analysts |
+| **Reproducibility** | Same question, same data, same analysis → same result | Tested across the SCORE sample by the SCORE reproducibility study [@MiskeEtAl2026InvestigatingReproducibilitySocial]. In the Housing case study that study never attempted a reproduction; the class reproduces in Task 3 a value recorded in the SCORE robustness study [@AczelEtAl2026InvestigatingAnalyticalRobustness] for one of the five analysts |
 | **Robustness** | Same question, same data, justifiable alternative analysis → stable result | The design of the robustness study; the five analysts of the claim; the specification menu and the curve of the claim in Tasks 4 and 5, with 64 specifications |
-| **Replicability** | Same question, independent new data → same result | Tested across the SCORE sample by @TynerEtAl2026InvestigatingReplicabilitySocial. For the Housing claim, a preregistered experiment on 3,050 housing authorities found no significant gap, and in Task 6 the class fits its declared specifications on its data |
+| **Replicability** | Same question, independent new data → same result | Tested across the SCORE sample by the SCORE replicability study [@TynerEtAl2026InvestigatingReplicabilitySocial]. For the Housing claim, the replication in that study, a preregistered experiment on 3,050 housing authorities, found no significant gap, and in Task 6 the class fits its declared specifications on the data of that experiment |
 | **Repeatability** | Umbrella term covering all three above | Used in the glossary of Nosek and colleagues as the overarching category |
 
 ------------------------------------------------------------------------
@@ -54,9 +54,9 @@ The case study, told in full on the [background page](background.qmd), is built 
 
 ### The three *Nature* 2026 papers (SCORE)
 
-- **Reproducibility:** @MiskeEtAl2026InvestigatingReproducibilitySocial – how often the central result of a paper can be recomputed from its own data. <https://doi.org/10.1038/s41586-026-10203-5>
-- **Robustness:** @AczelEtAl2026InvestigatingAnalyticalRobustness – the robustness study, known as Multi100, in which at least five analysts reanalysed each of a hundred claims. <https://doi.org/10.1038/s41586-025-09844-9>
-- **Replicability:** @TynerEtAl2026InvestigatingReplicabilitySocial – how often claims hold on new data, under preregistered protocols. <https://doi.org/10.1038/s41586-025-10078-y>
+- **Reproducibility:** @MiskeEtAl2026InvestigatingReproducibilitySocial – the SCORE reproducibility study, on how often the central result of a paper can be recomputed from its own data. <https://doi.org/10.1038/s41586-026-10203-5>
+- **Robustness:** @AczelEtAl2026InvestigatingAnalyticalRobustness – the SCORE robustness study, in which at least five analysts reanalysed each of a hundred claims. <https://doi.org/10.1038/s41586-025-09844-9>
+- **Replicability:** @TynerEtAl2026InvestigatingReplicabilitySocial – the SCORE replicability study, on how often claims hold on new data, under preregistered protocols. <https://doi.org/10.1038/s41586-025-10078-y>
 - @AlipourfardEtAl2021SystematizingConfidenceOpen – the SCORE programme, of which all three studies are part. <https://doi.org/10.31235/osf.io/46mnb>
 
 ### Vocabulary

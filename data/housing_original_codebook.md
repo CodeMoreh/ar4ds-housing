@@ -25,7 +25,7 @@ The counts of every column are given in the [codebook of the course file](housin
 
 ## The reproductions of Task 3
 
-The five reanalyses of the claim in the robustness study of SCORE (Multi100; Aczel et al. 2026) are reproduced from this file, and the four statistics recorded in the robustness study come out exactly.
+The five reanalyses of the claim in the SCORE robustness study (Aczel et al. 2026) are reproduced from this file, and the four statistics recorded in the robustness study come out exactly.
 
 | Analyst | Rows | Test | Recorded |
 |:--|:--|:--|:--|

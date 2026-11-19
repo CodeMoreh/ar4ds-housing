@@ -51,7 +51,7 @@ source("../ar4ds-housing-workspace/R/spec_tools.R")
 try_spec()
 ```
 
-The first lines repeat the two shares and their difference, `r ref_gap` points, now with a 95% interval around it. The test line comes from a linear probability model, explained in the [binary-outcomes module](binary-outcomes.qmd), which regresses the 0/1 outcome on an indicator of the Hispanic names and whose coefficient is exactly the difference in shares. The last lines give the number of replies analysed, a partial correlation computed by the rule used in the robustness study of SCORE (Multi100; Aczel et al. 2026), the class of the result, and its place among the `r nrow(page_curve)` specifications on the curve of the claim.
+The first lines repeat the two shares and their difference, `r ref_gap` points, now with a 95% interval around it. The test line comes from a linear probability model, explained in the [binary-outcomes module](binary-outcomes.qmd), which regresses the 0/1 outcome on an indicator of the Hispanic names and whose coefficient is exactly the difference in shares. The last lines give the number of replies analysed, a partial correlation computed by the rule used in the SCORE robustness study (Aczel et al. 2026), the class of the result, and its place among the `r nrow(page_curve)` specifications on the curve of the claim.
 
 Changing one argument changes one decision, and `population = "all"`, for instance, counts every delivered email, as the second calculation of that section does:
 

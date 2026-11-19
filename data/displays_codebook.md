@@ -69,7 +69,7 @@ The central 95% of the reshuffled differences lies between −10.0 and +9.9 poin
 
 | Column | Meaning |
 |:--|:--|
-| `design` | `original (175 and 187 replies)`, the comparison of Hispanic and white names among the coded replies of the paper, or `replication (369 and 369 replies)`, the 738 replies of the SCORE replication split equally |
+| `design` | `original (175 and 187 replies)`, the comparison of Hispanic and white names among the coded replies of the paper, or `replication (369 and 369 replies)`, the 738 replies of the replication in the SCORE replicability study split equally |
 | `gap_pp` | The gap in percentage points, 2 to 25 |
 | `n_per_group` | The replies per group: 181, the mean of 175 and 187, or 369 |
 | `power` | The probability that the test rejects the null hypothesis of no gap when the gap is `gap_pp` |
@@ -78,7 +78,7 @@ The original comparison has a power of 0.48 for a gap of 10 points, 0.70 for 13 
 
 ## `display_replication.csv` – the replication on the scale of the course
 
-4 rows, written by `R/06_replication.R` from the de-identified data of the SCORE replication, which the script fetches from the OSF (osf.io/xseqg) at run time; the licence of those data is unstated, so the course keeps only these aggregates. The replication emailed 3,050 authorities in 2020 with four male aliases, two meant to indicate a Hispanic and two a white sender, and its de-identified file holds 2,717 of those emails. Each row is the gap in greetings by name between the Hispanic and the white aliases, as a difference in proportions with HC2 errors, the analogue of the reference specification of the curve.
+4 rows, written by `R/06_replication.R` from the de-identified data of the replication, which the script fetches from the OSF (osf.io/xseqg) at run time; the licence of those data is unstated, so the course keeps only these aggregates. The replication emailed 3,050 authorities in 2020 with four male aliases, two meant to indicate a Hispanic and two a white sender, and its de-identified file holds 2,717 of those emails. Each row is the gap in greetings by name between the Hispanic and the white aliases, as a difference in proportions with HC2 errors, the analogue of the reference specification of the curve.
 
 | Column | Meaning |
 |:--|:--|
