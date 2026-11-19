@@ -86,7 +86,9 @@ check_spec <- function(comparison, population, uncoded, model, adjust) {
 fit_spec <- function(housing, comparison = "white", population = "replies", uncoded = "drop",
                      model = "lpm", adjust = "none") {
   check_spec(comparison, population, uncoded, model, adjust)
-  terms <- ADJUST_TERMS[[adjust]]
+  # the data of the SCORE replication hold no hard_email, which their
+  # adjustment sets therefore leave out
+  terms <- intersect(ADJUST_TERMS[[adjust]], names(housing))
   # only the model columns, and only the emails with every covariate;
   # marginaleffects refuses a data column called `group`
   frame <- spec_frame(housing, comparison, population, uncoded) |>

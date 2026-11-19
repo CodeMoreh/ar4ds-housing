@@ -11,12 +11,16 @@
 **1,811** replies. To match Table 1 of the paper, the analysis kept the authorities in localities matched with the 2018 American Community Survey: **2,337** emails and **1,243** replies.
 :::
 
+::: {.fragment .small .content-visible when-meta="deck.day"}
+**Your turn:** open the final report at osf.io/2ug8x, find the preregistered analysis, and note how often it found a significant gap.
+:::
+
 ::: {.src}
 osf.io/2ug8x – the preregistration and the final report of the replication.
 :::
 
 ::: notes
-Now we leave the original data behind. SCORE did not only ask analysts to rework the original file; it also commissioned a replication with new data, preregistered, so that the plan was fixed before any email went out. The team emailed more than three thousand public housing authorities, listed by the federal housing department, randomised within each state. The names were new: two meant to indicate a Hispanic sender, Joe Garcia and Michael Hernandez, and two meant to indicate a white one, John Ryan and Nicholas Smith, chosen from names that had been pre-tested so that they differ in perceived ethnicity but not in perceived class or migrant status. All four are male, and none is meant to indicate a Black sender. [advance] Eighteen hundred replies came back, and, to match the model of the paper, the team kept the authorities that could be matched with census data.
+[Now we leave the original data behind.]{.content-visible when-meta="deck.short"}[You have just run your own specification on the data of this replication, so here is how those data came about.]{.content-visible when-meta="deck.day"} SCORE did not only ask analysts to rework the original file; it also commissioned a replication with new data, preregistered, so that the plan was fixed before any email went out. The team emailed more than three thousand public housing authorities, listed by the federal housing department, randomised within each state. The names were new: two meant to indicate a Hispanic sender, Joe Garcia and Michael Hernandez, and two meant to indicate a white one, John Ryan and Nicholas Smith, chosen from names that had been pre-tested so that they differ in perceived ethnicity but not in perceived class or migrant status. All four are male, and none is meant to indicate a Black sender. [advance] Eighteen hundred replies came back, and, to match the model of the paper, the team kept the authorities that could be matched with census data.[ [advance] Three minutes: open the final report on the OSF, find the preregistered analysis, and note what it says about how often it found a significant gap. [wait] The next slide has the answer.]{.content-visible when-meta="deck.day"}
 :::
 
 ## What the replication found {#what-the-replication-found .smaller}

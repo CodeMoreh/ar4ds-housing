@@ -9,8 +9,8 @@ format:
       # slides call: dplyr and purrr in the helpers, parameters with sandwich
       # for the HC2 errors, marginaleffects for the logit and effectsize for
       # the conversion rule of the robustness study; datawizard in the cells of
-      # Tasks 2, 3 and 5; tinyplot for the figures of Tasks 2 and 5 and for the
-      # graph. The runtime adds evaluate, knitr and htmltools itself, and tibble
+      # Tasks 2, 3, 5 and 6; tinyplot for the figures of Tasks 2, 5 and 6 and for
+      # the graph. The runtime adds evaluate, knitr and htmltools itself, and tibble
       # comes with dplyr. gt is left out, because no slide prints a formatted
       # table and it adds 12 to 23 seconds to the first opening of a page.
       packages:
@@ -24,7 +24,7 @@ format:
         - effectsize
       repos:
         - https://codemoreh.github.io/ar4ds-wasm
-# The five files that the cells read, fetched into the browser when the deck
+# The seven files that the cells read, fetched into the browser when the deck
 # opens; the runtime drops the leading ../ of each path, so inside the browser
 # they sit under data/, the folder that the setup cell below
 # names as .data_dir.
@@ -34,6 +34,8 @@ resources:
   - ../data/spec_curve.csv
   - ../data/menu_options.csv
   - ../data/dag_answers.csv
+  - ../data/housing_replication.csv
+  - ../data/replication_curve.csv
 live:
   show-hints: true
   show-solutions: true
@@ -50,7 +52,7 @@ deck:
   menu: true
 # THE DECK OF THE DAY FORMAT, OF DAY 2 OF THE LONG FORMAT AND OF THE
 # INDEPENDENT FORMAT
-# - The participants of the day format do the five tasks in the workspace, in
+# - The participants of the day format do the six tasks in the workspace, in
 #   their IDE. This deck carries the whole browser lab on its slides, through
 #   the Quarto Live extension: the facilitator runs each step on the shared
 #   screen, so that the class can compare its output with the slides, and a
@@ -58,8 +60,8 @@ deck:
 #   hands-on slide names the chunk or the file of the workspace that holds
 #   the same step.
 # - The hands-on segments in _segments/ (_handson1-live.qmd to
-#   _handson4-submit-live.qmd, _defaults-live.qmd, _placement-live.qmd and
-#   _prereg-live.qmd) hold the cells of Tasks 1 to 5 of
+#   _handson4-submit-live.qmd, _defaults-live.qmd, _placement-live.qmd,
+#   _prereg-live.qmd and _handson6-live.qmd) hold the cells of Tasks 1 to 6 of
 #   lab.qmd, one step to a cell, with the hints and solutions
 #   of its exercises. The helpers of the lab are
 #   ../_includes/_lab-helpers.qmd and the graph helpers of Task 2
@@ -131,11 +133,12 @@ housing <- utils::read.csv(file.path(.data_dir, "housing_emails.csv"), na.string
 {{< include _segments/_classchart.qmd >}}
 {{< include _segments/_placement-live.qmd >}}
 {{< include _segments/_whatmoved.qmd >}}
-{{< include _segments/_replication.qmd >}}
 {{< include _segments/_critics-prereg.qmd >}}
 {{< include _segments/_archiving.qmd >}}
 {{< include _segments/_records.qmd >}}
 {{< include _segments/_prereg-live.qmd >}}
+{{< include _segments/_handson6-live.qmd >}}
+{{< include _segments/_replication.qmd >}}
 {{< include _segments/_closing.qmd >}}
 {{< include _segments/_close.qmd >}}
 {{< include _segments/_references.qmd >}}

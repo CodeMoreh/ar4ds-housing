@@ -86,6 +86,7 @@
     "refresh_multiverse",
     "rep_val",
     "repeatability_matrix",
+    "replicate_spec",
     "report_result",
     "rp",
     "run_spec",
@@ -459,6 +460,21 @@
       "file": "companion/_model-outputs/build_dataverse_files.R",
       "code": "dplyr::arrange(label)",
       "reason": "dplyr::arrange() sorts in the C locale on every machine"
+    },
+    {
+      "file": "class-results.qmd",
+      "code": "replication_curve <- utils::read.csv(\"data/replication_curve.csv\", stringsAsFactors = FALSE)",
+      "reason": "base reader, nothing to download"
+    },
+    {
+      "file": "lab.qmd",
+      "code": "replication_curve <- utils::read.csv(\"data/replication_curve.csv\")",
+      "reason": "base reader, nothing to download"
+    },
+    {
+      "file": "live/_segments/_handson6-live.qmd",
+      "code": "replication_curve <- utils::read.csv(\"data/replication_curve.csv\")",
+      "reason": "base reader, nothing to download"
     }
   ],
   "skip": [

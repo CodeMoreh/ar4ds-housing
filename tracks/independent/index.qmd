@@ -11,7 +11,7 @@ No programming is assumed. You work in the workspace of the case study on your o
 
 [Install R and an IDE](https://codemoreh.github.io/ar4ds/setup.html){.btn .btn-primary target="_blank"} [Open the browser lab](../../lab.qmd){.btn .btn-outline-primary target="_blank"}
 
-Stage 1 takes Task 1 of the exercise, stage 3 Tasks 2 and 3, and stage 4 Tasks 4 and 5, and the [exercise](exercise.qmd) page sets out the five tasks. Each stage has a page that lists its steps in order. Where a stage can be shortened for a reader who already knows part of its material, its page says how, in a paragraph headed **Shortcuts**.
+Stage 1 takes Task 1 of the exercise, stage 3 Tasks 2 and 3, and stage 4 Tasks 4 to 6, and the [exercise](exercise.qmd) page sets out the six tasks. Each stage has a page that lists its steps in order. Where a stage can be shortened for a reader who already knows part of its material, its page says how, in a paragraph headed **Shortcuts**.
 
 The stages use the [same deck as the day format](../day/slides.qmd). Open the deck in its own tab and press `s` for the speaker view, whose notes give what is said over each slide. The [help page](https://codemoreh.github.io/ar4ds/help.html) lists the problems that other participants have met.
 

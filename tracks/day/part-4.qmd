@@ -12,11 +12,12 @@ title: "Part 4 – Robustness"
 4. The multiverse
 5. The class results and your placement
 6. What moved the estimate
-7. The replication
-8. The critics of the multiverse
-9. Archives and registrations
-10. Task 5 – Preregistration
-11. The close
+7. The critics of the multiverse
+8. Archives and registrations
+9. Task 5 – Preregistration
+10. Task 6 – Replication
+11. The replication
+12. The close
 
 Keep the menu and the curve open in other tabs while the facilitator talks.
 
@@ -41,5 +42,11 @@ Find your own mark among the exploratory results of the class. Then rerun `try_s
 [Open the deck at Task 5](../../live/day.html#/the-preregistration-moment){.btn .btn-outline-primary target="_blank"} [Open the browser lab at Task 5](../../lab.qmd#task-5-preregistration){.btn .btn-outline-primary target="_blank"}
 
 If your installation fails, complete the block in the deck or in the browser lab, and copy the completed cell into your notes instead of rendering.
+
+## Task 6 – Replication
+
+**In your workspace**, in the chunks of Task 6 of `index.qmd`. Run `replicate_spec(my_spec)`, which translates your declared specification to the new experiment of the SCORE replication and fits it on its data, then draw the figure and write your two sentences. The second chart of the [Class results](../../class-results.qmd) page draws the declared specifications of the class on the new data in the same way.
+
+[Open the deck at Task 6](../../live/day.html#/hands-on-6-replication){.btn .btn-outline-primary target="_blank"} [Open the browser lab at Task 6](../../lab.qmd#task-6-replication){.btn .btn-outline-primary target="_blank"}
 
 To go further: [the replication](../../background.qmd#sec-replication) on the background page, [Bayesian estimation](../../companion/bayesian.qmd#sec-replication), [Meta-analysis](../../companion/meta-analysis.qmd#sec-two-studies), [The multiverse and its critics](../../companion/multiverse.qmd) and [Reproducibility repositories](../../companion/repositories.qmd).

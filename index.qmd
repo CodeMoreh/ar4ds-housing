@@ -96,7 +96,7 @@ Participants then work through the analytical decisions that lie between the dat
 ::: {.home-r}
 ### Replication {.unnumbered .unlisted}
 
-The course then sets the claim against its replication with new data, a preregistered experiment on 3,050 housing authorities in which no significant gap was found, and considers what a failed replication can and cannot establish about the original result.
+The course then sets the claim against its replication with new data, a preregistered experiment on 3,050 housing authorities in which no significant gap was found, and in the day and independent formats each participant runs the declared analysis again on the data of that experiment. The course considers what a failed replication can and cannot establish about the original result.
 :::
 
 ::::
@@ -158,7 +158,7 @@ The facilitator of a course chooses its format, and the link that you receive fo
 
 [Two halves, in the browser]{.home-meta}
 
-Two halves, with nothing to install and nothing to submit: the claim and the five reanalyses, the estimand statement, the reproduction of one reanalysis of your choice, a look at the menu of analyses and the curve of the claim, and the replication with new data.
+Two halves, with nothing to install and nothing to submit: the claim and the five reanalyses, the estimand statement, the reproduction of one reanalysis by each participant, a look at the menu of analyses and the curve of the claim, and the replication with new data.
 :::
 
 ::: {.home-track .home-reveal}
@@ -166,7 +166,7 @@ Two halves, with nothing to install and nothing to submit: the claim and the fiv
 
 [Four parts, in R on your own machine]{.home-meta}
 
-The claim and the credibility of social science, the estimand and the causal graph, the reproduction of one reanalysis chosen by each participant, and the robustness exercise on which the day centres: the specification menu, the class chart and its submissions, the curve of the claim, the replication with new data, and one analysis declared before it runs.
+The claim and the credibility of social science, the estimand and the causal graph, the reproduction of one reanalysis by each participant, the five shared out across the class, and the robustness exercise on which the day centres: the specification menu, the class chart and its submissions, the curve of the claim, one analysis declared before it runs, and its run on the data of the replication.
 :::
 
 ::: {.home-track .home-reveal}
@@ -188,7 +188,7 @@ The case study for a reader who works alone, in R on your own machine, with the 
 ## The exercise {.unnumbered .home-reveal}
 
 ::: {.home-intro .home-reveal}
-Every format works through the same five tasks, or a selection of them. The short format takes the first four and sends nothing to the class chart, while the day and independent formats take all five. The decisions that the tasks ask for fall into three groups: the question that the analysis answers; measurement, how the variables are built; and the model, how it is fitted and its uncertainty judged.
+Every format works through the same six tasks, or a selection of them. The short format takes the first four and sends nothing to the class chart, while the day and independent formats take all six. The decisions that the tasks ask for fall into three groups: the question that the analysis answers; measurement, how the variables are built; and the model, how it is fitted and its uncertainty judged.
 :::
 
 :::: {.home-reveal}
@@ -210,7 +210,7 @@ Meet the data of the case study, write the estimand statement behind the claim, 
 <details>
 <summary><span class="home-n">Task 3</span>The reproduction</summary>
 
-Choose one of the five analysts and reproduce the value recorded in the robustness study for that analyst, from the public file of the original authors (OAs). The four analysts who recorded a statistic reproduce exactly. One of them, 8PTRZ, recorded $\chi^2$ = `r chi_8ptrz` where the plain test gives `r chi_plain`, and finding out why is part of the task.
+Reproduce the value recorded in the robustness study for one of the five analysts, from the public file of the original authors (OAs). The four analysts who recorded a statistic reproduce exactly. One of them, 8PTRZ, recorded $\chi^2$ = `r chi_8ptrz` where the plain test gives `r chi_plain`, and finding out why is part of the task.
 
 </details>
 
@@ -225,6 +225,13 @@ Work through the decisions that lie between the data and a result, try alternati
 <summary><span class="home-n">Task 5</span>Preregistration</summary>
 
 Declare one specification in a short preregistration, run it, report it, and find where it sits among the `r h_spec` specifications of the [curve of the claim](curve.qmd).
+
+</details>
+
+<details>
+<summary><span class="home-n">Task 6</span>Replication</summary>
+
+Run the specification that you declared on the data of the SCORE replication, a new experiment of 2020, and place it on the curve of the claim on the new data, beside its place on the curve of the original data.
 
 </details>
 

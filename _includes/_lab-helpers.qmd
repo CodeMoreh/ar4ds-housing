@@ -14,8 +14,9 @@ _lab-graph.qmd beside this file.
 #| include: false
 #| autorun: true
 # Lab machinery: the estimator of the course, the specification menu, its
-# validation, and the helpers of Tasks 4 and 5 – try_spec(), my_experiments(),
-# submit_exploration(), prereg(), run_spec() and report_result(). The same
+# validation, and the helpers of Tasks 4 to 6 – try_spec(), my_experiments(),
+# submit_exploration(), prereg(), run_spec(), report_result() and
+# replicate_spec(). The same
 # code as R/spec_tools.R of the downloadable workspace, apart from the tag of
 # the class chart, which lasts for the browser session here. Every
 # specification is fitted live; data/spec_curve.csv places it among the 64,
@@ -118,7 +119,9 @@ check_spec <- function(comparison, population, uncoded, model, adjust) {
 fit_spec <- function(housing, comparison = "white", population = "replies", uncoded = "drop",
                      model = "lpm", adjust = "none") {
   check_spec(comparison, population, uncoded, model, adjust)
-  terms <- ADJUST_TERMS[[adjust]]
+  # the data of the SCORE replication hold no hard_email, which their
+  # adjustment sets therefore leave out
+  terms <- intersect(ADJUST_TERMS[[adjust]], names(housing))
   # only the model columns, and only the emails with every covariate;
   # marginaleffects refuses a data column called `group`
   frame <- spec_frame(housing, comparison, population, uncoded) |>
@@ -468,6 +471,45 @@ report_result <- function(nickname = NULL) {
   ch <- .check_choices()
   .submit(ch, .result(ch), "declared",
           "Your declared submission (straight from your preregistration):", nickname)
+}
+
+
+# ---- Task 6: the replication --------------------------------------------------------
+# replicate_spec() fits the declared specification on the data of the SCORE
+# replication. The new experiment had no Black names, no reply without a
+# greeting code and no indicator of a hard-to-find address, so the
+# specification is translated first and each change is printed. The fit is
+# checked against its row of data/replication_curve.csv and placed among the
+# 12 specifications that the curve of 64 becomes on the new data.
+replicate_spec <- function(spec) {
+  if (missing(spec) || !inherits(spec, "housing_prereg"))
+    stop("Pass the object that prereg() returned: my_spec <- prereg(), then replicate_spec(my_spec).",
+         call. = FALSE)
+  ch <- spec$choices
+  new <- utils::modifyList(ch, list(comparison = "white", uncoded = "drop",
+                                    adjust = if (ch$adjust == "email") "none" else ch$adjust))
+  changes <- c(
+    if (ch$comparison == "nonhispanic")
+      "  The comparison is with white names only, because the new experiment used no Black names.",
+    if (ch$uncoded == "not_named")
+      "  Every reply of the new experiment carries a greeting code, so the rule for uncoded replies changes nothing.",
+    if (ch$adjust != "none")
+      "  The new data hold no indicator of a hard-to-find address, so the adjustment leaves it out.")
+  fit <- fit_spec(.read_once("replication", file.path(.data_dir, "housing_replication.csv")),
+                  new$comparison, new$population, new$uncoded, new$model, new$adjust) |>
+    as.list()
+  curve <- .read_once("replication_curve", file.path(.data_dir, "replication_curve.csv"))
+  stored <- dplyr::filter(curve, .data$comparison == ch$comparison, .data$population == ch$population,
+                          .data$uncoded == ch$uncoded, .data$model == ch$model, .data$adjust == ch$adjust)
+  if (nrow(stored) != 1 || abs(fit$b_pp - stored$b_pp) > 1e-6)
+    warning("The fit on the new data differs from data/replication_curve.csv. A file in data/ may have been edited; restore it from the course repository.",
+            call. = FALSE)
+  distinct <- dplyr::filter(curve, !duplicated(.data$rep_spec))
+  .print_result(ch, .result(ch), "Your declared specification on the original data:")
+  writeLines(c("", "The same specification on the new data of the SCORE replication:",
+               if (length(changes) > 0) changes
+               else "  Every choice of your specification exists in the new data, so nothing is translated."))
+  .print_result(new, c(fit, list(further = sum(distinct$b_pp < fit$b_pp - 1e-9), n_curve = nrow(distinct))))
 }
 
 

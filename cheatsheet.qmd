@@ -45,6 +45,7 @@ The downloadable workspace and the browser lab have the same helpers, with the s
 | `my_spec <- prereg()` | 5 | Checks the eleven `my_*` choices of the preregistration block against the menu, prints the block with its estimand statement, and keeps it as `my_spec`. |
 | `run_spec(my_spec)` | 5 | Fits the declared specification and prints the same lines as `try_spec()`. It refuses to run if the block has changed since `prereg()`. |
 | `report_result()` | 5 | Sends the declared result to the class chart, a filled circle, with the same tag as your exploratory result. |
+| `replicate_spec(my_spec)` | 6 | Translates the declared specification to the new experiment of the SCORE replication, prints each change, and fits it on its data; it prints the result on the original data above the result on the new data. |
 
 Both submission functions take `nickname = "..."`, which replaces the tag that they draw for you, such as `amber-otter-42`. Use a nickname rather than your name, because the chart is public.
 
@@ -109,6 +110,10 @@ The short format sends nothing to the class chart, and its participants can skip
 4. **Preregister.** Make one choice for every `my_` line of the preregistration block, complete the dotted lines, and run the block, which ends in `my_spec <- prereg()`. In the browser lab that line is a cell of its own below the block, to be run after it. In the workspace, keep the completed block in the report as set out under [Rendering the report](#rendering-the-report); on the browser lab page, copy the whole cell into your notes.
 5. **`run_spec(my_spec)`** – fits your specification and prints its result and its place on the curve.
 6. **`report_result()`** – builds your submission from the preregistration and prints a pre-filled form link; open it and press **Send**. It reuses your tag from Task 4. In the browser lab, if you have reloaded the page since then, pass the tag back with `report_result(nickname = "your-tag")`.
+
+**Task 6 – the declared specification on new data.**
+
+7. **`replicate_spec(my_spec)`** – translates your declared specification to the new experiment, fits it on its data and prints both results; the figure of Task 6 places it on both curves.
 
 If any of that stalls, work down the list under [A stalled browser lab](#a-stalled-browser-lab) in the browser lab, or the [IDE quick fixes](#ide-quick-fixes) in the workspace.
 

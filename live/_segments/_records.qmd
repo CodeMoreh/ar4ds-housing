@@ -12,12 +12,8 @@
 [osf.io/2ug8x](https://osf.io/2ug8x/)<br>[the replication: its preregistration and its final report]{.fs-60}
 :::
 
-::: {.fragment .small}
-**Your turn:** open the replication, find the preregistered analysis, and note how often it found a significant gap.
-:::
-
 ::: notes
-Each of these addresses does a different job. The first is the archive of the original study, on the Harvard Dataverse: the data and code of the OAs, released into the public domain, which is why every one of you could download the file and reproduce a published number earlier today without asking anybody. [advance] The second is the SCORE project of the paper on the OSF, with the component of the robustness study inside it and one sub-component for each analyst, where four of the five published their scripts. [advance] The third is the replication, with the preregistration that fixed its plan and its final report, which lists every deviation from that plan. [advance] Three minutes: open the replication, find the preregistered analysis, and note what the report says about how often it found a significant gap. [wait] The answer is that it was not significant approximately ninety-three per cent of the time. Because that plan was registered first, nobody can say that the analysis was chosen to make the gap disappear.
+Each of these addresses does a different job. The first is the archive of the original study, on the Harvard Dataverse: the data and code of the OAs, released into the public domain, which is why every one of you could download the file and reproduce a published number earlier today without asking anybody. [advance] The second is the SCORE project of the paper on the OSF, with the component of the robustness study inside it and one sub-component for each analyst, where four of the five published their scripts. [advance] The third is the replication, with the preregistration that fixed its plan and its final report, which lists every deviation from that plan. Because that plan was registered first, nobody can say that the analysis was chosen after its results were known.
 :::
 
 ## The eight AsPredicted questions {#eight-questions-your-answers-already-mapped .smaller}

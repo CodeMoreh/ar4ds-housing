@@ -14,7 +14,7 @@ The [background page](../../background.qmd) presents the original study, the SCO
 
 ## The tasks
 
-The session takes four of the five numbered tasks of the exercise, in the cells of its deck.
+The session takes four of the six numbered tasks of the exercise, in the cells of its deck.
 
 ### Task 1 – The setup check
 

@@ -1,0 +1,88 @@
+<!-- Task 6 of the browser lab (lab.qmd) for the day deck: the declared
+     specification on the data of the SCORE replication, then the curve of the
+     original data and the curve of the new data with the declared
+     specification ringed on each. Each slide names where the same step lives in
+     the workspace. -->
+## Hands-on 6 – Replication {#hands-on-6-replication .smaller .output-8}
+
+::: {.small}
+- **Task 6** – run your declared specification on the data of the SCORE replication, a new experiment of 2020 that emailed 3,050 housing authorities under four new male names
+- The new experiment had no Black names, no reply without a greeting code and no indicator of a hard-to-find address, so `replicate_spec()` first translates your specification and prints each change, then your result on the original data above your result on the new data
+- *Workspace:* the chunk `replicate`
+:::
+
+```{webr}
+#| autorun: false
+replicate_spec(my_spec)
+```
+
+::: notes
+Now the third R. Everything that you have fitted so far came from the emails of the original experiment. The SCORE replication put the same question to a new experiment, run in 2020, and its data are in this deck and in your workspace. Run replicate underscore spec on the specification that you declared. The new experiment had no Black names, no reply without a greeting code and no indicator of a hard-to-find address, so the function first translates your specification and prints each change that it makes. Then it prints your result on the original data and, below it, your result on the new data, in the same lines as before. Compare the two verdicts, and the place of each result on its curve.
+:::
+
+## Hands-on 6 – The two curves {#hands-on-6-the-two-curves .smaller}
+
+::: {.small}
+The curve of the original data, read in Task 5, and the curve of the new data, each ranked from the most negative estimate. The first cell stacks the two curves, and the second picks out your specification on each, translated on the new data; neither prints anything. *Workspace:* the first half of the chunk `fig-replication`.
+:::
+
+```{webr}
+#| autorun: false
+replication_curve <- utils::read.csv("data/replication_curve.csv")
+experiments <- c("Original experiment (2014)", "New experiment (2020)")
+both <- dplyr::bind_rows(
+  datawizard::data_modify(spec_curve, experiment = experiments[1]),
+  replication_curve |>
+    datawizard::data_filter(!duplicated(rep_spec)) |>
+    datawizard::data_modify(rank = rep_rank, experiment = experiments[2],
+                            emails = factor(population, levels = c("replies", "all"),
+                                            labels = c("replies only", "all delivered emails")))
+) |>
+  datawizard::data_modify(experiment = factor(experiment, levels = experiments))
+```
+
+```{webr}
+#| autorun: false
+mine_both <- dplyr::bind_rows(
+  datawizard::data_modify(mine, experiment = experiments[1]),
+  replication_curve |>
+    datawizard::data_filter(comparison == my_comparison, population == my_population,
+                            uncoded == my_uncoded, model == my_model, adjust == my_adjust) |>
+    datawizard::data_modify(rank = rep_rank, experiment = experiments[2])
+) |>
+  datawizard::data_modify(experiment = factor(experiment, levels = experiments))
+```
+
+::: notes
+Two cells prepare the figure and print nothing. The first reads the curve of the new data and stacks it under the curve of the original data from Task 5. The sixty-four specifications of the original data become twelve on the new data, because three of the decisions on the menu have nothing to act on there: there are no Black names to add to the comparison, no replies without a greeting code, and no indicator of a hard-to-find address to adjust for. The second cell picks out your own specification on each curve, by the choices of your preregistration cell. The figure is on the next slide, and in your workspace the same steps make the last figure of the report.
+:::
+
+## Hands-on 6 – Your result on new data {#hands-on-6-your-result-on-new-data .smaller .output-fig}
+
+::: {.small}
+The two curves, coloured by the emails counted, with your declared specification ringed on each. *Workspace:* the chunk `fig-replication`.
+:::
+
+```{webr}
+#| autorun: false
+#| max-lines: 4
+#| fig-width: 8
+#| fig-height: 4.8
+tinyplot::tinytheme("minimal")
+tinyplot::tinyplot(b_pp ~ rank | emails, facet = ~ experiment, data = both, pch = 16,
+                   facet.args = list(free = TRUE), ylim = c(min(both$b_pp) - 1, 3),
+                   palette = c("#0e3b6a", "#2b8585"), legend = list("bottom!", title = "Emails counted"),
+                   xlab = "Specifications, from the most negative estimate",
+                   ylab = "Hispanic minus comparison names (points)")
+tinyplot::tinyplot(b_pp ~ rank, facet = ~ experiment, data = both, type = tinyplot::type_hline(h = 0),
+                   col = "grey60", facet.args = list(free = TRUE), add = TRUE)
+# your specification, ringed on each curve; on the new data, its translation
+tinyplot::tinyplot(b_pp ~ rank, facet = ~ experiment, data = mine_both,
+                   type = tinyplot::type_points(clim = c(3, 3)), pch = 1, cex = 3, lwd = 2.5,
+                   col = "#8b1538", facet.args = list(free = TRUE), add = TRUE)
+tinyplot::tinytheme()
+```
+
+::: notes
+And the figure, whose code scrolls in the editor. On the left are the sixty-four specifications of the original data, with yours ringed; on the right the twelve that the curve becomes on the new data, with your translated specification ringed. The vertical scale is the same in both panels. On the original data every estimate lies between minus twenty and minus twelve points, and every one is significant. On the new data every estimate lies within two points of zero, and none is significant at five per cent. The Class results page draws the declared specifications of the whole class in the same way, in a second chart below the first. Write two sentences for your notes: what your result on the new data says about the claim, and how it compares with your result on the original data.
+:::

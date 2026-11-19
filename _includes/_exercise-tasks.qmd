@@ -1,6 +1,6 @@
 ## The tasks
 
-The exercise runs as five numbered tasks, and the report of the workspace, `index.qmd`, holds the steps of each.
+The exercise runs as six numbered tasks, and the report of the workspace, `index.qmd`, holds the steps of each.
 
 ### Task 1 – The setup check
 
@@ -27,3 +27,7 @@ This task is **exploratory**: nothing in it is preregistered, and you may look, 
 Choose **one** specification, one option for each decision, and complete the preregistration block **before you run it**. `run_spec()` fits the specification that you declared, and `report_result()` sends the declared result to the class chart, where it appears as a filled circle. Then find where your result sits on the curve of `r nrow(curve)` specifications.
 
 Task 4 and Task 5 run the same code. An exploratory specification can have been chosen because of its result and a declared one cannot, and you submit both so that the two sets of class results can be compared.
+
+### Task 6 – Replication
+
+Fit the specification that you declared in Task 5 on the data of the SCORE replication, a new experiment of 2020 with four new male names, `housing_replication.csv` ([codebook](../../data/housing_replication_codebook.md)). `replicate_spec()` translates the specification to the design of the new experiment, which had no Black names, no reply without a greeting code and no indicator of a hard-to-find address, and prints each change. Then place the result on the curve of the claim on the new data, beside its place on the curve of the original data.

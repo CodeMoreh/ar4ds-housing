@@ -27,7 +27,7 @@ The facilitator chooses the format, and the link sent to the participants of a d
 
 ## The browser lab
 
-The browser lab is a page that runs R in the tab of the browser and holds the five tasks of the exercise beside the workspace. It is live: it loads the data of the case study, about 100 KB of emails, and runs the code of the tasks on them, each fit in a fraction of a second. The live decks carry the same cells on their slides, with the same helpers, which are one file, `_includes/_lab-helpers.qmd`, beside the graph helpers of Task 2 in `_includes/_lab-graph.qmd`, and the lab is the fallback of both decks. The causal-graph task prints the answers that the pipeline computed with dagitty for the graphs that the cell offers, because dagitty cannot run in the tab; any other graph goes to the workspace.
+The browser lab is a page that runs R in the tab of the browser and holds the six tasks of the exercise beside the workspace. It is live: it loads the data of the case study, about 100 KB of emails, and runs the code of the tasks on them, each fit in a fraction of a second. The live decks carry the same cells on their slides, with the same helpers, which are one file, `_includes/_lab-helpers.qmd`, beside the graph helpers of Task 2 in `_includes/_lab-graph.qmd`, and the lab is the fallback of both decks. The causal-graph task prints the answers that the pipeline computed with dagitty for the graphs that the cell offers, because dagitty cannot run in the tab; any other graph goes to the workspace.
 
 ## The decks
 
