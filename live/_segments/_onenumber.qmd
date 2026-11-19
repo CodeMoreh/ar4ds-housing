@@ -6,7 +6,7 @@
 
 :::: {.none}
 ::: {.fragment}
-Everyone who chose the same analyst got the same value, to the third decimal, and every recorded value came back. That is reproducibility, and it is the easy R.
+Everyone with the same analyst gets the same value, to the third decimal, and every recorded value comes back. That is reproducibility, and it is the easy R.
 :::
 
 ::: {.fragment}
@@ -19,5 +19,5 @@ None of them was careless. They made different choices[, and the options that th
 ::::
 
 ::: notes
-Look at what just happened. Different people, on different machines, chose different analysts, and everyone who chose the same analyst landed on the same number, agreeing with the record to the third decimal. That is reproducibility, and notice how cheap it was: you ran code that the course wrote, on a file that anyone can download, so of course you got the recorded numbers back. Reproducibility is the easy R. [pause] Now set that against the five analysts themselves. They had the same public file, each wrote their own analysis, and they came back with five different numbers, and not even the same verdict on whether the data supported the claim. Not one of them was careless: four of the five published their scripts on the OSF, and they are competent pieces of work. So the spread is not a matter of quality. It is a matter of the choices that each of them made.
+Look at what just happened. Different people, on different machines, reproduced different analysts, and everyone with the same analyst landed on the same number, agreeing with the record to the third decimal. That is reproducibility, and notice how cheap it was: you ran code that the course wrote, on a file that anyone can download, so of course you got the recorded numbers back. Reproducibility is the easy R. [pause] Now set that against the five analysts themselves. They had the same public file, each wrote their own analysis, and they came back with five different numbers, and not even the same verdict on whether the data supported the claim. Not one of them was careless: four of the five published their scripts on the OSF, and they are competent pieces of work. So the spread is not a matter of quality. It is a matter of the choices that each of them made.
 :::

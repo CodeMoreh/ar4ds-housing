@@ -50,10 +50,10 @@ deck:
 # - The participants do every task of the session in this deck, whose
 #   hands-on slides carry the cells of the browser lab through the Quarto
 #   Live extension: Task 1 and its warm-up, Task 3 with each of the five
-#   reproductions, Task 4 without the submission, and the placement. The
-#   estimand statement of Task 2 is a held answer in the chat, and the
-#   session sends nothing to the class chart and has no Task 5. The browser
-#   lab, lab.qmd, stays the fallback.
+#   reproductions, Task 4 without the submission, and the placement. Each
+#   participant writes the estimand statement of Task 2 in their notes, and
+#   the session sends nothing to the class chart and has no Task 5. The
+#   browser lab, lab.qmd, stays the fallback.
 # - The hands-on segments in _segments/ (_handson1-live.qmd,
 #   _handson3-live.qmd, _handson4-live.qmd, _handson4-tries-live.qmd and
 #   _placement-live.qmd) hold the cells of the lab, one step to a cell, with

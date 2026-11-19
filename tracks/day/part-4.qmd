@@ -32,11 +32,11 @@ Keep the menu and the curve open in other tabs while the facilitator talks.
 
 [Open the class results](../../class-results.qmd){.btn .btn-primary target="_blank"}
 
-Find your own mark among the exploratory results of the class. Then rerun `try_spec()` in your workspace with the choices that you submitted, or in the cell of the slide [Your own placement](../../live/day.html#/find-your-own-percentile){target="_blank"} of the deck, and read your placement, which is the number of the 64 specifications whose gap lies further below zero than yours. Send it in the chat when the facilitator says go.
+Find your own mark among the exploratory results of the class. Then rerun `try_spec()` in your workspace with the choices that you submitted, or in the cell of the slide [Your own placement](../../live/day.html#/find-your-own-percentile){target="_blank"} of the deck, and read your placement, which is the number of the 64 specifications whose gap lies further below zero than yours.
 
 ## Task 5 – Preregistration
 
-**In the preregistration block of your report**, the chunk `prereg` of `index.qmd`. Complete the block before you run anything, render the report, and type "declared" in the chat. When the class has declared, fit the specification with `run_spec()` and send it with `report_result()`. Your declared result is drawn on the chart as a filled circle beside the open circles of Task 4.
+**In the preregistration block of your report**, the chunk `prereg` of `index.qmd`. Complete the block before you run anything, and render the report. Then fit the specification with `run_spec()` and send it with `report_result()`. Your declared result is drawn on the chart as a filled circle beside the open circles of Task 4.
 
 [Open the deck at Task 5](../../live/day.html#/the-preregistration-moment){.btn .btn-outline-primary target="_blank"} [Open the browser lab at Task 5](../../lab.qmd#task-5-preregistration){.btn .btn-outline-primary target="_blank"}
 

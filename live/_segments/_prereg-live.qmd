@@ -8,15 +8,15 @@
 1. Open the preregistration block of Task 5 in your report, or on the next slide of this deck
 2. Complete fields 1–5: the claim, the data-in-hand statement, your one specification, the one-sentence justification from your causal graph, and your rule for what supports or undermines the claim
 3. **Render** your report, or in this deck copy the completed cell into your notes
-4. Type **"declared"** in chat – then wait for the class
+4. Only then run your specification, on the slides that follow
 :::
 
 ::: {.fragment}
-Nobody runs a model until everyone in the class has completed their preregistration block.
+Nothing runs until your block is complete.
 :::
 
 ::: notes
-We preregister together, because a thing that the whole class does at once sticks in a way that an instruction does not. Open Task 5 in your report, or the block on the next slide if you work in this deck. Fill in the five fields: the claim, the data-in-hand statement, your one specification with an option for each decision of the menu, the one-sentence justification that your graph gives you, and the rule, written now and before any result, for what would support the claim and what would undermine it. Render the report; the rendered file with its date is the record of your preregistration. Then type "declared" in chat, and wait. [count them in aloud] If the specification that you choose is one that you already tried in Task 4, that is allowed, but say so in the block, because a specification whose result you have already seen is not preregistered in the strict sense.
+Now the preregistration. Open Task 5 in your report, or the block on the next slide if you work in this deck. Fill in the five fields: the claim, the data-in-hand statement, your one specification with an option for each decision of the menu, the one-sentence justification that your graph gives you, and the rule, written now and before any result, for what would support the claim and what would undermine it. Render the report; the rendered file with its date is the record of your preregistration, and you run nothing before it exists. If the specification that you choose is one that you already tried in Task 4, that is allowed, but say so in the block, because a specification whose result you have already seen is not preregistered in the strict sense.
 :::
 
 ## Hands-on 5 – The preregistration block {#hands-on-5-the-preregistration-block .smaller}
@@ -78,7 +78,7 @@ my_spec <- prereg()   # checks every choice, prints your preregistration and kee
 ```
 
 ::: notes
-Then the declaration itself. Prereg reads the eleven choices of the block, checks each one against the menu, and stops with the reason if one of them is off the curve, as try underscore spec does. If every choice is on the curve, it prints your preregistration: the choices in the three groups of the menu, and the estimand statement that the choices make, written out in words. It also keeps the block as my underscore spec, which the run on the next slide needs. In your workspace the rendered report, with its date, is the record of the declaration, and in this deck you copy the block into your notes. Then type declared in chat, and wait for the class.
+Then the declaration itself. Prereg reads the eleven choices of the block, checks each one against the menu, and stops with the reason if one of them is off the curve, as try underscore spec does. If every choice is on the curve, it prints your preregistration: the choices in the three groups of the menu, and the estimand statement that the choices make, written out in words. It also keeps the block as my underscore spec, which the run on the next slide needs. In your workspace the rendered report, with its date, is the record of the declaration, and in this deck you copy the block into your notes.
 :::
 
 ## Hands-on 5 – The preregistered run {#run-it-then-watch-the-chart .smaller}
@@ -114,11 +114,11 @@ Compare the two waves. If the declared results fall systematically to one side o
 :::
 
 ::: {.fragment .small}
-Stuck? Type "STUCK", reload and rerun, try a second browser or follow my screen. Last resort: your specification is one row of `spec_curve.csv`, with its estimate and its test, and I will help you submit it by hand
+Stuck? Raise your hand, reload and rerun, try a second browser or follow my screen. Last resort: your specification is one row of `spec_curve.csv`, with its estimate and its test, and I will help you submit it by hand
 :::
 
 ::: notes
-When the numbers are in front of you, call report underscore result. It builds your submission from the preregistration, so there is nothing to fill in or transcribe, and prints the address of the results form with your values already in it: open it in a new tab, press Send, and you have submitted. Your mark joins the chart on the Class results page as a declared result, a filled circle, beside the open circles that the class submitted in Task 4, and with the same tag. [advance] If the declared results fall systematically to one side of the exploratory ones, that tells you something about what people chose to preregister once they had tried the alternatives. [advance] If anything misbehaves, type STUCK and work down the ladder on the cheatsheet. Your specification is one row of the curve file, and I will help you submit it by hand, so everybody gets a mark on the chart.
+When the numbers are in front of you, call report underscore result. It builds your submission from the preregistration, so there is nothing to fill in or transcribe, and prints the address of the results form with your values already in it: open it in a new tab, press Send, and you have submitted. Your mark joins the chart on the Class results page as a declared result, a filled circle, beside the open circles that the class submitted in Task 4, and with the same tag. [advance] If the declared results fall systematically to one side of the exploratory ones, that tells you something about what people chose to preregister once they had tried the alternatives. [advance] If anything misbehaves, raise your hand and work down the ladder on the cheatsheet. Your specification is one row of the curve file, and I will help you submit it by hand, so everybody gets a mark on the chart.
 :::
 
 ## Hands-on 5 – The curve {#hands-on-5-the-curve .smaller}

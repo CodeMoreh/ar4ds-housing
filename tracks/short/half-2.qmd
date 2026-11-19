@@ -25,7 +25,7 @@ Keep the menu and the curve open in other tabs while the facilitator talks.
 
 ## Your placement
 
-**In the deck**, in the cell of the placement slide. Rerun `try_spec()` with the specification that you would defend and read your placement, which is the number of the 64 specifications whose gap lies further below zero than yours. Send it in the chat when the facilitator says go.
+**In the deck**, in the cell of the placement slide. Rerun `try_spec()` with the specification that you would defend and read your placement, which is the number of the 64 specifications whose gap lies further below zero than yours.
 
 [Open the deck at your placement](../../live/short.html#/find-your-own-percentile){.btn .btn-primary target="_blank"} [Open the browser lab at Task 4](../../lab.qmd#task-4-menu){.btn .btn-outline-primary target="_blank"}
 

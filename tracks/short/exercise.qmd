@@ -22,7 +22,7 @@ Wait for the engine of the deck to finish downloading, then run the setup cell.
 
 ### Task 2 – The estimand statement
 
-Write the **estimand statement** behind the claim, in the chat. It says which comparison is made (Hispanic names against which names), which emails are counted (the replies, or every delivered email), and which outcome is compared. The [specification menu](../../menu.qmd) gives the template.
+Write the **estimand statement** behind the claim in your notes. It says which comparison is made (Hispanic names against which names), which emails are counted (the replies, or every delivered email), and which outcome is compared. The [specification menu](../../menu.qmd) gives the template.
 
 ### Task 3 – The reproduction
 

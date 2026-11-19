@@ -14,7 +14,7 @@ title: "First half – The claim and its reproduction"
 7. Task 3 – The reproduction
 8. The defaults of the software
 
-Open the deck in a tab of its own while the facilitator talks, so that R loads in it. When the slides ask for your estimand statement, which is Task 2, write it in the chat, hold it, and send it when the facilitator says go.
+Open the deck in a tab of its own while the facilitator talks, so that R loads in it. When the slides ask for your estimand statement, which is Task 2, write it in your notes.
 
 ## Task 1 – The setup check
 
@@ -26,6 +26,6 @@ If the deck does not load, run the same cells in the browser lab, which gives th
 
 ## Task 3 – The reproduction
 
-**In the deck.** Run the cell that reads the public file `housing_original.csv`, choose one of the five analysts and work through the cells of that analyst. Type the analyst and your value in the chat without sending them, and send them when the facilitator says go.
+**In the deck.** Run the cell that reads the public file `housing_original.csv`, then work through the cells of the analyst given to you by the facilitator, who shares the five analysts out so that the class reproduces all five.
 
 [Open the deck at Task 3](../../live/short.html#/hands-on-3-reproduce-the-recorded-result){.btn .btn-primary target="_blank"} [Open the browser lab at Task 3](../../lab.qmd#task-3-reproduction){.btn .btn-outline-primary target="_blank"}

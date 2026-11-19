@@ -52,7 +52,7 @@ Both submission functions take `nickname = "..."`, which replaces the tag that t
 
 ## The reproductions of Task 3 {#reproductions}
 
-Choose one analyst. Each reproduction reads the public file of the original authors (OAs), `housing_original.csv`, and the four recorded values come out exactly. The full code is in Task 3 of the browser lab and of your workspace, and `prep/reproduce_reanalyses.R` in the workspace holds all five.
+One analyst each. Each reproduction reads the public file of the original authors (OAs), `housing_original.csv`, and the four recorded values come out exactly. The full code is in Task 3 of the browser lab and of your workspace, and `prep/reproduce_reanalyses.R` in the workspace holds all five.
 
 | Analyst | Rows of `housing_original.csv` | The call | Recorded in the robustness study |
 |---|---|---|---|

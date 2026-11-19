@@ -10,16 +10,10 @@ title: "Part 3 – The reproduction"
 2. Task 3 – The reproduction
 3. Reproducibility and analytical choice
 4. What a reproduction needs
-5. A second reproduction
+5. The five reproductions
 
 ## Task 3 – The reproduction
 
-**In your workspace**, in Task 3 of `index.qmd`. Run the chunk `reproduce-read`, choose one of the five analysts and work through the tab of that analyst. Type the analyst and your value in the chat without sending them, and send them when the facilitator says go. Then run the chunk `reproduce-uncorrected`, which runs two of the tests again without the continuity correction.
+**In your workspace**, in Task 3 of `index.qmd`. Run the chunk `reproduce-read`, then work through the tab of the analyst given to you by the facilitator, who shares the five analysts out so that the class reproduces all five. Then run the chunk `reproduce-uncorrected`, which runs two of the tests again without the continuity correction.
 
 [Open the deck at Task 3](../../live/day.html#/hands-on-3-reproduce-the-recorded-result){.btn .btn-outline-primary target="_blank"} [Open the browser lab at Task 3](../../lab.qmd#task-3-reproduction){.btn .btn-outline-primary target="_blank"}
-
-## A second reproduction
-
-**In your workspace**, in another tab of Task 3. Reproduce a second analyst whose analysis differs from your first in one decision: the comparison (8PTRZ and UYV3F), the emails counted (UYV3F and 25N5D) or the test (UYV3F and P9W8Y). Compare the two as gaps in percentage points, and write one sentence on which of the two analyses answers the claim as SCORE selected it.
-
-[Open the deck at the second reproduction](../../live/day.html#/hands-on-3b-a-second-reproduction){.btn .btn-outline-primary target="_blank"}

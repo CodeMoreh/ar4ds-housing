@@ -16,7 +16,7 @@ Third, finish the **causal graph**. The graph shows why comparing greetings amon
 
 ### Task 3 – The reproduction
 
-Choose one of the five analysts in the table above and reproduce the analysis from the public file of the OAs, `housing_original.csv` ([codebook](../../data/housing_original_codebook.md)), in the tab of that analyst. Then find out why your number is what it is. A reproduction depends on the defaults and the codings of the software as well as on the data and the model.
+Reproduce the analysis of one of the five analysts in the table above from the public file of the OAs, `housing_original.csv` ([codebook](../../data/housing_original_codebook.md)), in the tab of that analyst. Then find out why your number is what it is. A reproduction depends on the defaults and the codings of the software as well as on the data and the model.
 
 ### Task 4 – The menu
 

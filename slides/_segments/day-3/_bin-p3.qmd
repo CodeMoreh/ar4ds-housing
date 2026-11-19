@@ -129,7 +129,7 @@ Here is the least familiar property of the odds ratio. In an experiment, adding 
 :::
 
 ::: notes
-Your turn again, with the reference rows from the first hands-on. One detail of marginaleffects catches people out: it refuses a data column called group, and the rows from spec underscore frame carry one, so keep only the columns of the model before you fit. Fit the logit, and print its parameters with exponentiate set to true, which turns the coefficient into an odds ratio. Then ask marginaleffects for the two average predictions, every email as a white name and every email as a Hispanic name, and for their difference, the average marginal effect. Then add the hard-to-find address and repeat. Write down which of the two scales moved and which stayed put, and in one sentence why. [state the time] STUCK in chat if you need me.
+Your turn again, with the reference rows from the first hands-on. One detail of marginaleffects catches people out: it refuses a data column called group, and the rows from spec underscore frame carry one, so keep only the columns of the model before you fit. Fit the logit, and print its parameters with exponentiate set to true, which turns the coefficient into an odds ratio. Then ask marginaleffects for the two average predictions, every email as a white name and every email as a Hispanic name, and for their difference, the average marginal effect. Then add the hard-to-find address and repeat. Write down which of the two scales moved and which stayed put, and in one sentence why. [state the time] Raise your hand if you need me.
 :::
 
 ## The reading and the next session {#the-reading-and-the-next-session .smaller}

@@ -12,8 +12,6 @@ title: "Part 2 – The estimand and the causal graph"
 4. The estimand statement and the graph
 5. Task 2 – The data, the estimand and the graph
 
-When the slides ask for your estimand statement, write it in the chat, hold it, and send it when the facilitator says go.
-
 ## Task 2 – The data, the estimand and the graph
 
 **In your workspace**, in the two boxes of Task 2 of `index.qmd`. Count what came back for each name, complete the estimand statement, and put the questions of the second box to the causal graph of `R/dag_starter.R`.

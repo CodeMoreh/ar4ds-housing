@@ -9,7 +9,7 @@
 ## Hands-on 3 – The reproduction {#hands-on-3-reproduce-the-recorded-result .smaller}
 
 ::: {.small}
-**Task 3**: choose one of the five analysts, work through their cells on the public file `housing_original.csv`, and compare your value with the record. The cell on this slide reads the file as `original` and prints nothing; run it first.[ *Workspace:* the chunk `reproduce-read` of `index.qmd`, then the tab of your analyst.]{.content-visible unless-meta="deck.short"}
+**Task 3**: take one of the five analysts (in class, the one given to you), work through the cells of that analyst on the public file `housing_original.csv`, and compare your value with the record. The cell on this slide reads the file as `original` and prints nothing; run it first.[ *Workspace:* the chunk `reproduce-read` of `index.qmd`, then the tab of your analyst.]{.content-visible unless-meta="deck.short"}
 :::
 
 ::: {.fs-60}
@@ -27,12 +27,8 @@
 original <- utils::read.csv("data/housing_original.csv", na.strings = c("", "NA"))
 ```
 
-::: {.fragment .small}
-When you have it, type **the analyst and your value** in chat, for example `UYV3F z = -3.771`, and hold it until I say "go".
-:::
-
 ::: notes
-Now you work. Choose one of the five analysts, the one whose analysis you would most like to understand: the test of a table, the logistic regression, the model with covariates, the two-proportion test on every delivered email, or the test of three groups. Run the cell on this slide first, which reads the public file of the original authors and prints nothing, then go to the slides of your analyst, whose names in the table are links.[ You work in your workspace, and these slides show the same steps.]{.content-visible unless-meta="deck.short"} Each analyst has a few cells, one step each, and one of the cells has a blank to fill, with a hint and the solution under it. Using the solution is not cheating, because this task is about the number at the end. When you have your value, type the analyst and the value into chat, but do not send it: when I say go, everyone sends at once. [wait for the numbers in chat]
+Now you work. I give each of you one of the five analysts, so that between you the class reproduces all five: the test of a table, the logistic regression, the model with covariates, the two-proportion test on every delivered email, and the test of three groups. Run the cell on this slide first, which reads the public file of the original authors and prints nothing, then go to the slides of your analyst, whose names in the table are links.[ You work in your workspace, and these slides show the same steps.]{.content-visible unless-meta="deck.short"} Each analyst has a few cells, one step each, and one of the cells has a blank to fill, with a hint and the solution under it. Using the solution is not cheating, because this task is about the number at the end. When you have your value, compare it with the record in the table.
 :::
 
 ## Hands-on 3 – 8PTRZ {#hands-on-3-8ptrz .smaller .output-8}
@@ -98,7 +94,7 @@ You should get **X-squared = `r fmt_num(chi_yates, 3)`** on 1 df, the value on r
 :::
 
 ::: notes
-Then the test. The cell runs chisq dot test on the table, exactly as 8PTRZ did. Read the first line of its printout before the numbers, because it names the test, and the name has a few more words than you might expect. [advance] You should get fourteen point two six five on one degree of freedom, the value on record. Everyone who chose this analyst should now have the same number, to the third decimal, because everyone ran the same code on the same file. Type the analyst and the value in chat, hold it, and send it when I say go.
+Then the test. The cell runs chisq dot test on the table, exactly as 8PTRZ did. Read the first line of its printout before the numbers, because it names the test, and the name has a few more words than you might expect. [advance] You should get fourteen point two six five on one degree of freedom, the value on record. Everyone who has this analyst should now have the same number, to the third decimal, because everyone ran the same code on the same file.
 :::
 
 ## Hands-on 3 – UYV3F {#hands-on-3-uyv3f .smaller .output-8}
@@ -359,7 +355,7 @@ The column `Deviance` gives 15.951 on 2 degrees of freedom for 558 replies. The 
 ::::
 
 ::: notes
-The first cell fits the model of the three groups and prints the replies that it used, five hundred and fifty-eight. The second is the exercise: anova compares the model with the same model without the groups, and the blank is the name of the test. A likelihood-ratio test compares how well the two models fit the same rows, and the hint gives the word that R expects. The column Deviance holds the statistic, fifteen point nine five one on two degrees of freedom. The analyst wrote the same value in the report filed for the second task of the robustness study, but the record holds no number for this analysis, so your value cannot be matched against it. If you chose P9W8Y, type the analyst and the value in chat all the same.
+The first cell fits the model of the three groups and prints the replies that it used, five hundred and fifty-eight. The second is the exercise: anova compares the model with the same model without the groups, and the blank is the name of the test. A likelihood-ratio test compares how well the two models fit the same rows, and the hint gives the word that R expects. The column Deviance holds the statistic, fifteen point nine five one on two degrees of freedom. The analyst wrote the same value in the report filed for the second task of the robustness study, but the record holds no number for this analysis, so your value cannot be matched against it.
 :::
 
 ## The continuity correction {#the-continuity-correction .smaller}

@@ -70,7 +70,7 @@ writeLines(c(
           fit_spec(housing)$b_pp)))
 ```
 
-You should see **1,014 rows** and, on the last line, **−19.97 percentage points**. If not, reload the page, wait for the engine and run the cell again. If it still fails, say **STUCK** in the chat.
+You should see **1,014 rows** and, on the last line, **−19.97 percentage points**. If not, reload the page, wait for the engine and run the cell again. If it still fails, open the page in another browser.
 
 ## Warm-up – the three Rs {#warm-up}
 
@@ -251,7 +251,7 @@ The difference between the two comparisons is the decision on which emails are c
 
 ## Task 3 – The reproduction {#task-3-reproduction}
 
-This is the **reproducibility** check. Five analysts reanalysed the claim for the robustness study, each with code of their own, and the robustness study recorded a test statistic for four of them. Choose one of the five and reproduce the analysis from the public file of the OAs, `housing_original.csv`, which keeps their column names. `Response_Dichotomous` is 1 for a reply, 0 for none and empty for a bounced email. `ProperName` is the greeting by name, empty for every email that has no reply with a greeting code. `TreatmentGroup` holds the group and the sex of the name (`"Hispanic male"`, `"white female"` and so on).
+This is the **reproducibility** check. Five analysts reanalysed the claim for the robustness study, each with code of their own, and the robustness study recorded a test statistic for four of them. Reproduce the analysis of one of the five from the public file of the OAs, `housing_original.csv`, which keeps their column names. `Response_Dichotomous` is 1 for a reply, 0 for none and empty for a bounced email. `ProperName` is the greeting by name, empty for every email that has no reply with a greeting code. `TreatmentGroup` holds the group and the sex of the name (`"Hispanic male"`, `"white female"` and so on).
 
 | Analyst | What the analysis compared | Emails counted | Test | Recorded in the robustness study |
 |:--|:--|:--|:--|:--|
@@ -263,7 +263,7 @@ This is the **reproducibility** check. Five analysts reanalysed the claim for th
 
 Each analyst has a few cells below, one step each, to be run in order. One cell of each analyst is an exercise: replace the blank (`______`) with the missing code, then press "Run Code". A hint and the solution sit under that cell.
 
-Whichever analyst you choose, run the cell below first. It reads the public file as `original` and prints nothing.
+Whichever analyst you reproduce, run the cell below first. It reads the public file as `original` and prints nothing.
 
 ```{webr}
 #| autorun: false
