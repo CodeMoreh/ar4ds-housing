@@ -34,9 +34,9 @@
 /slides/*.html
 !/slides/nav-tools.html
 
-# The de-identified data of the SCORE replication, fetched from osf.io/xseqg
-# at run time by R/06_replication.R; only aggregates derived from them
-# are committed
+# The local copy of the de-identified data of the SCORE replication, from
+# the data hub; R/06_replication.R writes it to data/housing_replication.csv,
+# which is committed
 /data-raw/score_replication/
 
 # Copies that pCloud makes when it renames a page during a render
