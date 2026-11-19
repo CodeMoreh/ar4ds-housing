@@ -4,7 +4,7 @@
 - **The data, under a licence that allows reuse.** The OAs deposited theirs on the Harvard Dataverse under CC0, so anyone may download, use and pass them on
 - **The code, or every choice that it made.** Four of the five analysts published their scripts on the OSF, and UYV3F only a review document
 - **The software and its defaults.** The continuity correction of `chisq.test()` and `prop.test()`, and the base group of a factor, are part of the result
-- **Someone who tries.** SCORE opened a reproduction component for this paper, and it holds an empty template
+- **Someone who tries.** The SCORE reproducibility study opened a reproduction component for this paper, and it holds an empty template
 :::
 
 ::: {.fragment .small}

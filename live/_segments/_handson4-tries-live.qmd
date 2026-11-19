@@ -1,5 +1,5 @@
 <!-- The end of Task 4 of the browser lab (lab.qmd) for the short
-     deck: the log of the tries, with the cell of the lab. The short format
+     deck: the log of the tries, with the cell of the lab. The part-day format
      sends nothing to the class chart, so the cell of the submission stays in
      the lab and in the day deck. -->
 ## Hands-on 4 – Your tries {#hands-on-4-your-tries .smaller}

@@ -5,7 +5,7 @@ Part 3
 :::
 
 ::: notes
-Part three is about precision: how large a gap a design of this size can find, and what a different way of assigning the names would have bought. Both questions lead to the replication, which emailed three times as many authorities and assigned its names within each state. You met the power of the two designs briefly yesterday. Here we read the same curves more closely, and then look at blocking, which the replication used and the original did not.
+Part three is about precision: how large a gap a design of this size can find, and what a different way of assigning the names would have bought. Both questions lead to the replication in the SCORE replicability study, which emailed three times as many authorities and assigned its names within each state. You met the power of the two designs briefly yesterday. Here we read the same curves more closely, and then look at blocking, which the replication used and the original did not.
 :::
 
 ## Power {#power .smaller}

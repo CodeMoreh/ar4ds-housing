@@ -50,9 +50,9 @@ core-runs: []
 deck:
   day: true
   menu: true
-# THE DECK OF THE DAY FORMAT, OF DAY 2 OF THE LONG FORMAT AND OF THE
-# INDEPENDENT FORMAT
-# - The participants of the day format do the six tasks in the workspace, in
+# THE DECK OF THE FULL-DAY FORMAT, OF DAY 2 OF THE LONG FORMAT AND OF THE
+# SELF-TAUGHT FORMAT
+# - The participants of the full-day format do the six tasks in the workspace, in
 #   their IDE. This deck carries the whole browser lab on its slides, through
 #   the Quarto Live extension: the facilitator runs each step on the shared
 #   screen, so that the class can compare its output with the slides, and a

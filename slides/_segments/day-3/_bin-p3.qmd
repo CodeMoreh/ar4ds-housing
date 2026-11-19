@@ -5,7 +5,7 @@ Part 3
 :::
 
 ::: notes
-Part three turns to the model of the paper. The original authors, the OAs, fitted a logistic regression, and so did three of the five analysts, so this is the model behind the published result and behind two of the four statistics that the robustness study of SCORE, known as Multi100, recorded for the analysts. A logistic regression does not report in percentage points. It reports differences in log odds, and their exponents, odds ratios. We look at what that scale is, how to get back to the scale of the claim, and why the course does so for every logit on the curve.
+Part three turns to the model of the paper. The original authors, the OAs, fitted a logistic regression, and so did three of the five analysts, so this is the model behind the published result and behind two of the four statistics that the SCORE robustness study recorded for the analysts. A logistic regression does not report in percentage points. It reports differences in log odds, and their exponents, odds ratios. We look at what that scale is, how to get back to the scale of the claim, and why the course does so for every logit on the curve.
 :::
 
 ## Logistic regression {#logistic-regression .smaller}

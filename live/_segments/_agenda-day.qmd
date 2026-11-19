@@ -6,7 +6,7 @@ One day in four parts
 
 :::: {.todaybox}
 ::: {.nonincremental .fs-75}
-1. The claim and credibility – science and its crisis, the three Rs, SCORE and its robustness study [Multi100\; @AczelEtAl2026InvestigatingAnalyticalRobustness], and the paper
+1. The claim and credibility – science and its crisis, the three Rs, the SCORE robustness study [@AczelEtAl2026InvestigatingAnalyticalRobustness], and the paper
 2. The estimand and the causal graph – five analysts, estimands, and the graph of the experiment
 3. The reproduction – one of the five reanalyses reproduced from the public file
 4. Robustness – the menu, the class chart, the curve, one preregistered analysis and its run on the new experiment

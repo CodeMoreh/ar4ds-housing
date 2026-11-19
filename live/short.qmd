@@ -46,7 +46,7 @@ core-runs: []
 deck:
   short: true
   menu: true
-# THE DECK OF THE SHORT FORMAT
+# THE DECK OF THE PART-DAY FORMAT
 # - The participants do every task of the session in this deck, whose
 #   hands-on slides carry the cells of the browser lab through the Quarto
 #   Live extension: Task 1 and its warm-up, Task 3 with each of the five

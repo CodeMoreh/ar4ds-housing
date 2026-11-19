@@ -20,7 +20,7 @@ A section of its own under the figure of the curve in Task 5, in this order:
 :::
 
 ::: {.fragment .small}
-The claim comes from the paper [@EinsteinGlick2017DoesRaceAffect] as SCORE selected it for its robustness study [Multi100\; @AczelEtAl2026InvestigatingAnalyticalRobustness], and the reference list at the end of the report already holds both.
+The claim comes from the paper [@EinsteinGlick2017DoesRaceAffect] as selected for the SCORE robustness study [@AczelEtAl2026InvestigatingAnalyticalRobustness], and the reference list at the end of the report already holds both.
 :::
 
 ::: {.src}

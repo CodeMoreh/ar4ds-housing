@@ -38,7 +38,7 @@ Every official who answered Santiago Martinez spent working time on someone who 
 :::
 
 ::: {.fragment .small}
-Replication has a cost of its own in this kind of research: the SCORE replication sent **3,050** further requests from people who did not exist to offices of the same kind.
+Replication has a cost of its own in this kind of research: the replication sent **3,050** further requests from people who did not exist to offices of the same kind.
 :::
 
 ::: {.src}

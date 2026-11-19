@@ -1,6 +1,6 @@
 ## The workspace and the deck {#what-we-use-today .smaller}
 
-<!-- The two places in which the tasks run in the day format, the workspace
+<!-- The two places in which the tasks run in the full-day format, the workspace
      and this deck, and, on the second slide, what the tools cannot do. Only
      the day deck includes this segment. -->
 

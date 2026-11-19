@@ -1,12 +1,12 @@
 <!-- Task 6 of the browser lab (lab.qmd) for the day deck: the declared
-     specification on the data of the SCORE replication, then the curve of the
+     specification on the data of the replication, then the curve of the
      original data and the curve of the new data with the declared
      specification ringed on each. Each slide names where the same step lives in
      the workspace. -->
 ## Hands-on 6 – Replication {#hands-on-6-replication .smaller .output-8}
 
 ::: {.small}
-- **Task 6** – run your declared specification on the data of the SCORE replication, a new experiment of 2020 that emailed 3,050 housing authorities under four new male names
+- **Task 6** – run your declared specification on the data of the replication, a new experiment of 2020 that emailed 3,050 housing authorities under four new male names
 - The new experiment had no Black names, no reply without a greeting code and no indicator of a hard-to-find address, so `replicate_spec()` first translates your specification and prints each change, then your result on the original data above your result on the new data
 - *Workspace:* the chunk `replicate`
 :::
@@ -17,7 +17,7 @@ replicate_spec(my_spec)
 ```
 
 ::: notes
-Now the third R. Everything that you have fitted so far came from the emails of the original experiment. The SCORE replication put the same question to a new experiment, run in 2020, and its data are in this deck and in your workspace. Run replicate underscore spec on the specification that you declared. The new experiment had no Black names, no reply without a greeting code and no indicator of a hard-to-find address, so the function first translates your specification and prints each change that it makes. Then it prints your result on the original data and, below it, your result on the new data, in the same lines as before. Compare the two verdicts, and the place of each result on its curve.
+Now the third R. Everything that you have fitted so far came from the emails of the original experiment. The replication put the same question to a new experiment, run in 2020, and its data are in this deck and in your workspace. Run replicate underscore spec on the specification that you declared. The new experiment had no Black names, no reply without a greeting code and no indicator of a hard-to-find address, so the function first translates your specification and prints each change that it makes. Then it prints your result on the original data and, below it, your result on the new data, in the same lines as before. Compare the two verdicts, and the place of each result on its curve.
 :::
 
 ## Hands-on 6 – The two curves {#hands-on-6-the-two-curves .smaller}

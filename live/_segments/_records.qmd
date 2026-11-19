@@ -9,7 +9,7 @@
 :::
 
 ::: {.urlbox .fragment}
-[osf.io/2ug8x](https://osf.io/2ug8x/)<br>[the replication: its preregistration and its final report]{.fs-60}
+[osf.io/2ug8x](https://osf.io/2ug8x/)<br>[the replication in the SCORE replicability study: its preregistration and its final report]{.fs-60}
 :::
 
 ::: notes
