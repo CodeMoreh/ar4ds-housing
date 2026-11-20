@@ -12,7 +12,7 @@
 #               adapt the chart to this curve are listed at the top of
 #               multiverse.js.
 # Author:       Claude for CM
-# Last updated: 2026-11-19
+# Last updated: 2026-11-20
 # Sourced by:   curve.qmd
 ################################################################################
 
@@ -153,9 +153,8 @@ mv_marks <- function(marks, analysts, curve) {
 
 # ---- the payload of the curve ----------------------------------------------------
 # curve: spec_curve.csv; options: menu_options.csv; marks: reference_marks.csv;
-# analysts: analysts5.csv. The mark settings suit a curve of 64, whose marks
-# barely overlap, so they are drawn larger and less faint than on a curve of
-# hundreds, and remain translucent.
+# analysts: analysts5.csv. The 64 marks barely overlap, so they are drawn
+# larger and less faint than on a curve of hundreds, still translucent.
 mv_payload <- function(curve, options, marks, analysts, file = "spec-curve-housing.csv",
                        size = c(4.5, 6), sw = "1",
                        op = list(sig = "0.55", ns = "0.3", ghostSig = "0.12", ghostNs = "0.06")) {

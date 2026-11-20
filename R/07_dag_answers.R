@@ -18,7 +18,7 @@
 #               workspace
 # Writes:       data/dag_answers.csv
 # Author:       Claude for CM
-# Last updated: 2026-11-15
+# Last updated: 2026-11-20
 ################################################################################
 
 # The arrows of the cell that builds the graph in the lab, written
@@ -30,20 +30,19 @@ drawn <- c("name -> reply", "reply -> greeting", "official -> reply", "official 
 switched_off <- "name -> greeting"
 roles <- list(exposure = "name", outcome = "greeting", latent = "official")
 
-# The conditioning sets that the questions of the task give to paths(): none,
-# as the workspace asks it first, the reply, and the reply with the community
+# The conditioning sets of the questions of Task 2: none, the reply, and the
+# reply with the community
 conditioning <- list(character(0), "reply", c("reply", "community"))
 
 # Every combination of the switched-off arrows, from none of them to all
 added <- purrr::map(0:length(switched_off), \(k) utils::combn(switched_off, k, simplify = FALSE)) |>
   purrr::list_flatten()
 
-# One block of rows per graph. The sets and paths keep the order in which
-# dagitty returns them, which is the order in which it prints them. A graph
-# without any valid set would keep one row with item 0, so that the lab can
-# tell it apart from a graph that the table does not hold; no graph of the
-# task has one. dplyr::mutate(), because the columns are built from the
-# arguments of the lambda, which datawizard cannot see.
+# One block of rows per graph, the sets and paths in the order in which
+# dagitty prints them. A graph without a valid set would keep one row with
+# item 0, which tells it apart from a graph missing from the table; no graph
+# of the task has one. dplyr::mutate(), because datawizard cannot see the
+# arguments of the lambda.
 answers <- purrr::imap(added, \(extra, graph) {
   arrows <- c(drawn, extra)
   dag <- dagitty::dagitty(paste0("dag {\n", paste(c(

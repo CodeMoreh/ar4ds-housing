@@ -23,7 +23,7 @@
 #               companion/_model-outputs/bayes_housing_ppc.csv
 #               (and the fitted models as fit_*.rds, which git ignores)
 # Author:       Claude for CM
-# Last updated: 2026-11-19
+# Last updated: 2026-11-20
 ################################################################################
 
 set.seed(20261105)
@@ -37,11 +37,11 @@ original <- readr::read_csv("data/housing_emails.csv", show_col_types = FALSE) |
   datawizard::data_summary(k = sum(named), n = length(named), by = "hisp") |>
   datawizard::data_modify(study = "original")
 
-# The replication publishes no person-level file that the course may copy, and
-# display_replication.csv holds the shares and the total of its replies but not
-# the size of each group. The only split of the 1,484 replies into whole
-# numbers of greetings at both shares is recovered here and checked against
-# the facts of the case study (721 replies to Hispanic and 763 to white aliases).
+# display_replication.csv holds the shares and the total of the replies of the
+# replication but not the size of each group. The only split of the 1,484
+# replies into whole numbers of greetings at both shares is recovered here and
+# checked against the counts of data/housing_replication.csv (721 replies to
+# Hispanic and 763 to white aliases).
 replies_row <- readr::read_csv("data/display_replication.csv", show_col_types = FALSE) |>
   datawizard::data_filter(population == "replies", authorities == "all")
 split <- tibble::tibble(n_hisp = seq_len(replies_row$n - 1)) |>

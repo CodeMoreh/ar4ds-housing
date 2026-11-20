@@ -12,22 +12,19 @@
 #               data/replication_curve.csv, data/reference_marks.csv (the
 #               SCORE row)
 # Author:       Claude for CM
-# Last updated: 2026-11-19
+# Last updated: 2026-11-20
 ################################################################################
 
 source("R/_tools.R")
 
-# The replication team published the file on the OSF (osf.io/xseqg, folder
-# "Public Data") without a licence, and CM treats it as openly available
-# (19 November 2026). The original is kept in the data hub, in "!REPLICATION
-# DATA/Einstein, Glick (2017) Does race affect access to government services",
-# with a copy in data-raw/score_replication/ (gitignored, as every .dta is).
-# The CSV takes the column names of housing_emails.csv wherever the new
-# experiment recorded the same thing, so that fit_spec() reads it as it reads
-# the original file, and the stages, the pages and the workspace need neither
-# the .dta nor the OSF. It holds 2,717 delivered emails from four male aliases
-# (two Hispanic, two white) and no Black aliases; the terciles of the source
-# (0, 1, 2) become the lower, middle and top thirds of the course file.
+# The file of the replication team (osf.io/xseqg, folder "Public Data"), with
+# no licence and treated by CM as openly available (19 November 2026). The
+# original is in the data hub ("!REPLICATION DATA/Einstein, Glick (2017) Does
+# race affect access to government services"), a copy in
+# data-raw/score_replication/ (gitignored). The CSV takes the column names of
+# housing_emails.csv wherever the new experiment recorded the same thing, so
+# that fit_spec() reads it as it reads the original file; the terciles of the
+# source (0, 1, 2) become the lower, middle and top thirds.
 RAW <- "data-raw/score_replication/Audit_Deidentified.dta"
 if (file.exists(RAW)) {
   thirds <- c("lower", "middle", "top")
@@ -83,13 +80,12 @@ marks <- readr::read_csv("data/reference_marks.csv", show_col_types = FALSE) |>
 readr::write_csv(marks, "data/reference_marks.csv", na = "")
 
 # The curve of the claim on the new data. The new experiment had no Black
-# names, no reply without a greeting code and no indicator of a hard-to-find
-# address, so the data translate each specification of the curve: the
-# comparison is with white names, the two rules for uncoded replies coincide,
-# and fit_spec() leaves hard_email out of the adjustment. The 64 specifications
-# collapse to 12, named by rep_spec and ranked by rep_rank from the most
-# negative estimate. Every authority is kept, county-run ones included, as in
-# the preregistered analysis of the replication (CM, 19 November 2026).
+# names, no reply without a greeting code and no hard_email, so each
+# specification is translated: the comparison is with white names, the two
+# rules for uncoded replies coincide, and fit_spec() drops hard_email. The 64
+# specifications collapse to 12 (rep_spec), ranked from the most negative
+# estimate (rep_rank). Every authority is kept, county-run ones included, as
+# in the preregistered analysis of the replication (CM, 19 November 2026).
 on_new_data <- readr::read_csv("data/spec_curve.csv", show_col_types = FALSE) |>
   datawizard::data_select(c("comparison", "population", "uncoded", "model", "adjust")) |>
   purrr::pmap(\(comparison, population, uncoded, model, adjust)

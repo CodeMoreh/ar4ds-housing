@@ -5,24 +5,20 @@
 # Reads:        data/housing_emails.csv
 # Writes:       data/spec_curve.csv
 # Author:       Claude for CM
-# Last updated: 2026-11-15
+# Last updated: 2026-11-20
 ################################################################################
 
 source("R/_tools.R")
 
 housing <- readr::read_csv("data/housing_emails.csv", show_col_types = FALSE)
 
-# The randomisation test reshuffles the names among the analysed emails and
-# refits, so it asks how often an arbitrary relabelling gives a gap as large as
-# the one observed. It is stored as a check beside the test of each model.
-# ri2::conduct_ri() draws the reshuffles from the design of the experiment, a
-# complete random assignment of the Hispanic names to as many emails as
-# received them (Gerber and Green 2012, chapter 3; Coppock, ri2). The linear
-# model is refitted by ri2 itself, without inverse probability weights, which
-# would change the covariate-adjusted coefficient; the logit is refitted
-# through a test function. statmod::permp() turns the count of reshuffles at
-# least as extreme into a p-value that is never zero (Phipson and Smyth 2010,
-# Statistical Applications in Genetics and Molecular Biology).
+# The randomisation test of each specification, stored beside the test of its
+# model: the Hispanic names reshuffled among the analysed emails by complete
+# random assignment (ri2; Gerber and Green 2012, chapter 3), and the model
+# refitted. ri2 refits the linear model without inverse probability weights,
+# which would change the covariate-adjusted coefficient, and the logit through
+# a test function. statmod::permp() gives a p-value that is never zero
+# (Phipson and Smyth 2010).
 N_DRAWS <- 1999
 
 curve <- tidyr::expand_grid(!!!SPEC_AXES) |>

@@ -6,7 +6,7 @@
 # Reads:        data/spec_curve.csv
 # Writes:       data/menu_deviations.csv
 # Author:       Claude for CM
-# Last updated: 2026-11-15
+# Last updated: 2026-11-20
 ################################################################################
 
 source("R/_tools.R")
@@ -14,10 +14,9 @@ source("R/_tools.R")
 curve <- readr::read_csv("data/spec_curve.csv", show_col_types = FALSE)
 axes <- names(SPEC_AXES)
 
-# For each decision, the first option is the baseline; every other option is
-# compared with it on pairs of specifications that agree on all other decisions.
-# The verbs are those of dplyr, whose .data pronoun takes the decision of each
-# pass as the name of a column.
+# For each decision, every option is compared with the first, the baseline, on
+# pairs of specifications that agree on all other decisions. The .data pronoun
+# of dplyr names the column of the decision in each pass.
 deviations <- purrr::imap(SPEC_AXES, \(options, axis) {
   others <- setdiff(axes, axis)
   base <- curve |>

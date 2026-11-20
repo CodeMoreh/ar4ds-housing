@@ -21,7 +21,7 @@
 # Writes:       companion/_model-outputs/sim_housing_diagnosis.csv
 #               companion/_model-outputs/sim_housing_draws.csv
 # Author:       Claude for CM
-# Last updated: 2026-11-15
+# Last updated: 2026-11-20
 ################################################################################
 
 set.seed(20261027)
@@ -40,12 +40,11 @@ coded <- datawizard::data_filter(housing, reply == 1, !is.na(named))
 greet_white <- mean(coded$named[coded$group == "white"])
 greet_hisp <- mean(coded$named[coded$group == "hispanic"])
 
-# 1. Recovery. Every authority would reply or not whatever the name (v), and
-# among the replies the Hispanic name lowers the chance of a named greeting from
-# greet_white to greet_hisp (u: the same official greets by name under the
-# Hispanic name only if it would under the white name). Z = 1 is a Hispanic
-# name, assigned to n_hispanic emails by complete random assignment as in the
-# experiment; HC2 errors, as the curve of the case study uses for the linear model.
+# 1. Recovery. Whether an authority replies (v) does not depend on the name;
+# among the replies the Hispanic name lowers the chance of a named greeting
+# from greet_white to greet_hisp, and an official greets a Hispanic name by
+# name only if it would greet a white one (u). Z = 1 is a Hispanic name, by
+# complete random assignment as in the experiment; HC2 errors, as on the curve.
 recovery <-
   DeclareDesign::declare_model(
     N = n_delivered,
@@ -62,15 +61,13 @@ recovery <-
 
 recovery_dx <- DeclareDesign::diagnose_design(recovery, sims = 2000, bootstrap_sims = FALSE)
 
-# 2. Conditioning on a reply. In this recipe the Hispanic name also lowers the
-# chance of a reply from reply_white to reply_hisp: the authorities with v below reply_hisp
-# reply to either name, and those between reply_hisp and reply_white reply only
-# to a white name. How these marginal repliers greet a white name is not in the
-# data, so the recipe sets it three ways: never by name, as often as the other
-# officials, always by name. Two questions: the effect of the name on the
-# greeting among the authorities that reply to either name, and the effect on
-# receiving a named greeting at all, among every delivered email (an email
-# without a reply counting as one without a named greeting).
+# 2. Conditioning on a reply. The Hispanic name also lowers the chance of a
+# reply, from reply_white to reply_hisp: authorities with v below reply_hisp
+# reply to either name, those between reply_hisp and reply_white only to a
+# white name. How these marginal repliers greet a white name is not in the
+# data, so greet_marginal takes three values: never, as often as the other
+# officials, always. Two inquiries: the gap among the authorities that reply
+# to either name, and the gap in a named greeting among every delivered email.
 greet_marginal <- greet_white
 reply_design <-
   DeclareDesign::declare_model(
@@ -97,12 +94,10 @@ reply_design <-
 reply_dx <- DeclareDesign::redesign(reply_design, greet_marginal = c(0, greet_white, 1)) |>
   DeclareDesign::diagnose_design(sims = 2000, bootstrap_sims = FALSE)
 
-# 3. Power. The comparison among replies with fixed numbers of replies, as the
-# analytic power of the experiments module assumes (stats::power.prop.test()
-# in R/05_displays.R): 181 replies a group at the size of the original
-# comparison and 369 at that of the replication, a white rate of 61%, and
-# gaps of 0 to 25 points. At a gap of 0 the share of significant draws is the
-# rate of false positives.
+# 3. Power. The comparison among replies at fixed group sizes, as in the
+# analytic power of R/05_displays.R: 181 replies a group (the original) and
+# 369 (the replication), a white rate of 61%, gaps of 0 to 25 points. At a gap
+# of 0 the share of significant draws is the rate of false positives.
 power_white <- 0.61
 gap <- 0.10
 n_per_group <- 181

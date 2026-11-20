@@ -9,18 +9,17 @@
 #               data/display_subgroups.csv, data/display_ri.csv,
 #               data/display_power.csv
 # Author:       Claude for CM
-# Last updated: 2026-11-15
+# Last updated: 2026-11-20
 ################################################################################
 
 source("R/_tools.R")
 
 housing <- readr::read_csv("data/housing_emails.csv", show_col_types = FALSE)
 
-# Counts and shares of one set of emails, with 95% Wilson intervals in percent,
-# which stay inside 0-100 for small groups: the score interval of
-# stats::prop.test() without the continuity correction (Wilson 1927; Newcombe
-# 1998, Statistics in Medicine). The verbs are those of dplyr, because the data
-# arrive grouped by the caller.
+# Counts and shares of one set of emails, with 95% Wilson intervals in
+# percent: the score interval of stats::prop.test() without the continuity
+# correction (Wilson 1927; Newcombe 1998). dplyr, because the caller passes
+# grouped data.
 summarise_names <- function(data) {
   data |>
     dplyr::summarise(
@@ -92,9 +91,9 @@ subgroups <- dplyr::bind_rows(
 readr::write_csv(subgroups, "data/display_subgroups.csv")
 
 # Randomisation distribution of the reference specification: the names
-# reshuffled among the white and Hispanic replies, 4,999 times, by complete
-# random assignment of as many Hispanic names as the design gave them
-# (ri2; Gerber and Green 2012, chapter 3), with the gap recomputed each time
+# reshuffled among the white and Hispanic replies by complete random
+# assignment (ri2; Gerber and Green 2012, chapter 3), the gap recomputed each
+# time
 set.seed(20261025)
 ref_frame <- spec_frame(housing, "white", "replies", "drop") |>
   datawizard::data_select(c("y", "hisp"))
@@ -104,10 +103,9 @@ ri_ref <- ri2::conduct_ri(y ~ hisp, assignment = "hisp",
 ri <- tibble::tibble(draw = 1:4999, b_pp = 100 * ri_ref$sims_df$est_sim)
 readr::write_csv(ri, "data/display_ri.csv")
 
-# Power of a two-sided test at the 5% level for a gap of a given size from a
-# white rate of 61%, at the group sizes of the original (replies, Hispanic
-# against white) and of the replication (738 replies in two equal groups),
-# from the normal approximation of stats::power.prop.test()
+# Power of a two-sided test at the 5% level against a white rate of 61%, from
+# the normal approximation of stats::power.prop.test(): the original at 181
+# replies a group (the mean of its 175 and 187), the replication at 369
 power <- tidyr::expand_grid(design = c("original (175 and 187 replies)", "replication (369 and 369 replies)"),
                             gap_pp = seq(2, 25, by = 1)) |>
   datawizard::data_modify(

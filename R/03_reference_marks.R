@@ -8,7 +8,7 @@
 # Reads:        data/housing_emails.csv, data-raw/robustness/robustness_einstein_extract.csv
 # Writes:       data/analysts5.csv, data/reference_marks.csv
 # Author:       Claude for CM
-# Last updated: 2026-11-15
+# Last updated: 2026-11-20
 ################################################################################
 
 source("R/_tools.R")
@@ -32,9 +32,8 @@ robustness_record <- readr::read_csv("data-raw/robustness/robustness_einstein_ex
     r_recorded = "reanalysis_correlation_coef", d_recorded = "reanalysis_cohens_d"
   ))
 
-# The models of all three groups take the groups of names as a factor under
-# another name, and data without the column `group`, which marginaleffects
-# refuses as a column name.
+# marginaleffects refuses a column called `group`, so the models of the three
+# groups take the groups as the factor `ethnicity`, on data without `group`.
 replies <- housing |>
   datawizard::data_filter(reply == 1 & !is.na(named)) |>
   datawizard::data_modify(ethnicity = factor(group, levels = c("white", "black", "hispanic")))
@@ -43,10 +42,9 @@ replies_hw <- replies |>
   datawizard::data_filter(group != "black") |>
   datawizard::data_modify(hisp = as.integer(group == "hispanic"))
 
-# The average marginal effect of a Hispanic against a white name in a model of
-# all three groups: the mean over the replies of the predicted probability
-# with a Hispanic name minus that with a white name (marginaleffects;
-# Arel-Bundock, Greifer and Heiss 2024, Journal of Statistical Software).
+# The contrast of the average marginal effect in a model of the three groups:
+# the mean over the replies of the predicted probability with a Hispanic name
+# minus that with a white name (marginaleffects).
 HISP_VS_WHITE <- list(ethnicity = c("white", "hispanic"))
 
 # 8PTRZ: chi-square test of independence, Hispanic against all other names, replies
