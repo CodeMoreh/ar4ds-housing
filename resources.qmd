@@ -39,7 +39,7 @@ The case study, told in full on the [background page](background.qmd), is built 
 | Reproduction | A reproduction with the data and code of the original authors, which holds only an unfilled template | <https://osf.io/9wp8d/> |
 | Power analysis | The power analysis for the replication | <https://osf.io/kcsby/> |
 | Replication | The replication with new data, with its preregistration and final report | <https://osf.io/2ug8x/> |
-| Replication data | The de-identified data of the replication, its analysis do-file and a dictionary, in the folder "Public Data"; the licence is unstated, so the course links to them and does not copy them | <https://osf.io/xseqg/> |
+| Replication data | The de-identified data of the replication, its analysis do-file and a dictionary, in the folder "Public Data", kept in the course as `data/housing_replication.csv` | <https://osf.io/xseqg/> |
 | Robustness study of the paper | The five reanalyses of the claim | <https://osf.io/38rsh/> |
 | 8PTRZ | Chi-square test of a two-by-two table, Hispanic against all other names | <https://osf.io/j8wvh/> |
 | UYV3F | Logit without covariates, Hispanic against white names (a review document only) | <https://osf.io/3672s/> |
@@ -106,7 +106,7 @@ None of these readings is required, since everything is taught in the course, bu
 
 The modules of the [companion](companion/index.qmd) contain the teaching that a session or a day can only mention, each module occupying a page of its own that can be read without the others, and each written on the data of this case study.
 
-Installing R and an IDE, the setup help and the modules on the tools, from [Getting started with R](https://codemoreh.github.io/ar4ds/tools/r.html) to [Quarto documents](https://codemoreh.github.io/ar4ds/tools/quarto.html) and [Git and GitHub](https://codemoreh.github.io/ar4ds/git-github.html), can all be found on the [AR4DS site](https://codemoreh.github.io/ar4ds/).
+Installing R and an IDE, the help page and the modules on the tools, from [Getting started with R](https://codemoreh.github.io/ar4ds/tools/r.html) to [Quarto documents](https://codemoreh.github.io/ar4ds/tools/quarto.html) and [Git and GitHub](https://codemoreh.github.io/ar4ds/git-github.html), can all be found on the [AR4DS site](https://codemoreh.github.io/ar4ds/).
 
 ------------------------------------------------------------------------
 

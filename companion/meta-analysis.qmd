@@ -285,7 +285,7 @@ Rerun the chunk `escalc` with `measure = "OR"` and compare the test of heterogen
 
 ## 7. The robustness study as a whole {#sec-robustness}
 
-The problems examined on this page concern one claim and its five analysts, whereas the project as a whole is taken up in the [discussion of the robustness article](https://codemoreh.github.io/ar4ds/robustness-article.html) on the AR4DS site. That discussion covers the design of the project across 100 studies and 504 reanalyses, the conversion to a common scale with its tolerance regions, and what the project concluded about the robustness of the social and behavioural sciences to analytical choices.
+The problems examined on this page concern one claim and its five analysts, whereas the project as a whole is taken up in the [discussion of the robustness study](https://codemoreh.github.io/ar4ds/score.html#sec-robustness) on the SCORE page of the AR4DS site. That discussion covers the design of the project across 100 studies and 504 reanalyses, the conversion to a common scale with its tolerance regions, and what the project concluded about the robustness of the social and behavioural sciences to analytical choices.
 
 ## Sources and further reading {#sec-sources}
 

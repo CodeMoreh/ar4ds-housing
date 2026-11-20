@@ -31,7 +31,7 @@ Stage 5 asks a question beyond the claim, one that the data of the case study su
 The tools of the route:
 
 - [Setup](https://codemoreh.github.io/ar4ds/setup.html)
-- [Setup help](https://codemoreh.github.io/ar4ds/help.html)
+- [Help](https://codemoreh.github.io/ar4ds/help.html)
 - [The workspace](https://codemoreh.github.io/ar4ds-housing-workspace/) – the report as it renders
 - [Browser lab](../../lab.qmd)
 - [Slides](../day/slides.qmd) – the slides used in the full-day format

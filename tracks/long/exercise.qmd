@@ -32,7 +32,7 @@ The tools of the course:
 
 - [Slides](../day/slides.qmd) – the slides of the second day, which show each step with its output; the pages of the first and the third days link the slide deck of each session.
 - [Setup](https://codemoreh.github.io/ar4ds/setup.html) – installing R and an IDE, and downloading the workspace.
-- [Setup help](https://codemoreh.github.io/ar4ds/help.html) – the problems that other participants have met, and what to do about each.
+- [Help](https://codemoreh.github.io/ar4ds/help.html) – the problems that other participants have met, and what to do about each.
 - [The workspace](https://codemoreh.github.io/ar4ds-housing-workspace/) – the report of the workspace as it renders, with the output of every chunk under its code.
 - [Browser lab](../../lab.qmd) – the whole exercise and its data in a browser tab.
 - [Cheatsheet](../../cheatsheet.qmd) – the addresses, the helpers, the reproductions of Task 3 and the quick fixes of the second day on one page.

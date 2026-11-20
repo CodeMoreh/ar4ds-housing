@@ -164,7 +164,7 @@ If no cell will run at all: every specification on the curve is one row of `data
 | The install line that `R/check_setup.R` prints stalls or half-finishes | Restart R (Session menu), then run the install again; a second pass usually completes what the first left. |
 | "Permission denied" while installing a package | Let R use a personal library that it can write to – accept the offer from R to create a personal library, then reinstall. |
 | A data file is "not found" | Check that you opened the unzipped **folder** in your IDE (File → Open Folder in Positron and VS Code; the `.Rproj` file in RStudio), not a single file – the paths in the code are relative to that folder. |
-| Something not listed here | The [setup help page](https://codemoreh.github.io/ar4ds/help.html) has the longer table, with prompts to give an AI assistant. |
+| Something not listed here | The [help page](https://codemoreh.github.io/ar4ds/help.html) has the longer table, with prompts to give an AI assistant. |
 | Everything is stuck | Open the [browser lab](lab.qmd) and carry on there. |
 
 ------------------------------------------------------------------------

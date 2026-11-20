@@ -28,7 +28,7 @@ The tools for the day:
 
 - [Slides](slides.qmd)
 - [Setup](https://codemoreh.github.io/ar4ds/setup.html)
-- [Setup help](https://codemoreh.github.io/ar4ds/help.html)
+- [Help](https://codemoreh.github.io/ar4ds/help.html)
 - [The workspace](https://codemoreh.github.io/ar4ds-housing-workspace/) – the report as it renders
 - [Browser lab](../../lab.qmd)
 - [Cheatsheet](../../cheatsheet.qmd)
