@@ -38,7 +38,7 @@ The statistics of this case study are about as simple as statistics gets, which 
 **Logistic regression (logit)**
 
 - Models the log odds of a greeting; the coefficient of the Hispanic names is `r fmt_num(logit_ref$Coefficient, 3)`, with *z* = `r fmt_num(logit_ref$z, 3)` (UYV3F)
-- Its **average marginal effect**, the change in the predicted share averaged over the emails, is on the workshop scale
+- Its **average marginal effect**, the change in the predicted share averaged over the emails, is on the workshop's scale
 - Predicted shares always stay between 0 and 1
 :::
 :::

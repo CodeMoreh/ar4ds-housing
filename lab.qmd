@@ -37,7 +37,7 @@ bibliography: [references.bib, references-new.bib]
 
 {{< include _extensions/r-wasm/live/_knitr.qmd >}}
 
-This page holds the exercise of the workshop, Tasks 1 to 6, on a copy of R that runs inside your browser, with the data already in place. It is the fallback when the slides do not load or an installation fails, and it gives the same numbers as the slides and the downloadable workspace.
+This page holds the workshop's exercise, Tasks 1 to 6, on a copy of R that runs inside your browser, with the data already in place. It is the fallback when the slides do not load or an installation fails, and it gives the same numbers as the slides and the downloadable workspace.
 
 ::: {.callout-important icon="false"}
 ## While the R engine loads

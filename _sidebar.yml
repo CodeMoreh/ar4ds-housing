@@ -24,7 +24,7 @@ website:
           href: tracks/short/half-2.qmd
         - text: "Slides"
           href: tracks/short/slides.qmd
-        - text: "After the session"
+        - text: "Outside the workshop"
           href: tracks/short/after.qmd
         - section: "Multiverse"
           contents:
@@ -58,7 +58,7 @@ website:
           href: tracks/day/part-4.qmd
         - text: "Slides"
           href: tracks/day/slides.qmd
-        - text: "After the day"
+        - text: "Outside the workshop"
           href: tracks/day/after.qmd
         - section: "Multiverse"
           contents:

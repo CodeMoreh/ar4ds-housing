@@ -19,7 +19,7 @@ Install R, Quarto and an IDE (Positron, RStudio, VS Code, etc.) by following the
 
 ## 3. The case study and the exercise {#the-case-and-the-exercise}
 
-[Open the home page of the site](../../index.qmd){.btn .btn-primary target="_blank"}
+[Open the home page](../../index.qmd){.btn .btn-primary target="_blank"}
 
 Read the section on the case study and the section on the exercise.
 

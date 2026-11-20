@@ -94,7 +94,7 @@ try_spec(model = "three_group")
 ```
 
 ::: notes
-The curve keeps only the options that answer this claim in a justifiable way, but the menu holds more, and every other option is still an argument of try underscore spec. Ask for one, and the helper refuses it: it prints the reason recorded in the menu, the page of the workshop site that teaches the option, and the options that stay on the curve. This cell asks for the model of all three groups at once, which answers whether the groups differ at all rather than how the Hispanic names compare with the white names. Then edit the cell and try one or two of the others on the slide, and read the reason that comes back each time.
+The curve keeps only the options that answer this claim in a justifiable way, but the menu holds more, and every other option is still an argument of try underscore spec. Ask for one, and the helper refuses it: it prints the reason recorded in the menu, the page on the workshop's website that teaches the option, and the options that stay on the curve. This cell asks for the model of all three groups at once, which answers whether the groups differ at all rather than how the Hispanic names compare with the white names. Then edit the cell and try one or two of the others on the slide, and read the reason that comes back each time.
 :::
 
 ## Hands-on 4 – Every argument {#hands-on-4-every-argument .smaller .output-8}

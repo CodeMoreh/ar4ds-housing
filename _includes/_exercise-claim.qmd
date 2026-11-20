@@ -51,7 +51,7 @@ The published result behind it is the coefficient of the Hispanic names in a log
 
 ```{r}
 #| label: tbl-five
-#| tbl-cap: "The five reanalyses, with the statistic recorded in the robustness study and the gap in percentage points by the workshop refit. Source: `data/analysts5.csv`."
+#| tbl-cap: "The five reanalyses, with the statistic recorded in the robustness study and the gap in percentage points by the workshop's refit. Source: `data/analysts5.csv`."
 #| echo: false
 analysts |>
   datawizard::data_modify(

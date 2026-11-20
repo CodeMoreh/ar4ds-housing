@@ -4,7 +4,7 @@
 #| label: menu-table
 #| output: asis
 # The eleven decisions of the menu (data/menu_options.csv), with the options
-# that the curve keeps and the others grouped by the judgement of the workshop.
+# that the curve keeps and the others grouped by the workshop's judgement.
 judgement_txt <- c(other_question = "another question", weaker_answer = "a weaker answer",
                    check = "a check", unavailable = "not in the public file")
 level_txt <- c(estimand = "Question", measurement = "Measurement", estimation = "Model")
@@ -32,7 +32,7 @@ Five decisions keep more than one option, and they cross into the **`r nrow(curv
 :::
 
 ::: notes
-Here is the menu, and everything that follows is built on it. It is the full list of decisions that any analyst of this claim has to take, eleven of them, in three groups. The decisions about the question settle what is asked: the outcome, the comparison group, which emails are counted, which names, and whose replies. The measurement decisions settle how the outcome is counted, for the five replies whose greeting nobody coded and for the emails that bounced. And the decisions about the model settle how the answer is reached, through the model, the covariates, the test and the scale of the result. Every option on the right was considered and left off the curve for a stated reason: it answers another question, it answers this one less well, it is a check, or it is simply not in the public file. The decision map on the site gives the reason for each.
+Here is the menu, and everything that follows is built on it. It is the full list of decisions that any analyst of this claim has to take, eleven of them, in three groups. The decisions about the question settle what is asked: the outcome, the comparison group, which emails are counted, which names, and whose replies. The measurement decisions settle how the outcome is counted, for the five replies whose greeting nobody coded and for the emails that bounced. And the decisions about the model settle how the answer is reached, through the model, the covariates, the test and the scale of the result. Every option on the right was considered and left off the curve for a stated reason: it answers another question, it answers this one less well, it is a check, or it is simply not in the public file. The decision map on the workshop's website gives the reason for each.
 :::
 
 ## The curve of 64 {#the-curve-of-64 .smaller}
@@ -71,5 +71,5 @@ The estimand statement on the [decision map](../menu.html#map) rewrites itself a
 :::
 
 ::: notes
-Three ground rules before you touch the menu. First, change one decision at a time and hold the others at the reference. That sounds restrictive, but it is what makes the class chart readable, because when a result sits somewhere surprising we can say what put it there. Second, if you ask for an option that is off the curve, try underscore spec refuses it, tells you why, and names the page that teaches it. Trying one is part of the exercise, because the refusal is where the reasoning lives. Third, one sign convention binds everybody: every estimate is the Hispanic names minus the comparison names, in percentage points, so below zero is the direction of the claim. [advance] And the decision map on the site shows the estimand statement rewriting itself as you choose, which tells you whether a choice changes the question or only the way of answering it.
+Three ground rules before you touch the menu. First, change one decision at a time and hold the others at the reference. That sounds restrictive, but it is what makes the class chart readable, because when a result sits somewhere surprising we can say what put it there. Second, if you ask for an option that is off the curve, try underscore spec refuses it, tells you why, and names the page that teaches it. Trying one is part of the exercise, because the refusal is where the reasoning lives. Third, one sign convention binds everybody: every estimate is the Hispanic names minus the comparison names, in percentage points, so below zero is the direction of the claim. [advance] And the decision map on the workshop's website shows the estimand statement rewriting itself as you choose, which tells you whether a choice changes the question or only the way of answering it.
 :::

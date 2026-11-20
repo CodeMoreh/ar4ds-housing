@@ -34,7 +34,7 @@ This task is **exploratory**: nothing in it is preregistered, and you may look, 
 
 ### Task 5 – Preregistration
 
-The session stops before this task, in which you choose **one** specification and complete a preregistration block before you run it, and before the class chart. The page [After the session](after.qmd) says where to take both up.
+The session stops before this task, in which you choose **one** specification and complete a preregistration block before you run it, and before the class chart. The page [Outside the workshop](after.qmd) says where to take both up.
 
 ---
 

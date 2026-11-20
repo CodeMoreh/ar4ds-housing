@@ -54,7 +54,7 @@ It is for that reason that the workshop builds its artefacts to different rules.
 ::: {.callout-tip}
 ## Try it
 
-Assign each artefact of the workshop to one of the three purposes: the specification menu, the preregistration of Task 5, the curve of `r n_spec`, the randomisation test stored for each specification, and the class chart. For each, write one sentence on what the set of specifications would have to look like for that purpose to be served. Note where one set of analyses is being used for two purposes.
+Assign each of the workshop's artefacts to one of the three purposes: the specification menu, the preregistration of Task 5, the curve of `r n_spec`, the randomisation test stored for each specification, and the class chart. For each, write one sentence on what the set of specifications would have to look like for that purpose to be served. Note where one set of analyses is being used for two purposes.
 :::
 
 ## 3. The pruning critique {#sec-auspurg}

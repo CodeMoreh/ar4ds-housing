@@ -231,7 +231,7 @@ mark.dm-changed { background:#ffeeb0; padding:0 0.12em; border-radius:2px; color
 
 The map arranges the decisions in the order in which an analyst encounters them on the way from the data to a verdict, starting from the emails that enter the comparison and the outcome compared between the groups, moving on to the names against which the Hispanic names are set and to the model, and ending with the way in which the answer is tested and reported. Each decision displays all of its options, both those included in the curve of 64 specifications and those left off it, and the map opens on the reference specification, the raw gap in the paper between Hispanic and white names among the replies.
 
-Selecting an option rewrites the estimand statement, marking the phrases changed by the choice, and opens a description stating what the option estimates and whether it answers the claim, showing how it moves the estimate against its twins on the curve and naming the page of the workshop on which it is taught. For a selection on the curve, the verdict reports its estimate, the two shares, its test and its rank among the 64, while for a selection off the curve it gives the reason. No model is fitted in the browser, every number being read from the files written under `data/` by the workshop pipeline.
+Selecting an option rewrites the estimand statement, marking the phrases changed by the choice, and opens a description stating what the option estimates and whether it answers the claim, showing how it moves the estimate against its twins on the curve and naming the workshop's page on which it is taught. For a selection on the curve, the verdict reports its estimate, the two shares, its test and its rank among the 64, while for a selection off the curve it gives the reason. No model is fitted in the browser, every number being read from the files written under `data/` by the workshop's pipeline.
 
 ```{ojs}
 //| echo: false
@@ -265,7 +265,7 @@ DM = {
   };
 }
 
-// numbers as the site prints them: fixed decimals and a true minus sign
+// numbers as the pages print them: fixed decimals and a true minus sign
 fmtB = x => (x < 0 ? "−" : "") + Math.abs(x).toFixed(1)
 fmtShift = x => (x < 0 ? "−" : x > 0 ? "+" : "") + Math.abs(x).toFixed(2)
 fmtR = x => (x < 0 ? "−" : "") + Math.abs(x).toFixed(3)
@@ -684,7 +684,7 @@ As each decision in this group rewrites a bold slot of the statement, two analys
 
 ```{r}
 #| label: tbl-level1
-#| tbl-cap: "The decisions about the question. Options off the curve carry the judgement of the workshop in brackets. Source: `data/menu_options.csv`."
+#| tbl-cap: "The decisions about the question. Options off the curve carry the workshop's judgement in brackets. Source: `data/menu_options.csv`."
 #| echo: false
 judgement_txt <- c(kept = "on the curve", other_question = "another question",
                    weaker_answer = "a weaker answer", check = "a check",

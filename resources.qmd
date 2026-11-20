@@ -2,7 +2,7 @@
 title: "Resources"
 subtitle: "Readings, records and tools"
 bibliography: [references.bib, references-new.bib]
-# The works cited on the pages and slides of the site, which the pages do not list
+# The works cited on the pages and slides of the workshop's website, which the pages do not list
 # at their foot; the section References at the end of this page lists them. Add the
 # key of a work here when a page or a slide deck first cites it.
 nocite: |
@@ -26,9 +26,9 @@ The four terms below follow the definitions in @NosekEtAl2025BriefGlossaryTerms,
 
 The case study, told in full on the [background page](background.qmd), is built on the public deposits listed below.
 
-**The paper.** The paper by the original authors [@EinsteinGlick2017DoesRaceAffect], published in the *American Journal of Political Science*: <https://doi.org/10.1111/ajps.12252>. The accepted manuscript is openly available at OpenBU, <https://hdl.handle.net/2144/37826>, and the page numbers quoted on the workshop site refer to this version.
+**The paper.** The paper by the original authors [@EinsteinGlick2017DoesRaceAffect], published in the *American Journal of Political Science*: <https://doi.org/10.1111/ajps.12252>. The accepted manuscript is openly available at OpenBU, <https://hdl.handle.net/2144/37826>, and the page numbers quoted on the workshop's website refer to this version.
 
-**The data.** The replication package deposited by the original authors on the Harvard Dataverse, released under CC0: <https://doi.org/10.7910/DVN/1HOVTU>. It contains the blinded data file, two Stata do-files (one that runs the analyses on the public file, and one written for the identifiable data, which are not public), two codebooks and a ReadMe explaining why the community variables are given in thirds. The workshop data in `data/` are built from this package, and the codebooks placed beside the data files describe every column.
+**The data.** The replication package deposited by the original authors on the Harvard Dataverse, released under CC0: <https://doi.org/10.7910/DVN/1HOVTU>. It contains the blinded data file, two Stata do-files (one that runs the analyses on the public file, and one written for the identifiable data, which are not public), two codebooks and a ReadMe explaining why the community variables are given in thirds. The data files in `data/` are built from this package, and the codebooks placed beside the data files describe every column.
 
 **SCORE on the OSF.** The SCORE project for the paper on the Open Science Framework records every activity carried out on the paper by the programme, and the component of the robustness study contains one sub-component for each of the five analysts. Four of the five analysts published their scripts there, and the workshop links to these scripts rather than copying them.
 
@@ -142,7 +142,7 @@ The workshop is open to anyone, and support of the kind listed below exists wher
 
 ## References {#references}
 
-The list below contains every work cited on the pages and slides of this site, and on any page the entry for a citation is shown when the pointer rests on it.
+The list below contains every work cited on the pages and slides of the workshop's website, and on any page the entry for a citation is shown when the pointer rests on it.
 
 ::: {#refs}
 :::

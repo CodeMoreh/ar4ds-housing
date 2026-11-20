@@ -22,7 +22,7 @@
 - Every task for the day, in cells that run R **inside the browser**
 - What I drive on the shared screen, with the output of each step
 - Nothing installed, and the data already in place
-- Where you carry on if your installation fails, with the browser lab of the workshop site as a second fallback
+- Where you carry on if your installation fails, with the browser lab on the workshop's website as a second fallback
 :::
 :::
 ::::
@@ -32,7 +32,7 @@
 :::
 
 ::: notes
-Two places in which we run the tasks today, with the same steps and the same numbers. The workspace is the folder that you downloaded and installed before the day, opened in your IDE, which is Positron on my screen and may be RStudio or VS Code on yours. Quarto renders the report, R fits every model live, and there is no git and no cloning, because it is just a folder of files. That is where you work today. These slides carry every task, in cells that run R inside the browser itself, and I run the cells on the shared screen so that you can compare your output with mine. If your installation fails, carry on in the slides, and the browser lab of the workshop site holds the same tasks as a second fallback. The address of the zip is at the bottom.
+Two places in which we run the tasks today, with the same steps and the same numbers. The workspace is the folder that you downloaded and installed before the day, opened in your IDE, which is Positron on my screen and may be RStudio or VS Code on yours. Quarto renders the report, R fits every model live, and there is no git and no cloning, because it is just a folder of files. That is where you work today. These slides carry every task, in cells that run R inside the browser itself, and I run the cells on the shared screen so that you can compare your output with mine. If your installation fails, carry on in the slides, and the browser lab on the workshop's website holds the same tasks as a second fallback. The address of the zip is at the bottom.
 :::
 
 ## What the tools cannot do {.smaller}

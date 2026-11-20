@@ -1,5 +1,5 @@
 ---
-title: "After the session"
+title: "Outside the workshop"
 ---
 The session stops before the class chart and before Task 5, in which you choose one specification and fix it in a preregistration block before you run it. Both run in the [browser lab](../../lab.qmd#task-5-preregistration) and in the [downloadable workspace]({{< var cases.housing.workspace-zip >}}), which needs R and an IDE, installed by following the [setup page](https://codemoreh.github.io/ar4ds/setup.html).
 

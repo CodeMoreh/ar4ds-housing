@@ -24,6 +24,6 @@ Every task of the session is done in the browser, on the slides or in the browse
 - [The exercise](exercise.qmd)
 - [First half – The claim and its reproduction](half-1.qmd)
 - [Second half – Exploration and replication](half-2.qmd)
-- [After the session](after.qmd)
+- [Outside the workshop](after.qmd)
 
 [Start with Before the session](before.qmd){.btn .btn-primary}
