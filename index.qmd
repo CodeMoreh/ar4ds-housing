@@ -1,5 +1,5 @@
 ---
-pagetitle: "AR4DS – Housing and racial bias"
+pagetitle: "Housing and racial bias"
 page-layout: custom
 toc: false
 bibliography: [references.bib, references-new.bib]
