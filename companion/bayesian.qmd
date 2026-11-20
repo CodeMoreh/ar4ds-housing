@@ -45,7 +45,7 @@ The models were fitted once, in the script `companion/_model-outputs/bayes_housi
 
 ## 1. A model of the greetings {#sec-model}
 
-The comparison examined here is the reference specification of the workshop, which sets Hispanic against white names among the replies that carry a greeting code, with no covariates. Since the outcome of each reply is 0 or 1 and the model has a single binary predictor, everything that the data say about the outcome is contained in four counts, namely the number of replies to each group and the number of those replies that opened with the name. As the replication published no file that the workshop may copy, its counts are recovered in the script from the shares and the total number of replies reported in `display_replication.csv`. These recovered counts agree with the 721 replies to Hispanic and 763 to white aliases in the de-identified replication file.
+The comparison examined here is the reference specification of the workshop, which sets Hispanic against white names among the replies that carry a greeting code, with no covariates. Since the outcome of each reply is 0 or 1 and the model has a single binary predictor, everything that the data say about the outcome is contained in four counts, namely the number of replies to each group and the number of those replies that opened with the name. Its counts are recovered in the script from the shares and the total number of replies reported in `display_replication.csv`, and they agree with the 721 replies to Hispanic and 763 to white aliases in `housing_replication.csv`, the copy of the de-identified data of the replication kept in the workshop.
 
 ```{r}
 #| label: tbl-counts
