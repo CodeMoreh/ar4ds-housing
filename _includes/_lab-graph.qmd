@@ -1,10 +1,10 @@
 <!--
 The graph helpers of Task 2 of the browser lab, make_dag(), adjustmentSets(),
 paths() and plot_dag(), in one file included by the lab, lab.qmd,
-and by the live deck used in the full-day format, live/day.qmd, whose slides of Task 2
+and by the web slides of the full-day format, live/day.qmd, whose slides of Task 2
 run the same cells. The including document sets .data_dir before this
 include, as for _lab-helpers.qmd. The part-day format has no graph
-task, so its deck leaves this file out, and with it dag_answers.csv and
+task, so its slides leave this file out, and with it dag_answers.csv and
 tinyplot.
 -->
 

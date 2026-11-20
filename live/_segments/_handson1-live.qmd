@@ -1,7 +1,7 @@
 <!-- Task 1 of the browser lab (lab.qmd) on two slides, the setup
-     check and the warm-up, with the cells of the lab. Both live decks include
+     check and the warm-up, with the cells of the lab. Both slide decks include
      this segment. Lines that differ by format are shown by Quarto conditional
-     content, keyed on the deck map in the YAML of each deck; no cell sits
+     content, keyed on the `deck:` map in the YAML of each slide deck; no cell sits
      inside a conditional span or div. -->
 ## Hands-on 1 – The setup check {#hands-on-1-get-yourself-running .smaller .output-8}
 
@@ -19,7 +19,7 @@ Wait until the cell below shows **Run Code**, then run it: `housing` has `r form
 
 ```{webr}
 #| autorun: false
-# The setup check: if this cell runs, every cell of the deck runs.
+# The setup check: if this cell runs, every cell of these slides runs.
 writeLines(c(
   paste("R in the browser:", R.version.string),
   sprintf("Emails: %d rows", nrow(housing)),
@@ -28,7 +28,7 @@ writeLines(c(
 ```
 
 ::: notes
-Your turn, and this first task is deliberately not intellectual. The job is to reach the point where a line of R runs and the data are in front of you.[ In your workspace, open the folder in your IDE and source the check script, which prints one OK line for each thing that the course needs and ends by fitting a small model, at minus nineteen point nine seven points. The cell on this slide runs the same check in the browser. If your installation will not cooperate, do not fight it: carry on in this deck, or in the browser lab, which gives the same numbers. Take the time you need, into the break if you have to.]{.content-visible unless-meta="deck.short"}[ Wait for the cell on this slide to show its Run Code button, press it, and check that the data have one row for each of the emails, a thousand and fourteen of them. The last line fits a small model, and its number comes back later. Five minutes, nothing to install, and the warm-up on the next slide while the engine downloads.]{.content-visible when-meta="deck.short"} Raise your hand if you need me.
+Your turn, and this first task is deliberately not intellectual. The job is to reach the point where a line of R runs and the data are in front of you.[ In your workspace, open the folder in your IDE and source the check script, which prints one OK line for each thing that the course needs and ends by fitting a small model, at minus nineteen point nine seven points. The cell on this slide runs the same check in the browser. If your installation will not cooperate, do not fight it: carry on in these slides, or in the browser lab, which gives the same numbers. Take the time you need, into the break if you have to.]{.content-visible unless-meta="deck.short"}[ Wait for the cell on this slide to show its Run Code button, press it, and check that the data have one row for each of the emails, a thousand and fourteen of them. The last line fits a small model, and its number comes back later. Five minutes, nothing to install, and the warm-up on the next slide while the engine downloads.]{.content-visible when-meta="deck.short"} Raise your hand if you need me.
 :::
 
 ## Hands-on 1 – The warm-up {#hands-on-1-the-warm-up .smaller}

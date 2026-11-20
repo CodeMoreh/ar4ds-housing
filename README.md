@@ -8,12 +8,12 @@ The case study is a field experiment in which emails that differed only in the n
 
 | Format | Folder | Taught in |
 |---|---|---|
-| Part-day, in two halves | `tracks/short/` | its live deck, with the browser lab as the fallback |
-| Full-day, in four parts | `tracks/day/` | the workspace, with the live deck showing each step |
+| Part-day, in two halves | `tracks/short/` | its slides, with the browser lab as the fallback |
+| Full-day, in four parts | `tracks/day/` | the workspace, with the slides showing each step |
 | Self-taught, in five stages | `tracks/independent/` | the workspace |
-| Multi-day, three days built around the full-day format | `tracks/long/` | the workspace, with the live deck on its second day; in the repository but out of the build |
+| Multi-day, three days built around the full-day format | `tracks/long/` | the workspace, with the slides of the full-day format on its second day; in the repository but out of the build |
 
-Each format has a docked sidebar (`_sidebar.yml`), an exercise page, part pages that lead into the content, and a slides page that embeds its deck: the live decks `live/short.qmd` and `live/day.qmd`, whose slides run R in the browser, assembled from `live/_segments/`. The multi-day format, the decks of its third day (`slides/experiments.qmd`, `binary-outcomes.qmd`, `bayesian.qmd` and `report.qmd`, assembled from `slides/_segments/`) and the run sheet of the facilitator with the timings (`facilitator/guide.qmd`) stay in the repository, and the `render:` list of `_quarto.yml` keeps them out of the build until they are vetted.
+Each format has a docked sidebar (`_sidebar.yml`), an exercise page, part pages that lead into the content, and a slides page that embeds the web slides of the format, `live/short.qmd` or `live/day.qmd`, which run R in the browser and are assembled from `live/_segments/`. The multi-day format, the slide decks of its third day (`slides/experiments.qmd`, `binary-outcomes.qmd`, `bayesian.qmd` and `report.qmd`, assembled from `slides/_segments/`) and the run sheet of the facilitator with the timings (`facilitator/guide.qmd`) stay in the repository, and the `render:` list of `_quarto.yml` keeps them out of the build until they are vetted.
 
 ## Layout
 
@@ -21,18 +21,18 @@ Each format has a docked sidebar (`_sidebar.yml`), an exercise page, part pages 
 |---|---|
 | `index.qmd` | The home page |
 | `background.qmd`, `menu.qmd`, `curve.qmd`, `class-results.qmd`, `lab.qmd`, `cheatsheet.qmd` | The background page, the specification menu with the decision map, the specification curve, the class results, the browser lab and the cheatsheet |
-| `_includes/` | The parts that the exercise pages of the formats share (`_exercise-*.qmd`), the helpers of the browser lab and of the live decks (`_lab-helpers.qmd`, `_lab-graph.qmd`), and the HTML includes of the site |
+| `_includes/` | The parts that the exercise pages of the formats share (`_exercise-*.qmd`), the helpers of the browser lab and of the web slides (`_lab-helpers.qmd`, `_lab-graph.qmd`), and the HTML includes of the site |
 | `data/` | The data files of the case study, with a codebook for every file |
 | `tracks/` | The formats |
-| `live/` | The live decks of the part-day and full-day formats, whose slides carry the cells of the browser lab, with their segments |
-| `slides/` | The decks of the third day of the multi-day format and their segments, with the two setup segments that every deck includes |
+| `live/` | The web slides of the part-day and full-day formats, which carry the cells of the browser lab, with their segments |
+| `slides/` | The slide decks of the third day of the multi-day format and their segments, with the two setup segments that every slide deck includes |
 | `companion/` | The modules of the companion, written on the data of the case study; `_model-outputs/` holds the scripts and aggregate outputs behind them |
 | `R/` | The pipeline that builds the data files of the case study; `R/README.md` gives the order |
 | `data-raw/` | The archived inputs of the pipeline |
 | `resources.qmd` | Readings, records, tools and the references of the site |
 | `_variables.yml` | Site variables and the next-delivery block |
 
-The downloadable workspace of the case study is the repository `CodeMoreh/ar4ds-housing-workspace`, and the browser lab and the live decks carry the same helper functions.
+The downloadable workspace of the case study is the repository `CodeMoreh/ar4ds-housing-workspace`, and the browser lab and the web slides carry the same helper functions.
 
 ## Licence
 

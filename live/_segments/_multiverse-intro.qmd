@@ -19,7 +19,7 @@ In Task 4 you ran several specifications, every one of them defensible, and you 
 :::
 
 <!-- DEEP DIVE START: multiverse background (2 slides). Optional depth – press
-     d during the talk, or load the deck with ?depth=0, and
+     d during the talk, or load the slides with ?depth=0, and
      slides/nav-tools.html lifts the run out of the DOM. The .deepdive class is
      the load-bearing part; these markers are here for the reader. -->
 

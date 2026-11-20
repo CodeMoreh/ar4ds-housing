@@ -2,7 +2,7 @@
 title: "First half – The claim and its reproduction"
 ---
 ::: {.callout-note appearance="simple" icon=false}
-**Slides.** [Open the deck at this half](../../live/short.html#/half-1-the-claim-and-its-reproduction){target="_blank"} in its own tab, or follow it on the [slides page](slides.qmd).
+**Slides.** [Open the slides at this half](../../live/short.html#/half-1-the-claim-and-its-reproduction){target="_blank"} in their own tab, or follow them on the [slides page](slides.qmd).
 :::
 
 1. The plan of the session
@@ -18,14 +18,14 @@ When the slides ask for your estimand statement, which is Task 2, write it in yo
 
 ## Task 1 – The setup check
 
-**In the deck.** Wait for the R engine, run the setup cell, and check that `housing` has 1,014 rows and that the last line reports −19.97 percentage points. Then work through the warm-up on the three Rs, on the next slide.
+**In the slides.** Wait for the R engine, run the setup cell, and check that `housing` has 1,014 rows and that the last line reports −19.97 percentage points. Then work through the warm-up on the three Rs, on the next slide.
 
-[Open the deck at Task 1](../../live/short.html#/hands-on-1-get-yourself-running){.btn .btn-primary target="_blank"} [Open the browser lab at Task 1](../../lab.qmd#task-1-setup){.btn .btn-outline-primary target="_blank"}
+[Open the slides at Task 1](../../live/short.html#/hands-on-1-get-yourself-running){.btn .btn-primary target="_blank"} [Open the browser lab at Task 1](../../lab.qmd#task-1-setup){.btn .btn-outline-primary target="_blank"}
 
-If the deck does not load, run the same cells in the browser lab, which gives the same numbers.
+If the slides do not load, run the same cells in the browser lab, which gives the same numbers.
 
 ## Task 3 – The reproduction
 
-**In the deck.** Run the cell that reads the public file `housing_original.csv`, then work through the cells of the analyst given to you.
+**In the slides.** Run the cell that reads the public file `housing_original.csv`, then work through the cells of the analyst given to you.
 
-[Open the deck at Task 3](../../live/short.html#/hands-on-3-reproduce-the-recorded-result){.btn .btn-primary target="_blank"} [Open the browser lab at Task 3](../../lab.qmd#task-3-reproduction){.btn .btn-outline-primary target="_blank"}
+[Open the slides at Task 3](../../live/short.html#/hands-on-3-reproduce-the-recorded-result){.btn .btn-primary target="_blank"} [Open the browser lab at Task 3](../../lab.qmd#task-3-reproduction){.btn .btn-outline-primary target="_blank"}

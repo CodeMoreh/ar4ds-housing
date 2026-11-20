@@ -79,7 +79,7 @@ other_max <- deviations |>
 ```
 
 ::: {.callout-note}
-**This document is for the facilitator.** It is rendered with the site but left out of the navbar, so nothing on the site links to it. It holds the run sheets of the formats of the Housing and racial bias case study – the part-day format (live deck `live/short.qmd`), the full-day format (live deck `live/day.qmd`) and the multi-day format, whose second day is the full-day format – with the checks before a delivery, the expected numbers and the fallbacks. The participant pages under `tracks/` give the instructions for each part and its total length, and the timings of each step are kept here: the run sheets below for the parts of each format, [the preparation table](#preparation) for the pages "Before the session" and "Before the day", and [the self-taught format](#run-self-study) for the stages of the self-taught format.
+**This document is for the facilitator.** It is rendered with the site but left out of the navbar, so nothing on the site links to it. It holds the run sheets of the formats of the Housing and racial bias case study – the part-day format (slides `live/short.qmd`), the full-day format (slides `live/day.qmd`) and the multi-day format, whose second day is the full-day format – with the checks before a delivery, the expected numbers and the fallbacks. The participant pages under `tracks/` give the instructions for each part and its total length, and the timings of each step are kept here: the run sheets below for the parts of each format, [the preparation table](#preparation) for the pages "Before the session" and "Before the day", and [the self-taught format](#run-self-study) for the stages of the self-taught format.
 :::
 
 ---
@@ -88,12 +88,12 @@ other_max <- deviations |>
 
 | Format | Folder | Taught in | What it leaves out |
 |---|---|---|---|
-| Part-day format, two halves | `tracks/short/` | its live deck, with the browser lab as the fallback | installation, the class chart, Task 5 |
-| Full-day format, four parts | `tracks/day/` | the workspace, with the live deck showing each step and, with the browser lab, standing in when an installation fails | nothing of the six tasks |
-| Multi-day format, three days | `tracks/long/` | the workspace, with the live deck used in the full-day format on day 2 | nothing; day 2 is the full-day format |
+| Part-day format, two halves | `tracks/short/` | its slides, with the browser lab as the fallback | installation, the class chart, Task 5 |
+| Full-day format, four parts | `tracks/day/` | the workspace, with the slides showing each step and, with the browser lab, standing in when an installation fails | nothing of the six tasks |
+| Multi-day format, three days | `tracks/long/` | the workspace, with the slides of the full-day format on day 2 | nothing; day 2 is the full-day format |
 | Self-taught format, five stages | `tracks/independent/` | the workspace | the class, but not the class chart |
 
-In the part-day format and the full-day format the facilitator gives each participant one of the five reanalyses to reproduce in Task 3, so that the class covers all five, and in the self-taught format the reader chooses one. Only the full-day format, on its own or as the second day of the multi-day format, sends results to the class chart. The segments that differ by format read the `deck:` map in the YAML of each deck through Quarto conditional content (`when-meta="deck.short"` and the like), so a change of wording for one format is made in the segment, inside the span or the div that carries that condition.
+In the part-day format and the full-day format the facilitator gives each participant one of the five reanalyses to reproduce in Task 3, so that the class covers all five, and in the self-taught format the reader chooses one. Only the full-day format, on its own or as the second day of the multi-day format, sends results to the class chart. The segments that differ by format read the `deck:` map in the YAML of each slide deck through Quarto conditional content (`when-meta="deck.short"` and the like), so a change of wording for one format is made in the segment, inside the span or the div that carries that condition.
 
 ---
 
@@ -105,7 +105,7 @@ Between deliveries the opening page advertises no delivery. Scheduling one takes
 
 - [ ] Fill the `delivery:` block in `_variables.yml` (date, venue, event, mode, registration URL), set `track:` to one of the track slugs of the table above, and set `active: 'true'`. Render the opening page (`quarto render index.qmd`), and it shows a "Next delivery" callout with a link to the track. Set `active: 'false'` again afterwards.
 - [ ] Decide on recording. If you record, record the talk only, announce it at the start of each recorded stretch, and pause it for the hands-on tasks. Nothing in the day depends on the recording either way.
-- [ ] Decide which way the day leans. The deck used in the full-day format keeps one optional run on the `d` key, `methods`: the six-slide methods tutorial after the menu and the two slides of multiverse background after Task 4, of which the multiverse background is also the one optional run of the part-day format. To make the run part of the main flow, list it under `core-runs:` in the YAML of the deck and render it again; a run that is not listed stays optional and can still be switched on live.
+- [ ] Decide which way the day leans. The slides of the full-day format keep one optional run on the `d` key, `methods`: the six-slide methods tutorial after the menu and the two slides of multiverse background after Task 4, of which the multiverse background is also the one optional run of the part-day format. To make the run part of the main flow, list it under `core-runs:` in the YAML of the slides and render them again; a run that is not listed stays optional and can still be switched on live.
 
 **Resetting, before the full-day format is next delivered.**
 
@@ -129,7 +129,7 @@ The page "Before the session", "Before the day" or "Before the course" of each f
 | Step | Part-day format | Full-day format | Multi-day format |
 |---|---|---|---|
 | The background page | required | required | required |
-| The live deck of the format, opened once, with the setup cell of Task 1 run | required | required | – |
+| The slides of the format, opened once, with the setup cell of Task 1 run | required | required | – |
 | R, an IDE and the workspace, until `R/check_setup.R` prints OK | – | required | required |
 | Getting started with R (`tools/r.qmd` on the AR4DS site) | – | required | required |
 | The modules on the IDE, on Quarto and on Git and GitHub (AR4DS site) | – | recommended | the reading of days 1 and 3 |
@@ -137,18 +137,18 @@ The page "Before the session", "Before the day" or "Before the course" of each f
 
 ### The week before
 
-- [ ] **The live decks and the browser lab.** The part-day format is worked in its live deck, the full-day format is shown on its live deck, and the browser lab is the fallback of both, so check the two decks and the lab on the published site in a real browser: the engine loads, the setup cell of Task 1 runs, and the cells of each of the five analysts of Task 3 print the right value (the expected numbers are at the end of this guide).
-- [ ] **The workspace.** The workspace is the repository `CodeMoreh/ar4ds-housing-workspace`, whose zip is linked from the setup page of the AR4DS site, the cheatsheet and the slide on the workspace and the deck in Part 1. Download the zip once from its public address and confirm that it unzips into `ar4ds-housing-workspace-main`, and that a change made on the site since the last delivery has reached the workspace where it should. The part-day format does not need it.
+- [ ] **The web slides and the browser lab.** The part-day format is worked in its slides, the full-day format is shown on its slides, and the browser lab is the fallback of both, so check the two slide decks and the lab on the published site in a real browser: the engine loads, the setup cell of Task 1 runs, and the cells of each of the five analysts of Task 3 print the right value (the expected numbers are at the end of this guide).
+- [ ] **The workspace.** The workspace is the repository `CodeMoreh/ar4ds-housing-workspace`, whose zip is linked from the setup page of the AR4DS site, the cheatsheet and the slide on the workspace and the slides in Part 1. Download the zip once from its public address and confirm that it unzips into `ar4ds-housing-workspace-main`, and that a change made on the site since the last delivery has reached the workspace where it should. The part-day format does not need it.
 - [ ] **The class-results Form**, for the full-day format only. Out of the box, the housing helpers submit to the results Form that every case study shares, the one set up for the Europeanisation and the economy case study, and the housing chart reads the same Sheet through the same Worker, keeping only the rows whose label carries the word `housing` after the tag. That works as it stands. Clear the Sheet of the rows of earlier deliveries before the day (the data rows below the header of the tab "Form Responses 1"; the Form keeps working), because the chart of the Europeanisation case study reads every row and would draw housing rows as unclassed diamonds. The alternative, which keeps the two classes apart for good, is a Form of its own, about twenty minutes once, following [`facilitator/live-results-setup.md`](https://github.com/CodeMoreh/ar4ds-eu/blob/main/facilitator/live-results-setup.md) in the repository of the site of the Europeanisation case study.
-- [ ] **Joining instructions.** Send the address of the track page, the background page as the pre-reading, and the request to open the deck of the format once on the machine that each participant will bring, with a laptop charger. For the full-day format and the multi-day format add the setup page, with the request to run `R/check_setup.R` until it prints OK, the module Getting started with R and the help page.
-- [ ] **The tab switching.** Click once through the sequences that you run live: the deck and the browser lab in every format; the deck, the specification menu with its decision map and the Specification curve page in the part-day format and the full-day format, and the Class results page in the full-day format.
+- [ ] **Joining instructions.** Send the address of the track page, the background page as the pre-reading, and the request to open the slides of the format once on the machine that each participant will bring, with a laptop charger. For the full-day format and the multi-day format add the setup page, with the request to run `R/check_setup.R` until it prints OK, the module Getting started with R and the help page.
+- [ ] **The tab switching.** Click once through the sequences that you run live: the slides and the browser lab in every format; the slides, the specification menu with its decision map and the Specification curve page in the part-day format and the full-day format, and the Class results page in the full-day format.
 - [ ] **The room.** Confirm the projector, the power sockets and the wifi for visitors (webR downloads its engine and packages on first load).
 
 ### The night before
 
-- [ ] Render the pages that have changed, page by page (pCloud breaks a full render), and check that the opening page, the track pages, the pages of the case study and the deck for the day are current; push if the site is published.
-- [ ] **The deck, cold.** Open the live deck of the format in a private window on a connection like that of the venue, time the load of the R engine, and run the setup cell and the cells of one analyst of Task 3. Then open the browser lab, the fallback, in the same way.
-- [ ] **The live-results loop**, for the full-day format. Submit one test result from the deck or the browser lab (`try_spec()`, then `submit_exploration(nickname = "test-row")`), confirm that it reaches the Sheet, press *Run Code* on the class chart of the [Class results](../class-results.qmd) page and find the test circle. Declare a test specification too (`prereg()`, then `report_result(nickname = "test-row")`) and find its mark on the second chart, the curve of the new data. Then delete the test rows from the Sheet.
+- [ ] Render the pages that have changed, page by page (pCloud breaks a full render), and check that the opening page, the track pages, the pages of the case study and the slides for the day are current; push if the site is published.
+- [ ] **The slides, cold.** Open the slides of the format in a private window on a connection like that of the venue, time the load of the R engine, and run the setup cell and the cells of one analyst of Task 3. Then open the browser lab, the fallback, in the same way.
+- [ ] **The live-results loop**, for the full-day format. Submit one test result from the slides or the browser lab (`try_spec()`, then `submit_exploration(nickname = "test-row")`), confirm that it reaches the Sheet, press *Run Code* on the class chart of the [Class results](../class-results.qmd) page and find the test circle. Declare a test specification too (`prereg()`, then `report_result(nickname = "test-row")`) and find its mark on the second chart, the curve of the new data. Then delete the test rows from the Sheet.
 - [ ] **The workspace, as a participant meets it**, for the full-day format and the multi-day format. Download the zip afresh, unzip it, open the folder in your IDE, run `source("R/check_setup.R")` (every line OK, the last at −19.97 points) and render the report. For the multi-day format, also commit once and render the report from a clean session.
 - [ ] **The public record**, for the full-day format. Confirm that the three addresses of the records slide load without an account: doi.org/10.7910/DVN/1HOVTU, osf.io/3a8bg and osf.io/2ug8x, and that the final report of the replication is findable from the last one, because it is the target of the three-minute search in Part 4. The de-identified data of the replication are in its sub-component osf.io/xseqg, and the course keeps them as `data/housing_replication.csv`, for anyone who asks.
 - [ ] **The fallback zip**, for the full-day format and the multi-day format. Put the workspace zip on a USB stick, for anyone whose download fails in the room.
@@ -156,31 +156,31 @@ The page "Before the session", "Before the day" or "Before the course" of each f
 
 ### Opening the room
 
-- [ ] Put the address of the course site, the deck of the format, the browser lab and the cheatsheet on the screen or the whiteboard as people arrive, with the wifi details.
+- [ ] Put the address of the course site, the slides of the format, the browser lab and the cheatsheet on the screen or the whiteboard as people arrive, with the wifi details.
 - [ ] Say that a raised hand brings help at any point, for a question or for a machine that is stuck.
-- [ ] Keep the tabs for the session ready: the deck and the browser lab in every format, in the part-day format and the full-day format the [specification menu](../menu.qmd) with its [decision map](../menu.qmd#map) and the [Specification curve](../curve.qmd) page, and in the full-day format the [Class results](../class-results.qmd) page.
+- [ ] Keep the tabs for the session ready: the slides and the browser lab in every format, in the part-day format and the full-day format the [specification menu](../menu.qmd) with its [decision map](../menu.qmd#map) and the [Specification curve](../curve.qmd) page, and in the full-day format the [Class results](../class-results.qmd) page.
 - [ ] If you record, announce it now and say what is and is not recorded.
 
 ---
 
-## Deck controls {#deck-controls}
+## Slide controls {#deck-controls}
 
 | Key | What it does |
 |---|---|
-| space, right arrow or clicker | next slide, always exactly one: the deck is linear, so that no clicker press can skip a part |
-| **`d`** | switch between the **full** and the **lean** deck, live; in lean mode the optional slides are taken out of the deck and every key skips them |
+| space, right arrow or clicker | next slide, always exactly one: the slides are linear, so that no clicker press can skip a part |
+| **`d`** | switch between the **full** and the **lean** version of the slides, live; in lean mode the optional slides are taken out and every key skips them |
 | **`]`** and **`[`** | jump to the next or the previous part |
 | **`g`** | jump bar: type a few letters of any slide title and press Enter |
 | **`s`** | speaker view, with the notes, a timer and the next slide |
 | **`f`**, **`esc`** | full screen, and the slide overview |
 
-The readout at the top right names the part and the position, and its badge shows the state of the deck: green **full**, burgundy **optional** on a slide of an optional run, amber **lean** when the runs are off, with a burgundy dot where a run has been lifted out. Adding `?depth=0` to the address opens the deck lean. The first slide of each optional run carries a small grey link that jumps to where the main flow resumes.
+The readout at the top right names the part and the position, and its badge shows the state of the slides: green **full**, burgundy **optional** on a slide of an optional run, amber **lean** when the runs are off, with a burgundy dot where a run has been lifted out. Adding `?depth=0` to the address opens the slides lean. The first slide of each optional run carries a small grey link that jumps to where the main flow resumes.
 
 ---
 
 ## Run sheet – the part-day format {#run-short}
 
-The part-day format runs on its live deck, `live/short.qmd`, as two halves of about seventy-five minutes with a break of fifteen. The participants do every task in the deck, whose hands-on slides carry the cells of the browser lab one step to a cell: Task 1 and the warm-up on two slides, the table of the five analysts with the cell that reads the public file, two slides for each analyst, Task 4 on seven slides and the placement on one. The browser lab holds the same cells as the fallback. The session has no Task 2 at the keyboard (each participant writes the estimand statement in their notes, and the graph is followed on the slides), sends nothing to the class chart and has no Task 5; `tracks/short/after.qmd` points to them for afterwards. Its one optional run is the two slides of multiverse background.
+The part-day format runs on its slides, `live/short.qmd`, as two halves of about seventy-five minutes with a break of fifteen. The participants do every task in the slides, whose hands-on slides carry the cells of the browser lab one step to a cell: Task 1 and the warm-up on two slides, the table of the five analysts with the cell that reads the public file, two slides for each analyst, Task 4 on seven slides and the placement on one. The browser lab holds the same cells as the fallback. The session has no Task 2 at the keyboard (each participant writes the estimand statement in their notes, and the graph is followed on the slides), sends nothing to the class chart and has no Task 5; `tracks/short/after.qmd` points to them for afterwards. Its one optional run is the two slides of multiverse background.
 
 ::: {.callout-warning}
 **Draft clock times for CM to adjust**, here for an afternoon slot from 14:00 GMT.
@@ -196,13 +196,13 @@ The part-day format runs on its live deck, `live/short.qmd`, as two halves of ab
 
 | Rel. | Segment | What I do | What participants do | Watch out for |
 |---|---|---|---|---|
-| 0:00 | Welcome, what you do not need (3′) | The premise and the plan. "Open the deck now." | Open the deck in a tab. | Late arrivals: the address on the screen. |
+| 0:00 | Welcome, what you do not need (3′) | The premise and the plan. "Open the slides now." | Open the slides in a tab. | Late arrivals: the address on the screen. |
 | 0:03 | The matrix, SCORE in brief, the robustness study (12′) | The four cells; SCORE on one slide; what an analyst of the SCORE robustness study (Aczel et al. 2026) received, the two tasks, the common scale. | Listen. | – |
-| 0:15 | Hands-on 1: the setup check (5′) | A quick confirmation in the deck. | Run the setup cell; 1,014 rows. | A deck that will not load: another browser, then the browser lab, then the shared screen. |
+| 0:15 | Hands-on 1: the setup check (5′) | A quick confirmation in the slides. | Run the setup cell; 1,014 rows. | Slides that will not load: another browser, then the browser lab, then the shared screen. |
 | 0:20 | The paper and the five analysts (18′) | Define the original authors (OAs); the design, the email, what came back, the claim; the five analysts and their table. | Listen. | – |
 | 0:38 | The estimand and the graph (12′) | The estimand statement; the graph; the box around the reply; every delivered email. | Write the statement in their notes. | Never compressed. |
 | 0:50 | The instruction and analyst no. 6 (6′) | The instruction of the robustness study and what it left open; then give each participant one of the five analysts, in turn around the room, so that the class covers all five. | Take the analyst given. | With fewer than five participants, leave out P9W8Y first, since it has no value on record. |
-| 0:56 | Hands-on 3: the reproduction (14′) | Drive one analyst in the deck on the shared screen; circulate. | Reproduce their analyst and compare the value with the record. | Wait for most of the class. |
+| 0:56 | Hands-on 3: the reproduction (14′) | Drive one analyst in the slides on the shared screen; circulate. | Reproduce their analyst and compare the value with the record. | Wait for most of the class. |
 | 1:10 | The continuity correction, reproducibility and choice (5′) | The defaults of `chisq.test()` and `prop.test()`, the base group of EWFMI; the class against the five analysts. | – | – |
 
 ### Second half (75′)
@@ -227,7 +227,7 @@ For a slot of two hours, cut in this order: the multiverse background; the SCORE
 
 ## Run sheet – the full-day format {#run-one-day}
 
-The day runs on its live deck, `live/day.qmd`. The participants do the tasks in the workspace, in their IDE, and the deck carries every cell of the browser lab, which you run on the shared screen so that the class can compare its output; a participant whose installation fails carries on in the deck or in the lab. Part 1 sets out the claim and the credibility of social science, Part 2 the estimand and the causal graph, Part 3 the reproduction, and Part 4 the robustness exercise: the menu, the class chart with its two waves of submissions, the curve of the claim, the declared analysis and its run on the data of the replication.
+The day runs on its slides, `live/day.qmd`. The participants do the tasks in the workspace, in their IDE, and the slides carry every cell of the browser lab, which you run on the shared screen so that the class can compare its output; a participant whose installation fails carries on in the slides or in the lab. Part 1 sets out the claim and the credibility of social science, Part 2 the estimand and the causal graph, Part 3 the reproduction, and Part 4 the robustness exercise: the menu, the class chart with its two waves of submissions, the curve of the claim, the declared analysis and its run on the data of the replication.
 
 ::: {.callout-warning}
 **Draft clock times for CM to adjust.** The default starts at 10:00 GMT and keeps breaks of thirty minutes, an hour and thirty minutes, so the day ends at 17:45. The parts are of unequal length: the reproduction is the shortest, and robustness the longest, because it holds the two tasks with submissions. The pages of the participants give no times, so the times of a delivery go in the joining instructions. Shorter breaks need the text of the break slides changed as well (`live/_segments/_break1.qmd`, `_lunch-reading.qmd` and `_break-afternoon.qmd`).
@@ -243,21 +243,21 @@ The day runs on its live deck, `live/day.qmd`. The participants do the tasks in 
 | Break | 5:25–5:55 | 15:25–15:55 |
 | Part 4 – Robustness | 5:55–7:45 | 15:55–17:45 |
 
-**Two stretches of the deck are optional**, marked on screen and switched in one keystroke: the methods tutorial after the menu (six slides) and the multiverse background after Task 4 (two slides). The timings below assume that you walk about half of each.
+**Two stretches of the slides are optional**, marked on screen and switched in one keystroke: the methods tutorial after the menu (six slides) and the multiverse background after Task 4 (two slides). The timings below assume that you walk about half of each.
 
 ### Part 1 – The claim and credibility (90′)
 
 | Rel. | Segment | What I do | What participants do | Watch out for |
 |---|---|---|---|---|
-| 0:00 | Welcome, the two kinds of aim, what you do not need (6′) | The premise in two sentences: *Nature* asked three times whether social science holds up, I was inside one of the papers, and today you sit where I sat. Walk the aims slide. "Open your workspace now, and the deck in a tab." | Open the workspace in their IDE (Positron, RStudio, VS Code, etc.), and the deck in a tab. | Late arrivals: a nod and the address on the screen, never a restart. |
+| 0:00 | Welcome, the two kinds of aim, what you do not need (6′) | The premise in two sentences: *Nature* asked three times whether social science holds up, I was inside one of the papers, and today you sit where I sat. Walk the aims slide. "Open your workspace now, and the slides in a tab." | Open the workspace in their IDE (Positron, RStudio, VS Code, etc.), and the slides in a tab. | Late arrivals: a nod and the address on the screen, never a restart. |
 | 0:06 | Talk: what social science is for, and why it is called a crisis (10′) | Claims and checking; false positives and forking paths; the evidence from replications; incentives and questionable research practices, and why the problem is structural rather than fraud. | Listen. | – |
 | 0:16 | Talk: the red-card study (4′) | The question, the design, and the twenty-nine estimates. | Watch. | The study returns in Part 2 as a single row, so tell it in full only here. |
 | 0:20 | Talk: the vocabulary and open research (10′) | Replication crises; the data × analysis matrix; repeatability and credibility; the quick check, two slides, answered aloud; open-research practices. | Answer the quick check. | The matrix is the slide to copy down. If the segment runs long, the open-research table compresses to one sentence a row. |
 | 0:30 | Talk: SCORE in brief (6′) | The programme and its three studies on one slide, and the finding that the three do not travel together. | Listen. | The first day of the multi-day format takes SCORE in full. |
 | 0:36 | Talk: the robustness study from the inside (8′) | What an analyst received, the two tasks, results on a common scale. | Listen. | The five analysts of the case study come in Part 2. |
 | 0:44 | Talk: the paper (16′) | Define the original authors (OAs) here. The question, the design, the email, what came back by name, four outcomes, the claim with its two ellipses. | Listen; ask. | The two ellipses decide the comparison group later, so read both aloud. |
-| 1:00 | The workspace and the deck (5′) | The workspace, in which they work, and the deck, which shows each step and stands in if an installation fails; what the tools cannot do. | Check that the deck has loaded. | – |
-| 1:05 | Task 1, the warm-up and the break (25′) | "Get to the point where a line of R runs and the data are in front of you; take the break for it if you need to." Circulate. Stay in the room through the break for anyone who raises a hand. | `source("R/check_setup.R")`, every line OK, the last at −19.97 points, and the warm-up on the three Rs; the setup cell of the deck for anyone whose installation failed. | Anyone whose workspace is still stuck at the end of the break moves to the deck or the browser lab, or to the zip on the USB stick. |
+| 1:00 | The workspace and the slides (5′) | The workspace, in which they work, and the slides, which show each step and stand in if an installation fails; what the tools cannot do. | Check that the slides have loaded. | – |
+| 1:05 | Task 1, the warm-up and the break (25′) | "Get to the point where a line of R runs and the data are in front of you; take the break for it if you need to." Circulate. Stay in the room through the break for anyone who raises a hand. | `source("R/check_setup.R")`, every line OK, the last at −19.97 points, and the warm-up on the three Rs; the setup cell of the slides for anyone whose installation failed. | Anyone whose workspace is still stuck at the end of the break moves to the slides or the browser lab, or to the zip on the USB stick. |
 
 ### Part 2 – The estimand and the causal graph (75′)
 
@@ -267,7 +267,7 @@ The day runs on its live deck, `live/day.qmd`. The participants do the tasks in 
 | 0:08 | Talk: estimands (12′) | Two studies beside our five; four estimands in the red-card study; the spread with and without a fixed estimand; under-specified questions; the steps of Lundberg and colleagues. | Listen. | The figure with and without a fixed estimand is the point of the segment. |
 | 0:20 | Talk: the causal-graph crash course (14′) | Confounder, mediator, collider; the stories behind one correlation; open and closed paths; total and direct effects; selection and feedback. | Listen. | If running long, selection and feedback drops to one sentence. |
 | 0:34 | Talk: the claim (14′) | The estimand statement, which each participant writes in the box of Task 2. Then the graph, the box around the reply, and every delivered email. | Write the statement. | The statement is never compressed. Say that a choice between the replies and every delivered email is the same split as among the five analysts. |
-| 0:48 | Hands-on 2: Task 2 (27′) | Counting the emails, the estimand statement written out, then `R/dag_starter.R`, with the graph cells of the deck on the shared screen: the arrow from the name to the greeting, the adjustment sets, the paths with `Z = "reply"`. | Count, write, finish the graph, two sentences. | At 1:05, if the class is behind, switch to demonstration: run it on the shared screen, and they finish over lunch. |
+| 0:48 | Hands-on 2: Task 2 (27′) | Counting the emails, the estimand statement written out, then `R/dag_starter.R`, with the graph cells of the slides on the shared screen: the arrow from the name to the greeting, the adjustment sets, the paths with `Z = "reply"`. | Count, write, finish the graph, two sentences. | At 1:05, if the class is behind, switch to demonstration: run it on the shared screen, and they finish over lunch. |
 | 1:15 | Lunch | Post the return time. | Lunch. | A hard stop. |
 
 ### Part 3 – The reproduction (70′)
@@ -275,12 +275,12 @@ The day runs on its live deck, `live/day.qmd`. The participants do the tasks in 
 | Rel. | Segment | What I do | What participants do | Watch out for |
 |---|---|---|---|---|
 | 0:00 | Re-entry and the instruction (10′) | A visual sweep; the catch-up card on screen. The Task 2 instruction of the robustness study word for word, what it left open, and analyst no. 6; then give each participant one of the five analysts, in turn around the room, so that the class covers all five. | Rejoin; take the analyst given. | Do not wait past 0:05. With fewer than five participants, leave out P9W8Y first, since it has no value on record. |
-| 0:10 | Hands-on 3: Task 3, the reproduction (25′) | Drive one analyst in the deck on the shared screen; circulate. | Reproduce their analyst and compare the value with the record. | Wait until most of the class has a value. A failing machine goes to the deck or the browser lab. |
+| 0:10 | Hands-on 3: Task 3, the reproduction (25′) | Drive one analyst in the slides on the shared screen; circulate. | Reproduce their analyst and compare the value with the record. | Wait until most of the class has a value. A failing machine goes to the slides or the browser lab. |
 | 0:35 | Defaults, reproducibility and choice (8′) | Why every value matches its record to the third decimal (the defaults of `chisq.test()` and `prop.test()`, with both tests run without the correction on the two slides after the continuity correction, and the base group of EWFMI), and why five analysts writing their own code did not agree. | Listen. | Leave the question of the choices open for the menu of Part 4. |
 | 0:43 | What a reproduction needs (10′) | The data under a licence, the code, the defaults, someone who tries; the published model and the blinded thirds of the public file. | Listen; ask. | The point is that open data can still stop short of the published number, by design. |
 | 0:53 | The five reproductions (10′) | The five analyses side by side: the three pairs that differ in one decision, and the gap of each in percentage points. | Listen. | – |
 | 1:03 | Discussion (7′) | "Which of the five answers the claim as SCORE selected it, and what do the others answer?" | Answer. | The answer leads into the menu after the break. |
-| 1:10 | Break | Leave the deck open. | Break. | – |
+| 1:10 | Break | Leave the slides open. | Break. | – |
 
 **The catch-up card**, for the re-entry to Part 3:
 
@@ -298,7 +298,7 @@ The day runs on its live deck, `live/day.qmd`. The participants do the tasks in 
 | 0:52 | What moved the estimate (5′) | The shifts by option, then the curve coloured by the emails counted. | Connect the step to their own choice. | – |
 | 0:57 | Critics and preregistration (6′) | The critics; one correct analysis and how to identify it; what preregistration settles; exploration against declaration. | Listen; ask. | If the clock is tight, the identification slide goes to one sentence. |
 | 1:03 | Archiving and the public record (5′) | Archiving and registering; the preregistration of the robustness study; the two templates; the records slide; the eight AsPredicted questions. | Read. | – |
-| 1:08 | Hands-on 5: preregistration, run and report (16′) | Each participant completes fields 1–5 and renders the report, or copies the cell in the deck, before running anything; then `run_spec()` and `report_result()`. Press *Run Code* on the Class results page as the filled circles land. | Declare, run, submit. | Never cut the declaration. Re-declaring a specification already explored is allowed, and the block must say so. |
+| 1:08 | Hands-on 5: preregistration, run and report (16′) | Each participant completes fields 1–5 and renders the report, or copies the cell in the slides, before running anything; then `run_spec()` and `report_result()`. Press *Run Code* on the Class results page as the filled circles land. | Declare, run, submit. | Never cut the declaration. Re-declaring a specification already explored is allowed, and the block must say so. |
 | 1:24 | Hands-on 6: Task 6, the replication (10′) | `replicate_spec(my_spec)` on the shared screen, then the figure; then the second chart of the Class results page, which already holds the declared specifications of the class. | Run `replicate_spec(my_spec)` and the figure; write two sentences. | Every translated specification lies within two points of zero, and none is significant. Tell the class that this result is expected and that their code works. |
 | 1:34 | The replication (10′) | The design and the three-minute search of its final report, the result, the two studies compared, power, the three Rs on this paper, robustness against replicability. | Search the report; listen; argue. | The target of the search: not significant "approximately 93 percent of the time"; if time is short, show it on the shared screen. The robustness and replicability slide is the main lesson for the day; never compress it. |
 | 1:44 | Close and feedback (6′) | Two points from the literature; the single analytical path; what you take with you; the feedback form, with the chart on screen. | Feedback. | End on time. |
@@ -318,15 +318,15 @@ When time runs short, cut from the optional runs before anything else, so that t
 
 ## Run sheet – the multi-day format {#run-extended}
 
-The multi-day format is three days, with the full-day format as its second day (`tracks/long/`). The first day is the same for every case study of AR4DS and is given from decks of the AR4DS site; the third day teaches the methods of this case study and ends with the report of each participant. A two-day version drops the third day and leaves the methods to self-study.
+The multi-day format is three days, with the full-day format as its second day (`tracks/long/`). The first day is the same for every case study of AR4DS and is given from slide decks of the AR4DS site; the third day teaches the methods of this case study and ends with the report of each participant. A two-day version drops the third day and leaves the methods to self-study.
 
 ::: {.callout-note}
-Each session of the first and the third days has a deck of its own, written on 6 November 2026 and not yet tried in class, and a module as its reading. The durations are drafts for CM to adjust.
+Each session of the first and the third days has a slide deck of its own, written on 6 November 2026 and not yet tried in class, and a module as its reading. The durations are drafts for CM to adjust.
 :::
 
 **Day 1 – Open research and the tools.**
 
-| Session | Deck, AR4DS site | Reading | Draft |
+| Session | Slides, AR4DS site | Reading | Draft |
 |---|---|---|---|
 | 1. Credibility and the three Rs | `slides/credibility.qmd` | the glossary of `resources.qmd` | 75′ |
 | 2. SCORE | `slides/score.qmd` | the pages on SCORE and on the robustness article, AR4DS site | 60′ |
@@ -339,7 +339,7 @@ Each session of the first and the third days has a deck of its own, written on 6
 
 **Day 3 – The methods and your report.**
 
-| Session | Deck | Reading | Draft |
+| Session | Slides | Reading | Draft |
 |---|---|---|---|
 | 1. Audit experiments | `slides/experiments.qmd` | `companion/experiments.qmd` | 75′ |
 | 2. Binary outcomes | `slides/binary-outcomes.qmd` | `companion/binary-outcomes.qmd` | 60′ |
@@ -352,13 +352,13 @@ The hands-on slides of the first and the third sessions have the class install r
 
 ## The self-taught format {#run-self-study}
 
-The self-taught format runs without a facilitator, and each stage page gives the total of its stage and nothing finer, because the time that a stage takes depends on the reader. The stages use the same live deck as the full-day format, `live/day.qmd`.
+The self-taught format runs without a facilitator, and each stage page gives the total of its stage and nothing finer, because the time that a stage takes depends on the reader. The stages use the same slides as the full-day format, `live/day.qmd`.
 
 ---
 
 ## The reproductions {#reproductions}
 
-Each participant reproduces the analyst given to them in Task 3, in the workspace or in the deck. Everyone with the same analyst should obtain the same value, and each value should match its record: $\chi^2$ = `r fmt(an("8PTRZ", "statistic_recorded"), 3)` for 8PTRZ, z = `r fmt(an("UYV3F", "statistic_recorded"), 3)` for UYV3F, z = `r fmt(an("EWFMI", "statistic_recorded"), 3)` for EWFMI and $\chi^2$ = `r fmt(an("25N5D", "statistic_recorded"), 3)` for 25N5D, with `r fmt(an("P9W8Y", "statistic_refit"), 3)` on 2 degrees of freedom for P9W8Y, which has nothing on record. A participant with `r fmt(chi_plain, 2)` for 8PTRZ or `r fmt(prop_plain, 2)` for 25N5D has passed `correct = FALSE`, which is the opening line of the next slide. A z of `r fmt(-an("EWFMI", "statistic_recorded"), 3)` for EWFMI means that the Hispanic names are not the base group. A participant with another number has usually kept a different set of rows; check the filter against the table above the cells.
+Each participant reproduces the analyst given to them in Task 3, in the workspace or in the slides. Everyone with the same analyst should obtain the same value, and each value should match its record: $\chi^2$ = `r fmt(an("8PTRZ", "statistic_recorded"), 3)` for 8PTRZ, z = `r fmt(an("UYV3F", "statistic_recorded"), 3)` for UYV3F, z = `r fmt(an("EWFMI", "statistic_recorded"), 3)` for EWFMI and $\chi^2$ = `r fmt(an("25N5D", "statistic_recorded"), 3)` for 25N5D, with `r fmt(an("P9W8Y", "statistic_refit"), 3)` on 2 degrees of freedom for P9W8Y, which has nothing on record. A participant with `r fmt(chi_plain, 2)` for 8PTRZ or `r fmt(prop_plain, 2)` for 25N5D has passed `correct = FALSE`, which is the opening line of the next slide. A z of `r fmt(-an("EWFMI", "statistic_recorded"), 3)` for EWFMI means that the Hispanic names are not the base group. A participant with another number has usually kept a different set of rows; check the filter against the table above the cells.
 
 ---
 
@@ -379,10 +379,10 @@ Each row names the first move, not the only one, and every ladder ends at a poin
 
 | Situation | What to do |
 |---|---|
-| **A deck or the browser lab stalls** | The ladder of the [cheatsheet](../cheatsheet.qmd): a hard reload and the cells above run again, then a second browser, then the shared screen. In the full-day format the last rung is the by-hand lookup, in which the facilitator reads the five choices off `spec_curve.csv` and submits the row through the Form, so that everyone still gets a mark. |
-| **An installation fails on the day** | The live deck and the browser lab hold the whole exercise and give the same numbers; the participant carries on in either, and the workspace survives for later. |
+| **The slides or the browser lab stall** | The ladder of the [cheatsheet](../cheatsheet.qmd): a hard reload and the cells above run again, then a second browser, then the shared screen. In the full-day format the last rung is the by-hand lookup, in which the facilitator reads the five choices off `spec_curve.csv` and submits the row through the Form, so that everyone still gets a mark. |
+| **An installation fails on the day** | The slides and the browser lab hold the whole exercise and give the same numbers; the participant carries on in either, and the workspace survives for later. |
 | **The workspace download fails in the room** | The zip on the USB stick. |
-| **The wifi fails** | The workspace runs offline once its packages are installed, so the tasks continue for anyone who has it; the others follow the shared screen. In the full-day format, collect the printed results (the tag, the label, `b`, `se`, `t`, `df`, `n`, `r`) and submit them through the Form when the network returns. The decks and the browser lab need the network for their first load. |
+| **The wifi fails** | The workspace runs offline once its packages are installed, so the tasks continue for anyone who has it; the others follow the shared screen. In the full-day format, collect the printed results (the tag, the label, `b`, `se`, `t`, `df`, `n`, `r`) and submit them through the Form when the network returns. The slides and the browser lab need the network for their first load. |
 | **The live chart fails** (the full-day format: Form, Worker, CORS) | The chart falls back to the committed `data/class_results.csv`, which holds only its header. Pull the Sheet as CSV, put it in place of that file, render the Class results page locally and share the screen. The static curve and the reference marks of the Specification curve page are enough for the debrief. Submissions are safe in the Sheet whatever happens to the chart. |
 | **The OSF is slow during the three-minute search** | Show the report of the replication on the shared screen; the beat still works. Nothing in the tasks depends on the OSF. |
 | **A participant has lost their tag** (the full-day format) | It is in `.class-tag` at the root of the workspace; in the lab, `report_result(nickname = "their-tag")` reuses it. |
@@ -391,7 +391,7 @@ Each row names the first move, not the only one, and every ladder ends at a poin
 
 ## Expected numbers {#expected-numbers}
 
-- **Task 1.** The setup cell of the deck and of the lab: 1,014 rows and −19.97 percentage points. The last check of `R/check_setup.R`: the reference specification reproduces at `r fmt(ref$b_pp, 2)` percentage points.
+- **Task 1.** The setup cell of the slides and of the lab: 1,014 rows and −19.97 percentage points. The last check of `R/check_setup.R`: the reference specification reproduces at `r fmt(ref$b_pp, 2)` percentage points.
 - **Task 2.** `r format(n_emails, big.mark = ",")` emails, 23 bounced, 991 delivered, 563 replies, 5 without a greeting code, 558 coded. Greeted by name among the coded replies: white 61.1%, Black 56.1%, Hispanic 41.2%; Santiago lowest at 37.1%. The graph: with every delivered email counted, the adjustment set is empty, because the name was assigned at random; the paths with `Z = "reply"` report the paths through the official and through the community as open. Adding the community to `Z` closes the second, and nothing can close the first, because nobody observed the official.
 - **Task 3**, on the public file `housing_original.csv`. 8PTRZ: $\chi^2$ = `r fmt(chi_yates, 3)` on `r an("8PTRZ", "n_recorded")` coded replies with the continuity correction, `r fmt(chi_plain, 3)` without it. UYV3F: z = `r fmt(an("UYV3F", "statistic_recorded"), 3)` on `r an("UYV3F", "n_recorded")` coded replies to Hispanic and white names. EWFMI: z = `r fmt(an("EWFMI", "statistic_recorded"), 3)` on `r an("EWFMI", "n_recorded")` coded replies, the row of the white names against the Hispanic base group. 25N5D: $\chi^2$ = `r fmt(prop_yates, 3)` on `r an("25N5D", "n_recorded")` delivered emails with the continuity correction of `prop.test()`, `r fmt(prop_plain, 3)` without it. P9W8Y: no recorded statistic; the likelihood-ratio test of the three groups gives $\chi^2$ = `r fmt(an("P9W8Y", "statistic_refit"), 3)` on 2 degrees of freedom for `r an("P9W8Y", "n_refit")` coded replies, the value in the text of the report of the analyst.
 - **The reference specification** (white names, replies, uncoded dropped, linear model, no covariates): `r fmt(ref$b_pp, 2)` points (`r fmt(ref$rate_hisp)`% against `r fmt(ref$rate_comp)`%), t = `r fmt(ref$stat, 2)` on `r ref$df` df, n = `r ref$n`. Its twin on every delivered email: `r fmt(ref_all$b_pp, 2)` points (`r fmt(ref_all$rate_hisp)`% against `r fmt(ref_all$rate_comp)`%), n = `r ref_all$n`.

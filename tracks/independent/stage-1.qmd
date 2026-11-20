@@ -2,10 +2,10 @@
 title: "Stage 1 – Credibility and the three Rs"
 ---
 ::: {.callout-note appearance="simple" icon=false}
-**Slides.** [Open the deck at Part 1](../../live/day.html#/part-1-the-claim-and-credibility){target="_blank"} in its own tab, where the `s` key opens the speaker view with the notes of each slide, or follow it on the [slides page](../day/slides.qmd).
+**Slides.** [Open the slides at Part 1](../../live/day.html#/part-1-the-claim-and-credibility){target="_blank"} in their own tab, where the `s` key opens the speaker view with the notes of each slide, or follow them on the [slides page](../day/slides.qmd).
 :::
 
-This stage takes the talk from Part 1 of the deck and installs the tools. It takes about five and a quarter hours.
+This stage takes the talk from Part 1 of the slides and installs the tools. It takes about five and a quarter hours.
 
 ## 1. The talk of Part 1
 
@@ -15,7 +15,7 @@ This stage takes the talk from Part 1 of the deck and installs the tools. It tak
 
 [Install R and an IDE](https://codemoreh.github.io/ar4ds/setup.html){.btn .btn-primary target="_blank"} [Download the workspace (zip)]({{< var cases.housing.workspace-zip >}}){.btn .btn-outline-primary}
 
-Install R, Quarto and an IDE (Positron, RStudio, VS Code, etc.) by following the setup page. Then download the workspace, unzip it, open the folder that it makes, `ar4ds-housing-workspace-main`, in your IDE (in RStudio, the file `ar4ds-housing-workspace.Rproj` inside it), and run `source("R/check_setup.R")` until every line prints OK. The last check prints −19.97 percentage points. Open the [deck at Task 1](../../live/day.html#/hands-on-1-get-yourself-running){target="_blank"} or the [browser lab](../../lab.qmd#task-1-setup) once as well, either of which runs every task in a browser tab if your installation fails. The [help page](https://codemoreh.github.io/ar4ds/help.html) lists the problems that others have met.
+Install R, Quarto and an IDE (Positron, RStudio, VS Code, etc.) by following the setup page. Then download the workspace, unzip it, open the folder that it makes, `ar4ds-housing-workspace-main`, in your IDE (in RStudio, the file `ar4ds-housing-workspace.Rproj` inside it), and run `source("R/check_setup.R")` until every line prints OK. The last check prints −19.97 percentage points. Open the [slides at Task 1](../../live/day.html#/hands-on-1-get-yourself-running){target="_blank"} or the [browser lab](../../lab.qmd#task-1-setup) once as well, either of which runs every task in a browser tab if your installation fails. The [help page](https://codemoreh.github.io/ar4ds/help.html) lists the problems that others have met.
 
 ## 3. The case study and the exercise {#the-case-and-the-exercise}
 

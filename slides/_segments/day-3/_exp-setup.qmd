@@ -3,7 +3,7 @@
 #| include: false
 # The numbers of the session on audit experiments that the setup of the case study
 # does not hold, computed from the files of data/ with the
-# packages that companion/experiments.qmd uses, so that the deck and the module
+# packages that companion/experiments.qmd uses, so that the slides and the module
 # agree. Comes after the two setup chunks and uses their data and formats.
 
 # The emails sent from each of the six accounts, against equal chances of each

@@ -1,7 +1,7 @@
-<!-- Task 2 of the browser lab (lab.qmd), for the day deck:
+<!-- Task 2 of the browser lab (lab.qmd), for the full-day slides:
      the overview of the task, then the cells of the lab one step at a time,
      the data on four slides and the graph on four. The graph helpers come from
-     _includes/_lab-graph.qmd, which the deck includes after its setup
+     _includes/_lab-graph.qmd, which the slides include after their setup
      cell. Each slide names where the same step lives in the workspace. -->
 ## Hands-on 2 – The data, the estimand and the graph {#hands-on-2-meet-the-emails-draw-the-graph .smaller}
 
@@ -149,7 +149,7 @@ my_dag <- make_dag(
 ```
 
 ::: notes
-Now the graph, written in ordinary R, one arrow per string, each written the way it is drawn. The name can change whether the official replies, and only a reply can greet the sender by name. The official, whom nobody observed, affects both the reply and the greeting, and so does the community, which the data hold in thirds. One arrow is switched off with a hash: the arrow from the name to the greeting, the effect on tone that the claim is about. Leave it off for now. The cell builds the graph and prints nothing. In the workspace the same graph is built by the starter script with dagitty, the R package for causal graphs, which cannot run in a browser, so this deck reads the answers that dagitty gives from a table.
+Now the graph, written in ordinary R, one arrow per string, each written the way it is drawn. The name can change whether the official replies, and only a reply can greet the sender by name. The official, whom nobody observed, affects both the reply and the greeting, and so does the community, which the data hold in thirds. One arrow is switched off with a hash: the arrow from the name to the greeting, the effect on tone that the claim is about. Leave it off for now. The cell builds the graph and prints nothing. In the workspace the same graph is built by the starter script with dagitty, the R package for causal graphs, which cannot run in a browser, so these slides read the answers that dagitty gives from a table.
 :::
 
 ## Hands-on 2 – The adjustment set {#hands-on-2-the-adjustment-set .smaller}
@@ -204,7 +204,7 @@ plot_dag(my_dag)
 ```
 
 ::: notes
-And the graph drawn. The name sits on the left in blue, the greeting on the right, the reply above the line between them and the community in the middle, while the official, whom nobody observed, is drawn in pale grey. Every arrow that you wrote is here, and the arrow of the claim is not, because you have not switched it on yet. This is the same graph as the one on the slides of Part 2, laid out by a function of the deck rather than by hand, so it looks a little plainer. If you add a node for which the deck has no position, it lands on a row below the graph, and the cue is to take that graph to the workspace, where dagitty answers whatever you ask of it.
+And the graph drawn. The name sits on the left in blue, the greeting on the right, the reply above the line between them and the community in the middle, while the official, whom nobody observed, is drawn in pale grey. Every arrow that you wrote is here, and the arrow of the claim is not, because you have not switched it on yet. This is the same graph as the one on the slides of Part 2, laid out here by a function rather than by hand, so it looks a little plainer. If you add a node for which these slides have no position, it lands on a row below the graph, and the cue is to take that graph to the workspace, where dagitty answers whatever you ask of it.
 :::
 
 ## Hands-on 2 – The arrow of the claim {#hands-on-2-the-arrow-of-the-claim .smaller .output-8}

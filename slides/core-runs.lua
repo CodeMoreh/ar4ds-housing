@@ -1,8 +1,8 @@
--- core-runs.lua – lifts optional runs into a deck's main flow.
+-- core-runs.lua – lifts optional runs into the main flow of a slide deck.
 --
 -- Every slide of an optional run carries `.deepdive` and a `run` attribute
 -- (tools, r, methods, multiverse) in the segments of live/_segments/ and
--- slides/_segments/. A deck lists
+-- slides/_segments/. A slide deck lists
 -- the runs it carries in its main flow under `core-runs:` in its YAML; this filter
 -- removes the .deepdive class from those headings, so nav-tools.html neither
 -- hides them on the d toggle nor badges them as optional. Two filter tables,

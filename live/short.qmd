@@ -24,8 +24,8 @@ format:
         - effectsize
       repos:
         - https://codemoreh.github.io/ar4ds-wasm
-# The four files that the cells read, fetched into the browser when the deck
-# opens; the runtime drops the leading ../ of each path, so inside the browser
+# The four files that the cells read, fetched into the browser when the slides
+# open; the runtime drops the leading ../ of each path, so inside the browser
 # they sit under data/, the folder that the setup cell below
 # names as .data_dir.
 resources:
@@ -36,18 +36,18 @@ resources:
 live:
   show-hints: true
   show-solutions: true
-# Optional runs that this deck includes in its main flow (core-runs.lua
-# strips their .deepdive mark); the others stay on the d toggle. This deck
-# carries one optional run, the multiverse background of the second half.
+# Optional runs that these slides include in their main flow (core-runs.lua
+# strips their .deepdive mark); the others stay on the d toggle. These slides
+# carry one optional run, the multiverse background of the second half.
 core-runs: []
-# The format of the deck, which the segments of the Housing case study read
+# The format of the slides, which the segments of the Housing case study read
 # through Quarto conditional content (when-meta="deck.short" and so on): one
-# of short or day, and menu where the deck teaches the specification menu.
+# of short or day, and menu where the slides teach the specification menu.
 deck:
   short: true
   menu: true
-# THE DECK OF THE PART-DAY FORMAT
-# - The participants do every task of the session in this deck, whose
+# THE SLIDES OF THE PART-DAY FORMAT
+# - The participants do every task of the session in these slides, whose
 #   hands-on slides carry the cells of the browser lab through the Quarto
 #   Live extension: Task 1 and its warm-up, Task 3 with each of the five
 #   reproductions, Task 4 without the submission, and the placement. Each
@@ -60,9 +60,9 @@ deck:
 #   the hints and solutions of its exercises. The helpers of the lab are
 #   ../_includes/_lab-helpers.qmd, included after the setup cell that
 #   names the data folder. The two setup segments stay in
-#   ../slides/_segments/, because the decks of day 3 include them as well.
+#   ../slides/_segments/, because the slide decks of day 3 include them as well.
 # - The setup cell and the helpers sit on the agenda slide, after its notes,
-#   because a cell or a comment placed before the first heading of a deck
+#   because a cell or a comment placed before the first heading of a slide deck
 #   makes a slide of its own; they print nothing.
 # - The half dividers keep the ids that the pages of the format link.
 # - No duration goes on any slide or into any note.
@@ -76,7 +76,7 @@ deck:
 ```{webr}
 #| include: false
 #| autorun: true
-# The setup of the deck, run once the engine is ready. .data_dir is the folder
+# The setup of the slides, run once the engine is ready. .data_dir is the folder
 # in which the four files of the resources list arrive inside the browser: the
 # runtime drops the leading ../ of their paths, so from the working directory
 # of R they sit under data/. housing holds the emails, one row

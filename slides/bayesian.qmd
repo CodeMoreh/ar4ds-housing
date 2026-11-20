@@ -2,9 +2,9 @@
 title: "Bayesian estimation"
 subtitle: "Multi-day, day 3 – Housing and racial bias"
 format: revealjs
-# Optional runs that this deck includes in its main flow (core-runs.lua
+# Optional runs that these slides include in their main flow (core-runs.lua
 # strips their .deepdive mark); the others stay on the d toggle. The one
-# optional slide of this deck, the computational checks, is the run "checks".
+# optional slide, the computational checks, is the run "checks".
 core-runs: []
 ---
 

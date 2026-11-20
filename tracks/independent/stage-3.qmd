@@ -3,7 +3,7 @@ title: "Stage 3 – The claim and its reproduction"
 case: housing
 ---
 ::: {.callout-note appearance="simple" icon=false}
-**Slides.** [Open the deck at Part 2](../../live/day.html#/part-2-the-estimand-and-the-causal-graph){target="_blank"} in its own tab, or follow it on the [slides page](../day/slides.qmd).
+**Slides.** [Open the slides at Part 2](../../live/day.html#/part-2-the-estimand-and-the-causal-graph){target="_blank"} in their own tab, or follow them on the [slides page](../day/slides.qmd).
 :::
 
 In this stage you write the estimand statement behind the claim, finish the causal graph of the experiment, and reproduce the value recorded in the SCORE robustness study (Aczel et al. 2026) for one of the five analysts, whichever you choose. It takes nearly six hours.
@@ -20,13 +20,13 @@ In this stage you write the estimand statement behind the claim, finish the caus
 
 **In your report**, in the two boxes of Task 2 of `index.qmd`, or in your working script. Count what came back for each name, complete the estimand statement, and put the questions of the second box to the causal graph of `R/dag_starter.R`.
 
-[Open the deck at Task 2](../../live/day.html#/hands-on-2-meet-the-emails-draw-the-graph){.btn .btn-outline-primary target="_blank"} [Open the browser lab at Task 2](../../lab.qmd#task-2-data){.btn .btn-outline-primary target="_blank"}
+[Open the slides at Task 2](../../live/day.html#/hands-on-2-meet-the-emails-draw-the-graph){.btn .btn-outline-primary target="_blank"} [Open the browser lab at Task 2](../../lab.qmd#task-2-data){.btn .btn-outline-primary target="_blank"}
 
 ## 4. Task 3 – The reproduction
 
 **On the slides, then in your report**, in Task 3 of `index.qmd`. The slides read the instruction of Task 2 of the robustness study word for word. Then choose one of the five analysts and reproduce the analysis in the tab of that analyst. Working alone, you can take a second analyst whose test differs from the first.
 
-[Open the deck at Part 3](../../live/day.html#/part-3-the-reproduction){.btn .btn-primary target="_blank"} [Open the browser lab at Task 3](../../lab.qmd#task-3-reproduction){.btn .btn-outline-primary target="_blank"}
+[Open the slides at Part 3](../../live/day.html#/part-3-the-reproduction){.btn .btn-primary target="_blank"} [Open the browser lab at Task 3](../../lab.qmd#task-3-reproduction){.btn .btn-outline-primary target="_blank"}
 
 ## 5. The continuity correction
 

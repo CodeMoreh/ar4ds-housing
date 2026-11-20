@@ -24,8 +24,8 @@ format:
         - effectsize
       repos:
         - https://codemoreh.github.io/ar4ds-wasm
-# The seven files that the cells read, fetched into the browser when the deck
-# opens; the runtime drops the leading ../ of each path, so inside the browser
+# The seven files that the cells read, fetched into the browser when the slides
+# open; the runtime drops the leading ../ of each path, so inside the browser
 # they sit under data/, the folder that the setup cell below
 # names as .data_dir.
 resources:
@@ -39,24 +39,24 @@ resources:
 live:
   show-hints: true
   show-solutions: true
-# Optional runs that this deck includes in its main flow (core-runs.lua
+# Optional runs that these slides include in their main flow (core-runs.lua
 # strips their .deepdive mark); the others stay on the d toggle. The one run
-# of this deck is "methods": the methods tutorial after the menu in Part 4,
+# of these slides is "methods": the methods tutorial after the menu in Part 4,
 # and the multiverse background after Task 4.
 core-runs: []
-# The format of the deck, which the segments of the Housing case study read
+# The format of the slides, which the segments of the Housing case study read
 # through Quarto conditional content (when-meta="deck.short" and so on): one
-# of short or day, and menu where the deck teaches the specification menu.
+# of short or day, and menu where the slides teach the specification menu.
 deck:
   day: true
   menu: true
-# THE DECK OF THE FULL-DAY FORMAT, OF DAY 2 OF THE MULTI-DAY FORMAT AND OF THE
+# THE SLIDES OF THE FULL-DAY FORMAT, OF DAY 2 OF THE MULTI-DAY FORMAT AND OF THE
 # SELF-TAUGHT FORMAT
 # - The participants of the full-day format do the six tasks in the workspace, in
-#   their IDE. This deck carries the whole browser lab on its slides, through
+#   their IDE. These slides carry the whole browser lab, through
 #   the Quarto Live extension: the facilitator runs each step on the shared
 #   screen, so that the class can compare its output with the slides, and a
-#   participant whose installation fails carries on in the deck. Each
+#   participant whose installation fails carries on in the slides. Each
 #   hands-on slide names the chunk or the file of the workspace that holds
 #   the same step.
 # - The hands-on segments in _segments/ (_handson1-live.qmd to
@@ -67,9 +67,9 @@ deck:
 #   ../_includes/_lab-helpers.qmd and the graph helpers of Task 2
 #   ../_includes/_lab-graph.qmd, both included after the setup cell that
 #   names the data folder. The two setup segments stay in
-#   ../slides/_segments/, because the decks of day 3 include them as well.
+#   ../slides/_segments/, because the slide decks of day 3 include them as well.
 # - The setup cell and the helpers sit on the agenda slide, after its notes,
-#   because a cell or a comment placed before the first heading of a deck
+#   because a cell or a comment placed before the first heading of a slide deck
 #   makes a slide of its own; they print nothing.
 # - The part dividers keep the ids that the pages of the formats link.
 # - No duration goes on any slide or into any note.
@@ -83,8 +83,8 @@ deck:
 ```{webr}
 #| include: false
 #| autorun: true
-# The setup of the deck, run once the engine is ready. .data_dir is the folder
-# in which the five files of the resources list arrive inside the browser: the
+# The setup of the slides, run once the engine is ready. .data_dir is the folder
+# in which the seven files of the resources list arrive inside the browser: the
 # runtime drops the leading ../ of their paths, so from the working directory
 # of R they sit under data/. housing holds the emails, one row
 # each, the object from which the cells of the hands-on slides work.

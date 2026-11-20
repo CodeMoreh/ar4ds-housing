@@ -409,17 +409,17 @@
     {
       "file": "live/_segments/_handson2-live.qmd",
       "code": "adjustmentSets(my_dag)",
-      "reason": "the function of this deck, which reads the answers of dagitty"
+      "reason": "the function of these slides, which reads the answers of dagitty"
     },
     {
       "file": "live/_segments/_handson2-live.qmd",
       "code": "paths(my_dag, Z = \"reply\")",
-      "reason": "the function of this deck, which reads the answers of dagitty"
+      "reason": "the function of these slides, which reads the answers of dagitty"
     },
     {
       "file": "live/_segments/_handson2-live.qmd",
       "code": "paths(my_dag, Z = c(\"reply\", \"community\"))",
-      "reason": "the function of this deck, which reads the answers of dagitty"
+      "reason": "the function of these slides, which reads the answers of dagitty"
     },
     {
       "file": "live/_segments/_handson3-live.qmd",

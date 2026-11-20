@@ -75,7 +75,7 @@ repeatability_matrix <- function(highlight = NULL) {
 
 # The 29 teams of Silberzahn et al. (2018), published values, read once
 # because two slides in different parts draw them. The file is shared by the
-# decks of every case study; codebook: data/silberzahn29_codebook.md.
+# slide decks of every case study; codebook: data/silberzahn29_codebook.md.
 silberzahn29 <- readr::read_csv("../data/silberzahn29.csv", show_col_types = FALSE) |>
   datawizard::data_modify(distribution = factor(distribution, levels = c("Linear", "Logistic", "Poisson", "Other")))
 

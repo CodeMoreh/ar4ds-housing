@@ -1,6 +1,6 @@
 ## Reproducibility and analytical choice {#one-number-the-whole-class}
 
-<!-- The last fragment differs by format: the decks that teach the
+<!-- The last fragment differs by format: the slide decks that teach the
      specification menu (deck: {menu: true} in their YAML) name it, the others
      list the choices. -->
 

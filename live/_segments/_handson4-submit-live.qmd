@@ -1,5 +1,5 @@
 <!-- The end of Task 4 of the browser lab (lab.qmd) for the
-     day deck: the log of the tries and the submission of the explored
+     full-day slides: the log of the tries and the submission of the explored
      analysis to the class chart, with the cells of the lab. -->
 ## Hands-on 4 – The submission {#hands-on-4-the-submission .smaller .output-8}
 

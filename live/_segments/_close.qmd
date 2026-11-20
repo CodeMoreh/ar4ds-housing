@@ -1,7 +1,7 @@
 ## What you take with you {.smaller}
 
-<!-- The first line differs by format, keyed on the deck map in the YAML of
-     each deck. -->
+<!-- The first line differs by format, keyed on the `deck:` map in the YAML of
+     each slide deck. -->
 
 ::: {.small}
 - **Yours now**: [a reproduced result; an estimand statement and a causal graph that you wrote yourself; your results on the class chart, with a reason for each choice; your declared result on the new data of the replication]{.content-visible when-meta="deck.day"}[a reproduced result; an estimand statement; the place of your own specification on the curve of `r nrow(curve)`]{.content-visible when-meta="deck.short"}

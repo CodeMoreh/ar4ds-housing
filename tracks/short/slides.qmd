@@ -9,4 +9,4 @@ toc: false
 <iframe class="slide-deck" src="../../live/short.html" title="Slides of the part-day format"></iframe>
 ```
 
-Open the deck [in its own tab](../../live/short.html){target="_blank"} for the full screen, the speaker view and the keyboard controls: the `d` key switches the optional slides on and off, `[` and `]` jump between the two halves, and `g` opens a jump bar that finds a slide by its title. The cells of its hands-on slides run R inside your browser once the engine has loaded.
+Open the slides [in their own tab](../../live/short.html){target="_blank"} for the full screen, the speaker view and the keyboard controls: the `d` key switches the optional slides on and off, `[` and `]` jump between the two halves, and `g` opens a jump bar that finds a slide by its title. The cells of the hands-on slides run R inside your browser once the engine has loaded.

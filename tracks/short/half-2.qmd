@@ -2,7 +2,7 @@
 title: "Second half – Exploration and replication"
 ---
 ::: {.callout-note appearance="simple" icon=false}
-**Slides.** [Open the deck at this half](../../live/short.html#/half-2-exploration-and-replication){target="_blank"} in its own tab, or follow it on the [slides page](slides.qmd).
+**Slides.** [Open the slides at this half](../../live/short.html#/half-2-exploration-and-replication){target="_blank"} in their own tab, or follow them on the [slides page](slides.qmd).
 :::
 
 1. The specification menu
@@ -17,14 +17,14 @@ title: "Second half – Exploration and replication"
 
 ## Task 4 – The menu
 
-**In the deck**, in the cells of the slides of Task 4. Try the reference specification and two or three others, changing one argument at a time. Then rerun the one that you would defend, so that it is your last try. The session sends nothing to the class chart, so in the browser lab you leave out `submit_exploration()`.
+**In the slides**, in the cells of Task 4. Try the reference specification and two or three others, changing one argument at a time. Then rerun the one that you would defend, so that it is your last try. The session sends nothing to the class chart, so in the browser lab you leave out `submit_exploration()`.
 
-[Open the deck at Task 4](../../live/short.html#/hands-on-4-work-the-menu){.btn .btn-primary target="_blank"} [Open the browser lab at Task 4](../../lab.qmd#task-4-menu){.btn .btn-outline-primary target="_blank"}
+[Open the slides at Task 4](../../live/short.html#/hands-on-4-work-the-menu){.btn .btn-primary target="_blank"} [Open the browser lab at Task 4](../../lab.qmd#task-4-menu){.btn .btn-outline-primary target="_blank"}
 
 ## Your placement
 
-**In the deck**, in the cell of the placement slide. Rerun `try_spec()` with the specification that you would defend and read your placement, which is the number of the 64 specifications whose gap lies further below zero than yours.
+**In the slides**, in the cell of the placement slide. Rerun `try_spec()` with the specification that you would defend and read your placement, which is the number of the 64 specifications whose gap lies further below zero than yours.
 
-[Open the deck at your placement](../../live/short.html#/find-your-own-percentile){.btn .btn-primary target="_blank"} [Open the browser lab at Task 4](../../lab.qmd#task-4-menu){.btn .btn-outline-primary target="_blank"}
+[Open the slides at your placement](../../live/short.html#/find-your-own-percentile){.btn .btn-primary target="_blank"} [Open the browser lab at Task 4](../../lab.qmd#task-4-menu){.btn .btn-outline-primary target="_blank"}
 
 To go further: [the replication](../../background.qmd#sec-replication) on the background page.

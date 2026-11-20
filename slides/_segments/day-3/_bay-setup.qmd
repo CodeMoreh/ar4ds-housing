@@ -3,7 +3,7 @@
 #| include: false
 # The outputs of the Bayesian models of the case study, which
 # companion/_model-outputs/bayes_housing.R fitted once with brms and wrote as
-# small CSV files; the deck reads them and fits nothing. Comes after the two
+# small CSV files; the slides read them and fit nothing. Comes after the two
 # setup chunks and uses their data and formats.
 bayes_counts <- readr::read_csv("../companion/_model-outputs/bayes_housing_counts.csv", show_col_types = FALSE)
 bayes_draws <- readr::read_csv("../companion/_model-outputs/bayes_housing_draws.csv", show_col_types = FALSE)

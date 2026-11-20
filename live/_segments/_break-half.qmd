@@ -1,9 +1,9 @@
 ## Break {.darkslide background-color="rgba(0,0,0,0)"}
 
 ::: {.partlabel}
-The return time is posted. Keep this deck open in its tab
+The return time is posted. Keep these slides open in their tab
 :::
 
 ::: notes
-A short break, and the return time is posted. Keep this deck open in its tab, because the second half carries on in it, and the deck forgets everything that you ran if you close it. If your reproduction did not come out, flag it now and we will sort it out before we start again.
+A short break, and the return time is posted. Keep these slides open in their tab, because the second half carries on in them, and the slides forget everything that you ran if you close them. If your reproduction did not come out, flag it now and we will sort it out before we start again.
 :::

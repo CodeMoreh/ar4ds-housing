@@ -1,10 +1,10 @@
 <!--
 The helpers of the browser lab, in one file included by three documents: the
-lab itself, lab.qmd, and the two live decks,
+lab itself, lab.qmd, and the two slide decks,
 live/day.qmd and live/short.qmd, whose hands-on slides run
 the same cells. The including document sets .data_dir, the folder in which the
 files of its resources list arrive inside the browser (data/ in the lab and
-in the decks), in a setup cell placed before this include.
+in the slides), in a setup cell placed before this include.
 The estimator is written once, in R/_tools.R, and copied here as in
 R/spec_tools.R of the workspace. The graph helpers of Task 2 are in
 _lab-graph.qmd beside this file.

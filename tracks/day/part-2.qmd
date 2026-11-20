@@ -3,7 +3,7 @@ title: "Part 2 – The estimand and the causal graph"
 ---
 
 ::: {.callout-note appearance="simple" icon=false}
-**Slides.** [Open the deck at this part](../../live/day.html#/part-2-the-estimand-and-the-causal-graph){target="_blank"} in its own tab, or follow it on the [slides page](slides.qmd).
+**Slides.** [Open the slides at this part](../../live/day.html#/part-2-the-estimand-and-the-causal-graph){target="_blank"} in their own tab, or follow them on the [slides page](slides.qmd).
 :::
 
 1. The five analysts of the SCORE robustness study (Aczel et al. 2026)
@@ -16,6 +16,6 @@ title: "Part 2 – The estimand and the causal graph"
 
 **In your workspace**, in the two boxes of Task 2 of `index.qmd`. Count what came back for each name, complete the estimand statement, and put the questions of the second box to the causal graph of `R/dag_starter.R`.
 
-[Open the deck at Task 2](../../live/day.html#/hands-on-2-meet-the-emails-draw-the-graph){.btn .btn-outline-primary target="_blank"} [Open the browser lab at Task 2](../../lab.qmd#task-2-data){.btn .btn-outline-primary target="_blank"}
+[Open the slides at Task 2](../../live/day.html#/hands-on-2-meet-the-emails-draw-the-graph){.btn .btn-outline-primary target="_blank"} [Open the browser lab at Task 2](../../lab.qmd#task-2-data){.btn .btn-outline-primary target="_blank"}
 
 To go further: [Causal graphs and adjustment sets](../../companion/dags.qmd).

@@ -1,9 +1,9 @@
 ## Your own placement {#find-your-own-percentile .smaller .output-8}
 
-<!-- The placement slide of both live decks, with a cell that reruns
-     try_spec(). The first line differs by format: the day deck places the
-     specification that was submitted, the short deck the one that the
-     participant would defend. Keyed on the deck map in the YAML of each deck;
+<!-- The placement slide of both slide decks, with a cell that reruns
+     try_spec(). The first line differs by format: the full-day slides place the
+     specification that was submitted, the part-day slides the one that the
+     participant would defend. Keyed on the `deck:` map in the YAML of each slide deck;
      the cell sits outside every conditional span. -->
 
 ::: {.small}

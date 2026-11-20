@@ -1,13 +1,13 @@
-<!-- Task 5 of the browser lab (lab.qmd) for the day deck:
+<!-- Task 5 of the browser lab (lab.qmd) for the full-day slides:
      the preregistration moment, then the cells of the lab, the block, its
      declaration, the run, the report and the curve with the declared result
      ringed. Each slide names where the same step lives in the workspace. -->
 ## Hands-on 5 – The preregistration {#the-preregistration-moment}
 
 ::: {.none}
-1. Open the preregistration block of Task 5 in your report, or on the next slide of this deck
+1. Open the preregistration block of Task 5 in your report, or on the next slide
 2. Complete fields 1–5: the claim, the data-in-hand statement, your one specification, the one-sentence justification from your causal graph, and your rule for what supports or undermines the claim
-3. **Render** your report, or in this deck copy the completed cell into your notes
+3. **Render** your report, or in these slides copy the completed cell into your notes
 4. Only then run your specification, on the slides that follow
 :::
 
@@ -16,7 +16,7 @@ Nothing runs until your block is complete.
 :::
 
 ::: notes
-Now the preregistration. Open Task 5 in your report, or the block on the next slide if you work in this deck. Fill in the five fields: the claim, the data-in-hand statement, your one specification with an option for each decision of the menu, the one-sentence justification that your graph gives you, and the rule, written now and before any result, for what would support the claim and what would undermine it. Render the report; the rendered file with its date is the record of your preregistration, and you run nothing before it exists. If the specification that you choose is one that you already tried in Task 4, that is allowed, but say so in the block, because a specification whose result you have already seen is not preregistered in the strict sense.
+Now the preregistration. Open Task 5 in your report, or the block on the next slide if you work in these slides. Fill in the five fields: the claim, the data-in-hand statement, your one specification with an option for each decision of the menu, the one-sentence justification that your graph gives you, and the rule, written now and before any result, for what would support the claim and what would undermine it. Render the report; the rendered file with its date is the record of your preregistration, and you run nothing before it exists. If the specification that you choose is one that you already tried in Task 4, that is allowed, but say so in the block, because a specification whose result you have already seen is not preregistered in the strict sense.
 :::
 
 ## Hands-on 5 – The preregistration block {#hands-on-5-the-preregistration-block .smaller}
@@ -78,7 +78,7 @@ my_spec <- prereg()   # checks every choice, prints your preregistration and kee
 ```
 
 ::: notes
-Then the declaration itself. Prereg reads the eleven choices of the block, checks each one against the menu, and stops with the reason if one of them is off the curve, as try underscore spec does. If every choice is on the curve, it prints your preregistration: the choices in the three groups of the menu, and the estimand statement that the choices make, written out in words. It also keeps the block as my underscore spec, which the run on the next slide needs. In your workspace the rendered report, with its date, is the record of the declaration, and in this deck you copy the block into your notes.
+Then the declaration itself. Prereg reads the eleven choices of the block, checks each one against the menu, and stops with the reason if one of them is off the curve, as try underscore spec does. If every choice is on the curve, it prints your preregistration: the choices in the three groups of the menu, and the estimand statement that the choices make, written out in words. It also keeps the block as my underscore spec, which the run on the next slide needs. In your workspace the rendered report, with its date, is the record of the declaration, and in these slides you copy the block into your notes.
 :::
 
 ## Hands-on 5 – The preregistered run {#run-it-then-watch-the-chart .smaller}
@@ -144,7 +144,7 @@ mine <- spec_curve |>
 ```
 
 ::: notes
-Finally, your result on the curve of the claim, the sixty-four specifications that the menu keeps, ranked from the most negative estimate. Two cells prepare the figure and print nothing. The first reads the curve that the deck loaded, ranks it, and labels the two answers to the decision on which emails are counted. The second picks out your own specification by the choices of your preregistration cell. It uses dplyr rather than datawizard, because datawizard evaluates its conditions in an environment of its own, from which the choices of the block cannot be reached. The figure is on the next slide, and in your workspace the same steps make the last figure of the report.
+Finally, your result on the curve of the claim, the sixty-four specifications that the menu keeps, ranked from the most negative estimate. Two cells prepare the figure and print nothing. The first reads the curve that the slides loaded, ranks it, and labels the two answers to the decision on which emails are counted. The second picks out your own specification by the choices of your preregistration cell. It uses dplyr rather than datawizard, because datawizard evaluates its conditions in an environment of its own, from which the choices of the block cannot be reached. The figure is on the next slide, and in your workspace the same steps make the last figure of the report.
 :::
 
 ## Hands-on 5 – Your declared result {#hands-on-5-your-declared-result .smaller .output-fig}

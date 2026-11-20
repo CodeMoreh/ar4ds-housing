@@ -1,11 +1,11 @@
-<!-- Task 4 of the browser lab (lab.qmd) for both live decks: the
+<!-- Task 4 of the browser lab (lab.qmd) for both slide decks: the
      reference specification, the five single changes in the three groups of
      the menu, an option off the curve and the full set of arguments, with the
-     cells of the lab. The day deck goes on to the submission
-     (_handson4-submit-live.qmd), the short deck to the log of its tries
+     cells of the lab. The full-day slides go on to the submission
+     (_handson4-submit-live.qmd), the part-day slides to the log of their tries
      (_handson4-tries-live.qmd). Lines that differ by format are shown by
-     Quarto conditional content, keyed on the deck map in the YAML of each
-     deck; no cell sits inside a conditional span or div. -->
+     Quarto conditional content, keyed on the `deck:` map in the YAML of each
+     slide deck; no cell sits inside a conditional span or div. -->
 ## Hands-on 4 – Exploring the menu {#hands-on-4-work-the-menu .smaller}
 
 ::: {.small}

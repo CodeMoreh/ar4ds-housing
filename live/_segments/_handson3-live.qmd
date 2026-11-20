@@ -1,11 +1,11 @@
-<!-- Task 3 of the browser lab (lab.qmd) for both live decks: the
+<!-- Task 3 of the browser lab (lab.qmd) for both slide decks: the
      table of the five analysts with the cell that reads the public file, then
      two slides for each analyst with the cells of the lab, the exercise of each
      with its hint and solution, and the slide on the continuity correction.
      The cells are divided so that no slide holds more than two printing
      outputs at their bounded height. Lines that differ by format are shown by
-     Quarto conditional content, keyed on the deck map in the YAML of each
-     deck; no cell sits inside a conditional span or div. -->
+     Quarto conditional content, keyed on the `deck:` map in the YAML of each
+     slide deck; no cell sits inside a conditional span or div. -->
 ## Hands-on 3 – The reproduction {#hands-on-3-reproduce-the-recorded-result .smaller}
 
 ::: {.small}

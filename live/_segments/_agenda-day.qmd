@@ -18,7 +18,7 @@ You leave with a reproduced result, an estimand statement and a causal graph of 
 :::
 
 ::: {.todaymeta}
-Work along in the workspace in your IDE (Positron, RStudio, VS Code, etc.), with this deck showing each step
+Work along in the workspace in your IDE (Positron, RStudio, VS Code, etc.), with these slides showing each step
 :::
 
 ::: notes

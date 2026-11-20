@@ -9,4 +9,4 @@ toc: false
 <iframe class="slide-deck" src="../../live/day.html" title="Slides of the full-day format"></iframe>
 ```
 
-Open the deck [in its own tab](../../live/day.html){target="_blank"} for the full screen, the speaker view and the keyboard controls: the `d` key switches the optional runs of slides on and off, `[` and `]` jump between parts, and `g` opens a jump bar that finds a slide by its title. The cells of its hands-on slides run R inside your browser once the engine has loaded.
+Open the slides [in their own tab](../../live/day.html){target="_blank"} for the full screen, the speaker view and the keyboard controls: the `d` key switches the optional runs of slides on and off, `[` and `]` jump between parts, and `g` opens a jump bar that finds a slide by its title. The cells of the hands-on slides run R inside your browser once the engine has loaded.
