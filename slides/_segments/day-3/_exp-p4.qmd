@@ -67,5 +67,5 @@ So here is a question for the class, and there is no answer on the next slide. T
 :::
 
 ::: notes
-That is the design. The module Audit experiments, in the companion curriculum on the site, is the reading for this session: it has the code behind the analyses of this session, and a task that turns the assumption of the bound around, which is a good test of whether the idea has stuck. The next session stays with the same comparison but changes the question. Instead of asking how the names were assigned, it asks how a zero-or-one outcome is modelled: as a difference in proportions, as a linear regression with the standard errors that the workshop uses, and as the logistic regression of the paper, with its odds ratios.
+That is the design. The module Audit experiments, in the companion curriculum on the workshop's website, is the reading for this session: it has the code behind the analyses of this session, and a task that turns the assumption of the bound around, which is a good test of whether the idea has stuck. The next session stays with the same comparison but changes the question. Instead of asking how the names were assigned, it asks how a zero-or-one outcome is modelled: as a difference in proportions, as a linear regression with the standard errors that the workshop uses, and as the logistic regression of the paper, with its odds ratios.
 :::

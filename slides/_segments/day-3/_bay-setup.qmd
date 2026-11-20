@@ -29,7 +29,7 @@ sens_scep <- datawizard::data_filter(bayes_sens, model == "original_sceptical")
 sens_upd <- datawizard::data_filter(bayes_sens, model == "replication_updated")
 ppc_orig <- datawizard::data_filter(bayes_ppc, model == "joint_common", study == "original")
 
-# The reference specification of the workshop, with its 95% confidence interval
+# The workshop's reference specification, with its 95% confidence interval
 # from display_outcomes.csv
 ref_low <- out_of("named", "hispanic", "ci_low")
 ref_high <- out_of("named", "hispanic", "ci_high")

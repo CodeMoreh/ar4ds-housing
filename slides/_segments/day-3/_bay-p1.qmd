@@ -97,8 +97,8 @@ A Bayesian model needs a prior for each parameter, and here both live on the log
 #| fig-width: 9.5
 #| fig-height: 2.7
 # The posterior of the gap under the weakly informative prior, from 500 of its
-# draws, with its 95% credible interval shaded; below it, the reference
-# specification of the workshop with its 95% confidence interval
+# draws, with its 95% credible interval shaded; below it, the workshop's
+# reference specification with its 95% confidence interval
 post <- datawizard::data_filter(bayes_draws, model == "original_weak", quantity == "gap")
 dens <- stats::density(post$value)
 shade <- tibble::tibble(x = dens$x, y = dens$y) |>
