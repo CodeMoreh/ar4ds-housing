@@ -19,9 +19,9 @@ The five analyses side by side. Three pairs of them differ in **one** decision:
 :::
 
 ::: {.src}
-data/analysts5.csv: the gap of each analysis in percentage points, from the course refit.
+data/analysts5.csv: the gap of each analysis in percentage points, from the workshop refit.
 :::
 
 ::: notes
-Between you, the class has now reproduced all five analyses, and three pairs of them differ in a single decision. 8PTRZ and UYV3F differ in the comparison: all other names against white names only. UYV3F and 25N5D differ in the emails counted: the replies against every delivered email. UYV3F and P9W8Y differ in the test: one coefficient against the three groups at once. [advance] To compare the five, put them on one scale. The statistics recorded in the robustness study cannot be compared directly, a chi-square here and a z there, so the table gives each analysis as a gap in percentage points, from the refit of the course. [advance] Then the question for all of us: which of the five answers the claim as it was selected, Hispanic against white names, and what question does each of the others answer instead?
+Between you, the class has now reproduced all five analyses, and three pairs of them differ in a single decision. 8PTRZ and UYV3F differ in the comparison: all other names against white names only. UYV3F and 25N5D differ in the emails counted: the replies against every delivered email. UYV3F and P9W8Y differ in the test: one coefficient against the three groups at once. [advance] To compare the five, put them on one scale. The statistics recorded in the robustness study cannot be compared directly, a chi-square here and a z there, so the table gives each analysis as a gap in percentage points, from the refit of the workshop. [advance] Then the question for all of us: which of the five answers the claim as it was selected, Hispanic against white names, and what question does each of the others answer instead?
 :::

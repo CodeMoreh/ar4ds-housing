@@ -11,9 +11,9 @@ nocite: |
 
 ## Glossary {#glossary}
 
-The four terms below follow the definitions in @NosekEtAl2025BriefGlossaryTerms, and the four terms are not interchangeable, a difference on which the course depends, since a finding can survive every robustness check on its own data and still fail on new data, or survive the checks and still be one that nobody can recompute from the original materials.
+The four terms below follow the definitions in @NosekEtAl2025BriefGlossaryTerms, and the four terms are not interchangeable, a difference on which the workshop depends, since a finding can survive every robustness check on its own data and still fail on new data, or survive the checks and still be one that nobody can recompute from the original materials.
 
-| Term | Definition | In this course |
+| Term | Definition | In this workshop |
 |------------------------|------------------------|------------------------|
 | **Reproducibility** | Same question, same data, same analysis → same result | Tested across the SCORE sample by the reproducibility study of the programme [@MiskeEtAl2026InvestigatingReproducibilitySocial]. In the Housing case study that study never attempted a reproduction; the class reproduces in Task 3 a value recorded in the SCORE robustness study [@AczelEtAl2026InvestigatingAnalyticalRobustness] for one of the five analysts |
 | **Robustness** | Same question, same data, justifiable alternative analysis → stable result | The design of the robustness study; the five analysts of the claim; the specification menu and the curve of the claim in Tasks 4 and 5, with 64 specifications |
@@ -26,11 +26,11 @@ The four terms below follow the definitions in @NosekEtAl2025BriefGlossaryTerms,
 
 The case study, told in full on the [background page](background.qmd), is built on the public deposits listed below.
 
-**The paper.** The paper by the original authors [@EinsteinGlick2017DoesRaceAffect], published in the *American Journal of Political Science*: <https://doi.org/10.1111/ajps.12252>. The accepted manuscript is openly available at OpenBU, <https://hdl.handle.net/2144/37826>, and the page numbers quoted on the course site refer to this version.
+**The paper.** The paper by the original authors [@EinsteinGlick2017DoesRaceAffect], published in the *American Journal of Political Science*: <https://doi.org/10.1111/ajps.12252>. The accepted manuscript is openly available at OpenBU, <https://hdl.handle.net/2144/37826>, and the page numbers quoted on the workshop site refer to this version.
 
-**The data.** The replication package deposited by the original authors on the Harvard Dataverse, released under CC0: <https://doi.org/10.7910/DVN/1HOVTU>. It contains the blinded data file, two Stata do-files (one that runs the analyses on the public file, and one written for the identifiable data, which are not public), two codebooks and a ReadMe explaining why the community variables are given in thirds. The course data in `data/` are built from this package, and the codebooks placed beside the data files describe every column.
+**The data.** The replication package deposited by the original authors on the Harvard Dataverse, released under CC0: <https://doi.org/10.7910/DVN/1HOVTU>. It contains the blinded data file, two Stata do-files (one that runs the analyses on the public file, and one written for the identifiable data, which are not public), two codebooks and a ReadMe explaining why the community variables are given in thirds. The workshop data in `data/` are built from this package, and the codebooks placed beside the data files describe every column.
 
-**SCORE on the OSF.** The SCORE project for the paper on the Open Science Framework records every activity carried out on the paper by the programme, and the component of the robustness study contains one sub-component for each of the five analysts. Four of the five analysts published their scripts there, and the course links to these scripts rather than copying them.
+**SCORE on the OSF.** The SCORE project for the paper on the Open Science Framework records every activity carried out on the paper by the programme, and the component of the robustness study contains one sub-component for each of the five analysts. Four of the five analysts published their scripts there, and the workshop links to these scripts rather than copying them.
 
 | Component | What it holds | Address |
 |---|---|---|
@@ -39,7 +39,7 @@ The case study, told in full on the [background page](background.qmd), is built 
 | Reproduction | A reproduction with the data and code of the original authors, which holds only an unfilled template | <https://osf.io/9wp8d/> |
 | Power analysis | The power analysis for the replication | <https://osf.io/kcsby/> |
 | Replication | The replication with new data, with its preregistration and final report | <https://osf.io/2ug8x/> |
-| Replication data | The de-identified data of the replication, its analysis do-file and a dictionary, in the folder "Public Data", kept in the course as `data/housing_replication.csv` | <https://osf.io/xseqg/> |
+| Replication data | The de-identified data of the replication, its analysis do-file and a dictionary, in the folder "Public Data", kept in the workshop as `data/housing_replication.csv` | <https://osf.io/xseqg/> |
 | Robustness study of the paper | The five reanalyses of the claim | <https://osf.io/38rsh/> |
 | 8PTRZ | Chi-square test of a two-by-two table, Hispanic against all other names | <https://osf.io/j8wvh/> |
 | UYV3F | Logit without covariates, Hispanic against white names (a review document only) | <https://osf.io/3672s/> |
@@ -94,7 +94,7 @@ These works are read against the curve of the claim in the [companion module on 
 
 ### Preregistration
 
-None of these readings is required, since everything is taught in the course, but they allow you to arrive with the ideas already in hand, and all three are open access.
+None of these readings is required, since everything is taught in the workshop, but they allow you to arrive with the ideas already in hand, and all three are open access.
 
 - Nosek, Ebersole, DeHaven & Mellor (2018). The preregistration revolution. *PNAS*, 115(11), 2600–2606. <https://doi.org/10.1073/pnas.1708274114> – a short primer on the idea on which preregistration depends: predicting a result against explaining one after the fact, and the case, like ours, where the data already exist.
 - The AsPredicted eight-question form – the short template on which the preregistration block of your report is modelled, listed on the OSF as the "Preregistration Template from AsPredicted.org". Live form: <https://aspredicted.org>; OSF listing: <https://help.osf.io/article/158-create-a-preregistration>.
@@ -112,7 +112,7 @@ Installing R and an IDE, the help page and the modules on the tools, from [Getti
 
 ## If you are at Newcastle University
 
-The course is open to anyone, and support of the kind listed below exists wherever you are, with the library at your own institution and its research-software or research-data team as the places to ask. Participants based at Newcastle University, for example, can draw on the following resources.
+The workshop is open to anyone, and support of the kind listed below exists wherever you are, with the library at your own institution and its research-software or research-data team as the places to ask. Participants based at Newcastle University, for example, can draw on the following resources.
 
 | Resource | URL |
 |------------------------------------|------------------------------------|

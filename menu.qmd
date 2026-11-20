@@ -88,7 +88,7 @@ three_twin <- datawizard::data_match(curve, tibble::tibble(comparison = "white",
 
 Every analysis of the claim examined in the Housing and racial bias case study has to make a series of decisions, and the specification menu on this page lists each of these decisions together with the options that it offers, indicating for each option whether it answers the claim. The claim, in the wording taken by SCORE from the paper by the original authors [@EinsteinGlick2017DoesRaceAffect], is that "Hispanic housing applicants were ... less likely to be greeted by name than were ... white counterparts", while the experiment from which it comes, its five reanalyses and the data are presented on the [background page](background.qmd).
 
-`r stringr::str_to_sentence(xfun::numbers_to_words(n_dec))` decisions separate the data from a verdict, and for each of the options that these decisions offer the course has asked whether it is a defensible way of answering this claim, the defensible options having been combined into the `r nrow(curve)` specifications on the curve of the claim. The options judged not to be defensible remain on this page, since each of these options answers a different question, answers this one less well, checks an answer already contained in the curve, or cannot be fitted on the public file, and working out which of these reasons applies is a large part of understanding what the claim asks. The options are recorded, with the reason for each, in `data/menu_options.csv` ([codebook](data/menu_options_codebook.md)), a file from which the helpers of the browser lab and of the workspace take the explanation given when an option off the curve is refused.
+`r stringr::str_to_sentence(xfun::numbers_to_words(n_dec))` decisions separate the data from a verdict, and for each of the options that these decisions offer the workshop has asked whether it is a defensible way of answering this claim, the defensible options having been combined into the `r nrow(curve)` specifications on the curve of the claim. The options judged not to be defensible remain on this page, since each of these options answers a different question, answers this one less well, checks an answer already contained in the curve, or cannot be fitted on the public file, and working out which of these reasons applies is a large part of understanding what the claim asks. The options are recorded, with the reason for each, in `data/menu_options.csv` ([codebook](data/menu_options_codebook.md)), a file from which the helpers of the browser lab and of the workspace take the explanation given when an option off the curve is refused.
 
 ## The decision map {#map}
 
@@ -231,7 +231,7 @@ mark.dm-changed { background:#ffeeb0; padding:0 0.12em; border-radius:2px; color
 
 The map arranges the decisions in the order in which an analyst encounters them on the way from the data to a verdict, starting from the emails that enter the comparison and the outcome compared between the groups, moving on to the names against which the Hispanic names are set and to the model, and ending with the way in which the answer is tested and reported. Each decision displays all of its options, both those included in the curve of 64 specifications and those left off it, and the map opens on the reference specification, the raw gap in the paper between Hispanic and white names among the replies.
 
-Selecting an option rewrites the estimand statement, marking the phrases changed by the choice, and opens a description stating what the option estimates and whether it answers the claim, showing how it moves the estimate against its twins on the curve and naming the page of the course on which it is taught. For a selection on the curve, the verdict reports its estimate, the two shares, its test and its rank among the 64, while for a selection off the curve it gives the reason. No model is fitted in the browser, every number being read from the files written under `data/` by the course pipeline.
+Selecting an option rewrites the estimand statement, marking the phrases changed by the choice, and opens a description stating what the option estimates and whether it answers the claim, showing how it moves the estimate against its twins on the curve and naming the page of the workshop on which it is taught. For a selection on the curve, the verdict reports its estimate, the two shares, its test and its rank among the 64, while for a selection off the curve it gives the reason. No model is fitted in the browser, every number being read from the files written under `data/` by the workshop pipeline.
 
 ```{ojs}
 //| echo: false
@@ -465,7 +465,7 @@ decisionMap = {
     el("span", {}, el("span", {class: "sw", style: "background:#4a7a3f"}), DM.levelName.measurement),
     el("span", {}, el("span", {class: "sw", style: "background:#8c5a10"}), el("span", {class: "sw", style: "background:#7b6a8f"}), DM.levelName.estimation),
     el("span", {}, el("span", {class: "chip-sample"}, "solid"), "on the curve"),
-    el("span", {}, el("span", {class: "chip-sample off"}, "dashed"), "in the course, off the curve"));
+    el("span", {}, el("span", {class: "chip-sample off"}, "dashed"), "in the workshop, off the curve"));
 
   const wide = window.matchMedia("(min-width: 1100px)");
   function place(stageId) {
@@ -540,7 +540,7 @@ decisionMap = {
   function summaryText(axis, code, o) {
     const out = [];
     if (!o.on_curve) {
-      out.push(el("p", {class: "dm-text"}, "The course does not cross this option with the curve, so there are no twins to set it against. The verdict below gives the reason and, where a display beside the curve holds the option, its estimate at the reference settings."));
+      out.push(el("p", {class: "dm-text"}, "The workshop does not cross this option with the curve, so there are no twins to set it against. The verdict below gives the reason and, where a display beside the curve holds the option, its estimate at the reference settings."));
       return out;
     }
     if (!VARY.includes(axis)) {
@@ -684,7 +684,7 @@ As each decision in this group rewrites a bold slot of the statement, two analys
 
 ```{r}
 #| label: tbl-level1
-#| tbl-cap: "The decisions about the question. Options off the curve carry the judgement of the course in brackets. Source: `data/menu_options.csv`."
+#| tbl-cap: "The decisions about the question. Options off the curve carry the judgement of the workshop in brackets. Source: `data/menu_options.csv`."
 #| echo: false
 judgement_txt <- c(kept = "on the curve", other_question = "another question",
                    weaker_answer = "a weaker answer", check = "a check",
@@ -762,9 +762,9 @@ level_table("estimation")
 
 ### Model form {#model}
 
-A linear probability model, that is, a linear regression of the 0/1 outcome, yields the difference in proportions as its coefficient, which without covariates equals exactly the difference between the two observed shares, and its standard errors are computed with the HC2 correction, allowing the variance of a 0/1 outcome to differ between the groups. A logistic regression models the log odds of a greeting, and the course reports it as an average marginal effect, the difference in the predicted probability of a greeting between Hispanic and white names, averaged over the analysed emails. Without covariates the two models give the same estimate, while with covariates the two estimates differ by at most `r fmt(max(abs(c(dv("model", "logit", "shift_min"), dv("model", "logit", "shift_max")))), 2)` points across the curve.
+A linear probability model, that is, a linear regression of the 0/1 outcome, yields the difference in proportions as its coefficient, which without covariates equals exactly the difference between the two observed shares, and its standard errors are computed with the HC2 correction, allowing the variance of a 0/1 outcome to differ between the groups. A logistic regression models the log odds of a greeting, and the workshop reports it as an average marginal effect, the difference in the predicted probability of a greeting between Hispanic and white names, averaged over the analysed emails. Without covariates the two models give the same estimate, while with covariates the two estimates differ by at most `r fmt(max(abs(c(dv("model", "logit", "shift_min"), dv("model", "logit", "shift_max")))), 2)` points across the curve.
 
-The original authors, EWFMI and P9W8Y fitted all three groups of names in one model and read off the Hispanic–white contrast, which without covariates corresponds exactly to the two-group difference, as the refit of P9W8Y shows (`r fmt(mark("P9W8Y", "b_pp"))` points). With the covariates of the paper entered in thirds, however, the three-group logit yields `r fmt(mark("OA_blinded", "b_pp"))` points against `r fmt(three_twin$b_pp)` for the two-group logit, because the emails with Black names then help to estimate the covariates, and the course treats the three-group model as a check rather than as a separate answer.
+The original authors, EWFMI and P9W8Y fitted all three groups of names in one model and read off the Hispanic–white contrast, which without covariates corresponds exactly to the two-group difference, as the refit of P9W8Y shows (`r fmt(mark("P9W8Y", "b_pp"))` points). With the covariates of the paper entered in thirds, however, the three-group logit yields `r fmt(mark("OA_blinded", "b_pp"))` points against `r fmt(three_twin$b_pp)` for the two-group logit, because the emails with Black names then help to estimate the covariates, and the workshop treats the three-group model as a check rather than as a separate answer.
 
 ### Adjustment
 
@@ -778,7 +778,7 @@ Each specification is tested by its own model, with HC2 errors for the linear mo
 
 ### Effect scale
 
-In the abstract, the claim states the gap in percentage points, a scale that a reader can picture without a formula, and every point of the curve is placed on that scale. The odds ratio is the scale of the logistic regression itself, and across the `r nrow(logit_or)` logit specifications it ranges from `r fmt(min(logit_or$or), 2)` to `r fmt(max(logit_or$or), 2)`. Odds ratios, however, change when covariates are added, even in a randomised experiment, as they compare odds within groups of similar emails rather than averaging over all of the emails, and the course therefore reports the logit in points instead. The partial correlation, the scale used by the robustness study, ranges from `r fmt(min(curve$r), 3)` to `r fmt(max(curve$r), 3)` on the curve and depends on the number of emails and the shares in each group as well as on the gap, as the [background page](background.qmd#sec-scale) shows.
+In the abstract, the claim states the gap in percentage points, a scale that a reader can picture without a formula, and every point of the curve is placed on that scale. The odds ratio is the scale of the logistic regression itself, and across the `r nrow(logit_or)` logit specifications it ranges from `r fmt(min(logit_or$or), 2)` to `r fmt(max(logit_or$or), 2)`. Odds ratios, however, change when covariates are added, even in a randomised experiment, as they compare odds within groups of similar emails rather than averaging over all of the emails, and the workshop therefore reports the logit in points instead. The partial correlation, the scale used by the robustness study, ranges from `r fmt(min(curve$r), 3)` to `r fmt(max(curve$r), 3)` on the curve and depends on the number of emails and the shares in each group as well as on the gap, as the [background page](background.qmd#sec-scale) shows.
 
 ## Worked example
 

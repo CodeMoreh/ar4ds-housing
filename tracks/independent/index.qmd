@@ -3,7 +3,7 @@ title: "Self-taught"
 subtitle: "Five stages"
 bibliography: [../../references.bib, ../../references-new.bib]
 ---
-This format takes the course for a reader who works alone, without a facilitator and without a class, in five stages and at your own pace. The case study is a field experiment, in which emails that differed only in the name that signed them were sent to public housing authorities in the United States, and its claim is one of the original authors (OAs) [@EinsteinGlick2017DoesRaceAffect] that five analysts reanalysed for the SCORE robustness study [@AczelEtAl2026InvestigatingAnalyticalRobustness]. The modules of the [companion curriculum](../../companion/index.qmd) sit between the tasks of the exercise, and the route ends on a project of your own. You leave with a case-study report and that project, both in a version-controlled repository that another person can clone and re-render.
+This format sets out the workshop materials for a reader who works alone, without a facilitator and without a class, in five stages and at your own pace. The case study is a field experiment, in which emails that differed only in the name that signed them were sent to public housing authorities in the United States, and its claim is one of the original authors (OAs) [@EinsteinGlick2017DoesRaceAffect] that five analysts reanalysed for the SCORE robustness study [@AczelEtAl2026InvestigatingAnalyticalRobustness]. The modules of the [companion curriculum](../../companion/index.qmd) sit between the tasks of the exercise, and the route ends on a project of your own. You leave with a case-study report and that project, both in a version-controlled repository that another person can clone and re-render.
 
 ## How you work
 

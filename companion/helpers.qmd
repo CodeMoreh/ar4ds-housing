@@ -21,7 +21,7 @@ ref_row    <- page_curve |> datawizard::data_filter(is_reference)
 ref_gap    <- insight::format_value(ref_row$b_pp, digits = 2, style_negative = "minus")
 ```
 
-The specifications of the exercise in the Housing and racial bias case study are fitted with helper functions, which are introduced here. The page assumes the R taught in [Getting started with R](https://codemoreh.github.io/ar4ds/tools/r.html), the module on the umbrella site of the course, written on the data of this case study, up to [section 10](https://codemoreh.github.io/ar4ds/tools/r.html#sec-shares), in which the share of replies that greeted the sender by name is computed for two groups of names and the difference between the two shares is taken.
+The specifications of the exercise in the Housing and racial bias case study are fitted with helper functions, which are introduced here. The page assumes the R taught in [Getting started with R](https://codemoreh.github.io/ar4ds/tools/r.html), the module on the umbrella site of the workshop, written on the data of this case study, up to [section 10](https://codemoreh.github.io/ar4ds/tools/r.html#sec-shares), in which the share of replies that greeted the sender by name is computed for two groups of names and the difference between the two shares is taken.
 
 The code on this page ran when the page was built, and what R printed appears under each block, which allows you to compare your own output with the page line by line. Type each block into the [workspace](../tracks/day/before.qmd#the-workspace) that you downloaded, or, if your installation fails, into the [browser lab](../lab.qmd), where the helpers are already loaded.
 
@@ -60,7 +60,7 @@ Changing one argument changes one decision, and `population = "all"`, for instan
 try_spec(population = "all")
 ```
 
-Options that are not on the curve are refused, with the reason and the page of the course site on which they are taught. In the call below the outcome is set to any reply instead of a greeting by name, which would answer a different claim:
+Options that are not on the curve are refused, with the reason and the page of the workshop site on which they are taught. In the call below the outcome is set to any reply instead of a greeting by name, which would answer a different claim:
 
 ```{r}
 #| label: try-refused

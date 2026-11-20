@@ -117,7 +117,7 @@ tinyplot::tinyplot(x = seq_len(nrow(greeted)), y = greeted$greeted_pct, flip = T
 ```
 
 ::: notes
-And here the shares are drawn with tinyplot, the plotting package that the course uses wherever you write the code yourself, because it is light enough to load in a browser. One bar for each name, coloured by the group that the name was meant to indicate, with its share at the end of the bar; the editor shows the first lines of the code and scrolls for the rest. The white names drew a greeting by name in sixty-one per cent of the coded replies and the Hispanic names in forty-one, a gap of about twenty points, while the Black names fall in between. Of the six names, Santiago drew the fewest greetings by name. Keep the order of the bars in mind for the menu, which asks whether the male and the female names belong together.
+And here the shares are drawn with tinyplot, the plotting package that the workshop uses wherever you write the code yourself, because it is light enough to load in a browser. One bar for each name, coloured by the group that the name was meant to indicate, with its share at the end of the bar; the editor shows the first lines of the code and scrolls for the rest. The white names drew a greeting by name in sixty-one per cent of the coded replies and the Hispanic names in forty-one, a gap of about twenty points, while the Black names fall in between. Of the six names, Santiago drew the fewest greetings by name. Keep the order of the bars in mind for the menu, which asks whether the male and the female names belong together.
 :::
 
 ## Hands-on 2 – The graph {#hands-on-2-the-graph .smaller}

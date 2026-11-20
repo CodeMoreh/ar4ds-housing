@@ -17,11 +17,11 @@ An odds ratio changes when a covariate that predicts the outcome is added, **eve
 :::
 
 ::: {.fragment .small}
-The claim speaks of "twenty percentage points", so the course reports every estimate on that scale, and keeps the odds ratio as a check.
+The claim speaks of "twenty percentage points", so the workshop reports every estimate on that scale, and keeps the odds ratio as a check.
 :::
 
 ::: notes
-A logit coefficient is a difference in log odds, and its exponent is an odds ratio. The published coefficient of minus point eight two means that the odds of being greeted by name were a little under half as large for a Hispanic name as for a white one. Odds are not shares, though, and most readers misread an odds ratio as a ratio of shares. [advance] Odds ratios have a less familiar property as well. Add a covariate that predicts the outcome, and the odds ratio moves, even in an experiment, where the covariate has nothing to do with which name was sent. Statisticians call this non-collapsibility. On our data, adding the hard-to-find address nudges the logit coefficient while the gap in points barely moves. [advance] The claim is stated in percentage points, so the course reports everything on that scale.
+A logit coefficient is a difference in log odds, and its exponent is an odds ratio. The published coefficient of minus point eight two means that the odds of being greeted by name were a little under half as large for a Hispanic name as for a white one. Odds are not shares, though, and most readers misread an odds ratio as a ratio of shares. [advance] Odds ratios have a less familiar property as well. Add a covariate that predicts the outcome, and the odds ratio moves, even in an experiment, where the covariate has nothing to do with which name was sent. Statisticians call this non-collapsibility. On our data, adding the hard-to-find address nudges the logit coefficient while the gap in points barely moves. [advance] The claim is stated in percentage points, so the workshop reports everything on that scale.
 :::
 
 ## Standard errors for a 0/1 outcome {#standard-errors-for-a-binary-outcome .smaller .deepdive run="methods"}

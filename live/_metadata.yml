@@ -11,11 +11,11 @@
 # echo off for clean slides. Keep the two files in step when the shared
 # options change.
 #
-# The event line names the course and no case study, because every slide deck shares
+# The event line names the workshop and no case study, because every slide deck shares
 # it; the subtitle of a slide deck names the case study.
 
 author: "Chris Moreh"
-event: "Applied replication for data skills, a CodeMoreh course"
+event: "Applied replication for data skills, a CodeMoreh workshop"
 
 # Citations resolve against the project bibliography; rendered citations link
 # to the scrollable References slide at the end of the slides. references-new.bib

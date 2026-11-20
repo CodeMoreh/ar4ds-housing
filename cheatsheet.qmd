@@ -15,7 +15,7 @@ format:
 
 | | Address |
 |---|---|
-| **Course site** | [{{< var site-url >}}]({{< var site-url >}}) |
+| **Workshop site** | [{{< var site-url >}}]({{< var site-url >}}) |
 | **Browser lab** | [browser lab](lab.qmd) |
 | **Workspace download (zip)** | [{{< var cases.housing.workspace-zip >}}]({{< var cases.housing.workspace-zip >}}) |
 | **Submit your result** | [class-results form]({{< var results-form-url >}}) |
@@ -67,7 +67,7 @@ One analyst each. Each reproduction reads the public file of the original author
 
 ## The options of each argument {#options}
 
-Every argument of `try_spec()` is one decision of the menu, and the preregistration block of Task 5 names the same decision with `my_` in front (`comparison` becomes `my_comparison`). The first option of each row is the reference specification, which `try_spec()` fits when it is called with no arguments: the raw gap of the paper, −19.97 percentage points. An option off the curve is refused with the reason why and the page of the course site that teaches it.
+Every argument of `try_spec()` is one decision of the menu, and the preregistration block of Task 5 names the same decision with `my_` in front (`comparison` becomes `my_comparison`). The first option of each row is the reference specification, which `try_spec()` fits when it is called with no arguments: the raw gap of the paper, −19.97 percentage points. An option off the curve is refused with the reason why and the page of the workshop site that teaches it.
 
 | Group | Argument | On the curve | Off the curve |
 |---|---|---|---|

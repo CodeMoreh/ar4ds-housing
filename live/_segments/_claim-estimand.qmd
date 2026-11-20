@@ -14,11 +14,11 @@
 :::
 
 ::: {.src}
-The template of the decision map on the course site, after @LundbergEtAl2021WhatYourEstimand.
+The template of the decision map on the workshop site, after @LundbergEtAl2021WhatYourEstimand.
 :::
 
 ::: notes
-An estimand is the quantity that your number is meant to estimate, stated in words before any model is fitted. This is the template that the decision map on the course site uses for our claim, with a bracket for each decision that changes the question. Most brackets have an obvious filling: the outcome is a greeting by name, the names are both sexes pooled, every reply counts whoever wrote it. Two brackets are open. Is the comparison with white names, as the claim was selected, or with white and Black names together, as the abstract says? And which emails are counted – only those that drew a reply, as the paper counts them, or every email that arrived? Fill in the brackets and write the statement down[ in the box of Task 2 of your report]{.content-visible unless-meta="deck.short"}[ in your notes]{.content-visible when-meta="deck.short"}. If those two brackets were the hard ones, they are the two on which the five analysts split.
+An estimand is the quantity that your number is meant to estimate, stated in words before any model is fitted. This is the template that the decision map on the workshop site uses for our claim, with a bracket for each decision that changes the question. Most brackets have an obvious filling: the outcome is a greeting by name, the names are both sexes pooled, every reply counts whoever wrote it. Two brackets are open. Is the comparison with white names, as the claim was selected, or with white and Black names together, as the abstract says? And which emails are counted – only those that drew a reply, as the paper counts them, or every email that arrived? Fill in the brackets and write the statement down[ in the box of Task 2 of your report]{.content-visible unless-meta="deck.short"}[ in your notes]{.content-visible when-meta="deck.short"}. If those two brackets were the hard ones, they are the two on which the five analysts split.
 :::
 
 ## The causal graph of the experiment {#the-causal-graph-of-the-experiment .smaller}

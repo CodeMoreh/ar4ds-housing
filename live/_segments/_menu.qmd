@@ -4,7 +4,7 @@
 #| label: menu-table
 #| output: asis
 # The eleven decisions of the menu (data/menu_options.csv), with the options
-# that the curve keeps and the others grouped by the judgement of the course.
+# that the curve keeps and the others grouped by the judgement of the workshop.
 judgement_txt <- c(other_question = "another question", weaker_answer = "a weaker answer",
                    check = "a check", unavailable = "not in the public file")
 level_txt <- c(estimand = "Question", measurement = "Measurement", estimation = "Model")
@@ -55,7 +55,7 @@ try_spec(comparison = "white", population = "replies", uncoded = "drop",
 :::
 
 ::: notes
-Five of the eleven decisions keep more than one option on the curve. The comparison, with white names or with white and Black names. The emails counted, replies or every delivered email. The five uncoded replies, left out or counted as replies without a greeting. The model, a difference in proportions or a logistic regression. And the adjustment, four sets of covariates from none to the set of the original model, in the thirds that the public file holds. [advance] Two times two times two times two times four is sixty-four specifications, and the course has fitted every one. The reference specification is the raw gap of the paper, Hispanic against white names among the replies, with no covariates: forty-one against sixty-one per cent, a gap of twenty points. In the helpers, every argument of try underscore spec defaults to that reference, so changing one thing means changing one argument.
+Five of the eleven decisions keep more than one option on the curve. The comparison, with white names or with white and Black names. The emails counted, replies or every delivered email. The five uncoded replies, left out or counted as replies without a greeting. The model, a difference in proportions or a logistic regression. And the adjustment, four sets of covariates from none to the set of the original model, in the thirds that the public file holds. [advance] Two times two times two times two times four is sixty-four specifications, and the workshop has fitted every one. The reference specification is the raw gap of the paper, Hispanic against white names among the replies, with no covariates: forty-one against sixty-one per cent, a gap of twenty points. In the helpers, every argument of try underscore spec defaults to that reference, so changing one thing means changing one argument.
 :::
 
 ## Ground rules for the menu {#one-deviation-and-a-reason-for-it .smaller}

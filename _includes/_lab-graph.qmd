@@ -14,7 +14,7 @@ tinyplot.
 # The graph helpers of Task 2. make_dag() builds a graph from its arrows and
 # plot_dag() draws it. adjustmentSets() and paths() print the answers of
 # dagitty for every graph to which the graph cell leads, from
-# data/dag_answers.csv (written by R/07_dag_answers.R in the course
+# data/dag_answers.csv (written by R/07_dag_answers.R in the workshop
 # repository): dagitty cannot run on this page, which lacks the cross-origin
 # isolation headers (COOP and COEP) that its engine needs. The table arrives
 # through the resources list of the including page, in the folder named by

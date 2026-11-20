@@ -40,7 +40,7 @@ The [Specification curve](../curve.html) page draws this curve, with the referen
 :::
 
 ::: {.src}
-data/reference_marks.csv: the published change in predicted probability for the OAs, the course refit of each script for the analysts.
+data/reference_marks.csv: the published change in predicted probability for the OAs, the workshop refit of each script for the analysts.
 :::
 
 ::: notes

@@ -19,10 +19,10 @@ _lab-graph.qmd beside this file.
 # resources list of the including page, in the folder named by .data_dir.
 
 # ============================================================================
-# CONFIGURATION – the class chart and the course site
+# CONFIGURATION – the class chart and the workshop site
 # ============================================================================
 # The results Form pre-filled by submit_exploration() and report_result(): its
-# ID and the entry codes of its seven fields, shared by the course; a Form of
+# ID and the entry codes of its seven fields, shared by the workshop; a Form of
 # its own replaces them here only. .case_word follows the tag in every label,
 # and the chart of this case study reads only the rows that carry it.
 .form_id <- "1FAIpQLSezoAEOnZUfP4pkfN28_XtEBwSyc2RLsXB-h8RPSegF7_t76A"
@@ -35,11 +35,11 @@ _lab-graph.qmd beside this file.
 
 
 # ---- The estimator -------------------------------------------------------------
-# A verbatim copy of R/_tools.R in the course repository, which builds
+# A verbatim copy of R/_tools.R in the workshop repository, which builds
 # the curve; the downloadable workspace carries the same copy in R/spec_tools.R.
 
-# The workspace, the browser lab and the pipeline of the course site run the
-# same code. R/check_parity.R in the course repository checks the HC2 errors
+# The workspace, the browser lab and the pipeline of the workshop site run the
+# same code. R/check_parity.R in the workshop repository checks the HC2 errors
 # and the average marginal effect against estimatr and margins.
 
 # The options of the curve, in menu order. Anything else is refused by
@@ -207,7 +207,7 @@ spec_line <- function(comparison, population, uncoded, model, adjust) {
 .options <- function() .read_once("options", file.path(.data_dir, "menu_options.csv"))
 
 
-# ---- Pages of the course site ----------------------------------------------------
+# ---- Pages of the workshop site ----------------------------------------------------
 .pages <- c(
   "background.qmd"                = "Background",
   "menu.qmd"                      = "Specification menu",
