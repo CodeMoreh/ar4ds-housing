@@ -172,7 +172,7 @@ Recovery is the first check of any estimator, and it is the check that the works
 ::: {.callout-tip}
 ## Try it
 
-Copy the declaration of `recovery` into your workspace and change one ingredient at a time: halve `n_delivered`, set `greet_hisp` equal to `greet_white`, or lower `reply_all` to a quarter. Diagnose each version with `DeclareDesign::diagnose_design(recovery, sims = 500)` and compare the standard deviation of the estimates, the coverage and the power. Which ingredient changes the bias, and which change only the precision?
+Copy the declaration of `recovery` into your IDE workspace and change one ingredient at a time: halve `n_delivered`, set `greet_hisp` equal to `greet_white`, or lower `reply_all` to a quarter. Diagnose each version with `DeclareDesign::diagnose_design(recovery, sims = 500)` and compare the standard deviation of the estimates, the coverage and the power. Which ingredient changes the bias, and which change only the precision?
 :::
 
 ## 4. Names as treatments {#sec-names}

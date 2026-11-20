@@ -12,9 +12,9 @@ This format sets out the workshop materials for a reader who works alone, withou
 ::: {.fmt-step}
 ### webR {.unnumbered .unlisted}
 
-No programming is assumed. The browser lab and the slides of the full-day format hold every task in cells that run R in the browser through [webR](https://docs.r-wasm.org/webr/latest/), a version of R compiled to run inside a web page, with hints and worked solutions, so that you can try each step before your installation is ready, or carry on there if it fails.
+No programming is assumed. The webR workspace and the slides of the full-day format hold every task in cells that run R in the browser through [webR](https://docs.r-wasm.org/webr/latest/), a version of R compiled to run inside a web page, with hints and worked solutions, so that you can try each step before your installation is ready, or carry on there if it fails.
 
-[Open the browser lab](../../lab.qmd){.btn .btn-primary target="_blank"} [Open the slides](../day/slides.qmd){.btn .btn-outline-primary target="_blank"}
+[Open the webR workspace](../../lab.qmd){.btn .btn-primary target="_blank"} [Open the slides](../day/slides.qmd){.btn .btn-outline-primary target="_blank"}
 :::
 
 ::: {.fmt-step}
@@ -26,11 +26,11 @@ Stage 1 installs R, Quarto and an IDE (Positron, RStudio, VS Code, etc.), and st
 :::
 
 ::: {.fmt-step}
-### The workspace {.unnumbered .unlisted}
+### The IDE workspace {#the-workspace .unnumbered .unlisted}
 
-You work in the workspace of the case study on your own machine, from the setup check of stage 1 to the project of stage 5.
+You work in the IDE workspace of the case study on your own machine, from the setup check of stage 1 to the project of stage 5.
 
-[The workspace](https://codemoreh.github.io/ar4ds-housing-workspace/){.btn .btn-primary target="_blank"}
+[The IDE workspace](https://codemoreh.github.io/ar4ds-housing-workspace/){.btn .btn-primary target="_blank"}
 :::
 
 ::::

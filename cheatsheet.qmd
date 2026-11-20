@@ -16,8 +16,8 @@ format:
 | | Address |
 |---|---|
 | **Website** | [{{< var site-url >}}]({{< var site-url >}}) |
-| **Browser lab** | [browser lab](lab.qmd) |
-| **Workspace download (zip)** | [{{< var cases.housing.workspace-zip >}}]({{< var cases.housing.workspace-zip >}}) |
+| **webR workspace** | [webR workspace](lab.qmd) |
+| **IDE workspace download (zip)** | [{{< var cases.housing.workspace-zip >}}]({{< var cases.housing.workspace-zip >}}) |
 | **Submit your result** | [class-results form]({{< var results-form-url >}}) |
 | **Class results** | [class results]({{< var cases.housing.live-results-url >}}) |
 | **Specification menu** | [specification menu](menu.qmd) |
@@ -32,13 +32,13 @@ format:
 
 ## The helpers {#helpers}
 
-The downloadable workspace and the browser lab have the same helpers, with the same names and arguments.
+The IDE workspace and the webR workspace have the same helpers, with the same names and arguments.
 
 | Helper | Task | What it does |
 |---|---|---|
-| `make_dag(...)`, `plot_dag(dag)` | 2 | Build the causal graph from arrows written `"cause -> effect"`, one per string, and draw it. In the workspace `R/dag_starter.R` builds the graph with `dagitty::dagitty()`. |
-| `adjustmentSets(dag)` | 2 | Lists what has to be adjusted for to estimate the effect of the name on the greeting; `{}` means nothing. In the workspace it comes from dagitty and is written `dagitty::adjustmentSets(dag)`. |
-| `paths(dag, Z = "reply")` | 2 | Lists every path between the name and the greeting, and whether each is open once the comparison conditions on the variables in `Z`. In the workspace it is written `dagitty::paths(dag, Z = "reply")`. |
+| `make_dag(...)`, `plot_dag(dag)` | 2 | Build the causal graph from arrows written `"cause -> effect"`, one per string, and draw it. In the IDE workspace `R/dag_starter.R` builds the graph with `dagitty::dagitty()`. |
+| `adjustmentSets(dag)` | 2 | Lists what has to be adjusted for to estimate the effect of the name on the greeting; `{}` means nothing. In the IDE workspace it comes from dagitty and is written `dagitty::adjustmentSets(dag)`. |
+| `paths(dag, Z = "reply")` | 2 | Lists every path between the name and the greeting, and whether each is open once the comparison conditions on the variables in `Z`. In the IDE workspace it is written `dagitty::paths(dag, Z = "reply")`. |
 | `try_spec(...)` | 4 | Fits one specification and prints the shares greeted by name in the two groups, the difference in percentage points with its 95% interval, the test of the model, the number of emails analysed, the partial *r*, the class of the result and its place among the 64 specifications on the curve. |
 | `my_experiments()` | 4 | Prints everything that `try_spec()` has fitted so far, side by side, with only the decisions that varied. |
 | `submit_exploration()` | 4 | Sends the last `try_spec()` to the class chart as an exploratory result, an open circle, and prints the pre-filled form link and your tag. |
@@ -53,7 +53,7 @@ Both submission functions take `nickname = "..."`, which replaces the tag that t
 
 ## The reproductions of Task 3 {#reproductions}
 
-One analyst each. Each reproduction reads the public file of the original authors (OAs), `housing_original.csv`, and the four recorded values come out exactly. The full code is in Task 3 of the browser lab and of your workspace, and `prep/reproduce_reanalyses.R` in the workspace holds all five.
+One analyst each. Each reproduction reads the public file of the original authors (OAs), `housing_original.csv`, and the four recorded values come out exactly. The full code is in Task 3 of the webR workspace and of your IDE workspace, and `prep/reproduce_reanalyses.R` in the IDE workspace holds all five.
 
 | Analyst | Rows of `housing_original.csv` | The call | Recorded in the robustness study |
 |---|---|---|---|
@@ -107,15 +107,15 @@ The part-day format sends nothing to the class chart. The other formats submit t
 
 **Task 5 – the declared mark (filled circle).**
 
-4. **Preregister.** Make one choice for every `my_` line of the preregistration block, complete the dotted lines, and run the block, which ends in `my_spec <- prereg()`. In the browser lab that line is a cell of its own below the block, to be run after it. In the workspace, keep the completed block in the report as set out under [Rendering the report](#rendering-the-report); on the browser lab page, copy the whole cell into your notes.
+4. **Preregister.** Make one choice for every `my_` line of the preregistration block, complete the dotted lines, and run the block, which ends in `my_spec <- prereg()`. In the webR workspace that line is a cell of its own below the block, to be run after it. In the IDE workspace, keep the completed block in the report as set out under [Rendering the report](#rendering-the-report); in the webR workspace, copy the whole cell into your notes.
 5. **`run_spec(my_spec)`** – fits your specification and prints its result and its place on the curve.
-6. **`report_result()`** – builds your submission from the preregistration and prints a pre-filled form link; open it and press **Send**. It reuses your tag from Task 4. In the browser lab, if you have reloaded the page since then, pass the tag back with `report_result(nickname = "your-tag")`.
+6. **`report_result()`** – builds your submission from the preregistration and prints a pre-filled form link; open it and press **Send**. It reuses your tag from Task 4. In the webR workspace, if you have reloaded the page since then, pass the tag back with `report_result(nickname = "your-tag")`.
 
 **Task 6 – the declared specification on new data.**
 
 7. **`replicate_spec(my_spec)`** – translates your declared specification to the new experiment, fits it on its data and prints both results; the figure of Task 6 places it on both curves.
 
-If any of that stalls, work down the list under [A stalled browser lab](#a-stalled-browser-lab) in the browser lab, or the [IDE quick fixes](#ide-quick-fixes) in the workspace.
+If any of that stalls, work down the list under [A stalled webR workspace](#a-stalled-browser-lab) in the webR workspace, or the [IDE quick fixes](#ide-quick-fixes) in the IDE workspace.
 
 ------------------------------------------------------------------------
 
@@ -140,12 +140,12 @@ If any of that stalls, work down the list under [A stalled browser lab](#a-stall
 
 ------------------------------------------------------------------------
 
-## A stalled browser lab
+## A stalled webR workspace {#a-stalled-browser-lab}
 
 Work down this list.
 
 1. **Hard reload, then rerun.** Reload the page clearing the cache (Ctrl+Shift+R / Cmd+Shift+R), wait for R to restart, and **rerun the cells above** the one that failed – the R engine in the browser needs the earlier cells to have run in this session before a later one will work.
-2. **Switch browser.** If a cell still will not run, open the browser lab in a different browser (Chrome, Edge or Firefox).
+2. **Switch browser.** If a cell still will not run, open the webR workspace in a different browser (Chrome, Edge or Firefox).
 3. **Read your printed result to the facilitator.** If `submit_exploration()` or `report_result()` printed your result but the form link will not open, read the printed `b`, `se`, `t` (or `z`), `df`, `n` and `r` to the facilitator, who adds the mark to the chart. If a cell refuses to run at all, give the facilitator your five choices instead (the note below).
 
 ::: {.callout-note}
@@ -165,7 +165,7 @@ If no cell will run at all: every specification on the curve is one row of `data
 | "Permission denied" while installing a package | Let R use a personal library that it can write to – accept the offer from R to create a personal library, then reinstall. |
 | A data file is "not found" | Check that you opened the unzipped **folder** in your IDE (File → Open Folder in Positron and VS Code; the `.Rproj` file in RStudio), not a single file – the paths in the code are relative to that folder. |
 | Something not listed here | The [help page](https://codemoreh.github.io/ar4ds/help.html) has the longer table, with prompts to give an AI assistant. |
-| Everything is stuck | Open the [browser lab](lab.qmd) and carry on there. |
+| Everything is stuck | Open the [webR workspace](lab.qmd) and carry on there. |
 
 ------------------------------------------------------------------------
 

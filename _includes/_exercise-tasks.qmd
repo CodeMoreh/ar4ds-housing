@@ -1,10 +1,10 @@
 ## The tasks
 
-The exercise runs as six numbered tasks, and the report of the workspace, `index.qmd`, holds the steps of each.
+The exercise runs as six numbered tasks, and the report of the IDE workspace, `index.qmd`, holds the steps of each.
 
 ### Task 1 – The setup check
 
-Open the workspace folder in your IDE and run `source("R/check_setup.R")`, which prints OK when everything is in place and otherwise says what is missing.
+Open the folder of the IDE workspace in your IDE and run `source("R/check_setup.R")`, which prints OK when everything is in place and otherwise says what is missing.
 
 ### Task 2 – The data, the estimand and the graph
 

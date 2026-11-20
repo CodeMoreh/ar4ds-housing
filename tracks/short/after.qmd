@@ -1,13 +1,13 @@
 ---
 title: "Outside the workshop"
 ---
-The session stops before the class chart and before Task 5, in which you choose one specification and fix it in a preregistration block before you run it. Both run in the [browser lab](../../lab.qmd#task-5-preregistration) and in the [downloadable workspace]({{< var cases.housing.workspace-zip >}}), which needs R and an IDE, installed by following the [setup page](https://codemoreh.github.io/ar4ds/setup.html).
+The session stops before the class chart and before Task 5, in which you choose one specification and fix it in a preregistration block before you run it. Both run in the [webR workspace](../../lab.qmd#task-5-preregistration) and in the [IDE workspace]({{< var cases.housing.workspace-zip >}}), which needs R and an IDE, installed by following the [setup page](https://codemoreh.github.io/ar4ds/setup.html).
 
 The modules of the [companion curriculum](../../companion/index.qmd) each stand on their own.
 
 - [Audit experiments](../../companion/experiments.qmd)
 - [Binary outcomes](../../companion/binary-outcomes.qmd)
-- [Causal graphs and adjustment sets](../../companion/dags.qmd), with the [graph cell of the browser lab](../../lab.qmd#task-2-estimand-and-graph), which lets you try the causal graph of the session
+- [Causal graphs and adjustment sets](../../companion/dags.qmd), with the [graph cell of the webR workspace](../../lab.qmd#task-2-estimand-and-graph), which lets you try the causal graph of the session
 - [The multiverse and its critics](../../companion/multiverse.qmd)
 - [Getting started with R](https://codemoreh.github.io/ar4ds/tools/r.html)
 - [Reproducibility repositories](../../companion/repositories.qmd), then [Git and GitHub](https://codemoreh.github.io/ar4ds/git-github.html)

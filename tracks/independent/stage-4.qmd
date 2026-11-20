@@ -22,7 +22,7 @@ Read the menu.
 
 **In your report**, in the chunks of Task 4 of `index.qmd`, or in your working script. Try the reference specification and three or four others, changing one argument at a time. If you want your exploration on the [class chart](../../class-results.qmd), send the try that you would defend with `submit_exploration()`, and it appears there as an open circle.
 
-[Open the slides at Task 4](../../live/day.html#/hands-on-4-work-the-menu){.btn .btn-outline-primary target="_blank"} [Open the browser lab at Task 4](../../lab.qmd#task-4-menu){.btn .btn-outline-primary target="_blank"}
+[Open the slides at Task 4](../../live/day.html#/hands-on-4-work-the-menu){.btn .btn-outline-primary target="_blank"} [Open the webR workspace at Task 4](../../lab.qmd#task-4-menu){.btn .btn-outline-primary target="_blank"}
 
 ## 4. Multiverse and preregistration
 
@@ -32,15 +32,15 @@ Read the menu.
 
 **In the preregistration block of your report**, the chunk `prereg` of `index.qmd`. Complete the block before you run anything. Render the report and keep the rendered copy, which carries the date on which it was rendered. Then fit the specification with `run_spec()`, and send it with `report_result()` if you want it on the chart, where it appears as a filled circle.
 
-[Open the slides at Task 5](../../live/day.html#/the-preregistration-moment){.btn .btn-outline-primary target="_blank"} [Open the browser lab at Task 5](../../lab.qmd#task-5-preregistration){.btn .btn-outline-primary target="_blank"}
+[Open the slides at Task 5](../../live/day.html#/the-preregistration-moment){.btn .btn-outline-primary target="_blank"} [Open the webR workspace at Task 5](../../lab.qmd#task-5-preregistration){.btn .btn-outline-primary target="_blank"}
 
-If your installation fails, complete the block in the slides or in the browser lab, and copy the completed cell into your notes instead of rendering.
+If your installation fails, complete the block in the slides or in the webR workspace, and copy the completed cell into your notes instead of rendering.
 
 ## 6. Task 6 – Replication
 
 **In your report**, in the chunks of Task 6 of `index.qmd`, or in your working script. Run `replicate_spec(my_spec)`, which translates your declared specification to the new experiment and fits it on its data, then draw the figure and write the two sentences that the task asks for. Then follow the slides from [the replication](../../live/day.html#/the-score-replication){target="_blank"} to the end of Part 4.
 
-[Open the slides at Task 6](../../live/day.html#/hands-on-6-replication){.btn .btn-outline-primary target="_blank"} [Open the browser lab at Task 6](../../lab.qmd#task-6-replication){.btn .btn-outline-primary target="_blank"}
+[Open the slides at Task 6](../../live/day.html#/hands-on-6-replication){.btn .btn-outline-primary target="_blank"} [Open the webR workspace at Task 6](../../lab.qmd#task-6-replication){.btn .btn-outline-primary target="_blank"}
 
 ## 7. The curve of the claim
 
@@ -68,8 +68,8 @@ Work from [Origins](../../companion/multiverse.qmd#sec-origins) to [The multiver
 
 ## 11. The case-study report {#the-case-report}
 
-**In your workspace.** Render the report of the workspace with all six tasks complete, the preregistration block as it stood before the run and the result beneath it. This is your case-study report. The section "Going further" at its end holds optional exercises that run in the workspace.
+**In your IDE workspace.** Render the report of the workspace with all six tasks complete, the preregistration block as it stood before the run and the result beneath it. This is your case-study report. The section "Going further" at its end holds optional exercises that run in the workspace.
 
-**Sending results.** Both submissions are optional. A result sent alone joins the class chart of the case study beside the results that earlier cohorts sent. The workspace draws a tag of its own for the chart, and the browser lab draws one that lasts only for the browser session, so to find your marks again, give the same nickname every time, as in `submit_exploration(nickname = "blue-heron")`.
+**Sending results.** Both submissions are optional. A result sent alone joins the class chart of the case study beside the results that earlier cohorts sent. The IDE workspace draws a tag of its own for the chart, and the webR workspace draws one that lasts only for the browser session, so to find your marks again, give the same nickname every time, as in `submit_exploration(nickname = "blue-heron")`.
 
 **Shortcuts.** If time is short, read only the section on [robustness and replicability](../../companion/multiverse.qmd#sec-replicability) of the multiverse module now, and come back to the rest of it when your project in stage 5 needs it.

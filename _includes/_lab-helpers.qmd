@@ -1,12 +1,12 @@
 <!--
-The helpers of the browser lab, in one file included by three documents: the
-lab itself, lab.qmd, and the two slide decks,
+The helpers of the webR workspace, in one file included by three documents: the
+webR workspace itself, lab.qmd, and the two slide decks,
 live/day.qmd and live/short.qmd, whose hands-on slides run
 the same cells. The including document sets .data_dir, the folder in which the
-files of its resources list arrive inside the browser (data/ in the lab and
+files of its resources list arrive inside the browser (data/ in the webR workspace and
 in the slides), in a setup cell placed before this include.
 The estimator is written once, in R/_tools.R, and copied here as in
-R/spec_tools.R of the workspace. The graph helpers of Task 2 are in
+R/spec_tools.R of the IDE workspace. The graph helpers of Task 2 are in
 _lab-graph.qmd beside this file.
 -->
 
@@ -14,7 +14,7 @@ _lab-graph.qmd beside this file.
 #| include: false
 #| autorun: true
 # The estimator, the menu, its validation and the helpers of Tasks 4 to 6, as
-# in R/spec_tools.R of the workspace, apart from the tag of the class chart,
+# in R/spec_tools.R of the IDE workspace, apart from the tag of the class chart,
 # which lasts for the browser session. The data files arrive through the
 # resources list of the including page, in the folder named by .data_dir.
 
@@ -36,9 +36,9 @@ _lab-graph.qmd beside this file.
 
 # ---- The estimator -------------------------------------------------------------
 # A verbatim copy of R/_tools.R in the workshop's GitHub repository, which builds
-# the curve; the downloadable workspace carries the same copy in R/spec_tools.R.
+# the curve; the IDE workspace carries the same copy in R/spec_tools.R.
 
-# The workspace, the browser lab and the workshop's pipeline run the
+# The IDE workspace, the webR workspace and the workshop's pipeline run the
 # same code. R/check_parity.R in the workshop's GitHub repository checks the HC2 errors
 # and the average marginal effect against estimatr and margins.
 

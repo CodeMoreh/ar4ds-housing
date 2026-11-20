@@ -134,7 +134,7 @@ The workshop is open to anyone, and support of the kind listed below exists wher
 | webR (R in the browser) | <https://docs.r-wasm.org/webr/latest/> |
 | quarto-live (webR in Quarto pages) | <https://r-wasm.github.io/quarto-live/> |
 | datawizard package (data work, easystats) | <https://easystats.github.io/datawizard/> |
-| tinyplot package (the figures of the workspaces and labs) | <https://grantmcdermott.com/tinyplot/> |
+| tinyplot package (the figures of the IDE and webR workspaces) | <https://grantmcdermott.com/tinyplot/> |
 | dagitty (causal graphs) | <https://www.dagitty.net> |
 | ggdag (drawing causal graphs) | <https://r-causal.github.io/ggdag/> |
 

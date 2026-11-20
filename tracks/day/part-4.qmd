@@ -23,28 +23,28 @@ title: "Part 4 – Robustness"
 
 ## Task 4 – The menu
 
-**In your workspace**, in the chunks of Task 4 of `index.qmd`. Try the reference specification and three or four others, changing one argument at a time. Then rerun the one that you would defend and send it with `submit_exploration()`. Your mark is drawn on the class chart as an open circle.
+**In your IDE workspace**, in the chunks of Task 4 of `index.qmd`. Try the reference specification and three or four others, changing one argument at a time. Then rerun the one that you would defend and send it with `submit_exploration()`. Your mark is drawn on the class chart as an open circle.
 
-[Open the slides at Task 4](../../live/day.html#/hands-on-4-work-the-menu){.btn .btn-outline-primary target="_blank"} [Open the browser lab at Task 4](../../lab.qmd#task-4-menu){.btn .btn-outline-primary target="_blank"}
+[Open the slides at Task 4](../../live/day.html#/hands-on-4-work-the-menu){.btn .btn-outline-primary target="_blank"} [Open the webR workspace at Task 4](../../lab.qmd#task-4-menu){.btn .btn-outline-primary target="_blank"}
 
 ## The class results and your placement
 
 [Open the class results](../../class-results.qmd){.btn .btn-primary target="_blank"}
 
-Find your own mark among the exploratory results of the class. Then rerun `try_spec()` in your workspace with the choices that you submitted, or in the cell of the slide [Your own placement](../../live/day.html#/find-your-own-percentile){target="_blank"} of the slides, and read your placement, which is the number of the 64 specifications whose gap lies further below zero than yours.
+Find your own mark among the exploratory results of the class. Then rerun `try_spec()` in your IDE workspace with the choices that you submitted, or in the cell of the slide [Your own placement](../../live/day.html#/find-your-own-percentile){target="_blank"} of the slides, and read your placement, which is the number of the 64 specifications whose gap lies further below zero than yours.
 
 ## Task 5 – Preregistration
 
 **In the preregistration block of your report**, the chunk `prereg` of `index.qmd`. Complete the block before you run anything, and render the report. Then fit the specification with `run_spec()` and send it with `report_result()`. Your declared result is drawn on the chart as a filled circle beside the open circles of Task 4.
 
-[Open the slides at Task 5](../../live/day.html#/the-preregistration-moment){.btn .btn-outline-primary target="_blank"} [Open the browser lab at Task 5](../../lab.qmd#task-5-preregistration){.btn .btn-outline-primary target="_blank"}
+[Open the slides at Task 5](../../live/day.html#/the-preregistration-moment){.btn .btn-outline-primary target="_blank"} [Open the webR workspace at Task 5](../../lab.qmd#task-5-preregistration){.btn .btn-outline-primary target="_blank"}
 
-If your installation fails, complete the block in the slides or in the browser lab, and copy the completed cell into your notes instead of rendering.
+If your installation fails, complete the block in the slides or in the webR workspace, and copy the completed cell into your notes instead of rendering.
 
 ## Task 6 – Replication
 
-**In your workspace**, in the chunks of Task 6 of `index.qmd`. Run `replicate_spec(my_spec)`, which translates your declared specification to the new experiment run for the SCORE replicability study and fits it on the data of that experiment, then draw the figure and write your two sentences. The second chart of the [Class results](../../class-results.qmd) page draws the declared specifications of the class on the new data in the same way.
+**In your IDE workspace**, in the chunks of Task 6 of `index.qmd`. Run `replicate_spec(my_spec)`, which translates your declared specification to the new experiment run for the SCORE replicability study and fits it on the data of that experiment, then draw the figure and write your two sentences. The second chart of the [Class results](../../class-results.qmd) page draws the declared specifications of the class on the new data in the same way.
 
-[Open the slides at Task 6](../../live/day.html#/hands-on-6-replication){.btn .btn-outline-primary target="_blank"} [Open the browser lab at Task 6](../../lab.qmd#task-6-replication){.btn .btn-outline-primary target="_blank"}
+[Open the slides at Task 6](../../live/day.html#/hands-on-6-replication){.btn .btn-outline-primary target="_blank"} [Open the webR workspace at Task 6](../../lab.qmd#task-6-replication){.btn .btn-outline-primary target="_blank"}
 
 To go further: [the replication](../../background.qmd#sec-replication) on the background page, [Bayesian estimation](../../companion/bayesian.qmd#sec-replication), [Meta-analysis](../../companion/meta-analysis.qmd#sec-two-studies), [The multiverse and its critics](../../companion/multiverse.qmd) and [Reproducibility repositories](../../companion/repositories.qmd).

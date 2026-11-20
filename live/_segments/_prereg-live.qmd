@@ -1,7 +1,7 @@
-<!-- Task 5 of the browser lab (lab.qmd) for the full-day slides:
-     the preregistration moment, then the cells of the lab, the block, its
+<!-- Task 5 of the webR workspace (lab.qmd) for the full-day slides:
+     the preregistration moment, then the cells of the webR workspace, the block, its
      declaration, the run, the report and the curve with the declared result
-     ringed. Each slide names where the same step lives in the workspace. -->
+     ringed. Each slide names where the same step lives in the IDE workspace. -->
 ## Hands-on 5 – The preregistration {#the-preregistration-moment}
 
 ::: {.none}
@@ -22,7 +22,7 @@ Now the preregistration. Open Task 5 in your report, or the block on the next sl
 ## Hands-on 5 – The preregistration block {#hands-on-5-the-preregistration-block .smaller}
 
 ::: {.small}
-One choice on each decision of the menu, and the dotted lines completed; then run the cell, which prints nothing. *Workspace:* the chunk `prereg` of `index.qmd`.
+One choice on each decision of the menu, and the dotted lines completed; then run the cell, which prints nothing. *IDE workspace:* the chunk `prereg` of `index.qmd`.
 :::
 
 ```{webr}
@@ -69,7 +69,7 @@ Here is the block, the same as the one in your report. The numbered comments map
 ## Hands-on 5 – The declaration {#hands-on-5-the-declaration .smaller}
 
 ::: {.small}
-`prereg()` checks every choice against the menu, prints your preregistration with its estimand statement and keeps it as `my_spec`. The preregistration cell, copied into your notes, is your preregistration record. *Workspace:* the last line of the chunk `prereg`.
+`prereg()` checks every choice against the menu, prints your preregistration with its estimand statement and keeps it as `my_spec`. The preregistration cell, copied into your notes, is your preregistration record. *IDE workspace:* the last line of the chunk `prereg`.
 :::
 
 ```{webr}
@@ -78,7 +78,7 @@ my_spec <- prereg()   # checks every choice, prints your preregistration and kee
 ```
 
 ::: notes
-Then the declaration itself. Prereg reads the eleven choices of the block, checks each one against the menu, and stops with the reason if one of them is off the curve, as try underscore spec does. If every choice is on the curve, it prints your preregistration: the choices in the three groups of the menu, and the estimand statement that the choices make, written out in words. It also keeps the block as my underscore spec, which the run on the next slide needs. In your workspace the rendered report, with its date, is the record of the declaration, and in these slides you copy the block into your notes.
+Then the declaration itself. Prereg reads the eleven choices of the block, checks each one against the menu, and stops with the reason if one of them is off the curve, as try underscore spec does. If every choice is on the curve, it prints your preregistration: the choices in the three groups of the menu, and the estimand statement that the choices make, written out in words. It also keeps the block as my underscore spec, which the run on the next slide needs. In your IDE workspace the rendered report, with its date, is the record of the declaration, and in these slides you copy the block into your notes.
 :::
 
 ## Hands-on 5 – The preregistered run {#run-it-then-watch-the-chart .smaller}
@@ -86,7 +86,7 @@ Then the declaration itself. Prereg reads the eleven choices of the block, check
 ::: {.small}
 - **Task 5** – run the specification in your preregistration, and only that one, with `run_spec()`
 - It prints the same lines as `try_spec()` and refuses to run if the block has changed since `prereg()` read it. The line headed `Verdict:` says which of the four cases your result falls in
-- *Workspace:* the chunk `run-spec`
+- *IDE workspace:* the chunk `run-spec`
 :::
 
 ```{webr}
@@ -101,7 +101,7 @@ Go. Run the specification in your preregistration, just that one, with run under
 ## Hands-on 5 – The report {#hands-on-5-the-report .smaller .output-8}
 
 ::: {.small}
-`report_result()` prints the address of the results form with your values already in it – open it in a new tab and press Send. Your result joins the [Class results]({{< var cases.housing.live-results-url >}}) page as a *declared* result, a filled circle beside the open circles of Task 4. *Workspace:* the chunk `report`.
+`report_result()` prints the address of the results form with your values already in it – open it in a new tab and press Send. Your result joins the [Class results]({{< var cases.housing.live-results-url >}}) page as a *declared* result, a filled circle beside the open circles of Task 4. *IDE workspace:* the chunk `report`.
 :::
 
 ```{webr}
@@ -124,7 +124,7 @@ When the numbers are in front of you, call report underscore result. It builds y
 ## Hands-on 5 – The curve {#hands-on-5-the-curve .smaller}
 
 ::: {.small}
-Finally, your result on the curve of the claim, the `r nrow(curve)` specifications ranked from the most negative estimate. The first cell reads and ranks the curve, and the second picks out yours by the choices of the preregistration cell; neither prints anything. *Workspace:* the first half of the chunk `fig-curve`.
+Finally, your result on the curve of the claim, the `r nrow(curve)` specifications ranked from the most negative estimate. The first cell reads and ranks the curve, and the second picks out yours by the choices of the preregistration cell; neither prints anything. *IDE workspace:* the first half of the chunk `fig-curve`.
 :::
 
 ```{webr}
@@ -144,13 +144,13 @@ mine <- spec_curve |>
 ```
 
 ::: notes
-Finally, your result on the curve of the claim, the sixty-four specifications that the menu keeps, ranked from the most negative estimate. Two cells prepare the figure and print nothing. The first reads the curve that the slides loaded, ranks it, and labels the two answers to the decision on which emails are counted. The second picks out your own specification by the choices of your preregistration cell. It uses dplyr rather than datawizard, because datawizard evaluates its conditions in an environment of its own, from which the choices of the block cannot be reached. The figure is on the next slide, and in your workspace the same steps make the last figure of the report.
+Finally, your result on the curve of the claim, the sixty-four specifications that the menu keeps, ranked from the most negative estimate. Two cells prepare the figure and print nothing. The first reads the curve that the slides loaded, ranks it, and labels the two answers to the decision on which emails are counted. The second picks out your own specification by the choices of your preregistration cell. It uses dplyr rather than datawizard, because datawizard evaluates its conditions in an environment of its own, from which the choices of the block cannot be reached. The figure is on the next slide, and in your IDE workspace the same steps make the last figure of the report.
 :::
 
 ## Hands-on 5 – Your declared result {#hands-on-5-your-declared-result .smaller .output-fig}
 
 ::: {.small}
-The curve, coloured by the emails counted, with your declared specification ringed. *Workspace:* the chunk `fig-curve`.
+The curve, coloured by the emails counted, with your declared specification ringed. *IDE workspace:* the chunk `fig-curve`.
 :::
 
 ```{webr}

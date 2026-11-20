@@ -10,7 +10,7 @@
 :::
 
 ::: {.fragment}
-**Now:** write your statement for the claim, every bracket filled.[ *Workspace:* the box of Task 2 of `index.qmd`.]{.content-visible unless-meta="deck.short"}
+**Now:** write your statement for the claim, every bracket filled.[ *IDE workspace:* the box of Task 2 of `index.qmd`.]{.content-visible unless-meta="deck.short"}
 :::
 
 ::: {.src}
@@ -29,7 +29,7 @@ An estimand is the quantity that your number is meant to estimate, stated in wor
 #| label: case-dag
 #| fig-width: 7.4
 #| fig-height: 5.4
-# The graph of Task 2 (the workspace file R/dag_starter.R), with the arrow
+# The graph of Task 2 (the IDE workspace file R/dag_starter.R), with the arrow
 # that the claim is about drawn as a dashed arc.
 case_dag("all")
 ```

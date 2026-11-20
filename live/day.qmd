@@ -5,7 +5,7 @@ engine: knitr
 format:
   live-revealjs:
     webr:
-      # The packages that the helpers of the lab and the cells of the hands-on
+      # The packages that the helpers of the webR workspace and the cells of the hands-on
       # slides call: dplyr and purrr in the helpers, parameters with sandwich
       # for the HC2 errors, marginaleffects for the logit and effectsize for
       # the conversion rule of the robustness study; datawizard in the cells of
@@ -52,18 +52,18 @@ deck:
   menu: true
 # THE SLIDES OF THE FULL-DAY FORMAT, OF DAY 2 OF THE MULTI-DAY FORMAT AND OF THE
 # SELF-TAUGHT FORMAT
-# - The participants of the full-day format do the six tasks in the workspace, in
-#   their IDE. These slides carry the whole browser lab, through
+# - The participants of the full-day format do the six tasks in the IDE workspace.
+#   These slides carry the whole webR workspace, through
 #   the Quarto Live extension: the facilitator runs each step on the shared
 #   screen, so that the class can compare its output with the slides, and a
 #   participant whose installation fails carries on in the slides. Each
-#   hands-on slide names the chunk or the file of the workspace that holds
+#   hands-on slide names the chunk or the file of the IDE workspace that holds
 #   the same step.
 # - The hands-on segments in _segments/ (_handson1-live.qmd to
 #   _handson4-submit-live.qmd, _defaults-live.qmd, _placement-live.qmd,
 #   _prereg-live.qmd and _handson6-live.qmd) hold the cells of Tasks 1 to 6 of
 #   lab.qmd, one step to a cell, with the hints and solutions
-#   of its exercises. The helpers of the lab are
+#   of its exercises. The helpers of the webR workspace are
 #   ../_includes/_lab-helpers.qmd and the graph helpers of Task 2
 #   ../_includes/_lab-graph.qmd, both included after the setup cell that
 #   names the data folder. The two setup segments stay in

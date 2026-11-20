@@ -1,7 +1,7 @@
 <!-- The parts that the exercise pages of the formats share (tracks/<format>/exercise.qmd)
 are the files _exercise-*.qmd of this folder, which those pages include: this file, with
 the setup chunk, the claim and the five analysts; _exercise-tasks.qmd, the six tasks as
-the formats that work in the workspace take them; _exercise-result.qmd, the rule of what
+the formats that work in the IDE workspace take them; _exercise-result.qmd, the rule of what
 counts as a result; and _exercise-links.qmd, the pages of the case study. The chunks of
 the included files run, and their links resolve, from the folder of the including page,
 two levels below the root of the site, so that every path in them starts with ../../. -->

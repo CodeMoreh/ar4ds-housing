@@ -14,8 +14,8 @@ title: "Part 2 – The estimand and the causal graph"
 
 ## Task 2 – The data, the estimand and the graph
 
-**In your workspace**, in the two boxes of Task 2 of `index.qmd`. Count what came back for each name, complete the estimand statement, and put the questions of the second box to the causal graph of `R/dag_starter.R`.
+**In your IDE workspace**, in the two boxes of Task 2 of `index.qmd`. Count what came back for each name, complete the estimand statement, and put the questions of the second box to the causal graph of `R/dag_starter.R`.
 
-[Open the slides at Task 2](../../live/day.html#/hands-on-2-meet-the-emails-draw-the-graph){.btn .btn-outline-primary target="_blank"} [Open the browser lab at Task 2](../../lab.qmd#task-2-data){.btn .btn-outline-primary target="_blank"}
+[Open the slides at Task 2](../../live/day.html#/hands-on-2-meet-the-emails-draw-the-graph){.btn .btn-outline-primary target="_blank"} [Open the webR workspace at Task 2](../../lab.qmd#task-2-data){.btn .btn-outline-primary target="_blank"}
 
 To go further: [Causal graphs and adjustment sets](../../companion/dags.qmd).

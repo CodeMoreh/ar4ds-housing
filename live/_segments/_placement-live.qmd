@@ -7,7 +7,7 @@
      the cell sits outside every conditional span. -->
 
 ::: {.small}
-- Rerun `try_spec()` with [the choices that you submitted]{.content-visible when-meta="deck.day"}[the specification that you would defend]{.content-visible unless-meta="deck.day"}, in the cell below[ or in your workspace]{.content-visible unless-meta="deck.short"}: its last line places your estimate on the curve
+- Rerun `try_spec()` with [the choices that you submitted]{.content-visible when-meta="deck.day"}[the specification that you would defend]{.content-visible unless-meta="deck.day"}, in the cell below[ or in your IDE workspace]{.content-visible unless-meta="deck.short"}: its last line places your estimate on the curve
 - The placement counts the specifications of the curve whose estimate lies further below zero than yours. For the reference specification it is `r sum(curve$b_pp < curve_ref$b_pp - 1e-9)`: nothing on the curve lies further below zero, and the logit without covariates ties with it
 - The same count places the published result and the five analysts
 :::

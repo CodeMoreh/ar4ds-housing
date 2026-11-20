@@ -2,7 +2,7 @@
 title: "Outside the workshop"
 ---
 
-The section "Going further" at the end of the report in the workspace holds three more exercises. The modules of the [companion curriculum](../../companion/index.qmd) each stand on their own, so take the one you need and leave the rest.
+The section "Going further" at the end of the report in the IDE workspace holds three more exercises. The modules of the [companion curriculum](../../companion/index.qmd) each stand on their own, so take the one you need and leave the rest.
 
 - [The multiverse and its critics](../../companion/multiverse.qmd)
 - [Audit experiments](../../companion/experiments.qmd)

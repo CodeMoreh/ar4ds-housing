@@ -1,6 +1,6 @@
 <!--
-The graph helpers of Task 2 of the browser lab, make_dag(), adjustmentSets(),
-paths() and plot_dag(), in one file included by the lab, lab.qmd,
+The graph helpers of Task 2 of the webR workspace, make_dag(), adjustmentSets(),
+paths() and plot_dag(), in one file included by the webR workspace, lab.qmd,
 and by the web slides of the full-day format, live/day.qmd, whose slides of Task 2
 run the same cells. The including document sets .data_dir before this
 include, as for _lab-helpers.qmd. The part-day format has no graph
@@ -24,7 +24,7 @@ tinyplot.
 .dag_elsewhere <- c(
   "No answer stored for this graph or question. This page holds the answers of dagitty",
   "for the graph of Task 2, with and without the arrow \"name -> greeting\". Other graphs",
-  "and questions: R/dag_starter.R and dagitty in the workspace.")
+  "and questions: R/dag_starter.R and dagitty in the IDE workspace.")
 
 # Where each node sits in the figure, with y counted upwards: the name on the
 # left, the greeting on the right, the reply above the line between them. A

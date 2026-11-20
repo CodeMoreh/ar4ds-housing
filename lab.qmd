@@ -1,5 +1,5 @@
 ---
-title: "Browser lab"
+title: "webR workspace"
 engine: knitr
 format:
   live-html:
@@ -37,7 +37,7 @@ bibliography: [references.bib, references-new.bib]
 
 {{< include _extensions/r-wasm/live/_knitr.qmd >}}
 
-This page holds the workshop's exercise, Tasks 1 to 6, on a copy of R that runs inside your browser, with the data already in place. It is the fallback when the slides do not load or an installation fails, and it gives the same numbers as the slides and the downloadable workspace.
+This page holds the workshop's exercise, Tasks 1 to 6, on a copy of R that runs inside your browser, with the data already in place. It is the fallback when the slides do not load or an installation fails, and it gives the same numbers as the slides and the IDE workspace.
 
 ::: {.callout-important icon="false"}
 ## While the R engine loads
@@ -211,7 +211,7 @@ my_dag <- make_dag(
 )
 ```
 
-Two questions are put to the graph. On this page `adjustmentSets()` and `paths()` print the answers that dagitty, the R package for causal graphs, gives for this graph, with and without the arrow of the claim ([codebook](data/dag_answers_codebook.md)); any other graph gets a pointer to the workspace, where dagitty itself runs. The first question is what has to be adjusted for when the comparison counts every delivered email:
+Two questions are put to the graph. On this page `adjustmentSets()` and `paths()` print the answers that dagitty, the R package for causal graphs, gives for this graph, with and without the arrow of the claim ([codebook](data/dag_answers_codebook.md)); any other graph gets a pointer to the IDE workspace, where dagitty itself runs. The first question is what has to be adjusted for when the comparison counts every delivered email:
 
 ```{webr}
 #| autorun: false
@@ -833,4 +833,4 @@ Write two sentences: what your result on the new data says about the claim, and 
 
 ## Taking it home
 
-This page keeps nothing once it is refreshed. The same exercise is in the [downloadable workspace]({{< var cases.housing.template-repo >}}), a folder that you open in your IDE and keep, and the [Git and GitHub module](https://codemoreh.github.io/ar4ds/git-github.html) shows how to put it under version control and publish its report.
+This page keeps nothing once it is refreshed. The same exercise is in the [IDE workspace]({{< var cases.housing.template-repo >}}), a folder that you open in your IDE and keep, and the [Git and GitHub module](https://codemoreh.github.io/ar4ds/git-github.html) shows how to put it under version control and publish its report.

@@ -10,7 +10,7 @@
 # render time. The setup of a case study comes after this chunk and may use
 # everything defined in it; it must define case_vars, the entry of the case study
 # under cases: in _variables.yml, whose addresses the shared segments print
-# (the workspace on the tools slide of Part 1).
+# (the IDE workspace on the tools slide of Part 1).
 ncl_blue <- "#0e3b6a"
 orange   <- "#E69F00"
 green    <- "#009E73"

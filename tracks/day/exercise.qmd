@@ -4,7 +4,7 @@ subtitle: "Full-day"
 bibliography: [../../references.bib, ../../references-new.bib]
 ---
 
-The [background page](../../background.qmd) presents the original study and the two studies of SCORE that took it up, the robustness study with its five reanalyses [@AczelEtAl2026InvestigatingAnalyticalRobustness] and the replicability study with its new experiment. The full-day format takes all six tasks, and you do them in the workspace that you download and open in your IDE (Positron, RStudio, VS Code, etc.), as [Before the day](before.qmd#the-workspace) describes. If your installation fails, the slides for the day and the [browser lab](../../lab.qmd), which run R inside your browser, hold the same tasks and give the same numbers.
+The [background page](../../background.qmd) presents the original study and the two studies of SCORE that took it up, the robustness study with its five reanalyses [@AczelEtAl2026InvestigatingAnalyticalRobustness] and the replicability study with its new experiment. The full-day format takes all six tasks, and you do them in the IDE workspace that you download and open in your IDE (Positron, RStudio, VS Code, etc.), as [Before the day](before.qmd#the-workspace) describes. If your installation fails, the slides for the day and the [webR workspace](../../lab.qmd), which run R inside your browser, hold the same tasks and give the same numbers.
 
 ---
 
@@ -29,8 +29,8 @@ The tools for the day:
 - [Slides](slides.qmd)
 - [Setup](https://codemoreh.github.io/ar4ds/setup.html)
 - [Help](https://codemoreh.github.io/ar4ds/help.html)
-- [The workspace](https://codemoreh.github.io/ar4ds-housing-workspace/) – the report as it renders
-- [Browser lab](../../lab.qmd)
+- [The IDE workspace](https://codemoreh.github.io/ar4ds-housing-workspace/) – the report as it renders
+- [webR workspace](../../lab.qmd)
 - [Cheatsheet](../../cheatsheet.qmd)
 
 {{< include ../../_includes/_exercise-links.qmd >}}

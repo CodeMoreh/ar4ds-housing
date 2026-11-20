@@ -137,7 +137,7 @@ Proportions and the chi-square test, the linear probability model set against th
 ::: {.home-r}
 ### Data {.unnumbered .unlisted}
 
-Two files shipped with the workspace: the `r format(h_emails, big.mark = ",")` emails of the original experiment, released into the public domain (CC0), and the `r format(h_rep_emails, big.mark = ",")` emails of the replication, from its de-identified data on the OSF.
+Two files shipped with the IDE workspace: the `r format(h_emails, big.mark = ",")` emails of the original experiment, released into the public domain (CC0), and the `r format(h_rep_emails, big.mark = ",")` emails of the replication, from its de-identified data on the OSF.
 :::
 
 ::::
@@ -203,7 +203,7 @@ The companion curriculum holds the modules that teach the skills around the exer
 ::: {.home-r}
 ### Tools, data and reproducibility {#the-companion-tools .unnumbered .unlisted}
 
-**Learning outcomes.** Writing R from a first line to a function of your own, the helpers of the workspace, working in an IDE and in a Quarto report, finding the deposit of a study and rebuilding its analysis file from it, and putting a reanalysis of your own under version control and into a public repository.
+**Learning outcomes.** Writing R from a first line to a function of your own, the helpers of the IDE workspace, working in an IDE and in a Quarto report, finding the deposit of a study and rebuilding its analysis file from it, and putting a reanalysis of your own under version control and into a public repository.
 
 **Previous knowledge.** None. The module on R is written for someone who has never programmed, and its code runs in the browser, so that it can be worked before the installation is ready.
 
@@ -293,7 +293,7 @@ Find me at: [chrismoreh.com](https://chrismoreh.com)
 
 ## AI disclosure {.unnumbered}
 
-The workshop grew out of a short session written for an open research conference at Newcastle University, which was built on my own reanalysis of one claim in the SCORE robustness study [@AczelEtAl2026InvestigatingAnalyticalRobustness]. Its extension into the present workshop, with several case studies from SCORE and formats of different lengths, was carried out with the help of Claude models developed by Anthropic, used through Claude Code. The models were used to improve the websites and to design the formats, to check the R code and to find errors and inconsistencies across the materials, and to draft sections of the text of the pages, the slides and the workspaces. Everything that the models produced is being checked by me for its accuracy and its language.
+The workshop grew out of a short session written for an open research conference at Newcastle University, which was built on my own reanalysis of one claim in the SCORE robustness study [@AczelEtAl2026InvestigatingAnalyticalRobustness]. Its extension into the present workshop, with several case studies from SCORE and formats of different lengths, was carried out with the help of Claude models developed by Anthropic, used through Claude Code. The models were used to improve the websites and to design the formats, to check the R code and to find errors and inconsistencies across the materials, and to draft sections of the text of the pages, the slides and the IDE workspaces. Everything that the models produced is being checked by me for its accuracy and its language.
 
 AI assistants can also help participants during the workshop, with a piece of code that fails or as a partner in generating and testing ideas, used in a way that supports the work of the participant rather than replacing it, which means keeping the judgement of the analysis one's own and saying where the help came from. The module on [AI assistants](https://codemoreh.github.io/ar4ds/tools/ai.html) sets out how to use one in the IDE, and its section on [licensed data](https://codemoreh.github.io/ar4ds/tools/ai.html#sec-licensed) explains why the files of some case studies, such as the Eurobarometer surveys distributed by GESIS, may not be processed with an AI system at all.
 

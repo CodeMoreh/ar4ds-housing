@@ -4,7 +4,7 @@
 # this file are edited by hand. The multi-day format, which is out of the build
 # (_quarto.yml), has no sidebar until it is built again. The section Tools
 # and the section Multiverse of each sidebar give absolute addresses, which Quarto treats as external
-# links: the pages behind them, the browser lab and the cheatsheet among them,
+# links: the pages behind them, the webR workspace and the cheatsheet among them,
 # show no sidebar, and the previous and next links never run into them.
 website:
   sidebar:
@@ -36,7 +36,7 @@ website:
               href: "https://codemoreh.github.io/ar4ds-housing/class-results.html"
         - section: "Tools"
           contents:
-            - text: "Browser lab"
+            - text: "webR workspace"
               href: "https://codemoreh.github.io/ar4ds-housing/lab.html"
     - title: "Full-day"
       style: docked
@@ -74,9 +74,9 @@ website:
               href: "https://codemoreh.github.io/ar4ds/setup.html"
             - text: "Help"
               href: "https://codemoreh.github.io/ar4ds/help.html"
-            - text: "The workspace"
+            - text: "The IDE workspace"
               href: "https://codemoreh.github.io/ar4ds-housing-workspace/"
-            - text: "Browser lab"
+            - text: "webR workspace"
               href: "https://codemoreh.github.io/ar4ds-housing/lab.html"
             - text: "Cheatsheet"
               href: "https://codemoreh.github.io/ar4ds-housing/cheatsheet.html"
@@ -112,7 +112,7 @@ website:
               href: "https://codemoreh.github.io/ar4ds/setup.html"
             - text: "Help"
               href: "https://codemoreh.github.io/ar4ds/help.html"
-            - text: "The workspace"
+            - text: "The IDE workspace"
               href: "https://codemoreh.github.io/ar4ds-housing-workspace/"
-            - text: "Browser lab"
+            - text: "webR workspace"
               href: "https://codemoreh.github.io/ar4ds-housing/lab.html"

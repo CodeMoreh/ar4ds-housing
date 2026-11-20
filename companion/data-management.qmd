@@ -8,14 +8,14 @@ bibliography: [../references.bib, ../references-new.bib]
 #| label: setup
 #| include: false
 # Every chunk on this page runs from the root of the site, whose data/ folder
-# holds the same files as that of the workspace, so that the paths read exactly
+# holds the same files as that of the IDE workspace, so that the paths read exactly
 # as they do in the workspace: data/housing_original.csv.
 knitr::opts_knit$set(root.dir = "..")
 ```
 
 The route taken by the data of the Housing and racial bias case study, from the file deposited by the original authors to the file on which the exercises in the workshop run, is the subject of this part of the [companion curriculum](index.qmd). In the experiment, presented in full on the [background page](../background.qmd), the original authors emailed public housing authorities across the United States from six names meant to indicate a white, a Black or a Hispanic applicant and coded the replies that came back [@EinsteinGlick2017DoesRaceAffect]. The [module on data sources](data-sources.qmd#sec-dataverse) ends with the deposited file on your disk, checked against the checksum published by the Harvard Dataverse, and the present module starts at that point, working step by step through `R/01_email_data.R`, the first script in the case-study pipeline. It describes each column of the analysis file, shows how the names, the replies, the greeting codes, the bounced emails and the community thirds are derived, and presents the checks that a rebuilt file has to pass before anything is estimated from it.
 
-The code on the page runs on `housing_original.csv`, the deposited file saved as plain text with its original column names, which the workshop supplies in its workspace and in `data/`. As every chunk reads the files as the workspace does, each line can be copied into the workspace as it stands, and every number on the page was computed from the file when the page was built.
+The code on the page runs on `housing_original.csv`, the deposited file saved as plain text with its original column names, which the workshop supplies in its IDE workspace and in `data/`. As every chunk reads the files as the workspace does, each line can be copied into the workspace as it stands, and every number on the page was computed from the file when the page was built.
 
 ## 1. Two files {#sec-two-files}
 

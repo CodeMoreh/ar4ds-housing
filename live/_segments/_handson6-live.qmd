@@ -1,14 +1,14 @@
-<!-- Task 6 of the browser lab (lab.qmd) for the full-day slides: the declared
+<!-- Task 6 of the webR workspace (lab.qmd) for the full-day slides: the declared
      specification on the data of the replication, then the curve of the
      original data and the curve of the new data with the declared
      specification ringed on each. Each slide names where the same step lives in
-     the workspace. -->
+     the IDE workspace. -->
 ## Hands-on 6 – Replication {#hands-on-6-replication .smaller .output-8}
 
 ::: {.small}
 - **Task 6** – run your declared specification on the data of the replication, a new experiment of 2020 that emailed 3,050 housing authorities under four new male names
 - The new experiment had no Black names, no reply without a greeting code and no indicator of a hard-to-find address, so `replicate_spec()` first translates your specification and prints each change, then your result on the original data above your result on the new data
-- *Workspace:* the chunk `replicate`
+- *IDE workspace:* the chunk `replicate`
 :::
 
 ```{webr}
@@ -17,13 +17,13 @@ replicate_spec(my_spec)
 ```
 
 ::: notes
-Now the third R. Everything that you have fitted so far came from the emails of the original experiment. The replication put the same question to a new experiment, run in 2020, and its data are in these slides and in your workspace. Run replicate underscore spec on the specification that you declared. The new experiment had no Black names, no reply without a greeting code and no indicator of a hard-to-find address, so the function first translates your specification and prints each change that it makes. Then it prints your result on the original data and, below it, your result on the new data, in the same lines as before. Compare the two verdicts, and the place of each result on its curve.
+Now the third R. Everything that you have fitted so far came from the emails of the original experiment. The replication put the same question to a new experiment, run in 2020, and its data are in these slides and in your IDE workspace. Run replicate underscore spec on the specification that you declared. The new experiment had no Black names, no reply without a greeting code and no indicator of a hard-to-find address, so the function first translates your specification and prints each change that it makes. Then it prints your result on the original data and, below it, your result on the new data, in the same lines as before. Compare the two verdicts, and the place of each result on its curve.
 :::
 
 ## Hands-on 6 – The two curves {#hands-on-6-the-two-curves .smaller}
 
 ::: {.small}
-The curve of the original data, read in Task 5, and the curve of the new data, each ranked from the most negative estimate. The first cell stacks the two curves, and the second picks out your specification on each, translated on the new data; neither prints anything. *Workspace:* the first half of the chunk `fig-replication`.
+The curve of the original data, read in Task 5, and the curve of the new data, each ranked from the most negative estimate. The first cell stacks the two curves, and the second picks out your specification on each, translated on the new data; neither prints anything. *IDE workspace:* the first half of the chunk `fig-replication`.
 :::
 
 ```{webr}
@@ -54,13 +54,13 @@ mine_both <- dplyr::bind_rows(
 ```
 
 ::: notes
-Two cells prepare the figure and print nothing. The first reads the curve of the new data and stacks it under the curve of the original data from Task 5. The sixty-four specifications of the original data become twelve on the new data, because three of the decisions on the menu have nothing to act on there: there are no Black names to add to the comparison, no replies without a greeting code, and no indicator of a hard-to-find address to adjust for. The second cell picks out your own specification on each curve, by the choices of your preregistration cell. The figure is on the next slide, and in your workspace the same steps make the last figure of the report.
+Two cells prepare the figure and print nothing. The first reads the curve of the new data and stacks it under the curve of the original data from Task 5. The sixty-four specifications of the original data become twelve on the new data, because three of the decisions on the menu have nothing to act on there: there are no Black names to add to the comparison, no replies without a greeting code, and no indicator of a hard-to-find address to adjust for. The second cell picks out your own specification on each curve, by the choices of your preregistration cell. The figure is on the next slide, and in your IDE workspace the same steps make the last figure of the report.
 :::
 
 ## Hands-on 6 – Your result on new data {#hands-on-6-your-result-on-new-data .smaller .output-fig}
 
 ::: {.small}
-The two curves, coloured by the emails counted, with your declared specification ringed on each. *Workspace:* the chunk `fig-replication`.
+The two curves, coloured by the emails counted, with your declared specification ringed on each. *IDE workspace:* the chunk `fig-replication`.
 :::
 
 ```{webr}

@@ -4,7 +4,7 @@ subtitle: "Self-taught"
 bibliography: [../../references.bib, ../../references-new.bib]
 ---
 
-The [background page](../../background.qmd) presents the original study and the two studies of SCORE that took it up, the robustness study with its five reanalyses [@AczelEtAl2026InvestigatingAnalyticalRobustness] and the replicability study with its new experiment. The self-taught format takes all six tasks, and you do them in the workspace, which stage 1 installs and which you open in your IDE (Positron, RStudio, VS Code, etc.). The [browser lab](../../lab.qmd), on which R runs inside your browser, holds every task as well, with hints and worked solutions, and it carries the work if your installation fails. Stage 1 takes Task 1, stage 3 Tasks 2 and 3, and stage 4 Tasks 4 to 6. Sending your results to the class chart is optional.
+The [background page](../../background.qmd) presents the original study and the two studies of SCORE that took it up, the robustness study with its five reanalyses [@AczelEtAl2026InvestigatingAnalyticalRobustness] and the replicability study with its new experiment. The self-taught format takes all six tasks, and you do them in the IDE workspace, which stage 1 installs and which you open in your IDE (Positron, RStudio, VS Code, etc.). The [webR workspace](../../lab.qmd), on which R runs inside your browser, holds every task as well, with hints and worked solutions, and it carries the work if your installation fails. Stage 1 takes Task 1, stage 3 Tasks 2 and 3, and stage 4 Tasks 4 to 6. Sending your results to the class chart is optional.
 
 ---
 
@@ -32,8 +32,8 @@ The tools of the route:
 
 - [Setup](https://codemoreh.github.io/ar4ds/setup.html)
 - [Help](https://codemoreh.github.io/ar4ds/help.html)
-- [The workspace](https://codemoreh.github.io/ar4ds-housing-workspace/) – the report as it renders
-- [Browser lab](../../lab.qmd)
+- [The IDE workspace](https://codemoreh.github.io/ar4ds-housing-workspace/) – the report as it renders
+- [webR workspace](../../lab.qmd)
 - [Slides](../day/slides.qmd) – the slides used in the full-day format
 
 {{< include ../../_includes/_exercise-links.qmd >}}

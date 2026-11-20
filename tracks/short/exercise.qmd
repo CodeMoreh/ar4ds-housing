@@ -4,7 +4,7 @@ subtitle: "Part-day"
 bibliography: [../../references.bib, ../../references-new.bib]
 ---
 
-The [background page](../../background.qmd) presents the original study and the two studies of SCORE that took it up, the robustness study with its five reanalyses [@AczelEtAl2026InvestigatingAnalyticalRobustness] and the replicability study with its new experiment. The part-day format takes Tasks 1 to 4, and you do them in the slides of the session, which run R inside your browser with the data already in place. The [browser lab](../../lab.qmd) holds the same tasks and is the fallback if the slides do not load.
+The [background page](../../background.qmd) presents the original study and the two studies of SCORE that took it up, the robustness study with its five reanalyses [@AczelEtAl2026InvestigatingAnalyticalRobustness] and the replicability study with its new experiment. The part-day format takes Tasks 1 to 4, and you do them in the slides of the session, which run R inside your browser with the data already in place. The [webR workspace](../../lab.qmd) holds the same tasks and is the fallback if the slides do not load.
 
 ---
 
@@ -51,6 +51,6 @@ The session sends nothing to the class chart, and the rule below applies to the 
 The tools of the session:
 
 - [Slides](slides.qmd)
-- [Browser lab](../../lab.qmd)
+- [webR workspace](../../lab.qmd)
 
 {{< include ../../_includes/_exercise-links.qmd >}}

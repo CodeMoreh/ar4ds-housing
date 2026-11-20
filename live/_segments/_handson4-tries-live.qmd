@@ -1,7 +1,7 @@
-<!-- The end of Task 4 of the browser lab (lab.qmd) for the part-day
-     slides: the log of the tries, with the cell of the lab. The part-day format
+<!-- The end of Task 4 of the webR workspace (lab.qmd) for the part-day
+     slides: the log of the tries, with the cell of the webR workspace. The part-day format
      sends nothing to the class chart, so the cell of the submission stays in
-     the lab and in the full-day slides. -->
+     the webR workspace and in the full-day slides. -->
 ## Hands-on 4 – Your tries {#hands-on-4-your-tries .smaller}
 
 ::: {.small}

@@ -1,11 +1,11 @@
-<!-- The defaults and codings of Task 3 of the browser lab
+<!-- The defaults and codings of Task 3 of the webR workspace
      (lab.qmd), for the full-day slides: the two tests of the
      continuity-correction slide run again without the correction, with the
-     cells of the lab, on the file read at the start of Task 3. -->
+     cells of the webR workspace, on the file read at the start of Task 3. -->
 ## Hands-on 3 – 8PTRZ uncorrected {#hands-on-3-8ptrz-uncorrected .smaller .output-8}
 
 ::: {.small}
-The test of 8PTRZ with `correct = FALSE`. *Workspace:* the chunk `reproduce-uncorrected`.
+The test of 8PTRZ with `correct = FALSE`. *IDE workspace:* the chunk `reproduce-uncorrected`.
 :::
 
 ```{webr}
@@ -27,7 +27,7 @@ chisq.test(tab_8ptrz, correct = FALSE)
 ```
 
 ::: notes
-Here is the correction switched off, on the slides, so that you can watch the number move. The first two cells rebuild the table of 8PTRZ from the public file, whichever analyst you chose, and print nothing. The third runs the same test with correct equals false. The first line of the printout loses the words about the correction, and the statistic rises from fourteen point two six five to fourteen point nine five. The conclusion does not change, since both values are far beyond any threshold, but only the corrected value matches the record. In the workspace the same test sits in the chunk after the five tabs of Task 3.
+Here is the correction switched off, on the slides, so that you can watch the number move. The first two cells rebuild the table of 8PTRZ from the public file, whichever analyst you chose, and print nothing. The third runs the same test with correct equals false. The first line of the printout loses the words about the correction, and the statistic rises from fourteen point two six five to fourteen point nine five. The conclusion does not change, since both values are far beyond any threshold, but only the corrected value matches the record. In the IDE workspace the same test sits in the chunk after the five tabs of Task 3.
 :::
 
 ## Hands-on 3 – 25N5D uncorrected {#hands-on-3-25n5d-uncorrected .smaller .output-8}
