@@ -5,7 +5,7 @@ Part 3
 :::
 
 ::: notes
-Part three turns to the model of the paper. The original authors, the OAs, fitted a logistic regression, and so did three of the five analysts, so this is the model behind the published result and behind two of the four statistics that the SCORE robustness study recorded for the analysts. A logistic regression does not report in percentage points. It reports differences in log odds, and their exponents, odds ratios. We look at what that scale is, how to get back to the scale of the claim, and why the course does so for every logit on the curve.
+Part three turns to the model of the paper. The original authors, the OAs, fitted a logistic regression, and so did three of the five analysts, so this is the model behind the published result and behind two of the four statistics that the SCORE robustness study recorded for the analysts. A logistic regression does not report in percentage points. It reports differences in log odds, and their exponents, odds ratios. We look at what that scale is, how to get back to the scale of the claim, and why the workshop does so for every logit on the curve.
 :::
 
 ## Logistic regression {#logistic-regression .smaller}
@@ -114,7 +114,7 @@ On the data, the hard-to-find address predicts the greeting, which opened `r fmt
 :::
 
 ::: notes
-Here is the least familiar property of the odds ratio. In an experiment, adding a covariate that predicts the outcome does not change what a difference in proportions estimates, because the covariate is unrelated to the name. It does change what an odds ratio estimates, even though nothing is confounded. Imagine two kinds of authority, equally many of each, where white names are greeted by name eighty-five and thirty-five per cent of the time, and let the Hispanic names have the odds ratio of our data in both. Within each kind, the odds ratio is point four four. For all authorities together it is point five six, closer to one, while the gap in points for all is the average of the two gaps. [advance] On our data the effect is small: the address predicts the greeting moderately and fell evenly on the names, so the coefficient moves a little away from zero and the gap does not move. Two odds ratios from different models answer different questions, which is why the course reports every logit in points.
+Here is the least familiar property of the odds ratio. In an experiment, adding a covariate that predicts the outcome does not change what a difference in proportions estimates, because the covariate is unrelated to the name. It does change what an odds ratio estimates, even though nothing is confounded. Imagine two kinds of authority, equally many of each, where white names are greeted by name eighty-five and thirty-five per cent of the time, and let the Hispanic names have the odds ratio of our data in both. Within each kind, the odds ratio is point four four. For all authorities together it is point five six, closer to one, while the gap in points for all is the average of the two gaps. [advance] On our data the effect is small: the address predicts the greeting moderately and fell evenly on the names, so the coefficient moves a little away from zero and the gap does not move. Two odds ratios from different models answer different questions, which is why the workshop reports every logit in points.
 :::
 
 ## Hands-on 2 – The logit and its two scales {#hands-on-2-the-logit-and-its-two-scales .smaller}

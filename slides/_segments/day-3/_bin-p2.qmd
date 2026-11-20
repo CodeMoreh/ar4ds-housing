@@ -45,11 +45,11 @@ The groups are similar in size and in share, so the classical error is close. Wh
 :::
 
 ::: {.src}
-The reference specification on data/housing_emails.csv; HC2 errors from sandwich through parameters, as in the estimator of the course (R/_tools.R).
+The reference specification on data/housing_emails.csv; HC2 errors from sandwich through parameters, as in the estimator of the workshop (R/_tools.R).
 :::
 
 ::: notes
-Now the standard errors, because the menu fixes them and the estimator of the course uses one kind throughout. The classical formula of a linear regression assumes one common variance for every observation. A zero-or-one outcome breaks that whenever the shares differ, because its variance is fixed by its share. HC2 errors, one member of the family that people call robust errors, let each observation keep its own variance, and with one binary predictor they come out exactly as the standard error that you would compute group by group, the textbook formula for two randomised groups. [advance] On our data the classical error is close, because the two groups are similar in size and in share. When groups differ both in size and in variance, or when covariates enter, the two can part, and the HC2 error is the one that stays right.
+Now the standard errors, because the menu fixes them and the estimator of the workshop uses one kind throughout. The classical formula of a linear regression assumes one common variance for every observation. A zero-or-one outcome breaks that whenever the shares differ, because its variance is fixed by its share. HC2 errors, one member of the family that people call robust errors, let each observation keep its own variance, and with one binary predictor they come out exactly as the standard error that you would compute group by group, the textbook formula for two randomised groups. [advance] On our data the classical error is close, because the two groups are similar in size and in share. When groups differ both in size and in variance, or when covariates enter, the two can part, and the HC2 error is the one that stays right.
 :::
 
 ## Hands-on 1 – The table and the linear model {#hands-on-1-the-table-and-the-linear-model .smaller}

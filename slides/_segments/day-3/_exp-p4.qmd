@@ -34,7 +34,7 @@ Every official who answered Santiago Martinez spent working time on someone who 
 ::: {.small}
 - The public file gives the size, poverty and ethnic composition of each community only in thirds, because "Whether or not a housing official responded, particularly to an ostensible minority applicant, is very sensitive and potentially harmful information" (the ReadMe of the OAs)
 - The replication kept the rule: "Due to Institutional Review Board restrictions, the publicly available dataset will include only the tercile version of the demographic covariates to minimize likelihood of identifying subjects" (its final report)
-- The course works only with the blinded file and never tries to recover an authority
+- The workshop works only with the blinded file and never tries to recover an authority
 :::
 
 ::: {.fragment .small}
@@ -46,7 +46,7 @@ The ReadMe of the replication package, doi.org/10.7910/DVN/1HOVTU; the final rep
 :::
 
 ::: notes
-The second cost concerns the data. Whether an official replied to an ostensibly minority applicant is sensitive information about a real person in a real office, and the OAs say so in the ReadMe of their package. That is why the public file gives the communities only in thirds: the exact census values would identify the authorities, and with them the officials. The replication followed the same rule under its own review board. It is also why the course never tries to recover an authority from the file, and why nothing that we do needs to. [advance] And replication has a cost of its own here. To test the claim again, SCORE sent three thousand and fifty further fictitious requests to offices of the same kind, so a decision to replicate an audit weighs that burden on the officials against what a second answer is worth.
+The second cost concerns the data. Whether an official replied to an ostensibly minority applicant is sensitive information about a real person in a real office, and the OAs say so in the ReadMe of their package. That is why the public file gives the communities only in thirds: the exact census values would identify the authorities, and with them the officials. The replication followed the same rule under its own review board. It is also why the workshop never tries to recover an authority from the file, and why nothing that we do needs to. [advance] And replication has a cost of its own here. To test the claim again, SCORE sent three thousand and fifty further fictitious requests to offices of the same kind, so a decision to replicate an audit weighs that burden on the officials against what a second answer is worth.
 :::
 
 ## Replicating an audit {#replicating-an-audit .questionslide}
@@ -67,5 +67,5 @@ So here is a question for the class, and there is no answer on the next slide. T
 :::
 
 ::: notes
-That is the design. The module Audit experiments, in the companion curriculum on the site, is the reading for this session: it has the code behind the analyses of this session, and a task that turns the assumption of the bound around, which is a good test of whether the idea has stuck. The next session stays with the same comparison but changes the question. Instead of asking how the names were assigned, it asks how a zero-or-one outcome is modelled: as a difference in proportions, as a linear regression with the standard errors that the course uses, and as the logistic regression of the paper, with its odds ratios.
+That is the design. The module Audit experiments, in the companion curriculum on the site, is the reading for this session: it has the code behind the analyses of this session, and a task that turns the assumption of the bound around, which is a good test of whether the idea has stuck. The next session stays with the same comparison but changes the question. Instead of asking how the names were assigned, it asks how a zero-or-one outcome is modelled: as a difference in proportions, as a linear regression with the standard errors that the workshop uses, and as the logistic regression of the paper, with its odds ratios.
 :::

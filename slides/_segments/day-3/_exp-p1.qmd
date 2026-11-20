@@ -5,7 +5,7 @@ Part 1
 :::
 
 ::: notes
-Part one. Everything that the course has said about this claim rests on one sentence of the paper, the sentence that says how the names were assigned. So we start there, with what random assignment guarantees and what it leaves to chance, and with the check of balance that any reader can run on the public file. Then the treatment itself. The officials received a name rather than a group, and a name says more than one thing about the person who signs it.
+Part one. Everything that the workshop has said about this claim rests on one sentence of the paper, the sentence that says how the names were assigned. So we start there, with what random assignment guarantees and what it leaves to chance, and with the check of balance that any reader can run on the public file. Then the treatment itself. The officials received a name rather than a group, and a name says more than one thing about the person who signs it.
 :::
 
 ## Random assignment {#random-assignment .smaller}

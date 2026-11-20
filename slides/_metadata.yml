@@ -4,11 +4,11 @@
 # template that it was adapted from (pdf-link-main, recap, course-logo,
 # self-contained, output-location) are left out.
 #
-# The event line names the course and no case study, because every slide deck shares it;
+# The event line names the workshop and no case study, because every slide deck shares it;
 # the subtitle of a slide deck names its format, and the case study where the slides say so.
 
 author: "Chris Moreh"
-event: "Applied replication for data skills, a CodeMoreh course"
+event: "Applied replication for data skills, a CodeMoreh workshop"
 
 # Citations resolve against the project bibliography; rendered citations link
 # to the scrollable References slide at the end of the slides. references-new.bib

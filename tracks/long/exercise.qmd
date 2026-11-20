@@ -28,7 +28,7 @@ On the third day you turn the folder of the workspace into a repository, with th
 
 ## Links
 
-The tools of the course:
+The tools of the workshop:
 
 - [Slides](../day/slides.qmd) – the slides of the second day, which show each step with its output; the pages of the first and the third days link the slide deck of each session.
 - [Setup](https://codemoreh.github.io/ar4ds/setup.html) – installing R and an IDE, and downloading the workspace.
