@@ -15,7 +15,7 @@ The multiverse idea is the proposal that the **space** is itself a finding, and 
 ::::
 
 ::: notes
-In Task 4 you ran several specifications, every one of them defensible, and you watched the estimate move. Nothing about that is unusual or improper, and I want to say so clearly, because there is a slightly accusatory tone in some of this literature that I do not think is deserved. Every analysis that any of us has ever published came from a space like the one you were moving around in. The difference is that we reported one point from it and did not mention the rest, mostly because it did not occur to us that the rest was reportable. So the multiverse idea is a proposal about reporting, and not an accusation. The space itself is a finding, and showing one point from it without the space around it is a form of incomplete reporting.
+In Task 4 you ran several specifications, every one of them defensible, and the estimate moved. There is nothing improper in that, and I say so because some of this literature has an accusatory tone that I do not think is deserved. [advance] Every analysis that any of us has published came from a space like the one in which you have just been moving, and we reported one point from it without the rest, mostly because it did not occur to us that the rest could be reported. [advance] The multiverse idea is a proposal about reporting, which treats the space itself as a finding and the report of one point without it as incomplete.
 :::
 
 <!-- DEEP DIVE START: multiverse background (2 slides). Optional depth – press
@@ -41,7 +41,7 @@ Under all these names the proposal is the same: **stop treating your analytical 
 :::
 
 ::: notes
-A brief history, because the vocabulary is a mess and knowing which word came from where helps. Multiverse analysis is Steegen and colleagues in 2016, and it grew out of data-processing choices specifically – how you code a variable, which cases you exclude, how you combine items – with the proposal that you report the whole set of datasets that your choices could have produced. Specification curve analysis is Simonsohn, Simmons and Nelson, making the same move for model choices and adding a visual grammar: estimates plotted on top, and underneath them a panel showing which choices produced each one. The vibration of effects is the same idea arrived at independently in epidemiology, which suggests that it is a natural response to the problem. And there is now a book-length treatment with computational recipes. Under different names, they all make the same proposal: stop treating your analytical choices as invisible, and enumerate them.
+The vocabulary is a mess, and knowing where each word came from helps. Multiverse analysis comes from Steegen and colleagues in 2016, and it grew out of choices in processing the data, how a variable is coded, which cases are excluded and how items are combined, with the proposal that the whole set of datasets that those choices could have produced be reported. Specification curve analysis, from Simonsohn, Simmons and Nelson, makes the same move for the choices of model and adds a way of drawing it, with the estimates on top and, beneath them, the choices that produced each one. The vibration of effects is the same idea, reached independently in epidemiology, and there is now a book-length treatment by Young and Cumberworth with computational recipes. [advance] Under their different names, they all propose that analytical choices be enumerated rather than left invisible.
 :::
 
 ## The garden of forking paths {#the-garden-drawn .smaller .deepdive run="methods"}
@@ -86,7 +86,7 @@ Four binary choices give sixteen analyses, and ten give more than a thousand. **
 :::
 
 ::: notes
-Here is the structure of the problem, drawn. Four choices, two options each, and you already have sixteen distinct analyses; ten such choices give more than a thousand. The red line is what a published paper reports, one route through the tree with no indication that the tree exists. The reader sees a coefficient and a standard error, and the standard error describes the uncertainty that comes from sampling. It contains no information about the fifteen other branches. Gelman and Loken call this the garden of forking paths, and their sharp observation is that you do not have to walk every path for this to be a problem. Walking one path that you chose after looking at the data is enough.
+Here is the structure of the problem, drawn. Four choices with two options each already give sixteen distinct analyses, and ten such choices give more than a thousand. The red line is what a published paper reports, one route through the tree, with no sign that the tree exists. The reader sees a coefficient and a standard error, and the standard error describes the uncertainty that comes from sampling, while saying nothing about the fifteen other branches. Gelman and Loken call this the garden of forking paths, and they point out that the problem does not require walking every path, since one path chosen after looking at the data is enough.
 :::
 
 <!-- DEEP DIVE END -->

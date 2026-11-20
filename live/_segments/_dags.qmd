@@ -62,7 +62,7 @@ X = predictor, Y = outcome. **Green** = the causal effect you want; **coloured**
 :::
 
 ::: notes
-The causal graph is the second of those three steps, and these three small graphs cover all the graph theory that the tasks need. In every panel the green arrow is the same thing, the effect of X on Y that you are actually after. What changes is the coloured structure around it. A confounder is a common cause of your predictor and your outcome – that red fork is a back-door path, and if you leave it open you are biased, so you adjust to close it. A mediator lies on the causal path between them. The amber path is real and part of the total effect, so if the total effect is what you want you do not adjust for it, or you remove part of the very thing you are measuring. And a collider is caused by both sides – those edges are harmless until you condition on the collider, which opens a spurious path that was not there before. So the rulebook is short: adjust confounders, leave mediators alone for total effects, and never condition on a collider. The next four slides add a little depth to those three rules before you use them.
+The causal graph is the second of those three steps, and these three small graphs hold all the graph theory that the tasks need. In every panel the green arrow is the effect of X on Y that you are after. A confounder is a common cause of the predictor and the outcome, and its red fork is a back-door path that biases the estimate while it stays open, so you adjust for the confounder to close it. A mediator lies on the causal path, and its amber path is part of the total effect, so adjusting for it removes part of what you want to measure. A collider is caused by both sides, and it does no harm until you condition on it, which opens a path that was not there before. Adjust for confounders, leave mediators alone when the total effect is wanted, and never condition on a collider.
 :::
 
 ## Causal stories behind a correlation {#one-number-many-stories .smaller}
@@ -118,7 +118,7 @@ The data look identical in all four. Only an assumption about *how the data aros
 :::
 
 ::: notes
-The scatter here has a strong correlation, an r of about nought point six. Before you reach for a model, consider that this single number is consistent with at least four different stories. Maybe X really does cause Y, and the slope is the effect. Maybe a common cause is inflating it. Maybe we are quietly looking at a selected sample, and the association is an artefact of who got in. Maybe Y causes X, or it is simply chance. Nothing in the data can decide between these, because the scatter looks identical in every case. Only a claim about how the data were generated can do that. A DAG is where you write that claim down, and that is why we draw one before we fit anything.
+The scatter shows a strong correlation, an r of about nought point six, and this single number is consistent with several different causal stories. X may cause Y, so that the slope is the effect. A common cause may inflate the association. The sample may have been selected, so that the association reflects who got in. Y may cause X, or the pattern may be chance. Nothing in the data can decide between these stories, because the scatter looks the same in each case, and only a claim about how the data were generated can do so. A causal graph is where that claim is written down, which is why we draw one before we fit anything.
 :::
 
 ## Reading a DAG: open and closed paths {.smaller}
@@ -176,7 +176,7 @@ Association flows along **every open path**, not only along the causal arrow. A 
 :::
 
 ::: notes
-A DAG is read through its paths. Association flows along every open path between X and Y, not only down the causal arrow. So the job is to work out which paths are open and shut the ones you do not want. Two rules do all the work. A path through a fork or a chain is open, and you close it by adjusting the variable in the middle – that is the red back-door fork on the left. A path through a collider is the opposite. It is shut by default, and you open it by adjusting. The back-door criterion puts the two rules together: close every path that sneaks into X from behind, and leave the causal X-to-Y path alone. Only an adjustment set that does that gives you an estimate you are allowed to read as causal.
+A causal graph is read through its paths, since association flows along every open path between X and Y and not only along the causal arrow. The work consists in finding which paths are open and closing the ones that you do not want, and two rules do all of it. A path through a fork or a chain is open, and you close it by adjusting for the variable in the middle, as with the red back-door fork on the left. A path through a collider is closed by default, and adjusting for the collider opens it. The back-door criterion puts the two rules together: close every path that enters X from behind, and leave the causal path from X to Y alone. Only an adjustment set that does both gives an estimate that can be read as causal.
 :::
 
 ## Total effect or direct effect {#which-effect-do-you-even-want .smaller}
@@ -227,7 +227,7 @@ ggplot2::ggplot(td,
 :::
 
 ::: notes
-Suppose M lies between your predictor and your outcome. The total effect is the green arrow plus the amber route through M. The direct effect is just the green arrow. These are different numbers and different questions – and which one you get depends entirely on whether you put M in the model. Drop a mediator in as just another 'control' and you have silently switched to the direct effect without telling anyone, including yourself. This is why 'control for everything' is bad advice. And it has a famous corollary, the Table 2 fallacy. When you print a regression table, usually only one coefficient has a clean causal reading. The coefficients on the control variables are not little causal effects of their own.
+Suppose that M lies between your predictor and your outcome. The total effect is the green arrow together with the amber route through M, and the direct effect is the green arrow alone. These are different numbers that answer different questions, and which one you get depends on whether M is in the model. Adding a mediator as one more 'control' switches the estimate to the direct effect without telling anyone, yourself included, which is why 'control for everything' is bad advice. A well-known consequence is the Table 2 fallacy: in a printed regression table usually only one coefficient has a causal reading, and the coefficients of the control variables are not causal effects of their own.
 :::
 
 ## Selection and feedback {#spurious-by-design-selection-feedback .smaller}
@@ -299,5 +299,5 @@ patchwork::wrap_plots(p_sel, p_clp, nrow = 1)
 :::
 
 ::: notes
-Two last ways in which a relationship can be spurious. The first is selection, or collider bias. If you condition on – or merely sample on – something that both your variables cause, you manufacture a correlation out of nothing. A lot of the early COVID risk-factor findings were of this kind, drawn from people who had been tested, which is a selected group. Hold on to this one, because it comes back in our own case study in a form that is easy to miss. The second is reverse causation and feedback. In a panel, which follows the same people or places over time, today's outcome can feed tomorrow's predictor, and adjusting for the stable differences between units does not, on its own, fix a confounder that changes over time or a feedback loop. A randomised experiment escapes this second problem by design, because nothing that happens later can change who received which treatment.
+Two more ways in which a relationship can be spurious. The first is selection, or collider bias: conditioning on something that both of your variables cause, or merely sampling on it, produces a correlation where none existed, and this problem returns in our own case study in a form that is easy to miss. The second is reverse causation and feedback. In a panel, which follows the same people or places over time, today's outcome can feed tomorrow's predictor, and adjusting for the stable differences between units does not on its own deal with a confounder that changes over time or with a feedback loop. A randomised experiment avoids this second problem by design, because nothing that happens later can change who received which treatment.
 :::

@@ -22,7 +22,7 @@ Whatever you decide here is your starting point on the menu in Task 4, and field
 :::
 
 ::: notes
-Your turn, with three pieces, and you work them in your IDE workspace. First, the data: a thousand and fourteen emails, one row each. Count what came back for each name, and notice the emails that bounced, which never reached anyone. Second, the estimand statement, every bracket filled for this claim, and in particular which emails you count. Third, the graph, in the starter script of the workspace. Switch on the arrow from the name to the greeting if you believe it, then ask what has to be adjusted for, and which paths between the name and the greeting are open once you compare among the replies. If a path through the official comes back as open, that is a finding about the design, not a bug in your code. The next slides show each step on my screen, and they carry the work if your installation failed. Then the two sentences for your notes. [state the time] Raise your hand if you get stuck.
+Your turn, with three pieces, which you work in your IDE workspace. First the data, a thousand and fourteen emails, one row each: count what came back for each name, and note the emails that bounced, which never reached anyone. Second the estimand statement, with every bracket filled for this claim, above all the bracket for the emails counted. Third the graph, in the starter script: switch on the arrow from the name to the greeting if you believe it, then ask what has to be adjusted for, and which paths between the name and the greeting are open among the replies. A path through the official that comes back as open is a finding about the design, not a bug in your code. The next slides show each step on my screen. [state the time] Raise your hand if you get stuck.
 :::
 
 ## Hands-on 2 – The emails {#hands-on-2-the-emails .smaller .output-8}
@@ -47,7 +47,7 @@ housing |>
 :::
 
 ::: notes
-The first cell counts what came back. A thousand and fourteen emails in the public file, three fewer than the paper reports. Twenty-three bounced and never reached an official, so they are outside the experiment under every analysis. Of the nine hundred and ninety-one that arrived, five hundred and sixty-three drew a reply, and five hundred and fifty-eight of those carry a code for the greeting. Two columns matter most. Reply is missing for a bounced email, and named is missing for every email without a reply and for the five replies that nobody coded. Hold on to those five, because the menu asks what to do with them. [advance]
+The first cell counts what came back. The public file holds a thousand and fourteen emails, three fewer than the paper reports. Twenty-three bounced and never reached an official, so they are outside the experiment in every analysis. Of the nine hundred and ninety-one that arrived, five hundred and sixty-three drew a reply, and five hundred and fifty-eight of these carry a code for the greeting. Two columns matter most: reply is missing for a bounced email, and named is missing for every email without a reply and for the five replies that nobody coded, which come back as a decision on the menu. [advance]
 :::
 
 ## Hands-on 2 – Replies by group {#hands-on-2-replies-by-group .smaller .output-8}
@@ -69,7 +69,7 @@ housing |>
 ```
 
 ::: notes
-Now the same counts by the group of the name. Read the last column, the share of the coded replies that greeted the sender by name. The replies to white names greeted the sender by name in sixty-one per cent of cases, those to Black names in fifty-six, and those to Hispanic names in forty-one. That gap of about twenty points between the white and the Hispanic names is the size of the published estimate, before any model has been fitted. Notice also how close the numbers of replies are across the three groups. That matters later, when we ask whether the name changed who replied as well as the tone of the replies.
+These are the same counts by the group of the name. In the last column, the share of the coded replies that greeted the sender by name, the replies to the white names did so in sixty-one per cent of cases, those to the Black names in fifty-six and those to the Hispanic names in forty-one. That gap of about twenty points between the white and the Hispanic names is the size of the published estimate, before any model has been fitted. The numbers of replies are also close across the three groups, which matters later, when we ask whether the name changed who replied as well as how the replies began.
 :::
 
 ## Hands-on 2 – The shares by name {#hands-on-2-the-shares-by-name .smaller}
@@ -90,7 +90,7 @@ greeted <- housing |>
 ```
 
 ::: notes
-Now the six names one by one. The names are the treatment, and the paper chose two for each group, a man and a woman, so each name stands on fewer than two hundred emails. This cell keeps the coded replies and takes the mean of named for each name, which is the share greeted by name, because named is a column of zeros and ones. It then sorts the names from the lowest share and labels the three groups for the figure. It prints nothing, because its result goes straight into the figure on the next slide. If you want to read the numbers themselves, type greeted on a new line at the end of the cell and run it again.
+Now the six names one by one. The names are the treatment, and the paper chose two for each group, a man and a woman, so each name rests on fewer than two hundred emails. The cell keeps the coded replies and takes the mean of named for each name, which is the share greeted by name, since named is a column of zeros and ones, and then sorts the names from the lowest share and labels the groups for the figure. It prints nothing, because its result goes into the figure on the next slide; typing greeted on a new line at the end of the cell and running it again shows the numbers themselves.
 :::
 
 ## Hands-on 2 – The six names {#hands-on-2-the-six-names .smaller .output-fig}
@@ -117,7 +117,7 @@ tinyplot::tinyplot(x = seq_len(nrow(greeted)), y = greeted$greeted_pct, flip = T
 ```
 
 ::: notes
-And here the shares are drawn with tinyplot, the plotting package that the workshop uses wherever you write the code yourself, because it is light enough to load in a browser. One bar for each name, coloured by the group that the name was meant to indicate, with its share at the end of the bar; the editor shows the first lines of the code and scrolls for the rest. The white names drew a greeting by name in sixty-one per cent of the coded replies and the Hispanic names in forty-one, a gap of about twenty points, while the Black names fall in between. Of the six names, Santiago drew the fewest greetings by name. Keep the order of the bars in mind for the menu, which asks whether the male and the female names belong together.
+The figure is drawn with tinyplot, the plotting package that the workshop uses wherever you write the code yourself, because it is light enough to load in a browser. Each bar is a name, coloured by the group that the name was meant to indicate, with its share at the end; the editor shows the first lines of the code and scrolls for the rest. The white names drew a greeting by name in sixty-one per cent of the coded replies and the Hispanic names in forty-one, while the Black names fall in between, and of the six names Santiago drew the fewest greetings by name. The order of the bars matters for the menu, which asks whether the male and the female names belong together.
 :::
 
 ## Hands-on 2 – The graph {#hands-on-2-the-graph .smaller}
@@ -149,7 +149,7 @@ my_dag <- make_dag(
 ```
 
 ::: notes
-Now the graph, written in ordinary R, one arrow per string, each written the way it is drawn. The name can change whether the official replies, and only a reply can greet the sender by name. The official, whom nobody observed, affects both the reply and the greeting, and so does the community, which the data hold in thirds. One arrow is switched off with a hash: the arrow from the name to the greeting, the effect on tone that the claim is about. Leave it off for now. The cell builds the graph and prints nothing. In the IDE workspace the same graph is built by the starter script with dagitty, the R package for causal graphs, which cannot run in a browser, so these slides read the answers that dagitty gives from a table.
+The graph is written in ordinary R, one arrow per string, each written as it is drawn. The name can change whether the official replies, and only a reply can greet the sender by name. The official, whom nobody observed, affects both the reply and the greeting, and so does the community, which the data hold in thirds. One arrow is switched off with a hash, the arrow from the name to the greeting, which is the effect on tone that the claim is about, and it stays off for now. The cell builds the graph and prints nothing. In the IDE workspace the starter script builds the same graph with dagitty, the R package for causal graphs, which cannot run in a browser, so these slides read the answers given by dagitty from a table.
 :::
 
 ## Hands-on 2 – The adjustment set {#hands-on-2-the-adjustment-set .smaller}
@@ -168,7 +168,7 @@ adjustmentSets(my_dag)
 :::
 
 ::: notes
-Two questions to the graph, one on this slide and one on the next. The first asks what has to be adjusted for to estimate the effect of the name on the greeting, counting every delivered email. [advance] The answer is a pair of empty braces, the empty set. Nothing has to be adjusted for, because nothing points into the name: the names were assigned at random, so nothing can cause both the name and the greeting. That is what the random number generator of the original authors bought them, and it holds whatever arrows leave the name.
+The graph gets two questions, one on this slide and one on the next. The first asks what has to be adjusted for to estimate the effect of the name on the greeting, counting every delivered email. [advance] The answer is a pair of empty braces, the empty set. Nothing has to be adjusted for, because nothing points into the name: the names were assigned at random, so nothing can cause both the name and the greeting, whatever arrows leave the name.
 :::
 
 ## Hands-on 2 – Paths among replies {#hands-on-2-paths-among-replies .smaller}
@@ -187,7 +187,7 @@ The path through the reply closes, and two open, through the community and throu
 :::
 
 ::: notes
-The second question asks which paths between the name and the greeting are open once we compare among the replies only, which is what Z equals reply means: it conditions on the reply. The printout lists the paths, and under them whether each one is open. [advance] The path through the reply closes, and two others open, one through the community and one through the official, because the reply is a common effect of the name, of the community and of the official. Comparing among the replies conditions on that common effect, and the comparison is no longer protected by the random assignment.
+The second question asks which paths between the name and the greeting are open once the comparison is made among the replies only, which is what Z equals reply means, since it conditions on the reply. The printout lists the paths, with whether each one is open beneath it. [advance] The path through the reply closes, and two others open, one through the community and one through the official, because the reply is a common effect of the name, the community and the official. A comparison among the replies conditions on that common effect, so the random assignment no longer protects it.
 :::
 
 ## Hands-on 2 – The graph drawn {#hands-on-2-the-graph-drawn .smaller .output-fig}
@@ -204,7 +204,7 @@ plot_dag(my_dag)
 ```
 
 ::: notes
-And the graph drawn. The name sits on the left in blue, the greeting on the right, the reply above the line between them and the community in the middle, while the official, whom nobody observed, is drawn in pale grey. Every arrow that you wrote is here, and the arrow of the claim is not, because you have not switched it on yet. This is the same graph as the one on the slides of Part 2, laid out here by a function rather than by hand, so it looks a little plainer. If you add a node for which these slides have no position, it lands on a row below the graph, and the cue is to take that graph to the IDE workspace, where dagitty answers whatever you ask of it.
+Here is the graph drawn. The name sits on the left in blue and the greeting on the right, with the reply above the line between them and the community in the middle, while the official, whom nobody observed, is drawn in pale grey. Every arrow that you wrote is here, and the arrow of the claim is not, because you have not switched it on. It is the graph from the slides of Part 2, laid out by a function rather than by hand, so it looks a little plainer. A node for which these slides have no position lands on a row below the graph, and a graph of that kind belongs in the IDE workspace, where dagitty answers whatever you ask of it.
 :::
 
 ## Hands-on 2 – The arrow of the claim {#hands-on-2-the-arrow-of-the-claim .smaller .output-8}
@@ -225,5 +225,5 @@ paths(my_dag, Z = c("reply", "community"))
 :::
 
 ::: notes
-Now switch on the arrow of the claim. Go back to the slide that builds the graph, take the hash off name to greeting, and run that cell and the ones after it again; then run this cell, which conditions on the community as well as on the reply. Three questions for your notes. Why does the adjustment set stay empty? Which paths stay open among the replies once the community is adjusted for, and what does that mean for a gap among the replies? And which emails keep the comparison randomised? [advance] The set stays empty because nothing points into the name. The direct path and the path through the official stay open, so a gap among the replies mixes the effect on tone with a difference in which officials wrote. Only counting every delivered email keeps the groups as randomisation made them.
+Now switch on the arrow of the claim. Go back to the slide that builds the graph, take the hash off the arrow from the name to the greeting, run that cell and the ones after it again, and then run this cell, which conditions on the community as well as on the reply. Three questions for your notes: why the adjustment set stays empty, which paths stay open among the replies once the community is adjusted for and what that means for a gap among the replies, and which emails keep the comparison randomised. [advance] The set stays empty because nothing points into the name. The direct path and the path through the official stay open, so a gap among the replies mixes the effect on tone with a difference in which officials wrote, and only a count of every delivered email keeps the groups as randomisation made them.
 :::

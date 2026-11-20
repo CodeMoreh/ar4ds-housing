@@ -5,5 +5,5 @@ Part 2
 :::
 
 ::: notes
-Part two. You met the experiment before the break: emails that differed only in the name that signed them, sent to housing authorities at random. Five analysts in the robustness study reanalysed its claim from the same public file and still parted company, on the size of the effect and even on whether there was evidence for it. This part explains how that can happen. We look at the five first, then step back to two studies that show how often disagreement among analysts is disagreement about the question. Then we build the two tools that state a question precisely, the estimand and the causal graph, and use both on our claim, where the graph turns up something that is easy to miss.
+Before the break you met the experiment, emails that differed only in the name that signed them, sent at random to housing authorities. The five analysts of the robustness study reanalysed its claim from the same public file and still parted company, on the size of the effect and even on whether the data were evidence for it. This part explains how that can happen. We look at the five first, then at two studies which show how often disagreement among analysts is disagreement about the question, and then we build the two tools that state a question precisely, the estimand and the causal graph, and use both on our claim.
 :::

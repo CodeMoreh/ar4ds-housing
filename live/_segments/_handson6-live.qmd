@@ -17,7 +17,7 @@ replicate_spec(my_spec)
 ```
 
 ::: notes
-Now the third R. Everything that you have fitted so far came from the emails of the original experiment. The replication put the same question to a new experiment, run in 2020, and its data are in these slides and in your IDE workspace. Run replicate underscore spec on the specification that you declared. The new experiment had no Black names, no reply without a greeting code and no indicator of a hard-to-find address, so the function first translates your specification and prints each change that it makes. Then it prints your result on the original data and, below it, your result on the new data, in the same lines as before. Compare the two verdicts, and the place of each result on its curve.
+Now the third R. Everything that you have fitted so far came from the emails of the original experiment, and the replication put the same question to a new experiment, run in 2020, whose data are in these slides and in your IDE workspace. Run replicate underscore spec on your declared specification. The new experiment had no Black names, no reply without a greeting code and no indicator of a hard-to-find address, so the function first translates your specification and prints each change. It then prints your result on the original data and, below it, your result on the new data, in the same lines as before. Compare the two verdicts, and the place of each result on its curve.
 :::
 
 ## Hands-on 6 – The two curves {#hands-on-6-the-two-curves .smaller}
@@ -54,7 +54,7 @@ mine_both <- dplyr::bind_rows(
 ```
 
 ::: notes
-Two cells prepare the figure and print nothing. The first reads the curve of the new data and stacks it under the curve of the original data from Task 5. The sixty-four specifications of the original data become twelve on the new data, because three of the decisions on the menu have nothing to act on there: there are no Black names to add to the comparison, no replies without a greeting code, and no indicator of a hard-to-find address to adjust for. The second cell picks out your own specification on each curve, by the choices of your preregistration cell. The figure is on the next slide, and in your IDE workspace the same steps make the last figure of the report.
+Two cells prepare the figure and print nothing. The first reads the curve of the new data and stacks it under the curve of the original data from Task 5. The sixty-four specifications of the original data become twelve on the new data, because three decisions of the menu have nothing to act on there: no Black names to add to the comparison, no replies without a greeting code, and no indicator of a hard-to-find address to adjust for. The second cell picks out your own specification on each curve, by the choices of your preregistration cell. In your IDE workspace the same steps make the last figure of the report.
 :::
 
 ## Hands-on 6 – Your result on new data {#hands-on-6-your-result-on-new-data .smaller .output-fig}
@@ -84,5 +84,5 @@ tinyplot::tinytheme()
 ```
 
 ::: notes
-And the figure, whose code scrolls in the editor. On the left are the sixty-four specifications of the original data, with yours ringed; on the right the twelve that the curve becomes on the new data, with your translated specification ringed. The vertical scale is the same in both panels. On the original data every estimate lies between minus twenty and minus twelve points, and every one is significant. On the new data every estimate lies within two points of zero, and none is significant at five per cent. The Class results page draws the declared specifications of the whole class in the same way, in a second chart below the first. Write two sentences for your notes: what your result on the new data says about the claim, and how it compares with your result on the original data.
+The code of the figure scrolls in the editor. The left panel holds the sixty-four specifications of the original data with yours ringed, and the right panel the twelve of the new data with your translated specification ringed, on the same vertical scale. On the original data every estimate lies between minus twenty and minus twelve points, and every one is significant, while on the new data every estimate lies within two points of zero, and none is significant at five per cent. The Class results page draws the declared specifications of the whole class in the same way, in a second chart below the first. Write two sentences for your notes, on what your result on the new data says about the claim and how it compares with your result on the original data.
 :::

@@ -26,5 +26,5 @@
 ::::
 
 ::: notes
-Two columns, because the workshop has two kinds of aim. On the left is what I want you to understand, and most of it is conceptual work that has little to do with code. On the right is what I want you to be able to do, and every item there is something you will have done at least once with your own hands before we finish. If you take home only the left-hand column, you will have heard some interesting arguments and changed nothing about how you work. If you take home only the right-hand column, you will have learned some R. What I am after is the two together, because the concepts tell you which of the things you can now do is worth doing.
+The workshop has two kinds of aim. The left column holds what I want you to understand, and most of it is conceptual work with little code in it. The right column holds what I want you to be able to do, and each item there is something that you will have done yourself at least once before we finish. The left column on its own would leave you with some arguments and no change in how you work, and the right column on its own with some R. I am after the two together, because the concepts are what tell you which of the things that you can now do is worth doing.
 :::

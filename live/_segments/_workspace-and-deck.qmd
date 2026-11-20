@@ -32,7 +32,7 @@
 :::
 
 ::: notes
-Two places in which we run the tasks today, with the same steps and the same numbers. The IDE workspace is the folder that you downloaded and installed before the day, opened in your IDE, which is Positron on my screen and may be RStudio or VS Code on yours. Quarto renders the report, R fits every model live, and there is no git and no cloning, because it is just a folder of files. That is where you work today. These slides carry every task, in cells that run R inside the browser itself, and I run the cells on the shared screen so that you can compare your output with mine. If your installation fails, carry on in the slides, and the webR workspace on the workshop's website holds the same tasks as a second fallback. The address of the zip is at the bottom.
+We run the tasks in two places today, with the same steps and the same numbers. The IDE workspace is the folder that you downloaded and installed before the day, opened in your IDE, which is Positron on my screen and may be RStudio or VS Code on yours. Quarto renders the report and R fits every model, with no git and no cloning, since the workspace is just a folder of files, and that is where you work. These slides carry every task in cells that run R inside the browser, and I run the cells on the shared screen so that you can compare your output with mine. If your installation fails, you carry on in the slides, and the webR workspace on the workshop's website holds the same tasks as a second fallback. The address of the zip is at the bottom of the slide.
 :::
 
 ## What the tools cannot do {.smaller}
@@ -52,5 +52,5 @@ Tooling is the **cheap** half of the problem, because it can be learned. **The e
 ::::
 
 ::: notes
-All of this software is worth having, but a perfectly reproducible pipeline can be a perfectly reproducible answer to a question you never stated. None of this software will tell you what your estimand is, whether the variables you put in the model belong there, or whether the association you found means what you think it means. Tooling is the cheap half of the problem, in the sense that it can be solved by learning things. The expensive half starts from a question that every quantitative study has to answer, namely what exactly you are trying to estimate, and a good deal of what follows is about that question. First, though, you need a setup that works.
+All of this software is worth having, but a perfectly reproducible pipeline can be a perfectly reproducible answer to a question that you never stated. No software will tell you what your estimand is, whether the variables in your model belong there, or whether the association that you found means what you think it means. The tooling is the cheaper half of the problem, in the sense that it can be learned. The more expensive half starts from a question that every quantitative study has to answer, namely what exactly it is trying to estimate, and much of the day is about that question. First, though, you need a setup that works.
 :::

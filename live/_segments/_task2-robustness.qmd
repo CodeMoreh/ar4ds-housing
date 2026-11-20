@@ -17,7 +17,7 @@ The record of the claim in the robustness study; @AczelEtAl2026InvestigatingAnal
 :::
 
 ::: notes
-Here, word for word, is what the five analysts of this claim in the robustness study were given for the second task: the claim as SCORE selected it, and one instruction. Disregard the moving locations' ethnical composition from which or to which applications were sent. The wording is odd, because nobody in this experiment was moving anywhere. Read charitably, it can only mean one thing: leave the ethnic composition of the communities, the percentages of Black and Hispanic residents, out of the model. That is the whole brief, together with the request that every analyst report a single main result as a test statistic. Everything else was left to the analysts.
+These are, word for word, the claim and the one instruction that the five analysts of this claim received for the second task of the robustness study: disregard the moving locations' ethnical composition from which or to which applications were sent. The wording is odd, because nobody in this experiment was moving anywhere, and read charitably it can only mean that the ethnic composition of the communities, the percentages of Black and Hispanic residents, stays out of the model. With the request that every analyst report a single main result as a test statistic, that was the whole brief, and everything else was left to the analysts.
 :::
 
 ## What the instruction left open {#what-task-2-left-open .smaller}
@@ -35,21 +35,21 @@ The instruction fixed one detail of the model, and left open the two decisions t
 :::
 
 ::: notes
-So what did the instruction leave open? Almost everything that matters. The comparison: the ellipsis in the claim points to white names, but the abstract compares Hispanic names with Black and white names together, and an analyst could defend either. The emails counted: the replies, as the paper counts them, or every email that arrived, which is the remedy for the problem that the causal graph showed us. The test, the covariates other than ethnic composition, and even five replies whose greeting nobody coded. [advance] The instruction pinned down one detail of the model, and left open the two decisions that define the question itself. That is exactly where the five analysts parted company, as their table showed earlier.
+The instruction left almost everything that matters open. The ellipsis in the claim points to the white names as the comparison, while the abstract compares the Hispanic names with the Black and white names together, and an analyst could defend either. The emails counted could be the replies, as in the paper, or every email that arrived, which removes the problem shown by the causal graph. The test, the covariates other than ethnic composition and the five replies without a greeting code were open as well. [advance] The instruction fixed one detail of the model and left open the two decisions that define the question, and these are the decisions on which the five analysts parted company.
 :::
 
 ## Analyst no. 6 {#you-are-analyst-no.-6}
 
 ::: {.big}
-- Aim 1: **reproduce** the constrained result of **one of the five analysts**, whichever you choose
+- Aim 1: **reproduce** the constrained result of **one of the five analysts**
 :::
 
-  - **What you choose from:** four results recorded in the robustness study, from the $\chi^2$ test of a table to a logistic regression with covariates, and one analysis, that of P9W8Y, with nothing on record
+  - **What is on record:** four results recorded in the robustness study, from the $\chi^2$ test of a table to a logistic regression with covariates, and one analysis, that of P9W8Y, with nothing on record
 
   - **What you match:** the recorded statistic, to the third decimal, on the same number of emails
 
   - **What you have:** the public file of the OAs, `housing_original.csv`, and R
 
 ::: notes
-So here is your first job as the sixth analyst. Each of the five analysts of this claim answered the instruction in their own way, and the robustness study recorded a test statistic for four of them: a chi-square test of a table for 8PTRZ, a logistic regression without covariates for UYV3F, a logistic regression of all three groups with covariates for EWFMI, and a two-proportion test on every delivered email for 25N5D. For the fifth, P9W8Y, nothing was recorded. You choose one of the five. You have the same public file of the original authors that they had, published on the Harvard Dataverse, and you have R. The whole of reproducibility is the question of whether that is enough for you to get the recorded number back, to the third decimal. Let us find out.
+This is your first job as the sixth analyst. Each of the five analysts answered the instruction in their own way, and the robustness study recorded a test statistic for four of them: a chi-square test of a table for 8PTRZ, a logistic regression without covariates for UYV3F, a logistic regression of all three groups with covariates for EWFMI, and a two-proportion test on every delivered email for 25N5D. For P9W8Y nothing was recorded. I give each of you one of the five. You have the same public file of the original authors that they had, published on the Harvard Dataverse, and you have R, and reproducibility asks whether that is enough for you to get the recorded number back, to the third decimal.
 :::

@@ -14,7 +14,7 @@ A blueprint: precise question → causal reasoning (DAG) → multiverse → sens
 :::
 
 ::: notes
-The first point comes from the paper on the robustness study: single-path analyses should not simply be assumed robust. A single path can be a good path, and still the reader is owed the space around it, so a report needs the chosen path and the alternatives together. From Auspurg and Brüderl comes the constructive recipe that we followed today: a precise question, explicit assumptions drawn as a graph, a multiverse, and a sensitivity analysis. And keep the two robustness standards apart in your own writing: the same conclusion, which was reached by seventy-four per cent of the reanalyses in the robustness study, and the same number, which only thirty-four per cent came close to. When you claim robustness, say which one you mean.
+The first point comes from the article on the robustness study, which holds that analyses following a single path "should not be simply assumed to be robust to alternative analyses". A single path can be a good one, and the reader is still owed the space around it, so a report needs the chosen path and the alternatives together. Auspurg and Brüderl give the constructive recipe that we followed today: a precise question, assumptions drawn explicitly as a graph, a multiverse and a sensitivity analysis. In your own writing, keep the two standards of robustness apart, the same conclusion, which seventy-four per cent of the reanalyses in the robustness study reached, and the same number, which only thirty-four per cent came close to, and when you claim robustness, say which one you mean.
 :::
 
 ## The single analytical path {#a-single-analytical-path-is-a-choice}
@@ -40,5 +40,5 @@ Everything is open, and you can fork any of it.
 :::
 
 ::: notes
-There is no privileged single analytical path, only justifiable ones, explored openly. You have done this once today: you made defensible choices, you gave a reason for each of them, and you placed the results inside the space of alternatives. That habit transfers to any analysis you do, and the tools, the estimand, the graph and the curve were all there to support it. The address of the workshop's website is on the screen, and everything on it is open.
+No single analytical path is privileged, and what remains are justifiable paths, explored openly. Today you made defensible choices, gave a reason for each and placed the results among the alternatives, a habit that carries over to any analysis that you do, and the estimand, the graph and the curve were there to support it. The address of the workshop's website is on the screen, and everything on it is open.
 :::

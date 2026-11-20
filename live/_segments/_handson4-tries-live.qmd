@@ -14,5 +14,5 @@ my_experiments()
 ```
 
 ::: notes
-When you have three or four tries, print the log. My underscore experiments lists the tries side by side, with only the decisions that you varied, which is the small multiverse that you have just built. Read the range of the estimates at the bottom, and how many of your tries are below zero and significant. Then rerun whichever one you can argue for best, so that it is your last try, because in a few minutes we place it on the curve of the claim. This session sends nothing to a class chart, so there is no submission today, and the page Outside the workshop says where to take that step.
+When you have three or four tries, print the log. My underscore experiments lists the tries side by side, with only the decisions that you varied, which is the small multiverse that you have just built. Read the range of the estimates at the bottom, and how many of your tries are below zero and significant. Then rerun the try for which you can argue best, so that it is your last, because we place it on the curve of the claim shortly. Nothing goes to a class chart in this format, and the page Outside the workshop says where to take that step.
 :::

@@ -5,5 +5,5 @@ First half
 :::
 
 ::: notes
-The first half. We start with the vocabulary of three kinds of repetition, and with the large studies that measured how often findings survive each of them, one of which supplies our case study. Then the case study itself, an experiment run by email, and its claim. We work out what question the claim answers and draw a causal graph of the experiment, which turns up something that is easy to miss. And before the break you reproduce the result that one of the five independent analysts of this claim reported, whichever of them you choose, and find out why your number is exactly that number.
+The first half starts with the vocabulary of three kinds of repetition and with the large studies that measured how often findings survive each of them, one of which supplies our case study. Then comes the case study itself, an experiment run by email, with its claim. We work out which question the claim answers and draw a causal graph of the experiment, which brings out a problem that is easy to miss. Before the break you reproduce the result reported by one of the five independent analysts of this claim, the one that I give you, and find out why your number comes out exactly as it does.
 :::

@@ -15,7 +15,7 @@ You need no account today. We read OSF the way that reviewers do.
 ::::
 
 ::: notes
-Outside a classroom, an analysis plan is preregistered by filing it in a public registry, and the Open Science Framework is the registry that most social scientists meet first. OSF does two jobs. It archives materials: the SCORE programme and its robustness study keep their records there, which is the only reason you can stand in the place of a real analyst at all. And it registers plans. A registration is a frozen, timestamped snapshot of what you intend to do, filed before you do it, which nobody, including you, can quietly edit afterwards. You do not need an account for any of this today. We read OSF the way a reviewer or a sceptical reader would, starting from the public record of the paper we have been working on.
+Outside a classroom, an analysis plan is preregistered by filing it in a public registry, and the Open Science Framework is the registry that most social scientists meet first. The OSF does two jobs. It archives materials, and the SCORE programme and its robustness study keep their records there, which is why you can stand in the place of one of its analysts at all. It also registers plans, and a registration is a frozen, timestamped snapshot of what you intend to do, filed before you do it, which nobody, you included, can edit afterwards. [advance] You need no account for any of this today, since we read the OSF as a reviewer or a sceptical reader would, starting from the public record of our paper.
 :::
 
 ## The preregistration of the robustness study {#the-study-you-are-inside-was-preregistered}
@@ -31,7 +31,7 @@ Preregistrations osf.io/4ev9t (pp. 2 and 9) and osf.io/y4evp; @AczelEtAl2026Inve
 :::
 
 ::: notes
-The robustness study, in which you have been working as the sixth analyst, was itself preregistered. One hundred claims, five or more analysts each, and complete analytical freedom in the first task. The part that had to be pinned down in advance was the judging: what counts as the same conclusion, and how close is close for an effect size. Those rules were registered on the OSF after the analysts had been recruited and before any of them had started, among them the rule that two results count as the same when their effect sizes lie within five hundredths of a Cohen's d of each other. That is why the seventy-four per cent and the thirty-four per cent that we met earlier mean something: nobody could move the goalposts once the results were in.
+The robustness study, in which you have been working as the sixth analyst, was itself preregistered, with a hundred claims, at least five analysts for each, and complete freedom of analysis in the first task. What had to be fixed in advance was the judging, what counts as the same conclusion and how close an effect size has to be. Those rules were registered on the OSF after the analysts had been recruited and before any of them had started, among them the rule that two results count as the same when their effect sizes lie within five hundredths of a Cohen's d of each other. Because nobody could change the criteria once the results were in, the seventy-four per cent and the thirty-four per cent that we met earlier can be taken at face value.
 :::
 
 ## Preregistration templates {#two-templates-one-choice}
@@ -43,5 +43,5 @@ The robustness study, in which you have been working as the sixth analyst, was i
 :::
 
 ::: notes
-There are two templates, and the workshop uses one of them. The preregistration block in your report follows the AsPredicted short form: eight questions in plain language. But it has limits. AsPredicted was written for people who have not collected their data yet, and its very first question, whether any data have been collected, has for us the awkward answer that we already hold everything. There is a template built for that situation: the secondary-data preregistration template by van den Akker and colleagues, twenty-five questions, with a whole section on what you already know about the data. It is the tool that a full version of this exercise would use. Our block borrows that section and calls it the data-in-hand statement.
+The workshop uses one of two templates. The preregistration block in your report follows the AsPredicted short form, eight questions in plain language, but AsPredicted was written for people who have not yet collected their data, and its first question, whether any data have been collected, has for us the awkward answer that we already hold everything. The secondary-data template by van den Akker and colleagues, with twenty-five questions and a whole section on what the analyst already knows about the data, was built for that situation, and a full version of this exercise would use it. Our block borrows that section and calls it the data-in-hand statement.
 :::

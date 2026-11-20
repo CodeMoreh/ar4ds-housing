@@ -27,7 +27,7 @@ chisq.test(tab_8ptrz, correct = FALSE)
 ```
 
 ::: notes
-Here is the correction switched off, on the slides, so that you can watch the number move. The first two cells rebuild the table of 8PTRZ from the public file, whichever analyst you chose, and print nothing. The third runs the same test with correct equals false. The first line of the printout loses the words about the correction, and the statistic rises from fourteen point two six five to fourteen point nine five. The conclusion does not change, since both values are far beyond any threshold, but only the corrected value matches the record. In the IDE workspace the same test sits in the chunk after the five tabs of Task 3.
+Here the correction is switched off. The first two cells rebuild the table of 8PTRZ from the public file, whichever analyst you reproduced, and print nothing, and the third runs the same test with correct equals false. The first line of the printout loses the words about the correction, and the statistic rises from fourteen point two six five to fourteen point nine five. The conclusion does not change, since both values are far beyond any threshold, but only the corrected value matches the record. In the IDE workspace the same test sits in the chunk after the five tabs of Task 3.
 :::
 
 ## Hands-on 3 – 25N5D uncorrected {#hands-on-3-25n5d-uncorrected .smaller .output-8}
@@ -56,5 +56,5 @@ Without the correction: `r fmt_num(chi_plain, 2)` and `r fmt_num(prop_plain, 2)`
 :::
 
 ::: notes
-And the same for 25N5D. The first cell counts the greetings and the delivered emails for the Hispanic and the white names in one pipe, and prints nothing. The second tests the two proportions without the correction. [advance] The statistic rises from thirteen point six eight three to fourteen point three three. So both analysts reported the corrected value without asking for it, because the two functions apply the correction by default. A report that says only that the analyst ran a chi-square test fits both numbers, the corrected and the plain one. That is why a reproduction needs the code, or at least every default and every coding on which the code relied.
+The same for 25N5D. The first cell counts the greetings and the delivered emails for the Hispanic and the white names in one pipe and prints nothing, and the second tests the two proportions without the correction. [advance] The statistic rises from thirteen point six eight three to fourteen point three three. Both analysts reported the corrected value without asking for it, because the two functions apply the correction by default, and a report that says only that a chi-square test was run fits both numbers. A reproduction therefore needs the code, or at least every default and every coding on which the code relied.
 :::

@@ -16,7 +16,7 @@ Nothing runs until your block is complete.
 :::
 
 ::: notes
-Now the preregistration. Open Task 5 in your report, or the block on the next slide if you work in these slides. Fill in the five fields: the claim, the data-in-hand statement, your one specification with an option for each decision of the menu, the one-sentence justification that your graph gives you, and the rule, written now and before any result, for what would support the claim and what would undermine it. Render the report; the rendered file with its date is the record of your preregistration, and you run nothing before it exists. If the specification that you choose is one that you already tried in Task 4, that is allowed, but say so in the block, because a specification whose result you have already seen is not preregistered in the strict sense.
+Now the preregistration. Open Task 5 in your report, or the block on the next slide if you work in these slides, and fill in the five fields: the claim, the data-in-hand statement, your one specification with an option for each decision of the menu, the one-sentence justification that your graph gives you, and the rule, written now and before any result, for what would support the claim and what would undermine it. Then render the report, because the rendered file with its date is the record of your preregistration, and run nothing before it exists. You may choose a specification that you already tried in Task 4, but say so in the block, because a specification whose result you have seen is not preregistered in the strict sense.
 :::
 
 ## Hands-on 5 – The preregistration block {#hands-on-5-the-preregistration-block .smaller}
@@ -63,7 +63,7 @@ my_scale      <- "pp"        # pp   (percentage points)
 ```
 
 ::: notes
-Here is the block, the same as the one in your report. The numbered comments map onto the questions of the AsPredicted short form: the claim, the data and what you already know about them, your one specification, the reason from your causal graph, and your rule for what supports the claim. The eleven lines in the middle are the decisions of the menu in its three groups, each set to the reference specification, with the options of the curve in the comment beside it. Make one choice on each, complete the dotted lines, and run the cell. It prints nothing, because the session simply remembers your choices for the next cell. The editor shows fourteen lines and scrolls for the rest.
+This is the block of your report. The numbered comments follow the questions of the AsPredicted short form: the claim, the data and what you already know about them, your one specification, the reason from your causal graph, and your rule for what supports the claim. The eleven lines in the middle are the decisions of the menu in its three groups, each set to the reference specification, with the options of the curve in the comment beside it. Make one choice on each, complete the dotted lines and run the cell, which prints nothing, because the session keeps your choices for the next cell; the editor shows fourteen lines and scrolls for the rest.
 :::
 
 ## Hands-on 5 – The declaration {#hands-on-5-the-declaration .smaller}
@@ -78,7 +78,7 @@ my_spec <- prereg()   # checks every choice, prints your preregistration and kee
 ```
 
 ::: notes
-Then the declaration itself. Prereg reads the eleven choices of the block, checks each one against the menu, and stops with the reason if one of them is off the curve, as try underscore spec does. If every choice is on the curve, it prints your preregistration: the choices in the three groups of the menu, and the estimand statement that the choices make, written out in words. It also keeps the block as my underscore spec, which the run on the next slide needs. In your IDE workspace the rendered report, with its date, is the record of the declaration, and in these slides you copy the block into your notes.
+Prereg reads the eleven choices of the block and checks each one against the menu, and it stops with the reason, as try underscore spec does, if one of them is off the curve. If every choice is on the curve, it prints your preregistration, with the choices in the three groups of the menu and the estimand statement that they make, written out in words, and it keeps the block as my underscore spec for the run on the next slide. In your IDE workspace the rendered report, with its date, is the record of the declaration, and in these slides you copy the block into your notes.
 :::
 
 ## Hands-on 5 – The preregistered run {#run-it-then-watch-the-chart .smaller}
@@ -95,7 +95,7 @@ run_spec(my_spec)
 ```
 
 ::: notes
-Go. Run the specification in your preregistration, just that one, with run underscore spec. It fits the specification live and prints the same lines as try underscore spec, so you already know how to read them: the shares, the difference with its interval, the test of the model, the verdict and the place among the sixty-four. It refuses to run if you have changed the block since prereg read it, because the point of a declaration is that it comes before the result. A value below zero means that the replies to Hispanic names greeted the sender by name less often, the direction of the claim. Read your verdict, and then we send it to the chart.
+Now run the specification in your preregistration, and only that one, with run underscore spec. It fits the specification and prints the same lines as try underscore spec, so you already know how to read them: the shares, the difference with its interval, the test of the model, the verdict and the place among the sixty-four. It refuses to run if you have changed the block since prereg read it, because a declaration has to come before the result. A value below zero means that the replies to the Hispanic names greeted the sender by name less often, the direction of the claim. Read your verdict, and then send the result to the chart.
 :::
 
 ## Hands-on 5 – The report {#hands-on-5-the-report .smaller .output-8}
@@ -118,7 +118,7 @@ Stuck? Raise your hand, reload and rerun, try a second browser or follow my scre
 :::
 
 ::: notes
-When the numbers are in front of you, call report underscore result. It builds your submission from the preregistration, so there is nothing to fill in or transcribe, and prints the address of the results form with your values already in it: open it in a new tab, press Send, and you have submitted. Your mark joins the chart on the Class results page as a declared result, a filled circle, beside the open circles that the class submitted in Task 4, and with the same tag. [advance] If the declared results fall systematically to one side of the exploratory ones, that tells you something about what people chose to preregister once they had tried the alternatives. [advance] If anything misbehaves, raise your hand and work down the ladder on the cheatsheet. Your specification is one row of the curve file, and I will help you submit it by hand, so everybody gets a mark on the chart.
+With the numbers in front of you, call report underscore result. It builds your submission from the preregistration, so there is nothing to fill in or copy, and prints the address of the results form with your values in it; open it in a new tab and press Send. Your mark joins the chart on the Class results page as a declared result, a filled circle with the same tag, beside the open circles of Task 4. [advance] If the declared results fall systematically to one side of the exploratory ones, the pattern may say something about what people chose to preregister once they had tried the alternatives. [advance] If anything goes wrong, raise your hand and work down the steps on the cheatsheet; your specification is one row of the curve file, and I can help you submit it by hand, so that everybody has a mark on the chart.
 :::
 
 ## Hands-on 5 – The curve {#hands-on-5-the-curve .smaller}
@@ -144,7 +144,7 @@ mine <- spec_curve |>
 ```
 
 ::: notes
-Finally, your result on the curve of the claim, the sixty-four specifications that the menu keeps, ranked from the most negative estimate. Two cells prepare the figure and print nothing. The first reads the curve that the slides loaded, ranks it, and labels the two answers to the decision on which emails are counted. The second picks out your own specification by the choices of your preregistration cell. It uses dplyr rather than datawizard, because datawizard evaluates its conditions in an environment of its own, from which the choices of the block cannot be reached. The figure is on the next slide, and in your IDE workspace the same steps make the last figure of the report.
+Your result now goes on the curve of the claim, the sixty-four specifications kept by the menu, ranked from the most negative estimate. Two cells prepare the figure and print nothing. The first reads the curve loaded by the slides, ranks it and labels the two answers to the decision on the emails counted, and the second picks out your own specification by the choices of your preregistration cell. The second cell uses dplyr rather than datawizard, because datawizard evaluates its conditions in an environment of its own, from which the choices of the block cannot be reached. In your IDE workspace the same steps make the last figure of the report.
 :::
 
 ## Hands-on 5 – Your declared result {#hands-on-5-your-declared-result .smaller .output-fig}
@@ -172,5 +172,5 @@ tinyplot::tinytheme()
 ```
 
 ::: notes
-And the figure, whose code scrolls in the editor. Each point is one of the sixty-four specifications, ranked from the most negative estimate and coloured by the emails counted, and yours is ringed in burgundy. All sixty-four lie below zero, from minus twenty to minus twelve points, and every one is significant at five per cent under the test of its model. The two clusters are the two answers to the decision on which emails are counted. Counting every delivered email moves the estimate about five points towards zero, and no other decision moves it by more than about two point seven. Within these data the claim holds under every choice on the menu, and only its size moves. Whether it holds on new data is the next task.
+The code of the figure scrolls in the editor. Each point is one of the sixty-four specifications, ranked from the most negative estimate and coloured by the emails counted, and yours is ringed in burgundy. All sixty-four lie below zero, from minus twenty to minus twelve points, and every one is significant at five per cent under the test of its model. The two clusters are the two answers to the decision on the emails counted: counting every delivered email moves the estimate about five points towards zero, and no other decision moves it by more than about two point seven. Within these data the claim holds under every choice on the menu, and only its size moves; Task 6 asks whether it holds on new data.
 :::
