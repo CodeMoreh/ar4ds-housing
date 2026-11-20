@@ -1,10 +1,10 @@
 # Codebook: `housing_original.csv`
 
-The public file of the original authors (OAs) of "Does Race Affect Access to Government Services? An Experiment Exploring Street-Level Bureaucrats and Access to Public Housing" (*American Journal of Political Science* 61 (1), 2017), as a plain CSV with its own column names: 1,014 rows, one per email, and 14 columns. It is written by `R/01_email_data.R` from `HousingAuditAJPSFinalPublic_Unidentified.dta`, the blinded file of the replication package on the Harvard Dataverse (doi:10.7910/DVN/1HOVTU, CC0). The script turns the Stata value labels into their numeric codes and drops the variable labels and formats; it changes no value and no row. The reproduction of Task 3 runs on this file, because a reproduction starts from the data as the OAs published them. Every other exercise uses the workshop file, `housing_emails.csv` ([codebook](housing_emails_codebook.md)), which holds the same rows in the same order with readable names.
+The public file of the original authors (OAs) of "Does Race Affect Access to Government Services? An Experiment Exploring Street-Level Bureaucrats and Access to Public Housing" (*American Journal of Political Science* 61 (1), 2017), as a plain CSV with its own column names: 1,014 rows, one per email, and 14 columns. It is written by `R/01_email_data.R` from `HousingAuditAJPSFinalPublic_Unidentified.dta`, the blinded file of the replication package on the Harvard Dataverse (doi:10.7910/DVN/1HOVTU, CC0). The script turns the Stata value labels into their numeric codes and drops the variable labels and formats; it changes no value and no row. The reproduction of Task 3 runs on this file, because a reproduction starts from the data as the OAs published them. Every other exercise uses the analysis file, `housing_emails.csv` ([codebook](housing_emails_codebook.md)), which holds the same rows in the same order with readable names.
 
 ## Columns
 
-| Column | Description | In the workshop file |
+| Column | Description | In the analysis file |
 |:--|:--|:--|
 | `NumberAssignment` | The email account, assigned at random: 1 Tyrone, 2 Shanice, 3 Santiago, 4 Gabriela, 5 Brett, 6 Emily | `name`, `group`, `name_sex` |
 | `TreatmentGroup` | The same assignment as text: `white male`, `white female`, `black male`, `black female`, `Hispanic male`, `Hispanic female`. The codebook of the OAs calls it redundant with `NumberAssignment` | – |
@@ -21,7 +21,7 @@ The public file of the original authors (OAs) of "Does Race Affect Access to Gov
 | `poverty_pop_third` | The same on the poverty rate | `poverty_third` |
 | `assesment_third` | The third of the housing authority on the HUD assessment score; the spelling is that of the source | `assessment_third` |
 
-The counts of every column are given in the [codebook of the workshop file](housing_emails_codebook.md). The community values are thirds because the continuous values of the 2012 American Community Survey would identify the housing authorities. The Stata file labels `HispanicEmailer` "Hard to find email address", a copy error in the source, and the codebook of the OAs labels it "Respondent had Hispanic name".
+The counts of every column are given in the [codebook of the analysis file](housing_emails_codebook.md). The community values are thirds because the continuous values of the 2012 American Community Survey would identify the housing authorities. The Stata file labels `HispanicEmailer` "Hard to find email address", a copy error in the source, and the codebook of the OAs labels it "Respondent had Hispanic name".
 
 ## The reproductions of Task 3
 

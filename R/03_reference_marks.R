@@ -132,8 +132,8 @@ marks <- dplyr::bind_rows(
                      statistic = dplyr::coalesce(statistic_recorded, statistic_refit), n = n_refit,
                      b_pp = b_pp_refit, on_chart = TRUE,
                      note = dplyr::if_else(is.na(statistic_recorded),
-                                           "No statistic recorded in the robustness study; placed by the workshop refit of the analysis.",
-                                           "Placed by the workshop refit of the analysis, which reproduces the recorded statistic."))
+                                           "No statistic recorded in the robustness study; placed by the workshop's refit of the analysis.",
+                                           "Placed by the workshop's refit of the analysis, which reproduces the recorded statistic."))
 )
 
 readr::write_csv(marks, "data/reference_marks.csv", na = "")

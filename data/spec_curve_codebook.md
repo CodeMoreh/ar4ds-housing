@@ -1,6 +1,6 @@
 # Codebook: `spec_curve.csv`
 
-The curve of the claim of the Housing and racial bias case study, "Hispanic housing applicants were ... less likely to be greeted by name than were ... white counterparts", in the wording that SCORE took from the paper of the original authors (OAs): every specification that the specification menu of the workshop keeps, 64 rows, fitted once on the workshop file `housing_emails.csv`. The file is written by `R/02_spec_curve.R` with the estimator of `R/_tools.R` (`fit_spec()`), which uses base R, dplyr and one function of purrr, so that the workspace and the browser lab run the identical code; `R/check_parity.R` checks it against `estimatr` (HC2 errors) and `marginaleffects` (average marginal effects) on every row.
+The curve of the claim of the Housing and racial bias case study, "Hispanic housing applicants were ... less likely to be greeted by name than were ... white counterparts", in the wording that SCORE took from the paper of the original authors (OAs): every specification that the workshop's specification menu keeps, 64 rows, fitted once on the analysis file `housing_emails.csv`. The file is written by `R/02_spec_curve.R` with the estimator of `R/_tools.R` (`fit_spec()`), which uses base R, dplyr and one function of purrr, so that the workspace and the browser lab run the identical code; `R/check_parity.R` checks it against `estimatr` (HC2 errors) and `marginaleffects` (average marginal effects) on every row.
 
 ## The specifications
 
