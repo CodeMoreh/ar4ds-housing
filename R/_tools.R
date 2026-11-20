@@ -12,7 +12,7 @@
 #               background.qmd, menu.qmd
 ################################################################################
 
-# The workspace (R/spec_tools.R) and the browser lab (_includes/_lab-helpers.qmd)
+# The IDE workspace (R/spec_tools.R) and the webR workspace (_includes/_lab-helpers.qmd)
 # run the same code. R/check_parity.R checks the HC2 errors and the average
 # marginal effect against estimatr and margins. The rows and the outcome are
 # built with dplyr, because inside a function datawizard::data_modify() and

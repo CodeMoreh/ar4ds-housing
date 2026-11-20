@@ -1,27 +1,27 @@
 ################################################################################
 # Title:        07_dag_answers.R
-# Purpose:      The answers that the causal-graph task of the browser lab
+# Purpose:      The answers that the causal-graph task of the webR workspace
 #               prints (Task 2), computed with dagitty (Textor et al. 2016,
 #               International Journal of Epidemiology) for every graph to
-#               which the cell of the lab that builds the graph leads: the
+#               which the cell of the webR workspace that builds the graph leads: the
 #               graph as that cell writes it, and the same graph with the arrow of the claim,
 #               name -> greeting, switched on. For each graph, the minimal
 #               adjustment sets for the total effect of the name on the
 #               greeting, and every path between the two with whether it is
 #               open given nothing, the reply, and the reply and the community.
-#               The lab reads these answers because dagitty cannot run there:
+#               The webR workspace reads these answers because dagitty cannot run there:
 #               its graph algorithms need a JavaScript engine that a browser
 #               grants only to a page served with cross-origin isolation
 #               headers, which the workshop's website does not send.
 # Reads:        nothing; the arrows are those of the cell that builds the
 #               graph in lab.qmd and of R/dag_starter.R in the
-#               workspace
+#               IDE workspace
 # Writes:       data/dag_answers.csv
 # Author:       Claude for CM
 # Last updated: 2026-11-20
 ################################################################################
 
-# The arrows of the cell that builds the graph in the lab, written
+# The arrows of the cell that builds the graph in the webR workspace, written
 # "cause -> effect" as that cell writes them: the six that it switches on, and
 # the one that it leaves switched off for the participant. A change to that
 # cell needs the same change here.

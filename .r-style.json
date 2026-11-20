@@ -389,7 +389,7 @@
     {
       "file": "_includes/_lab-helpers.qmd",
       "code": "assign(name, utils::read.csv(path, stringsAsFactors = FALSE, encoding = \"UTF-8\",",
-      "reason": "the same reader as the workspace"
+      "reason": "the same reader as the IDE workspace"
     },
     {
       "file": "_includes/_lab-helpers.qmd",

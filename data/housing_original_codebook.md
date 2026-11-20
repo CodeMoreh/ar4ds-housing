@@ -35,4 +35,4 @@ The five reanalyses of the claim in the SCORE robustness study (Aczel et al. 202
 | 25N5D | the 665 delivered emails to Hispanic and white names (`Response_Dichotomous` not empty), a missing reply counted as no greeting | `prop.test()` on the greetings by name and the emails of each group, with its default continuity correction (14.33 without it) | $\chi^2$ = 13.683 |
 | P9W8Y | the 558 coded replies | likelihood-ratio test of a logistic regression of `ProperName` on the three groups against a model without them | none recorded; the test gives $\chi^2$ = 15.951 on 2 df |
 
-The group and the sex of the name are the two words of `TreatmentGroup`. The code of each reproduction is in Task 3 of the browser lab and of the downloadable workspace.
+The group and the sex of the name are the two words of `TreatmentGroup`. The code of each reproduction is in Task 3 of the webR workspace and of the IDE workspace.
