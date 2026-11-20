@@ -4,7 +4,7 @@ subtitle: "Self-taught"
 bibliography: [../../references.bib, ../../references-new.bib]
 ---
 
-The [background page](../../background.qmd) presents the original study and the two studies of SCORE that took it up, the robustness study with its five reanalyses [@AczelEtAl2026InvestigatingAnalyticalRobustness] and the replicability study with its new experiment. The self-taught format takes all six tasks, and you do them in the IDE workspace, which stage 1 installs and which you open in your IDE (Positron, RStudio, VS Code, etc.). The [webR workspace](../../lab.qmd), on which R runs inside your browser, holds every task as well, with hints and worked solutions, and it carries the work if your installation fails. Stage 1 takes Task 1, stage 3 Tasks 2 and 3, and stage 4 Tasks 4 to 6. Sending your results to the class chart is optional.
+The [background page](../../background.qmd) presents the original study and the two studies of SCORE that took it up, the robustness study with its five reanalyses [@AczelEtAl2026InvestigatingAnalyticalRobustness] and the replicability study with its new experiment. The self-taught format takes all six tasks, and you do them in the IDE workspace, which stage 1 installs and which you open in Positron, RStudio, VS Code or another IDE. The [webR workspace](../../lab.qmd), on which R runs inside your browser, holds every task as well, with hints and worked solutions, and it carries the work if your installation fails. Stage 1 takes Task 1, stage 3 Tasks 2 and 3, and stage 4 Tasks 4 to 6. Sending your results to the class chart is optional.
 
 ---
 

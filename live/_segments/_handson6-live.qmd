@@ -8,7 +8,7 @@
 ::: {.small}
 - **Task 6** – run your declared specification on the data of the replication, a new experiment of 2020 that emailed 3,050 housing authorities under four new male names
 - The new experiment had no Black names, no reply without a greeting code and no indicator of a hard-to-find address, so `replicate_spec()` first translates your specification and prints each change, then your result on the original data above your result on the new data
-- *IDE workspace:* the chunk `replicate`
+- *IDE:* the chunk `replicate`
 :::
 
 ```{webr}
@@ -23,7 +23,7 @@ Now the third R. Everything that you have fitted so far came from the emails of 
 ## Hands-on 6 – The two curves {#hands-on-6-the-two-curves .smaller}
 
 ::: {.small}
-The curve of the original data, read in Task 5, and the curve of the new data, each ranked from the most negative estimate. The first cell stacks the two curves, and the second picks out your specification on each, translated on the new data; neither prints anything. *IDE workspace:* the first half of the chunk `fig-replication`.
+The curve of the original data, read in Task 5, and the curve of the new data, each ranked from the most negative estimate. The first cell stacks the two curves, and the second picks out your specification on each, translated on the new data; neither prints anything. *IDE:* the first half of the chunk `fig-replication`.
 :::
 
 ```{webr}
@@ -60,7 +60,7 @@ Two cells prepare the figure and print nothing. The first reads the curve of the
 ## Hands-on 6 – Your result on new data {#hands-on-6-your-result-on-new-data .smaller .output-fig}
 
 ::: {.small}
-The two curves, coloured by the emails counted, with your declared specification ringed on each. *IDE workspace:* the chunk `fig-replication`.
+The two curves, coloured by the emails counted, with your declared specification ringed on each. *IDE:* the chunk `fig-replication`.
 :::
 
 ```{webr}

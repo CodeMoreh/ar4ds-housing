@@ -4,7 +4,7 @@
 ## Hands-on 4 – The submission {#hands-on-4-the-submission .smaller .output-8}
 
 ::: {.small}
-`my_experiments()` lists your tries. Rerun the one that you would defend and **submit it**: the cell prints your tag and the address of the form, and your circle appears on the [Class results]({{< var cases.housing.live-results-url >}}) page. *IDE workspace:* the chunks `my-experiments` and `submit-exploration`.
+`my_experiments()` lists your tries. Rerun the one that you would defend and **submit it**: the cell prints your tag and the address of the form, and your circle appears on the [Class results]({{< var cases.housing.live-results-url >}}) page. *IDE:* the chunks `my-experiments` and `submit-exploration`.
 :::
 
 ```{webr}

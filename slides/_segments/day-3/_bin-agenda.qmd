@@ -17,7 +17,7 @@ You leave able to say what each model of the menu estimates, on which scale it r
 :::
 
 ::: {.todaymeta}
-Work along in the IDE workspace, in your IDE (Positron, RStudio, VS Code, etc.)
+Work along in the IDE workspace, in Positron, RStudio, VS Code or another IDE
 :::
 
 ::: notes

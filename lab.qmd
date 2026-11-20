@@ -833,4 +833,4 @@ Write two sentences: what your result on the new data says about the claim, and 
 
 ## Taking it home
 
-This page keeps nothing once it is refreshed. The same exercise is in the [IDE workspace]({{< var cases.housing.template-repo >}}), a folder that you open in your IDE and keep, and the [Git and GitHub module](https://codemoreh.github.io/ar4ds/git-github.html) shows how to put it under version control and publish its report.
+This page keeps nothing once it is refreshed. The same exercise is in the [IDE workspace]({{< var cases.housing.template-repo >}}), a folder that you open and keep, and the [Git and GitHub module](https://codemoreh.github.io/ar4ds/git-github.html) shows how to put it under version control and publish its report.

@@ -5,7 +5,7 @@
 ## Hands-on 3 – 8PTRZ uncorrected {#hands-on-3-8ptrz-uncorrected .smaller .output-8}
 
 ::: {.small}
-The test of 8PTRZ with `correct = FALSE`. *IDE workspace:* the chunk `reproduce-uncorrected`.
+The test of 8PTRZ with `correct = FALSE`. *IDE:* the chunk `reproduce-uncorrected`.
 :::
 
 ```{webr}

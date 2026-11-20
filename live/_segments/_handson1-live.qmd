@@ -14,7 +14,7 @@ Wait until the cell below shows **Run Code**, then run it: `housing` has `r form
 :::
 
 ::: {.small .content-visible unless-meta="deck.short"}
-**IDE workspace:** `source("R/check_setup.R")` in the folder prints an `[OK]` line for every check and ends on `r fmt_num(curve_ref$b_pp, 2)` percentage points; this slide runs the same check in the browser.
+**IDE:** `source("R/check_setup.R")` in the folder prints an `[OK]` line for every check and ends on `r fmt_num(curve_ref$b_pp, 2)` percentage points; this slide runs the same check in the browser.
 :::
 
 ```{webr}
@@ -28,13 +28,13 @@ writeLines(c(
 ```
 
 ::: notes
-Your turn, and this first task is deliberately not intellectual. The job is to reach the point where a line of R runs and the data are in front of you.[ Open the folder of your IDE workspace in your IDE and source the check script, which prints one OK line for each thing that the workshop needs and ends by fitting a small model, at minus nineteen point nine seven points. The cell on this slide runs the same check in the browser. If your installation will not cooperate, do not fight it: carry on in these slides, or in the webR workspace, which gives the same numbers. Take the time you need, into the break if you have to.]{.content-visible unless-meta="deck.short"}[ Wait for the cell on this slide to show its Run Code button, press it, and check that the data have one row for each of the emails, a thousand and fourteen of them. The last line fits a small model, and its number comes back later. Five minutes, nothing to install, and the warm-up on the next slide while the engine downloads.]{.content-visible when-meta="deck.short"} Raise your hand if you need me.
+Your turn, and this first task is deliberately not intellectual. The job is to reach the point where a line of R runs and the data are in front of you.[ Open the folder of your IDE workspace and source the check script, which prints one OK line for each thing that the workshop needs and ends by fitting a small model, at minus nineteen point nine seven points. The cell on this slide runs the same check in the browser. If your installation will not cooperate, do not fight it: carry on in these slides, or in the webR workspace, which gives the same numbers. Take the time you need, into the break if you have to.]{.content-visible unless-meta="deck.short"}[ Wait for the cell on this slide to show its Run Code button, press it, and check that the data have one row for each of the emails, a thousand and fourteen of them. The last line fits a small model, and its number comes back later. Five minutes, nothing to install, and the warm-up on the next slide while the engine downloads.]{.content-visible when-meta="deck.short"} Raise your hand if you need me.
 :::
 
 ## Hands-on 1 – The warm-up {#hands-on-1-the-warm-up .smaller}
 
 ::: {.small}
-Three of the four scenarios describe one of the three Rs, and the fourth something else. Fill in the gaps in the cell and run it to print your answers back.[ *IDE workspace:* the same four scenarios are in the box of Task 1 of `index.qmd`.]{.content-visible unless-meta="deck.short"}
+Three of the four scenarios describe one of the three Rs, and the fourth something else. Fill in the gaps in the cell and run it to print your answers back.[ *IDE:* the same four scenarios are in the box of Task 1 of `index.qmd`.]{.content-visible unless-meta="deck.short"}
 :::
 
 :::: {.columns .fs-65}

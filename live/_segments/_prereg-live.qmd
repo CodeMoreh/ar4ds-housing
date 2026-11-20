@@ -22,7 +22,7 @@ Now the preregistration. Open Task 5 in your report, or the block on the next sl
 ## Hands-on 5 – The preregistration block {#hands-on-5-the-preregistration-block .smaller}
 
 ::: {.small}
-One choice on each decision of the menu, and the dotted lines completed; then run the cell, which prints nothing. *IDE workspace:* the chunk `prereg` of `index.qmd`.
+One choice on each decision of the menu, and the dotted lines completed; then run the cell, which prints nothing. *IDE:* the chunk `prereg` of `index.qmd`.
 :::
 
 ```{webr}
@@ -69,7 +69,7 @@ Here is the block, the same as the one in your report. The numbered comments map
 ## Hands-on 5 – The declaration {#hands-on-5-the-declaration .smaller}
 
 ::: {.small}
-`prereg()` checks every choice against the menu, prints your preregistration with its estimand statement and keeps it as `my_spec`. The preregistration cell, copied into your notes, is your preregistration record. *IDE workspace:* the last line of the chunk `prereg`.
+`prereg()` checks every choice against the menu, prints your preregistration with its estimand statement and keeps it as `my_spec`. The preregistration cell, copied into your notes, is your preregistration record. *IDE:* the last line of the chunk `prereg`.
 :::
 
 ```{webr}
@@ -86,7 +86,7 @@ Then the declaration itself. Prereg reads the eleven choices of the block, check
 ::: {.small}
 - **Task 5** – run the specification in your preregistration, and only that one, with `run_spec()`
 - It prints the same lines as `try_spec()` and refuses to run if the block has changed since `prereg()` read it. The line headed `Verdict:` says which of the four cases your result falls in
-- *IDE workspace:* the chunk `run-spec`
+- *IDE:* the chunk `run-spec`
 :::
 
 ```{webr}
@@ -101,7 +101,7 @@ Go. Run the specification in your preregistration, just that one, with run under
 ## Hands-on 5 – The report {#hands-on-5-the-report .smaller .output-8}
 
 ::: {.small}
-`report_result()` prints the address of the results form with your values already in it – open it in a new tab and press Send. Your result joins the [Class results]({{< var cases.housing.live-results-url >}}) page as a *declared* result, a filled circle beside the open circles of Task 4. *IDE workspace:* the chunk `report`.
+`report_result()` prints the address of the results form with your values already in it – open it in a new tab and press Send. Your result joins the [Class results]({{< var cases.housing.live-results-url >}}) page as a *declared* result, a filled circle beside the open circles of Task 4. *IDE:* the chunk `report`.
 :::
 
 ```{webr}
@@ -124,7 +124,7 @@ When the numbers are in front of you, call report underscore result. It builds y
 ## Hands-on 5 – The curve {#hands-on-5-the-curve .smaller}
 
 ::: {.small}
-Finally, your result on the curve of the claim, the `r nrow(curve)` specifications ranked from the most negative estimate. The first cell reads and ranks the curve, and the second picks out yours by the choices of the preregistration cell; neither prints anything. *IDE workspace:* the first half of the chunk `fig-curve`.
+Finally, your result on the curve of the claim, the `r nrow(curve)` specifications ranked from the most negative estimate. The first cell reads and ranks the curve, and the second picks out yours by the choices of the preregistration cell; neither prints anything. *IDE:* the first half of the chunk `fig-curve`.
 :::
 
 ```{webr}
@@ -150,7 +150,7 @@ Finally, your result on the curve of the claim, the sixty-four specifications th
 ## Hands-on 5 – Your declared result {#hands-on-5-your-declared-result .smaller .output-fig}
 
 ::: {.small}
-The curve, coloured by the emails counted, with your declared specification ringed. *IDE workspace:* the chunk `fig-curve`.
+The curve, coloured by the emails counted, with your declared specification ringed. *IDE:* the chunk `fig-curve`.
 :::
 
 ```{webr}

@@ -9,7 +9,7 @@
 ## Hands-on 4 – Exploring the menu {#hands-on-4-work-the-menu .smaller}
 
 ::: {.small}
-**Task 4 is exploratory.** `try_spec()` with no arguments is the reference specification, the raw gap of the paper, and every argument defaults to it, so changing one thing means changing one argument. Run it and read the shares, the difference with its interval, the test, the verdict and the place among the `r nrow(curve)`.[ *IDE workspace:* the chunk `try-reference` of `index.qmd`.]{.content-visible unless-meta="deck.short"}
+**Task 4 is exploratory.** `try_spec()` with no arguments is the reference specification, the raw gap of the paper, and every argument defaults to it, so changing one thing means changing one argument. Run it and read the shares, the difference with its interval, the test, the verdict and the place among the `r nrow(curve)`.[ *IDE:* the chunk `try-reference` of `index.qmd`.]{.content-visible unless-meta="deck.short"}
 :::
 
 ```{webr}
@@ -29,7 +29,7 @@ This is where you get your hands properly dirty, and I want to be explicit about
 ## Hands-on 4 – The question {#hands-on-4-the-question .smaller .output-8}
 
 ::: {.small}
-Each of the next five cells changes a single decision. These two change the question that is asked of the data: the comparison group, and the emails counted.[ *IDE workspace:* the chunk `try-one-at-a-time`.]{.content-visible unless-meta="deck.short"}
+Each of the next five cells changes a single decision. These two change the question that is asked of the data: the comparison group, and the emails counted.[ *IDE:* the chunk `try-one-at-a-time`.]{.content-visible unless-meta="deck.short"}
 :::
 
 ```{webr}
@@ -84,7 +84,7 @@ Two decisions of the model, which leave the question and its measurement alone. 
 ## Hands-on 4 – Off the curve {#hands-on-4-off-the-curve .smaller}
 
 ::: {.small}
-The menu holds more options than the curve, and every other option is still an argument of `try_spec()`. The helper refuses it, gives the reason and names the page that teaches it. Then edit the cell to try others, such as `outcome = "reply"`, `names = "male"`, `comparison = "black"`, `adjust = "acs_continuous"` or `inference = "one_tailed"`.[ *IDE workspace:* the chunk `try-off-curve`.]{.content-visible unless-meta="deck.short"}
+The menu holds more options than the curve, and every other option is still an argument of `try_spec()`. The helper refuses it, gives the reason and names the page that teaches it. Then edit the cell to try others, such as `outcome = "reply"`, `names = "male"`, `comparison = "black"`, `adjust = "acs_continuous"` or `inference = "one_tailed"`.[ *IDE:* the chunk `try-off-curve`.]{.content-visible unless-meta="deck.short"}
 :::
 
 ```{webr}
@@ -100,7 +100,7 @@ The curve keeps only the options that answer this claim in a justifiable way, bu
 ## Hands-on 4 – Every argument {#hands-on-4-every-argument .smaller .output-8}
 
 ::: {.small}
-The full set of arguments, each set to the reference specification, with the options of the menu in the comment beside it. Edit any argument and run the cell.[ *IDE workspace:* write your own calls below the chunk `try-off-curve`.]{.content-visible unless-meta="deck.short"}
+The full set of arguments, each set to the reference specification, with the options of the menu in the comment beside it. Edit any argument and run the cell.[ *IDE:* write your own calls below the chunk `try-off-curve`.]{.content-visible unless-meta="deck.short"}
 :::
 
 ```{webr}

@@ -9,7 +9,7 @@
 ## Hands-on 3 – The reproduction {#hands-on-3-reproduce-the-recorded-result .smaller}
 
 ::: {.small}
-**Task 3**: take one of the five analysts (in class, the one given to you), work through the cells of that analyst on the public file `housing_original.csv`, and compare your value with the record. The cell on this slide reads the file as `original` and prints nothing; run it first.[ *IDE workspace:* the chunk `reproduce-read` of `index.qmd`, then the tab of your analyst.]{.content-visible unless-meta="deck.short"}
+**Task 3**: take one of the five analysts (in class, the one given to you), work through the cells of that analyst on the public file `housing_original.csv`, and compare your value with the record. The cell on this slide reads the file as `original` and prints nothing; run it first.[ *IDE:* the chunk `reproduce-read` of `index.qmd`, then the tab of your analyst.]{.content-visible unless-meta="deck.short"}
 :::
 
 ::: {.fs-60}
@@ -34,7 +34,7 @@ Now you work. I give each of you one of the five analysts, so that between you t
 ## Hands-on 3 – 8PTRZ {#hands-on-3-8ptrz .smaller .output-8}
 
 ::: {.small}
-**8PTRZ**: Hispanic names against all other names, among the `r an("8PTRZ", "n_recorded")` coded replies, with a chi-square test of the 2 × 2 table; on record **$\chi^2$ = `r fmt_num(an("8PTRZ", "statistic_recorded"), 3)`**. The exercise prints nothing, and the second cell prints the table.[ *IDE workspace:* the tab 8PTRZ, chunk `reproduce-8ptrz`.]{.content-visible unless-meta="deck.short"}
+**8PTRZ**: Hispanic names against all other names, among the `r an("8PTRZ", "n_recorded")` coded replies, with a chi-square test of the 2 × 2 table; on record **$\chi^2$ = `r fmt_num(an("8PTRZ", "statistic_recorded"), 3)`**. The exercise prints nothing, and the second cell prints the table.[ *IDE:* the tab 8PTRZ, chunk `reproduce-8ptrz`.]{.content-visible unless-meta="deck.short"}
 :::
 
 ```{webr}
@@ -100,7 +100,7 @@ Then the test. The cell runs chisq dot test on the table, exactly as 8PTRZ did. 
 ## Hands-on 3 – UYV3F {#hands-on-3-uyv3f .smaller .output-8}
 
 ::: {.small}
-**UYV3F** compared Hispanic with white names only, among the `r an("UYV3F", "n_recorded")` coded replies to those names, with a logistic regression of the greeting on the name and no covariates: on record **z = `r fmt_num(an("UYV3F", "statistic_recorded"), 3)`**. The first cell keeps the rows and prints nothing, and the second, the exercise, fits the model.[ *IDE workspace:* the tab UYV3F, chunk `reproduce-uyv3f`.]{.content-visible unless-meta="deck.short"}
+**UYV3F** compared Hispanic with white names only, among the `r an("UYV3F", "n_recorded")` coded replies to those names, with a logistic regression of the greeting on the name and no covariates: on record **z = `r fmt_num(an("UYV3F", "statistic_recorded"), 3)`**. The first cell keeps the rows and prints nothing, and the second, the exercise, fits the model.[ *IDE:* the tab UYV3F, chunk `reproduce-uyv3f`.]{.content-visible unless-meta="deck.short"}
 :::
 
 ```{webr}
@@ -165,7 +165,7 @@ The last cell prints the coefficients through parameters, the easystats package 
 ## Hands-on 3 – EWFMI {#hands-on-3-ewfmi .smaller}
 
 ::: {.small}
-**EWFMI** fitted a logistic regression of the greeting on all three groups of names, with the Hispanic names as the base group, the sex of the name, the poverty third of the community as a number and the hard-to-find address: on record **z = `r fmt_num(an("EWFMI", "statistic_recorded"), 3)`**, the *z* of the white names against the Hispanic names. The exercise prepares the rows and prints nothing.[ *IDE workspace:* the tab EWFMI, chunk `reproduce-ewfmi`.]{.content-visible unless-meta="deck.short"}
+**EWFMI** fitted a logistic regression of the greeting on all three groups of names, with the Hispanic names as the base group, the sex of the name, the poverty third of the community as a number and the hard-to-find address: on record **z = `r fmt_num(an("EWFMI", "statistic_recorded"), 3)`**, the *z* of the white names against the Hispanic names. The exercise prepares the rows and prints nothing.[ *IDE:* the tab EWFMI, chunk `reproduce-ewfmi`.]{.content-visible unless-meta="deck.short"}
 :::
 
 ```{webr}
@@ -228,7 +228,7 @@ Then the model itself. The first cell fits it and prints the number of replies t
 ## Hands-on 3 – 25N5D {#hands-on-3-25n5d .smaller .output-8}
 
 ::: {.small}
-**25N5D**: every delivered email, Hispanic against white names, with `prop.test()`; on record **$\chi^2$ = `r fmt_num(an("25N5D", "statistic_recorded"), 3)`** on `r an("25N5D", "n_recorded")` emails.[ *IDE workspace:* the tab 25N5D, chunk `reproduce-25n5d`.]{.content-visible unless-meta="deck.short"}
+**25N5D**: every delivered email, Hispanic against white names, with `prop.test()`; on record **$\chi^2$ = `r fmt_num(an("25N5D", "statistic_recorded"), 3)`** on `r an("25N5D", "n_recorded")` emails.[ *IDE:* the tab 25N5D, chunk `reproduce-25n5d`.]{.content-visible unless-meta="deck.short"}
 :::
 
 ```{webr}
@@ -297,7 +297,7 @@ Then the test. The cell passes the two counts to prop dot test, the test of two 
 ## Hands-on 3 – P9W8Y {#hands-on-3-p9w8y .smaller}
 
 ::: {.small}
-**P9W8Y** fitted a logistic regression of the greeting on the three groups of names among the coded replies and tested whether the three differ at all, with a likelihood-ratio test against a model without the groups. The robustness study recorded **no statistic** for this analysis. The cell keeps the coded replies and prints nothing.[ *IDE workspace:* the tab P9W8Y, chunk `reproduce-p9w8y`.]{.content-visible unless-meta="deck.short"}
+**P9W8Y** fitted a logistic regression of the greeting on the three groups of names among the coded replies and tested whether the three differ at all, with a likelihood-ratio test against a model without the groups. The robustness study recorded **no statistic** for this analysis. The cell keeps the coded replies and prints nothing.[ *IDE:* the tab P9W8Y, chunk `reproduce-p9w8y`.]{.content-visible unless-meta="deck.short"}
 :::
 
 ```{webr}

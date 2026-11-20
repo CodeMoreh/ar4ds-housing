@@ -28,7 +28,7 @@ Your turn, with three pieces, and you work them in your IDE workspace. First, th
 ## Hands-on 2 – The emails {#hands-on-2-the-emails .smaller .output-8}
 
 ::: {.small}
-What came back, counted from the columns `reply` and `named`. *IDE workspace:* the chunk `count-emails`.
+What came back, counted from the columns `reply` and `named`. *IDE:* the chunk `count-emails`.
 :::
 
 ```{webr}
@@ -53,7 +53,7 @@ The first cell counts what came back. A thousand and fourteen emails in the publ
 ## Hands-on 2 – Replies by group {#hands-on-2-replies-by-group .smaller .output-8}
 
 ::: {.small}
-The replies and the greetings by the group of the name, among the delivered emails. Tables print here as plain text, as they do in the console of your IDE. *IDE workspace:* the chunk `by-group`.
+The replies and the greetings by the group of the name, among the delivered emails. Tables print here as plain text, as they do in the console of your IDE. *IDE:* the chunk `by-group`.
 :::
 
 ```{webr}
@@ -75,7 +75,7 @@ Now the same counts by the group of the name. Read the last column, the share of
 ## Hands-on 2 – The shares by name {#hands-on-2-the-shares-by-name .smaller}
 
 ::: {.small}
-The share of the coded replies that greeted the sender by name, for each of the six names, from the lowest. The cell works out the shares and prints nothing, and the next slide draws them. *IDE workspace:* the first half of the chunk `fig-names`.
+The share of the coded replies that greeted the sender by name, for each of the six names, from the lowest. The cell works out the shares and prints nothing, and the next slide draws them. *IDE:* the first half of the chunk `fig-names`.
 :::
 
 ```{webr}
@@ -96,7 +96,7 @@ Now the six names one by one. The names are the treatment, and the paper chose t
 ## Hands-on 2 – The six names {#hands-on-2-the-six-names .smaller .output-fig}
 
 ::: {.small}
-A bar for each name, with its share at the end. *IDE workspace:* the chunk `fig-names`.
+A bar for each name, with its share at the end. *IDE:* the chunk `fig-names`.
 :::
 
 ```{webr}
@@ -123,7 +123,7 @@ And here the shares are drawn with tinyplot, the plotting package that the works
 ## Hands-on 2 – The graph {#hands-on-2-the-graph .smaller}
 
 ::: {.small}
-One arrow per string, written the way it is drawn: `"name -> reply"` is the arrow from the name to the reply. The arrow of the claim is switched off with a `#`. The cell builds the graph and prints nothing. *IDE workspace:* the graph `dag` in `R/dag_starter.R`.
+One arrow per string, written the way it is drawn: `"name -> reply"` is the arrow from the name to the reply. The arrow of the claim is switched off with a `#`. The cell builds the graph and prints nothing. *IDE:* the graph `dag` in `R/dag_starter.R`.
 :::
 
 ```{webr}
@@ -155,7 +155,7 @@ Now the graph, written in ordinary R, one arrow per string, each written the way
 ## Hands-on 2 – The adjustment set {#hands-on-2-the-adjustment-set .smaller}
 
 ::: {.small}
-The first question to the graph: what has to be adjusted for when every delivered email is counted. *IDE workspace:* the chunk `adjustment-set`.
+The first question to the graph: what has to be adjusted for when every delivered email is counted. *IDE:* the chunk `adjustment-set`.
 :::
 
 ```{webr}
@@ -174,7 +174,7 @@ Two questions to the graph, one on this slide and one on the next. The first ask
 ## Hands-on 2 – Paths among replies {#hands-on-2-paths-among-replies .smaller}
 
 ::: {.small}
-The second question: which paths from the name to the greeting are open once the comparison is made among the replies only, which is what `Z = "reply"` asks. *IDE workspace:* the chunk `paths-replies`.
+The second question: which paths from the name to the greeting are open once the comparison is made among the replies only, which is what `Z = "reply"` asks. *IDE:* the chunk `paths-replies`.
 :::
 
 ```{webr}
@@ -193,7 +193,7 @@ The second question asks which paths between the name and the greeting are open 
 ## Hands-on 2 – The graph drawn {#hands-on-2-the-graph-drawn .smaller .output-fig}
 
 ::: {.small}
-The graph as the cell built it, with the official drawn pale because nobody observed it. *IDE workspace:* the chunk `fig-dag`.
+The graph as the cell built it, with the official drawn pale because nobody observed it. *IDE:* the chunk `fig-dag`.
 :::
 
 ```{webr}
@@ -210,7 +210,7 @@ And the graph drawn. The name sits on the left in blue, the greeting on the righ
 ## Hands-on 2 – The arrow of the claim {#hands-on-2-the-arrow-of-the-claim .smaller .output-8}
 
 ::: {.small}
-Take the `#` off `"name -> greeting"` in the cell that builds the graph, run it and the cells after it again, then run this one, which also adjusts for the community. For your notes: why does the adjustment set stay empty, which paths stay open among the replies, and which emails keep the comparison randomised? *IDE workspace:* the chunk `paths-adjusted`.
+Take the `#` off `"name -> greeting"` in the cell that builds the graph, run it and the cells after it again, then run this one, which also adjusts for the community. For your notes: why does the adjustment set stay empty, which paths stay open among the replies, and which emails keep the comparison randomised? *IDE:* the chunk `paths-adjusted`.
 :::
 
 ```{webr}

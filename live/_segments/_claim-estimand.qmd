@@ -10,7 +10,7 @@
 :::
 
 ::: {.fragment}
-**Now:** write your statement for the claim, every bracket filled.[ *IDE workspace:* the box of Task 2 of `index.qmd`.]{.content-visible unless-meta="deck.short"}
+**Now:** write your statement for the claim, every bracket filled.[ *IDE:* the box of Task 2 of `index.qmd`.]{.content-visible unless-meta="deck.short"}
 :::
 
 ::: {.src}
