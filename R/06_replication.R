@@ -1,7 +1,7 @@
 ################################################################################
 # Title:        06_replication.R
 # Purpose:      The data of the replication in the SCORE replicability study
-#               in the form of the course file, the replication on the scale of the course, its mark on
+#               in the form of the workshop file, the replication on the scale of the workshop, its mark on
 #               the curve of the claim, and the curve of the claim on the new
 #               data: every specification of the curve, translated to the design
 #               of the new experiment and fitted on its data.
@@ -51,7 +51,7 @@ replication <- readr::read_csv("data/housing_replication.csv", show_col_types = 
 stopifnot(nrow(replication) == 2717, sum(replication$reply) == 1484,
           sum(replication$named, na.rm = TRUE) == 778, !anyNA(replication$named[replication$reply == 1]))
 
-# The reference comparison of the course on the new data – white names, a
+# The reference comparison of the workshop on the new data – white names, a
 # linear probability model without covariates – among the replies and among
 # all emails, for every authority and for those not run by counties, which the
 # replication left out of its models with covariates to match Table 1 of the
@@ -75,7 +75,7 @@ marks <- readr::read_csv("data/reference_marks.csv", show_col_types = FALSE) |>
   dplyr::bind_rows(tibble::tibble(
     id = "SCORE", label = "Replication, 2020", statistic_type = "t",
     statistic = ref$stat, n = ref$n, b_pp = ref$b_pp, on_chart = TRUE,
-    note = "New data: 3,050 authorities emailed by four male aliases, two Hispanic and two white. Placed by the raw gap among all replies, computed by the course from the de-identified data of the replication (osf.io/xseqg), kept as housing_replication.csv."
+    note = "New data: 3,050 authorities emailed by four male aliases, two Hispanic and two white. Placed by the raw gap among all replies, computed by the workshop from the de-identified data of the replication (osf.io/xseqg), kept as housing_replication.csv."
   ))
 readr::write_csv(marks, "data/reference_marks.csv", na = "")
 

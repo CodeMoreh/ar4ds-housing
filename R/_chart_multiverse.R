@@ -8,7 +8,7 @@
 #               The drawing and the interaction live in assets/chart/multiverse.js,
 #               the styles in assets/chart/multiverse.css and the markup of one
 #               chart in assets/chart/multiverse.template.html, shared by the
-#               case studies of the course; the optional fields of the payload that
+#               case studies of the workshop; the optional fields of the payload that
 #               adapt the chart to this curve are listed at the top of
 #               multiverse.js.
 # Author:       Claude for CM
@@ -101,11 +101,11 @@ mv_marks <- function(marks, analysts, curve) {
         .data$id == "OA" ~ sprintf("z = %s as published; %s",
                                    scales::number(.data$statistic, accuracy = 0.01, style_negative = "minus", big.mark = ""),
                                    mv_p_label(.data$p_num)),
-        .data$id == "SCORE" ~ sprintf("t = %s with HC2 errors, from the course refit of the replication data; %s",
+        .data$id == "SCORE" ~ sprintf("t = %s with HC2 errors, from the workshop refit of the replication data; %s",
                                       scales::number(.data$statistic, accuracy = 0.01, style_negative = "minus", big.mark = ""),
                                       mv_p_label(.data$p_num)),
         grepl("2 df", .data$statistic_type) ~ sprintf(
-          "chi-square = %s on 2 df, from the course refit (the robustness study recorded none); %s",
+          "chi-square = %s on 2 df, from the workshop refit (the robustness study recorded none); %s",
           formatC(.data$statistic, format = "f", digits = 3), mv_p_label(.data$p_num)),
         .data$statistic_type == "chi2" ~ sprintf("chi-square = %s, as recorded in the robustness study; %s",
                                                  formatC(.data$statistic, format = "f", digits = 3),

@@ -1,6 +1,6 @@
 # Codebook: the displays beside the curve
 
-The curve of the Housing and racial bias case study (`spec_curve.csv`, [codebook](spec_curve_codebook.md)) keeps only the specifications that answer the claim as the course reads it. Several findings stay in the course as displays of their own, because each describes the experiment or answers a related but different question. The five files below hold the numbers behind those displays. They are written by `R/05_displays.R` from the course file `housing_emails.csv` ([codebook](housing_emails_codebook.md)).
+The curve of the Housing and racial bias case study (`spec_curve.csv`, [codebook](spec_curve_codebook.md)) keeps only the specifications that answer the claim as the workshop reads it. Several findings stay in the workshop as displays of their own, because each describes the experiment or answers a related but different question. The five files below hold the numbers behind those displays. They are written by `R/05_displays.R` from the workshop file `housing_emails.csv` ([codebook](housing_emails_codebook.md)).
 
 Every comparison in these files is a difference in proportions, the coefficient of a linear model of a 0/1 outcome on a 0/1 indicator of the group, in percentage points, with HC2 standard errors (parameters, with sandwich) and a two-sided t test on the residual degrees of freedom, the estimator of the reference specification of the curve. A negative difference means that the first group did less well than the white names. The shares are of the emails that each comparison counts, and the bounced emails are never counted.
 
@@ -76,9 +76,9 @@ The central 95% of the reshuffled differences lies between −10.0 and +9.9 poin
 
 The original comparison has a power of 0.48 for a gap of 10 points, 0.70 for 13 points and 0.97 for 20 points; the replication has 0.78, 0.95 and 1.00. The share of 61% for the white names in both designs is an assumption of the display, taken from the original data.
 
-## `display_replication.csv` – the replication on the scale of the course
+## `display_replication.csv` – the replication on the scale of the workshop {#display_replication.csv-the-replication-on-the-scale-of-the-course}
 
-4 rows, written by `R/06_replication.R` from the de-identified data of the replication (osf.io/xseqg), which the course keeps as `housing_replication.csv`. The replication emailed 3,050 authorities in 2020 with four male aliases, two meant to indicate a Hispanic and two a white sender, and its de-identified file holds 2,717 of those emails. Each row is the gap in greetings by name between the Hispanic and the white aliases, as a difference in proportions with HC2 errors, the analogue of the reference specification of the curve.
+4 rows, written by `R/06_replication.R` from the de-identified data of the replication (osf.io/xseqg), which the workshop keeps as `housing_replication.csv`. The replication emailed 3,050 authorities in 2020 with four male aliases, two meant to indicate a Hispanic and two a white sender, and its de-identified file holds 2,717 of those emails. Each row is the gap in greetings by name between the Hispanic and the white aliases, as a difference in proportions with HC2 errors, the analogue of the reference specification of the curve.
 
 | Column | Meaning |
 |:--|:--|

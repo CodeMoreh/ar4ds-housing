@@ -1,8 +1,8 @@
 # Codebook: `menu_options.csv`
 
-`menu_options.csv` lists every option of the specification menu of the Housing and racial bias case study, one row per option, 33 rows over 11 decisions. For each option it records whether it is on the curve of the claim, the 64 specifications of `spec_curve.csv` ([codebook](spec_curve_codebook.md)), which page of the course teaches it, and the reasoning on whether it answers the claim under test, "Hispanic housing applicants were ... less likely to be greeted by name than were ... white counterparts", in the wording that SCORE took from the paper of the original authors (OAs). The file is written by hand, not by a script, and its judgement `unavailable` marks an option that the public file cannot support.
+`menu_options.csv` lists every option of the specification menu of the Housing and racial bias case study, one row per option, 33 rows over 11 decisions. For each option it records whether it is on the curve of the claim, the 64 specifications of `spec_curve.csv` ([codebook](spec_curve_codebook.md)), which page of the workshop teaches it, and the reasoning on whether it answers the claim under test, "Hispanic housing applicants were ... less likely to be greeted by name than were ... white counterparts", in the wording that SCORE took from the paper of the original authors (OAs). The file is written by hand, not by a script, and its judgement `unavailable` marks an option that the public file cannot support.
 
-Three parts of the course read it. The decision map, the first section of the specification menu (`menu.qmd`), builds its stages, its selectable options, the estimand statement and the description of each option from it. The sections of the menu that follow the map build their tables of the three groups of decisions from it. And the helpers of the browser lab and of the workspace read `axis`, `option`, `on_curve`, `taught_on` and `reason` to explain why an option off the curve is refused, so those five columns and the codes in them must not change without a matching change in the helpers.
+Three parts of the workshop read it. The decision map, the first section of the specification menu (`menu.qmd`), builds its stages, its selectable options, the estimand statement and the description of each option from it. The sections of the menu that follow the map build their tables of the three groups of decisions from it. And the helpers of the browser lab and of the workspace read `axis`, `option`, `on_curve`, `taught_on` and `reason` to explain why an option off the curve is refused, so those five columns and the codes in them must not change without a matching change in the helpers.
 
 ## Columns
 
@@ -12,7 +12,7 @@ Three parts of the course read it. The decision map, the first section of the sp
 | `level` | The group of the menu to which the decision belongs, as a code: `estimand` for the group headed "The question", `measurement` for "Measurement" and `estimation` for "The model" |
 | `option` | The option code, as the curve, the deviation file and the helpers write it |
 | `label` | A short label for the option, used on the decision map, in the tables of the menu and in messages |
-| `on_curve` | `TRUE` for an option that the curve of 64 keeps (18 rows), `FALSE` for one that the course teaches off the curve (15 rows) |
+| `on_curve` | `TRUE` for an option that the curve of 64 keeps (18 rows), `FALSE` for one that the workshop teaches off the curve (15 rows) |
 | `taught_on` | The page that teaches the option, as a path from the project root: `background.qmd`, `menu.qmd`, `curve.qmd`, `companion/experiments.qmd` or `companion/binary-outcomes.qmd` |
 | `reason` | One sentence on why the option is or is not on the curve, used by the helpers in their messages and by the verdict of the decision map |
 | `decision` | The name of the decision, as the decision map and the menu print it |
@@ -32,4 +32,4 @@ Only the options on the curve are fitted across the curve. Six options off the c
 
 ## Editing
 
-Keep the existing columns and codes, and keep `reason` to one sentence. Every prose column is participant-facing, so it follows the writing conventions of the course: British spelling, spaced en-dashes, double quotation marks for quotation and single ones for terms held at a distance, relative clauses written out in full, and no possessive on an institution or an artefact. A new option needs a row here, a decision in the helpers about how to treat it, and, if it joins the curve, a refit of `spec_curve.csv` and `menu_deviations.csv`.
+Keep the existing columns and codes, and keep `reason` to one sentence. Every prose column is participant-facing, so it follows the writing conventions of the workshop: British spelling, spaced en-dashes, double quotation marks for quotation and single ones for terms held at a distance, relative clauses written out in full, and no possessive on an institution or an artefact. A new option needs a row here, a decision in the helpers about how to treat it, and, if it joins the curve, a refit of `spec_curve.csv` and `menu_deviations.csv`.

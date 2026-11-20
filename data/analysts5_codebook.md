@@ -1,6 +1,6 @@
 # Codebook: `analysts5.csv`
 
-The record kept by the SCORE robustness study (Aczel et al. 2026) of the five reanalyses of the claim of the Housing and racial bias case study, one row per analyst, with the choices that each analysis made and the course refit of it on the public file. It is written by `R/03_reference_marks.R` from the five rows of the processed data of the robustness study for this paper (`data-raw/robustness/robustness_einstein_extract.csv`, an extract of the public file of the robustness study) and from refits of the scripts that the analysts published on the OSF, in the component of the robustness study for the paper (osf.io/38rsh). The course links to those scripts and does not copy them. The same script writes `reference_marks.csv` ([codebook](reference_marks_codebook.md)), which places the five analyses on the chart.
+The record kept by the SCORE robustness study (Aczel et al. 2026) of the five reanalyses of the claim of the Housing and racial bias case study, one row per analyst, with the choices that each analysis made and the workshop refit of it on the public file. It is written by `R/03_reference_marks.R` from the five rows of the processed data of the robustness study for this paper (`data-raw/robustness/robustness_einstein_extract.csv`, an extract of the public file of the robustness study) and from refits of the scripts that the analysts published on the OSF, in the component of the robustness study for the paper (osf.io/38rsh). The workshop links to those scripts and does not copy them. The same script writes `reference_marks.csv` ([codebook](reference_marks_codebook.md)), which places the five analyses on the chart.
 
 ## Columns
 
@@ -15,10 +15,10 @@ The record kept by the SCORE robustness study (Aczel et al. 2026) of the five re
 | `df_recorded` | The degrees of freedom of the record: 1 for the two $\chi^2$ tests, empty otherwise |
 | `n_recorded` | The sample size of the record |
 | `r_recorded`, `d_recorded` | The partial correlation and the Cohen's d computed by the robustness study from the statistic. A z converts on the sample size, r = tanh(\|z\| / sqrt(n − 3)) with the sign of z, and a $\chi^2$ on one degree of freedom as the square of a z, which has no sign; d is positive for all four, because the robustness study took its direction from the box that each analyst ticked |
-| `comparison` | The groups that the analysis compared, in the words of the course |
+| `comparison` | The groups that the analysis compared, in the words of the workshop |
 | `population` | The emails counted: `replies` or `all delivered emails` |
-| `method` | The test or model, in the words of the course |
-| `statistic_refit` | The statistic of the course refit of the script on the public file. For P9W8Y it is the likelihood-ratio $\chi^2$ of the three groups on 2 degrees of freedom, the omnibus test that the analysis reported |
+| `method` | The test or model, in the words of the workshop |
+| `statistic_refit` | The statistic of the workshop refit of the script on the public file. For P9W8Y it is the likelihood-ratio $\chi^2$ of the three groups on 2 degrees of freedom, the omnibus test that the analysis reported |
 | `n_refit` | The emails in the refit |
 | `b_pp_refit` | The gap between Hispanic names and the comparison names in percentage points, from the refit: the difference in proportions for the two tests of a table, the average marginal effect for the logistic regressions |
 | `matches_record` | `TRUE` where the refit reproduces the recorded statistic to within 0.0015 in absolute value and on the same number of emails; empty for P9W8Y, which has no recorded statistic |
@@ -33,4 +33,4 @@ The record kept by the SCORE robustness study (Aczel et al. 2026) of the five re
 | 25N5D | $\chi^2$ = 13.683 | 665 | 0.143 | 0.289 | −13.2 | no evidence either way |
 | P9W8Y | – | – | – | – | −20.0 | no evidence either way |
 
-The four recorded statistics reproduce exactly. The report that P9W8Y filed for Task 2 gives the omnibus test, $\chi^2$ = 15.951 on 2 degrees of freedom for 558 replies, in its text, but the robustness study recorded no statistic for the analysis, and the course refit gives the same value. The [background page](https://codemoreh.github.io/ar4ds-housing/background.html#sec-reanalysts) sets out what question each analysis answered.
+The four recorded statistics reproduce exactly. The report that P9W8Y filed for Task 2 gives the omnibus test, $\chi^2$ = 15.951 on 2 degrees of freedom for 558 replies, in its text, but the robustness study recorded no statistic for the analysis, and the workshop refit gives the same value. The [background page](https://codemoreh.github.io/ar4ds-housing/background.html#sec-reanalysts) sets out what question each analysis answered.

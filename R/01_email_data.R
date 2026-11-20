@@ -2,7 +2,7 @@
 # Title:        01_email_data.R
 # Purpose:      The two data files of the Housing case study: the public file of
 #               the original authors as plain CSV with its own column names, and
-#               the course file with readable names and the derived columns.
+#               the workshop file with readable names and the derived columns.
 # Reads:        data-raw/dataverse_1HOVTU/HousingAuditAJPSFinalPublic_Unidentified.dta
 # Writes:       data/housing_original.csv, data/housing_emails.csv
 # Author:       Claude for CM

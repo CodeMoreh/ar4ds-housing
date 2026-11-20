@@ -12,7 +12,7 @@
 #               The lab reads these answers because dagitty cannot run there:
 #               its graph algorithms need a JavaScript engine that a browser
 #               grants only to a page served with cross-origin isolation
-#               headers, which the course site does not send.
+#               headers, which the workshop site does not send.
 # Reads:        nothing; the arrows are those of the cell that builds the
 #               graph in lab.qmd and of R/dag_starter.R in the
 #               workspace
