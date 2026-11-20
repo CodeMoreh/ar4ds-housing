@@ -106,7 +106,7 @@ None of these readings is required, since everything is taught in the workshop, 
 
 The modules of the [companion](companion/index.qmd) contain the teaching that a session or a day can only mention, each module occupying a page of its own that can be read without the others, and each written on the data of this case study.
 
-Installing R and an IDE, the help page and the modules on the tools, from [Getting started with R](https://codemoreh.github.io/ar4ds/tools/r.html) to [Quarto documents](https://codemoreh.github.io/ar4ds/tools/quarto.html) and [Git and GitHub](https://codemoreh.github.io/ar4ds/git-github.html), can all be found on the [AR4DS site](https://codemoreh.github.io/ar4ds/).
+Installing R and an IDE, the help page and the modules on the tools, from [Getting started with R](https://codemoreh.github.io/ar4ds/tools/r.html) to [Quarto documents](https://codemoreh.github.io/ar4ds/tools/quarto.html) and [Git and GitHub](https://codemoreh.github.io/ar4ds/git-github.html), can all be found on the [AR4DS website](https://codemoreh.github.io/ar4ds/).
 
 ------------------------------------------------------------------------
 

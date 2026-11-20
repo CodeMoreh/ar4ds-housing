@@ -131,14 +131,14 @@ The page "Before the session", "Before the day" or "Before the workshop" of each
 | The background page | required | required | required |
 | The slides of the format, opened once, with the setup cell of Task 1 run | required | required | – |
 | R, an IDE and the workspace, until `R/check_setup.R` prints OK | – | required | required |
-| Getting started with R (`tools/r.qmd` on the AR4DS site) | – | required | required |
-| The modules on the IDE, on Quarto and on Git and GitHub (AR4DS site) | – | recommended | the reading of days 1 and 3 |
+| Getting started with R (`tools/r.qmd` on the AR4DS website) | – | required | required |
+| The modules on the IDE, on Quarto and on Git and GitHub (AR4DS website) | – | recommended | the reading of days 1 and 3 |
 | The exercise page of the format | – | recommended | – |
 
 ### The week before
 
 - [ ] **The web slides and the browser lab.** The part-day format is worked in its slides, the full-day format is shown on its slides, and the browser lab is the fallback of both, so check the two slide decks and the lab on the published website in a real browser: the engine loads, the setup cell of Task 1 runs, and the cells of each of the five analysts of Task 3 print the right value (the expected numbers are at the end of this guide).
-- [ ] **The workspace.** The workspace is the repository `CodeMoreh/ar4ds-housing-workspace`, whose zip is linked from the setup page of the AR4DS site, the cheatsheet and the slide on the workspace and the slides in Part 1. Download the zip once from its public address and confirm that it unzips into `ar4ds-housing-workspace-main`, and that a change made to the pages since the last delivery has reached the workspace where it should. The part-day format does not need it.
+- [ ] **The workspace.** The workspace is the repository `CodeMoreh/ar4ds-housing-workspace`, whose zip is linked from the setup page of the AR4DS website, the cheatsheet and the slide on the workspace and the slides in Part 1. Download the zip once from its public address and confirm that it unzips into `ar4ds-housing-workspace-main`, and that a change made to the pages since the last delivery has reached the workspace where it should. The part-day format does not need it.
 - [ ] **The class-results Form**, for the full-day format only. Out of the box, the housing helpers submit to the results Form that every case study shares, the one set up for the Europeanisation and the economy case study, and the housing chart reads the same Sheet through the same Worker, keeping only the rows whose label carries the word `housing` after the tag. That works as it stands. Clear the Sheet of the rows of earlier deliveries before the day (the data rows below the header of the tab "Form Responses 1"; the Form keeps working), because the chart of the Europeanisation case study reads every row and would draw housing rows as unclassed diamonds. The alternative, which keeps the two classes apart for good, is a Form of its own, about twenty minutes once, following [`facilitator/live-results-setup.md`](https://github.com/CodeMoreh/ar4ds-eu/blob/main/facilitator/live-results-setup.md) in the GitHub repository of the Europeanisation case study.
 - [ ] **Joining instructions.** Send the address of the track page, the background page as the pre-reading, and the request to open the slides of the format once on the machine that each participant will bring, with a laptop charger. For the full-day format and the multi-day format add the setup page, with the request to run `R/check_setup.R` until it prints OK, the module Getting started with R and the help page.
 - [ ] **The tab switching.** Click once through the sequences that you run live: the slides and the browser lab in every format; the slides, the specification menu with its decision map and the Specification curve page in the part-day format and the full-day format, and the Class results page in the full-day format.
@@ -318,7 +318,7 @@ When time runs short, cut from the optional runs before anything else, so that t
 
 ## Run sheet – the multi-day format {#run-extended}
 
-The multi-day format is three days, with the full-day format as its second day (`tracks/long/`). The first day is the same for every case study of AR4DS and is given from slide decks of the AR4DS site; the third day teaches the methods of this case study and ends with the report of each participant. A two-day version drops the third day and leaves the methods to self-study.
+The multi-day format is three days, with the full-day format as its second day (`tracks/long/`). The first day is the same for every case study of AR4DS and is given from slide decks of the AR4DS website; the third day teaches the methods of this case study and ends with the report of each participant. A two-day version drops the third day and leaves the methods to self-study.
 
 ::: {.callout-note}
 Each session of the first and the third days has a slide deck of its own, written on 6 November 2026 and not yet tried in class, and a module as its reading. The durations are drafts for CM to adjust.
@@ -326,14 +326,14 @@ Each session of the first and the third days has a slide deck of its own, writte
 
 **Day 1 – Open research and the tools.**
 
-| Session | Slides, AR4DS site | Reading | Draft |
+| Session | Slides, AR4DS website | Reading | Draft |
 |---|---|---|---|
 | 1. Credibility and the three Rs | `slides/credibility.qmd` | the glossary of `resources.qmd` | 75′ |
-| 2. SCORE | `slides/score.qmd` | the pages on SCORE and on the robustness article, AR4DS site | 60′ |
+| 2. SCORE | `slides/score.qmd` | the pages on SCORE and on the robustness article, AR4DS website | 60′ |
 | 3. Repositories and data sources | `slides/repositories.qmd` | `companion/data-sources.qmd`, `companion/repositories.qmd` | 60′ |
-| 4. R, taught live on the Housing data | `slides/r.qmd` | `tools/r.qmd`, AR4DS site | 75′ |
-| 5. Positron, in the workspace | `slides/ide.qmd` | `tools/ide.qmd`, AR4DS site | 45′ |
-| 6. Quarto, on the report of the workspace | `slides/quarto.qmd` | `tools/quarto.qmd`, AR4DS site | 60′ |
+| 4. R, taught live on the Housing data | `slides/r.qmd` | `tools/r.qmd`, AR4DS website | 75′ |
+| 5. Positron, in the workspace | `slides/ide.qmd` | `tools/ide.qmd`, AR4DS website | 45′ |
+| 6. Quarto, on the report of the workspace | `slides/quarto.qmd` | `tools/quarto.qmd`, AR4DS website | 60′ |
 
 **Day 2 – The full-day format**, run as in its own run sheet above. After the first day, Part 1 can take SCORE and its robustness study at speed and give the time to Task 1 and Task 2.
 
@@ -344,7 +344,7 @@ Each session of the first and the third days has a slide deck of its own, writte
 | 1. Audit experiments | `slides/experiments.qmd` | `companion/experiments.qmd` | 75′ |
 | 2. Binary outcomes | `slides/binary-outcomes.qmd` | `companion/binary-outcomes.qmd` | 60′ |
 | 3. Bayesian estimation | `slides/bayesian.qmd` | `companion/bayesian.qmd` | 60′ |
-| 4. Your report | `slides/report.qmd` | `git-github.qmd` and `tools/quarto.qmd`, AR4DS site | 120′ |
+| 4. Your report | `slides/report.qmd` | `git-github.qmd` and `tools/quarto.qmd`, AR4DS website | 120′ |
 
 The hands-on slides of the first and the third sessions have the class install ri2, which brings randomizr and estimatr with it, and retrodesign with `pak::pak()`; the setup check of the workspace installs none of them, so the installation belongs in the joining instructions. In the session on the report, each participant opens the workspace, turns its folder into a repository with the completed preregistration block of Task 5 as the first commit, writes the report around the declared analysis, renders it from a clean session and commits each step. The first commit follows the day page, which puts the declaration first; the tasks of the module on Git and GitHub begin with `.gitignore`. Publishing the rendered report is optional, at the end of the day.
 

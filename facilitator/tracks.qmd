@@ -20,10 +20,10 @@ The facilitator chooses the format, and the link sent to the participants of a d
 |---|---|---|
 | Part-day format, browser only | `tracks/short/` | `live/short.qmd` |
 | Full-day format | `tracks/day/` | `live/day.qmd` |
-| Multi-day format | `tracks/long/` | the slide decks of day 1 on the AR4DS site, `live/day.qmd` on day 2, and the slide decks of day 3 |
+| Multi-day format | `tracks/long/` | the slide decks of day 1 on the AR4DS website, `live/day.qmd` on day 2, and the slide decks of day 3 |
 | Self-taught format | `tracks/independent/` | `live/day.qmd` |
 
-**What the full-day format holds.** The three one-day focuses of October 2026 (open science, data tools, methods) were merged into one workshop on 6 November 2026, in four parts: the claim and credibility, with SCORE in brief and its robustness study (Aczel et al. 2026); the estimand and the causal graph; the reproduction; and robustness, which holds the menu, the class chart with its submissions, the curve of the claim, the replication and the declared analysis. The tools are taught by the modules of the AR4DS site before the day, and live on the first day of the multi-day format. The participants in the full-day format do the tasks in the workspace, in their IDE, and the slides show each step with its output and stand in, with the browser lab, when an installation fails.
+**What the full-day format holds.** The three one-day focuses of October 2026 (open science, data tools, methods) were merged into one workshop on 6 November 2026, in four parts: the claim and credibility, with SCORE in brief and its robustness study (Aczel et al. 2026); the estimand and the causal graph; the reproduction; and robustness, which holds the menu, the class chart with its submissions, the curve of the claim, the replication and the declared analysis. The tools are taught by the modules of the AR4DS website before the day, and live on the first day of the multi-day format. The participants in the full-day format do the tasks in the workspace, in their IDE, and the slides show each step with its output and stand in, with the browser lab, when an installation fails.
 
 ## The browser lab
 

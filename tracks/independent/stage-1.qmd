@@ -33,12 +33,12 @@ Read the glossary. Then write a paragraph in your own words that tells reproduct
 
 [Open the module on the IDE](https://codemoreh.github.io/ar4ds/tools/ide.html){.btn .btn-primary target="_blank"}
 
-Read [What an IDE does](https://codemoreh.github.io/ar4ds/tools/ide.html#sec-what) in the module on the AR4DS site, and the sections on the IDE that you chose, sections 2 to 8 for Positron and [section 10](https://codemoreh.github.io/ar4ds/tools/ide.html#sec-other) for RStudio and VS Code. Then work through [the six steps](https://codemoreh.github.io/ar4ds/tools/ide.html#sec-try) at the end of the module, in the workspace that you have just installed.
+Read [What an IDE does](https://codemoreh.github.io/ar4ds/tools/ide.html#sec-what) in the module on the AR4DS website, and the sections on the IDE that you chose, sections 2 to 8 for Positron and [section 10](https://codemoreh.github.io/ar4ds/tools/ide.html#sec-other) for RStudio and VS Code. Then work through [the six steps](https://codemoreh.github.io/ar4ds/tools/ide.html#sec-try) at the end of the module, in the workspace that you have just installed.
 
 ## 6. R from the beginning
 
 [Open Getting started with R](https://codemoreh.github.io/ar4ds/tools/r.html#sec-what){.btn .btn-primary target="_blank"}
 
-Work from [R and the IDE](https://codemoreh.github.io/ar4ds/tools/r.html#sec-what) to [Packages](https://codemoreh.github.io/ar4ds/tools/r.html#sec-packages) in the module on the AR4DS site, whose blocks run in your browser.
+Work from [R and the IDE](https://codemoreh.github.io/ar4ds/tools/r.html#sec-what) to [Packages](https://codemoreh.github.io/ar4ds/tools/r.html#sec-packages) in the module on the AR4DS website, whose blocks run in your browser.
 
 **Shortcuts.** If R, Quarto and an IDE are already on your machine, download the workspace, run the check and install what it reports as missing, which takes about a quarter of an hour. If you already work in one of the three IDEs, take only the six steps of the IDE module. If you write R, leave the R module until stage 2, which says what to read in it.

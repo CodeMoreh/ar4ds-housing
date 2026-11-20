@@ -37,7 +37,7 @@ Once on each machine, in a terminal (**Terminal → New Terminal**), git needs y
 :::
 
 ::: {.src}
-Git and GitHub for reproducible research, section 2, on the AR4DS site: codemoreh.github.io/ar4ds/git-github.html
+Git and GitHub for reproducible research, section 2, on the AR4DS website: codemoreh.github.io/ar4ds/git-github.html
 :::
 
 ::: notes

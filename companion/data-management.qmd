@@ -212,7 +212,7 @@ housing |>
 
 The original authors do not say why these authorities lack the thirds, and the workshop does not guess. What the missing values do to the adjusted specifications, which need the thirds, is one of the questions examined in the [missing-values module](missingness.qmd#sec-covariates).
 
-`waitlist` retains the text of the source, in which fewer than half of the entries are numbers of months, often converted by the original authors from phrases such as "two years", the rest being the words `Closed` and `No Housing`. As turning the column into numbers would lose the words, the analysis file keeps the text, and the [R module](https://codemoreh.github.io/ar4ds/tools/r.html#sec-figure) on the AR4DS site shows how the numeric entries are extracted from it for a figure.
+`waitlist` retains the text of the source, in which fewer than half of the entries are numbers of months, often converted by the original authors from phrases such as "two years", the rest being the words `Closed` and `No Housing`. As turning the column into numbers would lose the words, the analysis file keeps the text, and the [R module](https://codemoreh.github.io/ar4ds/tools/r.html#sec-figure) on the AR4DS website shows how the numeric entries are extracted from it for a figure.
 
 ## 7. Checking the rebuilt file {#sec-checks}
 

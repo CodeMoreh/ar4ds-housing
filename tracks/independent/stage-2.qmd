@@ -9,13 +9,13 @@ This stage is a first working session in R and in Quarto, on the data of the cas
 
 [Open Getting started with R at section 6](https://codemoreh.github.io/ar4ds/tools/r.html#sec-reading){.btn .btn-primary target="_blank"}
 
-Work from [Reading the data](https://codemoreh.github.io/ar4ds/tools/r.html#sec-reading) to [A first figure](https://codemoreh.github.io/ar4ds/tools/r.html#sec-figure) in the module on the AR4DS site, then read [The helpers of the workspace](../../companion/helpers.qmd) in the companion. Type each block into the workspace rather than pasting it. Keep a script of your own that reads `housing_emails.csv`, counts the replies with a greeting code and the greetings by name for each group of names, and draws one figure from those counts.
+Work from [Reading the data](https://codemoreh.github.io/ar4ds/tools/r.html#sec-reading) to [A first figure](https://codemoreh.github.io/ar4ds/tools/r.html#sec-figure) in the module on the AR4DS website, then read [The helpers of the workspace](../../companion/helpers.qmd) in the companion. Type each block into the workspace rather than pasting it. Keep a script of your own that reads `housing_emails.csv`, counts the replies with a greeting code and the greetings by name for each group of names, and draws one figure from those counts.
 
 ## 2. Quarto
 
 [Open Quarto documents](https://codemoreh.github.io/ar4ds/tools/quarto.html#sec-what){.btn .btn-primary target="_blank"}
 
-Work from [Source and output](https://codemoreh.github.io/ar4ds/tools/quarto.html#sec-what) to [Citations](https://codemoreh.github.io/ar4ds/tools/quarto.html#sec-citations) in the module on the AR4DS site. Write and render a Quarto document of your own that holds your figure, a cross-reference to it and a citation. Then render the report of the workspace, `index.qmd`, once, and read through the six tasks that you will fill in.
+Work from [Source and output](https://codemoreh.github.io/ar4ds/tools/quarto.html#sec-what) to [Citations](https://codemoreh.github.io/ar4ds/tools/quarto.html#sec-citations) in the module on the AR4DS website. Write and render a Quarto document of your own that holds your figure, a cross-reference to it and a citation. Then render the report of the workspace, `index.qmd`, once, and read through the six tasks that you will fill in.
 
 ## 3. The paper
 

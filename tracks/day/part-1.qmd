@@ -21,4 +21,4 @@ title: "Part 1 – The claim and credibility"
 
 If your installation fails, run the same cells in the slides or in the browser lab, which give the same numbers.
 
-To go further: [SCORE](https://codemoreh.github.io/ar4ds/score.html) on the AR4DS site.
+To go further: [SCORE](https://codemoreh.github.io/ar4ds/score.html) on the AR4DS website.

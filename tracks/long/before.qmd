@@ -2,7 +2,7 @@
 title: "Before the workshop"
 ---
 
-Three things are needed before the workshop, and each ends in something that you can check: R and the workspace installed, with the setup check printing OK; the first module on R worked through; and the background page read. The first day teaches the IDE and Quarto live, with the modules on the AR4DS site as its reading, so working through them beforehand gives you a head start but is not needed.
+Three things are needed before the workshop, and each ends in something that you can check: R and the workspace installed, with the setup check printing OK; the first module on R worked through; and the background page read. The first day teaches the IDE and Quarto live, with the modules on the AR4DS website as its reading, so working through them beforehand gives you a head start but is not needed.
 
 ## 1. R and the workspace
 

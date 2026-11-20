@@ -3,7 +3,7 @@
 # extension (format live-revealjs). A copy of slides/_metadata.yml with its
 # format key changed, the two paths into slides/ adjusted and a style block
 # that bounds the height of cell outputs, taken from the web slides of the
-# Europeanisation site, with two rules added for the figures that cells draw: the `format: revealjs` key of that
+# Europeanisation website, with two rules added for the figures that cells draw: the `format: revealjs` key of that
 # file would render the web slides twice, the plain copy winning (root notes,
 # Gotchas), which is why the web slides have a folder of their own. Theme and
 # title-slide partial in ../style/ (relative to live/), the navigation script

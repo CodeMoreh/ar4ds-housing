@@ -35,7 +35,7 @@ The section sets out a route for depositing a reanalysis of your own. Write the 
 
 [Open Quarto projects](https://codemoreh.github.io/ar4ds/tools/quarto.html#sec-project){.btn .btn-outline-primary target="_blank"}
 
-Read [Projects](https://codemoreh.github.io/ar4ds/tools/quarto.html#sec-project) and [Publishing the document](https://codemoreh.github.io/ar4ds/tools/quarto.html#sec-publish) in the module on Quarto on the AR4DS site. Render your case-study report and the project together as one Quarto project, and publish the rendered output where other people can reach it.
+Read [Projects](https://codemoreh.github.io/ar4ds/tools/quarto.html#sec-project) and [Publishing the document](https://codemoreh.github.io/ar4ds/tools/quarto.html#sec-publish) in the module on Quarto on the AR4DS website. Render your case-study report and the project together as one Quarto project, and publish the rendered output where other people can reach it.
 
 **Shortcuts.** If you already use git and GitHub, skip the first step and read [What to track](https://codemoreh.github.io/ar4ds/git-github.html#sec-repro) for what a licence can keep out of a repository.
 
