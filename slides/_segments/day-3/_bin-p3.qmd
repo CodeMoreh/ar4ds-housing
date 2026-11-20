@@ -120,7 +120,7 @@ Here is the least familiar property of the odds ratio. In an experiment, adding 
 ## Hands-on 2 – The logit and its two scales {#hands-on-2-the-logit-and-its-two-scales .smaller}
 
 ::: {.small}
-**In the workspace**, with `frame` from Hands-on 1 back at the reference, `spec_frame(housing)`:
+**In the IDE workspace**, with `frame` from Hands-on 1 back at the reference, `spec_frame(housing)`:
 
 1. `cols <- datawizard::data_select(frame, c("y", "hisp", "hard_email"))`, because marginaleffects refuses a data column called `group`
 2. `logit <- glm(y ~ hisp, family = binomial(), data = cols)`, then `parameters::model_parameters(logit, exponentiate = TRUE)` for the odds ratio

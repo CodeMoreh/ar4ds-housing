@@ -2,7 +2,7 @@
 title: "Day 2 – The full-day format"
 ---
 
-The second day is the [full-day format](../day/index.qmd) on the Housing and racial bias case study, unchanged, and its pages carry the steps of each part. You do the tasks in the workspace, and the slides of the full-day format, which run R inside your browser, show each step and carry the work if your installation fails. After the first day the morning in the full-day format goes faster, since credibility, the three Rs and the SCORE robustness study (Aczel et al. 2026) are familiar, and the time that it saves goes to the tasks.
+The second day is the [full-day format](../day/index.qmd) on the Housing and racial bias case study, unchanged, and its pages carry the steps of each part. You do the tasks in the IDE workspace, and the slides of the full-day format, which run R inside your browser, show each step and carry the work if your installation fails. After the first day the morning in the full-day format goes faster, since credibility, the three Rs and the SCORE robustness study (Aczel et al. 2026) are familiar, and the time that it saves goes to the tasks.
 
 [Start the full-day format at Part 1](../day/part-1.qmd){.btn .btn-primary} [Open the slides](../../live/day.html){.btn .btn-outline-primary target="_blank"}
 

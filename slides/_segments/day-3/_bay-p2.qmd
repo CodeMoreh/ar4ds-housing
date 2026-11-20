@@ -95,7 +95,7 @@ Comparing two fits answers the question for two priors. The priorsense package a
 ## Hands-on 1 – Simulating a prior {#hands-on-1-simulating-a-prior .smaller}
 
 ::: {.small}
-**In the workspace**, in the console or in a chunk of your own:
+**In the IDE workspace**, in the console or in a chunk of your own:
 
 1. Draw from the two priors and turn them into a gap in points:
 

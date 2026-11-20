@@ -92,7 +92,7 @@ The original experiment drew one name for each authority, with nothing grouped b
 ## Hands-on 2 – Power and blocks {#hands-on-2-power-and-blocks .smaller}
 
 ::: {.small}
-**In the workspace**, with `frame` from Hands-on 1:
+**In the IDE workspace**, with `frame` from Hands-on 1:
 
 1. **Power.** `power.prop.test(n = 181, p1 = 0.61, p2 = 0.51)` gives the power of the original comparison for a gap of 10 points below a white share of 61%. Then set `n = 369`, the replies of a group in the replication
 2. Change `p2` until the power of the original comparison reaches 0.8. **Which gap is that, and how does it compare with the published 20 points?**

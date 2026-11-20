@@ -5,7 +5,7 @@ Part 1
 :::
 
 ::: notes
-Part one turns the folder of your workspace into a git repository. Until now the workspace has been a plain folder, deliberately, so that nobody had to learn git in the middle of the day. Git records the history of a folder as a sequence of deliberate snapshots, each with a date, an author and a sentence saying why it was taken. The first snapshot that your repository records will be your preregistration, as you declared it, before a word of the report is written.
+Part one turns the folder of your IDE workspace into a git repository. Until now the workspace has been a plain folder, deliberately, so that nobody had to learn git in the middle of the day. Git records the history of a folder as a sequence of deliberate snapshots, each with a date, an author and a sentence saying why it was taken. The first snapshot that your repository records will be your preregistration, as you declared it, before a word of the report is written.
 :::
 
 ## Git in Positron {#git-in-positron .smaller}
@@ -47,10 +47,10 @@ Positron does the work of git in its Source Control view, which opens from the A
 ## Hands-on 1 – The first commit {#hands-on-1-the-first-commit .smaller}
 
 ::: {.small}
-1. Open the folder of your workspace, `ar4ds-housing-workspace-main`, with **File → Open Folder…**, and check the preregistration block of Task 5, the chunk labelled `prereg` in `index.qmd`: one choice on each `my_` line, and fields 1 and 4 completed. If you declared in the browser lab, copy the block from your notes first, exactly as you declared it
+1. Open the folder of your IDE workspace, `ar4ds-housing-workspace-main`, with **File → Open Folder…**, and check the preregistration block of Task 5, the chunk labelled `prereg` in `index.qmd`: one choice on each `my_` line, and fields 1 and 4 completed. If you declared in the webR workspace, copy the block from your notes first, exactly as you declared it
 2. Once on this machine, set your name and email address with `git config --global`
-3. In Source Control, press **Initialize Repository**: every file of the workspace appears under Changes, marked U
-4. Stage all the changes with **Stage All Changes**, the plus sign on the header of Changes, write a message such as `Add the workspace with the analysis declared in Task 5`, and commit
+3. In Source Control, press **Initialize Repository**: every file of the IDE workspace appears under Changes, marked U
+4. Stage all the changes with **Stage All Changes**, the plus sign on the header of Changes, write a message such as `Add the IDE workspace with the analysis declared in Task 5`, and commit
 5. Hold the pointer over the commit in the Graph: its author, its date and time, and the short form of its identifier
 :::
 
@@ -59,5 +59,5 @@ This commit is the declaration. Everything that you write from now on comes afte
 :::
 
 ::: notes
-Your turn. Open the folder of your workspace, the one that you used yesterday, and look at the preregistration block of Task 5 before you do anything else: every my line should hold your choice, and the two dotted lines, the claim in your own words and your one-sentence justification, should be filled in. If they are not, fill them in now, from your notes of yesterday, and only then go on. If you declared in the browser lab, copy the block that you saved in your notes into the report first, exactly as you declared it. Set your name and email address in a terminal if this machine has never had them. Then press Initialize Repository, stage everything, and commit with a message that says what the commit holds. Hold the pointer over the commit in the Graph to read its date and time. [state the time] [advance] That commit is your declaration, and everything that follows this afternoon will sit after it in the history.
+Your turn. Open the folder of your IDE workspace, the one that you used yesterday, and look at the preregistration block of Task 5 before you do anything else: every my line should hold your choice, and the two dotted lines, the claim in your own words and your one-sentence justification, should be filled in. If they are not, fill them in now, from your notes of yesterday, and only then go on. If you declared in the webR workspace, copy the block that you saved in your notes into the report first, exactly as you declared it. Set your name and email address in a terminal if this machine has never had them. Then press Initialize Repository, stage everything, and commit with a message that says what the commit holds. Hold the pointer over the commit in the Graph to read its date and time. [state the time] [advance] That commit is your declaration, and everything that follows this afternoon will sit after it in the history.
 :::

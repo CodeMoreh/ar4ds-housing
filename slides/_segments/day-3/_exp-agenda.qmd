@@ -18,9 +18,9 @@ You leave able to say what random assignment guarantees in this experiment, what
 :::
 
 ::: {.todaymeta}
-Work along in the workspace, in your IDE (Positron, RStudio, VS Code, etc.)
+Work along in the IDE workspace, in your IDE (Positron, RStudio, VS Code, etc.)
 :::
 
 ::: notes
-Welcome to the third day. Yesterday you worked on the claim as analyst number six: you reproduced a recorded result, declared one analysis and placed it on the curve. Today we go underneath that work, and this first session is about the design of the experiment itself. We start with what random assignment buys and how a reader can check it, and with the names, which carry the treatment and tell their readers more than one thing. Then two questions of analysis: what the comparison among replies can mean, and the test that the design itself supplies. Then precision, where power and blocking lead us to the failed replication. We end on ethics, because an audit deceives the officials whom it studies, and twice along the way you run something in the workspace yourselves.
+Welcome to the third day. Yesterday you worked on the claim as analyst number six: you reproduced a recorded result, declared one analysis and placed it on the curve. Today we go underneath that work, and this first session is about the design of the experiment itself. We start with what random assignment buys and how a reader can check it, and with the names, which carry the treatment and tell their readers more than one thing. Then two questions of analysis: what the comparison among replies can mean, and the test that the design itself supplies. Then precision, where power and blocking lead us to the failed replication. We end on ethics, because an audit deceives the officials whom it studies, and twice along the way you run something in the IDE workspace yourselves.
 :::

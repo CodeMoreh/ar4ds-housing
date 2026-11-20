@@ -71,7 +71,7 @@ In numbers: if the true gap were four points, the original comparison would reac
 ## Hands-on 2 – A design analysis {#hands-on-2-a-design-analysis .smaller}
 
 ::: {.small}
-**In the workspace**, in the console:
+**In the IDE workspace**, in the console:
 
 1. Once: `pak::pak("retrodesign")`
 2. The original comparison, whose standard error is 5.16 points: `retrodesign::retro_design_closed_form(c(2, 4, 10, 20), 5.16)`

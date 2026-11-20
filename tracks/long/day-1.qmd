@@ -30,14 +30,14 @@ R taught live on the Housing data: objects and data frames, packages, reading th
 
 ## 5. Positron
 
-The IDE taught live in the workspace of the case study: opening the folder, the panes of the window, running code from the editor, the console and the Variables pane, the Data Explorer, plots and help, and the terminal. Participants who work in RStudio or VS Code follow in their own IDE.
+The IDE taught live in the IDE workspace of the case study: opening the folder, the panes of the window, running code from the editor, the console and the Variables pane, the Data Explorer, plots and help, and the terminal. Participants who work in RStudio or VS Code follow in their own IDE.
 
 [Open the slides](https://codemoreh.github.io/ar4ds/slides/ide.html){.btn .btn-primary target="_blank"} [Open Positron and other IDEs](https://codemoreh.github.io/ar4ds/tools/ide.html){.btn .btn-outline-primary target="_blank"}
 
 ## 6. Quarto
 
-The report of the workspace taken apart: what a `.qmd` file holds and what rendering does to it, the header, chunks and their options, inline code, captions and cross-references, citations, and a render from a clean session.
+The report of the IDE workspace taken apart: what a `.qmd` file holds and what rendering does to it, the header, chunks and their options, inline code, captions and cross-references, citations, and a render from a clean session.
 
 [Open the slides](https://codemoreh.github.io/ar4ds/slides/quarto.html){.btn .btn-primary target="_blank"} [Open Quarto documents](https://codemoreh.github.io/ar4ds/tools/quarto.html){.btn .btn-outline-primary target="_blank"}
 
-**By the end of the day** you can tell the three Rs apart and say what SCORE and its robustness study found, you know where the materials of a published study are kept, and you have R, your IDE and the report of the workspace working on your own machine.
+**By the end of the day** you can tell the three Rs apart and say what SCORE and its robustness study found, you know where the materials of a published study are kept, and you have R, your IDE and the report of the IDE workspace working on your own machine.

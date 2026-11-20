@@ -5,7 +5,7 @@ Part 2
 :::
 
 ::: notes
-Part two takes two questions of analysis that the design raises. The first is the one that the causal graph raised yesterday: the greeting exists only for the emails that drew a reply, and the replies were not assigned at random. We look at what the OAs did about it and at how far the problem could reach. The second is the test that random assignment supplies by itself, without any model of the errors, and the part ends with your first run in the workspace.
+Part two takes two questions of analysis that the design raises. The first is the one that the causal graph raised yesterday: the greeting exists only for the emails that drew a reply, and the replies were not assigned at random. We look at what the OAs did about it and at how far the problem could reach. The second is the test that random assignment supplies by itself, without any model of the errors, and the part ends with your first run in the IDE workspace.
 :::
 
 ## The comparison among replies {#the-comparison-among-replies .smaller}
@@ -104,7 +104,7 @@ Random assignment also supplies a test that needs no model of the errors, and th
 ## Hands-on 1 – Balance and the reshuffles {#hands-on-1-balance-and-the-reshuffles .smaller}
 
 ::: {.small}
-**In the workspace**, with `index.qmd` open and its setup chunk run:
+**In the IDE workspace**, with `index.qmd` open and its setup chunk run:
 
 1. Once, in the console: `pak::pak("ri2")`, which installs randomizr and estimatr with it
 2. **Balance.** Tabulate one characteristic by group, then test it, and try another:

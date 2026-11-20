@@ -55,7 +55,7 @@ Now the standard errors, because the menu fixes them and the workshop's estimato
 ## Hands-on 1 – The table and the linear model {#hands-on-1-the-table-and-the-linear-model .smaller}
 
 ::: {.small}
-**In the workspace**, with the setup chunk of `index.qmd` run:
+**In the IDE workspace**, with the setup chunk of `index.qmd` run:
 
 1. `frame <- spec_frame(housing)` gives the rows of the reference specification, with the outcome `y` and the indicator `hisp`
 2. The table and its tests: `counts <- table(frame$hisp, frame$y)`, then `chisq.test(counts)` and `chisq.test(counts, correct = FALSE)`. **Which one is the square of a z?**
@@ -68,5 +68,5 @@ Then change one thing: `frame <- spec_frame(housing, comparison = "nonhispanic")
 :::
 
 ::: notes
-Your turn. Spec underscore frame, one of the helpers of the workspace, gives you the rows of any specification of the curve, and with no arguments the reference: the coded replies to Hispanic and white names, with the outcome as y and the Hispanic names coded one in hisp. Make the table, then run the chi-square test with the correction and without it, and decide which of the two is the square of a z. Then fit the linear probability model and print its parameters twice, once with the classical errors and once with HC2. Check that the coefficient is the difference between the two shares, and that the HC2 error equals the standard error that t dot test computes group by group. [state the time] [advance] Then compare with white and Black names together, where the groups are of unequal size, and see whether the two errors part. They barely do, because the two shares give almost the same variance, and that is worth a sentence in your notes.
+Your turn. Spec underscore frame, one of the helpers of the IDE workspace, gives you the rows of any specification of the curve, and with no arguments the reference: the coded replies to Hispanic and white names, with the outcome as y and the Hispanic names coded one in hisp. Make the table, then run the chi-square test with the correction and without it, and decide which of the two is the square of a z. Then fit the linear probability model and print its parameters twice, once with the classical errors and once with HC2. Check that the coefficient is the difference between the two shares, and that the HC2 error equals the standard error that t dot test computes group by group. [state the time] [advance] Then compare with white and Black names together, where the groups are of unequal size, and see whether the two errors part. They barely do, because the two shares give almost the same variance, and that is worth a sentence in your notes.
 :::

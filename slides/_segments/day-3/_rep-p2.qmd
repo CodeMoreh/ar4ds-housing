@@ -24,7 +24,7 @@ The claim comes from the paper [@EinsteinGlick2017DoesRaceAffect] as selected fo
 :::
 
 ::: {.src}
-data/reference_marks.csv, the copy of which sits in the data folder of the workspace; the final report of the replication, osf.io/2ug8x.
+data/reference_marks.csv, the copy of which sits in the data folder of the IDE workspace; the final report of the replication, osf.io/2ug8x.
 :::
 
 ::: notes

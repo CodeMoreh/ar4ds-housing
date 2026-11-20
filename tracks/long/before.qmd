@@ -2,13 +2,13 @@
 title: "Before the workshop"
 ---
 
-Three things are needed before the workshop, and each ends in something that you can check: R and the workspace installed, with the setup check printing OK; the first module on R worked through; and the background page read. The first day teaches the IDE and Quarto live, with the modules on the AR4DS website as its reading, so working through them beforehand gives you a head start but is not needed.
+Three things are needed before the workshop, and each ends in something that you can check: R and the IDE workspace installed, with the setup check printing OK; the first module on R worked through; and the background page read. The first day teaches the IDE and Quarto live, with the modules on the AR4DS website as its reading, so working through them beforehand gives you a head start but is not needed.
 
-## 1. R and the workspace
+## 1. R and the IDE workspace {#r-and-the-workspace}
 
-[Install R and the workspace](https://codemoreh.github.io/ar4ds/setup.html){.btn .btn-primary target="_blank"}
+[Install R and the IDE workspace](https://codemoreh.github.io/ar4ds/setup.html){.btn .btn-primary target="_blank"}
 
-Install R and an IDE (Positron, RStudio, VS Code, etc.), download the workspace zip, and run `R/check_setup.R` until it prints OK. You do this once, and the workspace is yours to keep after the workshop. The [help page](https://codemoreh.github.io/ar4ds/help.html) lists the problems that other participants have met. If the installation will not cooperate, tell the facilitator before the workshop: the first day leaves time to finish it, and the slides of the second day, which run R inside your browser, and the browser lab of the case study run every task of that day without it.
+Install R and an IDE (Positron, RStudio, VS Code, etc.), download the zip of the IDE workspace, and run `R/check_setup.R` until it prints OK. You do this once, and the IDE workspace is yours to keep after the workshop. The [help page](https://codemoreh.github.io/ar4ds/help.html) lists the problems that other participants have met. If the installation will not cooperate, tell the facilitator before the workshop: the first day leaves time to finish it, and the slides of the second day, which run R inside your browser, and the webR workspace of the case study run every task of that day without it.
 
 ## 2. Getting started with R
 
