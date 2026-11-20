@@ -3,7 +3,7 @@
 # links at the foot of each page follow that order. The pages under tracks/ and
 # this file are edited by hand. The multi-day format, which is out of the build
 # (_quarto.yml), has no sidebar until it is built again. The section Tools
-# of each sidebar gives absolute addresses, which Quarto treats as external
+# and the section Multiverse of each sidebar give absolute addresses, which Quarto treats as external
 # links: the pages behind them, the browser lab and the cheatsheet among them,
 # show no sidebar, and the previous and next links never run into them.
 website:
@@ -26,6 +26,14 @@ website:
           href: tracks/short/slides.qmd
         - text: "After the session"
           href: tracks/short/after.qmd
+        - section: "Multiverse"
+          contents:
+            - text: "Specification menu"
+              href: "https://codemoreh.github.io/ar4ds-housing/menu.html"
+            - text: "Specification curve"
+              href: "https://codemoreh.github.io/ar4ds-housing/curve.html"
+            - text: "Class results"
+              href: "https://codemoreh.github.io/ar4ds-housing/class-results.html"
         - section: "Tools"
           contents:
             - text: "Browser lab"
@@ -52,11 +60,19 @@ website:
           href: tracks/day/slides.qmd
         - text: "After the day"
           href: tracks/day/after.qmd
+        - section: "Multiverse"
+          contents:
+            - text: "Specification menu"
+              href: "https://codemoreh.github.io/ar4ds-housing/menu.html"
+            - text: "Specification curve"
+              href: "https://codemoreh.github.io/ar4ds-housing/curve.html"
+            - text: "Class results"
+              href: "https://codemoreh.github.io/ar4ds-housing/class-results.html"
         - section: "Tools"
           contents:
             - text: "Setup"
               href: "https://codemoreh.github.io/ar4ds/setup.html"
-            - text: "Setup help"
+            - text: "Help"
               href: "https://codemoreh.github.io/ar4ds/help.html"
             - text: "The workspace"
               href: "https://codemoreh.github.io/ar4ds-housing-workspace/"
@@ -82,11 +98,19 @@ website:
           href: tracks/independent/stage-4.qmd
         - text: "Stage 5 – Your own project"
           href: tracks/independent/stage-5.qmd
+        - section: "Multiverse"
+          contents:
+            - text: "Specification menu"
+              href: "https://codemoreh.github.io/ar4ds-housing/menu.html"
+            - text: "Specification curve"
+              href: "https://codemoreh.github.io/ar4ds-housing/curve.html"
+            - text: "Class results"
+              href: "https://codemoreh.github.io/ar4ds-housing/class-results.html"
         - section: "Tools"
           contents:
             - text: "Setup"
               href: "https://codemoreh.github.io/ar4ds/setup.html"
-            - text: "Setup help"
+            - text: "Help"
               href: "https://codemoreh.github.io/ar4ds/help.html"
             - text: "The workspace"
               href: "https://codemoreh.github.io/ar4ds-housing-workspace/"
