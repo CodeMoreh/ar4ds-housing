@@ -5,7 +5,7 @@ Part 2
 :::
 
 ::: notes
-Part two asks the question that every Bayesian analysis has to answer about itself: how much does the result depend on the prior? The weakly informative prior of part one barely mattered. So we add a second reader, one who doubts that a name could change the tone of a reply by much, and ask how far the data move that reader. Then a tool that asks the same question for every prior near the one that was chosen, and your first run of the session, a prior simulated by hand.
+Every Bayesian analysis has to ask how much its result depends on the prior, and the weakly informative prior of part one barely mattered. Part two therefore adds a second reader, one who doubts that a name could change the tone of a reply by much, and asks how far the data move that reader. Then comes a tool that asks the same question for every prior near the one that was chosen, and your first run of the session, a prior simulated by hand.
 :::
 
 ## A sceptical prior {#a-sceptical-prior .smaller}

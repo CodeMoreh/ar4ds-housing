@@ -5,7 +5,7 @@ Part 1
 :::
 
 ::: notes
-Part one starts where every analysis of this claim starts, with four counts: the replies to each group of names, and how many of them opened with the name of the sender. The reference specification of the curve uses nothing else, and three of the five analysts worked from a table of four counts of the same kind. Everything else in this session is a way of describing the difference between two shares, and of saying how far it could have arisen by chance, so it pays to be clear about the share itself first.
+Part one starts where every analysis of this claim starts, with four counts: the replies to each group of names, and how many of them opened with the name of the sender. The reference specification of the curve uses nothing else, and two of the five analysts, 8PTRZ and 25N5D, tested a table of four counts of the same kind directly. Everything else in this session is a way of describing the difference between two shares and of saying how far it could have arisen by chance, so the share itself comes first.
 :::
 
 ## A 0/1 outcome {#a-binary-outcome .smaller}

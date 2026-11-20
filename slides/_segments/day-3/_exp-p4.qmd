@@ -5,7 +5,7 @@ Part 4
 :::
 
 ::: notes
-The last part is short, and it is not a technical one. An audit study deceives the people whom it studies, and its data describe officials who never agreed to take part. The OAs devote a section of their paper to these costs, and the replication had to weigh them again. We read what the OAs wrote, then what the public file does to protect the officials, and we end with a question for you about replication itself.
+The last part is short, and it is not technical. An audit study deceives the people whom it studies, and its data describe officials who never agreed to take part. The original authors give these costs a section of their paper, and the replication had to weigh them again. We read what the original authors wrote and what the public file does to protect the officials, and we end with a question for you about replication itself.
 :::
 
 ## Deception {#deception .smaller}
@@ -26,7 +26,7 @@ The officials who answered Santiago Martinez spent working time on a request fro
 :::
 
 ::: notes
-Every official who answered Santiago Martinez spent working time on someone who did not exist, and never learned that the reply had become data. The OAs take this seriously, in a section of its own. They wrote to public employees in their professional capacity. The emails were meant to measure behaviour, not to change it. They kept the request short, so that a link or a pasted paragraph would answer it, and they never wrote back, even when an official asked a question in return. And they argue that the deception is necessary: without random assignment of the names there is no way to measure whether officials answer people differently by race or ethnicity. Whether you find that argument sufficient is a judgement that research ethics committees make for every audit, and one that you may one day have to make yourselves.
+Every official who answered Santiago Martinez spent working time on someone who did not exist, and never learned that the reply had become data. The original authors take this seriously, in a section of its own. They wrote to public employees in their professional capacity, and the emails were meant to measure behaviour rather than change it. The authors kept the request short, so that a link or a pasted paragraph would answer it, and never wrote back, even when an official asked a question in return. They also argue that the deception is necessary, since without random assignment of the names there is no way to measure whether officials answer people differently by race or ethnicity. Whether that argument is sufficient is a judgement that research ethics committees make for every audit, and one that you may one day have to make yourselves.
 :::
 
 ## The officials in the data {#the-officials-in-the-data .smaller}
@@ -46,7 +46,7 @@ The ReadMe of the replication package, doi.org/10.7910/DVN/1HOVTU; the final rep
 :::
 
 ::: notes
-The second cost concerns the data. Whether an official replied to an ostensibly minority applicant is sensitive information about a real person in a real office, and the OAs say so in the ReadMe of their package. That is why the public file gives the communities only in thirds: the exact census values would identify the authorities, and with them the officials. The replication followed the same rule under its own review board. It is also why the workshop never tries to recover an authority from the file, and why nothing that we do needs to. [advance] And replication has a cost of its own here. To test the claim again, SCORE sent three thousand and fifty further fictitious requests to offices of the same kind, so a decision to replicate an audit weighs that burden on the officials against what a second answer is worth.
+The second cost concerns the data. Whether an official replied to an ostensibly minority applicant is sensitive information about a real person in a real office, as the original authors say in the ReadMe of their package, and that is why the public file gives the communities only in thirds: the exact census values would identify the authorities, and with them the officials. The replication followed the same rule under its own review board, and the workshop never tries to recover an authority from the file, nor does any of the tasks need to. [advance] Replication has a cost of its own here as well. To test the claim again, SCORE sent three thousand and fifty further fictitious requests to offices of the same kind, so a decision to replicate an audit weighs that burden on the officials against what a second answer is worth.
 :::
 
 ## Replicating an audit {#replicating-an-audit .questionslide}
