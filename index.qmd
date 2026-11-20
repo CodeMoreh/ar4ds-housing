@@ -51,7 +51,7 @@ Case study: Housing and racial bias
 # Applied Replication for Data Skills {#housing-and-racial-bias .unnumbered .unlisted}
 
 ::: {.home-lead}
-Applied Replication for Data Skills (AR4DS) is a hands-on course that introduces social data science tools and statistical methods through the reanalysis of a published finding. The focal published finding comes from an article reanalysed as part of [SCORE (Systematizing Confidence in Open Research and Evidence)](https://www.cos.io/score), a large-scale, multi-method research initiative designed to improve the assessment of scientific credibility in the social and behavioural sciences. Operationalising scientific credibility as the 'repeatability' of research findings, SCORE subjected an initial selection of 600 academic publications to three tests: whether published results can be *reproduced* with the original data and code; to what extent a central finding is *robust* to alternative analytical choices; and whether the finding can be *replicated* using new data.
+Applied Replication for Data Skills (AR4DS) is a hands-on workshop that introduces social data science tools and statistical methods through the reanalysis of a published finding. The focal published finding comes from an article reanalysed as part of [SCORE (Systematizing Confidence in Open Research and Evidence)](https://www.cos.io/score), a large-scale, multi-method research initiative designed to improve the assessment of scientific credibility in the social and behavioural sciences. Operationalising scientific credibility as the 'repeatability' of research findings, SCORE subjected an initial selection of 600 academic publications to three tests: whether published results can be *reproduced* with the original data and code; to what extent a central finding is *robust* to alternative analytical choices; and whether the finding can be *replicated* using new data.
 
 On this site, the published finding is a claim of a field experiment in which emails signed with names meant to indicate a white, a Black or a Hispanic sender were sent to about a thousand public housing authorities in the United States [@EinsteinGlick2017DoesRaceAffect].
 :::
@@ -72,10 +72,10 @@ On this site, the published finding is a claim of a field experiment in which em
 
 :::: {.home-reveal}
 
-## The course {#the-course .unnumbered}
+## The workshop {#the-course .unnumbered}
 
 ::: {.home-intro}
-The main aim of the course is to introduce technical skills for modern empirical data analysis: finding the data and code of a study in an online repository, working with code so that another person (or your future self) can reproduce your steps, fixing your analytical choices in a preregistration before you run the analysis, and writing a live report that combines code and text.
+The main aim of the workshop is to introduce technical skills for modern empirical data analysis: finding the data and code of a study in an online repository, working with code so that another person (or your future self) can reproduce your steps, fixing your analytical choices in a preregistration before you run the analysis, and writing a live report that combines code and text.
 :::
 
 The claim at the centre of the exercise comes from the work of SCORE, a programme that put claims from published social and behavioural research through reproduction, robustness checks and replication. The exercise follows the design of the SCORE robustness study [@AczelEtAl2026InvestigatingAnalyticalRobustness] on a smaller scale, with many analysts testing the same claim, each stating their analytical choices, and results reported in a form that allows them to be compared. The SCORE page of the AR4DS site describes [the programme and its robustness study](https://codemoreh.github.io/ar4ds/score.html), including how the results of the analysts were placed on [one scale](https://codemoreh.github.io/ar4ds/score.html#sec-scale) and compared.
@@ -99,7 +99,7 @@ Participants then work through the analytical decisions that lie between the dat
 ::: {.home-r}
 ### Replication {.unnumbered .unlisted}
 
-The course then sets the claim against its replication in the SCORE replicability study, a preregistered experiment on 3,050 housing authorities in which no significant gap was found, and in the full-day and self-taught formats each participant runs the declared analysis again on the data of that experiment. The course considers what a failed replication can and cannot establish about the original result.
+The workshop then sets the claim against its replication in the SCORE replicability study, a preregistered experiment on 3,050 housing authorities in which no significant gap was found, and in the full-day and self-taught formats each participant runs the declared analysis again on the data of that experiment. The workshop considers what a failed replication can and cannot establish about the original result.
 :::
 
 ::::
@@ -115,7 +115,7 @@ The course then sets the claim against its replication in the SCORE replicabilit
 ## The case study {#the-case .unnumbered}
 
 ::: {.home-intro}
-The case study is built around a field experiment published in the *American Journal of Political Science* in 2017, in which the same short email was sent to about a thousand public housing authorities in the United States, each time signed with one of six names meant to indicate a white, a Black or a Hispanic sender. One sentence of its abstract, in the form given to the analysts of the robustness study, became the claim tested in the course:
+The case study is built around a field experiment published in the *American Journal of Political Science* in 2017, in which the same short email was sent to about a thousand public housing authorities in the United States, each time signed with one of six names meant to indicate a white, a Black or a Hispanic sender. One sentence of its abstract, in the form given to the analysts of the robustness study, became the claim tested in the workshop:
 :::
 
 > "Hispanic housing applicants were ... less likely to be greeted by name than were ... white counterparts" [@EinsteinGlick2017DoesRaceAffect, abstract]
@@ -151,7 +151,7 @@ Two files shipped with the workspace: the `r format(h_emails, big.mark = ",")` e
 ## Formats {.unnumbered .home-reveal}
 
 ::: {.home-intro .home-reveal}
-The facilitator of a course chooses its format, and the link that you receive for a course leads to it. Each card below opens the overview of a format.
+The facilitator of a workshop chooses its format, and the link that you receive for a workshop leads to it. Each card below opens the overview of a format.
 :::
 
 :::: {.home-grid}
@@ -193,8 +193,36 @@ The case study for a reader who works alone, in R on your own machine, with the 
 ## Companion {#the-companion .unnumbered}
 
 ::: {.home-intro}
-The companion curriculum holds the modules that teach the skills around the exercise, in three groups: the tools with which an analysis is written, the data and the public records that allow others to find an analysis and run it again, and the statistical methods of the case study. Every module is written on the data of the case study, and none is required for the part-day and full-day formats, whose pages point to some modules as preparation before a session, to others as the slower companion of one of its parts, and to the rest as reading for afterwards. The self-taught format works through the modules in its stages, between the tasks of the exercise.
+The companion curriculum holds the modules that teach the skills around the exercise, each written on the data of the case study. None of the modules is required for the part-day and full-day formats, whose pages point to the modules that suit a step, and the self-taught format works through the modules in its stages, between the tasks of the exercise.
 :::
+
+::::
+
+:::: {.home-rs .home-companion .home-reveal}
+
+::: {.home-r}
+### Tools, data and reproducibility {#the-companion-tools .unnumbered .unlisted}
+
+**Learning outcomes.** Writing R from a first line to a function of your own, the helpers of the workspace, working in an IDE and in a Quarto report, finding the deposit of a study and rebuilding its analysis file from it, and putting a reanalysis of your own under version control and into a public repository.
+
+**Previous knowledge.** None. The module on R is written for someone who has never programmed, and its code runs in the browser, so that it can be worked before the installation is ready.
+
+**Further learning.** The second and third parts of the module on R, the module on Git and GitHub, and the section of the module on repositories that deposits a reanalysis of your own.
+:::
+
+::: {.home-r}
+### Statistical methods {#the-companion-methods .unnumbered .unlisted}
+
+**Learning outcomes.** The methods of the case study, each worked on its emails: audit experiments and randomisation inference, binary outcomes and marginal effects, causal graphs and adjustment sets, subgroups and multiple comparisons, missing values, Bayesian estimation, the multiverse and its critics, and meta-analysis.
+
+**Previous knowledge.** What a first course in quantitative methods teaches: a proportion, a regression and a test of a hypothesis. The modules are ordered roughly by what each module assumes of the reader.
+
+**Further learning.** Each module goes beyond what a session can cover and names the works on which it draws, from which a method can be taken further, and the self-taught format ends on a project of your own that applies these methods.
+:::
+
+::::
+
+:::: {.home-reveal}
 
 ::: {.home-cta}
 [Open the companion](companion/index.qmd)
@@ -213,7 +241,7 @@ The companion curriculum holds the modules that teach the skills around the exer
 ## Resources {#the-resources .unnumbered}
 
 ::: {.home-intro}
-The Resources page gathers what a participant may want to return to: a glossary of the four terms that the course keeps apart, the public records of the case study on the Harvard Dataverse and the OSF, the core readings on SCORE, estimands, audit studies, the multiverse and preregistration, the documentation of the tools, and the full list of the works cited on the site. The glossary and the records serve as preparation before a session, and the readings and the documentation as a way into the methods afterwards.
+The Resources page gathers what a participant may want to return to: a glossary of the four terms that the workshop keeps apart, the public records of the case study on the Harvard Dataverse and the OSF, the core readings on SCORE, estimands, audit studies, the multiverse and preregistration, the documentation of the tools, and the full list of the works cited on the site. The glossary and the records serve as preparation before a session, and the readings and the documentation as a way into the methods afterwards.
 :::
 
 ::: {.home-cta}
@@ -265,9 +293,9 @@ Find me at: [chrismoreh.com](https://chrismoreh.com)
 
 ## AI disclosure {.unnumbered}
 
-The course grew out of a short session written for an open research conference at Newcastle University, which was built on my own reanalysis of one claim in the SCORE robustness study [@AczelEtAl2026InvestigatingAnalyticalRobustness]. Its extension into the present course, with several case studies from SCORE and formats of different lengths, was carried out with the help of Claude models developed by Anthropic, used through Claude Code. The models were used to improve the websites and to design the formats, to check the R code and to find errors and inconsistencies across the materials, and to draft sections of the text of the pages, the slides and the workspaces. Everything that the models produced is being checked by me for its accuracy and its language.
+The workshop grew out of a short session written for an open research conference at Newcastle University, which was built on my own reanalysis of one claim in the SCORE robustness study [@AczelEtAl2026InvestigatingAnalyticalRobustness]. Its extension into the present workshop, with several case studies from SCORE and formats of different lengths, was carried out with the help of Claude models developed by Anthropic, used through Claude Code. The models were used to improve the websites and to design the formats, to check the R code and to find errors and inconsistencies across the materials, and to draft sections of the text of the pages, the slides and the workspaces. Everything that the models produced is being checked by me for its accuracy and its language.
 
-AI assistants can also help participants during the course, with a piece of code that fails or as a partner in generating and testing ideas, used in a way that supports the work of the participant rather than replacing it, which means keeping the judgement of the analysis one's own and saying where the help came from. The module on [AI assistants](https://codemoreh.github.io/ar4ds/tools/ai.html) sets out how to use one in the IDE, and its section on [licensed data](https://codemoreh.github.io/ar4ds/tools/ai.html#sec-licensed) explains why the files of some case studies, such as the Eurobarometer surveys distributed by GESIS, may not be processed with an AI system at all.
+AI assistants can also help participants during the workshop, with a piece of code that fails or as a partner in generating and testing ideas, used in a way that supports the work of the participant rather than replacing it, which means keeping the judgement of the analysis one's own and saying where the help came from. The module on [AI assistants](https://codemoreh.github.io/ar4ds/tools/ai.html) sets out how to use one in the IDE, and its section on [licensed data](https://codemoreh.github.io/ar4ds/tools/ai.html#sec-licensed) explains why the files of some case studies, such as the Eurobarometer surveys distributed by GESIS, may not be processed with an AI system at all.
 
 ::::
 
