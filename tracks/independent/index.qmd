@@ -45,10 +45,12 @@ Sending your results to the class chart on the [Class results](../../class-resul
 
 ## The stages
 
-- [Stage 1 – Credibility and the three Rs](stage-1.qmd) (about five and a quarter hours)
-- [Stage 2 – R and Quarto](stage-2.qmd) (about five hours)
-- [Stage 3 – The claim and its reproduction](stage-3.qmd) (nearly six hours)
-- [Stage 4 – The menu and the declaration](stage-4.qmd) (about six hours)
-- [Stage 5 – Your own project](stage-5.qmd) (about six and a quarter hours)
+Each stage is roughly a day's work, and the whole route about a working week, or longer when it is spread over evenings or weekends.
+
+- [Stage 1 – Credibility and the three Rs](stage-1.qmd)
+- [Stage 2 – R and Quarto](stage-2.qmd)
+- [Stage 3 – The claim and its reproduction](stage-3.qmd)
+- [Stage 4 – The menu and the declaration](stage-4.qmd)
+- [Stage 5 – Your own project](stage-5.qmd)
 
 [Start with Stage 1](stage-1.qmd){.btn .btn-primary}

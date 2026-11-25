@@ -2,7 +2,7 @@
 title: "Stage 4 – The menu and the declaration"
 case: housing
 ---
-This stage works the menu of defensible analyses, one decision at a time, and ends on the one analysis that you would defend, declared in the preregistration block of your report before it runs and then run again on the data of the replication in the SCORE replicability study. It takes about six hours.
+This stage works the menu of defensible analyses, one decision at a time, and ends on the one analysis that you would defend, declared in the preregistration block of your report before it runs and then run again on the data of the replication in the SCORE replicability study.
 
 ## 1. The specification menu
 

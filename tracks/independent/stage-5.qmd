@@ -1,7 +1,7 @@
 ---
 title: "Stage 5 – Your own project"
 ---
-In this stage you ask a question beyond the claim that SCORE selected from the paper, one that the data of the case study support. The [list below](#the-projects) gives the projects that the case study supports and where to start. As in the case-study report, the preregistration of the project is complete before anything in it runs. It is also fixed with a date that someone else can check, either as the first commit of the repository of the project, pushed to GitHub, or as a registration on OSF Registries. The stage takes about six and a quarter hours of work, and is best spread over several sittings.
+In this stage you ask a question beyond the claim that SCORE selected from the paper, one that the data of the case study support. The [list below](#the-projects) gives the projects that the case study supports and where to start. As in the case-study report, the preregistration of the project is complete before anything in it runs. It is also fixed with a date that someone else can check, either as the first commit of the repository of the project, pushed to GitHub, or as a registration on OSF Registries. The stage is best spread over several sittings.
 
 ## 1. Version control
 

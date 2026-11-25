@@ -2,7 +2,7 @@
 title: "Stage 3 – The claim and its reproduction"
 case: housing
 ---
-In this stage you write the estimand statement behind the claim, finish the causal graph of the experiment, and reproduce the value recorded in the SCORE robustness study (Aczel et al. 2026) for one of the five analysts, whichever you choose. It takes nearly six hours.
+In this stage you write the estimand statement behind the claim, finish the causal graph of the experiment, and reproduce the value recorded in the SCORE robustness study (Aczel et al. 2026) for one of the five analysts, whichever you choose.
 
 ## 1. The exercise
 

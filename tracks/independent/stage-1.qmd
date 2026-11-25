@@ -1,7 +1,7 @@
 ---
 title: "Stage 1 – Credibility and the three Rs"
 ---
-This stage installs the tools and introduces the case study and the three Rs. It takes about five and a quarter hours.
+This stage installs the tools and introduces the case study and the three Rs.
 
 ## 1. Task 1 – The setup check
 

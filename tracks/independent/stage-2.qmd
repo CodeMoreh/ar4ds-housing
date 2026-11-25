@@ -3,7 +3,7 @@ title: "Stage 2 – R and Quarto"
 case: housing
 bibliography: [../../references.bib, ../../references-new.bib]
 ---
-This stage is a first working session in R and in Quarto, on the data of the case study. It ends with the paper of the original authors (OAs) and the first sections of the background page, and takes about five hours.
+This stage is a first working session in R and in Quarto, on the data of the case study. It ends with the paper of the original authors (OAs) and the first sections of the background page.
 
 ## 1. R on the data of the case study {#r-on-the-data-of-the-case}
 
