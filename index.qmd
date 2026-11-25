@@ -261,15 +261,19 @@ The Resources page gathers what a participant may want to return to: a glossary 
 
 :::: {.home-reveal}
 
+::: {.home-label}
+The facilitator
+:::
+
 ## Chris Moreh {.unnumbered}
 
 ::: {.home-role}
 Lecturer in Sociology, Newcastle University
 :::
 
-<!-- The biography is shortened from chrismoreh.com (source: D:/GitHub/chrismoreh-source/index.qmd); CM cut its second paragraph on 2026-11-20. -->
+<!-- The biography is shortened from chrismoreh.com (source: D:/GitHub/chrismoreh-source/index.qmd), without its second paragraph (CM, 2026-11-20), and opens with a sentence on CM's role in AR4DS (CM, 2026-11-25). -->
 
-A social scientist interested in the political sociology of migration, mobility, ethnicity and nationalism.
+I developed AR4DS, maintain its websites and facilitate its workshops. I am a social scientist interested in the political sociology of migration, mobility, ethnicity and nationalism.
 
 I approach social research as a comparative, interdisciplinary and multimethodological endeavour. My work has combined ethnographic observation, document analysis, survey methods and statistical modelling.
 
