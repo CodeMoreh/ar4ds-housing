@@ -34,6 +34,5 @@ The tools of the route:
 - [Help](https://codemoreh.github.io/ar4ds/help.html)
 - [The IDE workspace](https://codemoreh.github.io/ar4ds-housing-workspace/) – the report as it renders
 - [webR workspace](../../lab.qmd)
-- [Slides](../day/slides.qmd) – the slides used in the full-day format
 
 {{< include ../../_includes/_exercise-links.qmd >}}

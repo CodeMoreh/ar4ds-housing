@@ -1,7 +1,7 @@
 ---
 title: "Before the session"
 ---
-Before the session, read the background page and check that the slides of the session load on the machine that you will bring. There is nothing to install and nothing to register for.
+Before the session, read the background page and check that the webR workspace loads on the machine that you will bring. There is nothing to install and nothing to register for.
 
 ## 1. Background {#the-case-study}
 
@@ -9,11 +9,11 @@ Before the session, read the background page and check that the slides of the se
 
 The background page presents the claim on which the session works, and how the five analysts of the SCORE robustness study (Aczel et al. 2026) came to different conclusions about it.
 
-## 2. The slides {#the-deck}
+## 2. The webR workspace {#the-deck}
 
-[Open the slides at Task 1](../../live/short.html#/hands-on-1-get-yourself-running){.btn .btn-primary target="_blank"} [Open the webR workspace at Task 1](../../lab.qmd#task-1-setup){.btn .btn-outline-primary target="_blank"}
+[Open the webR workspace at Task 1](../../lab.qmd#task-1-setup){.btn .btn-primary target="_blank"}
 
-The slides of the session run R inside your browser, with the data already in place. Open them once on the machine and in the browser that you will use (a recent version of Chrome, Edge or Firefox), wait until the setup cell shows a "Run Code" button, and run it. If the slides do not load, try another browser, and tell the facilitator before the session. The webR workspace holds the same tasks and is the fallback.
+The webR workspace runs R inside your browser, with the data already in place. Open it once on the machine and in the browser that you will use (a recent version of Chrome, Edge or Firefox), wait until the setup cell shows a "Run Code" button, and run it. If it does not load, try another browser, and tell the facilitator before the session.
 
 ## 3. On the day
 

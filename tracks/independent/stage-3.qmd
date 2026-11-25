@@ -2,55 +2,47 @@
 title: "Stage 3 – The claim and its reproduction"
 case: housing
 ---
-::: {.callout-note appearance="simple" icon=false}
-**Slides.** [Open the slides at Part 2](../../live/day.html#/part-2-the-estimand-and-the-causal-graph){target="_blank"} in their own tab, or follow them on the [slides page](../day/slides.qmd).
-:::
-
 In this stage you write the estimand statement behind the claim, finish the causal graph of the experiment, and reproduce the value recorded in the SCORE robustness study (Aczel et al. 2026) for one of the five analysts, whichever you choose. It takes nearly six hours.
 
 ## 1. The exercise
 
 [Read the exercise page](exercise.qmd){.btn .btn-primary target="_blank"}
 
-## 2. The claim and its estimand
-
-**On the slides**, from [the question of the paper](../../live/day.html#/the-question-of-the-paper){target="_blank"}, at the end of Part 1, to the end of Part 2.
-
-## 3. Task 2 – The data, the estimand and the graph
+## 2. Task 2 – The data, the estimand and the graph
 
 **In your report**, in the two boxes of Task 2 of `index.qmd`, or in your working script. Count what came back for each name, complete the estimand statement, and put the questions of the second box to the causal graph of `R/dag_starter.R`.
 
-[Open the slides at Task 2](../../live/day.html#/hands-on-2-meet-the-emails-draw-the-graph){.btn .btn-outline-primary target="_blank"} [Open the webR workspace at Task 2](../../lab.qmd#task-2-data){.btn .btn-outline-primary target="_blank"}
+[Open the webR workspace at Task 2](../../lab.qmd#task-2-data){.btn .btn-outline-primary target="_blank"}
 
-## 4. Task 3 – The reproduction
+## 3. Task 3 – The reproduction
 
-**On the slides, then in your report**, in Task 3 of `index.qmd`. The slides read the instruction of Task 2 of the robustness study word for word. Then choose one of the five analysts and reproduce the analysis in the tab of that analyst. Working alone, you can take a second analyst whose test differs from the first.
+**In your report**, in Task 3 of `index.qmd`. Choose one of the five analysts and reproduce the analysis in the tab of that analyst. Working alone, you can take a second analyst whose test differs from the first.
 
-[Open the slides at Part 3](../../live/day.html#/part-3-the-reproduction){.btn .btn-primary target="_blank"} [Open the webR workspace at Task 3](../../lab.qmd#task-3-reproduction){.btn .btn-outline-primary target="_blank"}
+[Open the webR workspace at Task 3](../../lab.qmd#task-3-reproduction){.btn .btn-outline-primary target="_blank"}
 
-## 5. The continuity correction
+## 4. The continuity correction
 
-**On the slides**, at [the continuity correction](../../live/day.html#/the-continuity-correction){target="_blank"} and the three slides after it, two of which run both tests without the correction.
+**In the webR workspace**, at [Defaults and codings](../../lab.qmd#task-3-defaults){target="_blank"}, whose cells run both tests without the correction.
 
-## 6. Audit experiments
+## 5. Audit experiments
 
 [Open Audit experiments](../../companion/experiments.qmd#sec-audits){.btn .btn-primary target="_blank"}
 
 Work from [Audit and correspondence studies](../../companion/experiments.qmd#sec-audits) to [Comparing among replies](../../companion/experiments.qmd#sec-posttreatment). The tasks do not need section 3, which simulates the experiment with DeclareDesign, or the second simulation in section 5, and you can leave both until the route is done.
 
-## 7. Binary outcomes
+## 6. Binary outcomes
 
 [Open Binary outcomes](../../companion/binary-outcomes.qmd#sec-outcome){.btn .btn-primary target="_blank"}
 
 Work from [A yes-or-no outcome](../../companion/binary-outcomes.qmd#sec-outcome) to [The methods side by side](../../companion/binary-outcomes.qmd#sec-side-by-side).
 
-## 8. Causal graphs
+## 7. Causal graphs
 
 [Open Causal graphs and adjustment sets](../../companion/dags.qmd#sec-arrows){.btn .btn-primary target="_blank"}
 
 Work from [Arrows as claims](../../companion/dags.qmd#sec-arrows) to [Counting all delivered emails](../../companion/dags.qmd#sec-all-emails).
 
-## 9. The decision map
+## 8. The decision map
 
 [Open the decision map](../../menu.qmd#map){.btn .btn-primary target="_blank"}
 

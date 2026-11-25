@@ -4,7 +4,7 @@ subtitle: "Part-day"
 bibliography: [../../references.bib, ../../references-new.bib]
 ---
 
-The [background page](../../background.qmd) presents the original study and the two studies of SCORE that took it up, the robustness study with its five reanalyses [@AczelEtAl2026InvestigatingAnalyticalRobustness] and the replicability study with its new experiment. The part-day format takes Tasks 1 to 4, and you do them in the slides of the session, which run R inside your browser with the data already in place. The [webR workspace](../../lab.qmd) holds the same tasks and is the fallback if the slides do not load.
+The [background page](../../background.qmd) presents the original study and the two studies of SCORE that took it up, the robustness study with its five reanalyses [@AczelEtAl2026InvestigatingAnalyticalRobustness] and the replicability study with its new experiment. The part-day format takes Tasks 1 to 4, and you do them in the [webR workspace](../../lab.qmd), which runs R inside your browser with the data already in place.
 
 ---
 
@@ -14,11 +14,11 @@ The [background page](../../background.qmd) presents the original study and the 
 
 ## The tasks
 
-The session takes four of the six numbered tasks of the exercise, in the cells of its slides.
+The session takes four of the six numbered tasks of the exercise, in the cells of the webR workspace.
 
 ### Task 1 – The setup check
 
-Wait for the engine of the slides to finish downloading, then run the setup cell.
+Wait for the R engine to finish downloading, then run the setup cell.
 
 ### Task 2 – The estimand statement
 
@@ -30,7 +30,7 @@ Reproduce the analysis of one of the five analysts in the table above from the p
 
 ### Task 4 – The menu
 
-This task is **exploratory**: nothing in it is preregistered, and you may look, change your mind and try again. Try several specifications from the [specification menu](../../menu.qmd) with `try_spec()`, one decision at a time, and note which choices move the estimate and which barely touch it. Then choose the one that you would defend and run it once more, so that it is your last try, because the slides place it among the `r nrow(curve)` specifications of the curve. The session sends nothing to the class chart.
+This task is **exploratory**: nothing in it is preregistered, and you may look, change your mind and try again. Try several specifications from the [specification menu](../../menu.qmd) with `try_spec()`, one decision at a time, and note which choices move the estimate and which barely touch it. Then choose the one that you would defend and run it once more, so that it is your last try, because `try_spec()` places it among the `r nrow(curve)` specifications of the curve. The session sends nothing to the class chart.
 
 ### Task 5 – Preregistration
 
@@ -50,7 +50,6 @@ The session sends nothing to the class chart, and the rule below applies to the 
 
 The tools of the session:
 
-- [Slides](slides.qmd)
 - [webR workspace](../../lab.qmd)
 
 {{< include ../../_includes/_exercise-links.qmd >}}

@@ -11,9 +11,9 @@ This format fills a slot of two to three hours, with nothing to install, nothing
 ::: {.fmt-step}
 ### webR {.unnumbered .unlisted}
 
-Every task of the session is done in the browser, on the slides or in the webR workspace, whose cells run R through [webR](https://docs.r-wasm.org/webr/latest/), a version of R compiled to run inside a web page. The data are already loaded, and the cells that ask for code of your own come with hints and worked solutions, so that the session needs neither R nor an IDE on your machine.
+Every task of the session is done in the browser, in the webR workspace, whose cells run R through [webR](https://docs.r-wasm.org/webr/latest/), a version of R compiled to run inside a web page. The data are already loaded, and the cells that ask for code of your own come with hints and worked solutions, so that the session needs neither R nor an IDE on your machine.
 
-[Open the slides](slides.qmd){.btn .btn-primary target="_blank"} [Open the webR workspace](../../lab.qmd){.btn .btn-outline-primary target="_blank"}
+[Open the webR workspace](../../lab.qmd){.btn .btn-primary target="_blank"}
 :::
 
 ::::

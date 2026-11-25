@@ -12,9 +12,9 @@ This format sets out the workshop materials for a reader who works alone, withou
 ::: {.fmt-step}
 ### webR {.unnumbered .unlisted}
 
-No programming is assumed. The webR workspace and the slides of the full-day format hold every task in cells that run R in the browser through [webR](https://docs.r-wasm.org/webr/latest/), a version of R compiled to run inside a web page, with hints and worked solutions, so that you can try each step before your installation is ready, or carry on there if it fails.
+No programming is assumed. The webR workspace holds every task in cells that run R in the browser through [webR](https://docs.r-wasm.org/webr/latest/), a version of R compiled to run inside a web page, with hints and worked solutions, so that you can try each step before your installation is ready, or carry on there if it fails.
 
-[Open the webR workspace](../../lab.qmd){.btn .btn-primary target="_blank"} [Open the slides](../day/slides.qmd){.btn .btn-outline-primary target="_blank"}
+[Open the webR workspace](../../lab.qmd){.btn .btn-primary target="_blank"}
 :::
 
 ::: {.fmt-step}
@@ -37,7 +37,7 @@ You work in the IDE workspace of the case study on your own machine, from the se
 
 Stage 1 takes Task 1 of the exercise, stage 3 Tasks 2 and 3, and stage 4 Tasks 4 to 6, and the [exercise](exercise.qmd) page sets out the six tasks.
 
-The stages use the [same slides as the full-day format](../day/slides.qmd). Open the slides in their own tab and press `s` for the speaker view, whose notes give what is said over each slide. The [help page](https://codemoreh.github.io/ar4ds/help.html) lists the problems that other participants have met.
+The [help page](https://codemoreh.github.io/ar4ds/help.html) lists the problems that other participants have met.
 
 Where a stage can be shortened for a reader who already knows part of its material, its page says how, in a paragraph headed **Shortcuts**.
 

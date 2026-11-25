@@ -2,10 +2,6 @@
 title: "Part 1 – The claim and credibility"
 ---
 
-::: {.callout-note appearance="simple" icon=false}
-**Slides.** [Open the slides at this part](../../live/day.html#/part-1-the-claim-and-credibility){target="_blank"} in their own tab, or follow them on the [slides page](slides.qmd).
-:::
-
 1. The plan for the day
 2. The credibility of social science
 3. SCORE in brief and its robustness study (Aczel et al. 2026)
@@ -17,8 +13,8 @@ title: "Part 1 – The claim and credibility"
 
 **In your IDE workspace.** Run `source("R/check_setup.R")` until every line prints OK. The last check prints −19.97 percentage points. Then read the four scenarios of the warm-up in the box of Task 1 of `index.qmd`, and name the R that each scenario describes.
 
-[Open the slides at Task 1](../../live/day.html#/hands-on-1-get-yourself-running){.btn .btn-outline-primary target="_blank"} [Open the webR workspace at Task 1](../../lab.qmd#task-1-setup){.btn .btn-outline-primary target="_blank"}
+[Open the webR workspace at Task 1](../../lab.qmd#task-1-setup){.btn .btn-outline-primary target="_blank"}
 
-If your installation fails, run the same cells in the slides or in the webR workspace, which give the same numbers.
+If your installation fails, run the same cells in the webR workspace, which gives the same numbers.
 
 To go further: [SCORE](https://codemoreh.github.io/ar4ds/score.html) on the AR4DS website.

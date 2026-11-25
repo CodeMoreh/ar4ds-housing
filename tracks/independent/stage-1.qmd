@@ -1,41 +1,33 @@
 ---
 title: "Stage 1 – Credibility and the three Rs"
 ---
-::: {.callout-note appearance="simple" icon=false}
-**Slides.** [Open the slides at Part 1](../../live/day.html#/part-1-the-claim-and-credibility){target="_blank"} in their own tab, where the `s` key opens the speaker view with the notes of each slide, or follow them on the [slides page](../day/slides.qmd).
-:::
+This stage installs the tools and introduces the case study and the three Rs. It takes about five and a quarter hours.
 
-This stage takes the talk from Part 1 of the slides and installs the tools. It takes about five and a quarter hours.
-
-## 1. The talk of Part 1
-
-**On the slides.** Read each slide with its speaker notes.
-
-## 2. Task 1 – The setup check
+## 1. Task 1 – The setup check
 
 [Install R and an IDE](https://codemoreh.github.io/ar4ds/setup.html){.btn .btn-primary target="_blank"} [Download the IDE workspace (zip)]({{< var cases.housing.workspace-zip >}}){.btn .btn-outline-primary}
 
-Install R, Quarto and an IDE (Positron, RStudio, VS Code, etc.) by following the setup page. Then download the IDE workspace, unzip it, open the folder that it makes, `ar4ds-housing-workspace-main`, in your IDE (in RStudio, the file `ar4ds-housing-workspace.Rproj` inside it), and run `source("R/check_setup.R")` until every line prints OK. The last check prints −19.97 percentage points. Open the [slides at Task 1](../../live/day.html#/hands-on-1-get-yourself-running){target="_blank"} or the [webR workspace](../../lab.qmd#task-1-setup) once as well, either of which runs every task in a browser tab if your installation fails. The [help page](https://codemoreh.github.io/ar4ds/help.html) lists the problems that others have met.
+Install R, Quarto and an IDE (Positron, RStudio, VS Code, etc.) by following the setup page. Then download the IDE workspace, unzip it, open the folder that it makes, `ar4ds-housing-workspace-main`, in your IDE (in RStudio, the file `ar4ds-housing-workspace.Rproj` inside it), and run `source("R/check_setup.R")` until every line prints OK. The last check prints −19.97 percentage points. Open the [webR workspace](../../lab.qmd#task-1-setup) once as well, which runs every task in a browser tab if your installation fails. The [help page](https://codemoreh.github.io/ar4ds/help.html) lists the problems that others have met.
 
-## 3. The case study and the exercise {#the-case-and-the-exercise}
+## 2. The case study and the exercise {#the-case-and-the-exercise}
 
 [Open the home page](../../index.qmd){.btn .btn-primary target="_blank"}
 
 Read the section on the case study and the section on the exercise.
 
-## 4. The glossary
+## 3. The glossary
 
 [Open the glossary](../../resources.qmd#glossary){.btn .btn-primary target="_blank"}
 
 Read the glossary. Then write a paragraph in your own words that tells reproduction, robustness and replication apart and says what each of them found on the case study.
 
-## 5. Your IDE
+## 4. Your IDE
 
 [Open the module on the IDE](https://codemoreh.github.io/ar4ds/tools/ide.html){.btn .btn-primary target="_blank"}
 
 Read [What an IDE does](https://codemoreh.github.io/ar4ds/tools/ide.html#sec-what) in the module on the AR4DS website, and the sections on the IDE that you chose, sections 2 to 8 for Positron and [section 10](https://codemoreh.github.io/ar4ds/tools/ide.html#sec-other) for RStudio and VS Code. Then work through [the six steps](https://codemoreh.github.io/ar4ds/tools/ide.html#sec-try) at the end of the module, in the IDE workspace that you have just installed.
 
-## 6. R from the beginning
+## 5. R from the beginning
 
 [Open Getting started with R](https://codemoreh.github.io/ar4ds/tools/r.html#sec-what){.btn .btn-primary target="_blank"}
 

@@ -22,8 +22,6 @@ website:
           href: tracks/short/half-1.qmd
         - text: "Second half – Exploration and replication"
           href: tracks/short/half-2.qmd
-        - text: "Slides"
-          href: tracks/short/slides.qmd
         - text: "Outside the workshop"
           href: tracks/short/after.qmd
         - section: "Multiverse"
@@ -56,8 +54,6 @@ website:
           href: tracks/day/part-3.qmd
         - text: "Part 4 – Robustness"
           href: tracks/day/part-4.qmd
-        - text: "Slides"
-          href: tracks/day/slides.qmd
         - text: "Outside the workshop"
           href: tracks/day/after.qmd
         - section: "Multiverse"

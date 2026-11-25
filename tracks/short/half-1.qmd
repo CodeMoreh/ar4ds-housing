@@ -1,10 +1,6 @@
 ---
 title: "First half – The claim and its reproduction"
 ---
-::: {.callout-note appearance="simple" icon=false}
-**Slides.** [Open the slides at this half](../../live/short.html#/half-1-the-claim-and-its-reproduction){target="_blank"} in their own tab, or follow them on the [slides page](slides.qmd).
-:::
-
 1. The plan of the session
 2. The three Rs and the SCORE robustness study (Aczel et al. 2026)
 3. Task 1 – The setup check
@@ -14,18 +10,16 @@ title: "First half – The claim and its reproduction"
 7. Task 3 – The reproduction
 8. The defaults of the software
 
-When the slides ask for your estimand statement, which is Task 2, write it in your notes.
+When the session comes to the estimand, write your estimand statement, which is Task 2, in your notes.
 
 ## Task 1 – The setup check
 
-**In the slides.** Wait for the R engine, run the setup cell, and check that `housing` has 1,014 rows and that the last line reports −19.97 percentage points. Then work through the warm-up on the three Rs, on the next slide.
+**In the webR workspace.** Wait for the R engine, run the setup cell, and check that `housing` has 1,014 rows and that the last line reports −19.97 percentage points. Then work through the warm-up on the three Rs, below it.
 
-[Open the slides at Task 1](../../live/short.html#/hands-on-1-get-yourself-running){.btn .btn-primary target="_blank"} [Open the webR workspace at Task 1](../../lab.qmd#task-1-setup){.btn .btn-outline-primary target="_blank"}
-
-If the slides do not load, run the same cells in the webR workspace, which gives the same numbers.
+[Open the webR workspace at Task 1](../../lab.qmd#task-1-setup){.btn .btn-primary target="_blank"}
 
 ## Task 3 – The reproduction
 
-**In the slides.** Run the cell that reads the public file `housing_original.csv`, then work through the cells of the analyst given to you.
+**In the webR workspace.** Run the cell that reads the public file `housing_original.csv`, then work through the cells of the analyst given to you.
 
-[Open the slides at Task 3](../../live/short.html#/hands-on-3-reproduce-the-recorded-result){.btn .btn-primary target="_blank"} [Open the webR workspace at Task 3](../../lab.qmd#task-3-reproduction){.btn .btn-outline-primary target="_blank"}
+[Open the webR workspace at Task 3](../../lab.qmd#task-3-reproduction){.btn .btn-primary target="_blank"}

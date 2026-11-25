@@ -26,6 +26,10 @@ project:
     - "!slides/bayesian.qmd"
     - "!slides/report.qmd"
     - "!facilitator/**"
+    # Out of the build until CM has revised them (25 November 2026): the web
+    # slides of the part-day and full-day formats, and the pages that show them
+    - "!live/**"
+    - "!tracks/*/slides.qmd"
 
 # The docked sidebars of the formats live in their own file.
 metadata-files:
